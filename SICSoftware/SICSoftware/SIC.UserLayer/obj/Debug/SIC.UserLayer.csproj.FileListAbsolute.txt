@@ -109,6 +109,7 @@ C:\Users\Alvaro\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.Dat
 C:\Users\Alvaro\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.EntityLayer.pdb
 C:\Users\Alvaro\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.UIGeneral.pdb
 C:\Users\Alvaro\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.DataLayer.pdb
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\obj\Debug\ResolveAssemblyReference.cache
 D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\obj\Debug\SIC.UserLayer.csprojResolveAssemblyReference.cache
 D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.UserLayer.dll
 D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.UserLayer.pdb
@@ -124,4 +125,3 @@ D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.UIGenera
 D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.DataLayer.pdb
 D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\obj\Debug\SIC.UserLayer.dll
 D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\obj\Debug\SIC.UserLayer.pdb
-C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\obj\Debug\ResolveAssemblyReference.cache

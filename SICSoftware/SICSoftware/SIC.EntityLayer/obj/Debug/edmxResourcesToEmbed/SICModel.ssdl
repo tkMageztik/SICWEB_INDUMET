@@ -3,6 +3,7 @@
   <EntityContainer Name="SICDBWEBModelStoreContainer">
     <EntitySet Name="SIC_T_PARAMETRO" EntityType="SICDBWEBModel.Store.SIC_T_PARAMETRO" store:Type="Tables" Schema="General" />
     <EntitySet Name="SIC_T_PARAMETRO_DET" EntityType="SICDBWEBModel.Store.SIC_T_PARAMETRO_DET" store:Type="Tables" Schema="General" />
+    <EntitySet Name="SIC_T_ALMACEN" EntityType="SICDBWEBModel.Store.SIC_T_ALMACEN" store:Type="Tables" Schema="Mantenimiento" />
     <EntitySet Name="SIC_T_CLI_CONTAC_CARGO" EntityType="SICDBWEBModel.Store.SIC_T_CLI_CONTAC_CARGO" store:Type="Tables" Schema="Mantenimiento" />
     <EntitySet Name="SIC_T_CLI_CONTACTO" EntityType="SICDBWEBModel.Store.SIC_T_CLI_CONTACTO" store:Type="Tables" Schema="Mantenimiento" />
     <EntitySet Name="SIC_T_CLI_DIRECCION" EntityType="SICDBWEBModel.Store.SIC_T_CLI_DIRECCION" store:Type="Tables" Schema="Mantenimiento" />
@@ -15,12 +16,21 @@
     <EntitySet Name="SIC_T_COLABORADOR" EntityType="SICDBWEBModel.Store.SIC_T_COLABORADOR" store:Type="Tables" Schema="Mantenimiento" />
     <EntitySet Name="SIC_T_DEPARTAMENTO" EntityType="SICDBWEBModel.Store.SIC_T_DEPARTAMENTO" store:Type="Tables" Schema="Mantenimiento" />
     <EntitySet Name="SIC_T_DISTRITO" EntityType="SICDBWEBModel.Store.SIC_T_DISTRITO" store:Type="Tables" Schema="Mantenimiento" />
+    <EntitySet Name="SIC_T_IGV" EntityType="SICDBWEBModel.Store.SIC_T_IGV" store:Type="Tables" Schema="Mantenimiento" />
     <EntitySet Name="SIC_T_ITEM" EntityType="SICDBWEBModel.Store.SIC_T_ITEM" store:Type="Tables" Schema="Mantenimiento" />
+    <EntitySet Name="SIC_T_MOV_ESTADO" EntityType="SICDBWEBModel.Store.SIC_T_MOV_ESTADO" store:Type="Tables" Schema="Mantenimiento" />
+    <EntitySet Name="SIC_T_MOVIMIENTO_ENTRADA" EntityType="SICDBWEBModel.Store.SIC_T_MOVIMIENTO_ENTRADA" store:Type="Tables" Schema="Mantenimiento" />
+    <EntitySet Name="SIC_T_MOVIMIENTO_ENTRADA_DETALLE" EntityType="SICDBWEBModel.Store.SIC_T_MOVIMIENTO_ENTRADA_DETALLE" store:Type="Tables" Schema="Mantenimiento" />
+    <EntitySet Name="SIC_T_MOVIMIENTO_SALIDA" EntityType="SICDBWEBModel.Store.SIC_T_MOVIMIENTO_SALIDA" store:Type="Tables" Schema="Mantenimiento" />
+    <EntitySet Name="SIC_T_MOVIMIENTO_SALIDA_DETALLE" EntityType="SICDBWEBModel.Store.SIC_T_MOVIMIENTO_SALIDA_DETALLE" store:Type="Tables" Schema="Mantenimiento" />
     <EntitySet Name="SIC_T_NOMB_COM" EntityType="SICDBWEBModel.Store.SIC_T_NOMB_COM" store:Type="Tables" Schema="Mantenimiento" />
     <EntitySet Name="SIC_T_ODC_ESTADO" EntityType="SICDBWEBModel.Store.SIC_T_ODC_ESTADO" store:Type="Tables" Schema="Mantenimiento" />
     <EntitySet Name="SIC_T_ORDEN_DE_COMPRA" EntityType="SICDBWEBModel.Store.SIC_T_ORDEN_DE_COMPRA" store:Type="Tables" Schema="Mantenimiento" />
     <EntitySet Name="SIC_T_ORDEN_DE_COMPRA_DET" EntityType="SICDBWEBModel.Store.SIC_T_ORDEN_DE_COMPRA_DET" store:Type="Tables" Schema="Mantenimiento" />
     <EntitySet Name="SIC_T_PROVINCIA" EntityType="SICDBWEBModel.Store.SIC_T_PROVINCIA" store:Type="Tables" Schema="Mantenimiento" />
+    <EntitySet Name="SIC_T_TASA_CAMBIO" EntityType="SICDBWEBModel.Store.SIC_T_TASA_CAMBIO" store:Type="Tables" Schema="Mantenimiento" />
+    <EntitySet Name="SIC_T_VENTA" EntityType="SICDBWEBModel.Store.SIC_T_VENTA" store:Type="Tables" Schema="Mantenimiento" />
+    <EntitySet Name="SIC_T_VENTA_DETALLE" EntityType="SICDBWEBModel.Store.SIC_T_VENTA_DETALLE" store:Type="Tables" Schema="Mantenimiento" />
     <EntitySet Name="SIC_T_ZONA_REPARTO" EntityType="SICDBWEBModel.Store.SIC_T_ZONA_REPARTO" store:Type="Tables" Schema="Mantenimiento" />
     <EntitySet Name="SIC_T_ZONA_REPARTO_LUGAR" EntityType="SICDBWEBModel.Store.SIC_T_ZONA_REPARTO_LUGAR" store:Type="Tables" Schema="Mantenimiento" />
     <EntitySet Name="SIC_T_MENU" EntityType="SICDBWEBModel.Store.SIC_T_MENU" store:Type="Tables" Schema="Seguridad" />
@@ -83,6 +93,42 @@
       <End Role="SIC_T_MENU" EntitySet="SIC_T_MENU" />
       <End Role="SIC_T_MENU1" EntitySet="SIC_T_MENU" />
     </AssociationSet>
+    <AssociationSet Name="FK_SIC_T_MOVIMIENTO_ENTRADA_DETALLE_SIC_T_MOVIMIENTO_ENTRADA" Association="SICDBWEBModel.Store.FK_SIC_T_MOVIMIENTO_ENTRADA_DETALLE_SIC_T_MOVIMIENTO_ENTRADA">
+      <End Role="SIC_T_MOVIMIENTO_ENTRADA" EntitySet="SIC_T_MOVIMIENTO_ENTRADA" />
+      <End Role="SIC_T_MOVIMIENTO_ENTRADA_DETALLE" EntitySet="SIC_T_MOVIMIENTO_ENTRADA_DETALLE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SIC_T_MOVIMIENTO_ENTRADA_DETALLE_SIC_T_ORDEN_DE_COMPRA_DET" Association="SICDBWEBModel.Store.FK_SIC_T_MOVIMIENTO_ENTRADA_DETALLE_SIC_T_ORDEN_DE_COMPRA_DET">
+      <End Role="SIC_T_ORDEN_DE_COMPRA_DET" EntitySet="SIC_T_ORDEN_DE_COMPRA_DET" />
+      <End Role="SIC_T_MOVIMIENTO_ENTRADA_DETALLE" EntitySet="SIC_T_MOVIMIENTO_ENTRADA_DETALLE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_ALMACEN" Association="SICDBWEBModel.Store.FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_ALMACEN">
+      <End Role="SIC_T_ALMACEN" EntitySet="SIC_T_ALMACEN" />
+      <End Role="SIC_T_MOVIMIENTO_ENTRADA" EntitySet="SIC_T_MOVIMIENTO_ENTRADA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_CLIENTE" Association="SICDBWEBModel.Store.FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_CLIENTE">
+      <End Role="SIC_T_CLIENTE" EntitySet="SIC_T_CLIENTE" />
+      <End Role="SIC_T_MOVIMIENTO_ENTRADA" EntitySet="SIC_T_MOVIMIENTO_ENTRADA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_MOV_ESTADO" Association="SICDBWEBModel.Store.FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_MOV_ESTADO">
+      <End Role="SIC_T_MOV_ESTADO" EntitySet="SIC_T_MOV_ESTADO" />
+      <End Role="SIC_T_MOVIMIENTO_ENTRADA" EntitySet="SIC_T_MOVIMIENTO_ENTRADA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_ORDEN_DE_COMPRA" Association="SICDBWEBModel.Store.FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_ORDEN_DE_COMPRA">
+      <End Role="SIC_T_ORDEN_DE_COMPRA" EntitySet="SIC_T_ORDEN_DE_COMPRA" />
+      <End Role="SIC_T_MOVIMIENTO_ENTRADA" EntitySet="SIC_T_MOVIMIENTO_ENTRADA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_ITEM" Association="SICDBWEBModel.Store.FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_ITEM">
+      <End Role="SIC_T_ITEM" EntitySet="SIC_T_ITEM" />
+      <End Role="SIC_T_MOVIMIENTO_SALIDA_DETALLE" EntitySet="SIC_T_MOVIMIENTO_SALIDA_DETALLE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_MOVIMIENTO_SALIDA" Association="SICDBWEBModel.Store.FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_MOVIMIENTO_SALIDA">
+      <End Role="SIC_T_MOVIMIENTO_SALIDA" EntitySet="SIC_T_MOVIMIENTO_SALIDA" />
+      <End Role="SIC_T_MOVIMIENTO_SALIDA_DETALLE" EntitySet="SIC_T_MOVIMIENTO_SALIDA_DETALLE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SIC_T_MOVIMIENTO_SALIDA_SIC_T_ALMACEN" Association="SICDBWEBModel.Store.FK_SIC_T_MOVIMIENTO_SALIDA_SIC_T_ALMACEN">
+      <End Role="SIC_T_ALMACEN" EntitySet="SIC_T_ALMACEN" />
+      <End Role="SIC_T_MOVIMIENTO_SALIDA" EntitySet="SIC_T_MOVIMIENTO_SALIDA" />
+    </AssociationSet>
     <AssociationSet Name="FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ITEM" Association="SICDBWEBModel.Store.FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ITEM">
       <End Role="SIC_T_ITEM" EntitySet="SIC_T_ITEM" />
       <End Role="SIC_T_ORDEN_DE_COMPRA_DET" EntitySet="SIC_T_ORDEN_DE_COMPRA_DET" />
@@ -90,6 +136,10 @@
     <AssociationSet Name="FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ORDEN_DE_COMPRA" Association="SICDBWEBModel.Store.FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ORDEN_DE_COMPRA">
       <End Role="SIC_T_ORDEN_DE_COMPRA" EntitySet="SIC_T_ORDEN_DE_COMPRA" />
       <End Role="SIC_T_ORDEN_DE_COMPRA_DET" EntitySet="SIC_T_ORDEN_DE_COMPRA_DET" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SIC_T_ORDEN_DE_COMPRA_SIC_T_CLIENTE" Association="SICDBWEBModel.Store.FK_SIC_T_ORDEN_DE_COMPRA_SIC_T_CLIENTE">
+      <End Role="SIC_T_CLIENTE" EntitySet="SIC_T_CLIENTE" />
+      <End Role="SIC_T_ORDEN_DE_COMPRA" EntitySet="SIC_T_ORDEN_DE_COMPRA" />
     </AssociationSet>
     <AssociationSet Name="FK_SIC_T_ORDEN_DE_COMPRA_SIC_T_ODC_ESTADO" Association="SICDBWEBModel.Store.FK_SIC_T_ORDEN_DE_COMPRA_SIC_T_ODC_ESTADO">
       <End Role="SIC_T_ODC_ESTADO" EntitySet="SIC_T_ODC_ESTADO" />
@@ -106,6 +156,18 @@
     <AssociationSet Name="FK_SIC_T_USUARIO_OPCION_SIC_T_USUARIO" Association="SICDBWEBModel.Store.FK_SIC_T_USUARIO_OPCION_SIC_T_USUARIO">
       <End Role="SIC_T_USUARIO" EntitySet="SIC_T_USUARIO" />
       <End Role="SIC_T_USUARIO_OPCION" EntitySet="SIC_T_USUARIO_OPCION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SIC_T_VENTA_DETALLE_SIC_T_ITEM" Association="SICDBWEBModel.Store.FK_SIC_T_VENTA_DETALLE_SIC_T_ITEM">
+      <End Role="SIC_T_ITEM" EntitySet="SIC_T_ITEM" />
+      <End Role="SIC_T_VENTA_DETALLE" EntitySet="SIC_T_VENTA_DETALLE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SIC_T_VENTA_DETALLE_SIC_T_VENTA" Association="SICDBWEBModel.Store.FK_SIC_T_VENTA_DETALLE_SIC_T_VENTA">
+      <End Role="SIC_T_VENTA" EntitySet="SIC_T_VENTA" />
+      <End Role="SIC_T_VENTA_DETALLE" EntitySet="SIC_T_VENTA_DETALLE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SIC_T_VENTA_SIC_T_CLIENTE" Association="SICDBWEBModel.Store.FK_SIC_T_VENTA_SIC_T_CLIENTE">
+      <End Role="SIC_T_CLIENTE" EntitySet="SIC_T_CLIENTE" />
+      <End Role="SIC_T_VENTA" EntitySet="SIC_T_VENTA" />
     </AssociationSet>
     <AssociationSet Name="FK_SIC_T_ZONA_REPARTO_LUGAR_SIC_T_ZONA_REPARTO" Association="SICDBWEBModel.Store.FK_SIC_T_ZONA_REPARTO_LUGAR_SIC_T_ZONA_REPARTO">
       <End Role="SIC_T_ZONA_REPARTO" EntitySet="SIC_T_ZONA_REPARTO" />
@@ -139,6 +201,14 @@
     <Property Name="par_det_c_vcampo_5" Type="varchar" MaxLength="50" />
     <Property Name="par_det_c_vcampo_desc_5" Type="varchar" MaxLength="200" />
     <Property Name="par_det_c_vobs" Type="varchar" MaxLength="400" />
+  </EntityType>
+  <EntityType Name="SIC_T_ALMACEN">
+    <Key>
+      <PropertyRef Name="alm_c_iid" />
+    </Key>
+    <Property Name="alm_c_iid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="alm_c_bactivo" Type="bit" />
+    <Property Name="alm_c_vdes" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="SIC_T_CLI_CONTAC_CARGO">
     <Key>
@@ -220,6 +290,8 @@
     <Property Name="cli_c_dfecharegistra" Type="datetime" Nullable="false" />
     <Property Name="cli_c_dfechaactualiza" Type="datetime" />
     <Property Name="cli_c_dfec_const" Type="date" />
+    <Property Name="cli_c_bproveedor" Type="bit" />
+    <Property Name="cli_c_bcliente" Type="bit" />
   </EntityType>
   <EntityType Name="SIC_T_COLAB_AREA">
     <Key>
@@ -262,17 +334,88 @@
     <Property Name="dist_c_vnomb" Type="varchar" MaxLength="50" />
     <Property Name="prov_c_ccod" Type="char" Nullable="false" MaxLength="4" />
   </EntityType>
+  <EntityType Name="SIC_T_IGV">
+    <Key>
+      <PropertyRef Name="igv_c_iid" />
+    </Key>
+    <Property Name="igv_c_iid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="igv_c_eigv" Type="decimal" Precision="17" Scale="4" />
+    <Property Name="igv_c_dinicio" Type="datetime" />
+    <Property Name="igv_c_dfin" Type="datetime" />
+  </EntityType>
   <EntityType Name="SIC_T_ITEM">
     <Key>
       <PropertyRef Name="itm_c_iid" />
     </Key>
     <Property Name="itm_c_iid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="itm_c_ccodigo" Type="nvarchar" MaxLength="100" />
-    <Property Name="itm_c_vdescripcion" Type="nvarchar" MaxLength="250" />
-    <Property Name="itm_c_dprecio" Type="decimal" Precision="17" Scale="4" />
+    <Property Name="itm_c_vdescripcion" Type="nvarchar" MaxLength="100" />
+    <Property Name="itm_c_dprecio" Type="decimal" Scale="3" />
     <Property Name="itm_c_yumedida" Type="tinyint" />
     <Property Name="itm_c_vpardes" Type="nvarchar" MaxLength="100" />
     <Property Name="itm_c_bactivo" Type="bit" />
+  </EntityType>
+  <EntityType Name="SIC_T_MOV_ESTADO">
+    <Key>
+      <PropertyRef Name="mov_estado_iid" />
+    </Key>
+    <Property Name="mov_estado_iid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="mov_estado_vdescrpcion" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="SIC_T_MOVIMIENTO_ENTRADA">
+    <Key>
+      <PropertyRef Name="mve_c_iid" />
+    </Key>
+    <Property Name="mve_c_iid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="mve_c_ioc_id" Type="int" />
+    <Property Name="mve_c_vguiaserie" Type="varchar" MaxLength="10" />
+    <Property Name="mve_c_vfacturaserie" Type="varchar" MaxLength="10" />
+    <Property Name="mve_c_vfacturanumero" Type="varchar" MaxLength="10" />
+    <Property Name="mve_c_vguianumero" Type="nvarchar" MaxLength="10" />
+    <Property Name="mve_c_dguiafecha" Type="datetime" />
+    <Property Name="mve_c_iidalmacen" Type="int" />
+    <Property Name="mve_c_vdoc_id_prov" Type="varchar" MaxLength="11" />
+    <Property Name="mve_c_bactivo" Type="bit" />
+    <Property Name="mve_c_dfecha" Type="datetime" />
+    <Property Name="mve_c_iestado" Type="int" />
+    <Property Name="mve_c_vdesestado" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="SIC_T_MOVIMIENTO_ENTRADA_DETALLE">
+    <Key>
+      <PropertyRef Name="mve_det_c_iid" />
+    </Key>
+    <Property Name="mve_det_c_iid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="mve_c_iid" Type="int" />
+    <Property Name="mve_c_ecant_pedida" Type="decimal" Precision="17" Scale="4" />
+    <Property Name="mve_c_ecant_recibida" Type="decimal" Precision="17" Scale="4" />
+    <Property Name="mve_c_vdescripcion_item" Type="nvarchar" MaxLength="100" />
+    <Property Name="mve_c_iid_det" Type="nchar" MaxLength="10" />
+    <Property Name="mve_c_iocdet_id" Type="int" />
+  </EntityType>
+  <EntityType Name="SIC_T_MOVIMIENTO_SALIDA">
+    <Key>
+      <PropertyRef Name="mvs_c_iid" />
+    </Key>
+    <Property Name="mvs_c_iid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="mvs_c_dfecha" Type="datetime" />
+    <Property Name="mvs_c_ialmacen" Type="int" />
+    <Property Name="mvs_c_valmacen_des" Type="varchar" MaxLength="100" />
+    <Property Name="mvs_c_itipodoc" Type="int" />
+    <Property Name="mvs_c_vtipodoc" Type="varchar" MaxLength="100" />
+    <Property Name="mvs_c_vinmueble" Type="varchar" MaxLength="100" />
+    <Property Name="msv_c_icentrocosto" Type="int" />
+    <Property Name="msv_c_vcentrocosto_des" Type="varchar" MaxLength="100" />
+    <Property Name="mvs_c_bactivo" Type="bit" />
+  </EntityType>
+  <EntityType Name="SIC_T_MOVIMIENTO_SALIDA_DETALLE">
+    <Key>
+      <PropertyRef Name="mvs_det_c_iid" />
+    </Key>
+    <Property Name="mvs_det_c_iid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="mvs_c_iid" Type="int" />
+    <Property Name="mvs_det_c_iitemid" Type="int" />
+    <Property Name="mvs_det_ecantidad" Type="decimal" Precision="17" Scale="4" />
+    <Property Name="mvs_det_dprecio" Type="decimal" Precision="17" Scale="4" />
   </EntityType>
   <EntityType Name="SIC_T_NOMB_COM">
     <Key>
@@ -296,26 +439,27 @@
     <Property Name="odc_c_zfecha" Type="datetime" />
     <Property Name="odc_c_ymoneda" Type="tinyint" />
     <Property Name="ocd_c_ycondiciones" Type="tinyint" />
-    <Property Name="ocd_c_dsubtotal" Type="decimal" Precision="17" Scale="4" />
-    <Property Name="ocd_c_dtotal" Type="decimal" Precision="17" Scale="4" />
-    <Property Name="ocd_c_vdocprov_id" Type="nvarchar" MaxLength="20" />
-    <Property Name="ocd_c_digv" Type="decimal" Precision="17" Scale="4" />
-    <Property Name="ocd_c_digvcal" Type="decimal" Precision="17" Scale="4" />
-    <Property Name="ocd_c_dpercepcion" Type="decimal" Precision="17" Scale="4" />
-    <Property Name="ocd_c_dpercepcioncal" Type="decimal" Precision="17" Scale="4" />
+    <Property Name="ocd_c_esubtotal" Type="decimal" Precision="17" Scale="4" />
+    <Property Name="ocd_c_etotal" Type="decimal" Precision="17" Scale="4" />
+    <Property Name="ocd_c_eigv" Type="decimal" Precision="17" Scale="4" />
+    <Property Name="ocd_c_eigvcal" Type="decimal" Precision="17" Scale="4" />
+    <Property Name="ocd_c_epercepcion" Type="decimal" Precision="17" Scale="4" />
+    <Property Name="ocd_c_epercepcioncal" Type="decimal" Precision="17" Scale="4" />
     <Property Name="ocd_c_iestado" Type="int" />
     <Property Name="ocd_c_vdescmoneda" Type="varchar" MaxLength="100" />
+    <Property Name="ocd_c_bactivo" Type="bit" />
+    <Property Name="ocd_c_vdescestado" Type="varchar" MaxLength="100" />
+    <Property Name="ocd_c_vdocprov_id" Type="varchar" MaxLength="11" />
   </EntityType>
   <EntityType Name="SIC_T_ORDEN_DE_COMPRA_DET">
     <Key>
       <PropertyRef Name="odc_det_c_iid" />
-      <PropertyRef Name="odc_c_iid" />
     </Key>
     <Property Name="odc_det_c_iid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="odc_c_iid" Type="int" Nullable="false" />
     <Property Name="ocd_c_iitemid" Type="int" Nullable="false" />
-    <Property Name="ocd_c_icantidad" Type="int" />
-    <Property Name="ocd_c_dprecio" Type="decimal" Precision="17" Scale="4" />
+    <Property Name="ocd_c_ecantidad" Type="decimal" Precision="17" Scale="4" />
+    <Property Name="ocd_c_eprecio" Type="decimal" Precision="17" Scale="4" />
   </EntityType>
   <EntityType Name="SIC_T_PROVINCIA">
     <Key>
@@ -324,6 +468,46 @@
     <Property Name="prov_c_ccod" Type="char" Nullable="false" MaxLength="4" />
     <Property Name="prov_c_vnomb" Type="varchar" MaxLength="50" />
     <Property Name="depa_c_ccod" Type="char" Nullable="false" MaxLength="2" />
+  </EntityType>
+  <EntityType Name="SIC_T_TASA_CAMBIO">
+    <Key>
+      <PropertyRef Name="tsc_c_iid" />
+    </Key>
+    <Property Name="tsc_c_iid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="tsc_c_ecompra" Type="decimal" Precision="17" Scale="4" />
+    <Property Name="tsc_c_eventa" Type="decimal" Precision="17" Scale="4" />
+    <Property Name="tsc_c_dinicio" Type="datetime" />
+    <Property Name="tsc_c_dfin" Type="datetime" />
+  </EntityType>
+  <EntityType Name="SIC_T_VENTA">
+    <Key>
+      <PropertyRef Name="ven_c_iid" />
+    </Key>
+    <Property Name="ven_c_iid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ven_c_zfecha" Type="datetime" />
+    <Property Name="ven_c_ymoneda" Type="tinyint" />
+    <Property Name="ven_c_ycondiciones" Type="tinyint" />
+    <Property Name="ven_c_dsubtotal" Type="decimal" Precision="17" Scale="4" />
+    <Property Name="ven_c_dtotal" Type="decimal" Precision="17" Scale="4" />
+    <Property Name="ven_c_vdoccli_id" Type="varchar" MaxLength="11" />
+    <Property Name="ven_c_digv" Type="decimal" Precision="17" Scale="4" />
+    <Property Name="ven_c_digvcal" Type="decimal" Precision="17" Scale="4" />
+    <Property Name="ven_c_dpercepcion" Type="decimal" Precision="17" Scale="4" />
+    <Property Name="ven_c_dpercepcioncal" Type="decimal" Precision="17" Scale="4" />
+    <Property Name="ven_c_itipodoc" Type="int" />
+    <Property Name="ven_c_vdescmoneda" Type="varchar" MaxLength="100" />
+    <Property Name="ven_c_bactivo" Type="bit" />
+    <Property Name="ven_c_vdestipodoc" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="SIC_T_VENTA_DETALLE">
+    <Key>
+      <PropertyRef Name="ven_det_c_iid" />
+    </Key>
+    <Property Name="ven_det_c_iid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ven_c_iid" Type="int" Nullable="false" />
+    <Property Name="ven_det_c_iitemid" Type="int" Nullable="false" />
+    <Property Name="ven_det_c_ecantidad" Type="decimal" Precision="17" Scale="4" />
+    <Property Name="ven_det_c_eprecio" Type="decimal" Precision="17" Scale="4" />
   </EntityType>
   <EntityType Name="SIC_T_ZONA_REPARTO">
     <Key>
@@ -381,8 +565,8 @@
     <Property Name="usua_c_cdoc_id" Type="varchar" Nullable="false" MaxLength="10" />
     <Property Name="usua_perfil_c_cestado" Type="char" MaxLength="1" />
   </EntityType>
-  <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'SICDBWEB_DES.Mantenimiento.SIC_VW_CLIENTE_LISTA' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'SICDBWEB_DES.Mantenimiento.SIC_VW_CLIENTE_LISTA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="SIC_VW_CLIENTE_LISTA">
     <Key>
@@ -538,6 +722,114 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_SIC_T_MOVIMIENTO_ENTRADA_DETALLE_SIC_T_MOVIMIENTO_ENTRADA">
+    <End Role="SIC_T_MOVIMIENTO_ENTRADA" Type="SICDBWEBModel.Store.SIC_T_MOVIMIENTO_ENTRADA" Multiplicity="0..1" />
+    <End Role="SIC_T_MOVIMIENTO_ENTRADA_DETALLE" Type="SICDBWEBModel.Store.SIC_T_MOVIMIENTO_ENTRADA_DETALLE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SIC_T_MOVIMIENTO_ENTRADA">
+        <PropertyRef Name="mve_c_iid" />
+      </Principal>
+      <Dependent Role="SIC_T_MOVIMIENTO_ENTRADA_DETALLE">
+        <PropertyRef Name="mve_c_iid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SIC_T_MOVIMIENTO_ENTRADA_DETALLE_SIC_T_ORDEN_DE_COMPRA_DET">
+    <End Role="SIC_T_ORDEN_DE_COMPRA_DET" Type="SICDBWEBModel.Store.SIC_T_ORDEN_DE_COMPRA_DET" Multiplicity="0..1" />
+    <End Role="SIC_T_MOVIMIENTO_ENTRADA_DETALLE" Type="SICDBWEBModel.Store.SIC_T_MOVIMIENTO_ENTRADA_DETALLE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SIC_T_ORDEN_DE_COMPRA_DET">
+        <PropertyRef Name="odc_det_c_iid" />
+      </Principal>
+      <Dependent Role="SIC_T_MOVIMIENTO_ENTRADA_DETALLE">
+        <PropertyRef Name="mve_c_iocdet_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_ALMACEN">
+    <End Role="SIC_T_ALMACEN" Type="SICDBWEBModel.Store.SIC_T_ALMACEN" Multiplicity="0..1" />
+    <End Role="SIC_T_MOVIMIENTO_ENTRADA" Type="SICDBWEBModel.Store.SIC_T_MOVIMIENTO_ENTRADA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SIC_T_ALMACEN">
+        <PropertyRef Name="alm_c_iid" />
+      </Principal>
+      <Dependent Role="SIC_T_MOVIMIENTO_ENTRADA">
+        <PropertyRef Name="mve_c_iidalmacen" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_CLIENTE">
+    <End Role="SIC_T_CLIENTE" Type="SICDBWEBModel.Store.SIC_T_CLIENTE" Multiplicity="0..1" />
+    <End Role="SIC_T_MOVIMIENTO_ENTRADA" Type="SICDBWEBModel.Store.SIC_T_MOVIMIENTO_ENTRADA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SIC_T_CLIENTE">
+        <PropertyRef Name="cli_c_vdoc_id" />
+      </Principal>
+      <Dependent Role="SIC_T_MOVIMIENTO_ENTRADA">
+        <PropertyRef Name="mve_c_vdoc_id_prov" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_MOV_ESTADO">
+    <End Role="SIC_T_MOV_ESTADO" Type="SICDBWEBModel.Store.SIC_T_MOV_ESTADO" Multiplicity="0..1" />
+    <End Role="SIC_T_MOVIMIENTO_ENTRADA" Type="SICDBWEBModel.Store.SIC_T_MOVIMIENTO_ENTRADA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SIC_T_MOV_ESTADO">
+        <PropertyRef Name="mov_estado_iid" />
+      </Principal>
+      <Dependent Role="SIC_T_MOVIMIENTO_ENTRADA">
+        <PropertyRef Name="mve_c_iestado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_ORDEN_DE_COMPRA">
+    <End Role="SIC_T_ORDEN_DE_COMPRA" Type="SICDBWEBModel.Store.SIC_T_ORDEN_DE_COMPRA" Multiplicity="0..1" />
+    <End Role="SIC_T_MOVIMIENTO_ENTRADA" Type="SICDBWEBModel.Store.SIC_T_MOVIMIENTO_ENTRADA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SIC_T_ORDEN_DE_COMPRA">
+        <PropertyRef Name="odc_c_iid" />
+      </Principal>
+      <Dependent Role="SIC_T_MOVIMIENTO_ENTRADA">
+        <PropertyRef Name="mve_c_ioc_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_ITEM">
+    <End Role="SIC_T_ITEM" Type="SICDBWEBModel.Store.SIC_T_ITEM" Multiplicity="0..1" />
+    <End Role="SIC_T_MOVIMIENTO_SALIDA_DETALLE" Type="SICDBWEBModel.Store.SIC_T_MOVIMIENTO_SALIDA_DETALLE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SIC_T_ITEM">
+        <PropertyRef Name="itm_c_iid" />
+      </Principal>
+      <Dependent Role="SIC_T_MOVIMIENTO_SALIDA_DETALLE">
+        <PropertyRef Name="mvs_c_iid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_MOVIMIENTO_SALIDA">
+    <End Role="SIC_T_MOVIMIENTO_SALIDA" Type="SICDBWEBModel.Store.SIC_T_MOVIMIENTO_SALIDA" Multiplicity="0..1" />
+    <End Role="SIC_T_MOVIMIENTO_SALIDA_DETALLE" Type="SICDBWEBModel.Store.SIC_T_MOVIMIENTO_SALIDA_DETALLE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SIC_T_MOVIMIENTO_SALIDA">
+        <PropertyRef Name="mvs_c_iid" />
+      </Principal>
+      <Dependent Role="SIC_T_MOVIMIENTO_SALIDA_DETALLE">
+        <PropertyRef Name="mvs_c_iid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SIC_T_MOVIMIENTO_SALIDA_SIC_T_ALMACEN">
+    <End Role="SIC_T_ALMACEN" Type="SICDBWEBModel.Store.SIC_T_ALMACEN" Multiplicity="0..1" />
+    <End Role="SIC_T_MOVIMIENTO_SALIDA" Type="SICDBWEBModel.Store.SIC_T_MOVIMIENTO_SALIDA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SIC_T_ALMACEN">
+        <PropertyRef Name="alm_c_iid" />
+      </Principal>
+      <Dependent Role="SIC_T_MOVIMIENTO_SALIDA">
+        <PropertyRef Name="mvs_c_ialmacen" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ITEM">
     <End Role="SIC_T_ITEM" Type="SICDBWEBModel.Store.SIC_T_ITEM" Multiplicity="1" />
     <End Role="SIC_T_ORDEN_DE_COMPRA_DET" Type="SICDBWEBModel.Store.SIC_T_ORDEN_DE_COMPRA_DET" Multiplicity="*" />
@@ -559,6 +851,18 @@
       </Principal>
       <Dependent Role="SIC_T_ORDEN_DE_COMPRA_DET">
         <PropertyRef Name="odc_c_iid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SIC_T_ORDEN_DE_COMPRA_SIC_T_CLIENTE">
+    <End Role="SIC_T_CLIENTE" Type="SICDBWEBModel.Store.SIC_T_CLIENTE" Multiplicity="0..1" />
+    <End Role="SIC_T_ORDEN_DE_COMPRA" Type="SICDBWEBModel.Store.SIC_T_ORDEN_DE_COMPRA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SIC_T_CLIENTE">
+        <PropertyRef Name="cli_c_vdoc_id" />
+      </Principal>
+      <Dependent Role="SIC_T_ORDEN_DE_COMPRA">
+        <PropertyRef Name="ocd_c_vdocprov_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -607,6 +911,42 @@
       </Principal>
       <Dependent Role="SIC_T_USUARIO_OPCION">
         <PropertyRef Name="usua_c_cdoc_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SIC_T_VENTA_DETALLE_SIC_T_ITEM">
+    <End Role="SIC_T_ITEM" Type="SICDBWEBModel.Store.SIC_T_ITEM" Multiplicity="1" />
+    <End Role="SIC_T_VENTA_DETALLE" Type="SICDBWEBModel.Store.SIC_T_VENTA_DETALLE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SIC_T_ITEM">
+        <PropertyRef Name="itm_c_iid" />
+      </Principal>
+      <Dependent Role="SIC_T_VENTA_DETALLE">
+        <PropertyRef Name="ven_det_c_iitemid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SIC_T_VENTA_DETALLE_SIC_T_VENTA">
+    <End Role="SIC_T_VENTA" Type="SICDBWEBModel.Store.SIC_T_VENTA" Multiplicity="1" />
+    <End Role="SIC_T_VENTA_DETALLE" Type="SICDBWEBModel.Store.SIC_T_VENTA_DETALLE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SIC_T_VENTA">
+        <PropertyRef Name="ven_c_iid" />
+      </Principal>
+      <Dependent Role="SIC_T_VENTA_DETALLE">
+        <PropertyRef Name="ven_c_iid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SIC_T_VENTA_SIC_T_CLIENTE">
+    <End Role="SIC_T_CLIENTE" Type="SICDBWEBModel.Store.SIC_T_CLIENTE" Multiplicity="0..1" />
+    <End Role="SIC_T_VENTA" Type="SICDBWEBModel.Store.SIC_T_VENTA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SIC_T_CLIENTE">
+        <PropertyRef Name="cli_c_vdoc_id" />
+      </Principal>
+      <Dependent Role="SIC_T_VENTA">
+        <PropertyRef Name="ven_c_vdoccli_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -240,12 +240,32 @@ namespace SIC.Data
         CANCELADO = 16
     }
 
+    public enum EstadosOrdenCompra
+    {
+        PLANEADA = 1,
+        ABIERTA = 2,
+        CERRADA = 3,
+        VENCIDA = 4
+    }
+
+    public enum EstadosMovimiento
+    {
+        REGISTRADO = 1 ,
+        POR_REGULARIZAR = 2,
+        CERRADO = 3,
+    }
+
     public enum TipoDocumentoPago
     {
         FACTURA = 2,
         BOLETA_DE_VENTA = 4,
         NOTA_DE_CREDITO = 8
+    }
 
+    public enum TipoDocumentoVenta
+    {
+        BOLETA = 17,
+        FACTURA =  18,
     }
 
     public enum Concepto
@@ -337,6 +357,7 @@ namespace SIC.Data
         IGV = 3,
         PERCEPCION = 4,
         MONEDA = 5,
+        DOCUMENTO_VENTA = 6,
     }
 
     public enum DESTINATARIOSCORREO

@@ -507,28 +507,26 @@ A.lnk2:hover{
     text-decoration: none;
     margin-right:0px;
     padding: 1px;
-	padding-top:4px;
-	text-align:center;
-    height: 18px;
-	width:150px;
-    overflow: visible;
-	display:block;
-}
+	padding
 
 A.lnk{
 	font-size:12px;
 	font-family:Arial, Verdana, Calibri;
 	font-weight:bold;
 	color:#584259;
-    height: 18px;
-	background-color:#dddddd;
+    background-color:#dddddd;
     border:#d0d0d0 1px solid;
     text-decoration: none;
     margin-right:0px;
     padding-top:4px !important;
 	text-align:center;
-    width:80px;
     overflow: visible;
+	display:block;
+    padding-left: 1px;
+    padding-right: 1px;
+    padding-bottom: 1px;
+}
+w: visible;
 	display:block;
     padding-left: 1px;
     padding-right: 1px;

@@ -34,7 +34,6 @@ namespace SIC.BusinessLayer
         {
             return new UbigeoDA().BuscarDepartamento(_strdepa_c_ccod);
         }
-
         public bool RegistrarNombreComercial(SIC_T_NOMB_COM _nombre)
         {
             return new ClienteDA().RegistrarNombreComercial(_nombre);

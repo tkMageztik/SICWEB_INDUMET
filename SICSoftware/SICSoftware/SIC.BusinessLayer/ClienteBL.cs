@@ -21,6 +21,12 @@ namespace SIC.BusinessLayer
         //    return new ClienteDA().ListarClientesCobranzas(pcli_c_btipo_pers, pcli_c_vraz_soc, pcli_c_bgrupo_ibk, pcli_c_vdoc_id, pcli_c_dfecharegistraini, pcli_c_dfecharegistrafin, pcli_c_tdocumento);
         //}
 
+        public List<SIC_T_CLIENTE> ListarClientesAlt(){
+            return new ClienteDA().ListarClientesAlt(); 
+        }
+
+
+
         public List<SIC_SP_CLIENTE_LISTAR_COLABORADORES_POR_AREA_Result> ListarColaboradoresPorArea(byte area)
         {
             return new ClienteDA().ListarColaboradoresPorArea(area);
@@ -219,6 +225,11 @@ namespace SIC.BusinessLayer
             return new ClienteDA().EliminarDireccion(_Prop_Inm);
         }
 
+
+        public List<SIC_T_CLIENTE> ListarProveedor()
+        {
+            return new ClienteDA().ListarProveedor();
+        }
 
         #endregion
     }

@@ -842,12 +842,6 @@
     <NavigationProperty Name="SIC_T_MOVIMIENTO_ENTRADA" Relationship="SICDBWEBModel.FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_ORDEN_DE_COMPRA" FromRole="SIC_T_ORDEN_DE_COMPRA" ToRole="SIC_T_MOVIMIENTO_ENTRADA" />
     <NavigationProperty Name="SIC_T_ODC_ESTADO" Relationship="SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_SIC_T_ODC_ESTADO" FromRole="SIC_T_ORDEN_DE_COMPRA" ToRole="SIC_T_ODC_ESTADO" />
     <NavigationProperty Name="SIC_T_ORDEN_DE_COMPRA_DET" Relationship="SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ORDEN_DE_COMPRA" FromRole="SIC_T_ORDEN_DE_COMPRA" ToRole="SIC_T_ORDEN_DE_COMPRA_DET" />
-    <Property Type="Decimal" Name="ocd_c_dsubtotal" Precision="17" Scale="4" />
-    <Property Type="Decimal" Name="ocd_c_dtotal" Precision="17" Scale="4" />
-    <Property Type="Decimal" Name="ocd_c_digv" Precision="17" Scale="4" />
-    <Property Type="Decimal" Name="ocd_c_digvcal" Precision="17" Scale="4" />
-    <Property Type="Decimal" Name="ocd_c_dpercepcion" Precision="17" Scale="4" />
-    <Property Type="Decimal" Name="ocd_c_dpercepcioncal" Precision="17" Scale="4" />
   </EntityType>
   <EntityType Name="SIC_T_ORDEN_DE_COMPRA_DET">
     <Key>
@@ -861,8 +855,6 @@
     <NavigationProperty Name="SIC_T_ITEM" Relationship="SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ITEM" FromRole="SIC_T_ORDEN_DE_COMPRA_DET" ToRole="SIC_T_ITEM" />
     <NavigationProperty Name="SIC_T_MOVIMIENTO_ENTRADA_DETALLE" Relationship="SICDBWEBModel.FK_SIC_T_MOVIMIENTO_ENTRADA_DETALLE_SIC_T_ORDEN_DE_COMPRA_DET" FromRole="SIC_T_ORDEN_DE_COMPRA_DET" ToRole="SIC_T_MOVIMIENTO_ENTRADA_DETALLE" />
     <NavigationProperty Name="SIC_T_ORDEN_DE_COMPRA" Relationship="SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ORDEN_DE_COMPRA" FromRole="SIC_T_ORDEN_DE_COMPRA_DET" ToRole="SIC_T_ORDEN_DE_COMPRA" />
-    <Property Type="Int32" Name="ocd_c_icantidad" />
-    <Property Type="Decimal" Name="ocd_c_dprecio" Precision="17" Scale="4" />
   </EntityType>
   <EntityType Name="SIC_T_TASA_CAMBIO">
     <Key>

@@ -14,6 +14,11 @@ namespace SIC.BusinessLayer
             return new OrdenCompraDA().ListarOrdenDeCompra();
         }
 
+        public List<SIC_T_ORDEN_DE_COMPRA> ListarOrdenDeCompraEstado(int estado)
+        {
+            return new OrdenCompraDA().ListarOrdenDeCompraEstado(estado);
+        }
+
         public SIC_T_ORDEN_DE_COMPRA ObtenerOrdenCompra(int id)
         {
             return new OrdenCompraDA().ObtenerOrdenCompra(id);
@@ -27,6 +32,11 @@ namespace SIC.BusinessLayer
         public bool ModificarOrdenCompra(SIC_T_ORDEN_DE_COMPRA _pSIC_T_ORDEN_DE_COMPRA)
         {
             return new OrdenCompraDA().ModificarOrdenCompra(_pSIC_T_ORDEN_DE_COMPRA);
+        }
+
+        public bool DeshabilitarOrdenCompra(int id)
+        {
+            return new OrdenCompraDA().DeshabilitarOrdenCompra(id);
         }
 
         public List<SIC_T_ODC_ESTADO> ListarEstadosOrdenCompra() 
