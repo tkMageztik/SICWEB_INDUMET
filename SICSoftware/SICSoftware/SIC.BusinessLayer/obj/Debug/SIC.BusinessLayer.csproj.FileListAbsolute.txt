@@ -1,0 +1,23 @@
+C:\Users\Juan y Carla\Desktop\WORKSPACE\SICSoftware\ClassLibrary1\bin\Debug\ClassLibrary1.dll
+C:\Users\Juan y Carla\Desktop\WORKSPACE\SICSoftware\ClassLibrary1\bin\Debug\ClassLibrary1.pdb
+C:\Users\Juan y Carla\Desktop\WORKSPACE\SICSoftware\ClassLibrary1\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Juan y Carla\Desktop\WORKSPACE\SICSoftware\ClassLibrary1\obj\Debug\ClassLibrary1.dll
+C:\Users\Juan y Carla\Desktop\WORKSPACE\SICSoftware\ClassLibrary1\obj\Debug\ClassLibrary1.pdb
+C:\Users\RPEXT009\Desktop\SICSoftware\ClassLibrary1\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\RPEXT009\Desktop\SICSoftware\ClassLibrary1\obj\Debug\ClassLibrary1.dll
+C:\Users\RPEXT009\Desktop\SICSoftware\ClassLibrary1\obj\Debug\ClassLibrary1.pdb
+C:\Users\RPEXT009\Desktop\SICSoftware\ClassLibrary1\bin\Debug\ClassLibrary1.dll
+C:\Users\RPEXT009\Desktop\SICSoftware\ClassLibrary1\bin\Debug\ClassLibrary1.pdb
+C:\Users\RPEXT009\Desktop\SICSoftware\ClassLibrary1\bin\Debug\SIC.DataLayer.dll
+C:\Users\RPEXT009\Desktop\SICSoftware\ClassLibrary1\bin\Debug\SIC.EntityLayer.dll
+C:\Users\RPEXT009\Desktop\SICSoftware\ClassLibrary1\bin\Debug\SIC.DataLayer.pdb
+C:\Users\RPEXT009\Desktop\SICSoftware\ClassLibrary1\bin\Debug\SIC.EntityLayer.pdb
+C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.BusinessLayer\bin\Debug\ClassLibrary1.dll
+C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.BusinessLayer\bin\Debug\ClassLibrary1.pdb
+C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.BusinessLayer\bin\Debug\SIC.DataLayer.dll
+C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.BusinessLayer\bin\Debug\SIC.EntityLayer.dll
+C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.BusinessLayer\bin\Debug\SIC.DataLayer.pdb
+C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.BusinessLayer\bin\Debug\SIC.EntityLayer.pdb
+C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.BusinessLayer\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.BusinessLayer\obj\Debug\ClassLibrary1.dll
+C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.BusinessLayer\obj\Debug\ClassLibrary1.pdb

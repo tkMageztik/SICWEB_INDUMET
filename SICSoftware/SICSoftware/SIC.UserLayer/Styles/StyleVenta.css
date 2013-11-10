@@ -1,0 +1,110 @@
+﻿.slick-cell .lnk
+{
+    width:32px !important;
+    position: relative;
+    top: -5px;
+    left: -3px;
+}
+
+.slick-cell .lnk:hover
+{
+    width:32px !important;
+    position: relative;
+    top: -5px;
+    left: -3px;
+}
+        
+.txt4
+{
+    text-align:right;
+}
+
+.Lbl2
+{
+    background-color:#f1f1f1;
+    font-size:11px !important;
+    width:170px;
+    color:Black;
+    font-weight:bold;
+}
+        
+.total
+{
+    font-size:12px;
+    font-weight:bolder;
+    /*color:#0099ff !important;*/
+    color:#4CA92B !important;
+    /*background-color:#f1f1f1 !important;*/
+}
+
+.text {
+	font-family: "typicons";
+	font-size: 20px;
+	line-height: 1;
+	font-weight: normal;
+	font-style: normal;
+	/*vertical-align: top;*/
+	margin: 0 5px 0 5px;
+}
+
+.al {
+    color: #008000;
+    cursor: pointer;
+    font-family: "Arial",sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: bold;
+    height: 10px;
+    line-height: 20px;
+    padding: 4px;
+    transition: all 0.25s ease 0s;
+    width: 80px;
+}
+
+.cerrado
+{
+	color: #FF0000;
+	cursor:default;
+}
+
+.cabLocal
+{
+    font-weight:bold;
+    background-color:#f1f1f1;
+    border-right:1px solid black;
+    text-align: center;
+}
+
+.rowTotal
+{
+    font-weight:bold;
+    text-align:right;
+}
+
+.cabTotal
+{
+    color:White !important;
+    font-weight:bold;
+    background:Black none !important;    
+    text-align:center;
+}
+
+.cabTotal:hover
+{
+    color:black !important;
+    font-weight:bold;
+    background:white none !important;    
+}
+
+.cabGralGrilla
+{
+    font-weight:bold !important;
+    color:#000000 !important;
+    text-align:center;
+    background-color:#ccc !important;
+}
+
+.rowNumero
+{    
+    text-align:right;
+}

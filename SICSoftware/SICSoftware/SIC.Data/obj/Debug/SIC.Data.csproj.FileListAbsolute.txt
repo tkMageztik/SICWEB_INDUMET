@@ -1,0 +1,5 @@
+C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.Data\bin\Debug\SIC.Data.dll
+C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.Data\bin\Debug\SIC.Data.pdb
+C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.Data\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.Data\obj\Debug\SIC.Data.dll
+C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.Data\obj\Debug\SIC.Data.pdb
