@@ -1,0 +1,348 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B59D9C5D-7765-4C16-AFA3-856E446B3223}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SIC.UserLayer</RootNamespace>
+    <AssemblyName>SIC.UserLayer</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit">
+      <HintPath>..\packages\AjaxControlToolkit.7.0607\lib\40\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\packages\AjaxControlToolkit.7.0607\lib\40\SanitizerProviders\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="SanitizerProviders">
+      <HintPath>..\packages\AjaxControlToolkit.7.0607\lib\40\SanitizerProviders\SanitizerProviders.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="About.aspx" />
+    <Content Include="Account\ChangePassword.aspx" />
+    <Content Include="Account\ChangePasswordSuccess.aspx" />
+    <Content Include="Account\Login.aspx" />
+    <Content Include="Account\Register.aspx" />
+    <Content Include="bin\AjaxControlToolkit.dll" />
+    <Content Include="bin\ar\AjaxControlToolkit.resources.dll" />
+    <Content Include="bin\ClassLibrary1.dll" />
+    <Content Include="bin\ClassLibrary1.pdb" />
+    <Content Include="bin\cs\AjaxControlToolkit.resources.dll" />
+    <Content Include="bin\de\AjaxControlToolkit.resources.dll" />
+    <Content Include="bin\es\AjaxControlToolkit.resources.dll" />
+    <Content Include="bin\fr\AjaxControlToolkit.resources.dll" />
+    <Content Include="bin\he\AjaxControlToolkit.resources.dll" />
+    <Content Include="bin\hi\AjaxControlToolkit.resources.dll" />
+    <Content Include="bin\HtmlAgilityPack.dll" />
+    <Content Include="bin\it\AjaxControlToolkit.resources.dll" />
+    <Content Include="bin\ja\AjaxControlToolkit.resources.dll" />
+    <Content Include="bin\ko\AjaxControlToolkit.resources.dll" />
+    <Content Include="bin\nl\AjaxControlToolkit.resources.dll" />
+    <Content Include="bin\pt\AjaxControlToolkit.resources.dll" />
+    <Content Include="bin\ru\AjaxControlToolkit.resources.dll" />
+    <Content Include="bin\SanitizerProviders.dll" />
+    <Content Include="bin\SIC.DataLayer.dll" />
+    <Content Include="bin\SIC.DataLayer.pdb" />
+    <Content Include="bin\SIC.EntityLayer.dll" />
+    <Content Include="bin\SIC.EntityLayer.pdb" />
+    <Content Include="bin\SIC.UserLayer.dll" />
+    <Content Include="bin\SIC.UserLayer.pdb" />
+    <Content Include="bin\tr-TR\AjaxControlToolkit.resources.dll" />
+    <Content Include="bin\zh-CHS\AjaxControlToolkit.resources.dll" />
+    <Content Include="bin\zh-CHT\AjaxControlToolkit.resources.dll" />
+    <Content Include="Imagenes\advance.jpg" />
+    <Content Include="Imagenes\animated_favicon1.gif" />
+    <Content Include="Imagenes\arrows-ffffff.png" />
+    <Content Include="Imagenes\baner2.jpg" />
+    <Content Include="Imagenes\banner.gif" />
+    <Content Include="Imagenes\banner.jpg" />
+    <Content Include="Imagenes\banner.png" />
+    <Content Include="Imagenes\bar_hor550.gif" />
+    <Content Include="Imagenes\bg-cab-inter.jpg" />
+    <Content Include="Imagenes\bg-login.gif" />
+    <Content Include="Imagenes\Botones\bg-footer.jpg" />
+    <Content Include="Imagenes\Botones\bg-menu-main.png" />
+    <Content Include="Imagenes\Botones\bg-menu-main2.png" />
+    <Content Include="Imagenes\Botones\btn-login.gif" />
+    <Content Include="Imagenes\Botones\btn_editar.png" />
+    <Content Include="Imagenes\Botones\btn_eliminar.png" />
+    <Content Include="Imagenes\Botones\btn_ingresar.png" />
+    <Content Include="Imagenes\Botones\btn_pdf.png" />
+    <Content Include="Imagenes\Botones\dot-net-green.gif" />
+    <Content Include="Imagenes\Botones\grabar_off.gif" />
+    <Content Include="Imagenes\Botones\grabar_on.gif" />
+    <Content Include="Imagenes\Botones\loading.gif" />
+    <Content Include="Imagenes\Botones\noMain.gif" />
+    <Content Include="Imagenes\Botones\procesar_off.gif" />
+    <Content Include="Imagenes\Botones\procesar_on.gif" />
+    <Content Include="Imagenes\btn_editar.png" />
+    <Content Include="Imagenes\btn_eliminar.png" />
+    <Content Include="Imagenes\btn_ingresar.png" />
+    <Content Include="Imagenes\btn_renovar.png" />
+    <Content Include="Imagenes\btn_ver.png" />
+    <Content Include="Imagenes\check.png" />
+    <Content Include="Imagenes\checkbox.jpg" />
+    <Content Include="Imagenes\checked_checkbox.png" />
+    <Content Include="Imagenes\correcto.png" />
+    <Content Include="Imagenes\Document.png" />
+    <Content Include="Imagenes\flecha_der.png" />
+    <Content Include="Imagenes\f_index.gif" />
+    <Content Include="Imagenes\f_sep_ver.gif" />
+    <Content Include="Imagenes\f_sep_ver2.gif" />
+    <Content Include="Imagenes\icon-user.png" />
+    <Content Include="Imagenes\Iconos\buscar_off.gif" />
+    <Content Include="Imagenes\Iconos\buscar_on.gif" />
+    <Content Include="Imagenes\Iconos\cal.gif" />
+    <Content Include="Imagenes\Iconos\excel.jpg" />
+    <Content Include="Imagenes\Iconos\file_upload.png" />
+    <Content Include="Imagenes\Iconos\ico_agregar_todos_off.gif" />
+    <Content Include="Imagenes\Iconos\ico_agregar_todos_on.gif" />
+    <Content Include="Imagenes\Iconos\ico_agregar_uno_off.gif" />
+    <Content Include="Imagenes\Iconos\ico_agregar_uno_on.gif" />
+    <Content Include="Imagenes\Iconos\ico_quitar_todos_off.gif" />
+    <Content Include="Imagenes\Iconos\ico_quitar_todos_on.gif" />
+    <Content Include="Imagenes\Iconos\ico_quitar_uno_off.gif" />
+    <Content Include="Imagenes\Iconos\ico_quitar_uno_on.gif" />
+    <Content Include="Imagenes\Iconos\informacion.gif" />
+    <Content Include="Imagenes\Iconos\limpiar_off.gif" />
+    <Content Include="Imagenes\Iconos\limpiar_on.gif" />
+    <Content Include="Imagenes\img-cab-color.gif" />
+    <Content Include="Imagenes\img-cab-rplazas.gif" />
+    <Content Include="Imagenes\img-cab-rplazas.jpg" />
+    <Content Include="Imagenes\img_index_der.png" />
+    <Content Include="Imagenes\img_index_izq.png" />
+    <Content Include="Imagenes\interproperties.png" />
+    <Content Include="Imagenes\interseguro.jpg" />
+    <Content Include="Imagenes\line-derecha.gif" />
+    <Content Include="Imagenes\line-izq.gif" />
+    <Content Include="Imagenes\Logo-Advance-Real-Estate.gif" />
+    <Content Include="Imagenes\logo-login-advance.gif" />
+    <Content Include="Imagenes\logo-pie-realplaza.gif" />
+    <Content Include="Imagenes\logo_advance.png" />
+    <Content Include="Imagenes\logo_index.png" />
+    <Content Include="Imagenes\logo_pie.png" />
+    <Content Include="Imagenes\logo_rp.png" />
+    <Content Include="Imagenes\menuIcon.JPG" />
+    <Content Include="Imagenes\menuItem.gif" />
+    <Content Include="Imagenes\Menu\arrow_down.gif" />
+    <Content Include="Imagenes\Menu\arrow_down_over.gif" />
+    <Content Include="Imagenes\Menu\arrow_right.gif" />
+    <Content Include="Imagenes\Menu\arrow_right_over.gif" />
+    <Content Include="Imagenes\Menu\bg-topmenu-over.jpg" />
+    <Content Include="Imagenes\Menu\bg-topmenu.jpg" />
+    <Content Include="Imagenes\milenia.png" />
+    <Content Include="Imagenes\Principal\menu.gif" />
+    <Content Include="Imagenes\shadow.png" />
+    <Content Include="Imagenes\unchecked_checkbox.png" />
+    <Content Include="Imagenes\warning.png" />
+    <Content Include="Interfaces\frmRegCliente.aspx" />
+    <Content Include="Styles\chosen-sprite%402x.png" />
+    <Content Include="Styles\chosen-sprite.png" />
+    <Content Include="Styles\chosen.css" />
+    <Content Include="Styles\css.css" />
+    <Content Include="Styles\css2.css" />
+    <Content Include="Styles\estiloPopUp.css" />
+    <Content Include="Styles\estilos-botones.css" />
+    <Content Include="Styles\jquery-ui-autocomplete.css" />
+    <Content Include="Styles\jquery-ui.css" />
+    <Content Include="Styles\MenuMatic.css" />
+    <Content Include="Styles\progress.css" />
+    <Content Include="Styles\Site.css" />
+    <Content Include="Default.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.4.1.js" />
+    <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="Styles\slick.grid.css" />
+    <Content Include="Styles\SlickGrid_Examples.css" />
+    <Content Include="Styles\Style.css" />
+    <Content Include="Styles\StyleImpresion.css" />
+    <Content Include="Styles\StyleVenta.css" />
+    <Content Include="Styles\superfish-navbar.css" />
+    <Content Include="Styles\superfish-vertical.css" />
+    <Content Include="Styles\superfish.css" />
+    <Content Include="Styles\ui-icons_454545_256x240.png" />
+    <Content Include="UserControl\wucMensajeAlerta.ascx" />
+    <Content Include="UserControl\wucMenuDinamico.ascx" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="About.aspx.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="About.aspx.designer.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\ChangePasswordSuccess.aspx.cs">
+      <DependentUpon>ChangePasswordSuccess.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ChangePasswordSuccess.aspx.designer.cs">
+      <DependentUpon>ChangePasswordSuccess.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\frmRegCliente.aspx.cs">
+      <DependentUpon>frmRegCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Interfaces\frmRegCliente.aspx.designer.cs">
+      <DependentUpon>frmRegCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\wucMensajeAlerta.ascx.cs">
+      <DependentUpon>wucMensajeAlerta.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControl\wucMensajeAlerta.ascx.designer.cs">
+      <DependentUpon>wucMensajeAlerta.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\wucMenuDinamico.ascx.cs">
+      <DependentUpon>wucMenuDinamico.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControl\wucMenuDinamico.ascx.designer.cs">
+      <DependentUpon>wucMenuDinamico.ascx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Imagenes\Thumbnails\" />
+    <Folder Include="Imagenes\Titulos\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Account\Web.config" />
+    <Content Include="Site.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SIC.BusinessLayer\SIC.BusinessLayer.csproj">
+      <Project>{2CE75AD3-7C7A-4421-94F9-89D2B5D4154F}</Project>
+      <Name>SIC.BusinessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SIC.Data\SIC.Data.csproj">
+      <Project>{7255AF3B-02A4-40B9-BB04-D2B7F9C69443}</Project>
+      <Name>SIC.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SIC.EntityLayer\SIC.EntityLayer.csproj">
+      <Project>{975FB244-7E0D-47A8-8FB3-9E05C4DE911E}</Project>
+      <Name>SIC.EntityLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>53219</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

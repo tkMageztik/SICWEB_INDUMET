@@ -1,0 +1,18 @@
+C:\Users\Juan y Carla\Desktop\WORKSPACE\SICSoftware\SIC.EntityLayer\bin\Debug\SIC.EntityLayer.dll
+C:\Users\Juan y Carla\Desktop\WORKSPACE\SICSoftware\SIC.EntityLayer\bin\Debug\SIC.EntityLayer.pdb
+C:\Users\Juan y Carla\Desktop\WORKSPACE\SICSoftware\SIC.EntityLayer\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Juan y Carla\Desktop\WORKSPACE\SICSoftware\SIC.EntityLayer\obj\Debug\SIC.EntityLayer.dll
+C:\Users\Juan y Carla\Desktop\WORKSPACE\SICSoftware\SIC.EntityLayer\obj\Debug\SIC.EntityLayer.pdb
+C:\Users\Juan y Carla\Desktop\WORKSPACE\SICSoftware\SIC.EntityLayer\bin\Debug\SIC.EntityLayer.dll.config
+C:\Users\RPEXT009\Desktop\SICSoftware\SIC.EntityLayer\bin\Debug\SIC.EntityLayer.dll.config
+C:\Users\RPEXT009\Desktop\SICSoftware\SIC.EntityLayer\bin\Debug\SIC.EntityLayer.dll
+C:\Users\RPEXT009\Desktop\SICSoftware\SIC.EntityLayer\bin\Debug\SIC.EntityLayer.pdb
+C:\Users\RPEXT009\Desktop\SICSoftware\SIC.EntityLayer\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\RPEXT009\Desktop\SICSoftware\SIC.EntityLayer\obj\Debug\SIC.EntityLayer.dll
+C:\Users\RPEXT009\Desktop\SICSoftware\SIC.EntityLayer\obj\Debug\SIC.EntityLayer.pdb
+C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.EntityLayer\bin\Debug\SIC.EntityLayer.dll.config
+C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.EntityLayer\bin\Debug\SIC.EntityLayer.dll
+C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.EntityLayer\bin\Debug\SIC.EntityLayer.pdb
+C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.EntityLayer\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.EntityLayer\obj\Debug\SIC.EntityLayer.dll
+C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.EntityLayer\obj\Debug\SIC.EntityLayer.pdb

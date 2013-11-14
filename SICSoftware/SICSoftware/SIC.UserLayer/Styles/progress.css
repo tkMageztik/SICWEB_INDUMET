@@ -1,0 +1,40 @@
+﻿
+.divAjaxProcesando
+{
+    filter: alpha(opacity=50); /*IE*/
+    opacity: 0.5; /*FF*/
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 99990;
+    background-color: #EEEEEE;
+    text-align: center;
+    vertical-align: middle;
+    visibility: visible;
+}
+
+.divAjaxLibre
+{
+	z-index: -1;
+	visibility: hidden;
+}
+
+.divMensajeProcesando
+{
+    position: fixed;
+    z-index: 99991;
+    background-color: #9932cc; /*#8DC63F;*/
+    color: #FFFFFF;
+    font-family: Arial;
+    font-weight: bold;
+    font-size: 11px;
+    text-align: center;
+    vertical-align: middle;
+    visibility: visible;
+}
+
+.divMensajeLibre
+{
+	z-index: -1;
+	visibility: hidden;
+}

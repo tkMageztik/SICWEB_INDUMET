@@ -1,0 +1,10 @@
+C:\Users\Juan y Carla\Desktop\WORKSPACE\SICSoftware\SIC.UIGeneral\bin\Debug\SIC.UIGeneral.dll
+C:\Users\Juan y Carla\Desktop\WORKSPACE\SICSoftware\SIC.UIGeneral\bin\Debug\SIC.UIGeneral.pdb
+C:\Users\Juan y Carla\Desktop\WORKSPACE\SICSoftware\SIC.UIGeneral\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Juan y Carla\Desktop\WORKSPACE\SICSoftware\SIC.UIGeneral\obj\Debug\SIC.UIGeneral.dll
+C:\Users\Juan y Carla\Desktop\WORKSPACE\SICSoftware\SIC.UIGeneral\obj\Debug\SIC.UIGeneral.pdb
+C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.UIGeneral\bin\Debug\SIC.UIGeneral.dll
+C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.UIGeneral\bin\Debug\SIC.UIGeneral.pdb
+C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.UIGeneral\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.UIGeneral\obj\Debug\SIC.UIGeneral.dll
+C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.UIGeneral\obj\Debug\SIC.UIGeneral.pdb
