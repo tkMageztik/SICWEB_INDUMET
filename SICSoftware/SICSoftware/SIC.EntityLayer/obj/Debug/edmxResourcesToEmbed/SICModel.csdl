@@ -109,6 +109,7 @@
       <Parameter Name="cli_c_vdoc_id" Mode="In" Type="String" />
       <Parameter Name="nomb_com_c_iid" Mode="In" Type="Int32" />
     </FunctionImport>
+    <EntitySet Name="SIC_T_USUARIO" EntityType="SICDBWEBModel.SIC_T_USUARIO" />
   </EntityContainer>
   <EntityType Name="SIC_T_CLI_CONTAC_CARGO">
     <Key>
@@ -479,5 +480,15 @@
     </Key>
     <Property Type="Int32" Name="nomb_com_c_iid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Type="String" Name="nomb_com_c_vnomb" MaxLength="200" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="SIC_T_USUARIO">
+    <Key>
+      <PropertyRef Name="usu_c_id" />
+    </Key>
+    <Property Type="Int32" Name="usu_c_id" Nullable="false" />
+    <Property Type="String" Name="usu_c_nombre" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="usu_c_usuario" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="usu_c_clave" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="usu_c_bactivo" />
   </EntityType>
 </Schema>

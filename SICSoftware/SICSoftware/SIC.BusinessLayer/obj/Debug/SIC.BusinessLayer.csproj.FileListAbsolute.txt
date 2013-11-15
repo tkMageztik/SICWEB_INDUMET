@@ -21,3 +21,4 @@ C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.BusinessLayer\bin\Debug\SI
 C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.BusinessLayer\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.BusinessLayer\obj\Debug\ClassLibrary1.dll
 C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.BusinessLayer\obj\Debug\ClassLibrary1.pdb
+C:\Proyectos\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.BusinessLayer\obj\Debug\SIC.BusinessLayer.csprojResolveAssemblyReference.cache

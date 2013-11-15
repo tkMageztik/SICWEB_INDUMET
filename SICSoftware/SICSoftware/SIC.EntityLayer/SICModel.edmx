@@ -21,6 +21,7 @@
           <EntitySet Name="SIC_T_DISTRITO" EntityType="SICDBWEBModel.Store.SIC_T_DISTRITO" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SIC_T_NOMB_COM" EntityType="SICDBWEBModel.Store.SIC_T_NOMB_COM" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SIC_T_PROVINCIA" EntityType="SICDBWEBModel.Store.SIC_T_PROVINCIA" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SIC_T_USUARIO" EntityType="SICDBWEBModel.Store.SIC_T_USUARIO" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SIC_T_ZONA_REPARTO" EntityType="SICDBWEBModel.Store.SIC_T_ZONA_REPARTO" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SIC_T_ZONA_REPARTO_LUGAR" EntityType="SICDBWEBModel.Store.SIC_T_ZONA_REPARTO_LUGAR" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_SIC_T_CLI_CONTACTO_SIC_T_CLI_CONTAC_CARGO" Association="SICDBWEBModel.Store.FK_SIC_T_CLI_CONTACTO_SIC_T_CLI_CONTAC_CARGO">
@@ -227,6 +228,16 @@
           <Property Name="prov_c_ccod" Type="char" Nullable="false" MaxLength="4" />
           <Property Name="prov_c_vnomb" Type="varchar" MaxLength="50" />
           <Property Name="depa_c_ccod" Type="char" Nullable="false" MaxLength="2" />
+        </EntityType>
+        <EntityType Name="SIC_T_USUARIO">
+          <Key>
+            <PropertyRef Name="usu_c_id" />
+          </Key>
+          <Property Name="usu_c_id" Type="int" Nullable="false" />
+          <Property Name="usu_c_nombre" Type="varchar" MaxLength="500" />
+          <Property Name="usu_c_usuario" Type="varchar" MaxLength="100" />
+          <Property Name="usu_c_clave" Type="varchar" MaxLength="250" />
+          <Property Name="usu_c_bactivo" Type="bit" />
         </EntityType>
         <EntityType Name="SIC_T_ZONA_REPARTO">
           <Key>
@@ -556,6 +567,7 @@
             <Parameter Name="cli_c_vdoc_id" Mode="In" Type="String" />
             <Parameter Name="nomb_com_c_iid" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="SIC_T_USUARIO" EntityType="SICDBWEBModel.SIC_T_USUARIO" />
         </EntityContainer>
         <EntityType Name="SIC_T_CLI_CONTAC_CARGO">
           <Key>
@@ -927,6 +939,16 @@
           <Property Type="Int32" Name="nomb_com_c_iid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="nomb_com_c_vnomb" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="SIC_T_USUARIO">
+          <Key>
+            <PropertyRef Name="usu_c_id" />
+          </Key>
+          <Property Type="Int32" Name="usu_c_id" Nullable="false" />
+          <Property Type="String" Name="usu_c_nombre" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="usu_c_usuario" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="usu_c_clave" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="usu_c_bactivo" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1133,6 +1155,17 @@
           <FunctionImportMapping FunctionImportName="SIC_SP_CLIENTE_MANTENIMIENTO_RAZON_SOCIAL_HISTORICO" FunctionName="SICDBWEBModel.Store.SIC_SP_CLIENTE_MANTENIMIENTO_RAZON_SOCIAL_HISTORICO" />
           <FunctionImportMapping FunctionImportName="SIC_SP_CLIENTE_CONTAR_RUC" FunctionName="SICDBWEBModel.Store.SIC_SP_CLIENTE_CONTAR_RUC" />
           <FunctionImportMapping FunctionImportName="SIC_SP_CLIENTE_NOMBRE_REGISTRAR" FunctionName="SICDBWEBModel.Store.SIC_SP_CLIENTE_NOMBRE_REGISTRAR" />
+          <EntitySetMapping Name="SIC_T_USUARIO">
+            <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_USUARIO">
+              <MappingFragment StoreEntitySet="SIC_T_USUARIO">
+                <ScalarProperty Name="usu_c_bactivo" ColumnName="usu_c_bactivo" />
+                <ScalarProperty Name="usu_c_clave" ColumnName="usu_c_clave" />
+                <ScalarProperty Name="usu_c_usuario" ColumnName="usu_c_usuario" />
+                <ScalarProperty Name="usu_c_nombre" ColumnName="usu_c_nombre" />
+                <ScalarProperty Name="usu_c_id" ColumnName="usu_c_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1170,9 +1203,9 @@
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_ZONA_REPARTO" Width="1.5" PointX="3.75" PointY="6.75" Height="1.7879850260416674" />
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_ZONA_REPARTO_LUGAR" Width="1.5" PointX="6" PointY="12.75" Height="1.7879850260416674" />
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_CLI_CONTACTO_SIC_T_CLI_CONTAC_CARGO" >
-          <ConnectorPoint PointX="7.5" PointY="2.547841796875" />
-          <ConnectorPoint PointX="9" PointY="2.547841796875" />
-          <ConnectorPoint PointX="9" PointY="5.625" />
+          <ConnectorPoint PointX="7.5" PointY="3.0692350260416692" />
+          <ConnectorPoint PointX="8.28125" PointY="3.0692350260416692" />
+          <ConnectorPoint PointX="8.28125" PointY="5.625" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_CLI_DIRECCION_SIC_T_DISTRITO" >
           <ConnectorPoint PointX="10.5" PointY="18.615143229166669" />
@@ -1238,6 +1271,7 @@
           <ConnectorPoint PointX="6" PointY="7.612740013020832" />
         </AssociationConnector>
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_NOMB_COM" Width="1.5" PointX="0.75" PointY="0.75" Height="1.4033821614583388" />
+        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_USUARIO" Width="1.5" PointX="8.375" PointY="0.75" Height="1.9802864583333388" />
       </Diagram>
     </Diagrams>
   </Designer>

@@ -16,6 +16,7 @@
     <EntitySet Name="SIC_T_DISTRITO" EntityType="SICDBWEBModel.Store.SIC_T_DISTRITO" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="SIC_T_NOMB_COM" EntityType="SICDBWEBModel.Store.SIC_T_NOMB_COM" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="SIC_T_PROVINCIA" EntityType="SICDBWEBModel.Store.SIC_T_PROVINCIA" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SIC_T_USUARIO" EntityType="SICDBWEBModel.Store.SIC_T_USUARIO" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="SIC_T_ZONA_REPARTO" EntityType="SICDBWEBModel.Store.SIC_T_ZONA_REPARTO" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="SIC_T_ZONA_REPARTO_LUGAR" EntityType="SICDBWEBModel.Store.SIC_T_ZONA_REPARTO_LUGAR" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_SIC_T_CLI_CONTACTO_SIC_T_CLI_CONTAC_CARGO" Association="SICDBWEBModel.Store.FK_SIC_T_CLI_CONTACTO_SIC_T_CLI_CONTAC_CARGO">
@@ -222,6 +223,16 @@
     <Property Name="prov_c_ccod" Type="char" Nullable="false" MaxLength="4" />
     <Property Name="prov_c_vnomb" Type="varchar" MaxLength="50" />
     <Property Name="depa_c_ccod" Type="char" Nullable="false" MaxLength="2" />
+  </EntityType>
+  <EntityType Name="SIC_T_USUARIO">
+    <Key>
+      <PropertyRef Name="usu_c_id" />
+    </Key>
+    <Property Name="usu_c_id" Type="int" Nullable="false" />
+    <Property Name="usu_c_nombre" Type="varchar" MaxLength="500" />
+    <Property Name="usu_c_usuario" Type="varchar" MaxLength="100" />
+    <Property Name="usu_c_clave" Type="varchar" MaxLength="250" />
+    <Property Name="usu_c_bactivo" Type="bit" />
   </EntityType>
   <EntityType Name="SIC_T_ZONA_REPARTO">
     <Key>

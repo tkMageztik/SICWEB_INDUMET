@@ -93,6 +93,14 @@
     <Content Include="bin\tr-TR\AjaxControlToolkit.resources.dll" />
     <Content Include="bin\zh-CHS\AjaxControlToolkit.resources.dll" />
     <Content Include="bin\zh-CHT\AjaxControlToolkit.resources.dll" />
+    <Content Include="Bootstrap\css\bootstrap-responsive.css" />
+    <Content Include="Bootstrap\css\bootstrap-responsive.min.css" />
+    <Content Include="Bootstrap\css\bootstrap.css" />
+    <Content Include="Bootstrap\css\bootstrap.min.css" />
+    <Content Include="Bootstrap\img\glyphicons-halflings-white.png" />
+    <Content Include="Bootstrap\img\glyphicons-halflings.png" />
+    <Content Include="Bootstrap\js\bootstrap.js" />
+    <Content Include="Bootstrap\js\bootstrap.min.js" />
     <Content Include="Imagenes\advance.jpg" />
     <Content Include="Imagenes\animated_favicon1.gif" />
     <Content Include="Imagenes\arrows-ffffff.png" />
@@ -218,42 +226,36 @@
   <ItemGroup>
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\ChangePassword.aspx.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Account\ChangePassword.aspx.designer.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\ChangePasswordSuccess.aspx.cs">
       <DependentUpon>ChangePasswordSuccess.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Account\ChangePasswordSuccess.aspx.designer.cs">
       <DependentUpon>ChangePasswordSuccess.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Account\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -263,7 +265,6 @@
     </Compile>
     <Compile Include="Interfaces\frmRegCliente.aspx.cs">
       <DependentUpon>frmRegCliente.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Interfaces\frmRegCliente.aspx.designer.cs">
       <DependentUpon>frmRegCliente.aspx</DependentUpon>
@@ -271,21 +272,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
     <Compile Include="UserControl\wucMensajeAlerta.ascx.cs">
       <DependentUpon>wucMensajeAlerta.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="UserControl\wucMensajeAlerta.ascx.designer.cs">
       <DependentUpon>wucMensajeAlerta.ascx</DependentUpon>
     </Compile>
     <Compile Include="UserControl\wucMenuDinamico.ascx.cs">
       <DependentUpon>wucMenuDinamico.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="UserControl\wucMenuDinamico.ascx.designer.cs">
       <DependentUpon>wucMenuDinamico.ascx</DependentUpon>
@@ -325,7 +323,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>53219</DevelopmentServerPort>
+          <DevelopmentServerPort>56928</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

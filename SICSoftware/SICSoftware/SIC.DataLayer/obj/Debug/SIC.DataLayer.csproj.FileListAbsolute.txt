@@ -17,3 +17,4 @@ C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.DataLayer\bin\Debug\SIC.En
 C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.DataLayer\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.DataLayer\obj\Debug\SIC.DataLayer.dll
 C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.DataLayer\obj\Debug\SIC.DataLayer.pdb
+C:\Proyectos\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\obj\Debug\SIC.DataLayer.csprojResolveAssemblyReference.cache

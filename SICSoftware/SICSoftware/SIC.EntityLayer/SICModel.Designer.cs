@@ -8,12 +8,13 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.ComponentModel;
+using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Data.EntityClient;
-using System.ComponentModel;
-using System.Xml.Serialization;
+using System.Linq;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
@@ -354,8 +355,25 @@ namespace SIC.EntityLayer
             }
         }
         private ObjectSet<SIC_T_NOMB_COM> _SIC_T_NOMB_COM;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<SIC_T_USUARIO> SIC_T_USUARIO
+        {
+            get
+            {
+                if ((_SIC_T_USUARIO == null))
+                {
+                    _SIC_T_USUARIO = base.CreateObjectSet<SIC_T_USUARIO>("SIC_T_USUARIO");
+                }
+                return _SIC_T_USUARIO;
+            }
+        }
+        private ObjectSet<SIC_T_USUARIO> _SIC_T_USUARIO;
 
         #endregion
+
         #region AddTo Methods
     
         /// <summary>
@@ -493,8 +511,17 @@ namespace SIC.EntityLayer
         {
             base.AddObject("SIC_T_NOMB_COM", sIC_T_NOMB_COM);
         }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the SIC_T_USUARIO EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToSIC_T_USUARIO(SIC_T_USUARIO sIC_T_USUARIO)
+        {
+            base.AddObject("SIC_T_USUARIO", sIC_T_USUARIO);
+        }
 
         #endregion
+
         #region Function Imports
     
         /// <summary>
@@ -784,11 +811,11 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
-    
 
     #endregion
-    
+
     #region Entities
     
     /// <summary>
@@ -813,6 +840,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -867,6 +895,7 @@ namespace SIC.EntityLayer
         partial void Oncli_contac_cargo_c_vnombChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -893,6 +922,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -921,6 +951,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1239,6 +1270,7 @@ namespace SIC.EntityLayer
         partial void Oncli_c_vdoc_idChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -1319,6 +1351,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1345,6 +1378,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1522,6 +1556,7 @@ namespace SIC.EntityLayer
         partial void Oncli_direc_c_czonarepChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -1602,6 +1637,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1628,6 +1664,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1685,6 +1722,7 @@ namespace SIC.EntityLayer
         partial void Oncli_c_vdoc_idChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -1727,6 +1765,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1751,6 +1790,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1853,6 +1893,7 @@ namespace SIC.EntityLayer
         partial void Oncli_rs_h_c_dfec_regChanged();
 
         #endregion
+
     
     }
     
@@ -1878,6 +1919,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1932,6 +1974,7 @@ namespace SIC.EntityLayer
         partial void Oncli_scor_c_vobservChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -1958,6 +2001,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1986,6 +2030,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2352,6 +2397,7 @@ namespace SIC.EntityLayer
         partial void Oncli_c_dfechaactualizaChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -2536,6 +2582,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2560,6 +2607,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2614,6 +2662,7 @@ namespace SIC.EntityLayer
         partial void Oncolab_area_c_vnombChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -2640,6 +2689,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2664,6 +2714,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2718,6 +2769,7 @@ namespace SIC.EntityLayer
         partial void Oncolab_cargo_c_vnombChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -2744,6 +2796,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2770,6 +2823,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2827,6 +2881,7 @@ namespace SIC.EntityLayer
         partial void Oninm_c_icodChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -2869,6 +2924,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2893,6 +2949,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -3115,6 +3172,7 @@ namespace SIC.EntityLayer
         partial void Oncolab_c_flag_yeditChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -3239,6 +3297,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -3263,6 +3322,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -3317,6 +3377,7 @@ namespace SIC.EntityLayer
         partial void Ondepa_c_vnombChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -3343,6 +3404,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -3369,6 +3431,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -3447,6 +3510,7 @@ namespace SIC.EntityLayer
         partial void Onprov_c_ccodChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -3511,6 +3575,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -3535,6 +3600,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -3589,6 +3655,7 @@ namespace SIC.EntityLayer
         partial void Onnomb_com_c_vnombChanged();
 
         #endregion
+
     
     }
     
@@ -3616,6 +3683,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -3694,6 +3762,7 @@ namespace SIC.EntityLayer
         partial void Ondepa_c_ccodChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -3758,6 +3827,160 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SICDBWEBModel", Name="SIC_T_USUARIO")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SIC_T_USUARIO : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new SIC_T_USUARIO object.
+        /// </summary>
+        /// <param name="usu_c_id">Initial value of the usu_c_id property.</param>
+        public static SIC_T_USUARIO CreateSIC_T_USUARIO(global::System.Int32 usu_c_id)
+        {
+            SIC_T_USUARIO sIC_T_USUARIO = new SIC_T_USUARIO();
+            sIC_T_USUARIO.usu_c_id = usu_c_id;
+            return sIC_T_USUARIO;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 usu_c_id
+        {
+            get
+            {
+                return _usu_c_id;
+            }
+            set
+            {
+                if (_usu_c_id != value)
+                {
+                    Onusu_c_idChanging(value);
+                    ReportPropertyChanging("usu_c_id");
+                    _usu_c_id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("usu_c_id");
+                    Onusu_c_idChanged();
+                }
+            }
+        }
+        private global::System.Int32 _usu_c_id;
+        partial void Onusu_c_idChanging(global::System.Int32 value);
+        partial void Onusu_c_idChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String usu_c_nombre
+        {
+            get
+            {
+                return _usu_c_nombre;
+            }
+            set
+            {
+                Onusu_c_nombreChanging(value);
+                ReportPropertyChanging("usu_c_nombre");
+                _usu_c_nombre = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("usu_c_nombre");
+                Onusu_c_nombreChanged();
+            }
+        }
+        private global::System.String _usu_c_nombre;
+        partial void Onusu_c_nombreChanging(global::System.String value);
+        partial void Onusu_c_nombreChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String usu_c_usuario
+        {
+            get
+            {
+                return _usu_c_usuario;
+            }
+            set
+            {
+                Onusu_c_usuarioChanging(value);
+                ReportPropertyChanging("usu_c_usuario");
+                _usu_c_usuario = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("usu_c_usuario");
+                Onusu_c_usuarioChanged();
+            }
+        }
+        private global::System.String _usu_c_usuario;
+        partial void Onusu_c_usuarioChanging(global::System.String value);
+        partial void Onusu_c_usuarioChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String usu_c_clave
+        {
+            get
+            {
+                return _usu_c_clave;
+            }
+            set
+            {
+                Onusu_c_claveChanging(value);
+                ReportPropertyChanging("usu_c_clave");
+                _usu_c_clave = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("usu_c_clave");
+                Onusu_c_claveChanged();
+            }
+        }
+        private global::System.String _usu_c_clave;
+        partial void Onusu_c_claveChanging(global::System.String value);
+        partial void Onusu_c_claveChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> usu_c_bactivo
+        {
+            get
+            {
+                return _usu_c_bactivo;
+            }
+            set
+            {
+                Onusu_c_bactivoChanging(value);
+                ReportPropertyChanging("usu_c_bactivo");
+                _usu_c_bactivo = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("usu_c_bactivo");
+                Onusu_c_bactivoChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _usu_c_bactivo;
+        partial void Onusu_c_bactivoChanging(Nullable<global::System.Boolean> value);
+        partial void Onusu_c_bactivoChanged();
+
+        #endregion
+
+    
     }
     
     /// <summary>
@@ -3782,6 +4005,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -3836,6 +4060,7 @@ namespace SIC.EntityLayer
         partial void Onzona_rep_c_czonaChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -3884,6 +4109,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -3908,6 +4134,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -3986,6 +4213,7 @@ namespace SIC.EntityLayer
         partial void Onzona_rep_lug_c_vdescChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -4028,9 +4256,11 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
 
     #endregion
+
     #region ComplexTypes
     
     /// <summary>
@@ -4055,6 +4285,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -4274,8 +4505,10 @@ namespace SIC.EntityLayer
         partial void Oncolab_cargo_c_yidChanged();
 
         #endregion
+
     }
 
     #endregion
+
     
 }

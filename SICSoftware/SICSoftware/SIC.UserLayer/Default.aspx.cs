@@ -5,7 +5,12 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
+using System.Data;
+using System.Data.Entity;
 using SIC.BusinessLayer;
+using SIC.EntityLayer;
+using System.Text.RegularExpressions;
+using ADV.Data;
 
 namespace SIC.UserLayer
 {
@@ -16,11 +21,32 @@ namespace SIC.UserLayer
 
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void btnIngresar_Click(object sender, System.EventArgs e)
         {
-            //ClienteBL cliBL = new ClienteBL();
-            //GridView1.DataSource = cliBL.ListarCliente();
-            //GridView1.DataBind();
+            SIC.EntityLayer.SIC_T_USUARIO mUsuario = null;
+
+            bool mExisteUsuario = false;
+            mExisteUsuario = new UsuarioBL().ObtenerUsuarioxNombre(txtUsuario.Text);
+
+            if (!mExisteUsuario)
+            {
+                lblMensaje.Text = "Usuario y/o Password es invalido";
+                return;
+            }
+            else
+            {
+                mUsuario = new UsuarioBL().Login(txtClave.Text);
+
+                if (mUsuario != null)
+                {
+                    Response.Redirect("Interfaces/frmRefCliente.aspx");
+                }
+                else
+                {
+                    lblMensaje.Text = "Usuario y/o Password es invalido";
+                    return;
+                }
+            }
         }
 
     }

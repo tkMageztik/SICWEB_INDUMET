@@ -201,5 +201,16 @@
     <FunctionImportMapping FunctionImportName="SIC_SP_CLIENTE_MANTENIMIENTO_RAZON_SOCIAL_HISTORICO" FunctionName="SICDBWEBModel.Store.SIC_SP_CLIENTE_MANTENIMIENTO_RAZON_SOCIAL_HISTORICO" />
     <FunctionImportMapping FunctionImportName="SIC_SP_CLIENTE_CONTAR_RUC" FunctionName="SICDBWEBModel.Store.SIC_SP_CLIENTE_CONTAR_RUC" />
     <FunctionImportMapping FunctionImportName="SIC_SP_CLIENTE_NOMBRE_REGISTRAR" FunctionName="SICDBWEBModel.Store.SIC_SP_CLIENTE_NOMBRE_REGISTRAR" />
+    <EntitySetMapping Name="SIC_T_USUARIO">
+      <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_USUARIO">
+        <MappingFragment StoreEntitySet="SIC_T_USUARIO">
+          <ScalarProperty Name="usu_c_bactivo" ColumnName="usu_c_bactivo" />
+          <ScalarProperty Name="usu_c_clave" ColumnName="usu_c_clave" />
+          <ScalarProperty Name="usu_c_usuario" ColumnName="usu_c_usuario" />
+          <ScalarProperty Name="usu_c_nombre" ColumnName="usu_c_nombre" />
+          <ScalarProperty Name="usu_c_id" ColumnName="usu_c_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

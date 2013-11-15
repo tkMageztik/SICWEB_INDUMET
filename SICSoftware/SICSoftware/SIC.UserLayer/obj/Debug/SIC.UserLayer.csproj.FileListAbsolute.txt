@@ -65,3 +65,4 @@ C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.UserLayer\obj\Debug\SIC.Us
 C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.UserLayer\obj\Debug\SIC.UserLayer.pdb
 C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.Data.dll
 C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.Data.pdb
+C:\Proyectos\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\obj\Debug\SIC.UserLayer.csprojResolveAssemblyReference.cache

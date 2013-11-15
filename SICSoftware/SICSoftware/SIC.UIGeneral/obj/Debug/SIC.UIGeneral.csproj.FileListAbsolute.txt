@@ -8,3 +8,4 @@ C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.UIGeneral\bin\Debug\SIC.UI
 C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.UIGeneral\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.UIGeneral\obj\Debug\SIC.UIGeneral.dll
 C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.UIGeneral\obj\Debug\SIC.UIGeneral.pdb
+C:\Proyectos\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UIGeneral\obj\Debug\SIC.UIGeneral.pdb
