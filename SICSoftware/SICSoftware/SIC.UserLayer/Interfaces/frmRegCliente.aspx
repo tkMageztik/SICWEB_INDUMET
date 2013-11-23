@@ -1,10 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="frmRegCliente.aspx.cs" Inherits="SIC.UserLayer.Interfaces.Tienda.frmRegCliente" %>
-<%@ Register Src="~/UserControl/wucMensajeAlerta.ascx" TagName="Mensaje" TagPrefix="uc1" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
+    CodeBehind="frmRegCliente.aspx.cs" Inherits="SIC.UserLayer.Interfaces.Tienda.frmRegCliente" %>
 
+<%@ Register Src="~/UserControl/wucMensajeAlerta.ascx" TagName="Mensaje" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    
     <asp:UpdatePanel ID="upGeneral" UpdateMode="Conditional" ChildrenAsTriggers="False"
         runat="server">
         <ContentTemplate>
@@ -13,7 +13,7 @@
                     <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                             <td class="tit-nav-paginas" align="left" colspan="2">
-                                CREDITOS Y COBRANZAS &gt; CLIENTES
+                                MANTENIMIENTOS &gt; CLIENTES
                             </td>
                         </tr>
                         <tr>
@@ -68,13 +68,13 @@
                         <tr>
                             <td align="left" colspan="2">
                                 <asp:UpdatePanel ID="upGvLista" runat="server" UpdateMode="Conditional">
+                                    <%-- ViewStateMode="Enabled" se le quito eso...--%>
                                     <ContentTemplate>
-                                        <asp:GridView ID="gvLista" runat="server" BorderStyle="None" AutoGenerateColumns="False"
-                                            GridLines="None" AllowPaging="True" OnRowEditing="gvLista_RowEditing" Width="100%"
-                                            CssClass="mGrid" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt"
-                                            OnPageIndexChanging="gvLista_PageIndexChanging" PageSize="15" OnRowDeleting="gvLista_RowDeleting"
-                                            ViewStateMode="Enabled" OnRowCreated="gvLista_RowCreated" 
-                                            onselectedindexchanged="gvLista_SelectedIndexChanged">
+                                        <asp:GridView ID="gvLista" CssClass="table table-hover table-striped" runat="server"
+                                            BorderStyle="None" AutoGenerateColumns="False" GridLines="None" AllowPaging="True"
+                                            OnRowEditing="gvLista_RowEditing" Width="100%" OnPageIndexChanging="gvLista_PageIndexChanging"
+                                            PageSize="15" OnRowDeleting="gvLista_RowDeleting" OnRowCreated="gvLista_RowCreated"
+                                            OnSelectedIndexChanged="gvLista_SelectedIndexChanged">
                                             <Columns>
                                                 <%--  <asp:BoundField DataField="nomb_com_c_iid" HeaderText="nomb_com_c_iid" Visible="False" />--%>
                                                 <asp:BoundField DataField="cli_c_vdoc_id" HeaderText="cli_c_cdoc_id" Visible="False" />
@@ -263,9 +263,11 @@
                                                         </asp:DropDownList>
                                                     </td>
                                                     <td class="txt-box-estilo">
-                                                        &nbsp;</td>
+                                                        &nbsp;
+                                                    </td>
                                                     <td class="txt-box-estilo">
-                                                        &nbsp;</td>
+                                                        &nbsp;
+                                                    </td>
                                                     <td class="txt-box-estilo">
                                                         Zona de reparto (Lima)<span class="style5"> (*)</span>
                                                     </td>

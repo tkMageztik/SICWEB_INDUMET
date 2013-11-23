@@ -157,6 +157,7 @@
     <Property Name="cli_c_icorrelativo" Type="int" Nullable="false" />
     <Property Name="cli_c_dfecharegistra" Type="datetime" Nullable="false" />
     <Property Name="cli_c_dfechaactualiza" Type="datetime" />
+    <Property Name="cli_c_dfec_const" Type="date" />
   </EntityType>
   <EntityType Name="SIC_T_COLAB_AREA">
     <Key>
@@ -228,7 +229,7 @@
     <Key>
       <PropertyRef Name="usu_c_id" />
     </Key>
-    <Property Name="usu_c_id" Type="int" Nullable="false" />
+    <Property Name="usu_c_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="usu_c_nombre" Type="varchar" MaxLength="500" />
     <Property Name="usu_c_usuario" Type="varchar" MaxLength="100" />
     <Property Name="usu_c_clave" Type="varchar" MaxLength="250" />
@@ -417,36 +418,4 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Function Name="SIC_SP_CLIENTE_CONTAR_RUC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="cli_c_vdoc_id" Type="varchar" Mode="In" />
-  </Function>
-  <Function Name="SIC_SP_CLIENTE_DIRECCION_GENERARIDDIRECCION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="cli_c_vdoc_id" Type="varchar" Mode="In" />
-  </Function>
-  <Function Name="SIC_SP_CLIENTE_LISTAR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="CLI_C_BGRUPO_IBK" Type="tinyint" Mode="In" />
-    <Parameter Name="CLI_C_VRAZ_SOC" Type="varchar" Mode="In" />
-    <Parameter Name="CLI_C_VDOC_ID" Type="varchar" Mode="In" />
-  </Function>
-  <Function Name="SIC_SP_CLIENTE_LISTAR_COLABORADORES_POR_AREA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="INTCODIGOAREA" Type="tinyint" Mode="In" />
-  </Function>
-  <Function Name="SIC_SP_CLIENTE_MANTENIMIENTO_RAZON_SOCIAL_HISTORICO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="CHOPCION" Type="char" Mode="In" />
-    <Parameter Name="CLI_C_VDOC_ID" Type="varchar" Mode="In" />
-    <Parameter Name="CLI_RS_H_C_VRAZ_SOC" Type="varchar" Mode="In" />
-  </Function>
-  <Function Name="SIC_SP_CLIENTE_NOMBRE_REGISTRAR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="cli_c_vdoc_id" Type="varchar" Mode="In" />
-    <Parameter Name="nomb_com_c_iid" Type="int" Mode="In" />
-  </Function>
-  <Function Name="SIC_SP_CLIENTE_NOMBRECOMERCIAL_LIMPIAR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="cli_c_vdoc_id" Type="varchar" Mode="In" />
-  </Function>
-  <Function Name="SIC_SP_CLIENTE_VERIFICAR_EXISTENCIA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="cli_c_vdoc_id" Type="varchar" Mode="In" />
-  </Function>
-  <Function Name="SIC_SP_NOMBRECOMERCIAL_BUSCAR_EXISTENCIA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="nomb_com_c_vnomb" Type="varchar" Mode="In" />
-  </Function>
 </Schema>

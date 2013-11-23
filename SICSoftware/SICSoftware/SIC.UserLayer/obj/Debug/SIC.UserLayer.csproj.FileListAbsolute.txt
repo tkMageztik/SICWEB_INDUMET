@@ -66,3 +66,16 @@ C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.UserLayer\obj\Debug\SIC.Us
 C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.Data.dll
 C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.Data.pdb
 C:\Proyectos\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\obj\Debug\SIC.UserLayer.csprojResolveAssemblyReference.cache
+C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.UserLayer.dll
+C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.UserLayer.pdb
+C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\ClassLibrary1.dll
+C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.Data.dll
+C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.EntityLayer.dll
+C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.DataLayer.dll
+C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\ClassLibrary1.pdb
+C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.Data.pdb
+C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.EntityLayer.pdb
+C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.DataLayer.pdb
+C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\obj\Debug\SIC.UserLayer.dll
+C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\obj\Debug\SIC.UserLayer.pdb

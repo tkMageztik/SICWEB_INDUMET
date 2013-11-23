@@ -18,3 +18,10 @@ C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.DataLayer\obj\Debug\Resolv
 C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.DataLayer\obj\Debug\SIC.DataLayer.dll
 C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.DataLayer\obj\Debug\SIC.DataLayer.pdb
 C:\Proyectos\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\obj\Debug\SIC.DataLayer.csprojResolveAssemblyReference.cache
+C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\bin\Debug\SIC.DataLayer.dll
+C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\bin\Debug\SIC.DataLayer.pdb
+C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\bin\Debug\SIC.EntityLayer.dll
+C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\bin\Debug\SIC.EntityLayer.pdb
+C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\obj\Debug\SIC.DataLayer.dll
+C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\obj\Debug\SIC.DataLayer.pdb

@@ -1,79 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="SICDBWEBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
   <EntityContainer Name="SICDBWEBEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="SIC_T_CLI_CONTAC_CARGO" EntityType="SICDBWEBModel.SIC_T_CLI_CONTAC_CARGO" />
-    <EntitySet Name="SIC_T_CLI_CONTACTO" EntityType="SICDBWEBModel.SIC_T_CLI_CONTACTO" />
-    <EntitySet Name="SIC_T_CLI_DIRECCION" EntityType="SICDBWEBModel.SIC_T_CLI_DIRECCION" />
-    <EntitySet Name="SIC_T_CLI_NOMB_COM" EntityType="SICDBWEBModel.SIC_T_CLI_NOMB_COM" />
-    <EntitySet Name="SIC_T_CLI_RS_HISTORICO" EntityType="SICDBWEBModel.SIC_T_CLI_RS_HISTORICO" />
-    <EntitySet Name="SIC_T_CLI_SCORING" EntityType="SICDBWEBModel.SIC_T_CLI_SCORING" />
-    <EntitySet Name="SIC_T_COLAB_AREA" EntityType="SICDBWEBModel.SIC_T_COLAB_AREA" />
-    <EntitySet Name="SIC_T_COLAB_CARGO" EntityType="SICDBWEBModel.SIC_T_COLAB_CARGO" />
-    <EntitySet Name="SIC_T_COLAB_INM" EntityType="SICDBWEBModel.SIC_T_COLAB_INM" />
-    <EntitySet Name="SIC_T_COLABORADOR" EntityType="SICDBWEBModel.SIC_T_COLABORADOR" />
-    <EntitySet Name="SIC_T_DEPARTAMENTO" EntityType="SICDBWEBModel.SIC_T_DEPARTAMENTO" />
-    <EntitySet Name="SIC_T_DISTRITO" EntityType="SICDBWEBModel.SIC_T_DISTRITO" />
-    <EntitySet Name="SIC_T_PROVINCIA" EntityType="SICDBWEBModel.SIC_T_PROVINCIA" />
-    <EntitySet Name="SIC_T_ZONA_REPARTO" EntityType="SICDBWEBModel.SIC_T_ZONA_REPARTO" />
-    <EntitySet Name="SIC_T_ZONA_REPARTO_LUGAR" EntityType="SICDBWEBModel.SIC_T_ZONA_REPARTO_LUGAR" />
-    <AssociationSet Name="FK_SIC_T_CLI_CONTACTO_SIC_T_CLI_CONTAC_CARGO" Association="SICDBWEBModel.FK_SIC_T_CLI_CONTACTO_SIC_T_CLI_CONTAC_CARGO">
-      <End Role="SIC_T_CLI_CONTAC_CARGO" EntitySet="SIC_T_CLI_CONTAC_CARGO" />
-      <End Role="SIC_T_CLI_CONTACTO" EntitySet="SIC_T_CLI_CONTACTO" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SIC_T_CLI_DIRECCION_SIC_T_DISTRITO" Association="SICDBWEBModel.FK_SIC_T_CLI_DIRECCION_SIC_T_DISTRITO">
-      <End Role="SIC_T_DISTRITO" EntitySet="SIC_T_DISTRITO" />
-      <End Role="SIC_T_CLI_DIRECCION" EntitySet="SIC_T_CLI_DIRECCION" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SIC_T_COLABORADOR_SIC_T_COLAB_AREA" Association="SICDBWEBModel.FK_SIC_T_COLABORADOR_SIC_T_COLAB_AREA">
-      <End Role="SIC_T_COLAB_AREA" EntitySet="SIC_T_COLAB_AREA" />
-      <End Role="SIC_T_COLABORADOR" EntitySet="SIC_T_COLABORADOR" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SIC_T_COLABORADOR_SIC_T_COLAB_CARGO" Association="SICDBWEBModel.FK_SIC_T_COLABORADOR_SIC_T_COLAB_CARGO">
-      <End Role="SIC_T_COLAB_CARGO" EntitySet="SIC_T_COLAB_CARGO" />
-      <End Role="SIC_T_COLABORADOR" EntitySet="SIC_T_COLABORADOR" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SIC_T_COLAB_INM_SIC_T_COLABORADOR" Association="SICDBWEBModel.FK_SIC_T_COLAB_INM_SIC_T_COLABORADOR">
-      <End Role="SIC_T_COLABORADOR" EntitySet="SIC_T_COLABORADOR" />
-      <End Role="SIC_T_COLAB_INM" EntitySet="SIC_T_COLAB_INM" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SIC_T_PROVINCIA_SIC_T_DEPARTAMENTO" Association="SICDBWEBModel.FK_SIC_T_PROVINCIA_SIC_T_DEPARTAMENTO">
-      <End Role="SIC_T_DEPARTAMENTO" EntitySet="SIC_T_DEPARTAMENTO" />
-      <End Role="SIC_T_PROVINCIA" EntitySet="SIC_T_PROVINCIA" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SIC_T_DISTRITO_SIC_T_PROVINCIA" Association="SICDBWEBModel.FK_SIC_T_DISTRITO_SIC_T_PROVINCIA">
-      <End Role="SIC_T_PROVINCIA" EntitySet="SIC_T_PROVINCIA" />
-      <End Role="SIC_T_DISTRITO" EntitySet="SIC_T_DISTRITO" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SIC_T_ZONA_REPARTO_LUGAR_SIC_T_ZONA_REPARTO" Association="SICDBWEBModel.FK_SIC_T_ZONA_REPARTO_LUGAR_SIC_T_ZONA_REPARTO">
-      <End Role="SIC_T_ZONA_REPARTO" EntitySet="SIC_T_ZONA_REPARTO" />
-      <End Role="SIC_T_ZONA_REPARTO_LUGAR" EntitySet="SIC_T_ZONA_REPARTO_LUGAR" />
-    </AssociationSet>
-    <EntitySet Name="SIC_T_CLIENTE" EntityType="SICDBWEBModel.SIC_T_CLIENTE" />
-    <AssociationSet Name="FK_SIC_T_CLI_CONTACTO_SIC_T_CLIENTE" Association="SICDBWEBModel.FK_SIC_T_CLI_CONTACTO_SIC_T_CLIENTE">
-      <End Role="SIC_T_CLIENTE" EntitySet="SIC_T_CLIENTE" />
-      <End Role="SIC_T_CLI_CONTACTO" EntitySet="SIC_T_CLI_CONTACTO" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SIC_T_CLI_DIRECCION_SIC_T_CLIENTE" Association="SICDBWEBModel.FK_SIC_T_CLI_DIRECCION_SIC_T_CLIENTE">
-      <End Role="SIC_T_CLIENTE" EntitySet="SIC_T_CLIENTE" />
-      <End Role="SIC_T_CLI_DIRECCION" EntitySet="SIC_T_CLI_DIRECCION" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SIC_T_CLI_NOMB_COM_SIC_T_CLIENTE" Association="SICDBWEBModel.FK_SIC_T_CLI_NOMB_COM_SIC_T_CLIENTE">
-      <End Role="SIC_T_CLIENTE" EntitySet="SIC_T_CLIENTE" />
-      <End Role="SIC_T_CLI_NOMB_COM" EntitySet="SIC_T_CLI_NOMB_COM" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SIC_T_CLIENTE_SIC_T_CLI_SCORING" Association="SICDBWEBModel.FK_SIC_T_CLIENTE_SIC_T_CLI_SCORING">
-      <End Role="SIC_T_CLI_SCORING" EntitySet="SIC_T_CLI_SCORING" />
-      <End Role="SIC_T_CLIENTE" EntitySet="SIC_T_CLIENTE" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SIC_T_CLIENTE_SIC_T_COLABORADOR" Association="SICDBWEBModel.FK_SIC_T_CLIENTE_SIC_T_COLABORADOR">
-      <End Role="SIC_T_COLABORADOR" EntitySet="SIC_T_COLABORADOR" />
-      <End Role="SIC_T_CLIENTE" EntitySet="SIC_T_CLIENTE" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SIC_T_CLIENTE_SIC_T_ZONA_REPARTO" Association="SICDBWEBModel.FK_SIC_T_CLIENTE_SIC_T_ZONA_REPARTO">
-      <End Role="SIC_T_ZONA_REPARTO" EntitySet="SIC_T_ZONA_REPARTO" />
-      <End Role="SIC_T_CLIENTE" EntitySet="SIC_T_CLIENTE" />
-    </AssociationSet>
-    <FunctionImport Name="SIC_SP_CLIENTE_LISTAR" EntitySet="SIC_T_CLIENTE" ReturnType="Collection(SICDBWEBModel.SIC_T_CLIENTE)">
+    <FunctionImport Name="SIC_SP_CLIENTE_LISTAR">
       <Parameter Name="CLI_C_BGRUPO_IBK" Mode="In" Type="Byte" />
       <Parameter Name="CLI_C_VRAZ_SOC" Mode="In" Type="String" />
       <Parameter Name="CLI_C_VDOC_ID" Mode="In" Type="String" />
@@ -81,7 +9,6 @@
     <FunctionImport Name="SIC_SP_CLIENTE_LISTAR_COLABORADORES_POR_AREA" ReturnType="Collection(SICDBWEBModel.SIC_SP_CLIENTE_LISTAR_COLABORADORES_POR_AREA_Result)">
       <Parameter Name="INTCODIGOAREA" Mode="In" Type="Byte" />
     </FunctionImport>
-    <EntitySet Name="SIC_T_NOMB_COM" EntityType="SICDBWEBModel.SIC_T_NOMB_COM" />
     <FunctionImport Name="SIC_SP_NOMBRECOMERCIAL_BUSCAR_EXISTENCIA" ReturnType="Collection(Int32)">
       <Parameter Name="nomb_com_c_vnomb" Mode="In" Type="String" />
     </FunctionImport>
@@ -109,8 +36,92 @@
       <Parameter Name="cli_c_vdoc_id" Mode="In" Type="String" />
       <Parameter Name="nomb_com_c_iid" Mode="In" Type="Int32" />
     </FunctionImport>
+    <EntitySet Name="SIC_T_CLI_CONTAC_CARGO" EntityType="SICDBWEBModel.SIC_T_CLI_CONTAC_CARGO" />
+    <EntitySet Name="SIC_T_CLI_CONTACTO" EntityType="SICDBWEBModel.SIC_T_CLI_CONTACTO" />
+    <EntitySet Name="SIC_T_CLI_DIRECCION" EntityType="SICDBWEBModel.SIC_T_CLI_DIRECCION" />
+    <EntitySet Name="SIC_T_CLI_NOMB_COM" EntityType="SICDBWEBModel.SIC_T_CLI_NOMB_COM" />
+    <EntitySet Name="SIC_T_CLI_RS_HISTORICO" EntityType="SICDBWEBModel.SIC_T_CLI_RS_HISTORICO" />
+    <EntitySet Name="SIC_T_CLI_SCORING" EntityType="SICDBWEBModel.SIC_T_CLI_SCORING" />
+    <EntitySet Name="SIC_T_CLIENTE" EntityType="SICDBWEBModel.SIC_T_CLIENTE" />
+    <EntitySet Name="SIC_T_COLAB_AREA" EntityType="SICDBWEBModel.SIC_T_COLAB_AREA" />
+    <EntitySet Name="SIC_T_COLAB_CARGO" EntityType="SICDBWEBModel.SIC_T_COLAB_CARGO" />
+    <EntitySet Name="SIC_T_COLAB_INM" EntityType="SICDBWEBModel.SIC_T_COLAB_INM" />
+    <EntitySet Name="SIC_T_COLABORADOR" EntityType="SICDBWEBModel.SIC_T_COLABORADOR" />
+    <EntitySet Name="SIC_T_DEPARTAMENTO" EntityType="SICDBWEBModel.SIC_T_DEPARTAMENTO" />
+    <EntitySet Name="SIC_T_DISTRITO" EntityType="SICDBWEBModel.SIC_T_DISTRITO" />
+    <EntitySet Name="SIC_T_NOMB_COM" EntityType="SICDBWEBModel.SIC_T_NOMB_COM" />
+    <EntitySet Name="SIC_T_PROVINCIA" EntityType="SICDBWEBModel.SIC_T_PROVINCIA" />
     <EntitySet Name="SIC_T_USUARIO" EntityType="SICDBWEBModel.SIC_T_USUARIO" />
+    <EntitySet Name="SIC_T_ZONA_REPARTO" EntityType="SICDBWEBModel.SIC_T_ZONA_REPARTO" />
+    <EntitySet Name="SIC_T_ZONA_REPARTO_LUGAR" EntityType="SICDBWEBModel.SIC_T_ZONA_REPARTO_LUGAR" />
+    <AssociationSet Name="FK_SIC_T_CLI_CONTACTO_SIC_T_CLI_CONTAC_CARGO" Association="SICDBWEBModel.FK_SIC_T_CLI_CONTACTO_SIC_T_CLI_CONTAC_CARGO">
+      <End Role="SIC_T_CLI_CONTAC_CARGO" EntitySet="SIC_T_CLI_CONTAC_CARGO" />
+      <End Role="SIC_T_CLI_CONTACTO" EntitySet="SIC_T_CLI_CONTACTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SIC_T_CLI_CONTACTO_SIC_T_CLIENTE" Association="SICDBWEBModel.FK_SIC_T_CLI_CONTACTO_SIC_T_CLIENTE">
+      <End Role="SIC_T_CLIENTE" EntitySet="SIC_T_CLIENTE" />
+      <End Role="SIC_T_CLI_CONTACTO" EntitySet="SIC_T_CLI_CONTACTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SIC_T_CLI_DIRECCION_SIC_T_CLIENTE" Association="SICDBWEBModel.FK_SIC_T_CLI_DIRECCION_SIC_T_CLIENTE">
+      <End Role="SIC_T_CLIENTE" EntitySet="SIC_T_CLIENTE" />
+      <End Role="SIC_T_CLI_DIRECCION" EntitySet="SIC_T_CLI_DIRECCION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SIC_T_CLI_DIRECCION_SIC_T_DISTRITO" Association="SICDBWEBModel.FK_SIC_T_CLI_DIRECCION_SIC_T_DISTRITO">
+      <End Role="SIC_T_DISTRITO" EntitySet="SIC_T_DISTRITO" />
+      <End Role="SIC_T_CLI_DIRECCION" EntitySet="SIC_T_CLI_DIRECCION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SIC_T_CLI_NOMB_COM_SIC_T_CLIENTE" Association="SICDBWEBModel.FK_SIC_T_CLI_NOMB_COM_SIC_T_CLIENTE">
+      <End Role="SIC_T_CLIENTE" EntitySet="SIC_T_CLIENTE" />
+      <End Role="SIC_T_CLI_NOMB_COM" EntitySet="SIC_T_CLI_NOMB_COM" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SIC_T_CLIENTE_SIC_T_CLI_SCORING" Association="SICDBWEBModel.FK_SIC_T_CLIENTE_SIC_T_CLI_SCORING">
+      <End Role="SIC_T_CLI_SCORING" EntitySet="SIC_T_CLI_SCORING" />
+      <End Role="SIC_T_CLIENTE" EntitySet="SIC_T_CLIENTE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SIC_T_CLIENTE_SIC_T_COLABORADOR" Association="SICDBWEBModel.FK_SIC_T_CLIENTE_SIC_T_COLABORADOR">
+      <End Role="SIC_T_COLABORADOR" EntitySet="SIC_T_COLABORADOR" />
+      <End Role="SIC_T_CLIENTE" EntitySet="SIC_T_CLIENTE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SIC_T_CLIENTE_SIC_T_ZONA_REPARTO" Association="SICDBWEBModel.FK_SIC_T_CLIENTE_SIC_T_ZONA_REPARTO">
+      <End Role="SIC_T_ZONA_REPARTO" EntitySet="SIC_T_ZONA_REPARTO" />
+      <End Role="SIC_T_CLIENTE" EntitySet="SIC_T_CLIENTE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SIC_T_COLABORADOR_SIC_T_COLAB_AREA" Association="SICDBWEBModel.FK_SIC_T_COLABORADOR_SIC_T_COLAB_AREA">
+      <End Role="SIC_T_COLAB_AREA" EntitySet="SIC_T_COLAB_AREA" />
+      <End Role="SIC_T_COLABORADOR" EntitySet="SIC_T_COLABORADOR" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SIC_T_COLABORADOR_SIC_T_COLAB_CARGO" Association="SICDBWEBModel.FK_SIC_T_COLABORADOR_SIC_T_COLAB_CARGO">
+      <End Role="SIC_T_COLAB_CARGO" EntitySet="SIC_T_COLAB_CARGO" />
+      <End Role="SIC_T_COLABORADOR" EntitySet="SIC_T_COLABORADOR" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SIC_T_COLAB_INM_SIC_T_COLABORADOR" Association="SICDBWEBModel.FK_SIC_T_COLAB_INM_SIC_T_COLABORADOR">
+      <End Role="SIC_T_COLABORADOR" EntitySet="SIC_T_COLABORADOR" />
+      <End Role="SIC_T_COLAB_INM" EntitySet="SIC_T_COLAB_INM" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SIC_T_PROVINCIA_SIC_T_DEPARTAMENTO" Association="SICDBWEBModel.FK_SIC_T_PROVINCIA_SIC_T_DEPARTAMENTO">
+      <End Role="SIC_T_DEPARTAMENTO" EntitySet="SIC_T_DEPARTAMENTO" />
+      <End Role="SIC_T_PROVINCIA" EntitySet="SIC_T_PROVINCIA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SIC_T_DISTRITO_SIC_T_PROVINCIA" Association="SICDBWEBModel.FK_SIC_T_DISTRITO_SIC_T_PROVINCIA">
+      <End Role="SIC_T_PROVINCIA" EntitySet="SIC_T_PROVINCIA" />
+      <End Role="SIC_T_DISTRITO" EntitySet="SIC_T_DISTRITO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SIC_T_ZONA_REPARTO_LUGAR_SIC_T_ZONA_REPARTO" Association="SICDBWEBModel.FK_SIC_T_ZONA_REPARTO_LUGAR_SIC_T_ZONA_REPARTO">
+      <End Role="SIC_T_ZONA_REPARTO" EntitySet="SIC_T_ZONA_REPARTO" />
+      <End Role="SIC_T_ZONA_REPARTO_LUGAR" EntitySet="SIC_T_ZONA_REPARTO_LUGAR" />
+    </AssociationSet>
   </EntityContainer>
+  <ComplexType Name="SIC_SP_CLIENTE_LISTAR_COLABORADORES_POR_AREA_Result">
+    <Property Type="String" Name="colab_c_cdoc_id" Nullable="false" MaxLength="8" />
+    <Property Type="String" Name="colab_c_cusu_red" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="colab_c_vnomb" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="colab_c_vnomb_completo" Nullable="true" MaxLength="153" />
+    <Property Type="String" Name="colab_c_vape_pat" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="colab_c_vape_mat" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="colab_c_vpass" Nullable="true" MaxLength="10" />
+    <Property Type="Byte" Name="colab_area_c_yid" Nullable="true" />
+    <Property Type="Byte" Name="colab_cargo_c_yid" Nullable="true" />
+  </ComplexType>
   <EntityType Name="SIC_T_CLI_CONTAC_CARGO">
     <Key>
       <PropertyRef Name="cli_contac_cargo_c_yid" />
@@ -151,8 +162,8 @@
     <Property Type="Boolean" Name="cli_direc_c_bactivo" />
     <Property Type="String" Name="cli_c_vdoc_id" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="cli_direc_c_czonarep" MaxLength="1" FixedLength="true" Unicode="false" />
-    <NavigationProperty Name="SIC_T_DISTRITO" Relationship="SICDBWEBModel.FK_SIC_T_CLI_DIRECCION_SIC_T_DISTRITO" FromRole="SIC_T_CLI_DIRECCION" ToRole="SIC_T_DISTRITO" />
     <NavigationProperty Name="SIC_T_CLIENTE" Relationship="SICDBWEBModel.FK_SIC_T_CLI_DIRECCION_SIC_T_CLIENTE" FromRole="SIC_T_CLI_DIRECCION" ToRole="SIC_T_CLIENTE" />
+    <NavigationProperty Name="SIC_T_DISTRITO" Relationship="SICDBWEBModel.FK_SIC_T_CLI_DIRECCION_SIC_T_DISTRITO" FromRole="SIC_T_CLI_DIRECCION" ToRole="SIC_T_DISTRITO" />
   </EntityType>
   <EntityType Name="SIC_T_CLI_NOMB_COM">
     <Key>
@@ -179,6 +190,33 @@
     <Property Type="String" Name="cli_scor_c_cletra" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
     <Property Type="String" Name="cli_scor_c_vobserv" MaxLength="100" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="SIC_T_CLIENTE" Relationship="SICDBWEBModel.FK_SIC_T_CLIENTE_SIC_T_CLI_SCORING" FromRole="SIC_T_CLI_SCORING" ToRole="SIC_T_CLIENTE" />
+  </EntityType>
+  <EntityType Name="SIC_T_CLIENTE">
+    <Key>
+      <PropertyRef Name="cli_c_vdoc_id" />
+    </Key>
+    <Property Type="String" Name="cli_c_vraz_soc" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="cli_c_vpartida" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="cli_c_vrubro" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="cli_c_ctlf" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="cli_c_dfec_aniv" />
+    <Property Type="Boolean" Name="cli_c_bgrupo_ibk" />
+    <Property Type="Boolean" Name="cli_c_btipo_pers" />
+    <Property Type="String" Name="colab_c_cdoc_id" MaxLength="8" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="cli_scor_c_cletra" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Type="Boolean" Name="cli_c_bactivo" />
+    <Property Type="String" Name="cli_c_vdoc_id" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Type="Byte" Name="zona_rep_c_yid" />
+    <Property Type="Int32" Name="cli_c_icorrelativo" Nullable="false" />
+    <Property Type="DateTime" Name="cli_c_dfecharegistra" Nullable="false" />
+    <Property Type="DateTime" Name="cli_c_dfechaactualiza" />
+    <Property Type="DateTime" Name="cli_c_dfec_const" />
+    <NavigationProperty Name="SIC_T_CLI_CONTACTO" Relationship="SICDBWEBModel.FK_SIC_T_CLI_CONTACTO_SIC_T_CLIENTE" FromRole="SIC_T_CLIENTE" ToRole="SIC_T_CLI_CONTACTO" />
+    <NavigationProperty Name="SIC_T_CLI_DIRECCION" Relationship="SICDBWEBModel.FK_SIC_T_CLI_DIRECCION_SIC_T_CLIENTE" FromRole="SIC_T_CLIENTE" ToRole="SIC_T_CLI_DIRECCION" />
+    <NavigationProperty Name="SIC_T_CLI_NOMB_COM" Relationship="SICDBWEBModel.FK_SIC_T_CLI_NOMB_COM_SIC_T_CLIENTE" FromRole="SIC_T_CLIENTE" ToRole="SIC_T_CLI_NOMB_COM" />
+    <NavigationProperty Name="SIC_T_CLI_SCORING" Relationship="SICDBWEBModel.FK_SIC_T_CLIENTE_SIC_T_CLI_SCORING" FromRole="SIC_T_CLIENTE" ToRole="SIC_T_CLI_SCORING" />
+    <NavigationProperty Name="SIC_T_COLABORADOR" Relationship="SICDBWEBModel.FK_SIC_T_CLIENTE_SIC_T_COLABORADOR" FromRole="SIC_T_CLIENTE" ToRole="SIC_T_COLABORADOR" />
+    <NavigationProperty Name="SIC_T_ZONA_REPARTO" Relationship="SICDBWEBModel.FK_SIC_T_CLIENTE_SIC_T_ZONA_REPARTO" FromRole="SIC_T_CLIENTE" ToRole="SIC_T_ZONA_REPARTO" />
   </EntityType>
   <EntityType Name="SIC_T_COLAB_AREA">
     <Key>
@@ -218,10 +256,10 @@
     <Property Type="Byte" Name="colab_area_c_yid" />
     <Property Type="Byte" Name="colab_cargo_c_yid" />
     <Property Type="Byte" Name="colab_c_flag_yedit" />
+    <NavigationProperty Name="SIC_T_CLIENTE" Relationship="SICDBWEBModel.FK_SIC_T_CLIENTE_SIC_T_COLABORADOR" FromRole="SIC_T_COLABORADOR" ToRole="SIC_T_CLIENTE" />
     <NavigationProperty Name="SIC_T_COLAB_AREA" Relationship="SICDBWEBModel.FK_SIC_T_COLABORADOR_SIC_T_COLAB_AREA" FromRole="SIC_T_COLABORADOR" ToRole="SIC_T_COLAB_AREA" />
     <NavigationProperty Name="SIC_T_COLAB_CARGO" Relationship="SICDBWEBModel.FK_SIC_T_COLABORADOR_SIC_T_COLAB_CARGO" FromRole="SIC_T_COLABORADOR" ToRole="SIC_T_COLAB_CARGO" />
     <NavigationProperty Name="SIC_T_COLAB_INM" Relationship="SICDBWEBModel.FK_SIC_T_COLAB_INM_SIC_T_COLABORADOR" FromRole="SIC_T_COLABORADOR" ToRole="SIC_T_COLAB_INM" />
-    <NavigationProperty Name="SIC_T_CLIENTE" Relationship="SICDBWEBModel.FK_SIC_T_CLIENTE_SIC_T_COLABORADOR" FromRole="SIC_T_COLABORADOR" ToRole="SIC_T_CLIENTE" />
   </EntityType>
   <EntityType Name="SIC_T_DEPARTAMENTO">
     <Key>
@@ -241,6 +279,13 @@
     <NavigationProperty Name="SIC_T_CLI_DIRECCION" Relationship="SICDBWEBModel.FK_SIC_T_CLI_DIRECCION_SIC_T_DISTRITO" FromRole="SIC_T_DISTRITO" ToRole="SIC_T_CLI_DIRECCION" />
     <NavigationProperty Name="SIC_T_PROVINCIA" Relationship="SICDBWEBModel.FK_SIC_T_DISTRITO_SIC_T_PROVINCIA" FromRole="SIC_T_DISTRITO" ToRole="SIC_T_PROVINCIA" />
   </EntityType>
+  <EntityType Name="SIC_T_NOMB_COM">
+    <Key>
+      <PropertyRef Name="nomb_com_c_iid" />
+    </Key>
+    <Property Type="Int32" Name="nomb_com_c_iid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="nomb_com_c_vnomb" MaxLength="200" FixedLength="false" Unicode="false" />
+  </EntityType>
   <EntityType Name="SIC_T_PROVINCIA">
     <Key>
       <PropertyRef Name="prov_c_ccod" />
@@ -251,14 +296,24 @@
     <NavigationProperty Name="SIC_T_DEPARTAMENTO" Relationship="SICDBWEBModel.FK_SIC_T_PROVINCIA_SIC_T_DEPARTAMENTO" FromRole="SIC_T_PROVINCIA" ToRole="SIC_T_DEPARTAMENTO" />
     <NavigationProperty Name="SIC_T_DISTRITO" Relationship="SICDBWEBModel.FK_SIC_T_DISTRITO_SIC_T_PROVINCIA" FromRole="SIC_T_PROVINCIA" ToRole="SIC_T_DISTRITO" />
   </EntityType>
+  <EntityType Name="SIC_T_USUARIO">
+    <Key>
+      <PropertyRef Name="usu_c_id" />
+    </Key>
+    <Property Type="Int32" Name="usu_c_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="usu_c_nombre" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="usu_c_usuario" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="usu_c_clave" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="usu_c_bactivo" />
+  </EntityType>
   <EntityType Name="SIC_T_ZONA_REPARTO">
     <Key>
       <PropertyRef Name="zona_rep_c_yid" />
     </Key>
     <Property Type="Byte" Name="zona_rep_c_yid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Type="String" Name="zona_rep_c_czona" MaxLength="1" FixedLength="true" Unicode="false" />
-    <NavigationProperty Name="SIC_T_ZONA_REPARTO_LUGAR" Relationship="SICDBWEBModel.FK_SIC_T_ZONA_REPARTO_LUGAR_SIC_T_ZONA_REPARTO" FromRole="SIC_T_ZONA_REPARTO" ToRole="SIC_T_ZONA_REPARTO_LUGAR" />
     <NavigationProperty Name="SIC_T_CLIENTE" Relationship="SICDBWEBModel.FK_SIC_T_CLIENTE_SIC_T_ZONA_REPARTO" FromRole="SIC_T_ZONA_REPARTO" ToRole="SIC_T_CLIENTE" />
+    <NavigationProperty Name="SIC_T_ZONA_REPARTO_LUGAR" Relationship="SICDBWEBModel.FK_SIC_T_ZONA_REPARTO_LUGAR_SIC_T_ZONA_REPARTO" FromRole="SIC_T_ZONA_REPARTO" ToRole="SIC_T_ZONA_REPARTO_LUGAR" />
   </EntityType>
   <EntityType Name="SIC_T_ZONA_REPARTO_LUGAR">
     <Key>
@@ -281,6 +336,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_SIC_T_CLI_CONTACTO_SIC_T_CLIENTE">
+    <End Type="SICDBWEBModel.SIC_T_CLIENTE" Role="SIC_T_CLIENTE" Multiplicity="1" />
+    <End Type="SICDBWEBModel.SIC_T_CLI_CONTACTO" Role="SIC_T_CLI_CONTACTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SIC_T_CLIENTE">
+        <PropertyRef Name="cli_c_vdoc_id" />
+      </Principal>
+      <Dependent Role="SIC_T_CLI_CONTACTO">
+        <PropertyRef Name="cli_c_vdoc_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SIC_T_CLI_DIRECCION_SIC_T_CLIENTE">
+    <End Type="SICDBWEBModel.SIC_T_CLIENTE" Role="SIC_T_CLIENTE" Multiplicity="1" />
+    <End Type="SICDBWEBModel.SIC_T_CLI_DIRECCION" Role="SIC_T_CLI_DIRECCION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SIC_T_CLIENTE">
+        <PropertyRef Name="cli_c_vdoc_id" />
+      </Principal>
+      <Dependent Role="SIC_T_CLI_DIRECCION">
+        <PropertyRef Name="cli_c_vdoc_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_SIC_T_CLI_DIRECCION_SIC_T_DISTRITO">
     <End Type="SICDBWEBModel.SIC_T_DISTRITO" Role="SIC_T_DISTRITO" Multiplicity="0..1" />
     <End Type="SICDBWEBModel.SIC_T_CLI_DIRECCION" Role="SIC_T_CLI_DIRECCION" Multiplicity="*" />
@@ -290,6 +369,54 @@
       </Principal>
       <Dependent Role="SIC_T_CLI_DIRECCION">
         <PropertyRef Name="dist_c_ccod_ubig" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SIC_T_CLI_NOMB_COM_SIC_T_CLIENTE">
+    <End Type="SICDBWEBModel.SIC_T_CLIENTE" Role="SIC_T_CLIENTE" Multiplicity="1" />
+    <End Type="SICDBWEBModel.SIC_T_CLI_NOMB_COM" Role="SIC_T_CLI_NOMB_COM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SIC_T_CLIENTE">
+        <PropertyRef Name="cli_c_vdoc_id" />
+      </Principal>
+      <Dependent Role="SIC_T_CLI_NOMB_COM">
+        <PropertyRef Name="cli_c_vdoc_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SIC_T_CLIENTE_SIC_T_CLI_SCORING">
+    <End Type="SICDBWEBModel.SIC_T_CLI_SCORING" Role="SIC_T_CLI_SCORING" Multiplicity="0..1" />
+    <End Type="SICDBWEBModel.SIC_T_CLIENTE" Role="SIC_T_CLIENTE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SIC_T_CLI_SCORING">
+        <PropertyRef Name="cli_scor_c_cletra" />
+      </Principal>
+      <Dependent Role="SIC_T_CLIENTE">
+        <PropertyRef Name="cli_scor_c_cletra" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SIC_T_CLIENTE_SIC_T_COLABORADOR">
+    <End Type="SICDBWEBModel.SIC_T_COLABORADOR" Role="SIC_T_COLABORADOR" Multiplicity="0..1" />
+    <End Type="SICDBWEBModel.SIC_T_CLIENTE" Role="SIC_T_CLIENTE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SIC_T_COLABORADOR">
+        <PropertyRef Name="colab_c_cdoc_id" />
+      </Principal>
+      <Dependent Role="SIC_T_CLIENTE">
+        <PropertyRef Name="colab_c_cdoc_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SIC_T_CLIENTE_SIC_T_ZONA_REPARTO">
+    <End Type="SICDBWEBModel.SIC_T_ZONA_REPARTO" Role="SIC_T_ZONA_REPARTO" Multiplicity="0..1" />
+    <End Type="SICDBWEBModel.SIC_T_CLIENTE" Role="SIC_T_CLIENTE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SIC_T_ZONA_REPARTO">
+        <PropertyRef Name="zona_rep_c_yid" />
+      </Principal>
+      <Dependent Role="SIC_T_CLIENTE">
+        <PropertyRef Name="zona_rep_c_yid" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -365,130 +492,4 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="SIC_T_CLIENTE">
-    <Key>
-      <PropertyRef Name="cli_c_vdoc_id" />
-    </Key>
-    <Property Type="String" Name="cli_c_vraz_soc" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="cli_c_vpartida" MaxLength="30" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="cli_c_vrubro" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="cli_c_ctlf" MaxLength="15" FixedLength="false" Unicode="false" />
-    <Property Type="DateTime" Name="cli_c_dfec_aniv" />
-    <Property Type="Boolean" Name="cli_c_bgrupo_ibk" />
-    <Property Type="Boolean" Name="cli_c_btipo_pers" />
-    <Property Type="String" Name="colab_c_cdoc_id" MaxLength="8" FixedLength="true" Unicode="false" />
-    <Property Type="String" Name="cli_scor_c_cletra" MaxLength="1" FixedLength="true" Unicode="false" />
-    <Property Type="Boolean" Name="cli_c_bactivo" />
-    <Property Type="String" Name="cli_c_vdoc_id" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
-    <Property Type="Byte" Name="zona_rep_c_yid" />
-    <Property Type="Int32" Name="cli_c_icorrelativo" Nullable="false" />
-    <Property Type="DateTime" Name="cli_c_dfecharegistra" Nullable="false" />
-    <Property Type="DateTime" Name="cli_c_dfechaactualiza" />
-    <NavigationProperty Name="SIC_T_CLI_CONTACTO" Relationship="SICDBWEBModel.FK_SIC_T_CLI_CONTACTO_SIC_T_CLIENTE" FromRole="SIC_T_CLIENTE" ToRole="SIC_T_CLI_CONTACTO" />
-    <NavigationProperty Name="SIC_T_CLI_DIRECCION" Relationship="SICDBWEBModel.FK_SIC_T_CLI_DIRECCION_SIC_T_CLIENTE" FromRole="SIC_T_CLIENTE" ToRole="SIC_T_CLI_DIRECCION" />
-    <NavigationProperty Name="SIC_T_CLI_NOMB_COM" Relationship="SICDBWEBModel.FK_SIC_T_CLI_NOMB_COM_SIC_T_CLIENTE" FromRole="SIC_T_CLIENTE" ToRole="SIC_T_CLI_NOMB_COM" />
-    <NavigationProperty Name="SIC_T_CLI_SCORING" Relationship="SICDBWEBModel.FK_SIC_T_CLIENTE_SIC_T_CLI_SCORING" FromRole="SIC_T_CLIENTE" ToRole="SIC_T_CLI_SCORING" />
-    <NavigationProperty Name="SIC_T_COLABORADOR" Relationship="SICDBWEBModel.FK_SIC_T_CLIENTE_SIC_T_COLABORADOR" FromRole="SIC_T_CLIENTE" ToRole="SIC_T_COLABORADOR" />
-    <NavigationProperty Name="SIC_T_ZONA_REPARTO" Relationship="SICDBWEBModel.FK_SIC_T_CLIENTE_SIC_T_ZONA_REPARTO" FromRole="SIC_T_CLIENTE" ToRole="SIC_T_ZONA_REPARTO" />
-  </EntityType>
-  <Association Name="FK_SIC_T_CLI_CONTACTO_SIC_T_CLIENTE">
-    <End Type="SICDBWEBModel.SIC_T_CLIENTE" Role="SIC_T_CLIENTE" Multiplicity="1" />
-    <End Type="SICDBWEBModel.SIC_T_CLI_CONTACTO" Role="SIC_T_CLI_CONTACTO" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="SIC_T_CLIENTE">
-        <PropertyRef Name="cli_c_vdoc_id" />
-      </Principal>
-      <Dependent Role="SIC_T_CLI_CONTACTO">
-        <PropertyRef Name="cli_c_vdoc_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_SIC_T_CLI_DIRECCION_SIC_T_CLIENTE">
-    <End Type="SICDBWEBModel.SIC_T_CLIENTE" Role="SIC_T_CLIENTE" Multiplicity="1" />
-    <End Type="SICDBWEBModel.SIC_T_CLI_DIRECCION" Role="SIC_T_CLI_DIRECCION" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="SIC_T_CLIENTE">
-        <PropertyRef Name="cli_c_vdoc_id" />
-      </Principal>
-      <Dependent Role="SIC_T_CLI_DIRECCION">
-        <PropertyRef Name="cli_c_vdoc_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_SIC_T_CLI_NOMB_COM_SIC_T_CLIENTE">
-    <End Type="SICDBWEBModel.SIC_T_CLIENTE" Role="SIC_T_CLIENTE" Multiplicity="1" />
-    <End Type="SICDBWEBModel.SIC_T_CLI_NOMB_COM" Role="SIC_T_CLI_NOMB_COM" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="SIC_T_CLIENTE">
-        <PropertyRef Name="cli_c_vdoc_id" />
-      </Principal>
-      <Dependent Role="SIC_T_CLI_NOMB_COM">
-        <PropertyRef Name="cli_c_vdoc_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_SIC_T_CLIENTE_SIC_T_CLI_SCORING">
-    <End Type="SICDBWEBModel.SIC_T_CLI_SCORING" Role="SIC_T_CLI_SCORING" Multiplicity="0..1" />
-    <End Type="SICDBWEBModel.SIC_T_CLIENTE" Role="SIC_T_CLIENTE" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="SIC_T_CLI_SCORING">
-        <PropertyRef Name="cli_scor_c_cletra" />
-      </Principal>
-      <Dependent Role="SIC_T_CLIENTE">
-        <PropertyRef Name="cli_scor_c_cletra" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_SIC_T_CLIENTE_SIC_T_COLABORADOR">
-    <End Type="SICDBWEBModel.SIC_T_COLABORADOR" Role="SIC_T_COLABORADOR" Multiplicity="0..1" />
-    <End Type="SICDBWEBModel.SIC_T_CLIENTE" Role="SIC_T_CLIENTE" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="SIC_T_COLABORADOR">
-        <PropertyRef Name="colab_c_cdoc_id" />
-      </Principal>
-      <Dependent Role="SIC_T_CLIENTE">
-        <PropertyRef Name="colab_c_cdoc_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_SIC_T_CLIENTE_SIC_T_ZONA_REPARTO">
-    <End Type="SICDBWEBModel.SIC_T_ZONA_REPARTO" Role="SIC_T_ZONA_REPARTO" Multiplicity="0..1" />
-    <End Type="SICDBWEBModel.SIC_T_CLIENTE" Role="SIC_T_CLIENTE" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="SIC_T_ZONA_REPARTO">
-        <PropertyRef Name="zona_rep_c_yid" />
-      </Principal>
-      <Dependent Role="SIC_T_CLIENTE">
-        <PropertyRef Name="zona_rep_c_yid" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <ComplexType Name="SIC_SP_CLIENTE_LISTAR_COLABORADORES_POR_AREA_Result">
-    <Property Type="String" Name="colab_c_cdoc_id" Nullable="false" MaxLength="8" />
-    <Property Type="String" Name="colab_c_cusu_red" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="colab_c_vnomb" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="colab_c_vnomb_completo" Nullable="true" MaxLength="153" />
-    <Property Type="String" Name="colab_c_vape_pat" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="colab_c_vape_mat" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="colab_c_vpass" Nullable="true" MaxLength="10" />
-    <Property Type="Byte" Name="colab_area_c_yid" Nullable="true" />
-    <Property Type="Byte" Name="colab_cargo_c_yid" Nullable="true" />
-  </ComplexType>
-  <EntityType Name="SIC_T_NOMB_COM">
-    <Key>
-      <PropertyRef Name="nomb_com_c_iid" />
-    </Key>
-    <Property Type="Int32" Name="nomb_com_c_iid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Type="String" Name="nomb_com_c_vnomb" MaxLength="200" FixedLength="false" Unicode="false" />
-  </EntityType>
-  <EntityType Name="SIC_T_USUARIO">
-    <Key>
-      <PropertyRef Name="usu_c_id" />
-    </Key>
-    <Property Type="Int32" Name="usu_c_id" Nullable="false" />
-    <Property Type="String" Name="usu_c_nombre" MaxLength="500" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="usu_c_usuario" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="usu_c_clave" MaxLength="250" FixedLength="false" Unicode="false" />
-    <Property Type="Boolean" Name="usu_c_bactivo" />
-  </EntityType>
 </Schema>

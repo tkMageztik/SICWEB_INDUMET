@@ -1,8 +1,12 @@
-﻿<%@ Page Title="Página principal" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true"
-    CodeBehind="Default.aspx.cs" Inherits="SIC.UserLayer._Default" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="SIC.UserLayer.Index" %>
 
-<asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
-    
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link href="Bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="Bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
         .miDiv
         {
@@ -22,10 +26,10 @@
             border-radius: 20px;
         }
     </style>
-</asp:Content>
-<asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">
-    
-    <div class="miDiv">
+</head>
+<body>
+    <form id="form1" runat="server">
+     <div class="miDiv">
         <table>
             <tr>
                 <td><b>Usuario:</b></td>
@@ -48,4 +52,6 @@
             </tr>
         </table>
     </div>
-</asp:Content>
+    </form>
+</body>
+</html>
