@@ -7,7 +7,7 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace SIC.UserLayer.Interfaces.Tienda {
+namespace SIC.UserLayer.Interfaces.Mantenimiento {
     
     
     public partial class frmRegCliente {
@@ -40,13 +40,13 @@ namespace SIC.UserLayer.Interfaces.Tienda {
         protected global::System.Web.UI.WebControls.View View1;
         
         /// <summary>
-        /// Control cboTipo.
+        /// Control txtFiltroRazonSocial.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cboTipo;
+        protected global::System.Web.UI.WebControls.TextBox txtFiltroRazonSocial;
         
         /// <summary>
         /// Control txtRuc.
@@ -58,13 +58,13 @@ namespace SIC.UserLayer.Interfaces.Tienda {
         protected global::System.Web.UI.WebControls.TextBox txtRuc;
         
         /// <summary>
-        /// Control txtFiltroRazonSocial.
+        /// Control cboTipo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFiltroRazonSocial;
+        protected global::System.Web.UI.WebControls.DropDownList cboTipo;
         
         /// <summary>
         /// Control btnBuscar.
@@ -73,7 +73,7 @@ namespace SIC.UserLayer.Interfaces.Tienda {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnBuscar;
+        protected global::System.Web.UI.WebControls.Button btnBuscar;
         
         /// <summary>
         /// Control btnNuevo.
@@ -82,7 +82,7 @@ namespace SIC.UserLayer.Interfaces.Tienda {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnNuevo;
+        protected global::System.Web.UI.WebControls.Button btnNuevo;
         
         /// <summary>
         /// Control upGvLista.
@@ -148,42 +148,6 @@ namespace SIC.UserLayer.Interfaces.Tienda {
         protected global::System.Web.UI.WebControls.DropDownList cboTipoPersona;
         
         /// <summary>
-        /// Control txtRazonSocial.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRazonSocial;
-        
-        /// <summary>
-        /// Control cboTipoDocumento.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cboTipoDocumento;
-        
-        /// <summary>
-        /// Control txtNroRuc.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNroRuc;
-        
-        /// <summary>
-        /// Control txtNroRuc_MaskedEditExtender.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::AjaxControlToolkit.MaskedEditExtender txtNroRuc_MaskedEditExtender;
-        
-        /// <summary>
         /// Control upNomComer.
         /// </summary>
         /// <remarks>
@@ -208,25 +172,7 @@ namespace SIC.UserLayer.Interfaces.Tienda {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnAgregarNombreComercial;
-        
-        /// <summary>
-        /// Control txtNumeroPartida.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNumeroPartida;
-        
-        /// <summary>
-        /// Control txtRubroDetallado.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRubroDetallado;
+        protected global::System.Web.UI.WebControls.Button btnAgregarNombreComercial;
         
         /// <summary>
         /// Control txtFechaAniversario.
@@ -245,6 +191,69 @@ namespace SIC.UserLayer.Interfaces.Tienda {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::AjaxControlToolkit.CalendarExtender txtFechaAniversario_CalendarExtender;
+        
+        /// <summary>
+        /// Control txtFecConstitucion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFecConstitucion;
+        
+        /// <summary>
+        /// Control txtFecConstitucion_CalendarExtender.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender txtFecConstitucion_CalendarExtender;
+        
+        /// <summary>
+        /// Control cboEjecutivo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cboEjecutivo;
+        
+        /// <summary>
+        /// Control txtRazonSocial.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtRazonSocial;
+        
+        /// <summary>
+        /// Control txtNroRuc.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNroRuc;
+        
+        /// <summary>
+        /// Control txtNumeroPartida.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNumeroPartida;
+        
+        /// <summary>
+        /// Control txtRubroDetallado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtRubroDetallado;
         
         /// <summary>
         /// Control txtTelefono.
@@ -274,15 +283,6 @@ namespace SIC.UserLayer.Interfaces.Tienda {
         protected global::System.Web.UI.WebControls.RadioButtonList rbGrupoIbk;
         
         /// <summary>
-        /// Control cboEjecutivo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cboEjecutivo;
-        
-        /// <summary>
         /// Control cboZonaReparto.
         /// </summary>
         /// <remarks>
@@ -290,24 +290,6 @@ namespace SIC.UserLayer.Interfaces.Tienda {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList cboZonaReparto;
-        
-        /// <summary>
-        /// Control txtFecConstitucion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFecConstitucion;
-        
-        /// <summary>
-        /// Control txtFecConstitucion_CalendarExtender.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender txtFecConstitucion_CalendarExtender;
         
         /// <summary>
         /// Control upGvDireccion.
@@ -334,7 +316,7 @@ namespace SIC.UserLayer.Interfaces.Tienda {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnAgregar;
+        protected global::System.Web.UI.WebControls.Button btnAgregar;
         
         /// <summary>
         /// Control btnAgregarContacto.
@@ -343,7 +325,7 @@ namespace SIC.UserLayer.Interfaces.Tienda {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnAgregarContacto;
+        protected global::System.Web.UI.WebControls.Button btnAgregarContacto;
         
         /// <summary>
         /// Control upGvContactos.
@@ -409,6 +391,24 @@ namespace SIC.UserLayer.Interfaces.Tienda {
         protected global::System.Web.UI.WebControls.Label lblNombreCentroComercial;
         
         /// <summary>
+        /// Control cboTipoDoc.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cboTipoDoc;
+        
+        /// <summary>
+        /// Control up.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel up;
+        
+        /// <summary>
         /// Control txtDniContacto.
         /// </summary>
         /// <remarks>
@@ -427,15 +427,6 @@ namespace SIC.UserLayer.Interfaces.Tienda {
         protected global::AjaxControlToolkit.FilteredTextBoxExtender txtDniContacto_FilteredTextBoxExtender;
         
         /// <summary>
-        /// Control lblValidarDni.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblValidarDni;
-        
-        /// <summary>
         /// Control txtNombreContacto.
         /// </summary>
         /// <remarks>
@@ -452,6 +443,15 @@ namespace SIC.UserLayer.Interfaces.Tienda {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender txtNombreContacto_FilteredTextBoxExtender;
+        
+        /// <summary>
+        /// Control lblValidarDni.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblValidarDni;
         
         /// <summary>
         /// Control lblValidarNombre.
@@ -481,13 +481,22 @@ namespace SIC.UserLayer.Interfaces.Tienda {
         protected global::AjaxControlToolkit.FilteredTextBoxExtender txtApellidoPaternoContacto_FilteredTextBoxExtender;
         
         /// <summary>
-        /// Control lblValidarApellido.
+        /// Control upMen.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblValidarApellido;
+        protected global::System.Web.UI.UpdatePanel upMen;
+        
+        /// <summary>
+        /// Control lbl.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl;
         
         /// <summary>
         /// Control txtApellidoMaternoContacto.
@@ -508,6 +517,24 @@ namespace SIC.UserLayer.Interfaces.Tienda {
         protected global::AjaxControlToolkit.FilteredTextBoxExtender txtApellidoMaternoContacto_FilteredTextBoxExtender;
         
         /// <summary>
+        /// Control lblValidarApellido.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblValidarApellido;
+        
+        /// <summary>
+        /// Control lblValidarApellidoMaterno.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblValidarApellidoMaterno;
+        
+        /// <summary>
         /// Control txtTelefonofijoContacto.
         /// </summary>
         /// <remarks>
@@ -524,15 +551,6 @@ namespace SIC.UserLayer.Interfaces.Tienda {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender txtTelefonofijoContacto_FilteredTextBoxExtender;
-        
-        /// <summary>
-        /// Control lblValidarTelefonoFijo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblValidarTelefonoFijo;
         
         /// <summary>
         /// Control txttelefonoMovilContacto.
@@ -553,6 +571,15 @@ namespace SIC.UserLayer.Interfaces.Tienda {
         protected global::AjaxControlToolkit.FilteredTextBoxExtender txttelefonoMovilContacto_FilteredTextBoxExtender;
         
         /// <summary>
+        /// Control lblValidarTelefonoFijo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblValidarTelefonoFijo;
+        
+        /// <summary>
         /// Control lblValidarTelefonoMovil.
         /// </summary>
         /// <remarks>
@@ -571,15 +598,6 @@ namespace SIC.UserLayer.Interfaces.Tienda {
         protected global::System.Web.UI.WebControls.TextBox txtEmailContacto;
         
         /// <summary>
-        /// Control lblValidarEmail.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblValidarEmail;
-        
-        /// <summary>
         /// Control txtFechaNacimientoContacto.
         /// </summary>
         /// <remarks>
@@ -596,6 +614,15 @@ namespace SIC.UserLayer.Interfaces.Tienda {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::AjaxControlToolkit.CalendarExtender txtFechaNacimientoContacto_CalendarExtender;
+        
+        /// <summary>
+        /// Control lblValidarEmail.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblValidarEmail;
         
         /// <summary>
         /// Control lblValidarFechaNac.
@@ -623,6 +650,24 @@ namespace SIC.UserLayer.Interfaces.Tienda {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtObservacionesContacto;
+        
+        /// <summary>
+        /// Control hdfCantRepLeg.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdfCantRepLeg;
+        
+        /// <summary>
+        /// Control hdfCantGerGen.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdfCantGerGen;
         
         /// <summary>
         /// Control upMensaje.

@@ -34,7 +34,7 @@ namespace SIC.UserLayer
 
                 if (mUsuario != null)
                 {
-                    Response.Redirect("Interfaces/frmRegCliente.aspx");
+                    Response.Redirect("Interfaces/Mantenimiento/frmRegCliente.aspx");
                 }
                 else
                 {

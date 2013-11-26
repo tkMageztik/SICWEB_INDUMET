@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using SIC.EntityLayer;
 using SIC.DataLayer;
+using System.Data;
 
 namespace SIC.BusinessLayer
 {
@@ -15,16 +16,16 @@ namespace SIC.BusinessLayer
             return new ClienteDA().ListarColaboradoresPorArea(_intCodigoArea);
         }
 
-        public List<ADV_SP_CLIENTES_CONSULTAR_Result> ListarClientesCobranzas(string pcli_c_btipo_pers, string pcli_c_vraz_soc, int pcli_c_bgrupo_ibk, string pcli_c_vdoc_id, DateTime? pcli_c_dfecharegistraini, DateTime? pcli_c_dfecharegistrafin, int pcli_c_tdocumento)
-        {
-            return new ClienteDA().ListarClientesCobranzas(pcli_c_btipo_pers, pcli_c_vraz_soc, pcli_c_bgrupo_ibk, pcli_c_vdoc_id, pcli_c_dfecharegistraini, pcli_c_dfecharegistrafin, pcli_c_tdocumento);
-        }
+        //public List<SIC_SP_CLIENTES_CONSULTAR_Result> ListarClientesCobranzas(string pcli_c_btipo_pers, string pcli_c_vraz_soc, int pcli_c_bgrupo_ibk, string pcli_c_vdoc_id, DateTime? pcli_c_dfecharegistraini, DateTime? pcli_c_dfecharegistrafin, int pcli_c_tdocumento)
+        //{
+        //    return new ClienteDA().ListarClientesCobranzas(pcli_c_btipo_pers, pcli_c_vraz_soc, pcli_c_bgrupo_ibk, pcli_c_vdoc_id, pcli_c_dfecharegistraini, pcli_c_dfecharegistrafin, pcli_c_tdocumento);
+        //}
 
-        public List<ADV_SP_CLIENTE_LISTAR_COLABORADORES_POR_AREA_Result> ListarColaboradoresPorArea(byte area)
+        public List<SIC_SP_CLIENTE_LISTAR_COLABORADORES_POR_AREA_Result> ListarColaboradoresPorArea(byte area)
         {
             return new ClienteDA().ListarColaboradoresPorArea(area);
         }
-        public List<ADV_SP_CLIENTE_NOMCOMER_LISTAR_Result> ListarClienteNombreComerciales(string cli_c_vdoc_id, string cli_c_vraz_soc, string nomb_com_c_vnomb)
+        public List<SIC_SP_CLIENTE_NOMCOMER_LISTAR_Result> ListarClienteNombreComerciales(string cli_c_vdoc_id, string cli_c_vraz_soc, string nomb_com_c_vnomb)
         {
             return new ClienteDA().ListarClienteNombreComerciales(cli_c_vdoc_id, cli_c_vraz_soc, nomb_com_c_vnomb);
         }
@@ -59,7 +60,7 @@ namespace SIC.BusinessLayer
         {
             return new ClienteDA().ListarScorings();
         }
-        public ADV_VW_CLIENTE_LISTA[] ListarClientes()
+        public SIC_VW_CLIENTE_LISTA[] ListarClientes()
         {
             return new ClienteDA().ListarCLiente();
         }
@@ -116,14 +117,14 @@ namespace SIC.BusinessLayer
         {
             return new ClienteDA().ListarNombresComerciales();
         }
-        public List<SIC_T_NOMB_COM> ListarNombresComercialesList(string codCliente)
-        {
-            return new ClienteDA().ListarNombresComercialesList(codCliente);
-        }
-        public SIC_T_NOMB_COM[] ListarNombresComerciales(string codCliente)
-        {
-            return new ClienteDA().ListarNombresComerciales(codCliente);
-        }
+        //public List<SIC_T_NOMB_COM> ListarNombresComercialesList(string codCliente)
+        //{
+        //    return new ClienteDA().ListarNombresComercialesList(codCliente);
+        //}
+        //public SIC_T_NOMB_COM[] ListarNombresComerciales(string codCliente)
+        //{
+        //    return new ClienteDA().ListarNombresComerciales(codCliente);
+        //}
         public SIC_T_PARAMETRO_DET[] Listar_DocumentosIdentidad()
         {
             return new ClienteDA().Listar_DocumentosIdentidad();

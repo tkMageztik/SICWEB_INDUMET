@@ -8,3 +8,8 @@ C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.Data\bin\Debug\SIC.
 C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.Data\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.Data\obj\Debug\SIC.Data.dll
 C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.Data\obj\Debug\SIC.Data.pdb
+C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.Data\bin\Debug\SIC.Data.dll
+C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.Data\bin\Debug\SIC.Data.pdb
+C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.Data\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.Data\obj\Debug\SIC.Data.dll
+C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.Data\obj\Debug\SIC.Data.pdb

@@ -188,7 +188,7 @@
     <Content Include="Imagenes\warning.png" />
     <Content Include="Index.aspx" />
     <Content Include="Interfaces\Default.aspx" />
-    <Content Include="Interfaces\frmRegCliente.aspx" />
+    <Content Include="Interfaces\Mantenimiento\frmRegCliente.aspx" />
     <Content Include="Styles\chosen-sprite%402x.png" />
     <Content Include="Styles\chosen-sprite.png" />
     <Content Include="Styles\chosen.css" />
@@ -277,11 +277,11 @@
     <Compile Include="Interfaces\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Interfaces\frmRegCliente.aspx.cs">
+    <Compile Include="Interfaces\Mantenimiento\frmRegCliente.aspx.cs">
       <DependentUpon>frmRegCliente.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Interfaces\frmRegCliente.aspx.designer.cs">
+    <Compile Include="Interfaces\Mantenimiento\frmRegCliente.aspx.designer.cs">
       <DependentUpon>frmRegCliente.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

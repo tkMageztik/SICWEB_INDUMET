@@ -18,7 +18,7 @@ namespace SIC.DataLayer
             {
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
-                    return contexto.ADV_SP_CLIENTE_LISTAR(cliGrupo, obj.cli_c_vraz_soc, obj.cli_c_vdoc_id).ToList<SIC_T_CLIENTE>();
+                    return contexto.SIC_SP_CLIENTE_LISTAR(cliGrupo, obj.cli_c_vraz_soc, obj.cli_c_vdoc_id).ToList<SIC_T_CLIENTE>();
                 }
             }
             catch (Exception)
@@ -26,11 +26,11 @@ namespace SIC.DataLayer
                 throw;
             }
         }
-        public List<ADV_SP_CLIENTE_NOMCOMER_LISTAR_Result> ListarClienteNombreComerciales(string cli_c_vdoc_id, string cli_c_vraz_soc, string nomb_com_c_vnomb)
+        public List<SIC_SP_CLIENTE_NOMCOMER_LISTAR_Result> ListarClienteNombreComerciales(string cli_c_vdoc_id, string cli_c_vraz_soc, string nomb_com_c_vnomb)
         {
             using (SICDBWEBEntities contexto = new SICDBWEBEntities())
             {
-                return (from n in contexto.ADV_SP_CLIENTE_NOMCOMER_LISTAR(cli_c_vdoc_id, cli_c_vraz_soc, nomb_com_c_vnomb) select n).ToList();
+                return (from n in contexto.SIC_SP_CLIENTE_NOMCOMER_LISTAR(cli_c_vdoc_id, cli_c_vraz_soc, nomb_com_c_vnomb) select n).ToList();
             }
         }
 
@@ -40,7 +40,7 @@ namespace SIC.DataLayer
             {
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
-                    return contexto.ADV_SP_CLI_NOMB_COMER_OBTENER(_nomcom).FirstOrDefault();
+                    return contexto.SIC_SP_CLI_NOMB_COMER_OBTENER(_nomcom).FirstOrDefault();
                 }
             }
             catch (Exception)
@@ -301,7 +301,7 @@ namespace SIC.DataLayer
             {
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
-                    return contexto.ADV_SP_NOMB_COMER_OBTENER_POR_NOMBRE(_strnombre, _cli_c_vdoc_id).FirstOrDefault();
+                    return contexto.SIC_SP_NOMB_COMER_OBTENER_POR_NOMBRE(_strnombre, _cli_c_vdoc_id).FirstOrDefault();
                 }
             }
             catch (Exception)
@@ -330,21 +330,21 @@ namespace SIC.DataLayer
 
         }
 
-        public SIC_T_NOMB_COM[] ListarNombresComerciales(string codCliente)
-        {
-            using (SICDBWEBEntities contexto = new SICDBWEBEntities())
-            {
-                return contexto.ADV_SP_NOMBRE_COMERCIAL_LISTAR(codCliente).ToArray<SIC_T_NOMB_COM>();
-            }
-        }
+        //public SIC_T_NOMB_COM[] ListarNombresComerciales(string codCliente)
+        //{
+        //    using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+        //    {
+        //        return contexto.SIC_SP_NOMBRE_COMERCIAL_LISTAR(codCliente).ToArray<SIC_T_NOMB_COM>();
+        //    }
+        //}
 
-        public List<SIC_T_NOMB_COM> ListarNombresComercialesList(string codCliente)
-        {
-            using (SICDBWEBEntities contexto = new SICDBWEBEntities())
-            {
-                return contexto.ADV_SP_NOMBRE_COMERCIAL_LISTAR(codCliente).ToList<SIC_T_NOMB_COM>();
-            }
-        }
+        //public List<SIC_T_NOMB_COM> ListarNombresComercialesList(string codCliente)
+        //{
+        //    using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+        //    {
+        //        return contexto.SIC_Sç_NOMBRE_COMERCIAL_LISTAR(codCliente).ToList<SIC_T_NOMB_COM>();
+        //    }
+        //}
 
         public DataTable ListarColaboradoresPorArea(int _intCodigoArea)
         {
@@ -368,13 +368,13 @@ namespace SIC.DataLayer
             return dt;
         }
 
-        public List<ADV_SP_CLIENTE_LISTAR_COLABORADORES_POR_AREA_Result> ListarColaboradoresPorArea(byte area)
+        public List<SIC_SP_CLIENTE_LISTAR_COLABORADORES_POR_AREA_Result> ListarColaboradoresPorArea(byte area)
         {
             try
             {
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
-                    return contexto.ADV_SP_CLIENTE_LISTAR_COLABORADORES_POR_AREA(area).ToList<ADV_SP_CLIENTE_LISTAR_COLABORADORES_POR_AREA_Result>();
+                    return contexto.SIC_SP_CLIENTE_LISTAR_COLABORADORES_POR_AREA(area).ToList<SIC_SP_CLIENTE_LISTAR_COLABORADORES_POR_AREA_Result>();
                 }
             }
 
@@ -384,26 +384,26 @@ namespace SIC.DataLayer
             }
 
         }
-        public List<ADV_SP_CLIENTES_CONSULTAR_Result> ListarClientesCobranzas(string pcli_c_btipo_pers, string pcli_c_vraz_soc, int pcli_c_bgrupo_ibk, string pcli_c_vdoc_id, DateTime? pcli_c_dfecharegistraini, DateTime? pcli_c_dfecharegistrafin, int pcli_c_tdocumento)
-        {
-            try
-            {
-                using (SICDBWEBEntities contexto = new SICDBWEBEntities())
-                {
-                    return contexto.ADV_SP_CLIENTES_CONSULTAR(pcli_c_btipo_pers, pcli_c_vraz_soc, pcli_c_bgrupo_ibk, pcli_c_vdoc_id, pcli_c_dfecharegistraini, pcli_c_dfecharegistrafin, pcli_c_tdocumento).ToList<ADV_SP_CLIENTES_CONSULTAR_Result>();
-                }
-            }
+        //public List<SIC_SP_CLIENTES_CONSULTAR_Result> ListarClientesCobranzas(string pcli_c_btipo_pers, string pcli_c_vraz_soc, int pcli_c_bgrupo_ibk, string pcli_c_vdoc_id, DateTime? pcli_c_dfecharegistraini, DateTime? pcli_c_dfecharegistrafin, int pcli_c_tdocumento)
+        //{
+        //    try
+        //    {
+        //        using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+        //        {
+        //            return contexto.SIC_SP_CLIENTES_CONSULTAR(pcli_c_btipo_pers, pcli_c_vraz_soc, pcli_c_bgrupo_ibk, pcli_c_vdoc_id, pcli_c_dfecharegistraini, pcli_c_dfecharegistrafin, pcli_c_tdocumento).ToList<SIC_SP_CLIENTES_CONSULTAR_Result>();
+        //        }
+        //    }
 
-            catch
-            {
-                throw;
-            }
-        }
-        public ADV_VW_CLIENTE_LISTA[] ListarCLiente()
+        //    catch
+        //    {
+        //        throw;
+        //    }
+        //}
+        public SIC_VW_CLIENTE_LISTA[] ListarCLiente()
         {
             using (SICDBWEBEntities contexto = new SICDBWEBEntities())
             {
-                var query = (from x in contexto.ADV_VW_CLIENTE_LISTA
+                var query = (from x in contexto.SIC_VW_CLIENTE_LISTA
                              select x);
                 return query.ToArray();
             }
@@ -414,7 +414,7 @@ namespace SIC.DataLayer
             {
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
-                    contexto.ADV_SP_CLIENTE_NOMBRE_REGISTRAR(cli_c_vdoc_id, nomb_com_c_iid);
+                    contexto.SIC_SP_CLIENTE_NOMBRE_REGISTRAR(cli_c_vdoc_id, nomb_com_c_iid);
                     contexto.SaveChanges();
                     return true;
                 }
@@ -459,7 +459,7 @@ namespace SIC.DataLayer
             {
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
-                    contexto.ADV_SP_CLIENTE_MANTENIMIENTO_RAZON_SOCIAL_HISTORICO(opcion, _pSIC_T_cli_rs_historico.cli_c_vdoc_id, _pSIC_T_cli_rs_historico.cli_rs_h_c_vraz_soc);
+                    contexto.SIC_SP_CLIENTE_MANTENIMIENTO_RAZON_SOCIAL_HISTORICO(opcion, _pSIC_T_cli_rs_historico.cli_c_vdoc_id, _pSIC_T_cli_rs_historico.cli_rs_h_c_vraz_soc);
                     contexto.SaveChanges();
                     return true;
                 }
@@ -482,7 +482,7 @@ namespace SIC.DataLayer
             {
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
-                    contexto.ADV_SP_CLIENTE_CONTACTO_LIMPIAR(_strRuc);
+                    contexto.SIC_SP_CLIENTE_CONTACTO_LIMPIAR(_strRuc);
                     contexto.SaveChanges();
                     return true;
                 }
@@ -504,7 +504,7 @@ namespace SIC.DataLayer
             {
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
-                    contexto.ADV_SP_CLIENTE_DIRECCION_LIMPIAR(_strRuc);
+                    contexto.SIC_SP_CLIENTE_DIRECCION_LIMPIAR(_strRuc);
                     contexto.SaveChanges();
                     return true;
                 }
@@ -545,7 +545,7 @@ namespace SIC.DataLayer
             {
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
-                    return contexto.ADV_SP_MODIFICAR_CLIENTE(_pSIC_T_cliente.cli_c_vdoc_id);
+                    return contexto.SIC_SP_MODIFICAR_CLIENTE(_pSIC_T_cliente.cli_c_vdoc_id);
                 }
             }
 
@@ -602,7 +602,7 @@ namespace SIC.DataLayer
             {
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
-                    contexto.ADV_SP_CLIENTE_NOMBRE_ELIMINAR_RELACION(cli_c_cdoc_id, nomb_com_c_iid);
+                    contexto.SIC_SP_CLIENTE_NOMBRE_ELIMINAR_RELACION(cli_c_cdoc_id, nomb_com_c_iid);
                     contexto.SaveChanges();
                     return true;
                 }
@@ -723,7 +723,7 @@ namespace SIC.DataLayer
             {
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
-                    var resultado = (contexto.ADV_SP_CLIENTE_NOMBRE_CONTAR(cli_c_cdoc_id, nomb_com_c_iid));
+                    var resultado = (contexto.SIC_SP_CLIENTE_NOMBRE_CONTAR(cli_c_cdoc_id, nomb_com_c_iid));
 
                     foreach (var item in resultado)
                     {
@@ -742,7 +742,7 @@ namespace SIC.DataLayer
             {
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
-                    var resultado = (from x in contexto.ADV_SP_CLIENTE_CONTAR_RUC(_strcli_c_cdoc_id)
+                    var resultado = (from x in contexto.SIC_SP_CLIENTE_CONTAR_RUC(_strcli_c_cdoc_id)
                                      select x);
                     foreach (var item in resultado)
                     {
@@ -762,7 +762,7 @@ namespace SIC.DataLayer
             {
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
-                    var resultado = (contexto.ADV_SP_CLIENTE_DIRECCION_GENERARIDDIRECCION(_strRuc));
+                    var resultado = (contexto.SIC_SP_CLIENTE_DIRECCION_GENERARIDDIRECCION(_strRuc));
 
                     foreach (var item in resultado)
                     {
@@ -781,7 +781,7 @@ namespace SIC.DataLayer
             {
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
-                    var resultado = (contexto.ADV_SP_CLIENTE_VERIFICAR_EXISTENCIA(_strRuc));
+                    var resultado = (contexto.SIC_SP_CLIENTE_VERIFICAR_EXISTENCIA(_strRuc));
 
                     foreach (var item in resultado)
                     {
@@ -801,7 +801,7 @@ namespace SIC.DataLayer
             {
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
-                    var resultado = (contexto.ADV_SP_NOMBRECOMERCIAL_BUSCAR_EXISTENCIA(_strNombre));
+                    var resultado = (contexto.SIC_SP_NOMBRECOMERCIAL_BUSCAR_EXISTENCIA(_strNombre));
 
                     foreach (var item in resultado)
                     {
@@ -852,7 +852,7 @@ namespace SIC.DataLayer
             {
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
-                    contexto.ADV_SP_CLIENTE_NOMBRECOMERCIAL_LIMPIAR(_strRuc);
+                    contexto.SIC_SP_CLIENTE_NOMBRECOMERCIAL_LIMPIAR(_strRuc);
                     contexto.SaveChanges();
                 }
             }

@@ -8,13 +8,11 @@ using System.Data;
 using System.Data.Entity;
 using SIC.BusinessLayer;
 using SIC.EntityLayer;
-
+using SIC.Data;
 using System.Text.RegularExpressions;
-using ADV.Data;
-using ADV.UIGeneral;
+using SIC.UIGeneral;
 
-
-namespace SIC.UserLayer.Interfaces.Tienda
+namespace SIC.UserLayer.Interfaces.Mantenimiento
 {
     public partial class frmRegCliente : System.Web.UI.Page
     {
@@ -896,7 +894,7 @@ namespace SIC.UserLayer.Interfaces.Tienda
         }
         #endregion
         #region EVENTOS
-        public frmCreYCobRegCliente()
+        public frmRegCliente()
         {
             _ubigeo = new UbigeoBL();
             _cliente = new ClienteBL();
@@ -1618,9 +1616,9 @@ namespace SIC.UserLayer.Interfaces.Tienda
 
         private void ListarNomComerciales()
         {
-            NombresComerciales = _cliente.ListarNombresComercialesList(txtNroRuc.Text);
-            gvNombresComerciales.DataSource = NombresComerciales;
-            gvNombresComerciales.DataBind();
+            //NombresComerciales = _cliente.ListarNombresComercialesList(txtNroRuc.Text);
+            //gvNombresComerciales.DataSource = NombresComerciales;
+            //gvNombresComerciales.DataBind();
         }
 
         private void ListarDirecciones()
@@ -2023,29 +2021,29 @@ namespace SIC.UserLayer.Interfaces.Tienda
                 //_ListaNombreComercial = _eCredi.ObtClienteNombreComercial(IdNomCom, txtNroRuc.Text, 0);
 
                 //ADV_SP_EVAL_CREDITO_OBT_CLIENTE_NOMB_COMERCIAL_Result _CrediNombreComercial = null;
-                if (_ListaNombreComercial.Count > 0)
-                {
-                    _CrediNombreComercial = _ListaNombreComercial[0];
-                }
+            //    if (_ListaNombreComercial.Count > 0)
+            //    {
+            //        _CrediNombreComercial = _ListaNombreComercial[0];
+            //    }
 
-                if (_CrediNombreComercial != null)
-                {
-                    if (!_CrediNombreComercial.eval_cred_c_dfec_registro.HasValue)
-                    {
-                        e.Row.Cells[2].Visible = false;//true;
-                        e.Row.Cells[3].Visible = false;
-                    }
-                    else
-                    {
-                        e.Row.Cells[2].Visible = false;
-                        e.Row.Cells[3].Visible = false;//true;
-                    }
-                }
-                else
-                {
-                    e.Row.Cells[2].Visible = false;//true;
-                    e.Row.Cells[3].Visible = false;
-                }
+            //    if (_CrediNombreComercial != null)
+            //    {
+            //        if (!_CrediNombreComercial.eval_cred_c_dfec_registro.HasValue)
+            //        {
+            //            e.Row.Cells[2].Visible = false;//true;
+            //            e.Row.Cells[3].Visible = false;
+            //        }
+            //        else
+            //        {
+            //            e.Row.Cells[2].Visible = false;
+            //            e.Row.Cells[3].Visible = false;//true;
+            //        }
+            //    }
+            //    else
+            //    {
+            //        e.Row.Cells[2].Visible = false;//true;
+            //        e.Row.Cells[3].Visible = false;
+            //    }
 
 
             }

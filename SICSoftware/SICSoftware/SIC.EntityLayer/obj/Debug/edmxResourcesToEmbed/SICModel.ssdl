@@ -1,24 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="SICDBWEBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
   <EntityContainer Name="SICDBWEBModelStoreContainer">
-    <EntitySet Name="SIC_T_CLI_CONTAC_CARGO" EntityType="SICDBWEBModel.Store.SIC_T_CLI_CONTAC_CARGO" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="SIC_T_CLI_CONTACTO" EntityType="SICDBWEBModel.Store.SIC_T_CLI_CONTACTO" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="SIC_T_CLI_DIRECCION" EntityType="SICDBWEBModel.Store.SIC_T_CLI_DIRECCION" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="SIC_T_CLI_NOMB_COM" EntityType="SICDBWEBModel.Store.SIC_T_CLI_NOMB_COM" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="SIC_T_CLI_RS_HISTORICO" EntityType="SICDBWEBModel.Store.SIC_T_CLI_RS_HISTORICO" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="SIC_T_CLI_SCORING" EntityType="SICDBWEBModel.Store.SIC_T_CLI_SCORING" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="SIC_T_CLIENTE" EntityType="SICDBWEBModel.Store.SIC_T_CLIENTE" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="SIC_T_COLAB_AREA" EntityType="SICDBWEBModel.Store.SIC_T_COLAB_AREA" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="SIC_T_COLAB_CARGO" EntityType="SICDBWEBModel.Store.SIC_T_COLAB_CARGO" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="SIC_T_COLAB_INM" EntityType="SICDBWEBModel.Store.SIC_T_COLAB_INM" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="SIC_T_COLABORADOR" EntityType="SICDBWEBModel.Store.SIC_T_COLABORADOR" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="SIC_T_DEPARTAMENTO" EntityType="SICDBWEBModel.Store.SIC_T_DEPARTAMENTO" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="SIC_T_DISTRITO" EntityType="SICDBWEBModel.Store.SIC_T_DISTRITO" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="SIC_T_NOMB_COM" EntityType="SICDBWEBModel.Store.SIC_T_NOMB_COM" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="SIC_T_PROVINCIA" EntityType="SICDBWEBModel.Store.SIC_T_PROVINCIA" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="SIC_T_USUARIO" EntityType="SICDBWEBModel.Store.SIC_T_USUARIO" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="SIC_T_ZONA_REPARTO" EntityType="SICDBWEBModel.Store.SIC_T_ZONA_REPARTO" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="SIC_T_ZONA_REPARTO_LUGAR" EntityType="SICDBWEBModel.Store.SIC_T_ZONA_REPARTO_LUGAR" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SIC_T_PARAMETRO" EntityType="SICDBWEBModel.Store.SIC_T_PARAMETRO" store:Type="Tables" Schema="General" />
+    <EntitySet Name="SIC_T_PARAMETRO_DET" EntityType="SICDBWEBModel.Store.SIC_T_PARAMETRO_DET" store:Type="Tables" Schema="General" />
+    <EntitySet Name="SIC_T_CLI_CONTAC_CARGO" EntityType="SICDBWEBModel.Store.SIC_T_CLI_CONTAC_CARGO" store:Type="Tables" Schema="Mantenimiento" />
+    <EntitySet Name="SIC_T_CLI_CONTACTO" EntityType="SICDBWEBModel.Store.SIC_T_CLI_CONTACTO" store:Type="Tables" Schema="Mantenimiento" />
+    <EntitySet Name="SIC_T_CLI_DIRECCION" EntityType="SICDBWEBModel.Store.SIC_T_CLI_DIRECCION" store:Type="Tables" Schema="Mantenimiento" />
+    <EntitySet Name="SIC_T_CLI_NOMB_COM" EntityType="SICDBWEBModel.Store.SIC_T_CLI_NOMB_COM" store:Type="Tables" Schema="Mantenimiento" />
+    <EntitySet Name="SIC_T_CLI_RS_HISTORICO" EntityType="SICDBWEBModel.Store.SIC_T_CLI_RS_HISTORICO" store:Type="Tables" Schema="Mantenimiento" />
+    <EntitySet Name="SIC_T_CLI_SCORING" EntityType="SICDBWEBModel.Store.SIC_T_CLI_SCORING" store:Type="Tables" Schema="Mantenimiento" />
+    <EntitySet Name="SIC_T_CLIENTE" EntityType="SICDBWEBModel.Store.SIC_T_CLIENTE" store:Type="Tables" Schema="Mantenimiento" />
+    <EntitySet Name="SIC_T_COLAB_AREA" EntityType="SICDBWEBModel.Store.SIC_T_COLAB_AREA" store:Type="Tables" Schema="Mantenimiento" />
+    <EntitySet Name="SIC_T_COLAB_CARGO" EntityType="SICDBWEBModel.Store.SIC_T_COLAB_CARGO" store:Type="Tables" Schema="Mantenimiento" />
+    <EntitySet Name="SIC_T_COLAB_INM" EntityType="SICDBWEBModel.Store.SIC_T_COLAB_INM" store:Type="Tables" Schema="Mantenimiento" />
+    <EntitySet Name="SIC_T_COLABORADOR" EntityType="SICDBWEBModel.Store.SIC_T_COLABORADOR" store:Type="Tables" Schema="Mantenimiento" />
+    <EntitySet Name="SIC_T_DEPARTAMENTO" EntityType="SICDBWEBModel.Store.SIC_T_DEPARTAMENTO" store:Type="Tables" Schema="Mantenimiento" />
+    <EntitySet Name="SIC_T_DISTRITO" EntityType="SICDBWEBModel.Store.SIC_T_DISTRITO" store:Type="Tables" Schema="Mantenimiento" />
+    <EntitySet Name="SIC_T_NOMB_COM" EntityType="SICDBWEBModel.Store.SIC_T_NOMB_COM" store:Type="Tables" Schema="Mantenimiento" />
+    <EntitySet Name="SIC_T_PROVINCIA" EntityType="SICDBWEBModel.Store.SIC_T_PROVINCIA" store:Type="Tables" Schema="Mantenimiento" />
+    <EntitySet Name="SIC_T_USUARIO" EntityType="SICDBWEBModel.Store.SIC_T_USUARIO" store:Type="Tables" Schema="Mantenimiento" />
+    <EntitySet Name="SIC_T_ZONA_REPARTO" EntityType="SICDBWEBModel.Store.SIC_T_ZONA_REPARTO" store:Type="Tables" Schema="Mantenimiento" />
+    <EntitySet Name="SIC_T_ZONA_REPARTO_LUGAR" EntityType="SICDBWEBModel.Store.SIC_T_ZONA_REPARTO_LUGAR" store:Type="Tables" Schema="Mantenimiento" />
+    <EntitySet Name="SIC_VW_CLIENTE_LISTA" EntityType="SICDBWEBModel.Store.SIC_VW_CLIENTE_LISTA" store:Type="Views" store:Schema="Mantenimiento" store:Name="SIC_VW_CLIENTE_LISTA">
+      <DefiningQuery>SELECT 
+      [SIC_VW_CLIENTE_LISTA].[nomb_com_c_iid] AS [nomb_com_c_iid], 
+      [SIC_VW_CLIENTE_LISTA].[cli_c_vdoc_id] AS [cli_c_vdoc_id], 
+      [SIC_VW_CLIENTE_LISTA].[nomb_com_c_vnomb] AS [nomb_com_c_vnomb], 
+      [SIC_VW_CLIENTE_LISTA].[cli_c_vraz_soc] AS [cli_c_vraz_soc], 
+      [SIC_VW_CLIENTE_LISTA].[cli_c_bgrupo_ibk] AS [cli_c_bgrupo_ibk]
+      FROM [Mantenimiento].[SIC_VW_CLIENTE_LISTA] AS [SIC_VW_CLIENTE_LISTA]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="FK_SIC_T_CLI_CONTACTO_SIC_T_CLI_CONTAC_CARGO" Association="SICDBWEBModel.Store.FK_SIC_T_CLI_CONTACTO_SIC_T_CLI_CONTAC_CARGO">
       <End Role="SIC_T_CLI_CONTAC_CARGO" EntitySet="SIC_T_CLI_CONTAC_CARGO" />
       <End Role="SIC_T_CLI_CONTACTO" EntitySet="SIC_T_CLI_CONTACTO" />
@@ -67,6 +78,10 @@
       <End Role="SIC_T_PROVINCIA" EntitySet="SIC_T_PROVINCIA" />
       <End Role="SIC_T_DISTRITO" EntitySet="SIC_T_DISTRITO" />
     </AssociationSet>
+    <AssociationSet Name="FK_SIC_T_PARAMETRO_DET_SIC_T_PARAMETRO" Association="SICDBWEBModel.Store.FK_SIC_T_PARAMETRO_DET_SIC_T_PARAMETRO">
+      <End Role="SIC_T_PARAMETRO" EntitySet="SIC_T_PARAMETRO" />
+      <End Role="SIC_T_PARAMETRO_DET" EntitySet="SIC_T_PARAMETRO_DET" />
+    </AssociationSet>
     <AssociationSet Name="FK_SIC_T_PROVINCIA_SIC_T_DEPARTAMENTO" Association="SICDBWEBModel.Store.FK_SIC_T_PROVINCIA_SIC_T_DEPARTAMENTO">
       <End Role="SIC_T_DEPARTAMENTO" EntitySet="SIC_T_DEPARTAMENTO" />
       <End Role="SIC_T_PROVINCIA" EntitySet="SIC_T_PROVINCIA" />
@@ -76,6 +91,34 @@
       <End Role="SIC_T_ZONA_REPARTO_LUGAR" EntitySet="SIC_T_ZONA_REPARTO_LUGAR" />
     </AssociationSet>
   </EntityContainer>
+  <EntityType Name="SIC_T_PARAMETRO">
+    <Key>
+      <PropertyRef Name="par_c_iid" />
+    </Key>
+    <Property Name="par_c_iid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="par_c_vdesc" Type="varchar" MaxLength="100" />
+    <Property Name="par_c_bactivo" Type="bit" />
+  </EntityType>
+  <EntityType Name="SIC_T_PARAMETRO_DET">
+    <Key>
+      <PropertyRef Name="par_c_iid" />
+      <PropertyRef Name="par_det_c_iid" />
+    </Key>
+    <Property Name="par_c_iid" Type="int" Nullable="false" />
+    <Property Name="par_det_c_iid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="par_det_c_vdesc" Type="varchar" MaxLength="100" />
+    <Property Name="par_det_c_vcampo_1" Type="varchar" MaxLength="50" />
+    <Property Name="par_det_c_vcampo_desc_1" Type="varchar" MaxLength="200" />
+    <Property Name="par_det_c_vcampo_2" Type="varchar" MaxLength="50" />
+    <Property Name="par_det_c_vcampo_desc_2" Type="varchar" MaxLength="200" />
+    <Property Name="par_det_c_vcampo_3" Type="varchar" MaxLength="50" />
+    <Property Name="par_det_c_vcampo_desc_3" Type="varchar" MaxLength="200" />
+    <Property Name="par_det_c_vcampo_4" Type="varchar" MaxLength="50" />
+    <Property Name="par_det_c_vcampo_desc_4" Type="varchar" MaxLength="200" />
+    <Property Name="par_det_c_vcampo_5" Type="varchar" MaxLength="50" />
+    <Property Name="par_det_c_vcampo_desc_5" Type="varchar" MaxLength="200" />
+    <Property Name="par_det_c_vobs" Type="varchar" MaxLength="400" />
+  </EntityType>
   <EntityType Name="SIC_T_CLI_CONTAC_CARGO">
     <Key>
       <PropertyRef Name="cli_contac_cargo_c_yid" />
@@ -250,6 +293,20 @@
     <Property Name="zona_rep_c_yid" Type="tinyint" />
     <Property Name="zona_rep_lug_c_vdesc" Type="varchar" MaxLength="100" />
   </EntityType>
+  <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'SICDBWEB_DES.Mantenimiento.SIC_VW_CLIENTE_LISTA' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      -->
+  <EntityType Name="SIC_VW_CLIENTE_LISTA">
+    <Key>
+      <PropertyRef Name="nomb_com_c_iid" />
+      <PropertyRef Name="cli_c_vdoc_id" />
+    </Key>
+    <Property Name="nomb_com_c_iid" Type="int" Nullable="false" />
+    <Property Name="cli_c_vdoc_id" Type="varchar" Nullable="false" MaxLength="11" />
+    <Property Name="nomb_com_c_vnomb" Type="varchar" MaxLength="200" />
+    <Property Name="cli_c_vraz_soc" Type="varchar" MaxLength="200" />
+    <Property Name="cli_c_bgrupo_ibk" Type="bit" />
+  </EntityType>
   <Association Name="FK_SIC_T_CLI_CONTACTO_SIC_T_CLI_CONTAC_CARGO">
     <End Role="SIC_T_CLI_CONTAC_CARGO" Type="SICDBWEBModel.Store.SIC_T_CLI_CONTAC_CARGO" Multiplicity="1" />
     <End Role="SIC_T_CLI_CONTACTO" Type="SICDBWEBModel.Store.SIC_T_CLI_CONTACTO" Multiplicity="*" />
@@ -394,6 +451,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_SIC_T_PARAMETRO_DET_SIC_T_PARAMETRO">
+    <End Role="SIC_T_PARAMETRO" Type="SICDBWEBModel.Store.SIC_T_PARAMETRO" Multiplicity="1" />
+    <End Role="SIC_T_PARAMETRO_DET" Type="SICDBWEBModel.Store.SIC_T_PARAMETRO_DET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SIC_T_PARAMETRO">
+        <PropertyRef Name="par_c_iid" />
+      </Principal>
+      <Dependent Role="SIC_T_PARAMETRO_DET">
+        <PropertyRef Name="par_c_iid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_SIC_T_PROVINCIA_SIC_T_DEPARTAMENTO">
     <End Role="SIC_T_DEPARTAMENTO" Type="SICDBWEBModel.Store.SIC_T_DEPARTAMENTO" Multiplicity="1" />
     <End Role="SIC_T_PROVINCIA" Type="SICDBWEBModel.Store.SIC_T_PROVINCIA" Multiplicity="*" />
@@ -418,4 +487,65 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="SIC_SP_CLI_NOMB_COMER_OBTENER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Mantenimiento">
+    <Parameter Name="nombre_comercial" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SIC_SP_CLIENTE_CONTACTO_LIMPIAR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Mantenimiento">
+    <Parameter Name="cli_c_vdoc_id" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SIC_SP_CLIENTE_CONTAR_RUC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Mantenimiento">
+    <Parameter Name="cli_c_vdoc_id" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SIC_SP_CLIENTE_DIRECCION_GENERARIDDIRECCION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Mantenimiento">
+    <Parameter Name="cli_c_vdoc_id" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SIC_SP_CLIENTE_DIRECCION_LIMPIAR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Mantenimiento">
+    <Parameter Name="cli_c_vdoc_id" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SIC_SP_CLIENTE_LISTAR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Mantenimiento">
+    <Parameter Name="CLI_C_BGRUPO_IBK" Type="tinyint" Mode="In" />
+    <Parameter Name="CLI_C_VRAZ_SOC" Type="varchar" Mode="In" />
+    <Parameter Name="CLI_C_VDOC_ID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SIC_SP_CLIENTE_LISTAR_COLABORADORES_POR_AREA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Mantenimiento">
+    <Parameter Name="INTCODIGOAREA" Type="tinyint" Mode="In" />
+  </Function>
+  <Function Name="SIC_SP_CLIENTE_MANTENIMIENTO_RAZON_SOCIAL_HISTORICO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Mantenimiento">
+    <Parameter Name="CHOPCION" Type="char" Mode="In" />
+    <Parameter Name="CLI_C_VDOC_ID" Type="varchar" Mode="In" />
+    <Parameter Name="CLI_RS_H_C_VRAZ_SOC" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SIC_SP_CLIENTE_NOMBRE_CONTAR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Mantenimiento">
+    <Parameter Name="cli_c_vdoc_id" Type="varchar" Mode="In" />
+    <Parameter Name="nomb_com_c_iid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SIC_SP_CLIENTE_NOMBRE_ELIMINAR_RELACION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Mantenimiento">
+    <Parameter Name="cli_c_vdoc_id" Type="varchar" Mode="In" />
+    <Parameter Name="nomb_com_c_iid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SIC_SP_CLIENTE_NOMBRE_REGISTRAR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Mantenimiento">
+    <Parameter Name="cli_c_vdoc_id" Type="varchar" Mode="In" />
+    <Parameter Name="nomb_com_c_iid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SIC_SP_CLIENTE_NOMBRECOMERCIAL_LIMPIAR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Mantenimiento">
+    <Parameter Name="cli_c_vdoc_id" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SIC_SP_CLIENTE_NOMCOMER_LISTAR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Mantenimiento">
+    <Parameter Name="cli_c_vdoc_id" Type="nvarchar" Mode="In" />
+    <Parameter Name="cli_c_vraz_soc" Type="nvarchar" Mode="In" />
+    <Parameter Name="nomb_com_c_vnomb" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SIC_SP_CLIENTE_VERIFICAR_EXISTENCIA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Mantenimiento">
+    <Parameter Name="cli_c_vdoc_id" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SIC_SP_MODIFICAR_CLIENTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Mantenimiento">
+    <Parameter Name="cli_c_vdoc_id" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SIC_SP_NOMB_COMER_OBTENER_POR_NOMBRE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Mantenimiento">
+    <Parameter Name="nomb_com_c_vnomb" Type="varchar" Mode="In" />
+    <Parameter Name="cli_c_vdoc_id" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SIC_SP_NOMBRECOMERCIAL_BUSCAR_EXISTENCIA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Mantenimiento">
+    <Parameter Name="nomb_com_c_vnomb" Type="varchar" Mode="In" />
+  </Function>
 </Schema>

@@ -27,3 +27,9 @@ C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.EntityLayer\bin\Deb
 C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.EntityLayer\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.EntityLayer\obj\Debug\SIC.EntityLayer.dll
 C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.EntityLayer\obj\Debug\SIC.EntityLayer.pdb
+C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.EntityLayer\bin\Debug\SIC.EntityLayer.dll.config
+C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.EntityLayer\bin\Debug\SIC.EntityLayer.dll
+C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.EntityLayer\bin\Debug\SIC.EntityLayer.pdb
+C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.EntityLayer\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.EntityLayer\obj\Debug\SIC.EntityLayer.dll
+C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.EntityLayer\obj\Debug\SIC.EntityLayer.pdb

@@ -16,7 +16,7 @@ using System.Text;
 using SIC.EntityLayer;
 using System.IO;
 
-namespace ADV.UIGeneral
+namespace SIC.UIGeneral
 {
     public class UIPage : Page
     {

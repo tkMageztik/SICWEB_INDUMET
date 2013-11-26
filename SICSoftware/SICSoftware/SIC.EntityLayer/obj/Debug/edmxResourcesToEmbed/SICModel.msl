@@ -67,28 +67,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="SIC_T_CLIENTE">
-      <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_CLIENTE">
-        <MappingFragment StoreEntitySet="SIC_T_CLIENTE">
-          <ScalarProperty Name="cli_c_dfec_const" ColumnName="cli_c_dfec_const" />
-          <ScalarProperty Name="cli_c_dfechaactualiza" ColumnName="cli_c_dfechaactualiza" />
-          <ScalarProperty Name="cli_c_dfecharegistra" ColumnName="cli_c_dfecharegistra" />
-          <ScalarProperty Name="cli_c_icorrelativo" ColumnName="cli_c_icorrelativo" />
-          <ScalarProperty Name="zona_rep_c_yid" ColumnName="zona_rep_c_yid" />
-          <ScalarProperty Name="cli_c_vdoc_id" ColumnName="cli_c_vdoc_id" />
-          <ScalarProperty Name="cli_c_bactivo" ColumnName="cli_c_bactivo" />
-          <ScalarProperty Name="cli_scor_c_cletra" ColumnName="cli_scor_c_cletra" />
-          <ScalarProperty Name="colab_c_cdoc_id" ColumnName="colab_c_cdoc_id" />
-          <ScalarProperty Name="cli_c_btipo_pers" ColumnName="cli_c_btipo_pers" />
-          <ScalarProperty Name="cli_c_bgrupo_ibk" ColumnName="cli_c_bgrupo_ibk" />
-          <ScalarProperty Name="cli_c_dfec_aniv" ColumnName="cli_c_dfec_aniv" />
-          <ScalarProperty Name="cli_c_ctlf" ColumnName="cli_c_ctlf" />
-          <ScalarProperty Name="cli_c_vrubro" ColumnName="cli_c_vrubro" />
-          <ScalarProperty Name="cli_c_vpartida" ColumnName="cli_c_vpartida" />
-          <ScalarProperty Name="cli_c_vraz_soc" ColumnName="cli_c_vraz_soc" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="SIC_T_COLAB_AREA">
       <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_COLAB_AREA">
         <MappingFragment StoreEntitySet="SIC_T_COLAB_AREA">
@@ -190,5 +168,110 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SIC_SP_CLIENTE_NOMCOMER_LISTAR" FunctionName="SICDBWEBModel.Store.SIC_SP_CLIENTE_NOMCOMER_LISTAR">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SICDBWEBModel.SIC_SP_CLIENTE_NOMCOMER_LISTAR_Result">
+          <ScalarProperty Name="cli_c_vraz_soc" ColumnName="cli_c_vraz_soc" />
+          <ScalarProperty Name="cli_c_vdoc_id" ColumnName="cli_c_vdoc_id" />
+          <ScalarProperty Name="nomb_com_c_vnomb" ColumnName="nomb_com_c_vnomb" />
+          <ScalarProperty Name="nomb_com_c_iid" ColumnName="nomb_com_c_iid" />
+          <ScalarProperty Name="cli_c_vpartida" ColumnName="cli_c_vpartida" />
+          <ScalarProperty Name="afiliado" ColumnName="afiliado" />
+          <ScalarProperty Name="Cobrador" ColumnName="Cobrador" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SIC_SP_CLIENTE_LISTAR_COLABORADORES_POR_AREA" FunctionName="SICDBWEBModel.Store.SIC_SP_CLIENTE_LISTAR_COLABORADORES_POR_AREA">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SICDBWEBModel.SIC_SP_CLIENTE_LISTAR_COLABORADORES_POR_AREA_Result">
+          <ScalarProperty Name="colab_c_cdoc_id" ColumnName="colab_c_cdoc_id" />
+          <ScalarProperty Name="colab_c_cusu_red" ColumnName="colab_c_cusu_red" />
+          <ScalarProperty Name="colab_c_vnomb" ColumnName="colab_c_vnomb" />
+          <ScalarProperty Name="colab_c_vnomb_completo" ColumnName="colab_c_vnomb_completo" />
+          <ScalarProperty Name="colab_c_vape_pat" ColumnName="colab_c_vape_pat" />
+          <ScalarProperty Name="colab_c_vape_mat" ColumnName="colab_c_vape_mat" />
+          <ScalarProperty Name="colab_c_vpass" ColumnName="colab_c_vpass" />
+          <ScalarProperty Name="colab_area_c_yid" ColumnName="colab_area_c_yid" />
+          <ScalarProperty Name="colab_cargo_c_yid" ColumnName="colab_cargo_c_yid" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="SIC_T_PARAMETRO">
+      <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_PARAMETRO">
+        <MappingFragment StoreEntitySet="SIC_T_PARAMETRO">
+          <ScalarProperty Name="par_c_bactivo" ColumnName="par_c_bactivo" />
+          <ScalarProperty Name="par_c_vdesc" ColumnName="par_c_vdesc" />
+          <ScalarProperty Name="par_c_iid" ColumnName="par_c_iid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SIC_T_PARAMETRO_DET">
+      <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_PARAMETRO_DET">
+        <MappingFragment StoreEntitySet="SIC_T_PARAMETRO_DET">
+          <ScalarProperty Name="par_det_c_vobs" ColumnName="par_det_c_vobs" />
+          <ScalarProperty Name="par_det_c_vcampo_desc_5" ColumnName="par_det_c_vcampo_desc_5" />
+          <ScalarProperty Name="par_det_c_vcampo_5" ColumnName="par_det_c_vcampo_5" />
+          <ScalarProperty Name="par_det_c_vcampo_desc_4" ColumnName="par_det_c_vcampo_desc_4" />
+          <ScalarProperty Name="par_det_c_vcampo_4" ColumnName="par_det_c_vcampo_4" />
+          <ScalarProperty Name="par_det_c_vcampo_desc_3" ColumnName="par_det_c_vcampo_desc_3" />
+          <ScalarProperty Name="par_det_c_vcampo_3" ColumnName="par_det_c_vcampo_3" />
+          <ScalarProperty Name="par_det_c_vcampo_desc_2" ColumnName="par_det_c_vcampo_desc_2" />
+          <ScalarProperty Name="par_det_c_vcampo_2" ColumnName="par_det_c_vcampo_2" />
+          <ScalarProperty Name="par_det_c_vcampo_desc_1" ColumnName="par_det_c_vcampo_desc_1" />
+          <ScalarProperty Name="par_det_c_vcampo_1" ColumnName="par_det_c_vcampo_1" />
+          <ScalarProperty Name="par_det_c_vdesc" ColumnName="par_det_c_vdesc" />
+          <ScalarProperty Name="par_det_c_iid" ColumnName="par_det_c_iid" />
+          <ScalarProperty Name="par_c_iid" ColumnName="par_c_iid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SIC_SP_NOMB_COMER_OBTENER_POR_NOMBRE" FunctionName="SICDBWEBModel.Store.SIC_SP_NOMB_COMER_OBTENER_POR_NOMBRE" />
+    <FunctionImportMapping FunctionImportName="SIC_SP_CLIENTE_NOMBRE_REGISTRAR" FunctionName="SICDBWEBModel.Store.SIC_SP_CLIENTE_NOMBRE_REGISTRAR" />
+    <FunctionImportMapping FunctionImportName="SIC_SP_CLIENTE_MANTENIMIENTO_RAZON_SOCIAL_HISTORICO" FunctionName="SICDBWEBModel.Store.SIC_SP_CLIENTE_MANTENIMIENTO_RAZON_SOCIAL_HISTORICO" />
+    <FunctionImportMapping FunctionImportName="SIC_SP_CLIENTE_CONTACTO_LIMPIAR" FunctionName="SICDBWEBModel.Store.SIC_SP_CLIENTE_CONTACTO_LIMPIAR" />
+    <FunctionImportMapping FunctionImportName="SIC_SP_CLIENTE_DIRECCION_LIMPIAR" FunctionName="SICDBWEBModel.Store.SIC_SP_CLIENTE_DIRECCION_LIMPIAR" />
+    <FunctionImportMapping FunctionImportName="SIC_SP_MODIFICAR_CLIENTE" FunctionName="SICDBWEBModel.Store.SIC_SP_MODIFICAR_CLIENTE" />
+    <FunctionImportMapping FunctionImportName="SIC_SP_CLIENTE_NOMBRE_ELIMINAR_RELACION" FunctionName="SICDBWEBModel.Store.SIC_SP_CLIENTE_NOMBRE_ELIMINAR_RELACION" />
+    <FunctionImportMapping FunctionImportName="SIC_SP_CLIENTE_NOMBRE_CONTAR" FunctionName="SICDBWEBModel.Store.SIC_SP_CLIENTE_NOMBRE_CONTAR" />
+    <FunctionImportMapping FunctionImportName="SIC_SP_CLIENTE_CONTAR_RUC" FunctionName="SICDBWEBModel.Store.SIC_SP_CLIENTE_CONTAR_RUC" />
+    <FunctionImportMapping FunctionImportName="SIC_SP_CLIENTE_DIRECCION_GENERARIDDIRECCION" FunctionName="SICDBWEBModel.Store.SIC_SP_CLIENTE_DIRECCION_GENERARIDDIRECCION" />
+    <FunctionImportMapping FunctionImportName="SIC_SP_CLIENTE_VERIFICAR_EXISTENCIA" FunctionName="SICDBWEBModel.Store.SIC_SP_CLIENTE_VERIFICAR_EXISTENCIA" />
+    <FunctionImportMapping FunctionImportName="SIC_SP_NOMBRECOMERCIAL_BUSCAR_EXISTENCIA" FunctionName="SICDBWEBModel.Store.SIC_SP_NOMBRECOMERCIAL_BUSCAR_EXISTENCIA" />
+    <FunctionImportMapping FunctionImportName="SIC_SP_CLIENTE_NOMBRECOMERCIAL_LIMPIAR" FunctionName="SICDBWEBModel.Store.SIC_SP_CLIENTE_NOMBRECOMERCIAL_LIMPIAR" />
+    <EntitySetMapping Name="SIC_VW_CLIENTE_LISTA">
+      <EntityTypeMapping TypeName="SICDBWEBModel.SIC_VW_CLIENTE_LISTA">
+        <MappingFragment StoreEntitySet="SIC_VW_CLIENTE_LISTA">
+          <ScalarProperty Name="cli_c_bgrupo_ibk" ColumnName="cli_c_bgrupo_ibk" />
+          <ScalarProperty Name="cli_c_vraz_soc" ColumnName="cli_c_vraz_soc" />
+          <ScalarProperty Name="nomb_com_c_vnomb" ColumnName="nomb_com_c_vnomb" />
+          <ScalarProperty Name="cli_c_vdoc_id" ColumnName="cli_c_vdoc_id" />
+          <ScalarProperty Name="nomb_com_c_iid" ColumnName="nomb_com_c_iid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SIC_T_CLIENTE">
+      <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_CLIENTE">
+        <MappingFragment StoreEntitySet="SIC_T_CLIENTE">
+          <ScalarProperty Name="cli_c_dfec_const" ColumnName="cli_c_dfec_const" />
+          <ScalarProperty Name="cli_c_dfechaactualiza" ColumnName="cli_c_dfechaactualiza" />
+          <ScalarProperty Name="cli_c_dfecharegistra" ColumnName="cli_c_dfecharegistra" />
+          <ScalarProperty Name="cli_c_icorrelativo" ColumnName="cli_c_icorrelativo" />
+          <ScalarProperty Name="zona_rep_c_yid" ColumnName="zona_rep_c_yid" />
+          <ScalarProperty Name="cli_c_vdoc_id" ColumnName="cli_c_vdoc_id" />
+          <ScalarProperty Name="cli_c_bactivo" ColumnName="cli_c_bactivo" />
+          <ScalarProperty Name="cli_scor_c_cletra" ColumnName="cli_scor_c_cletra" />
+          <ScalarProperty Name="colab_c_cdoc_id" ColumnName="colab_c_cdoc_id" />
+          <ScalarProperty Name="cli_c_btipo_pers" ColumnName="cli_c_btipo_pers" />
+          <ScalarProperty Name="cli_c_bgrupo_ibk" ColumnName="cli_c_bgrupo_ibk" />
+          <ScalarProperty Name="cli_c_dfec_aniv" ColumnName="cli_c_dfec_aniv" />
+          <ScalarProperty Name="cli_c_ctlf" ColumnName="cli_c_ctlf" />
+          <ScalarProperty Name="cli_c_vrubro" ColumnName="cli_c_vrubro" />
+          <ScalarProperty Name="cli_c_vpartida" ColumnName="cli_c_vpartida" />
+          <ScalarProperty Name="cli_c_vraz_soc" ColumnName="cli_c_vraz_soc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SIC_SP_CLIENTE_LISTAR" FunctionName="SICDBWEBModel.Store.SIC_SP_CLIENTE_LISTAR" />
+    <FunctionImportMapping FunctionImportName="SIC_SP_CLI_NOMB_COMER_OBTENER" FunctionName="SICDBWEBModel.Store.SIC_SP_CLI_NOMB_COMER_OBTENER" />
   </EntityContainerMapping>
 </Mapping>
