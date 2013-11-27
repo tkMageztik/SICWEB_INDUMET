@@ -422,7 +422,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
                         if (_cliente.RegistrarNombreComercial(_nuevoNombre))
                         {
-                            crearDirectorioxNomComerciales(_nuevoNombre, _nuevoNombre.nomb_com_c_vnomb, false);
+                            //crearDirectorioxNomComerciales(_nuevoNombre, _nuevoNombre.nomb_com_c_vnomb, false);
                         }
                     }
                     else
@@ -434,7 +434,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
                         if (_cliente.ModificarNombreComercial(_nuevoNombre))
                         {
-                            crearDirectorioxNomComerciales(_nuevoNombre, _nombreAnterior, true);
+                            //crearDirectorioxNomComerciales(_nuevoNombre, _nombreAnterior, true);
                         }
                     }
                 }

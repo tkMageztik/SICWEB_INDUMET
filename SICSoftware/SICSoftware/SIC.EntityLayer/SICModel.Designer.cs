@@ -33,6 +33,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_CLIENTE_SIC_T_CLI_SCORING", "SIC_T_CLI_SCORING", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SIC.EntityLayer.SIC_T_CLI_SCORING), "SIC_T_CLIENTE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_CLIENTE), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_CLIENTE_SIC_T_COLABORADOR", "SIC_T_COLABORADOR", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SIC.EntityLayer.SIC_T_COLABORADOR), "SIC_T_CLIENTE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_CLIENTE), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_CLIENTE_SIC_T_ZONA_REPARTO", "SIC_T_ZONA_REPARTO", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SIC.EntityLayer.SIC_T_ZONA_REPARTO), "SIC_T_CLIENTE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_CLIENTE), true)]
+[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_MENU_SIC_T_MENU", "SIC_T_MENU", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SIC.EntityLayer.SIC_T_MENU), "SIC_T_MENU1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_MENU), true)]
 
 #endregion
 
@@ -419,6 +420,22 @@ namespace SIC.EntityLayer
             }
         }
         private ObjectSet<SIC_T_CLIENTE> _SIC_T_CLIENTE;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        public ObjectSet<SIC_T_MENU> SIC_T_MENU
+        {
+            get
+            {
+                if ((_SIC_T_MENU == null))
+                {
+                    _SIC_T_MENU = base.CreateObjectSet<SIC_T_MENU>("SIC_T_MENU");
+                }
+                return _SIC_T_MENU;
+            }
+        }
+        private ObjectSet<SIC_T_MENU> _SIC_T_MENU;
 
         #endregion
         #region Métodos AddTo
@@ -589,6 +606,14 @@ namespace SIC.EntityLayer
         public void AddToSIC_T_CLIENTE(SIC_T_CLIENTE sIC_T_CLIENTE)
         {
             base.AddObject("SIC_T_CLIENTE", sIC_T_CLIENTE);
+        }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet SIC_T_MENU. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToSIC_T_MENU(SIC_T_MENU sIC_T_MENU)
+        {
+            base.AddObject("SIC_T_MENU", sIC_T_MENU);
         }
 
         #endregion
@@ -3864,6 +3889,220 @@ namespace SIC.EntityLayer
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SIC_T_PROVINCIA>("SICDBWEBModel.FK_SIC_T_DISTRITO_SIC_T_PROVINCIA", "SIC_T_PROVINCIA", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No hay documentación de metadatos disponible.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SICDBWEBModel", Name="SIC_T_MENU")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SIC_T_MENU : EntityObject
+    {
+        #region Método de generador
+    
+        /// <summary>
+        /// Crear un nuevo objeto SIC_T_MENU.
+        /// </summary>
+        /// <param name="menu_c_iid">Valor inicial de la propiedad menu_c_iid.</param>
+        public static SIC_T_MENU CreateSIC_T_MENU(global::System.Int32 menu_c_iid)
+        {
+            SIC_T_MENU sIC_T_MENU = new SIC_T_MENU();
+            sIC_T_MENU.menu_c_iid = menu_c_iid;
+            return sIC_T_MENU;
+        }
+
+        #endregion
+        #region Propiedades primitivas
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 menu_c_iid
+        {
+            get
+            {
+                return _menu_c_iid;
+            }
+            set
+            {
+                if (_menu_c_iid != value)
+                {
+                    Onmenu_c_iidChanging(value);
+                    ReportPropertyChanging("menu_c_iid");
+                    _menu_c_iid = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("menu_c_iid");
+                    Onmenu_c_iidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _menu_c_iid;
+        partial void Onmenu_c_iidChanging(global::System.Int32 value);
+        partial void Onmenu_c_iidChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> menu_c_iid_padre
+        {
+            get
+            {
+                return _menu_c_iid_padre;
+            }
+            set
+            {
+                Onmenu_c_iid_padreChanging(value);
+                ReportPropertyChanging("menu_c_iid_padre");
+                _menu_c_iid_padre = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("menu_c_iid_padre");
+                Onmenu_c_iid_padreChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _menu_c_iid_padre;
+        partial void Onmenu_c_iid_padreChanging(Nullable<global::System.Int32> value);
+        partial void Onmenu_c_iid_padreChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String menu_c_vnomb
+        {
+            get
+            {
+                return _menu_c_vnomb;
+            }
+            set
+            {
+                Onmenu_c_vnombChanging(value);
+                ReportPropertyChanging("menu_c_vnomb");
+                _menu_c_vnomb = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("menu_c_vnomb");
+                Onmenu_c_vnombChanged();
+            }
+        }
+        private global::System.String _menu_c_vnomb;
+        partial void Onmenu_c_vnombChanging(global::System.String value);
+        partial void Onmenu_c_vnombChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Byte> menu_c_ynivel
+        {
+            get
+            {
+                return _menu_c_ynivel;
+            }
+            set
+            {
+                Onmenu_c_ynivelChanging(value);
+                ReportPropertyChanging("menu_c_ynivel");
+                _menu_c_ynivel = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("menu_c_ynivel");
+                Onmenu_c_ynivelChanged();
+            }
+        }
+        private Nullable<global::System.Byte> _menu_c_ynivel;
+        partial void Onmenu_c_ynivelChanging(Nullable<global::System.Byte> value);
+        partial void Onmenu_c_ynivelChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String menu_c_vpag_asp
+        {
+            get
+            {
+                return _menu_c_vpag_asp;
+            }
+            set
+            {
+                Onmenu_c_vpag_aspChanging(value);
+                ReportPropertyChanging("menu_c_vpag_asp");
+                _menu_c_vpag_asp = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("menu_c_vpag_asp");
+                Onmenu_c_vpag_aspChanged();
+            }
+        }
+        private global::System.String _menu_c_vpag_asp;
+        partial void Onmenu_c_vpag_aspChanging(global::System.String value);
+        partial void Onmenu_c_vpag_aspChanged();
+
+        #endregion
+    
+        #region Propiedades de navegación
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_MENU_SIC_T_MENU", "SIC_T_MENU1")]
+        public EntityCollection<SIC_T_MENU> SIC_T_MENU1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SIC_T_MENU>("SICDBWEBModel.FK_SIC_T_MENU_SIC_T_MENU", "SIC_T_MENU1");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SIC_T_MENU>("SICDBWEBModel.FK_SIC_T_MENU_SIC_T_MENU", "SIC_T_MENU1", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_MENU_SIC_T_MENU", "SIC_T_MENU")]
+        public SIC_T_MENU SIC_T_MENU2
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_MENU>("SICDBWEBModel.FK_SIC_T_MENU_SIC_T_MENU", "SIC_T_MENU").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_MENU>("SICDBWEBModel.FK_SIC_T_MENU_SIC_T_MENU", "SIC_T_MENU").Value = value;
+            }
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SIC_T_MENU> SIC_T_MENU2Reference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_MENU>("SICDBWEBModel.FK_SIC_T_MENU_SIC_T_MENU", "SIC_T_MENU");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SIC_T_MENU>("SICDBWEBModel.FK_SIC_T_MENU_SIC_T_MENU", "SIC_T_MENU", value);
                 }
             }
         }

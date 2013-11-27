@@ -67,32 +67,18 @@
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="bin\AjaxControlToolkit.dll" />
-    <Content Include="bin\ar\AjaxControlToolkit.resources.dll" />
-    <Content Include="bin\ClassLibrary1.dll" />
-    <Content Include="bin\ClassLibrary1.pdb" />
-    <Content Include="bin\cs\AjaxControlToolkit.resources.dll" />
-    <Content Include="bin\de\AjaxControlToolkit.resources.dll" />
-    <Content Include="bin\es\AjaxControlToolkit.resources.dll" />
-    <Content Include="bin\fr\AjaxControlToolkit.resources.dll" />
-    <Content Include="bin\he\AjaxControlToolkit.resources.dll" />
-    <Content Include="bin\hi\AjaxControlToolkit.resources.dll" />
     <Content Include="bin\HtmlAgilityPack.dll" />
-    <Content Include="bin\it\AjaxControlToolkit.resources.dll" />
-    <Content Include="bin\ja\AjaxControlToolkit.resources.dll" />
-    <Content Include="bin\ko\AjaxControlToolkit.resources.dll" />
-    <Content Include="bin\nl\AjaxControlToolkit.resources.dll" />
-    <Content Include="bin\pt\AjaxControlToolkit.resources.dll" />
-    <Content Include="bin\ru\AjaxControlToolkit.resources.dll" />
     <Content Include="bin\SanitizerProviders.dll" />
+    <Content Include="bin\SIC.Data.dll" />
+    <Content Include="bin\SIC.Data.pdb" />
     <Content Include="bin\SIC.DataLayer.dll" />
     <Content Include="bin\SIC.DataLayer.pdb" />
     <Content Include="bin\SIC.EntityLayer.dll" />
     <Content Include="bin\SIC.EntityLayer.pdb" />
+    <Content Include="bin\SIC.UIGeneral.dll" />
+    <Content Include="bin\SIC.UIGeneral.pdb" />
     <Content Include="bin\SIC.UserLayer.dll" />
     <Content Include="bin\SIC.UserLayer.pdb" />
-    <Content Include="bin\tr-TR\AjaxControlToolkit.resources.dll" />
-    <Content Include="bin\zh-CHS\AjaxControlToolkit.resources.dll" />
-    <Content Include="bin\zh-CHT\AjaxControlToolkit.resources.dll" />
     <Content Include="Bootstrap\css\bootstrap-responsive.css" />
     <Content Include="Bootstrap\css\bootstrap-responsive.min.css" />
     <Content Include="Bootstrap\css\bootstrap.css" />
@@ -216,7 +202,9 @@
     <Content Include="Styles\ui-icons_454545_256x240.png" />
     <Content Include="UserControl\wucMensajeAlerta.ascx" />
     <Content Include="UserControl\wucMenuDinamico.ascx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

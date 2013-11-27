@@ -143,6 +143,11 @@
     <FunctionImport Name="SIC_SP_CLI_NOMB_COMER_OBTENER" EntitySet="SIC_T_CLIENTE" ReturnType="Collection(SICDBWEBModel.SIC_T_CLIENTE)">
       <Parameter Name="nombre_comercial" Mode="In" Type="String" />
     </FunctionImport>
+    <EntitySet Name="SIC_T_MENU" EntityType="SICDBWEBModel.SIC_T_MENU" />
+    <AssociationSet Name="FK_SIC_T_MENU_SIC_T_MENU" Association="SICDBWEBModel.FK_SIC_T_MENU_SIC_T_MENU">
+      <End Role="SIC_T_MENU" EntitySet="SIC_T_MENU" />
+      <End Role="SIC_T_MENU1" EntitySet="SIC_T_MENU" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="SIC_T_CLI_CONTAC_CARGO">
     <Key>
@@ -584,6 +589,30 @@
       </Principal>
       <Dependent Role="SIC_T_CLIENTE">
         <PropertyRef Name="zona_rep_c_yid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="SIC_T_MENU">
+    <Key>
+      <PropertyRef Name="menu_c_iid" />
+    </Key>
+    <Property Type="Int32" Name="menu_c_iid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="menu_c_iid_padre" />
+    <Property Type="String" Name="menu_c_vnomb" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="Byte" Name="menu_c_ynivel" />
+    <Property Type="String" Name="menu_c_vpag_asp" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="SIC_T_MENU1" Relationship="SICDBWEBModel.FK_SIC_T_MENU_SIC_T_MENU" FromRole="SIC_T_MENU" ToRole="SIC_T_MENU1" />
+    <NavigationProperty Name="SIC_T_MENU2" Relationship="SICDBWEBModel.FK_SIC_T_MENU_SIC_T_MENU" FromRole="SIC_T_MENU1" ToRole="SIC_T_MENU" />
+  </EntityType>
+  <Association Name="FK_SIC_T_MENU_SIC_T_MENU">
+    <End Type="SICDBWEBModel.SIC_T_MENU" Role="SIC_T_MENU" Multiplicity="0..1" />
+    <End Type="SICDBWEBModel.SIC_T_MENU" Role="SIC_T_MENU1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SIC_T_MENU">
+        <PropertyRef Name="menu_c_iid" />
+      </Principal>
+      <Dependent Role="SIC_T_MENU1">
+        <PropertyRef Name="menu_c_iid_padre" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

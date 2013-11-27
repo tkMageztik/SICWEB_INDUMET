@@ -26,6 +26,7 @@
           <EntitySet Name="SIC_T_USUARIO" EntityType="SICDBWEBModel.Store.SIC_T_USUARIO" store:Type="Tables" Schema="Mantenimiento" />
           <EntitySet Name="SIC_T_ZONA_REPARTO" EntityType="SICDBWEBModel.Store.SIC_T_ZONA_REPARTO" store:Type="Tables" Schema="Mantenimiento" />
           <EntitySet Name="SIC_T_ZONA_REPARTO_LUGAR" EntityType="SICDBWEBModel.Store.SIC_T_ZONA_REPARTO_LUGAR" store:Type="Tables" Schema="Mantenimiento" />
+          <EntitySet Name="SIC_T_MENU" EntityType="SICDBWEBModel.Store.SIC_T_MENU" store:Type="Tables" Schema="Seguridad" />
           <EntitySet Name="SIC_VW_CLIENTE_LISTA" EntityType="SICDBWEBModel.Store.SIC_VW_CLIENTE_LISTA" store:Type="Views" store:Schema="Mantenimiento" store:Name="SIC_VW_CLIENTE_LISTA">
             <DefiningQuery>SELECT 
       [SIC_VW_CLIENTE_LISTA].[nomb_com_c_iid] AS [nomb_com_c_iid], 
@@ -82,6 +83,10 @@
           <AssociationSet Name="FK_SIC_T_DISTRITO_SIC_T_PROVINCIA" Association="SICDBWEBModel.Store.FK_SIC_T_DISTRITO_SIC_T_PROVINCIA">
             <End Role="SIC_T_PROVINCIA" EntitySet="SIC_T_PROVINCIA" />
             <End Role="SIC_T_DISTRITO" EntitySet="SIC_T_DISTRITO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SIC_T_MENU_SIC_T_MENU" Association="SICDBWEBModel.Store.FK_SIC_T_MENU_SIC_T_MENU">
+            <End Role="SIC_T_MENU" EntitySet="SIC_T_MENU" />
+            <End Role="SIC_T_MENU1" EntitySet="SIC_T_MENU" />
           </AssociationSet>
           <AssociationSet Name="FK_SIC_T_PARAMETRO_DET_SIC_T_PARAMETRO" Association="SICDBWEBModel.Store.FK_SIC_T_PARAMETRO_DET_SIC_T_PARAMETRO">
             <End Role="SIC_T_PARAMETRO" EntitySet="SIC_T_PARAMETRO" />
@@ -298,6 +303,16 @@
           <Property Name="zona_rep_c_yid" Type="tinyint" />
           <Property Name="zona_rep_lug_c_vdesc" Type="varchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="SIC_T_MENU">
+          <Key>
+            <PropertyRef Name="menu_c_iid" />
+          </Key>
+          <Property Name="menu_c_iid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="menu_c_iid_padre" Type="int" />
+          <Property Name="menu_c_vnomb" Type="varchar" MaxLength="30" />
+          <Property Name="menu_c_ynivel" Type="tinyint" />
+          <Property Name="menu_c_vpag_asp" Type="varchar" MaxLength="100" />
+        </EntityType>
         <!--Se encontraron errores durante la generación:
       advertencia 6002: La tabla o vista 'SICDBWEB_DES.Mantenimiento.SIC_VW_CLIENTE_LISTA' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
@@ -453,6 +468,18 @@
             </Principal>
             <Dependent Role="SIC_T_DISTRITO">
               <PropertyRef Name="prov_c_ccod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SIC_T_MENU_SIC_T_MENU">
+          <End Role="SIC_T_MENU" Type="SICDBWEBModel.Store.SIC_T_MENU" Multiplicity="0..1" />
+          <End Role="SIC_T_MENU1" Type="SICDBWEBModel.Store.SIC_T_MENU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SIC_T_MENU">
+              <PropertyRef Name="menu_c_iid" />
+            </Principal>
+            <Dependent Role="SIC_T_MENU1">
+              <PropertyRef Name="menu_c_iid_padre" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -698,8 +725,13 @@
             <Parameter Name="CLI_C_VDOC_ID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SIC_SP_CLI_NOMB_COMER_OBTENER" EntitySet="SIC_T_CLIENTE" ReturnType="Collection(SICDBWEBModel.SIC_T_CLIENTE)">
-            <Parameter Name="nombre_comercial" Mode="In" Type="String" />
+          <Parameter Name="nombre_comercial" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="SIC_T_MENU" EntityType="SICDBWEBModel.SIC_T_MENU" />
+          <AssociationSet Name="FK_SIC_T_MENU_SIC_T_MENU" Association="SICDBWEBModel.FK_SIC_T_MENU_SIC_T_MENU">
+            <End Role="SIC_T_MENU" EntitySet="SIC_T_MENU" />
+            <End Role="SIC_T_MENU1" EntitySet="SIC_T_MENU" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="SIC_T_CLI_CONTAC_CARGO">
           <Key>
@@ -1144,6 +1176,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="SIC_T_MENU">
+          <Key>
+            <PropertyRef Name="menu_c_iid" />
+          </Key>
+          <Property Type="Int32" Name="menu_c_iid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="menu_c_iid_padre" />
+          <Property Type="String" Name="menu_c_vnomb" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="Byte" Name="menu_c_ynivel" />
+          <Property Type="String" Name="menu_c_vpag_asp" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SIC_T_MENU1" Relationship="SICDBWEBModel.FK_SIC_T_MENU_SIC_T_MENU" FromRole="SIC_T_MENU" ToRole="SIC_T_MENU1" />
+          <NavigationProperty Name="SIC_T_MENU2" Relationship="SICDBWEBModel.FK_SIC_T_MENU_SIC_T_MENU" FromRole="SIC_T_MENU1" ToRole="SIC_T_MENU" />
+        </EntityType>
+        <Association Name="FK_SIC_T_MENU_SIC_T_MENU">
+          <End Type="SICDBWEBModel.SIC_T_MENU" Role="SIC_T_MENU" Multiplicity="0..1" />
+          <End Type="SICDBWEBModel.SIC_T_MENU" Role="SIC_T_MENU1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SIC_T_MENU">
+              <PropertyRef Name="menu_c_iid" />
+            </Principal>
+            <Dependent Role="SIC_T_MENU1">
+              <PropertyRef Name="menu_c_iid_padre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1422,6 +1478,17 @@
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="SIC_SP_CLIENTE_LISTAR" FunctionName="SICDBWEBModel.Store.SIC_SP_CLIENTE_LISTAR" />
           <FunctionImportMapping FunctionImportName="SIC_SP_CLI_NOMB_COMER_OBTENER" FunctionName="SICDBWEBModel.Store.SIC_SP_CLI_NOMB_COMER_OBTENER" />
+          <EntitySetMapping Name="SIC_T_MENU">
+            <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_MENU">
+              <MappingFragment StoreEntitySet="SIC_T_MENU">
+                <ScalarProperty Name="menu_c_vpag_asp" ColumnName="menu_c_vpag_asp" />
+                <ScalarProperty Name="menu_c_ynivel" ColumnName="menu_c_ynivel" />
+                <ScalarProperty Name="menu_c_vnomb" ColumnName="menu_c_vnomb" />
+                <ScalarProperty Name="menu_c_iid_padre" ColumnName="menu_c_iid_padre" />
+                <ScalarProperty Name="menu_c_iid" ColumnName="menu_c_iid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1511,10 +1578,10 @@
           <ConnectorPoint PointX="5.25" PointY="7.701650390625" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_CLI_DIRECCION_SIC_T_CLIENTE" >
-          <ConnectorPoint PointX="4.5" PointY="10.357605794270834" />
-          <ConnectorPoint PointX="8.6979166666666661" PointY="10.357605794270834" />
-          <ConnectorPoint PointX="8.8645833333333339" PointY="10.357605794270834" />
-          <ConnectorPoint PointX="9.2968775" PointY="10.357605794270834" />
+          <ConnectorPoint PointX="4.5" PointY="10.139150390625" />
+          <ConnectorPoint PointX="8.6979166666666661" PointY="10.139150390625" />
+          <ConnectorPoint PointX="8.8645833333333339" PointY="10.139150390625" />
+          <ConnectorPoint PointX="9.2968775" PointY="10.139150390625" />
           <ConnectorPoint PointX="9.2968775" PointY="8.9994921875" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_CLI_NOMB_COM_SIC_T_CLIENTE" >
@@ -1537,6 +1604,13 @@
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_CLIENTE_SIC_T_ZONA_REPARTO" >
           <ConnectorPoint PointX="2.25" PointY="7.612740013020832" />
           <ConnectorPoint PointX="3" PointY="7.612740013020832" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_MENU" Width="1.5" PointX="5.375" PointY="10.75" Height="2.3648893229166674" />
+        <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_MENU_SIC_T_MENU" >
+          <ConnectorPoint PointX="5.9069230769230767" PointY="13.114889322916667" />
+          <ConnectorPoint PointX="5.9069230769230767" PointY="13.364889322916667" />
+          <ConnectorPoint PointX="6.3534615384615378" PointY="13.364889322916667" />
+          <ConnectorPoint PointX="6.3534615384615378" PointY="13.114889322916667" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

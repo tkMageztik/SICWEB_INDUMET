@@ -25,10 +25,12 @@ C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\bin\Debug
 C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\obj\Debug\SIC.DataLayer.dll
 C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\obj\Debug\SIC.DataLayer.pdb
-C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\obj\Debug\SIC.DataLayer.dll
 C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\bin\Debug\SIC.DataLayer.dll
 C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\bin\Debug\SIC.DataLayer.pdb
+C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\bin\Debug\SIC.Data.dll
 C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\bin\Debug\SIC.EntityLayer.dll
+C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\bin\Debug\SIC.Data.pdb
 C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\bin\Debug\SIC.EntityLayer.pdb
+C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\obj\Debug\SIC.DataLayer.dll
 C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\obj\Debug\SIC.DataLayer.pdb

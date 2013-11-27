@@ -273,5 +273,16 @@
     </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="SIC_SP_CLIENTE_LISTAR" FunctionName="SICDBWEBModel.Store.SIC_SP_CLIENTE_LISTAR" />
     <FunctionImportMapping FunctionImportName="SIC_SP_CLI_NOMB_COMER_OBTENER" FunctionName="SICDBWEBModel.Store.SIC_SP_CLI_NOMB_COMER_OBTENER" />
+    <EntitySetMapping Name="SIC_T_MENU">
+      <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_MENU">
+        <MappingFragment StoreEntitySet="SIC_T_MENU">
+          <ScalarProperty Name="menu_c_vpag_asp" ColumnName="menu_c_vpag_asp" />
+          <ScalarProperty Name="menu_c_ynivel" ColumnName="menu_c_ynivel" />
+          <ScalarProperty Name="menu_c_vnomb" ColumnName="menu_c_vnomb" />
+          <ScalarProperty Name="menu_c_iid_padre" ColumnName="menu_c_iid_padre" />
+          <ScalarProperty Name="menu_c_iid" ColumnName="menu_c_iid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

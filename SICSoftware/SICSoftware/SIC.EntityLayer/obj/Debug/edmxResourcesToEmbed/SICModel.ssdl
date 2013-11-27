@@ -21,6 +21,7 @@
     <EntitySet Name="SIC_T_USUARIO" EntityType="SICDBWEBModel.Store.SIC_T_USUARIO" store:Type="Tables" Schema="Mantenimiento" />
     <EntitySet Name="SIC_T_ZONA_REPARTO" EntityType="SICDBWEBModel.Store.SIC_T_ZONA_REPARTO" store:Type="Tables" Schema="Mantenimiento" />
     <EntitySet Name="SIC_T_ZONA_REPARTO_LUGAR" EntityType="SICDBWEBModel.Store.SIC_T_ZONA_REPARTO_LUGAR" store:Type="Tables" Schema="Mantenimiento" />
+    <EntitySet Name="SIC_T_MENU" EntityType="SICDBWEBModel.Store.SIC_T_MENU" store:Type="Tables" Schema="Seguridad" />
     <EntitySet Name="SIC_VW_CLIENTE_LISTA" EntityType="SICDBWEBModel.Store.SIC_VW_CLIENTE_LISTA" store:Type="Views" store:Schema="Mantenimiento" store:Name="SIC_VW_CLIENTE_LISTA">
       <DefiningQuery>SELECT 
       [SIC_VW_CLIENTE_LISTA].[nomb_com_c_iid] AS [nomb_com_c_iid], 
@@ -77,6 +78,10 @@
     <AssociationSet Name="FK_SIC_T_DISTRITO_SIC_T_PROVINCIA" Association="SICDBWEBModel.Store.FK_SIC_T_DISTRITO_SIC_T_PROVINCIA">
       <End Role="SIC_T_PROVINCIA" EntitySet="SIC_T_PROVINCIA" />
       <End Role="SIC_T_DISTRITO" EntitySet="SIC_T_DISTRITO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SIC_T_MENU_SIC_T_MENU" Association="SICDBWEBModel.Store.FK_SIC_T_MENU_SIC_T_MENU">
+      <End Role="SIC_T_MENU" EntitySet="SIC_T_MENU" />
+      <End Role="SIC_T_MENU1" EntitySet="SIC_T_MENU" />
     </AssociationSet>
     <AssociationSet Name="FK_SIC_T_PARAMETRO_DET_SIC_T_PARAMETRO" Association="SICDBWEBModel.Store.FK_SIC_T_PARAMETRO_DET_SIC_T_PARAMETRO">
       <End Role="SIC_T_PARAMETRO" EntitySet="SIC_T_PARAMETRO" />
@@ -293,6 +298,16 @@
     <Property Name="zona_rep_c_yid" Type="tinyint" />
     <Property Name="zona_rep_lug_c_vdesc" Type="varchar" MaxLength="100" />
   </EntityType>
+  <EntityType Name="SIC_T_MENU">
+    <Key>
+      <PropertyRef Name="menu_c_iid" />
+    </Key>
+    <Property Name="menu_c_iid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="menu_c_iid_padre" Type="int" />
+    <Property Name="menu_c_vnomb" Type="varchar" MaxLength="30" />
+    <Property Name="menu_c_ynivel" Type="tinyint" />
+    <Property Name="menu_c_vpag_asp" Type="varchar" MaxLength="100" />
+  </EntityType>
   <!--Se encontraron errores durante la generación:
       advertencia 6002: La tabla o vista 'SICDBWEB_DES.Mantenimiento.SIC_VW_CLIENTE_LISTA' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
@@ -448,6 +463,18 @@
       </Principal>
       <Dependent Role="SIC_T_DISTRITO">
         <PropertyRef Name="prov_c_ccod" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SIC_T_MENU_SIC_T_MENU">
+    <End Role="SIC_T_MENU" Type="SICDBWEBModel.Store.SIC_T_MENU" Multiplicity="0..1" />
+    <End Role="SIC_T_MENU1" Type="SICDBWEBModel.Store.SIC_T_MENU" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SIC_T_MENU">
+        <PropertyRef Name="menu_c_iid" />
+      </Principal>
+      <Dependent Role="SIC_T_MENU1">
+        <PropertyRef Name="menu_c_iid_padre" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
