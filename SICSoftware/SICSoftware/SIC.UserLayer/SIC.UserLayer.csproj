@@ -172,8 +172,7 @@
     <Content Include="Imagenes\shadow.png" />
     <Content Include="Imagenes\unchecked_checkbox.png" />
     <Content Include="Imagenes\warning.png" />
-    <Content Include="Index.aspx" />
-    <Content Include="Interfaces\Default.aspx" />
+    <Content Include="Default.aspx" />
     <Content Include="Interfaces\Mantenimiento\frmRegCliente.aspx" />
     <Content Include="Styles\chosen-sprite%402x.png" />
     <Content Include="Styles\chosen-sprite.png" />
@@ -251,19 +250,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Index.aspx.cs">
-      <DependentUpon>Index.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Index.aspx.designer.cs">
-      <DependentUpon>Index.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Interfaces\Default.aspx.cs">
+    <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Interfaces\Default.aspx.designer.cs">
+    <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\frmPrincipal.aspx.cs">
+      <DependentUpon>frmPrincipal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Interfaces\frmPrincipal.aspx.designer.cs">
+      <DependentUpon>frmPrincipal.aspx</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\Mantenimiento\frmRegCliente.aspx.cs">
       <DependentUpon>frmRegCliente.aspx</DependentUpon>
@@ -324,6 +323,9 @@
       <Project>{98BFAEA2-45F4-4D55-A6E2-C39D63AC6CB2}</Project>
       <Name>SIC.UIGeneral</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Interfaces\frmPrincipal.aspx" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
