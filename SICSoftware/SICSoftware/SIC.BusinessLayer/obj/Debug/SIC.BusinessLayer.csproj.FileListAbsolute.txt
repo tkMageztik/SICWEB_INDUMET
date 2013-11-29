@@ -40,3 +40,16 @@ C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.BusinessLayer\bin\Debug
 C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.BusinessLayer\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.BusinessLayer\obj\Debug\ClassLibrary1.dll
 C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.BusinessLayer\obj\Debug\ClassLibrary1.pdb
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.BusinessLayer\bin\Debug\ClassLibrary1.dll
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.BusinessLayer\bin\Debug\ClassLibrary1.pdb
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.BusinessLayer\bin\Debug\SIC.DataLayer.dll
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.BusinessLayer\bin\Debug\SIC.EntityLayer.dll
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.BusinessLayer\bin\Debug\SIC.UIGeneral.dll
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.BusinessLayer\bin\Debug\SIC.Data.dll
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.BusinessLayer\bin\Debug\SIC.DataLayer.pdb
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.BusinessLayer\bin\Debug\SIC.EntityLayer.pdb
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.BusinessLayer\bin\Debug\SIC.UIGeneral.pdb
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.BusinessLayer\bin\Debug\SIC.Data.pdb
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.BusinessLayer\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.BusinessLayer\obj\Debug\ClassLibrary1.dll
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.BusinessLayer\obj\Debug\ClassLibrary1.pdb

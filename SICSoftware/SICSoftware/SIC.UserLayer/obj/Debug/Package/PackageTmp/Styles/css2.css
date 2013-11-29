@@ -68,7 +68,7 @@ BODY.home {
 	font-size:11px;
 	color:#ffffff;	
 }
-.cab-bg-inter{background-image:url(../Imagenes/bg-cab-inter.jpg);
+/*.cab-bg-inter{background-image:url(../Imagenes/bg-cab-inter.jpg);*/
 background-position:right;
 background-repeat:no-repeat;
 }
@@ -736,7 +736,7 @@ INPUT.ipt_280x20{
 }
 SELECT.slt_250x20{
 	width:200px;
-	height:20px;
+	/*height:20px;*/
 	color:#686168;
 	font-size:11.5px;
 	font-family:Arial, calibri, Verdana;	
@@ -747,7 +747,7 @@ SELECT.slt_250x20{
 }
 SELECT.slt_250x20x3{
 	width:154px;
-	height:20px;
+	/*height:20px;*/
 	color:#686168;
 	font-size:11.5px;
 	font-family:Arial, calibri, Verdana;	
@@ -760,7 +760,7 @@ SELECT.slt_250x20x3{
 
 SELECT.slt_290x20{
 	width:290px;
-	height:21px;
+	/*height:21px;*/
 	color:#686168;
 	font-size:11.5px;
 	font-family:Arial, calibri, Verdana;
@@ -772,7 +772,7 @@ SELECT.slt_290x20{
 
 SELECT.slt_150x20{
 	width:180px;
-	height:21px;
+	/*height:21px;*/
 	color:#686168;
 	font-size:11.5px;
 	font-family:Arial, calibri, Verdana;	
@@ -783,7 +783,7 @@ SELECT.slt_150x20{
 }
 SELECT.slt_150x20x2{
 	width:150px;
-	height:21px;
+	/*height:21px;*/
 	color:#686168;
 	font-size:11.5px;
 	font-family:Arial, calibri, Verdana;	
@@ -794,7 +794,7 @@ SELECT.slt_150x20x2{
 }
 SELECT.slt_90x20{
 	width:90px;
-	height:20px;
+	/*height:20px;*/
 	color:#686168;
 	font-size:13px;
 	font-family:Arial, calibri, Verdana;	
@@ -805,7 +805,7 @@ SELECT.slt_90x20{
 }
 SELECT.slt_50x20{
 	width:50px;
-	height:20px;
+	/*height:20px;*/
 	color:#686168;
 	font-size:11.5px;
 	font-family:Arial, calibri, Verdana;	
@@ -816,7 +816,7 @@ SELECT.slt_50x20{
 }
 SELECT.slt_60x20{
 	width:60px;
-	height:20px;
+	/*height:20px;*/
 	color:#686168;
 	font-size:13px;
 	font-family:Arial, calibri, Verdana;	

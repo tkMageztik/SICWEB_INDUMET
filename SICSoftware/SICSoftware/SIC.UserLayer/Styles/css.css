@@ -301,7 +301,7 @@ INPUT.ipt_280x20
 SELECT.slt_250x20
 {
     width: 250px;
-    height: 20px;
+    /*height: 20px;*/
     color: #000;
     font-size: 13px;
     font-family: Calibri, Verdana, Arial;
@@ -314,7 +314,7 @@ SELECT.slt_250x20
 SELECT.slt_290x20
 {
     width: 290px;
-    height: 20px;
+    /*height: 20px;*/
     color: #000;
     font-size: 13px;
     font-family: Calibri, Verdana, Arial;
@@ -327,7 +327,7 @@ SELECT.slt_290x20
 SELECT.slt_150x20
 {
     width: 150px;
-    height: 20px;
+    /*height: 20px;*/
     color: #000;
     font-size: 13px;
     font-family: Calibri, Verdana, Arial;
@@ -339,7 +339,7 @@ SELECT.slt_150x20
 SELECT.slt_200x20
 {
     width: 200px;
-    height: 20px;
+    /*height: 20px;*/
     color: #000;
     font-size: 13px;
     font-family: Calibri, Verdana, Arial;
@@ -363,7 +363,7 @@ SELECT.slt_90x20
 SELECT.slt_50x20
 {
     width: 50px;
-    height: 20px;
+    /*height: 20px;*/
     color: #000;
     font-size: 13px;
     font-family: Calibri, Verdana, Arial;
@@ -375,7 +375,7 @@ SELECT.slt_50x20
 SELECT.slt_60x20
 {
     width: 60px;
-    height: 20px;
+    /*height: 20px;*/
     color: #000;
     font-size: 13px;
     font-family: Calibri, Verdana, Arial;

@@ -15,7 +15,6 @@
     <EntitySet Name="SIC_T_DISTRITO" EntityType="SICDBWEBModel.SIC_T_DISTRITO" />
     <EntitySet Name="SIC_T_NOMB_COM" EntityType="SICDBWEBModel.SIC_T_NOMB_COM" />
     <EntitySet Name="SIC_T_PROVINCIA" EntityType="SICDBWEBModel.SIC_T_PROVINCIA" />
-    <EntitySet Name="SIC_T_USUARIO" EntityType="SICDBWEBModel.SIC_T_USUARIO" />
     <EntitySet Name="SIC_T_ZONA_REPARTO" EntityType="SICDBWEBModel.SIC_T_ZONA_REPARTO" />
     <EntitySet Name="SIC_T_ZONA_REPARTO_LUGAR" EntityType="SICDBWEBModel.SIC_T_ZONA_REPARTO_LUGAR" />
     <AssociationSet Name="FK_SIC_T_CLI_CONTACTO_SIC_T_CLI_CONTAC_CARGO" Association="SICDBWEBModel.FK_SIC_T_CLI_CONTACTO_SIC_T_CLI_CONTAC_CARGO">
@@ -148,6 +147,18 @@
       <End Role="SIC_T_MENU" EntitySet="SIC_T_MENU" />
       <End Role="SIC_T_MENU1" EntitySet="SIC_T_MENU" />
     </AssociationSet>
+    <FunctionImport Name="SIC_SP_LISTAR_HIJOS_MENU" EntitySet="SIC_T_MENU" ReturnType="Collection(SICDBWEBModel.SIC_T_MENU)">
+      <Parameter Name="PC_CODUSUARIO" Mode="In" Type="String" />
+      <Parameter Name="PC_CODMENUPRINCIPAL" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SIC_SP_LISTAR_PADRES_MENU" EntitySet="SIC_T_MENU" ReturnType="Collection(SICDBWEBModel.SIC_T_MENU)">
+      <Parameter Name="PC_CODUSUARIO" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="SIC_T_USUARIO" EntityType="SICDBWEBModel.SIC_T_USUARIO" />
+    <FunctionImport Name="SIC_SP_VERIFICAR_ACCESO" EntitySet="SIC_T_USUARIO" ReturnType="Collection(SICDBWEBModel.SIC_T_USUARIO)">
+      <Parameter Name="usua_c_cdoc_id" Mode="In" Type="String" />
+      <Parameter Name="usua_c_vpass" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="SIC_T_CLI_CONTAC_CARGO">
     <Key>
@@ -295,16 +306,6 @@
     <Property Type="String" Name="depa_c_ccod" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
     <NavigationProperty Name="SIC_T_DEPARTAMENTO" Relationship="SICDBWEBModel.FK_SIC_T_PROVINCIA_SIC_T_DEPARTAMENTO" FromRole="SIC_T_PROVINCIA" ToRole="SIC_T_DEPARTAMENTO" />
     <NavigationProperty Name="SIC_T_DISTRITO" Relationship="SICDBWEBModel.FK_SIC_T_DISTRITO_SIC_T_PROVINCIA" FromRole="SIC_T_PROVINCIA" ToRole="SIC_T_DISTRITO" />
-  </EntityType>
-  <EntityType Name="SIC_T_USUARIO">
-    <Key>
-      <PropertyRef Name="usu_c_id" />
-    </Key>
-    <Property Type="Int32" Name="usu_c_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Type="String" Name="usu_c_nombre" MaxLength="500" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="usu_c_usuario" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="usu_c_clave" MaxLength="250" FixedLength="false" Unicode="false" />
-    <Property Type="Boolean" Name="usu_c_bactivo" />
   </EntityType>
   <EntityType Name="SIC_T_ZONA_REPARTO">
     <Key>
@@ -616,4 +617,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="SIC_T_USUARIO">
+    <Key>
+      <PropertyRef Name="usua_c_cdoc_id" />
+    </Key>
+    <Property Type="String" Name="usua_c_cusu_red" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Type="Boolean" Name="usua_c_bpropietarioadministrador" />
+    <Property Type="String" Name="usua_c_cidempresa" MaxLength="11" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="usua_c_cape_pat" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="usua_c_cape_mat" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="usua_c_cape_nombres" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="usua_c_cdoc_id" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="usua_c_vpass" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="usua_c_bestado" Nullable="false" />
+  </EntityType>
 </Schema>

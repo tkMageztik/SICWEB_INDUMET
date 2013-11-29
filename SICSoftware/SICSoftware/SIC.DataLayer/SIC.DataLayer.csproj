@@ -45,7 +45,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SeguridadDA.cs" />
     <Compile Include="UbigeoDA.cs" />
-    <Compile Include="UsuarioDA.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SIC.Data\SIC.Data.csproj">
@@ -55,6 +54,10 @@
     <ProjectReference Include="..\SIC.EntityLayer\SIC.EntityLayer.csproj">
       <Project>{975FB244-7E0D-47A8-8FB3-9E05C4DE911E}</Project>
       <Name>SIC.EntityLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SIC.UIGeneral\SIC.UIGeneral.csproj">
+      <Project>{98BFAEA2-45F4-4D55-A6E2-C39D63AC6CB2}</Project>
+      <Name>SIC.UIGeneral</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

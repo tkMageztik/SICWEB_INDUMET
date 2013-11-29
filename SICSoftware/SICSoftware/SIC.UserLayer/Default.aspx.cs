@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SIC.BusinessLayer;
+using SIC.EntityLayer;
 
 namespace SIC.UserLayer
 {
@@ -18,30 +19,21 @@ namespace SIC.UserLayer
 
         protected void btnIngresar_Click(object sender, System.EventArgs e)
         {
-            SIC.EntityLayer.SIC_T_USUARIO mUsuario = null;
+            SIC_T_USUARIO usuario = null;
 
-            bool mExisteUsuario = false;
-            mExisteUsuario = new UsuarioBL().ObtenerUsuarioxNombre(txtUsuario.Text);
+            usuario = new SeguridadBL().VerificarAccesso(txtUsuario.Text, txtClave.Text);
 
-            if (!mExisteUsuario)
+            if (usuario == null)
             {
                 lblMensaje.Text = "Usuario y/o Password es invalido";
                 return;
             }
             else
             {
-                mUsuario = new UsuarioBL().Login(txtClave.Text);
-
-                if (mUsuario != null)
-                {
-                    Response.Redirect("Interfaces/Mantenimiento/frmRegCliente.aspx");
-                }
-                else
-                {
-                    lblMensaje.Text = "Usuario y/o Password es invalido";
-                    return;
-                }
+                Session["USUARIO"] = usuario;
+                Response.Redirect("Interfaces/frmPrincipal.aspx");
             }
         }
+
     }
 }

@@ -179,6 +179,7 @@
     <Content Include="Styles\chosen.css" />
     <Content Include="Styles\css.css" />
     <Content Include="Styles\css2.css" />
+    <Content Include="Styles\cssRecibo.css" />
     <Content Include="Styles\estiloPopUp.css" />
     <Content Include="Styles\estilos-botones.css" />
     <Content Include="Styles\jquery-ui-autocomplete.css" />

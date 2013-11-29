@@ -45,7 +45,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SeguridadBL.cs" />
     <Compile Include="UbigeoBL.cs" />
-    <Compile Include="UsuarioBL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SIC.DataLayer\SIC.DataLayer.csproj">

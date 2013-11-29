@@ -13,94 +13,86 @@ using SIC.EntityLayer;
 
 namespace SIC.BusinessLayer
 {
-    //public interface ISeguridadBL
-    //{
-    //    SGA_T_MENU[] ObtenerMenuPadres(string prmstr_codUsuario);
-    //    SGA_T_MENU[] ObtenerMenuHijos(string prmstr_codUsuario, int prmint_codMenuPadre);
-    //    string VerificarAccesso(string prmstrUsername);
-    //    int PermisoUsuarioConsultar(string user, string aspPath);
-    //}
+    public interface ISeguridadBL
+    {
+        SIC_T_MENU[] ObtenerMenuPadres(string prmstr_codUsuario);
+        SIC_T_MENU[] ObtenerMenuHijos(string prmstr_codUsuario, int prmint_codMenuPadre);
+        SIC_T_USUARIO VerificarAccesso(string codUsu, string usuPass);
+        //int PermisoUsuarioConsultar(string user, string aspPath);
+    }
 
-    //public class SeguridadBL : ISeguridadBL
-    //{
-    //    public SGA_T_MENU[] ObtenerMenuPadres(string prmstr_codUsuario)
-    //    {
-    //        ISeguridadDA objDSeguridad = null;
+    public class SeguridadBL : ISeguridadBL
+    {
+        public SIC_T_MENU[] ObtenerMenuPadres(string prmstr_codUsuario)
+        {
+            ISeguridadDA objDSeguridad = null;
 
-    //        try
-    //        {
-    //            objDSeguridad = new SeguridadDA();
-    //            return objDSeguridad.ObtenerMenuPadres(prmstr_codUsuario);
-    //        }
-    //        catch (Exception ex)
-    //        {
-    //            throw ex;
-    //        }
-    //        finally
-    //        {
-    //            objDSeguridad.Dispose();
-    //        }
-    //    }
+            try
+            {
+                objDSeguridad = new SeguridadDA();
+                return objDSeguridad.ObtenerMenuPadres(prmstr_codUsuario);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                objDSeguridad.Dispose();
+            }
+        }
 
-    //    public SGA_T_MENU[] ObtenerMenuHijos(string prmstr_codUsuario, int prmint_codMenuPadre)
-    //    {
-    //        ISeguridadDA objDSeguridad = null;
+        public SIC_T_MENU[] ObtenerMenuHijos(string prmstr_codUsuario, int prmint_codMenuPadre)
+        {
+            ISeguridadDA objDSeguridad = null;
 
-    //        try
-    //        {
-    //            objDSeguridad = new SeguridadDA();
-    //            return objDSeguridad.ObtenerMenuHijos(prmstr_codUsuario, prmint_codMenuPadre);
-    //        }
-    //        catch (Exception ex)
-    //        {
-    //            throw ex;
-    //        }
-    //        finally
-    //        {
-    //            objDSeguridad.Dispose();
-    //        }
-    //    }
+            try
+            {
+                objDSeguridad = new SeguridadDA();
+                return objDSeguridad.ObtenerMenuHijos(prmstr_codUsuario, prmint_codMenuPadre);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                objDSeguridad.Dispose();
+            }
+        }
 
-    //    public string VerificarAccesso(string prmstrUsername)
-    //    {
-    //        ISeguridadDA objDSeguridad = null;
+        public SIC_T_USUARIO VerificarAccesso(string codUsu, string usuPass)
+        {
+            try
+            {
+                return new SeguridadDA().VerificarAccesso(codUsu, usuPass);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
-    //        try
-    //        {
-    //            objDSeguridad = new SeguridadDA();
-    //            return objDSeguridad.VerificarAccesso(prmstrUsername);
-    //        }
-    //        catch (Exception ex)
-    //        {
-    //            throw ex;
-    //        }
-    //        finally
-    //        {
-    //            objDSeguridad.Dispose();
-    //        }
-    //    }
+        //public int PermisoUsuarioConsultar(string user, string aspPath)
+        //{
+        //    ISeguridadDA objDSeguridad = null;
 
-
-    //    public int PermisoUsuarioConsultar(string user, string aspPath)
-    //    {
-    //        ISeguridadDA objDSeguridad = null;
-
-    //        try
-    //        {
-    //            objDSeguridad = new SeguridadDA();
-    //            return objDSeguridad.PermisoUsuarioConsultar(user, aspPath);
-    //        }
-    //        catch (Exception ex)
-    //        {
-    //            throw ex;
-    //        }
-    //        finally
-    //        {
-    //            objDSeguridad.Dispose();
-    //        }
-    //    }
+        //    try
+        //    {
+        //        objDSeguridad = new SeguridadDA();
+        //        return objDSeguridad.PermisoUsuarioConsultar(user, aspPath);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //    finally
+        //    {
+        //        objDSeguridad.Dispose();
+        //    }
+        //}
 
 
 
-    //}
+    }
 }

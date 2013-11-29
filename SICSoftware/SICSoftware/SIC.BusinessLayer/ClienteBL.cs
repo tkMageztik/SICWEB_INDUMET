@@ -125,7 +125,7 @@ namespace SIC.BusinessLayer
         //{
         //    return new ClienteDA().ListarNombresComerciales(codCliente);
         //}
-        public SIC_T_PARAMETRO_DET[] Listar_DocumentosIdentidad()
+        public List<SIC_T_PARAMETRO_DET> Listar_DocumentosIdentidad()
         {
             return new ClienteDA().Listar_DocumentosIdentidad();
         }

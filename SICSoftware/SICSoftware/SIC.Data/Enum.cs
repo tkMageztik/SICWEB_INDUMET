@@ -144,11 +144,11 @@ namespace SIC.Data
         porCentroCosto
     }
 
-    public enum TipoDocumentoPersona
+    public enum DocumentoPersona
     {
-        DNI = 0,
-        CARNE_EXTRANJERIA = 1,
-        RUC = 2
+        DNI = 1,
+        CARNE_EXTRANJERIA = 2,
+        RUC = 3
     }
 
 

@@ -19,157 +19,151 @@ using System.Data;
 
 namespace SIC.DataLayer
 {
-    //public interface ISeguridadDA : IDisposable
-    //{
-    //    SIC_T_MENU[] ObtenerMenuPadres(string prmstr_codUsuario);
-    //    SIC_T_MENU[] ObtenerMenuHijos(string prmstr_codUsuario, int prmint_codMenuPadre);
-    //    string VerificarAccesso(string prmstrUsername);
-    //    int PermisoUsuarioConsultar(string user, string aspPath);
-    //}
+    public interface ISeguridadDA : IDisposable
+    {
+        SIC_T_MENU[] ObtenerMenuPadres(string prmstr_codUsuario);
+        SIC_T_MENU[] ObtenerMenuHijos(string prmstr_codUsuario, int prmint_codMenuPadre);
+        SIC_T_USUARIO VerificarAccesso(string codUsu, string usuPass);
+        //int PermisoUsuarioConsultar(string user, string aspPath);
+    }
 
-    //public class SeguridadDA : ISeguridadDA
-    //{
-    //    public SIC_T_MENU[] ObtenerMenuPadres(string prmstr_codUsuario)
-    //    {
-    //        SICDBWEBEntities sgaBEL = new SICDBWEBEntities();
-    //        List<SIC_T_MENU> lsMenus = null;
-    //        SIC_T_MENU MenuBE = null;
+    public class SeguridadDA : ISeguridadDA
+    {
+        public void Dispose()
+        {
+            GC.Collect();
+        }
+        public SIC_T_MENU[] ObtenerMenuPadres(string prmstr_codUsuario)
+        {
+            SICDBWEBEntities sgaBEL = new SICDBWEBEntities();
+            List<SIC_T_MENU> lsMenus = null;
+            SIC_T_MENU MenuBE = null;
 
-    //        try
-    //        {
-    //            ObjectResult<SIC_T_MENU> retMenu = sgaBEL.ObtenerMenuPadres(prmstr_codUsuario);
+            try
+            {
+                ObjectResult<SIC_T_MENU> retMenu = sgaBEL.SIC_SP_LISTAR_PADRES_MENU(prmstr_codUsuario);
 
-    //            var _menuPadre = from res in retMenu
-    //                             select new
-    //                             {
-    //                                 menu_c_iid = res.menu_c_iid,
-    //                                 menu_c_vnomb = res.menu_c_vnomb,
-    //                                 menu_c_vpag_asp = res.menu_c_vpag_asp,
-    //                                 menu_c_iid_padre = res.menu_c_iid_padre,
-    //                                 menu_c_ynivel = res.menu_c_ynivel
-    //                             };
+                var _menuPadre = from res in retMenu
+                                 select new
+                                 {
+                                     menu_c_iid = res.menu_c_iid,
+                                     menu_c_vnomb = res.menu_c_vnomb,
+                                     menu_c_vpag_asp = res.menu_c_vpag_asp,
+                                     menu_c_iid_padre = res.menu_c_iid_padre,
+                                     menu_c_ynivel = res.menu_c_ynivel
+                                 };
 
-    //            lsMenus = new List<SIC_T_MENU>();
+                lsMenus = new List<SIC_T_MENU>();
 
-    //            foreach (var item in _menuPadre)
-    //            {
-    //                MenuBE = new SIC_T_MENU();
+                foreach (var item in _menuPadre)
+                {
+                    MenuBE = new SIC_T_MENU();
 
-    //                MenuBE.menu_c_iid = item.menu_c_iid;
-    //                MenuBE.menu_c_vnomb = item.menu_c_vnomb;
-    //                MenuBE.menu_c_vpag_asp = item.menu_c_vpag_asp;
-    //                MenuBE.menu_c_iid_padre = item.menu_c_iid_padre;
-    //                MenuBE.menu_c_ynivel = item.menu_c_ynivel;
+                    MenuBE.menu_c_iid = item.menu_c_iid;
+                    MenuBE.menu_c_vnomb = item.menu_c_vnomb;
+                    MenuBE.menu_c_vpag_asp = item.menu_c_vpag_asp;
+                    MenuBE.menu_c_iid_padre = item.menu_c_iid_padre;
+                    MenuBE.menu_c_ynivel = item.menu_c_ynivel;
 
-    //                lsMenus.Add(MenuBE);
-    //            }
+                    lsMenus.Add(MenuBE);
+                }
 
-    //            return lsMenus.ToArray();
-    //        }
-    //        catch (Exception ex)
-    //        {
-    //            throw ex;
-    //        }
-    //        finally
-    //        {
-    //            sgaBEL.Dispose();
-    //        }
-    //    }
+                return lsMenus.ToArray();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                sgaBEL.Dispose();
+            }
+        }
 
-    //    public SIC_T_MENU[] ObtenerMenuHijos(string prmstr_codUsuario, int prmint_codMenuPadre)
-    //    {
-    //        SICDBWEBEntities sgaBEL = new SICDBWEBEntities();
-    //        List<SIC_T_MENU> lsMenus = null;
-    //        SIC_T_MENU MenuBE = null;
+        public SIC_T_MENU[] ObtenerMenuHijos(string prmstr_codUsuario, int prmint_codMenuPadre)
+        {
+            SICDBWEBEntities sgaBEL = new SICDBWEBEntities();
+            List<SIC_T_MENU> lsMenus = null;
+            SIC_T_MENU MenuBE = null;
 
-    //        try
-    //        {
-    //            ObjectResult<SIC_T_MENU> retMenu = sgaBEL.ObtenerMenuHijos(prmstr_codUsuario, prmint_codMenuPadre);
+            try
+            {
+                ObjectResult<SIC_T_MENU> retMenu = sgaBEL.SIC_SP_LISTAR_HIJOS_MENU(prmstr_codUsuario, prmint_codMenuPadre);
 
-    //            var _menuPadre = from res in retMenu
-    //                             select new
-    //                             {
-    //                                 menu_c_iid = res.menu_c_iid,
-    //                                 menu_c_vnomb = res.menu_c_vnomb,
-    //                                 menu_c_vpag_asp = res.menu_c_vpag_asp,
-    //                                 menu_c_iid_padre = res.menu_c_iid_padre,
-    //                                 menu_c_ynivel = res.menu_c_ynivel
-    //                             };
+                var _menuPadre = from res in retMenu
+                                 select new
+                                 {
+                                     menu_c_iid = res.menu_c_iid,
+                                     menu_c_vnomb = res.menu_c_vnomb,
+                                     menu_c_vpag_asp = res.menu_c_vpag_asp,
+                                     menu_c_iid_padre = res.menu_c_iid_padre,
+                                     menu_c_ynivel = res.menu_c_ynivel
+                                 };
 
-    //            lsMenus = new List<SIC_T_MENU>();
+                lsMenus = new List<SIC_T_MENU>();
 
-    //            foreach (var item in _menuPadre)
-    //            {
-    //                MenuBE = new SIC_T_MENU();
+                foreach (var item in _menuPadre)
+                {
+                    MenuBE = new SIC_T_MENU();
 
-    //                MenuBE.menu_c_iid = item.menu_c_iid;
-    //                MenuBE.menu_c_vnomb = item.menu_c_vnomb;
-    //                MenuBE.menu_c_vpag_asp = item.menu_c_vpag_asp;
-    //                MenuBE.menu_c_iid_padre = item.menu_c_iid_padre;
-    //                MenuBE.menu_c_ynivel = item.menu_c_ynivel;
+                    MenuBE.menu_c_iid = item.menu_c_iid;
+                    MenuBE.menu_c_vnomb = item.menu_c_vnomb;
+                    MenuBE.menu_c_vpag_asp = item.menu_c_vpag_asp;
+                    MenuBE.menu_c_iid_padre = item.menu_c_iid_padre;
+                    MenuBE.menu_c_ynivel = item.menu_c_ynivel;
 
-    //                lsMenus.Add(MenuBE);
-    //            }
+                    lsMenus.Add(MenuBE);
+                }
 
-    //            return lsMenus.ToArray();
-    //        }
-    //        catch (Exception ex)
-    //        {
-    //            throw ex;
-    //        }
-    //        finally
-    //        {
-    //            sgaBEL.Dispose();
-    //        }
-    //    }
+                return lsMenus.ToArray();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                sgaBEL.Dispose();
+            }
+        }
 
-    //    public string VerificarAccesso(string prmstrUsername)
-    //    {
-    //        SICDBWEBEntities sgaBEL = new SICDBWEBEntities();
-    //        string strUsuario = string.Empty;
+        public SIC_T_USUARIO VerificarAccesso(string codUsu, string usuPass)
+        {
+            try
+            {
+                using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+                {
 
-    //        try
-    //        {
-    //            ObjectResult<string> resAcceso = sgaBEL.VerificarAccesoSistema(prmstrUsername);
+                    SIC_T_USUARIO usuario = (from x in contexto.SIC_T_USUARIO
+                                             where x.usua_c_cdoc_id == codUsu
+                                             & x.usua_c_vpass == usuPass
+                                             & x.usua_c_bestado == true
+                                             select x).FirstOrDefault<SIC_T_USUARIO>();
+                    return usuario;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
-    //            var acceso = from res in resAcceso
-    //                         select res;
+        //public int PermisoUsuarioConsultar(string user, string aspPath)
+        //{
+        //    try
+        //    {
+        //        using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+        //        {
+        //            return Convert.ToInt16(contexto.SIC_SP_USUARIO_PERMISO_ASP_CONSULTAR(user, aspPath).FirstOrDefault());
+        //        }
+        //    }
+        //    catch
+        //    {
+        //        throw;
+        //    }
 
-    //            foreach (var item in acceso)
-    //                strUsuario = item.ToString();
-
-    //            return strUsuario;
-    //        }
-    //        catch (Exception ex)
-    //        {
-    //            throw ex;
-    //        }
-    //        finally
-    //        {
-    //            sgaBEL.Dispose();
-    //        }
-    //    }
-
-    //    public int PermisoUsuarioConsultar(string user, string aspPath)
-    //    {
-    //        try
-    //        {
-    //            using (SICDBWEBEntities contexto = new SICDBWEBEntities())
-    //            {
-    //                return Convert.ToInt16(contexto.SIC_SP_USUARIO_PERMISO_ASP_CONSULTAR(user, aspPath).FirstOrDefault());
-    //            }
-    //        }
-    //        catch
-    //        {
-    //            throw;
-    //        }
-
-    //    }
+        //}
 
 
-    //    public void Dispose()
-    //    {
-    //        GC.Collect();
-    //    }
-    //}
+    }
 }

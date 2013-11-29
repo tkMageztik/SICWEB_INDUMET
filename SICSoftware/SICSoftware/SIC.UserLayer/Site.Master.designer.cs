@@ -64,7 +64,7 @@ namespace SIC.UserLayer {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::SIC.UserLayer.UserControl.wucMenuDinamico1 wucMenuDinamico2;
+        protected global::SIC.UserLayer.UserControl.wucMenuDinamico wucMenuDinamico2;
         
         /// <summary>
         /// Control MainContent.

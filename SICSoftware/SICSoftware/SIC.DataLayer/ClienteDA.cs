@@ -5,6 +5,8 @@ using System.Text;
 using System.Data.Objects;
 using SIC.EntityLayer;
 using System.Data;
+using SIC.Data;
+using SIC.UIGeneral;
 
 namespace SIC.DataLayer
 {
@@ -319,13 +321,16 @@ namespace SIC.DataLayer
             }
         }
 
-        public SIC_T_PARAMETRO_DET[] Listar_DocumentosIdentidad()
+        public List<SIC_T_PARAMETRO_DET> Listar_DocumentosIdentidad()
         {
             using (SICDBWEBEntities contexto = new SICDBWEBEntities())
             {
+                List<int> lista = UIUtil.EnumToList<DocumentoPersona>();
+
                 return (from x in contexto.SIC_T_PARAMETRO_DET
-                        where x.par_c_iid == 2 && x.par_det_c_iid <= 2
-                        select x).ToArray();
+                        where
+                        lista.Contains(x.par_det_c_iid)
+                        select x).ToList<SIC_T_PARAMETRO_DET>();
             }
 
         }

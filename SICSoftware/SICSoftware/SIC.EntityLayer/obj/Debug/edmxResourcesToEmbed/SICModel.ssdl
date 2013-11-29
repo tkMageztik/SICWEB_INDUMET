@@ -18,10 +18,10 @@
     <EntitySet Name="SIC_T_DISTRITO" EntityType="SICDBWEBModel.Store.SIC_T_DISTRITO" store:Type="Tables" Schema="Mantenimiento" />
     <EntitySet Name="SIC_T_NOMB_COM" EntityType="SICDBWEBModel.Store.SIC_T_NOMB_COM" store:Type="Tables" Schema="Mantenimiento" />
     <EntitySet Name="SIC_T_PROVINCIA" EntityType="SICDBWEBModel.Store.SIC_T_PROVINCIA" store:Type="Tables" Schema="Mantenimiento" />
-    <EntitySet Name="SIC_T_USUARIO" EntityType="SICDBWEBModel.Store.SIC_T_USUARIO" store:Type="Tables" Schema="Mantenimiento" />
     <EntitySet Name="SIC_T_ZONA_REPARTO" EntityType="SICDBWEBModel.Store.SIC_T_ZONA_REPARTO" store:Type="Tables" Schema="Mantenimiento" />
     <EntitySet Name="SIC_T_ZONA_REPARTO_LUGAR" EntityType="SICDBWEBModel.Store.SIC_T_ZONA_REPARTO_LUGAR" store:Type="Tables" Schema="Mantenimiento" />
     <EntitySet Name="SIC_T_MENU" EntityType="SICDBWEBModel.Store.SIC_T_MENU" store:Type="Tables" Schema="Seguridad" />
+    <EntitySet Name="SIC_T_USUARIO" EntityType="SICDBWEBModel.Store.SIC_T_USUARIO" store:Type="Tables" Schema="Seguridad" />
     <EntitySet Name="SIC_VW_CLIENTE_LISTA" EntityType="SICDBWEBModel.Store.SIC_VW_CLIENTE_LISTA" store:Type="Views" store:Schema="Mantenimiento" store:Name="SIC_VW_CLIENTE_LISTA">
       <DefiningQuery>SELECT 
       [SIC_VW_CLIENTE_LISTA].[nomb_com_c_iid] AS [nomb_com_c_iid], 
@@ -273,16 +273,6 @@
     <Property Name="prov_c_vnomb" Type="varchar" MaxLength="50" />
     <Property Name="depa_c_ccod" Type="char" Nullable="false" MaxLength="2" />
   </EntityType>
-  <EntityType Name="SIC_T_USUARIO">
-    <Key>
-      <PropertyRef Name="usu_c_id" />
-    </Key>
-    <Property Name="usu_c_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="usu_c_nombre" Type="varchar" MaxLength="500" />
-    <Property Name="usu_c_usuario" Type="varchar" MaxLength="100" />
-    <Property Name="usu_c_clave" Type="varchar" MaxLength="250" />
-    <Property Name="usu_c_bactivo" Type="bit" />
-  </EntityType>
   <EntityType Name="SIC_T_ZONA_REPARTO">
     <Key>
       <PropertyRef Name="zona_rep_c_yid" />
@@ -307,6 +297,20 @@
     <Property Name="menu_c_vnomb" Type="varchar" MaxLength="30" />
     <Property Name="menu_c_ynivel" Type="tinyint" />
     <Property Name="menu_c_vpag_asp" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="SIC_T_USUARIO">
+    <Key>
+      <PropertyRef Name="usua_c_cdoc_id" />
+    </Key>
+    <Property Name="usua_c_cusu_red" Type="char" MaxLength="10" />
+    <Property Name="usua_c_bpropietarioadministrador" Type="bit" />
+    <Property Name="usua_c_cidempresa" Type="char" MaxLength="11" />
+    <Property Name="usua_c_cape_pat" Type="varchar" MaxLength="100" />
+    <Property Name="usua_c_cape_mat" Type="varchar" MaxLength="100" />
+    <Property Name="usua_c_cape_nombres" Type="varchar" MaxLength="100" />
+    <Property Name="usua_c_cdoc_id" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="usua_c_vpass" Type="varchar" MaxLength="15" />
+    <Property Name="usua_c_bestado" Type="bit" Nullable="false" />
   </EntityType>
   <!--Se encontraron errores durante la generación:
       advertencia 6002: La tabla o vista 'SICDBWEB_DES.Mantenimiento.SIC_VW_CLIENTE_LISTA' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
@@ -574,5 +578,16 @@
   </Function>
   <Function Name="SIC_SP_NOMBRECOMERCIAL_BUSCAR_EXISTENCIA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Mantenimiento">
     <Parameter Name="nomb_com_c_vnomb" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SIC_SP_LISTAR_HIJOS_MENU" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Seguridad">
+    <Parameter Name="PC_CODUSUARIO" Type="char" Mode="In" />
+    <Parameter Name="PC_CODMENUPRINCIPAL" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SIC_SP_LISTAR_PADRES_MENU" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Seguridad">
+    <Parameter Name="PC_CODUSUARIO" Type="char" Mode="In" />
+  </Function>
+  <Function Name="SIC_SP_VERIFICAR_ACCESO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Seguridad">
+    <Parameter Name="usua_c_cdoc_id" Type="varchar" Mode="In" />
+    <Parameter Name="usua_c_vpass" Type="varchar" Mode="In" />
   </Function>
 </Schema>

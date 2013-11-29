@@ -312,22 +312,6 @@ namespace SIC.EntityLayer
         /// <summary>
         /// No hay documentación de metadatos disponible.
         /// </summary>
-        public ObjectSet<SIC_T_USUARIO> SIC_T_USUARIO
-        {
-            get
-            {
-                if ((_SIC_T_USUARIO == null))
-                {
-                    _SIC_T_USUARIO = base.CreateObjectSet<SIC_T_USUARIO>("SIC_T_USUARIO");
-                }
-                return _SIC_T_USUARIO;
-            }
-        }
-        private ObjectSet<SIC_T_USUARIO> _SIC_T_USUARIO;
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
         public ObjectSet<SIC_T_ZONA_REPARTO> SIC_T_ZONA_REPARTO
         {
             get
@@ -436,6 +420,22 @@ namespace SIC.EntityLayer
             }
         }
         private ObjectSet<SIC_T_MENU> _SIC_T_MENU;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        public ObjectSet<SIC_T_USUARIO> SIC_T_USUARIO
+        {
+            get
+            {
+                if ((_SIC_T_USUARIO == null))
+                {
+                    _SIC_T_USUARIO = base.CreateObjectSet<SIC_T_USUARIO>("SIC_T_USUARIO");
+                }
+                return _SIC_T_USUARIO;
+            }
+        }
+        private ObjectSet<SIC_T_USUARIO> _SIC_T_USUARIO;
 
         #endregion
         #region Métodos AddTo
@@ -553,14 +553,6 @@ namespace SIC.EntityLayer
         }
     
         /// <summary>
-        /// Método desusado para agregar un nuevo objeto al EntitySet SIC_T_USUARIO. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
-        /// </summary>
-        public void AddToSIC_T_USUARIO(SIC_T_USUARIO sIC_T_USUARIO)
-        {
-            base.AddObject("SIC_T_USUARIO", sIC_T_USUARIO);
-        }
-    
-        /// <summary>
         /// Método desusado para agregar un nuevo objeto al EntitySet SIC_T_ZONA_REPARTO. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
         /// </summary>
         public void AddToSIC_T_ZONA_REPARTO(SIC_T_ZONA_REPARTO sIC_T_ZONA_REPARTO)
@@ -614,6 +606,14 @@ namespace SIC.EntityLayer
         public void AddToSIC_T_MENU(SIC_T_MENU sIC_T_MENU)
         {
             base.AddObject("SIC_T_MENU", sIC_T_MENU);
+        }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet SIC_T_USUARIO. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToSIC_T_USUARIO(SIC_T_USUARIO sIC_T_USUARIO)
+        {
+            base.AddObject("SIC_T_USUARIO", sIC_T_USUARIO);
         }
 
         #endregion
@@ -1140,6 +1140,164 @@ namespace SIC.EntityLayer
             }
     
             return base.ExecuteFunction<SIC_T_CLIENTE>("SIC_SP_CLI_NOMB_COMER_OBTENER", mergeOption, nombre_comercialParameter);
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="pC_CODUSUARIO">No hay documentación de metadatos disponible.</param>
+        /// <param name="pC_CODMENUPRINCIPAL">No hay documentación de metadatos disponible.</param>
+        public ObjectResult<SIC_T_MENU> SIC_SP_LISTAR_HIJOS_MENU(global::System.String pC_CODUSUARIO, Nullable<global::System.Int32> pC_CODMENUPRINCIPAL)
+        {
+            ObjectParameter pC_CODUSUARIOParameter;
+            if (pC_CODUSUARIO != null)
+            {
+                pC_CODUSUARIOParameter = new ObjectParameter("PC_CODUSUARIO", pC_CODUSUARIO);
+            }
+            else
+            {
+                pC_CODUSUARIOParameter = new ObjectParameter("PC_CODUSUARIO", typeof(global::System.String));
+            }
+    
+            ObjectParameter pC_CODMENUPRINCIPALParameter;
+            if (pC_CODMENUPRINCIPAL.HasValue)
+            {
+                pC_CODMENUPRINCIPALParameter = new ObjectParameter("PC_CODMENUPRINCIPAL", pC_CODMENUPRINCIPAL);
+            }
+            else
+            {
+                pC_CODMENUPRINCIPALParameter = new ObjectParameter("PC_CODMENUPRINCIPAL", typeof(global::System.Int32));
+            }
+    
+            return base.ExecuteFunction<SIC_T_MENU>("SIC_SP_LISTAR_HIJOS_MENU", pC_CODUSUARIOParameter, pC_CODMENUPRINCIPALParameter);
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="mergeOption"></param>
+        /// <param name="pC_CODUSUARIO">No hay documentación de metadatos disponible.</param>
+        /// <param name="pC_CODMENUPRINCIPAL">No hay documentación de metadatos disponible.</param>
+        public ObjectResult<SIC_T_MENU> SIC_SP_LISTAR_HIJOS_MENU(global::System.String pC_CODUSUARIO, Nullable<global::System.Int32> pC_CODMENUPRINCIPAL, MergeOption mergeOption)
+        {
+            ObjectParameter pC_CODUSUARIOParameter;
+            if (pC_CODUSUARIO != null)
+            {
+                pC_CODUSUARIOParameter = new ObjectParameter("PC_CODUSUARIO", pC_CODUSUARIO);
+            }
+            else
+            {
+                pC_CODUSUARIOParameter = new ObjectParameter("PC_CODUSUARIO", typeof(global::System.String));
+            }
+    
+            ObjectParameter pC_CODMENUPRINCIPALParameter;
+            if (pC_CODMENUPRINCIPAL.HasValue)
+            {
+                pC_CODMENUPRINCIPALParameter = new ObjectParameter("PC_CODMENUPRINCIPAL", pC_CODMENUPRINCIPAL);
+            }
+            else
+            {
+                pC_CODMENUPRINCIPALParameter = new ObjectParameter("PC_CODMENUPRINCIPAL", typeof(global::System.Int32));
+            }
+    
+            return base.ExecuteFunction<SIC_T_MENU>("SIC_SP_LISTAR_HIJOS_MENU", mergeOption, pC_CODUSUARIOParameter, pC_CODMENUPRINCIPALParameter);
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="pC_CODUSUARIO">No hay documentación de metadatos disponible.</param>
+        public ObjectResult<SIC_T_MENU> SIC_SP_LISTAR_PADRES_MENU(global::System.String pC_CODUSUARIO)
+        {
+            ObjectParameter pC_CODUSUARIOParameter;
+            if (pC_CODUSUARIO != null)
+            {
+                pC_CODUSUARIOParameter = new ObjectParameter("PC_CODUSUARIO", pC_CODUSUARIO);
+            }
+            else
+            {
+                pC_CODUSUARIOParameter = new ObjectParameter("PC_CODUSUARIO", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction<SIC_T_MENU>("SIC_SP_LISTAR_PADRES_MENU", pC_CODUSUARIOParameter);
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="mergeOption"></param>
+        /// <param name="pC_CODUSUARIO">No hay documentación de metadatos disponible.</param>
+        public ObjectResult<SIC_T_MENU> SIC_SP_LISTAR_PADRES_MENU(global::System.String pC_CODUSUARIO, MergeOption mergeOption)
+        {
+            ObjectParameter pC_CODUSUARIOParameter;
+            if (pC_CODUSUARIO != null)
+            {
+                pC_CODUSUARIOParameter = new ObjectParameter("PC_CODUSUARIO", pC_CODUSUARIO);
+            }
+            else
+            {
+                pC_CODUSUARIOParameter = new ObjectParameter("PC_CODUSUARIO", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction<SIC_T_MENU>("SIC_SP_LISTAR_PADRES_MENU", mergeOption, pC_CODUSUARIOParameter);
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="usua_c_cdoc_id">No hay documentación de metadatos disponible.</param>
+        /// <param name="usua_c_vpass">No hay documentación de metadatos disponible.</param>
+        public ObjectResult<SIC_T_USUARIO> SIC_SP_VERIFICAR_ACCESO(global::System.String usua_c_cdoc_id, global::System.String usua_c_vpass)
+        {
+            ObjectParameter usua_c_cdoc_idParameter;
+            if (usua_c_cdoc_id != null)
+            {
+                usua_c_cdoc_idParameter = new ObjectParameter("usua_c_cdoc_id", usua_c_cdoc_id);
+            }
+            else
+            {
+                usua_c_cdoc_idParameter = new ObjectParameter("usua_c_cdoc_id", typeof(global::System.String));
+            }
+    
+            ObjectParameter usua_c_vpassParameter;
+            if (usua_c_vpass != null)
+            {
+                usua_c_vpassParameter = new ObjectParameter("usua_c_vpass", usua_c_vpass);
+            }
+            else
+            {
+                usua_c_vpassParameter = new ObjectParameter("usua_c_vpass", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction<SIC_T_USUARIO>("SIC_SP_VERIFICAR_ACCESO", usua_c_cdoc_idParameter, usua_c_vpassParameter);
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="mergeOption"></param>
+        /// <param name="usua_c_cdoc_id">No hay documentación de metadatos disponible.</param>
+        /// <param name="usua_c_vpass">No hay documentación de metadatos disponible.</param>
+        public ObjectResult<SIC_T_USUARIO> SIC_SP_VERIFICAR_ACCESO(global::System.String usua_c_cdoc_id, global::System.String usua_c_vpass, MergeOption mergeOption)
+        {
+            ObjectParameter usua_c_cdoc_idParameter;
+            if (usua_c_cdoc_id != null)
+            {
+                usua_c_cdoc_idParameter = new ObjectParameter("usua_c_cdoc_id", usua_c_cdoc_id);
+            }
+            else
+            {
+                usua_c_cdoc_idParameter = new ObjectParameter("usua_c_cdoc_id", typeof(global::System.String));
+            }
+    
+            ObjectParameter usua_c_vpassParameter;
+            if (usua_c_vpass != null)
+            {
+                usua_c_vpassParameter = new ObjectParameter("usua_c_vpass", usua_c_vpass);
+            }
+            else
+            {
+                usua_c_vpassParameter = new ObjectParameter("usua_c_vpass", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction<SIC_T_USUARIO>("SIC_SP_VERIFICAR_ACCESO", mergeOption, usua_c_cdoc_idParameter, usua_c_vpassParameter);
         }
 
         #endregion
@@ -4911,11 +5069,13 @@ namespace SIC.EntityLayer
         /// <summary>
         /// Crear un nuevo objeto SIC_T_USUARIO.
         /// </summary>
-        /// <param name="usu_c_id">Valor inicial de la propiedad usu_c_id.</param>
-        public static SIC_T_USUARIO CreateSIC_T_USUARIO(global::System.Int32 usu_c_id)
+        /// <param name="usua_c_cdoc_id">Valor inicial de la propiedad usua_c_cdoc_id.</param>
+        /// <param name="usua_c_bestado">Valor inicial de la propiedad usua_c_bestado.</param>
+        public static SIC_T_USUARIO CreateSIC_T_USUARIO(global::System.String usua_c_cdoc_id, global::System.Boolean usua_c_bestado)
         {
             SIC_T_USUARIO sIC_T_USUARIO = new SIC_T_USUARIO();
-            sIC_T_USUARIO.usu_c_id = usu_c_id;
+            sIC_T_USUARIO.usua_c_cdoc_id = usua_c_cdoc_id;
+            sIC_T_USUARIO.usua_c_bestado = usua_c_bestado;
             return sIC_T_USUARIO;
         }
 
@@ -4925,125 +5085,221 @@ namespace SIC.EntityLayer
         /// <summary>
         /// No hay documentación de metadatos disponible.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Int32 usu_c_id
+        public global::System.String usua_c_cusu_red
         {
             get
             {
-                return _usu_c_id;
+                return _usua_c_cusu_red;
             }
             set
             {
-                if (_usu_c_id != value)
+                Onusua_c_cusu_redChanging(value);
+                ReportPropertyChanging("usua_c_cusu_red");
+                _usua_c_cusu_red = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("usua_c_cusu_red");
+                Onusua_c_cusu_redChanged();
+            }
+        }
+        private global::System.String _usua_c_cusu_red;
+        partial void Onusua_c_cusu_redChanging(global::System.String value);
+        partial void Onusua_c_cusu_redChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> usua_c_bpropietarioadministrador
+        {
+            get
+            {
+                return _usua_c_bpropietarioadministrador;
+            }
+            set
+            {
+                Onusua_c_bpropietarioadministradorChanging(value);
+                ReportPropertyChanging("usua_c_bpropietarioadministrador");
+                _usua_c_bpropietarioadministrador = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("usua_c_bpropietarioadministrador");
+                Onusua_c_bpropietarioadministradorChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _usua_c_bpropietarioadministrador;
+        partial void Onusua_c_bpropietarioadministradorChanging(Nullable<global::System.Boolean> value);
+        partial void Onusua_c_bpropietarioadministradorChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String usua_c_cidempresa
+        {
+            get
+            {
+                return _usua_c_cidempresa;
+            }
+            set
+            {
+                Onusua_c_cidempresaChanging(value);
+                ReportPropertyChanging("usua_c_cidempresa");
+                _usua_c_cidempresa = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("usua_c_cidempresa");
+                Onusua_c_cidempresaChanged();
+            }
+        }
+        private global::System.String _usua_c_cidempresa;
+        partial void Onusua_c_cidempresaChanging(global::System.String value);
+        partial void Onusua_c_cidempresaChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String usua_c_cape_pat
+        {
+            get
+            {
+                return _usua_c_cape_pat;
+            }
+            set
+            {
+                Onusua_c_cape_patChanging(value);
+                ReportPropertyChanging("usua_c_cape_pat");
+                _usua_c_cape_pat = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("usua_c_cape_pat");
+                Onusua_c_cape_patChanged();
+            }
+        }
+        private global::System.String _usua_c_cape_pat;
+        partial void Onusua_c_cape_patChanging(global::System.String value);
+        partial void Onusua_c_cape_patChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String usua_c_cape_mat
+        {
+            get
+            {
+                return _usua_c_cape_mat;
+            }
+            set
+            {
+                Onusua_c_cape_matChanging(value);
+                ReportPropertyChanging("usua_c_cape_mat");
+                _usua_c_cape_mat = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("usua_c_cape_mat");
+                Onusua_c_cape_matChanged();
+            }
+        }
+        private global::System.String _usua_c_cape_mat;
+        partial void Onusua_c_cape_matChanging(global::System.String value);
+        partial void Onusua_c_cape_matChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String usua_c_cape_nombres
+        {
+            get
+            {
+                return _usua_c_cape_nombres;
+            }
+            set
+            {
+                Onusua_c_cape_nombresChanging(value);
+                ReportPropertyChanging("usua_c_cape_nombres");
+                _usua_c_cape_nombres = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("usua_c_cape_nombres");
+                Onusua_c_cape_nombresChanged();
+            }
+        }
+        private global::System.String _usua_c_cape_nombres;
+        partial void Onusua_c_cape_nombresChanging(global::System.String value);
+        partial void Onusua_c_cape_nombresChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String usua_c_cdoc_id
+        {
+            get
+            {
+                return _usua_c_cdoc_id;
+            }
+            set
+            {
+                if (_usua_c_cdoc_id != value)
                 {
-                    Onusu_c_idChanging(value);
-                    ReportPropertyChanging("usu_c_id");
-                    _usu_c_id = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("usu_c_id");
-                    Onusu_c_idChanged();
+                    Onusua_c_cdoc_idChanging(value);
+                    ReportPropertyChanging("usua_c_cdoc_id");
+                    _usua_c_cdoc_id = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("usua_c_cdoc_id");
+                    Onusua_c_cdoc_idChanged();
                 }
             }
         }
-        private global::System.Int32 _usu_c_id;
-        partial void Onusu_c_idChanging(global::System.Int32 value);
-        partial void Onusu_c_idChanged();
+        private global::System.String _usua_c_cdoc_id;
+        partial void Onusua_c_cdoc_idChanging(global::System.String value);
+        partial void Onusua_c_cdoc_idChanged();
     
         /// <summary>
         /// No hay documentación de metadatos disponible.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String usu_c_nombre
+        public global::System.String usua_c_vpass
         {
             get
             {
-                return _usu_c_nombre;
+                return _usua_c_vpass;
             }
             set
             {
-                Onusu_c_nombreChanging(value);
-                ReportPropertyChanging("usu_c_nombre");
-                _usu_c_nombre = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("usu_c_nombre");
-                Onusu_c_nombreChanged();
+                Onusua_c_vpassChanging(value);
+                ReportPropertyChanging("usua_c_vpass");
+                _usua_c_vpass = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("usua_c_vpass");
+                Onusua_c_vpassChanged();
             }
         }
-        private global::System.String _usu_c_nombre;
-        partial void Onusu_c_nombreChanging(global::System.String value);
-        partial void Onusu_c_nombreChanged();
+        private global::System.String _usua_c_vpass;
+        partial void Onusua_c_vpassChanging(global::System.String value);
+        partial void Onusua_c_vpassChanged();
     
         /// <summary>
         /// No hay documentación de metadatos disponible.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String usu_c_usuario
+        public global::System.Boolean usua_c_bestado
         {
             get
             {
-                return _usu_c_usuario;
+                return _usua_c_bestado;
             }
             set
             {
-                Onusu_c_usuarioChanging(value);
-                ReportPropertyChanging("usu_c_usuario");
-                _usu_c_usuario = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("usu_c_usuario");
-                Onusu_c_usuarioChanged();
+                Onusua_c_bestadoChanging(value);
+                ReportPropertyChanging("usua_c_bestado");
+                _usua_c_bestado = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("usua_c_bestado");
+                Onusua_c_bestadoChanged();
             }
         }
-        private global::System.String _usu_c_usuario;
-        partial void Onusu_c_usuarioChanging(global::System.String value);
-        partial void Onusu_c_usuarioChanged();
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String usu_c_clave
-        {
-            get
-            {
-                return _usu_c_clave;
-            }
-            set
-            {
-                Onusu_c_claveChanging(value);
-                ReportPropertyChanging("usu_c_clave");
-                _usu_c_clave = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("usu_c_clave");
-                Onusu_c_claveChanged();
-            }
-        }
-        private global::System.String _usu_c_clave;
-        partial void Onusu_c_claveChanging(global::System.String value);
-        partial void Onusu_c_claveChanged();
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> usu_c_bactivo
-        {
-            get
-            {
-                return _usu_c_bactivo;
-            }
-            set
-            {
-                Onusu_c_bactivoChanging(value);
-                ReportPropertyChanging("usu_c_bactivo");
-                _usu_c_bactivo = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("usu_c_bactivo");
-                Onusu_c_bactivoChanged();
-            }
-        }
-        private Nullable<global::System.Boolean> _usu_c_bactivo;
-        partial void Onusu_c_bactivoChanging(Nullable<global::System.Boolean> value);
-        partial void Onusu_c_bactivoChanged();
+        private global::System.Boolean _usua_c_bestado;
+        partial void Onusua_c_bestadoChanging(global::System.Boolean value);
+        partial void Onusua_c_bestadoChanged();
 
         #endregion
     

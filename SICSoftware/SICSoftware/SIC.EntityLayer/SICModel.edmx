@@ -23,10 +23,10 @@
           <EntitySet Name="SIC_T_DISTRITO" EntityType="SICDBWEBModel.Store.SIC_T_DISTRITO" store:Type="Tables" Schema="Mantenimiento" />
           <EntitySet Name="SIC_T_NOMB_COM" EntityType="SICDBWEBModel.Store.SIC_T_NOMB_COM" store:Type="Tables" Schema="Mantenimiento" />
           <EntitySet Name="SIC_T_PROVINCIA" EntityType="SICDBWEBModel.Store.SIC_T_PROVINCIA" store:Type="Tables" Schema="Mantenimiento" />
-          <EntitySet Name="SIC_T_USUARIO" EntityType="SICDBWEBModel.Store.SIC_T_USUARIO" store:Type="Tables" Schema="Mantenimiento" />
           <EntitySet Name="SIC_T_ZONA_REPARTO" EntityType="SICDBWEBModel.Store.SIC_T_ZONA_REPARTO" store:Type="Tables" Schema="Mantenimiento" />
           <EntitySet Name="SIC_T_ZONA_REPARTO_LUGAR" EntityType="SICDBWEBModel.Store.SIC_T_ZONA_REPARTO_LUGAR" store:Type="Tables" Schema="Mantenimiento" />
           <EntitySet Name="SIC_T_MENU" EntityType="SICDBWEBModel.Store.SIC_T_MENU" store:Type="Tables" Schema="Seguridad" />
+          <EntitySet Name="SIC_T_USUARIO" EntityType="SICDBWEBModel.Store.SIC_T_USUARIO" store:Type="Tables" Schema="Seguridad" />
           <EntitySet Name="SIC_VW_CLIENTE_LISTA" EntityType="SICDBWEBModel.Store.SIC_VW_CLIENTE_LISTA" store:Type="Views" store:Schema="Mantenimiento" store:Name="SIC_VW_CLIENTE_LISTA">
             <DefiningQuery>SELECT 
       [SIC_VW_CLIENTE_LISTA].[nomb_com_c_iid] AS [nomb_com_c_iid], 
@@ -278,16 +278,6 @@
           <Property Name="prov_c_vnomb" Type="varchar" MaxLength="50" />
           <Property Name="depa_c_ccod" Type="char" Nullable="false" MaxLength="2" />
         </EntityType>
-        <EntityType Name="SIC_T_USUARIO">
-          <Key>
-            <PropertyRef Name="usu_c_id" />
-          </Key>
-          <Property Name="usu_c_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="usu_c_nombre" Type="varchar" MaxLength="500" />
-          <Property Name="usu_c_usuario" Type="varchar" MaxLength="100" />
-          <Property Name="usu_c_clave" Type="varchar" MaxLength="250" />
-          <Property Name="usu_c_bactivo" Type="bit" />
-        </EntityType>
         <EntityType Name="SIC_T_ZONA_REPARTO">
           <Key>
             <PropertyRef Name="zona_rep_c_yid" />
@@ -312,6 +302,20 @@
           <Property Name="menu_c_vnomb" Type="varchar" MaxLength="30" />
           <Property Name="menu_c_ynivel" Type="tinyint" />
           <Property Name="menu_c_vpag_asp" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="SIC_T_USUARIO">
+          <Key>
+            <PropertyRef Name="usua_c_cdoc_id" />
+          </Key>
+          <Property Name="usua_c_cusu_red" Type="char" MaxLength="10" />
+          <Property Name="usua_c_bpropietarioadministrador" Type="bit" />
+          <Property Name="usua_c_cidempresa" Type="char" MaxLength="11" />
+          <Property Name="usua_c_cape_pat" Type="varchar" MaxLength="100" />
+          <Property Name="usua_c_cape_mat" Type="varchar" MaxLength="100" />
+          <Property Name="usua_c_cape_nombres" Type="varchar" MaxLength="100" />
+          <Property Name="usua_c_cdoc_id" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="usua_c_vpass" Type="varchar" MaxLength="15" />
+          <Property Name="usua_c_bestado" Type="bit" Nullable="false" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
       advertencia 6002: La tabla o vista 'SICDBWEB_DES.Mantenimiento.SIC_VW_CLIENTE_LISTA' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
@@ -580,6 +584,17 @@
         <Function Name="SIC_SP_NOMBRECOMERCIAL_BUSCAR_EXISTENCIA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Mantenimiento">
           <Parameter Name="nomb_com_c_vnomb" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="SIC_SP_LISTAR_HIJOS_MENU" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Seguridad">
+          <Parameter Name="PC_CODUSUARIO" Type="char" Mode="In" />
+          <Parameter Name="PC_CODMENUPRINCIPAL" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SIC_SP_LISTAR_PADRES_MENU" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Seguridad">
+          <Parameter Name="PC_CODUSUARIO" Type="char" Mode="In" />
+        </Function>
+        <Function Name="SIC_SP_VERIFICAR_ACCESO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Seguridad">
+          <Parameter Name="usua_c_cdoc_id" Type="varchar" Mode="In" />
+          <Parameter Name="usua_c_vpass" Type="varchar" Mode="In" />
+        </Function>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -599,7 +614,6 @@
           <EntitySet Name="SIC_T_DISTRITO" EntityType="SICDBWEBModel.SIC_T_DISTRITO" />
           <EntitySet Name="SIC_T_NOMB_COM" EntityType="SICDBWEBModel.SIC_T_NOMB_COM" />
           <EntitySet Name="SIC_T_PROVINCIA" EntityType="SICDBWEBModel.SIC_T_PROVINCIA" />
-          <EntitySet Name="SIC_T_USUARIO" EntityType="SICDBWEBModel.SIC_T_USUARIO" />
           <EntitySet Name="SIC_T_ZONA_REPARTO" EntityType="SICDBWEBModel.SIC_T_ZONA_REPARTO" />
           <EntitySet Name="SIC_T_ZONA_REPARTO_LUGAR" EntityType="SICDBWEBModel.SIC_T_ZONA_REPARTO_LUGAR" />
           <AssociationSet Name="FK_SIC_T_CLI_CONTACTO_SIC_T_CLI_CONTAC_CARGO" Association="SICDBWEBModel.FK_SIC_T_CLI_CONTACTO_SIC_T_CLI_CONTAC_CARGO">
@@ -732,6 +746,18 @@
             <End Role="SIC_T_MENU" EntitySet="SIC_T_MENU" />
             <End Role="SIC_T_MENU1" EntitySet="SIC_T_MENU" />
           </AssociationSet>
+          <FunctionImport Name="SIC_SP_LISTAR_HIJOS_MENU" EntitySet="SIC_T_MENU" ReturnType="Collection(SICDBWEBModel.SIC_T_MENU)">
+            <Parameter Name="PC_CODUSUARIO" Mode="In" Type="String" />
+            <Parameter Name="PC_CODMENUPRINCIPAL" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SIC_SP_LISTAR_PADRES_MENU" EntitySet="SIC_T_MENU" ReturnType="Collection(SICDBWEBModel.SIC_T_MENU)">
+          <Parameter Name="PC_CODUSUARIO" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="SIC_T_USUARIO" EntityType="SICDBWEBModel.SIC_T_USUARIO" />
+          <FunctionImport Name="SIC_SP_VERIFICAR_ACCESO" EntitySet="SIC_T_USUARIO" ReturnType="Collection(SICDBWEBModel.SIC_T_USUARIO)">
+            <Parameter Name="usua_c_cdoc_id" Mode="In" Type="String" />
+            <Parameter Name="usua_c_vpass" Mode="In" Type="String" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="SIC_T_CLI_CONTAC_CARGO">
           <Key>
@@ -879,16 +905,6 @@
           <Property Type="String" Name="depa_c_ccod" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="SIC_T_DEPARTAMENTO" Relationship="SICDBWEBModel.FK_SIC_T_PROVINCIA_SIC_T_DEPARTAMENTO" FromRole="SIC_T_PROVINCIA" ToRole="SIC_T_DEPARTAMENTO" />
           <NavigationProperty Name="SIC_T_DISTRITO" Relationship="SICDBWEBModel.FK_SIC_T_DISTRITO_SIC_T_PROVINCIA" FromRole="SIC_T_PROVINCIA" ToRole="SIC_T_DISTRITO" />
-        </EntityType>
-        <EntityType Name="SIC_T_USUARIO">
-          <Key>
-            <PropertyRef Name="usu_c_id" />
-          </Key>
-          <Property Type="Int32" Name="usu_c_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="usu_c_nombre" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="usu_c_usuario" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="usu_c_clave" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="usu_c_bactivo" />
         </EntityType>
         <EntityType Name="SIC_T_ZONA_REPARTO">
           <Key>
@@ -1200,6 +1216,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="SIC_T_USUARIO">
+          <Key>
+            <PropertyRef Name="usua_c_cdoc_id" />
+          </Key>
+          <Property Type="String" Name="usua_c_cusu_red" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Type="Boolean" Name="usua_c_bpropietarioadministrador" />
+          <Property Type="String" Name="usua_c_cidempresa" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="usua_c_cape_pat" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="usua_c_cape_mat" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="usua_c_cape_nombres" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="usua_c_cdoc_id" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="usua_c_vpass" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="usua_c_bestado" Nullable="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1345,17 +1375,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SIC_T_USUARIO">
-            <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_USUARIO">
-              <MappingFragment StoreEntitySet="SIC_T_USUARIO">
-                <ScalarProperty Name="usu_c_bactivo" ColumnName="usu_c_bactivo" />
-                <ScalarProperty Name="usu_c_clave" ColumnName="usu_c_clave" />
-                <ScalarProperty Name="usu_c_usuario" ColumnName="usu_c_usuario" />
-                <ScalarProperty Name="usu_c_nombre" ColumnName="usu_c_nombre" />
-                <ScalarProperty Name="usu_c_id" ColumnName="usu_c_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="SIC_T_ZONA_REPARTO">
             <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_ZONA_REPARTO">
               <MappingFragment StoreEntitySet="SIC_T_ZONA_REPARTO">
@@ -1489,6 +1508,24 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SIC_SP_LISTAR_HIJOS_MENU" FunctionName="SICDBWEBModel.Store.SIC_SP_LISTAR_HIJOS_MENU" />
+          <FunctionImportMapping FunctionImportName="SIC_SP_LISTAR_PADRES_MENU" FunctionName="SICDBWEBModel.Store.SIC_SP_LISTAR_PADRES_MENU" />
+          <EntitySetMapping Name="SIC_T_USUARIO">
+            <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_USUARIO">
+              <MappingFragment StoreEntitySet="SIC_T_USUARIO">
+                <ScalarProperty Name="usua_c_bestado" ColumnName="usua_c_bestado" />
+                <ScalarProperty Name="usua_c_vpass" ColumnName="usua_c_vpass" />
+                <ScalarProperty Name="usua_c_cdoc_id" ColumnName="usua_c_cdoc_id" />
+                <ScalarProperty Name="usua_c_cape_nombres" ColumnName="usua_c_cape_nombres" />
+                <ScalarProperty Name="usua_c_cape_mat" ColumnName="usua_c_cape_mat" />
+                <ScalarProperty Name="usua_c_cape_pat" ColumnName="usua_c_cape_pat" />
+                <ScalarProperty Name="usua_c_cidempresa" ColumnName="usua_c_cidempresa" />
+                <ScalarProperty Name="usua_c_bpropietarioadministrador" ColumnName="usua_c_bpropietarioadministrador" />
+                <ScalarProperty Name="usua_c_cusu_red" ColumnName="usua_c_cusu_red" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SIC_SP_VERIFICAR_ACCESO" FunctionName="SICDBWEBModel.Store.SIC_SP_VERIFICAR_ACCESO" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1524,7 +1561,6 @@
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_DISTRITO" Width="1.5" PointX="6" PointY="20.625" Height="1.9802864583333388" />
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_NOMB_COM" Width="1.5" PointX="7.75" PointY="0.75" Height="1.4033821614583388" />
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_PROVINCIA" Width="1.5" PointX="3.75" PointY="20.625" Height="1.9802864583333388" />
-        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_USUARIO" Width="1.5" PointX="9.75" PointY="0.75" Height="1.9802864583333388" />
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_ZONA_REPARTO" Width="1.5" PointX="0.75" PointY="6.75" Height="1.7879850260416674" />
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_ZONA_REPARTO_LUGAR" Width="1.5" PointX="3" PointY="12.75" Height="1.7879850260416674" />
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_CLI_CONTACTO_SIC_T_CLI_CONTAC_CARGO" >
@@ -1612,6 +1648,7 @@
           <ConnectorPoint PointX="6.3534615384615378" PointY="13.364889322916667" />
           <ConnectorPoint PointX="6.3534615384615378" PointY="13.114889322916667" />
         </AssociationConnector>
+        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_USUARIO" Width="1.5" PointX="10.375" PointY="6.75" Height="2.3648893229166674" />
       </Diagram>
     </Diagrams>
   </Designer>

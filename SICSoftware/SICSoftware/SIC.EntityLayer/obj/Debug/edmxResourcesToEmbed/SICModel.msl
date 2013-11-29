@@ -140,17 +140,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="SIC_T_USUARIO">
-      <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_USUARIO">
-        <MappingFragment StoreEntitySet="SIC_T_USUARIO">
-          <ScalarProperty Name="usu_c_bactivo" ColumnName="usu_c_bactivo" />
-          <ScalarProperty Name="usu_c_clave" ColumnName="usu_c_clave" />
-          <ScalarProperty Name="usu_c_usuario" ColumnName="usu_c_usuario" />
-          <ScalarProperty Name="usu_c_nombre" ColumnName="usu_c_nombre" />
-          <ScalarProperty Name="usu_c_id" ColumnName="usu_c_id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="SIC_T_ZONA_REPARTO">
       <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_ZONA_REPARTO">
         <MappingFragment StoreEntitySet="SIC_T_ZONA_REPARTO">
@@ -284,5 +273,23 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SIC_SP_LISTAR_HIJOS_MENU" FunctionName="SICDBWEBModel.Store.SIC_SP_LISTAR_HIJOS_MENU" />
+    <FunctionImportMapping FunctionImportName="SIC_SP_LISTAR_PADRES_MENU" FunctionName="SICDBWEBModel.Store.SIC_SP_LISTAR_PADRES_MENU" />
+    <EntitySetMapping Name="SIC_T_USUARIO">
+      <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_USUARIO">
+        <MappingFragment StoreEntitySet="SIC_T_USUARIO">
+          <ScalarProperty Name="usua_c_bestado" ColumnName="usua_c_bestado" />
+          <ScalarProperty Name="usua_c_vpass" ColumnName="usua_c_vpass" />
+          <ScalarProperty Name="usua_c_cdoc_id" ColumnName="usua_c_cdoc_id" />
+          <ScalarProperty Name="usua_c_cape_nombres" ColumnName="usua_c_cape_nombres" />
+          <ScalarProperty Name="usua_c_cape_mat" ColumnName="usua_c_cape_mat" />
+          <ScalarProperty Name="usua_c_cape_pat" ColumnName="usua_c_cape_pat" />
+          <ScalarProperty Name="usua_c_cidempresa" ColumnName="usua_c_cidempresa" />
+          <ScalarProperty Name="usua_c_bpropietarioadministrador" ColumnName="usua_c_bpropietarioadministrador" />
+          <ScalarProperty Name="usua_c_cusu_red" ColumnName="usua_c_cusu_red" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SIC_SP_VERIFICAR_ACCESO" FunctionName="SICDBWEBModel.Store.SIC_SP_VERIFICAR_ACCESO" />
   </EntityContainerMapping>
 </Mapping>
