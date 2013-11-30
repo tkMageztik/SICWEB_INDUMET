@@ -185,6 +185,8 @@
     <Content Include="Imagenes\warning.png" />
     <Content Include="Default.aspx" />
     <Content Include="Interfaces\Mantenimiento\frmRegCliente.aspx" />
+    <Content Include="Interfaces\Mantenimiento\frmRegItem.aspx" />
+    <Content Include="Interfaces\Mantenimiento\frmRegOC.aspx" />
     <Content Include="Styles\chosen-sprite%402x.png" />
     <Content Include="Styles\chosen-sprite.png" />
     <Content Include="Styles\chosen.css" />
@@ -283,6 +285,20 @@
     <Compile Include="Interfaces\Mantenimiento\frmRegCliente.aspx.designer.cs">
       <DependentUpon>frmRegCliente.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\Mantenimiento\frmRegItem.aspx.cs">
+      <DependentUpon>frmRegItem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Interfaces\Mantenimiento\frmRegItem.aspx.designer.cs">
+      <DependentUpon>frmRegItem.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\Mantenimiento\frmRegOC.aspx.cs">
+      <DependentUpon>frmRegOC.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Interfaces\Mantenimiento\frmRegOC.aspx.designer.cs">
+      <DependentUpon>frmRegOC.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
@@ -347,7 +363,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>56928</DevelopmentServerPort>
+          <DevelopmentServerPort>50050</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>
