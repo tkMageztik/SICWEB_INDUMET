@@ -14,13 +14,13 @@ namespace SIC.DataLayer
     {
         #region "Métodos"
 
-        public List<SIC_T_CLIENTE> ListarClientes(byte cliGrupo, SIC_T_CLIENTE obj)
+        public List<SIC_T_CLIENTE> ListarClientes(SIC_T_CLIENTE obj)
         {
             try
             {
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
-                    return contexto.SIC_SP_CLIENTE_LISTAR(cliGrupo, obj.cli_c_vraz_soc, obj.cli_c_vdoc_id).ToList<SIC_T_CLIENTE>();
+                    return contexto.SIC_SP_CLIENTE_LISTAR( obj.cli_c_vraz_soc, obj.cli_c_vdoc_id).ToList<SIC_T_CLIENTE>();
                 }
             }
             catch (Exception)
@@ -335,21 +335,14 @@ namespace SIC.DataLayer
 
         }
 
-        //public SIC_T_NOMB_COM[] ListarNombresComerciales(string codCliente)
-        //{
-        //    using (SICDBWEBEntities contexto = new SICDBWEBEntities())
-        //    {
-        //        return contexto.SIC_SP_NOMBRE_COMERCIAL_LISTAR(codCliente).ToArray<SIC_T_NOMB_COM>();
-        //    }
-        //}
 
-        //public List<SIC_T_NOMB_COM> ListarNombresComercialesList(string codCliente)
-        //{
-        //    using (SICDBWEBEntities contexto = new SICDBWEBEntities())
-        //    {
-        //        return contexto.SIC_Sç_NOMBRE_COMERCIAL_LISTAR(codCliente).ToList<SIC_T_NOMB_COM>();
-        //    }
-        //}
+        public List<SIC_T_NOMB_COM> ListarNombresComerciales(string codCliente)
+        {
+            using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+            {
+                return contexto.SIC_SP_NOMBRE_COMERCIAL_LISTAR(codCliente).ToList<SIC_T_NOMB_COM>();
+            }
+        }
 
         public DataTable ListarColaboradoresPorArea(int _intCodigoArea)
         {
@@ -550,7 +543,7 @@ namespace SIC.DataLayer
             {
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
-                    return contexto.SIC_SP_MODIFICAR_CLIENTE(_pSIC_T_cliente.cli_c_vdoc_id);
+                    return contexto.SIC_SP_DESHABILITAR_CLIENTE(_pSIC_T_cliente.cli_c_vdoc_id);
                 }
             }
 

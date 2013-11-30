@@ -27,13 +27,13 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_DISTRITO_SIC_T_PROVINCIA", "SIC_T_PROVINCIA", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_PROVINCIA), "SIC_T_DISTRITO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_DISTRITO), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_ZONA_REPARTO_LUGAR_SIC_T_ZONA_REPARTO", "SIC_T_ZONA_REPARTO", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SIC.EntityLayer.SIC_T_ZONA_REPARTO), "SIC_T_ZONA_REPARTO_LUGAR", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_ZONA_REPARTO_LUGAR), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_PARAMETRO_DET_SIC_T_PARAMETRO", "SIC_T_PARAMETRO", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_PARAMETRO), "SIC_T_PARAMETRO_DET", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_PARAMETRO_DET), true)]
+[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_MENU_SIC_T_MENU", "SIC_T_MENU", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SIC.EntityLayer.SIC_T_MENU), "SIC_T_MENU1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_MENU), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_CLI_CONTACTO_SIC_T_CLIENTE", "SIC_T_CLIENTE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_CLIENTE), "SIC_T_CLI_CONTACTO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_CLI_CONTACTO), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_CLI_DIRECCION_SIC_T_CLIENTE", "SIC_T_CLIENTE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_CLIENTE), "SIC_T_CLI_DIRECCION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_CLI_DIRECCION), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_CLI_NOMB_COM_SIC_T_CLIENTE", "SIC_T_CLIENTE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_CLIENTE), "SIC_T_CLI_NOMB_COM", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_CLI_NOMB_COM), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_CLIENTE_SIC_T_CLI_SCORING", "SIC_T_CLI_SCORING", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SIC.EntityLayer.SIC_T_CLI_SCORING), "SIC_T_CLIENTE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_CLIENTE), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_CLIENTE_SIC_T_COLABORADOR", "SIC_T_COLABORADOR", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SIC.EntityLayer.SIC_T_COLABORADOR), "SIC_T_CLIENTE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_CLIENTE), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_CLIENTE_SIC_T_ZONA_REPARTO", "SIC_T_ZONA_REPARTO", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SIC.EntityLayer.SIC_T_ZONA_REPARTO), "SIC_T_CLIENTE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_CLIENTE), true)]
-[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_MENU_SIC_T_MENU", "SIC_T_MENU", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SIC.EntityLayer.SIC_T_MENU), "SIC_T_MENU1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_MENU), true)]
 
 #endregion
 
@@ -392,22 +392,6 @@ namespace SIC.EntityLayer
         /// <summary>
         /// No hay documentación de metadatos disponible.
         /// </summary>
-        public ObjectSet<SIC_T_CLIENTE> SIC_T_CLIENTE
-        {
-            get
-            {
-                if ((_SIC_T_CLIENTE == null))
-                {
-                    _SIC_T_CLIENTE = base.CreateObjectSet<SIC_T_CLIENTE>("SIC_T_CLIENTE");
-                }
-                return _SIC_T_CLIENTE;
-            }
-        }
-        private ObjectSet<SIC_T_CLIENTE> _SIC_T_CLIENTE;
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
         public ObjectSet<SIC_T_MENU> SIC_T_MENU
         {
             get
@@ -436,6 +420,22 @@ namespace SIC.EntityLayer
             }
         }
         private ObjectSet<SIC_T_USUARIO> _SIC_T_USUARIO;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        public ObjectSet<SIC_T_CLIENTE> SIC_T_CLIENTE
+        {
+            get
+            {
+                if ((_SIC_T_CLIENTE == null))
+                {
+                    _SIC_T_CLIENTE = base.CreateObjectSet<SIC_T_CLIENTE>("SIC_T_CLIENTE");
+                }
+                return _SIC_T_CLIENTE;
+            }
+        }
+        private ObjectSet<SIC_T_CLIENTE> _SIC_T_CLIENTE;
 
         #endregion
         #region Métodos AddTo
@@ -593,14 +593,6 @@ namespace SIC.EntityLayer
         }
     
         /// <summary>
-        /// Método desusado para agregar un nuevo objeto al EntitySet SIC_T_CLIENTE. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
-        /// </summary>
-        public void AddToSIC_T_CLIENTE(SIC_T_CLIENTE sIC_T_CLIENTE)
-        {
-            base.AddObject("SIC_T_CLIENTE", sIC_T_CLIENTE);
-        }
-    
-        /// <summary>
         /// Método desusado para agregar un nuevo objeto al EntitySet SIC_T_MENU. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
         /// </summary>
         public void AddToSIC_T_MENU(SIC_T_MENU sIC_T_MENU)
@@ -614,6 +606,14 @@ namespace SIC.EntityLayer
         public void AddToSIC_T_USUARIO(SIC_T_USUARIO sIC_T_USUARIO)
         {
             base.AddObject("SIC_T_USUARIO", sIC_T_USUARIO);
+        }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet SIC_T_CLIENTE. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToSIC_T_CLIENTE(SIC_T_CLIENTE sIC_T_CLIENTE)
+        {
+            base.AddObject("SIC_T_CLIENTE", sIC_T_CLIENTE);
         }
 
         #endregion
@@ -852,25 +852,6 @@ namespace SIC.EntityLayer
         /// No hay documentación de metadatos disponible.
         /// </summary>
         /// <param name="cli_c_vdoc_id">No hay documentación de metadatos disponible.</param>
-        public int SIC_SP_MODIFICAR_CLIENTE(global::System.String cli_c_vdoc_id)
-        {
-            ObjectParameter cli_c_vdoc_idParameter;
-            if (cli_c_vdoc_id != null)
-            {
-                cli_c_vdoc_idParameter = new ObjectParameter("cli_c_vdoc_id", cli_c_vdoc_id);
-            }
-            else
-            {
-                cli_c_vdoc_idParameter = new ObjectParameter("cli_c_vdoc_id", typeof(global::System.String));
-            }
-    
-            return base.ExecuteFunction("SIC_SP_MODIFICAR_CLIENTE", cli_c_vdoc_idParameter);
-        }
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        /// <param name="cli_c_vdoc_id">No hay documentación de metadatos disponible.</param>
         /// <param name="nomb_com_c_iid">No hay documentación de metadatos disponible.</param>
         public int SIC_SP_CLIENTE_NOMBRE_ELIMINAR_RELACION(global::System.String cli_c_vdoc_id, Nullable<global::System.Int32> nomb_com_c_iid)
         {
@@ -1020,126 +1001,6 @@ namespace SIC.EntityLayer
             }
     
             return base.ExecuteFunction("SIC_SP_CLIENTE_NOMBRECOMERCIAL_LIMPIAR", cli_c_vdoc_idParameter);
-        }
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        /// <param name="cLI_C_BGRUPO_IBK">No hay documentación de metadatos disponible.</param>
-        /// <param name="cLI_C_VRAZ_SOC">No hay documentación de metadatos disponible.</param>
-        /// <param name="cLI_C_VDOC_ID">No hay documentación de metadatos disponible.</param>
-        public ObjectResult<SIC_T_CLIENTE> SIC_SP_CLIENTE_LISTAR(Nullable<global::System.Byte> cLI_C_BGRUPO_IBK, global::System.String cLI_C_VRAZ_SOC, global::System.String cLI_C_VDOC_ID)
-        {
-            ObjectParameter cLI_C_BGRUPO_IBKParameter;
-            if (cLI_C_BGRUPO_IBK.HasValue)
-            {
-                cLI_C_BGRUPO_IBKParameter = new ObjectParameter("CLI_C_BGRUPO_IBK", cLI_C_BGRUPO_IBK);
-            }
-            else
-            {
-                cLI_C_BGRUPO_IBKParameter = new ObjectParameter("CLI_C_BGRUPO_IBK", typeof(global::System.Byte));
-            }
-    
-            ObjectParameter cLI_C_VRAZ_SOCParameter;
-            if (cLI_C_VRAZ_SOC != null)
-            {
-                cLI_C_VRAZ_SOCParameter = new ObjectParameter("CLI_C_VRAZ_SOC", cLI_C_VRAZ_SOC);
-            }
-            else
-            {
-                cLI_C_VRAZ_SOCParameter = new ObjectParameter("CLI_C_VRAZ_SOC", typeof(global::System.String));
-            }
-    
-            ObjectParameter cLI_C_VDOC_IDParameter;
-            if (cLI_C_VDOC_ID != null)
-            {
-                cLI_C_VDOC_IDParameter = new ObjectParameter("CLI_C_VDOC_ID", cLI_C_VDOC_ID);
-            }
-            else
-            {
-                cLI_C_VDOC_IDParameter = new ObjectParameter("CLI_C_VDOC_ID", typeof(global::System.String));
-            }
-    
-            return base.ExecuteFunction<SIC_T_CLIENTE>("SIC_SP_CLIENTE_LISTAR", cLI_C_BGRUPO_IBKParameter, cLI_C_VRAZ_SOCParameter, cLI_C_VDOC_IDParameter);
-        }
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        /// <param name="mergeOption"></param>
-        /// <param name="cLI_C_BGRUPO_IBK">No hay documentación de metadatos disponible.</param>
-        /// <param name="cLI_C_VRAZ_SOC">No hay documentación de metadatos disponible.</param>
-        /// <param name="cLI_C_VDOC_ID">No hay documentación de metadatos disponible.</param>
-        public ObjectResult<SIC_T_CLIENTE> SIC_SP_CLIENTE_LISTAR(Nullable<global::System.Byte> cLI_C_BGRUPO_IBK, global::System.String cLI_C_VRAZ_SOC, global::System.String cLI_C_VDOC_ID, MergeOption mergeOption)
-        {
-            ObjectParameter cLI_C_BGRUPO_IBKParameter;
-            if (cLI_C_BGRUPO_IBK.HasValue)
-            {
-                cLI_C_BGRUPO_IBKParameter = new ObjectParameter("CLI_C_BGRUPO_IBK", cLI_C_BGRUPO_IBK);
-            }
-            else
-            {
-                cLI_C_BGRUPO_IBKParameter = new ObjectParameter("CLI_C_BGRUPO_IBK", typeof(global::System.Byte));
-            }
-    
-            ObjectParameter cLI_C_VRAZ_SOCParameter;
-            if (cLI_C_VRAZ_SOC != null)
-            {
-                cLI_C_VRAZ_SOCParameter = new ObjectParameter("CLI_C_VRAZ_SOC", cLI_C_VRAZ_SOC);
-            }
-            else
-            {
-                cLI_C_VRAZ_SOCParameter = new ObjectParameter("CLI_C_VRAZ_SOC", typeof(global::System.String));
-            }
-    
-            ObjectParameter cLI_C_VDOC_IDParameter;
-            if (cLI_C_VDOC_ID != null)
-            {
-                cLI_C_VDOC_IDParameter = new ObjectParameter("CLI_C_VDOC_ID", cLI_C_VDOC_ID);
-            }
-            else
-            {
-                cLI_C_VDOC_IDParameter = new ObjectParameter("CLI_C_VDOC_ID", typeof(global::System.String));
-            }
-    
-            return base.ExecuteFunction<SIC_T_CLIENTE>("SIC_SP_CLIENTE_LISTAR", mergeOption, cLI_C_BGRUPO_IBKParameter, cLI_C_VRAZ_SOCParameter, cLI_C_VDOC_IDParameter);
-        }
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        /// <param name="nombre_comercial">No hay documentación de metadatos disponible.</param>
-        public ObjectResult<SIC_T_CLIENTE> SIC_SP_CLI_NOMB_COMER_OBTENER(global::System.String nombre_comercial)
-        {
-            ObjectParameter nombre_comercialParameter;
-            if (nombre_comercial != null)
-            {
-                nombre_comercialParameter = new ObjectParameter("nombre_comercial", nombre_comercial);
-            }
-            else
-            {
-                nombre_comercialParameter = new ObjectParameter("nombre_comercial", typeof(global::System.String));
-            }
-    
-            return base.ExecuteFunction<SIC_T_CLIENTE>("SIC_SP_CLI_NOMB_COMER_OBTENER", nombre_comercialParameter);
-        }
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        /// <param name="mergeOption"></param>
-        /// <param name="nombre_comercial">No hay documentación de metadatos disponible.</param>
-        public ObjectResult<SIC_T_CLIENTE> SIC_SP_CLI_NOMB_COMER_OBTENER(global::System.String nombre_comercial, MergeOption mergeOption)
-        {
-            ObjectParameter nombre_comercialParameter;
-            if (nombre_comercial != null)
-            {
-                nombre_comercialParameter = new ObjectParameter("nombre_comercial", nombre_comercial);
-            }
-            else
-            {
-                nombre_comercialParameter = new ObjectParameter("nombre_comercial", typeof(global::System.String));
-            }
-    
-            return base.ExecuteFunction<SIC_T_CLIENTE>("SIC_SP_CLI_NOMB_COMER_OBTENER", mergeOption, nombre_comercialParameter);
         }
     
         /// <summary>
@@ -1298,6 +1159,161 @@ namespace SIC.EntityLayer
             }
     
             return base.ExecuteFunction<SIC_T_USUARIO>("SIC_SP_VERIFICAR_ACCESO", mergeOption, usua_c_cdoc_idParameter, usua_c_vpassParameter);
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="nombre_comercial">No hay documentación de metadatos disponible.</param>
+        public ObjectResult<SIC_T_CLIENTE> SIC_SP_CLI_NOMB_COMER_OBTENER(global::System.String nombre_comercial)
+        {
+            ObjectParameter nombre_comercialParameter;
+            if (nombre_comercial != null)
+            {
+                nombre_comercialParameter = new ObjectParameter("nombre_comercial", nombre_comercial);
+            }
+            else
+            {
+                nombre_comercialParameter = new ObjectParameter("nombre_comercial", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction<SIC_T_CLIENTE>("SIC_SP_CLI_NOMB_COMER_OBTENER", nombre_comercialParameter);
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="mergeOption"></param>
+        /// <param name="nombre_comercial">No hay documentación de metadatos disponible.</param>
+        public ObjectResult<SIC_T_CLIENTE> SIC_SP_CLI_NOMB_COMER_OBTENER(global::System.String nombre_comercial, MergeOption mergeOption)
+        {
+            ObjectParameter nombre_comercialParameter;
+            if (nombre_comercial != null)
+            {
+                nombre_comercialParameter = new ObjectParameter("nombre_comercial", nombre_comercial);
+            }
+            else
+            {
+                nombre_comercialParameter = new ObjectParameter("nombre_comercial", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction<SIC_T_CLIENTE>("SIC_SP_CLI_NOMB_COMER_OBTENER", mergeOption, nombre_comercialParameter);
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="cli_c_vdoc_id">No hay documentación de metadatos disponible.</param>
+        public int SIC_SP_DESHABILITAR_CLIENTE(global::System.String cli_c_vdoc_id)
+        {
+            ObjectParameter cli_c_vdoc_idParameter;
+            if (cli_c_vdoc_id != null)
+            {
+                cli_c_vdoc_idParameter = new ObjectParameter("cli_c_vdoc_id", cli_c_vdoc_id);
+            }
+            else
+            {
+                cli_c_vdoc_idParameter = new ObjectParameter("cli_c_vdoc_id", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction("SIC_SP_DESHABILITAR_CLIENTE", cli_c_vdoc_idParameter);
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="cLI_C_VDOC_ID">No hay documentación de metadatos disponible.</param>
+        public ObjectResult<SIC_T_NOMB_COM> SIC_SP_NOMBRE_COMERCIAL_LISTAR(global::System.String cLI_C_VDOC_ID)
+        {
+            ObjectParameter cLI_C_VDOC_IDParameter;
+            if (cLI_C_VDOC_ID != null)
+            {
+                cLI_C_VDOC_IDParameter = new ObjectParameter("CLI_C_VDOC_ID", cLI_C_VDOC_ID);
+            }
+            else
+            {
+                cLI_C_VDOC_IDParameter = new ObjectParameter("CLI_C_VDOC_ID", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction<SIC_T_NOMB_COM>("SIC_SP_NOMBRE_COMERCIAL_LISTAR", cLI_C_VDOC_IDParameter);
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="mergeOption"></param>
+        /// <param name="cLI_C_VDOC_ID">No hay documentación de metadatos disponible.</param>
+        public ObjectResult<SIC_T_NOMB_COM> SIC_SP_NOMBRE_COMERCIAL_LISTAR(global::System.String cLI_C_VDOC_ID, MergeOption mergeOption)
+        {
+            ObjectParameter cLI_C_VDOC_IDParameter;
+            if (cLI_C_VDOC_ID != null)
+            {
+                cLI_C_VDOC_IDParameter = new ObjectParameter("CLI_C_VDOC_ID", cLI_C_VDOC_ID);
+            }
+            else
+            {
+                cLI_C_VDOC_IDParameter = new ObjectParameter("CLI_C_VDOC_ID", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction<SIC_T_NOMB_COM>("SIC_SP_NOMBRE_COMERCIAL_LISTAR", mergeOption, cLI_C_VDOC_IDParameter);
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="cLI_C_VRAZ_SOC">No hay documentación de metadatos disponible.</param>
+        /// <param name="cLI_C_VDOC_ID">No hay documentación de metadatos disponible.</param>
+        public ObjectResult<SIC_T_CLIENTE> SIC_SP_CLIENTE_LISTAR(global::System.String cLI_C_VRAZ_SOC, global::System.String cLI_C_VDOC_ID)
+        {
+            ObjectParameter cLI_C_VRAZ_SOCParameter;
+            if (cLI_C_VRAZ_SOC != null)
+            {
+                cLI_C_VRAZ_SOCParameter = new ObjectParameter("CLI_C_VRAZ_SOC", cLI_C_VRAZ_SOC);
+            }
+            else
+            {
+                cLI_C_VRAZ_SOCParameter = new ObjectParameter("CLI_C_VRAZ_SOC", typeof(global::System.String));
+            }
+    
+            ObjectParameter cLI_C_VDOC_IDParameter;
+            if (cLI_C_VDOC_ID != null)
+            {
+                cLI_C_VDOC_IDParameter = new ObjectParameter("CLI_C_VDOC_ID", cLI_C_VDOC_ID);
+            }
+            else
+            {
+                cLI_C_VDOC_IDParameter = new ObjectParameter("CLI_C_VDOC_ID", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction<SIC_T_CLIENTE>("SIC_SP_CLIENTE_LISTAR", cLI_C_VRAZ_SOCParameter, cLI_C_VDOC_IDParameter);
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="mergeOption"></param>
+        /// <param name="cLI_C_VRAZ_SOC">No hay documentación de metadatos disponible.</param>
+        /// <param name="cLI_C_VDOC_ID">No hay documentación de metadatos disponible.</param>
+        public ObjectResult<SIC_T_CLIENTE> SIC_SP_CLIENTE_LISTAR(global::System.String cLI_C_VRAZ_SOC, global::System.String cLI_C_VDOC_ID, MergeOption mergeOption)
+        {
+            ObjectParameter cLI_C_VRAZ_SOCParameter;
+            if (cLI_C_VRAZ_SOC != null)
+            {
+                cLI_C_VRAZ_SOCParameter = new ObjectParameter("CLI_C_VRAZ_SOC", cLI_C_VRAZ_SOC);
+            }
+            else
+            {
+                cLI_C_VRAZ_SOCParameter = new ObjectParameter("CLI_C_VRAZ_SOC", typeof(global::System.String));
+            }
+    
+            ObjectParameter cLI_C_VDOC_IDParameter;
+            if (cLI_C_VDOC_ID != null)
+            {
+                cLI_C_VDOC_IDParameter = new ObjectParameter("CLI_C_VDOC_ID", cLI_C_VDOC_ID);
+            }
+            else
+            {
+                cLI_C_VDOC_IDParameter = new ObjectParameter("CLI_C_VDOC_ID", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction<SIC_T_CLIENTE>("SIC_SP_CLIENTE_LISTAR", mergeOption, cLI_C_VRAZ_SOCParameter, cLI_C_VDOC_IDParameter);
         }
 
         #endregion
@@ -2624,30 +2640,6 @@ namespace SIC.EntityLayer
         private Nullable<global::System.DateTime> _cli_c_dfec_aniv;
         partial void Oncli_c_dfec_anivChanging(Nullable<global::System.DateTime> value);
         partial void Oncli_c_dfec_anivChanged();
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> cli_c_bgrupo_ibk
-        {
-            get
-            {
-                return _cli_c_bgrupo_ibk;
-            }
-            set
-            {
-                Oncli_c_bgrupo_ibkChanging(value);
-                ReportPropertyChanging("cli_c_bgrupo_ibk");
-                _cli_c_bgrupo_ibk = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("cli_c_bgrupo_ibk");
-                Oncli_c_bgrupo_ibkChanged();
-            }
-        }
-        private Nullable<global::System.Boolean> _cli_c_bgrupo_ibk;
-        partial void Oncli_c_bgrupo_ibkChanging(Nullable<global::System.Boolean> value);
-        partial void Oncli_c_bgrupo_ibkChanged();
     
         /// <summary>
         /// No hay documentación de metadatos disponible.

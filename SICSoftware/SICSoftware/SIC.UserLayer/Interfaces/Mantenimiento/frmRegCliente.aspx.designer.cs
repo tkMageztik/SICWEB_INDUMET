@@ -58,15 +58,6 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento {
         protected global::System.Web.UI.WebControls.TextBox txtRuc;
         
         /// <summary>
-        /// Control cboTipo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cboTipo;
-        
-        /// <summary>
         /// Control btnBuscar.
         /// </summary>
         /// <remarks>
@@ -272,15 +263,6 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender txtTelefono_FilteredTextBoxExtender;
-        
-        /// <summary>
-        /// Control rbGrupoIbk.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rbGrupoIbk;
         
         /// <summary>
         /// Control cboZonaReparto.

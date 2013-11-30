@@ -113,18 +113,11 @@ namespace SIC.BusinessLayer
             return new ClienteDA().BuscarClienteNomComercial(_nomcom);
         }
 
-        public SIC_T_NOMB_COM[] ListarNombresComerciales()
+        public List<SIC_T_NOMB_COM> ListarNombresComerciales(string codCliente)
         {
-            return new ClienteDA().ListarNombresComerciales();
+            return new ClienteDA().ListarNombresComerciales(codCliente);
         }
-        //public List<SIC_T_NOMB_COM> ListarNombresComercialesList(string codCliente)
-        //{
-        //    return new ClienteDA().ListarNombresComercialesList(codCliente);
-        //}
-        //public SIC_T_NOMB_COM[] ListarNombresComerciales(string codCliente)
-        //{
-        //    return new ClienteDA().ListarNombresComerciales(codCliente);
-        //}
+       
         public List<SIC_T_PARAMETRO_DET> Listar_DocumentosIdentidad()
         {
             return new ClienteDA().Listar_DocumentosIdentidad();
@@ -218,9 +211,9 @@ namespace SIC.BusinessLayer
             return new ClienteDA().ModificarContacto(_pSIC_T_cli_contacto);
         }
 
-        public List<SIC_T_CLIENTE> ListarClientes(byte cliGrupo, SIC_T_CLIENTE obj)
+        public List<SIC_T_CLIENTE> ListarClientes(SIC_T_CLIENTE obj)
         {
-            return new ClienteDA().ListarClientes(cliGrupo, obj);
+            return new ClienteDA().ListarClientes( obj);
         }
 
         public SIC_T_CLI_DIRECCION DireccionPorRuc(string _strcli_c_cdoc_id)

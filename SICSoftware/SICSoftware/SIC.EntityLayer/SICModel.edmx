@@ -200,7 +200,6 @@
           <Property Name="cli_c_vrubro" Type="varchar" MaxLength="200" />
           <Property Name="cli_c_ctlf" Type="varchar" MaxLength="15" />
           <Property Name="cli_c_dfec_aniv" Type="date" />
-          <Property Name="cli_c_bgrupo_ibk" Type="bit" />
           <Property Name="cli_c_btipo_pers" Type="bit" />
           <Property Name="colab_c_cdoc_id" Type="char" MaxLength="8" />
           <Property Name="cli_scor_c_cletra" Type="char" MaxLength="1" />
@@ -539,7 +538,6 @@
           <Parameter Name="cli_c_vdoc_id" Type="varchar" Mode="In" />
         </Function>
         <Function Name="SIC_SP_CLIENTE_LISTAR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Mantenimiento">
-          <Parameter Name="CLI_C_BGRUPO_IBK" Type="tinyint" Mode="In" />
           <Parameter Name="CLI_C_VRAZ_SOC" Type="varchar" Mode="In" />
           <Parameter Name="CLI_C_VDOC_ID" Type="varchar" Mode="In" />
         </Function>
@@ -574,12 +572,15 @@
         <Function Name="SIC_SP_CLIENTE_VERIFICAR_EXISTENCIA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Mantenimiento">
           <Parameter Name="cli_c_vdoc_id" Type="varchar" Mode="In" />
         </Function>
-        <Function Name="SIC_SP_MODIFICAR_CLIENTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Mantenimiento">
+        <Function Name="SIC_SP_DESHABILITAR_CLIENTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Mantenimiento">
           <Parameter Name="cli_c_vdoc_id" Type="varchar" Mode="In" />
         </Function>
         <Function Name="SIC_SP_NOMB_COMER_OBTENER_POR_NOMBRE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Mantenimiento">
           <Parameter Name="nomb_com_c_vnomb" Type="varchar" Mode="In" />
           <Parameter Name="cli_c_vdoc_id" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SIC_SP_NOMBRE_COMERCIAL_LISTAR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Mantenimiento">
+          <Parameter Name="CLI_C_VDOC_ID" Type="varchar" Mode="In" />
         </Function>
         <Function Name="SIC_SP_NOMBRECOMERCIAL_BUSCAR_EXISTENCIA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Mantenimiento">
           <Parameter Name="nomb_com_c_vnomb" Type="varchar" Mode="In" />
@@ -590,10 +591,6 @@
         </Function>
         <Function Name="SIC_SP_LISTAR_PADRES_MENU" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Seguridad">
           <Parameter Name="PC_CODUSUARIO" Type="char" Mode="In" />
-        </Function>
-        <Function Name="SIC_SP_VERIFICAR_ACCESO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Seguridad">
-          <Parameter Name="usua_c_cdoc_id" Type="varchar" Mode="In" />
-          <Parameter Name="usua_c_vpass" Type="varchar" Mode="In" />
         </Function>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -681,9 +678,6 @@
           <FunctionImport Name="SIC_SP_CLIENTE_DIRECCION_LIMPIAR">
           <Parameter Name="cli_c_vdoc_id" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="SIC_SP_MODIFICAR_CLIENTE">
-          <Parameter Name="cli_c_vdoc_id" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="SIC_SP_CLIENTE_NOMBRE_ELIMINAR_RELACION">
             <Parameter Name="cli_c_vdoc_id" Mode="In" Type="String" />
             <Parameter Name="nomb_com_c_iid" Mode="In" Type="Int32" />
@@ -708,6 +702,23 @@
           <Parameter Name="cli_c_vdoc_id" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="SIC_VW_CLIENTE_LISTA" EntityType="SICDBWEBModel.SIC_VW_CLIENTE_LISTA" />
+          <EntitySet Name="SIC_T_MENU" EntityType="SICDBWEBModel.SIC_T_MENU" />
+          <AssociationSet Name="FK_SIC_T_MENU_SIC_T_MENU" Association="SICDBWEBModel.FK_SIC_T_MENU_SIC_T_MENU">
+            <End Role="SIC_T_MENU" EntitySet="SIC_T_MENU" />
+            <End Role="SIC_T_MENU1" EntitySet="SIC_T_MENU" />
+          </AssociationSet>
+          <FunctionImport Name="SIC_SP_LISTAR_HIJOS_MENU" EntitySet="SIC_T_MENU" ReturnType="Collection(SICDBWEBModel.SIC_T_MENU)">
+            <Parameter Name="PC_CODUSUARIO" Mode="In" Type="String" />
+            <Parameter Name="PC_CODMENUPRINCIPAL" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SIC_SP_LISTAR_PADRES_MENU" EntitySet="SIC_T_MENU" ReturnType="Collection(SICDBWEBModel.SIC_T_MENU)">
+          <Parameter Name="PC_CODUSUARIO" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="SIC_T_USUARIO" EntityType="SICDBWEBModel.SIC_T_USUARIO" />
+          <FunctionImport Name="SIC_SP_VERIFICAR_ACCESO" EntitySet="SIC_T_USUARIO" ReturnType="Collection(SICDBWEBModel.SIC_T_USUARIO)">
+            <Parameter Name="usua_c_cdoc_id" Mode="In" Type="String" />
+            <Parameter Name="usua_c_vpass" Mode="In" Type="String" />
+          </FunctionImport>
           <EntitySet Name="SIC_T_CLIENTE" EntityType="SICDBWEBModel.SIC_T_CLIENTE" />
           <AssociationSet Name="FK_SIC_T_CLI_CONTACTO_SIC_T_CLIENTE" Association="SICDBWEBModel.FK_SIC_T_CLI_CONTACTO_SIC_T_CLIENTE">
             <End Role="SIC_T_CLIENTE" EntitySet="SIC_T_CLIENTE" />
@@ -733,30 +744,18 @@
             <End Role="SIC_T_ZONA_REPARTO" EntitySet="SIC_T_ZONA_REPARTO" />
             <End Role="SIC_T_CLIENTE" EntitySet="SIC_T_CLIENTE" />
           </AssociationSet>
-          <FunctionImport Name="SIC_SP_CLIENTE_LISTAR" EntitySet="SIC_T_CLIENTE" ReturnType="Collection(SICDBWEBModel.SIC_T_CLIENTE)">
-            <Parameter Name="CLI_C_BGRUPO_IBK" Mode="In" Type="Byte" />
-            <Parameter Name="CLI_C_VRAZ_SOC" Mode="In" Type="String" />
-            <Parameter Name="CLI_C_VDOC_ID" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="SIC_SP_CLI_NOMB_COMER_OBTENER" EntitySet="SIC_T_CLIENTE" ReturnType="Collection(SICDBWEBModel.SIC_T_CLIENTE)">
           <Parameter Name="nombre_comercial" Mode="In" Type="String" />
           </FunctionImport>
-          <EntitySet Name="SIC_T_MENU" EntityType="SICDBWEBModel.SIC_T_MENU" />
-          <AssociationSet Name="FK_SIC_T_MENU_SIC_T_MENU" Association="SICDBWEBModel.FK_SIC_T_MENU_SIC_T_MENU">
-            <End Role="SIC_T_MENU" EntitySet="SIC_T_MENU" />
-            <End Role="SIC_T_MENU1" EntitySet="SIC_T_MENU" />
-          </AssociationSet>
-          <FunctionImport Name="SIC_SP_LISTAR_HIJOS_MENU" EntitySet="SIC_T_MENU" ReturnType="Collection(SICDBWEBModel.SIC_T_MENU)">
-            <Parameter Name="PC_CODUSUARIO" Mode="In" Type="String" />
-            <Parameter Name="PC_CODMENUPRINCIPAL" Mode="In" Type="Int32" />
+          <FunctionImport Name="SIC_SP_DESHABILITAR_CLIENTE">
+          <Parameter Name="cli_c_vdoc_id" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="SIC_SP_LISTAR_PADRES_MENU" EntitySet="SIC_T_MENU" ReturnType="Collection(SICDBWEBModel.SIC_T_MENU)">
-          <Parameter Name="PC_CODUSUARIO" Mode="In" Type="String" />
+          <FunctionImport Name="SIC_SP_NOMBRE_COMERCIAL_LISTAR" EntitySet="SIC_T_NOMB_COM" ReturnType="Collection(SICDBWEBModel.SIC_T_NOMB_COM)">
+          <Parameter Name="CLI_C_VDOC_ID" Mode="In" Type="String" />
           </FunctionImport>
-          <EntitySet Name="SIC_T_USUARIO" EntityType="SICDBWEBModel.SIC_T_USUARIO" />
-          <FunctionImport Name="SIC_SP_VERIFICAR_ACCESO" EntitySet="SIC_T_USUARIO" ReturnType="Collection(SICDBWEBModel.SIC_T_USUARIO)">
-            <Parameter Name="usua_c_cdoc_id" Mode="In" Type="String" />
-            <Parameter Name="usua_c_vpass" Mode="In" Type="String" />
+          <FunctionImport Name="SIC_SP_CLIENTE_LISTAR" EntitySet="SIC_T_CLIENTE" ReturnType="Collection(SICDBWEBModel.SIC_T_CLIENTE)">
+            <Parameter Name="CLI_C_VRAZ_SOC" Mode="In" Type="String" />
+            <Parameter Name="CLI_C_VDOC_ID" Mode="In" Type="String" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="SIC_T_CLI_CONTAC_CARGO">
@@ -1093,6 +1092,44 @@
           <Property Type="String" Name="cli_c_vraz_soc" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Type="Boolean" Name="cli_c_bgrupo_ibk" />
         </EntityType>
+        <EntityType Name="SIC_T_MENU">
+          <Key>
+            <PropertyRef Name="menu_c_iid" />
+          </Key>
+          <Property Type="Int32" Name="menu_c_iid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="menu_c_iid_padre" />
+          <Property Type="String" Name="menu_c_vnomb" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="Byte" Name="menu_c_ynivel" />
+          <Property Type="String" Name="menu_c_vpag_asp" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SIC_T_MENU1" Relationship="SICDBWEBModel.FK_SIC_T_MENU_SIC_T_MENU" FromRole="SIC_T_MENU" ToRole="SIC_T_MENU1" />
+          <NavigationProperty Name="SIC_T_MENU2" Relationship="SICDBWEBModel.FK_SIC_T_MENU_SIC_T_MENU" FromRole="SIC_T_MENU1" ToRole="SIC_T_MENU" />
+        </EntityType>
+        <Association Name="FK_SIC_T_MENU_SIC_T_MENU">
+          <End Type="SICDBWEBModel.SIC_T_MENU" Role="SIC_T_MENU" Multiplicity="0..1" />
+          <End Type="SICDBWEBModel.SIC_T_MENU" Role="SIC_T_MENU1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SIC_T_MENU">
+              <PropertyRef Name="menu_c_iid" />
+            </Principal>
+            <Dependent Role="SIC_T_MENU1">
+              <PropertyRef Name="menu_c_iid_padre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SIC_T_USUARIO">
+          <Key>
+            <PropertyRef Name="usua_c_cdoc_id" />
+          </Key>
+          <Property Type="String" Name="usua_c_cusu_red" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Type="Boolean" Name="usua_c_bpropietarioadministrador" />
+          <Property Type="String" Name="usua_c_cidempresa" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="usua_c_cape_pat" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="usua_c_cape_mat" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="usua_c_cape_nombres" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="usua_c_cdoc_id" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="usua_c_vpass" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="usua_c_bestado" Nullable="false" />
+        </EntityType>
         <EntityType Name="SIC_T_CLIENTE">
           <Key>
             <PropertyRef Name="cli_c_vdoc_id" />
@@ -1102,7 +1139,6 @@
           <Property Type="String" Name="cli_c_vrubro" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="cli_c_ctlf" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Type="DateTime" Name="cli_c_dfec_aniv" />
-          <Property Type="Boolean" Name="cli_c_bgrupo_ibk" />
           <Property Type="Boolean" Name="cli_c_btipo_pers" />
           <Property Type="String" Name="colab_c_cdoc_id" MaxLength="8" FixedLength="true" Unicode="false" />
           <Property Type="String" Name="cli_scor_c_cletra" MaxLength="1" FixedLength="true" Unicode="false" />
@@ -1192,44 +1228,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="SIC_T_MENU">
-          <Key>
-            <PropertyRef Name="menu_c_iid" />
-          </Key>
-          <Property Type="Int32" Name="menu_c_iid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="menu_c_iid_padre" />
-          <Property Type="String" Name="menu_c_vnomb" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Type="Byte" Name="menu_c_ynivel" />
-          <Property Type="String" Name="menu_c_vpag_asp" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="SIC_T_MENU1" Relationship="SICDBWEBModel.FK_SIC_T_MENU_SIC_T_MENU" FromRole="SIC_T_MENU" ToRole="SIC_T_MENU1" />
-          <NavigationProperty Name="SIC_T_MENU2" Relationship="SICDBWEBModel.FK_SIC_T_MENU_SIC_T_MENU" FromRole="SIC_T_MENU1" ToRole="SIC_T_MENU" />
-        </EntityType>
-        <Association Name="FK_SIC_T_MENU_SIC_T_MENU">
-          <End Type="SICDBWEBModel.SIC_T_MENU" Role="SIC_T_MENU" Multiplicity="0..1" />
-          <End Type="SICDBWEBModel.SIC_T_MENU" Role="SIC_T_MENU1" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SIC_T_MENU">
-              <PropertyRef Name="menu_c_iid" />
-            </Principal>
-            <Dependent Role="SIC_T_MENU1">
-              <PropertyRef Name="menu_c_iid_padre" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="SIC_T_USUARIO">
-          <Key>
-            <PropertyRef Name="usua_c_cdoc_id" />
-          </Key>
-          <Property Type="String" Name="usua_c_cusu_red" MaxLength="10" FixedLength="true" Unicode="false" />
-          <Property Type="Boolean" Name="usua_c_bpropietarioadministrador" />
-          <Property Type="String" Name="usua_c_cidempresa" MaxLength="11" FixedLength="true" Unicode="false" />
-          <Property Type="String" Name="usua_c_cape_pat" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="usua_c_cape_mat" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="usua_c_cape_nombres" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="usua_c_cdoc_id" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="usua_c_vpass" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="usua_c_bestado" Nullable="false" />
-        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1454,7 +1452,6 @@
           <FunctionImportMapping FunctionImportName="SIC_SP_CLIENTE_MANTENIMIENTO_RAZON_SOCIAL_HISTORICO" FunctionName="SICDBWEBModel.Store.SIC_SP_CLIENTE_MANTENIMIENTO_RAZON_SOCIAL_HISTORICO" />
           <FunctionImportMapping FunctionImportName="SIC_SP_CLIENTE_CONTACTO_LIMPIAR" FunctionName="SICDBWEBModel.Store.SIC_SP_CLIENTE_CONTACTO_LIMPIAR" />
           <FunctionImportMapping FunctionImportName="SIC_SP_CLIENTE_DIRECCION_LIMPIAR" FunctionName="SICDBWEBModel.Store.SIC_SP_CLIENTE_DIRECCION_LIMPIAR" />
-          <FunctionImportMapping FunctionImportName="SIC_SP_MODIFICAR_CLIENTE" FunctionName="SICDBWEBModel.Store.SIC_SP_MODIFICAR_CLIENTE" />
           <FunctionImportMapping FunctionImportName="SIC_SP_CLIENTE_NOMBRE_ELIMINAR_RELACION" FunctionName="SICDBWEBModel.Store.SIC_SP_CLIENTE_NOMBRE_ELIMINAR_RELACION" />
           <FunctionImportMapping FunctionImportName="SIC_SP_CLIENTE_NOMBRE_CONTAR" FunctionName="SICDBWEBModel.Store.SIC_SP_CLIENTE_NOMBRE_CONTAR" />
           <FunctionImportMapping FunctionImportName="SIC_SP_CLIENTE_CONTAR_RUC" FunctionName="SICDBWEBModel.Store.SIC_SP_CLIENTE_CONTAR_RUC" />
@@ -1473,30 +1470,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SIC_T_CLIENTE">
-            <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_CLIENTE">
-              <MappingFragment StoreEntitySet="SIC_T_CLIENTE">
-                <ScalarProperty Name="cli_c_dfec_const" ColumnName="cli_c_dfec_const" />
-                <ScalarProperty Name="cli_c_dfechaactualiza" ColumnName="cli_c_dfechaactualiza" />
-                <ScalarProperty Name="cli_c_dfecharegistra" ColumnName="cli_c_dfecharegistra" />
-                <ScalarProperty Name="cli_c_icorrelativo" ColumnName="cli_c_icorrelativo" />
-                <ScalarProperty Name="zona_rep_c_yid" ColumnName="zona_rep_c_yid" />
-                <ScalarProperty Name="cli_c_vdoc_id" ColumnName="cli_c_vdoc_id" />
-                <ScalarProperty Name="cli_c_bactivo" ColumnName="cli_c_bactivo" />
-                <ScalarProperty Name="cli_scor_c_cletra" ColumnName="cli_scor_c_cletra" />
-                <ScalarProperty Name="colab_c_cdoc_id" ColumnName="colab_c_cdoc_id" />
-                <ScalarProperty Name="cli_c_btipo_pers" ColumnName="cli_c_btipo_pers" />
-                <ScalarProperty Name="cli_c_bgrupo_ibk" ColumnName="cli_c_bgrupo_ibk" />
-                <ScalarProperty Name="cli_c_dfec_aniv" ColumnName="cli_c_dfec_aniv" />
-                <ScalarProperty Name="cli_c_ctlf" ColumnName="cli_c_ctlf" />
-                <ScalarProperty Name="cli_c_vrubro" ColumnName="cli_c_vrubro" />
-                <ScalarProperty Name="cli_c_vpartida" ColumnName="cli_c_vpartida" />
-                <ScalarProperty Name="cli_c_vraz_soc" ColumnName="cli_c_vraz_soc" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="SIC_SP_CLIENTE_LISTAR" FunctionName="SICDBWEBModel.Store.SIC_SP_CLIENTE_LISTAR" />
-          <FunctionImportMapping FunctionImportName="SIC_SP_CLI_NOMB_COMER_OBTENER" FunctionName="SICDBWEBModel.Store.SIC_SP_CLI_NOMB_COMER_OBTENER" />
           <EntitySetMapping Name="SIC_T_MENU">
             <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_MENU">
               <MappingFragment StoreEntitySet="SIC_T_MENU">
@@ -1525,7 +1498,31 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="SIC_SP_VERIFICAR_ACCESO" FunctionName="SICDBWEBModel.Store.SIC_SP_VERIFICAR_ACCESO" />
+          <EntitySetMapping Name="SIC_T_CLIENTE">
+            <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_CLIENTE">
+              <MappingFragment StoreEntitySet="SIC_T_CLIENTE">
+                <ScalarProperty Name="cli_c_dfec_const" ColumnName="cli_c_dfec_const" />
+                <ScalarProperty Name="cli_c_dfechaactualiza" ColumnName="cli_c_dfechaactualiza" />
+                <ScalarProperty Name="cli_c_dfecharegistra" ColumnName="cli_c_dfecharegistra" />
+                <ScalarProperty Name="cli_c_icorrelativo" ColumnName="cli_c_icorrelativo" />
+                <ScalarProperty Name="zona_rep_c_yid" ColumnName="zona_rep_c_yid" />
+                <ScalarProperty Name="cli_c_vdoc_id" ColumnName="cli_c_vdoc_id" />
+                <ScalarProperty Name="cli_c_bactivo" ColumnName="cli_c_bactivo" />
+                <ScalarProperty Name="cli_scor_c_cletra" ColumnName="cli_scor_c_cletra" />
+                <ScalarProperty Name="colab_c_cdoc_id" ColumnName="colab_c_cdoc_id" />
+                <ScalarProperty Name="cli_c_btipo_pers" ColumnName="cli_c_btipo_pers" />
+                <ScalarProperty Name="cli_c_dfec_aniv" ColumnName="cli_c_dfec_aniv" />
+                <ScalarProperty Name="cli_c_ctlf" ColumnName="cli_c_ctlf" />
+                <ScalarProperty Name="cli_c_vrubro" ColumnName="cli_c_vrubro" />
+                <ScalarProperty Name="cli_c_vpartida" ColumnName="cli_c_vpartida" />
+                <ScalarProperty Name="cli_c_vraz_soc" ColumnName="cli_c_vraz_soc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SIC_SP_CLI_NOMB_COMER_OBTENER" FunctionName="SICDBWEBModel.Store.SIC_SP_CLI_NOMB_COMER_OBTENER" />
+          <FunctionImportMapping FunctionImportName="SIC_SP_DESHABILITAR_CLIENTE" FunctionName="SICDBWEBModel.Store.SIC_SP_DESHABILITAR_CLIENTE" />
+          <FunctionImportMapping FunctionImportName="SIC_SP_NOMBRE_COMERCIAL_LISTAR" FunctionName="SICDBWEBModel.Store.SIC_SP_NOMBRE_COMERCIAL_LISTAR" />
+          <FunctionImportMapping FunctionImportName="SIC_SP_CLIENTE_LISTAR" FunctionName="SICDBWEBModel.Store.SIC_SP_CLIENTE_LISTAR" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1579,12 +1576,12 @@
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_COLABORADOR_SIC_T_COLAB_CARGO" >
           <ConnectorPoint PointX="1.5" PointY="18.922841796874998" />
-          <ConnectorPoint PointX="1.23046715625" PointY="18.922841796874998" />
-          <ConnectorPoint PointX="1.23046715625" PointY="13.518697916666666" />
+          <ConnectorPoint PointX="1.237058884765625" PointY="18.922841796874998" />
+          <ConnectorPoint PointX="1.237058884765625" PointY="13.518697916666666" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_COLAB_INM_SIC_T_COLABORADOR" >
-          <ConnectorPoint PointX="0.958981078125" PointY="13.518697916666666" />
-          <ConnectorPoint PointX="0.958981078125" PointY="24.797841796874998" />
+          <ConnectorPoint PointX="0.96227694238281247" PointY="13.518697916666666" />
+          <ConnectorPoint PointX="0.96227694238281247" PointY="24.797841796874998" />
           <ConnectorPoint PointX="3" PointY="24.797841796874998" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_PROVINCIA_SIC_T_DEPARTAMENTO" >
@@ -1608,10 +1605,18 @@
           <ConnectorPoint PointX="11.625" PointY="12.018992513020834" />
         </AssociationConnector>
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_VW_CLIENTE_LISTA" Width="1.5" PointX="10.375" PointY="3.75" Height="1.9802864583333282" />
-        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_CLIENTE" Width="1.5" PointX="3" PointY="5.875" Height="5.2494108072916674" />
+        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_MENU" Width="1.5" PointX="5.375" PointY="10.75" Height="2.3648893229166674" />
+        <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_MENU_SIC_T_MENU" >
+          <ConnectorPoint PointX="5.9069230769230767" PointY="13.114889322916667" />
+          <ConnectorPoint PointX="5.9069230769230767" PointY="13.364889322916667" />
+          <ConnectorPoint PointX="6.3534615384615378" PointY="13.364889322916667" />
+          <ConnectorPoint PointX="6.3534615384615378" PointY="13.114889322916667" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_USUARIO" Width="1.5" PointX="10.375" PointY="6.75" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_CLIENTE" Width="1.5" PointX="3" PointY="6" Height="5.05710937500001" />
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_CLI_CONTACTO_SIC_T_CLIENTE" >
-          <ConnectorPoint PointX="4.5" PointY="7.701650390625" />
-          <ConnectorPoint PointX="5.25" PointY="7.701650390625" />
+          <ConnectorPoint PointX="4.5" PointY="7.764150390625" />
+          <ConnectorPoint PointX="5.25" PointY="7.764150390625" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_CLI_DIRECCION_SIC_T_CLIENTE" >
           <ConnectorPoint PointX="4.5" PointY="10.139150390625" />
@@ -1621,34 +1626,26 @@
           <ConnectorPoint PointX="9.2968775" PointY="8.9994921875" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_CLI_NOMB_COM_SIC_T_CLIENTE" >
-          <ConnectorPoint PointX="4.5" PointY="11.124410807291667" />
-          <ConnectorPoint PointX="4.875" PointY="11.499410807291667" />
+          <ConnectorPoint PointX="4.5" PointY="11.05710937500001" />
+          <ConnectorPoint PointX="4.875" PointY="11.43210937500001" />
           <ConnectorPoint PointX="4.875" PointY="15.797841796875002" />
           <ConnectorPoint PointX="5.25" PointY="15.797841796875002" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_CLIENTE_SIC_T_CLI_SCORING" >
           <ConnectorPoint PointX="2.25" PointY="4.297841796875" />
           <ConnectorPoint PointX="3.75" PointY="4.297841796875" />
-          <ConnectorPoint PointX="3.75" PointY="5.875" />
+          <ConnectorPoint PointX="3.75" PointY="6" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_CLIENTE_SIC_T_COLABORADOR" >
-          <ConnectorPoint PointX="2.25" PointY="10.562205403645834" />
-          <ConnectorPoint PointX="2.5416666666666665" PointY="10.562205403645834" />
-          <ConnectorPoint PointX="2.7083333333333335" PointY="10.562205403645834" />
-          <ConnectorPoint PointX="3" PointY="10.562205403645834" />
+          <ConnectorPoint PointX="2.25" PointY="10.528554687500005" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="10.528554687500005" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="10.528554687500005" />
+          <ConnectorPoint PointX="3" PointY="10.528554687500005" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_CLIENTE_SIC_T_ZONA_REPARTO" >
           <ConnectorPoint PointX="2.25" PointY="7.612740013020832" />
           <ConnectorPoint PointX="3" PointY="7.612740013020832" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_MENU" Width="1.5" PointX="5.375" PointY="10.75" Height="2.3648893229166674" />
-        <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_MENU_SIC_T_MENU" >
-          <ConnectorPoint PointX="5.9069230769230767" PointY="13.114889322916667" />
-          <ConnectorPoint PointX="5.9069230769230767" PointY="13.364889322916667" />
-          <ConnectorPoint PointX="6.3534615384615378" PointY="13.364889322916667" />
-          <ConnectorPoint PointX="6.3534615384615378" PointY="13.114889322916667" />
-        </AssociationConnector>
-        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_USUARIO" Width="1.5" PointX="10.375" PointY="6.75" Height="2.3648893229166674" />
       </Diagram>
     </Diagrams>
   </Designer>

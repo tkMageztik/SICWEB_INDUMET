@@ -173,6 +173,32 @@
                 </td>
             </tr>
         </table>
+        <asp:UpdateProgress ID="UpdateProgress1" runat="server">
+            <ProgressTemplate>
+                <div class="capa1">
+                    <asp:Panel ID="pnlCargando" runat="server" BorderColor="RoyalBlue" Height="80px"
+                        Width="280px" BackColor="WhiteSmoke" Font-Size="14px">
+                        <table align="center">
+                            <tr>
+                                <td align="center" class="tit_morado" width="280px">
+                                    Tu solicitud esta siendo procesada
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center">
+                                    <img src="../../Imagenes/Botones/loading.gif" alt="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center">
+                                    <img src="../../Imagenes/Botones/dot-net-green.gif" alt="" />
+                                </td>
+                            </tr>
+                        </table>
+                    </asp:Panel>
+                </div>
+            </ProgressTemplate>
+        </asp:UpdateProgress>
     </div>
     <!---INI PIE--->
     <div id="Div1" class="footer" style="clear: both; display: none">

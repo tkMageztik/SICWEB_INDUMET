@@ -346,14 +346,9 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             {
                 _clienteNod.cli_c_dfec_aniv = null;
             }
-            if (rbGrupoIbk.SelectedValue.Equals("1"))
-            {
-                _clienteNod.cli_c_bgrupo_ibk = true;
-            }
-            else
-            {
-                _clienteNod.cli_c_bgrupo_ibk = false;
-            }
+
+
+
             if (cboTipoPersona.SelectedValue.Equals("1"))
             {
                 _clienteNod.cli_c_btipo_pers = true;
@@ -473,14 +468,6 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                     _clienteNuevo.cli_c_dfec_aniv = null;
                 }
 
-                if (rbGrupoIbk.SelectedValue.Equals("1"))
-                {
-                    _clienteNuevo.cli_c_bgrupo_ibk = true;
-                }
-                else
-                {
-                    _clienteNuevo.cli_c_bgrupo_ibk = false;
-                }
                 if (cboTipoPersona.SelectedValue.Equals("1"))
                 {
                     _clienteNuevo.cli_c_btipo_pers = true;
@@ -943,16 +930,9 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
         private void ListarClientes()
         {
-            gvLista.DataSource = _cliente.ListarClientes(Convert.ToByte(cboTipo.SelectedValue),
+            gvLista.DataSource = _cliente.ListarClientes(
             new SIC_T_CLIENTE() { cli_c_vraz_soc = txtFiltroRazonSocial.Text, cli_c_vdoc_id = txtRuc.Text });
             gvLista.DataBind();
-
-            cboTipoDoc.DataSource = _cliente.Listar_DocumentosIdentidad();
-            cboTipoDoc.DataTextField = "par_det_c_vdesc";
-            cboTipoDoc.DataValueField = "par_det_c_iid";
-            cboTipoDoc.DataBind();
-
-            mvCliente.ActiveViewIndex = 0;
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
@@ -1359,6 +1339,12 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 _contactoTemp.cli_contac_c_vape_mat = txtApellidoMaternoContacto.Text;
                 _contactoTemp.cli_contac_c_ctlf = txtTelefonofijoContacto.Text;
                 _contactoTemp.cli_contac_c_ccel = txttelefonoMovilContacto.Text;
+
+                if (txtFechaNacimientoContacto.Text != string.Empty)
+                {
+                    _contactoTemp.cli_contac_c_dfec_cump = Convert.ToDateTime(txtFechaNacimientoContacto.Text);
+                }
+
                 _contactoTemp.cli_contac_c_vcorreo = txtEmailContacto.Text;
 
                 if (txtFechaNacimientoContacto.Text.Length != 0)
@@ -1513,7 +1499,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         {
             gvLista.PageIndex = e.NewPageIndex;
             ListarClientes();
-            mvCliente.ActiveViewIndex = 0;
+            //mvCliente.ActiveViewIndex = 0;
 
         }
 
@@ -1526,6 +1512,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         {
             lblAccion.Text = "EDITAR";
             Escenario = TipoOperacion.Modificacion;
+
 
             gvNombresComerciales.Columns[2].Visible = true;
 
@@ -1562,14 +1549,8 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
             txtNumeroPartida.Text = _tCliente.cli_c_vpartida;
             txtRubroDetallado.Text = _tCliente.cli_c_vrubro;
-            if (Convert.ToBoolean(_tCliente.cli_c_bgrupo_ibk))
-            {
-                rbGrupoIbk.SelectedValue = "1";
-            }
-            else
-            {
-                rbGrupoIbk.SelectedValue = "0";
-            }
+
+
             txtFechaAniversario.Text = string.Format("{0:dd/MM/yyyy}", _tCliente.cli_c_dfec_aniv);
             //cboEjecutivo.SelectedValue = _tCliente.colab_c_cdoc_id;
             //cboScoring.SelectedValue = _tCliente.cli_scor_c_cletra;
@@ -1616,9 +1597,9 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
         private void ListarNomComerciales()
         {
-            //NombresComerciales = _cliente.ListarNombresComercialesList(txtNroRuc.Text);
-            //gvNombresComerciales.DataSource = NombresComerciales;
-            //gvNombresComerciales.DataBind();
+            NombresComerciales = _cliente.ListarNombresComerciales(txtNroRuc.Text);
+            gvNombresComerciales.DataSource = NombresComerciales;
+            gvNombresComerciales.DataBind();
         }
 
         private void ListarDirecciones()
@@ -1694,13 +1675,13 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 SIC_T_CLIENTE _tCliente = _cliente.BuscarCliente(Server.HtmlDecode(gvLista.Rows[e.RowIndex].Cells[1].Text));
                 _tCliente.cli_c_bactivo = false;
                 _cliente.DeshabilitarCliente(_tCliente);
+                Mensaje("Cliente Eliminado con éxito", "../Imagenes/correcto.png");
                 ListarClientes();
             }
 
             catch (Exception exc)
             {
                 Mensaje(exc.InnerException.Message, "../Imagenes/warning.png");
-                upGeneral.Update();
             }
 
         }
@@ -1790,6 +1771,9 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             {
                 ListarClientes();
                 cboTipoDoc_SelectedIndexChanged(sender, e);
+                mvCliente.ActiveViewIndex = 0;
+
+                UIPage.Fill(_cliente.Listar_DocumentosIdentidad(), "par_det_c_iid", "par_det_c_vdesc", cboTipoDoc, string.Empty, "0");
             }
             //cboCentroComercial.DataSource = _local.ListarInmuebles();
             //cboCentroComercial.DataValueField = "inm_c_icod";
@@ -2021,29 +2005,29 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 //_ListaNombreComercial = _eCredi.ObtClienteNombreComercial(IdNomCom, txtNroRuc.Text, 0);
 
                 //ADV_SP_EVAL_CREDITO_OBT_CLIENTE_NOMB_COMERCIAL_Result _CrediNombreComercial = null;
-            //    if (_ListaNombreComercial.Count > 0)
-            //    {
-            //        _CrediNombreComercial = _ListaNombreComercial[0];
-            //    }
+                //    if (_ListaNombreComercial.Count > 0)
+                //    {
+                //        _CrediNombreComercial = _ListaNombreComercial[0];
+                //    }
 
-            //    if (_CrediNombreComercial != null)
-            //    {
-            //        if (!_CrediNombreComercial.eval_cred_c_dfec_registro.HasValue)
-            //        {
-            //            e.Row.Cells[2].Visible = false;//true;
-            //            e.Row.Cells[3].Visible = false;
-            //        }
-            //        else
-            //        {
-            //            e.Row.Cells[2].Visible = false;
-            //            e.Row.Cells[3].Visible = false;//true;
-            //        }
-            //    }
-            //    else
-            //    {
-            //        e.Row.Cells[2].Visible = false;//true;
-            //        e.Row.Cells[3].Visible = false;
-            //    }
+                //    if (_CrediNombreComercial != null)
+                //    {
+                //        if (!_CrediNombreComercial.eval_cred_c_dfec_registro.HasValue)
+                //        {
+                //            e.Row.Cells[2].Visible = false;//true;
+                //            e.Row.Cells[3].Visible = false;
+                //        }
+                //        else
+                //        {
+                //            e.Row.Cells[2].Visible = false;
+                //            e.Row.Cells[3].Visible = false;//true;
+                //        }
+                //    }
+                //    else
+                //    {
+                //        e.Row.Cells[2].Visible = false;//true;
+                //        e.Row.Cells[3].Visible = false;
+                //    }
 
 
             }
@@ -2051,10 +2035,10 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
         protected void gvNombresComerciales_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            int IdNomCom = Convert.ToInt32(((Label)gvNombresComerciales.Rows[e.NewEditIndex].FindControl("lblIdNomCom")).Text);
+            //int IdNomCom = Convert.ToInt32(((Label)gvNombresComerciales.Rows[e.NewEditIndex].FindControl("lblIdNomCom")).Text);
 
-            Response.Redirect("~/Interfaces/CreditosYCobranzas/frmCreYCobEvalCliente.aspx?nueva_eval=true&IdNomCom="
-                    + IdNomCom + "&IdCliente=" + txtNroRuc.Text + "&Pa=cliente");
+            //Response.Redirect("~/Interfaces/CreditosYCobranzas/frmCreYCobEvalCliente.aspx?nueva_eval=true&IdNomCom="
+            //        + IdNomCom + "&IdCliente=" + txtNroRuc.Text + "&Pa=cliente");
         }
 
         protected void cboTipoDoc_SelectedIndexChanged(object sender, EventArgs e)

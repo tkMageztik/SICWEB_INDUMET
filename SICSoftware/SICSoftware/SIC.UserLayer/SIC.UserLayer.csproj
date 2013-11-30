@@ -23,6 +23,17 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PublishDatabaseSettings>
+      <Objects>
+        <ObjectGroup Name="SICDBWEBEntities-Implementación" Order="1">
+          <Destination Path="SICDBWEB.db.11407737.hostedresource.com" />
+          <Object Type="dbFullSql">
+            <PreSource Path="Data Source=JUANYCARLA-PC%3bInitial Catalog=SICDBWEB_DES%3bUser ID=sa%3bPassword=899833245%3bApplication Name=EntityFramework" ScriptSchema="True" ScriptData="True" CopyAllFullTextCatalogs="False" />
+            <Source Path="obj\Debug\AutoScripts\SICDBWEBEntities-Implementación_SchemaAndData.sql" Transacted="True" />
+          </Object>
+        </ObjectGroup>
+      </Objects>
+    </PublishDatabaseSettings>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>

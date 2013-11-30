@@ -44,15 +44,10 @@
                                                                 </td>
                                                                 <td style="width: 20px">
                                                                 </td>
-                                                                <td class="txt-box-estilo">
-                                                                    Tipo :
+                                                                <td>
                                                                 </td>
                                                                 <td>
-                                                                    <asp:DropDownList ID="cboTipo" runat="server" AppendDataBoundItems="true" CssClass="slt_90x20">
-                                                                        <asp:ListItem Value="2">TODOS</asp:ListItem>
-                                                                        <asp:ListItem Value="1">AFILIADO</asp:ListItem>
-                                                                        <asp:ListItem Value="0">NO AFILIADO</asp:ListItem>
-                                                                    </asp:DropDownList>
+                                                                    &nbsp;
                                                                 </td>
                                                             </tr>
                                                         </table>
@@ -89,17 +84,15 @@
                                             PageSize="15" OnRowDeleting="gvLista_RowDeleting" BorderWidth="0px" ViewStateMode="Enabled"
                                             OnRowCreated="gvLista_RowCreated">
                                             <Columns>
-                                                <%--  <asp:BoundField DataField="nomb_com_c_iid" HeaderText="nomb_com_c_iid" Visible="False" />--%>
-                                                <asp:BoundField DataField="cli_c_vdoc_id" HeaderText="cli_c_cdoc_id" Visible="False" />
-                                                <%--  <asp:BoundField DataField="nomb_com_c_vnomb" HeaderText="NOMBRE COMERCIAL" />--%>
+                                                <asp:BoundField DataField="cli_c_vdoc_id" HeaderText="RUC" Visible="true" ItemStyle-HorizontalAlign="Center" />
                                                 <asp:BoundField DataField="cli_c_vraz_soc" ItemStyle-Width="35%" HeaderText="RAZÓN SOCIAL" />
                                                 <asp:BoundField DataField="cli_c_vrubro" ItemStyle-Width="35%" HeaderText="RUBRO" />
-                                                <asp:TemplateField HeaderText="TIPO">
+                                                <%--  <asp:TemplateField HeaderText="TIPO">
                                                     <ItemTemplate>
                                                         <%# (Boolean.Parse(Eval("cli_c_bgrupo_ibk").ToString())) ? "AFILIADO" : "NO AFILIADO"%>
                                                     </ItemTemplate>
                                                     <ItemStyle Width="10%" HorizontalAlign="Center" />
-                                                </asp:TemplateField>
+                                                </asp:TemplateField>--%>
                                                 <asp:CommandField HeaderText="" ButtonType="Link" EditText="Editar" ShowEditButton="True"
                                                     ItemStyle-Width="10%" ItemStyle-HorizontalAlign="center" />
                                                 <asp:CommandField HeaderText="" ButtonType="Link" DeleteText="Eliminar" ShowDeleteButton="True"
@@ -111,6 +104,8 @@
                                     </ContentTemplate>
                                     <Triggers>
                                         <asp:AsyncPostBackTrigger ControlID="btnBuscar" EventName="Click" />
+                                        <asp:AsyncPostBackTrigger ControlID="gvLista" EventName="PageIndexChanging" />
+                                        <asp:AsyncPostBackTrigger ControlID="gvLista" EventName="RowDeleting" />
                                     </Triggers>
                                 </asp:UpdatePanel>
                             </td>
@@ -254,6 +249,7 @@
                                                                                                     </ContentTemplate>
                                                                                                     <Triggers>
                                                                                                         <asp:AsyncPostBackTrigger ControlID="btnAgregarNombreComercial" EventName="Click" />
+                                                                                                        <asp:AsyncPostBackTrigger ControlID="gvLista" EventName="RowEditing" />
                                                                                                     </Triggers>
                                                                                                 </asp:UpdatePanel>
                                                                                             </div>
@@ -334,7 +330,7 @@
                                                                     <asp:TextBox ID="txtRazonSocial" runat="server" CssClass="ipt_250x20" MaxLength="200"></asp:TextBox>
                                                                 </td>
                                                                 <td class="txt-box-estilo">
-                                                                    Ruc <span class="requerido">(*)</span>
+                                                                    RUC <span class="requerido">(*)</span>
                                                                 </td>
                                                                 <td>
                                                                     <asp:TextBox ID="txtNroRuc" runat="server" CssClass="ipt_150x20" MaxLength="11" onkeypress="return SoloNumeros(event)"></asp:TextBox>
@@ -365,14 +361,10 @@
                                                                         Enabled="True" TargetControlID="txtTelefono" ValidChars="0123456789( ) - * #">
                                                                     </ajaxToolkit:FilteredTextBoxExtender>
                                                                 </td>
-                                                                <td class="txt-box-estilo">
-                                                                    Afiliado<span class="requerido">(*)</span>
+                                                                <td>
                                                                 </td>
                                                                 <td>
-                                                                    <asp:RadioButtonList ID="rbGrupoIbk" runat="server" CssClass="txt-box-estilo" RepeatDirection="Horizontal">
-                                                                        <asp:ListItem Selected="True" Value="0">No</asp:ListItem>
-                                                                        <asp:ListItem Value="1">Si</asp:ListItem>
-                                                                    </asp:RadioButtonList>
+                                                                    &nbsp;
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -803,7 +795,7 @@
             <asp:AsyncPostBackTrigger ControlID="btnCancelar" EventName="Click" />
             <asp:AsyncPostBackTrigger ControlID="btnCancelarContacto" EventName="Click" />
             <asp:AsyncPostBackTrigger ControlID="btnGuardarContacto" EventName="Click" />
-            <asp:AsyncPostBackTrigger ControlID="gvLista" EventName="RowEditing" />
+            <asp:AsyncPostBackTrigger ControlID="gvLista" EventName="RowDeleting" />
         </Triggers>
     </asp:UpdatePanel>
 </asp:Content>
