@@ -28,28 +28,6 @@ namespace SIC.DataLayer
                 throw;
             }
         }
-        public List<SIC_SP_CLIENTE_NOMCOMER_LISTAR_Result> ListarClienteNombreComerciales(string cli_c_vdoc_id, string cli_c_vraz_soc, string nomb_com_c_vnomb)
-        {
-            using (SICDBWEBEntities contexto = new SICDBWEBEntities())
-            {
-                return (from n in contexto.SIC_SP_CLIENTE_NOMCOMER_LISTAR(cli_c_vdoc_id, cli_c_vraz_soc, nomb_com_c_vnomb) select n).ToList();
-            }
-        }
-
-        public SIC_T_CLIENTE BuscarClienteNomComercial(string _nomcom)
-        {
-            try
-            {
-                using (SICDBWEBEntities contexto = new SICDBWEBEntities())
-                {
-                    return contexto.SIC_SP_CLI_NOMB_COMER_OBTENER(_nomcom).FirstOrDefault();
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
 
 
         public SIC_T_CLIENTE BuscarCliente(string _strRazSoc)
@@ -429,22 +407,14 @@ namespace SIC.DataLayer
             {
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
-                    int correlativoint = 0;
-                    //Primero recuperar el correlativo de cliente
-                    var Correlativo = (from x in contexto.SIC_T_CLIENTE
-                                       select x.cli_c_icorrelativo).Max();
-
-                    correlativoint = int.Parse(Correlativo.ToString());
-                    _pSIC_T_cliente.cli_c_icorrelativo = correlativoint + 1;
-                    _pSIC_T_cliente.cli_c_dfecharegistra = DateTime.Now;
                     contexto.AddToSIC_T_CLIENTE(_pSIC_T_cliente);
                     contexto.SaveChanges();
                     return true;
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return false;
+                throw e;
             }
             finally { }
 

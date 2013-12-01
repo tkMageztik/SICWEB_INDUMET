@@ -20,14 +20,13 @@ using System.Runtime.Serialization;
 
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_CLI_CONTACTO_SIC_T_CLI_CONTAC_CARGO", "SIC_T_CLI_CONTAC_CARGO", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_CLI_CONTAC_CARGO), "SIC_T_CLI_CONTACTO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_CLI_CONTACTO), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_CLI_DIRECCION_SIC_T_DISTRITO", "SIC_T_DISTRITO", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SIC.EntityLayer.SIC_T_DISTRITO), "SIC_T_CLI_DIRECCION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_CLI_DIRECCION), true)]
-[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_COLABORADOR_SIC_T_COLAB_AREA", "SIC_T_COLAB_AREA", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SIC.EntityLayer.SIC_T_COLAB_AREA), "SIC_T_COLABORADOR", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_COLABORADOR), true)]
-[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_COLABORADOR_SIC_T_COLAB_CARGO", "SIC_T_COLAB_CARGO", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SIC.EntityLayer.SIC_T_COLAB_CARGO), "SIC_T_COLABORADOR", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_COLABORADOR), true)]
-[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_COLAB_INM_SIC_T_COLABORADOR", "SIC_T_COLABORADOR", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_COLABORADOR), "SIC_T_COLAB_INM", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_COLAB_INM), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_PROVINCIA_SIC_T_DEPARTAMENTO", "SIC_T_DEPARTAMENTO", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_DEPARTAMENTO), "SIC_T_PROVINCIA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_PROVINCIA), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_DISTRITO_SIC_T_PROVINCIA", "SIC_T_PROVINCIA", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_PROVINCIA), "SIC_T_DISTRITO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_DISTRITO), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_ZONA_REPARTO_LUGAR_SIC_T_ZONA_REPARTO", "SIC_T_ZONA_REPARTO", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SIC.EntityLayer.SIC_T_ZONA_REPARTO), "SIC_T_ZONA_REPARTO_LUGAR", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_ZONA_REPARTO_LUGAR), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_PARAMETRO_DET_SIC_T_PARAMETRO", "SIC_T_PARAMETRO", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_PARAMETRO), "SIC_T_PARAMETRO_DET", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_PARAMETRO_DET), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_MENU_SIC_T_MENU", "SIC_T_MENU", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SIC.EntityLayer.SIC_T_MENU), "SIC_T_MENU1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_MENU), true)]
+[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_COLABORADOR_SIC_T_COLAB_AREA", "SIC_T_COLAB_AREA", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SIC.EntityLayer.SIC_T_COLAB_AREA), "SIC_T_COLABORADOR", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_COLABORADOR), true)]
+[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_COLABORADOR_SIC_T_COLAB_CARGO", "SIC_T_COLAB_CARGO", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SIC.EntityLayer.SIC_T_COLAB_CARGO), "SIC_T_COLABORADOR", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_COLABORADOR), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_CLI_CONTACTO_SIC_T_CLIENTE", "SIC_T_CLIENTE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_CLIENTE), "SIC_T_CLI_CONTACTO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_CLI_CONTACTO), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_CLI_DIRECCION_SIC_T_CLIENTE", "SIC_T_CLIENTE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_CLIENTE), "SIC_T_CLI_DIRECCION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_CLI_DIRECCION), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_CLI_NOMB_COM_SIC_T_CLIENTE", "SIC_T_CLIENTE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_CLIENTE), "SIC_T_CLI_NOMB_COM", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_CLI_NOMB_COM), true)]
@@ -216,38 +215,6 @@ namespace SIC.EntityLayer
         /// <summary>
         /// No hay documentación de metadatos disponible.
         /// </summary>
-        public ObjectSet<SIC_T_COLAB_INM> SIC_T_COLAB_INM
-        {
-            get
-            {
-                if ((_SIC_T_COLAB_INM == null))
-                {
-                    _SIC_T_COLAB_INM = base.CreateObjectSet<SIC_T_COLAB_INM>("SIC_T_COLAB_INM");
-                }
-                return _SIC_T_COLAB_INM;
-            }
-        }
-        private ObjectSet<SIC_T_COLAB_INM> _SIC_T_COLAB_INM;
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        public ObjectSet<SIC_T_COLABORADOR> SIC_T_COLABORADOR
-        {
-            get
-            {
-                if ((_SIC_T_COLABORADOR == null))
-                {
-                    _SIC_T_COLABORADOR = base.CreateObjectSet<SIC_T_COLABORADOR>("SIC_T_COLABORADOR");
-                }
-                return _SIC_T_COLABORADOR;
-            }
-        }
-        private ObjectSet<SIC_T_COLABORADOR> _SIC_T_COLABORADOR;
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
         public ObjectSet<SIC_T_DEPARTAMENTO> SIC_T_DEPARTAMENTO
         {
             get
@@ -376,22 +343,6 @@ namespace SIC.EntityLayer
         /// <summary>
         /// No hay documentación de metadatos disponible.
         /// </summary>
-        public ObjectSet<SIC_VW_CLIENTE_LISTA> SIC_VW_CLIENTE_LISTA
-        {
-            get
-            {
-                if ((_SIC_VW_CLIENTE_LISTA == null))
-                {
-                    _SIC_VW_CLIENTE_LISTA = base.CreateObjectSet<SIC_VW_CLIENTE_LISTA>("SIC_VW_CLIENTE_LISTA");
-                }
-                return _SIC_VW_CLIENTE_LISTA;
-            }
-        }
-        private ObjectSet<SIC_VW_CLIENTE_LISTA> _SIC_VW_CLIENTE_LISTA;
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
         public ObjectSet<SIC_T_MENU> SIC_T_MENU
         {
             get
@@ -424,6 +375,22 @@ namespace SIC.EntityLayer
         /// <summary>
         /// No hay documentación de metadatos disponible.
         /// </summary>
+        public ObjectSet<SIC_T_COLABORADOR> SIC_T_COLABORADOR
+        {
+            get
+            {
+                if ((_SIC_T_COLABORADOR == null))
+                {
+                    _SIC_T_COLABORADOR = base.CreateObjectSet<SIC_T_COLABORADOR>("SIC_T_COLABORADOR");
+                }
+                return _SIC_T_COLABORADOR;
+            }
+        }
+        private ObjectSet<SIC_T_COLABORADOR> _SIC_T_COLABORADOR;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
         public ObjectSet<SIC_T_CLIENTE> SIC_T_CLIENTE
         {
             get
@@ -436,6 +403,22 @@ namespace SIC.EntityLayer
             }
         }
         private ObjectSet<SIC_T_CLIENTE> _SIC_T_CLIENTE;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        public ObjectSet<SIC_VW_CLIENTE_LISTA> SIC_VW_CLIENTE_LISTA
+        {
+            get
+            {
+                if ((_SIC_VW_CLIENTE_LISTA == null))
+                {
+                    _SIC_VW_CLIENTE_LISTA = base.CreateObjectSet<SIC_VW_CLIENTE_LISTA>("SIC_VW_CLIENTE_LISTA");
+                }
+                return _SIC_VW_CLIENTE_LISTA;
+            }
+        }
+        private ObjectSet<SIC_VW_CLIENTE_LISTA> _SIC_VW_CLIENTE_LISTA;
 
         #endregion
         #region Métodos AddTo
@@ -505,22 +488,6 @@ namespace SIC.EntityLayer
         }
     
         /// <summary>
-        /// Método desusado para agregar un nuevo objeto al EntitySet SIC_T_COLAB_INM. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
-        /// </summary>
-        public void AddToSIC_T_COLAB_INM(SIC_T_COLAB_INM sIC_T_COLAB_INM)
-        {
-            base.AddObject("SIC_T_COLAB_INM", sIC_T_COLAB_INM);
-        }
-    
-        /// <summary>
-        /// Método desusado para agregar un nuevo objeto al EntitySet SIC_T_COLABORADOR. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
-        /// </summary>
-        public void AddToSIC_T_COLABORADOR(SIC_T_COLABORADOR sIC_T_COLABORADOR)
-        {
-            base.AddObject("SIC_T_COLABORADOR", sIC_T_COLABORADOR);
-        }
-    
-        /// <summary>
         /// Método desusado para agregar un nuevo objeto al EntitySet SIC_T_DEPARTAMENTO. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
         /// </summary>
         public void AddToSIC_T_DEPARTAMENTO(SIC_T_DEPARTAMENTO sIC_T_DEPARTAMENTO)
@@ -585,14 +552,6 @@ namespace SIC.EntityLayer
         }
     
         /// <summary>
-        /// Método desusado para agregar un nuevo objeto al EntitySet SIC_VW_CLIENTE_LISTA. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
-        /// </summary>
-        public void AddToSIC_VW_CLIENTE_LISTA(SIC_VW_CLIENTE_LISTA sIC_VW_CLIENTE_LISTA)
-        {
-            base.AddObject("SIC_VW_CLIENTE_LISTA", sIC_VW_CLIENTE_LISTA);
-        }
-    
-        /// <summary>
         /// Método desusado para agregar un nuevo objeto al EntitySet SIC_T_MENU. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
         /// </summary>
         public void AddToSIC_T_MENU(SIC_T_MENU sIC_T_MENU)
@@ -609,75 +568,31 @@ namespace SIC.EntityLayer
         }
     
         /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet SIC_T_COLABORADOR. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToSIC_T_COLABORADOR(SIC_T_COLABORADOR sIC_T_COLABORADOR)
+        {
+            base.AddObject("SIC_T_COLABORADOR", sIC_T_COLABORADOR);
+        }
+    
+        /// <summary>
         /// Método desusado para agregar un nuevo objeto al EntitySet SIC_T_CLIENTE. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
         /// </summary>
         public void AddToSIC_T_CLIENTE(SIC_T_CLIENTE sIC_T_CLIENTE)
         {
             base.AddObject("SIC_T_CLIENTE", sIC_T_CLIENTE);
         }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet SIC_VW_CLIENTE_LISTA. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToSIC_VW_CLIENTE_LISTA(SIC_VW_CLIENTE_LISTA sIC_VW_CLIENTE_LISTA)
+        {
+            base.AddObject("SIC_VW_CLIENTE_LISTA", sIC_VW_CLIENTE_LISTA);
+        }
 
         #endregion
         #region Importaciones de funciones
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        /// <param name="cli_c_vdoc_id">No hay documentación de metadatos disponible.</param>
-        /// <param name="cli_c_vraz_soc">No hay documentación de metadatos disponible.</param>
-        /// <param name="nomb_com_c_vnomb">No hay documentación de metadatos disponible.</param>
-        public ObjectResult<SIC_SP_CLIENTE_NOMCOMER_LISTAR_Result> SIC_SP_CLIENTE_NOMCOMER_LISTAR(global::System.String cli_c_vdoc_id, global::System.String cli_c_vraz_soc, global::System.String nomb_com_c_vnomb)
-        {
-            ObjectParameter cli_c_vdoc_idParameter;
-            if (cli_c_vdoc_id != null)
-            {
-                cli_c_vdoc_idParameter = new ObjectParameter("cli_c_vdoc_id", cli_c_vdoc_id);
-            }
-            else
-            {
-                cli_c_vdoc_idParameter = new ObjectParameter("cli_c_vdoc_id", typeof(global::System.String));
-            }
-    
-            ObjectParameter cli_c_vraz_socParameter;
-            if (cli_c_vraz_soc != null)
-            {
-                cli_c_vraz_socParameter = new ObjectParameter("cli_c_vraz_soc", cli_c_vraz_soc);
-            }
-            else
-            {
-                cli_c_vraz_socParameter = new ObjectParameter("cli_c_vraz_soc", typeof(global::System.String));
-            }
-    
-            ObjectParameter nomb_com_c_vnombParameter;
-            if (nomb_com_c_vnomb != null)
-            {
-                nomb_com_c_vnombParameter = new ObjectParameter("nomb_com_c_vnomb", nomb_com_c_vnomb);
-            }
-            else
-            {
-                nomb_com_c_vnombParameter = new ObjectParameter("nomb_com_c_vnomb", typeof(global::System.String));
-            }
-    
-            return base.ExecuteFunction<SIC_SP_CLIENTE_NOMCOMER_LISTAR_Result>("SIC_SP_CLIENTE_NOMCOMER_LISTAR", cli_c_vdoc_idParameter, cli_c_vraz_socParameter, nomb_com_c_vnombParameter);
-        }
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        /// <param name="iNTCODIGOAREA">No hay documentación de metadatos disponible.</param>
-        public ObjectResult<SIC_SP_CLIENTE_LISTAR_COLABORADORES_POR_AREA_Result> SIC_SP_CLIENTE_LISTAR_COLABORADORES_POR_AREA(Nullable<global::System.Byte> iNTCODIGOAREA)
-        {
-            ObjectParameter iNTCODIGOAREAParameter;
-            if (iNTCODIGOAREA.HasValue)
-            {
-                iNTCODIGOAREAParameter = new ObjectParameter("INTCODIGOAREA", iNTCODIGOAREA);
-            }
-            else
-            {
-                iNTCODIGOAREAParameter = new ObjectParameter("INTCODIGOAREA", typeof(global::System.Byte));
-            }
-    
-            return base.ExecuteFunction<SIC_SP_CLIENTE_LISTAR_COLABORADORES_POR_AREA_Result>("SIC_SP_CLIENTE_LISTAR_COLABORADORES_POR_AREA", iNTCODIGOAREAParameter);
-        }
     
         /// <summary>
         /// No hay documentación de metadatos disponible.
@@ -1164,44 +1079,6 @@ namespace SIC.EntityLayer
         /// <summary>
         /// No hay documentación de metadatos disponible.
         /// </summary>
-        /// <param name="nombre_comercial">No hay documentación de metadatos disponible.</param>
-        public ObjectResult<SIC_T_CLIENTE> SIC_SP_CLI_NOMB_COMER_OBTENER(global::System.String nombre_comercial)
-        {
-            ObjectParameter nombre_comercialParameter;
-            if (nombre_comercial != null)
-            {
-                nombre_comercialParameter = new ObjectParameter("nombre_comercial", nombre_comercial);
-            }
-            else
-            {
-                nombre_comercialParameter = new ObjectParameter("nombre_comercial", typeof(global::System.String));
-            }
-    
-            return base.ExecuteFunction<SIC_T_CLIENTE>("SIC_SP_CLI_NOMB_COMER_OBTENER", nombre_comercialParameter);
-        }
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        /// <param name="mergeOption"></param>
-        /// <param name="nombre_comercial">No hay documentación de metadatos disponible.</param>
-        public ObjectResult<SIC_T_CLIENTE> SIC_SP_CLI_NOMB_COMER_OBTENER(global::System.String nombre_comercial, MergeOption mergeOption)
-        {
-            ObjectParameter nombre_comercialParameter;
-            if (nombre_comercial != null)
-            {
-                nombre_comercialParameter = new ObjectParameter("nombre_comercial", nombre_comercial);
-            }
-            else
-            {
-                nombre_comercialParameter = new ObjectParameter("nombre_comercial", typeof(global::System.String));
-            }
-    
-            return base.ExecuteFunction<SIC_T_CLIENTE>("SIC_SP_CLI_NOMB_COMER_OBTENER", mergeOption, nombre_comercialParameter);
-        }
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
         /// <param name="cli_c_vdoc_id">No hay documentación de metadatos disponible.</param>
         public int SIC_SP_DESHABILITAR_CLIENTE(global::System.String cli_c_vdoc_id)
         {
@@ -1254,6 +1131,25 @@ namespace SIC.EntityLayer
             }
     
             return base.ExecuteFunction<SIC_T_NOMB_COM>("SIC_SP_NOMBRE_COMERCIAL_LISTAR", mergeOption, cLI_C_VDOC_IDParameter);
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="iNTCODIGOAREA">No hay documentación de metadatos disponible.</param>
+        public ObjectResult<SIC_SP_CLIENTE_LISTAR_COLABORADORES_POR_AREA_Result> SIC_SP_CLIENTE_LISTAR_COLABORADORES_POR_AREA(Nullable<global::System.Byte> iNTCODIGOAREA)
+        {
+            ObjectParameter iNTCODIGOAREAParameter;
+            if (iNTCODIGOAREA.HasValue)
+            {
+                iNTCODIGOAREAParameter = new ObjectParameter("INTCODIGOAREA", iNTCODIGOAREA);
+            }
+            else
+            {
+                iNTCODIGOAREAParameter = new ObjectParameter("INTCODIGOAREA", typeof(global::System.Byte));
+            }
+    
+            return base.ExecuteFunction<SIC_SP_CLIENTE_LISTAR_COLABORADORES_POR_AREA_Result>("SIC_SP_CLIENTE_LISTAR_COLABORADORES_POR_AREA", iNTCODIGOAREAParameter);
         }
     
         /// <summary>
@@ -2507,13 +2403,11 @@ namespace SIC.EntityLayer
         /// Crear un nuevo objeto SIC_T_CLIENTE.
         /// </summary>
         /// <param name="cli_c_vdoc_id">Valor inicial de la propiedad cli_c_vdoc_id.</param>
-        /// <param name="cli_c_icorrelativo">Valor inicial de la propiedad cli_c_icorrelativo.</param>
         /// <param name="cli_c_dfecharegistra">Valor inicial de la propiedad cli_c_dfecharegistra.</param>
-        public static SIC_T_CLIENTE CreateSIC_T_CLIENTE(global::System.String cli_c_vdoc_id, global::System.Int32 cli_c_icorrelativo, global::System.DateTime cli_c_dfecharegistra)
+        public static SIC_T_CLIENTE CreateSIC_T_CLIENTE(global::System.String cli_c_vdoc_id, global::System.DateTime cli_c_dfecharegistra)
         {
             SIC_T_CLIENTE sIC_T_CLIENTE = new SIC_T_CLIENTE();
             sIC_T_CLIENTE.cli_c_vdoc_id = cli_c_vdoc_id;
-            sIC_T_CLIENTE.cli_c_icorrelativo = cli_c_icorrelativo;
             sIC_T_CLIENTE.cli_c_dfecharegistra = cli_c_dfecharegistra;
             return sIC_T_CLIENTE;
         }
@@ -2787,30 +2681,6 @@ namespace SIC.EntityLayer
         private Nullable<global::System.Byte> _zona_rep_c_yid;
         partial void Onzona_rep_c_yidChanging(Nullable<global::System.Byte> value);
         partial void Onzona_rep_c_yidChanged();
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 cli_c_icorrelativo
-        {
-            get
-            {
-                return _cli_c_icorrelativo;
-            }
-            set
-            {
-                Oncli_c_icorrelativoChanging(value);
-                ReportPropertyChanging("cli_c_icorrelativo");
-                _cli_c_icorrelativo = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("cli_c_icorrelativo");
-                Oncli_c_icorrelativoChanged();
-            }
-        }
-        private global::System.Int32 _cli_c_icorrelativo;
-        partial void Oncli_c_icorrelativoChanging(global::System.Int32 value);
-        partial void Oncli_c_icorrelativoChanged();
     
         /// <summary>
         /// No hay documentación de metadatos disponible.
@@ -3282,131 +3152,6 @@ namespace SIC.EntityLayer
     /// <summary>
     /// No hay documentación de metadatos disponible.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="SICDBWEBModel", Name="SIC_T_COLAB_INM")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class SIC_T_COLAB_INM : EntityObject
-    {
-        #region Método de generador
-    
-        /// <summary>
-        /// Crear un nuevo objeto SIC_T_COLAB_INM.
-        /// </summary>
-        /// <param name="colab_c_cdoc_id">Valor inicial de la propiedad colab_c_cdoc_id.</param>
-        /// <param name="inm_c_icod">Valor inicial de la propiedad inm_c_icod.</param>
-        public static SIC_T_COLAB_INM CreateSIC_T_COLAB_INM(global::System.String colab_c_cdoc_id, global::System.Int32 inm_c_icod)
-        {
-            SIC_T_COLAB_INM sIC_T_COLAB_INM = new SIC_T_COLAB_INM();
-            sIC_T_COLAB_INM.colab_c_cdoc_id = colab_c_cdoc_id;
-            sIC_T_COLAB_INM.inm_c_icod = inm_c_icod;
-            return sIC_T_COLAB_INM;
-        }
-
-        #endregion
-        #region Propiedades primitivas
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String colab_c_cdoc_id
-        {
-            get
-            {
-                return _colab_c_cdoc_id;
-            }
-            set
-            {
-                if (_colab_c_cdoc_id != value)
-                {
-                    Oncolab_c_cdoc_idChanging(value);
-                    ReportPropertyChanging("colab_c_cdoc_id");
-                    _colab_c_cdoc_id = StructuralObject.SetValidValue(value, false);
-                    ReportPropertyChanged("colab_c_cdoc_id");
-                    Oncolab_c_cdoc_idChanged();
-                }
-            }
-        }
-        private global::System.String _colab_c_cdoc_id;
-        partial void Oncolab_c_cdoc_idChanging(global::System.String value);
-        partial void Oncolab_c_cdoc_idChanged();
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 inm_c_icod
-        {
-            get
-            {
-                return _inm_c_icod;
-            }
-            set
-            {
-                if (_inm_c_icod != value)
-                {
-                    Oninm_c_icodChanging(value);
-                    ReportPropertyChanging("inm_c_icod");
-                    _inm_c_icod = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("inm_c_icod");
-                    Oninm_c_icodChanged();
-                }
-            }
-        }
-        private global::System.Int32 _inm_c_icod;
-        partial void Oninm_c_icodChanging(global::System.Int32 value);
-        partial void Oninm_c_icodChanged();
-
-        #endregion
-    
-        #region Propiedades de navegación
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_COLAB_INM_SIC_T_COLABORADOR", "SIC_T_COLABORADOR")]
-        public SIC_T_COLABORADOR SIC_T_COLABORADOR
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_COLABORADOR>("SICDBWEBModel.FK_SIC_T_COLAB_INM_SIC_T_COLABORADOR", "SIC_T_COLABORADOR").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_COLABORADOR>("SICDBWEBModel.FK_SIC_T_COLAB_INM_SIC_T_COLABORADOR", "SIC_T_COLABORADOR").Value = value;
-            }
-        }
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<SIC_T_COLABORADOR> SIC_T_COLABORADORReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_COLABORADOR>("SICDBWEBModel.FK_SIC_T_COLAB_INM_SIC_T_COLABORADOR", "SIC_T_COLABORADOR");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SIC_T_COLABORADOR>("SICDBWEBModel.FK_SIC_T_COLAB_INM_SIC_T_COLABORADOR", "SIC_T_COLABORADOR", value);
-                }
-            }
-        }
-
-        #endregion
-    }
-    
-    /// <summary>
-    /// No hay documentación de metadatos disponible.
-    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="SICDBWEBModel", Name="SIC_T_COLABORADOR")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -3556,30 +3301,6 @@ namespace SIC.EntityLayer
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String colab_c_vpass
-        {
-            get
-            {
-                return _colab_c_vpass;
-            }
-            set
-            {
-                Oncolab_c_vpassChanging(value);
-                ReportPropertyChanging("colab_c_vpass");
-                _colab_c_vpass = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("colab_c_vpass");
-                Oncolab_c_vpassChanged();
-            }
-        }
-        private global::System.String _colab_c_vpass;
-        partial void Oncolab_c_vpassChanging(global::System.String value);
-        partial void Oncolab_c_vpassChanged();
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public Nullable<global::System.Byte> colab_area_c_yid
         {
             get
@@ -3622,30 +3343,6 @@ namespace SIC.EntityLayer
         private Nullable<global::System.Byte> _colab_cargo_c_yid;
         partial void Oncolab_cargo_c_yidChanging(Nullable<global::System.Byte> value);
         partial void Oncolab_cargo_c_yidChanged();
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Byte> colab_c_flag_yedit
-        {
-            get
-            {
-                return _colab_c_flag_yedit;
-            }
-            set
-            {
-                Oncolab_c_flag_yeditChanging(value);
-                ReportPropertyChanging("colab_c_flag_yedit");
-                _colab_c_flag_yedit = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("colab_c_flag_yedit");
-                Oncolab_c_flag_yeditChanged();
-            }
-        }
-        private Nullable<global::System.Byte> _colab_c_flag_yedit;
-        partial void Oncolab_c_flag_yeditChanging(Nullable<global::System.Byte> value);
-        partial void Oncolab_c_flag_yeditChanged();
 
         #endregion
     
@@ -3723,28 +3420,6 @@ namespace SIC.EntityLayer
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SIC_T_COLAB_CARGO>("SICDBWEBModel.FK_SIC_T_COLABORADOR_SIC_T_COLAB_CARGO", "SIC_T_COLAB_CARGO", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_COLAB_INM_SIC_T_COLABORADOR", "SIC_T_COLAB_INM")]
-        public EntityCollection<SIC_T_COLAB_INM> SIC_T_COLAB_INM
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SIC_T_COLAB_INM>("SICDBWEBModel.FK_SIC_T_COLAB_INM_SIC_T_COLABORADOR", "SIC_T_COLAB_INM");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SIC_T_COLAB_INM>("SICDBWEBModel.FK_SIC_T_COLAB_INM_SIC_T_COLABORADOR", "SIC_T_COLAB_INM", value);
                 }
             }
         }
@@ -5694,30 +5369,6 @@ namespace SIC.EntityLayer
         private global::System.String _cli_c_vraz_soc;
         partial void Oncli_c_vraz_socChanging(global::System.String value);
         partial void Oncli_c_vraz_socChanged();
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> cli_c_bgrupo_ibk
-        {
-            get
-            {
-                return _cli_c_bgrupo_ibk;
-            }
-            set
-            {
-                Oncli_c_bgrupo_ibkChanging(value);
-                ReportPropertyChanging("cli_c_bgrupo_ibk");
-                _cli_c_bgrupo_ibk = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("cli_c_bgrupo_ibk");
-                Oncli_c_bgrupo_ibkChanged();
-            }
-        }
-        private Nullable<global::System.Boolean> _cli_c_bgrupo_ibk;
-        partial void Oncli_c_bgrupo_ibkChanging(Nullable<global::System.Boolean> value);
-        partial void Oncli_c_bgrupo_ibkChanged();
 
         #endregion
     
@@ -5899,30 +5550,6 @@ namespace SIC.EntityLayer
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String colab_c_vpass
-        {
-            get
-            {
-                return _colab_c_vpass;
-            }
-            set
-            {
-                Oncolab_c_vpassChanging(value);
-                ReportPropertyChanging("colab_c_vpass");
-                _colab_c_vpass = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("colab_c_vpass");
-                Oncolab_c_vpassChanged();
-            }
-        }
-        private global::System.String _colab_c_vpass;
-        partial void Oncolab_c_vpassChanging(global::System.String value);
-        partial void Oncolab_c_vpassChanged();
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public Nullable<global::System.Byte> colab_area_c_yid
         {
             get
@@ -5965,205 +5592,6 @@ namespace SIC.EntityLayer
         private Nullable<global::System.Byte> _colab_cargo_c_yid;
         partial void Oncolab_cargo_c_yidChanging(Nullable<global::System.Byte> value);
         partial void Oncolab_cargo_c_yidChanged();
-
-        #endregion
-    }
-    
-    /// <summary>
-    /// No hay documentación de metadatos disponible.
-    /// </summary>
-    [EdmComplexTypeAttribute(NamespaceName="SICDBWEBModel", Name="SIC_SP_CLIENTE_NOMCOMER_LISTAR_Result")]
-    [DataContractAttribute(IsReference=true)]
-    [Serializable()]
-    public partial class SIC_SP_CLIENTE_NOMCOMER_LISTAR_Result : ComplexObject
-    {
-        #region Método de generador
-    
-        /// <summary>
-        /// Crear un nuevo objeto SIC_SP_CLIENTE_NOMCOMER_LISTAR_Result.
-        /// </summary>
-        /// <param name="cli_c_vdoc_id">Valor inicial de la propiedad cli_c_vdoc_id.</param>
-        /// <param name="nomb_com_c_iid">Valor inicial de la propiedad nomb_com_c_iid.</param>
-        /// <param name="afiliado">Valor inicial de la propiedad afiliado.</param>
-        public static SIC_SP_CLIENTE_NOMCOMER_LISTAR_Result CreateSIC_SP_CLIENTE_NOMCOMER_LISTAR_Result(global::System.String cli_c_vdoc_id, global::System.Int32 nomb_com_c_iid, global::System.String afiliado)
-        {
-            SIC_SP_CLIENTE_NOMCOMER_LISTAR_Result sIC_SP_CLIENTE_NOMCOMER_LISTAR_Result = new SIC_SP_CLIENTE_NOMCOMER_LISTAR_Result();
-            sIC_SP_CLIENTE_NOMCOMER_LISTAR_Result.cli_c_vdoc_id = cli_c_vdoc_id;
-            sIC_SP_CLIENTE_NOMCOMER_LISTAR_Result.nomb_com_c_iid = nomb_com_c_iid;
-            sIC_SP_CLIENTE_NOMCOMER_LISTAR_Result.afiliado = afiliado;
-            return sIC_SP_CLIENTE_NOMCOMER_LISTAR_Result;
-        }
-
-        #endregion
-        #region Propiedades primitivas
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String cli_c_vraz_soc
-        {
-            get
-            {
-                return _cli_c_vraz_soc;
-            }
-            set
-            {
-                Oncli_c_vraz_socChanging(value);
-                ReportPropertyChanging("cli_c_vraz_soc");
-                _cli_c_vraz_soc = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("cli_c_vraz_soc");
-                Oncli_c_vraz_socChanged();
-            }
-        }
-        private global::System.String _cli_c_vraz_soc;
-        partial void Oncli_c_vraz_socChanging(global::System.String value);
-        partial void Oncli_c_vraz_socChanged();
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String cli_c_vdoc_id
-        {
-            get
-            {
-                return _cli_c_vdoc_id;
-            }
-            set
-            {
-                Oncli_c_vdoc_idChanging(value);
-                ReportPropertyChanging("cli_c_vdoc_id");
-                _cli_c_vdoc_id = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("cli_c_vdoc_id");
-                Oncli_c_vdoc_idChanged();
-            }
-        }
-        private global::System.String _cli_c_vdoc_id;
-        partial void Oncli_c_vdoc_idChanging(global::System.String value);
-        partial void Oncli_c_vdoc_idChanged();
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String nomb_com_c_vnomb
-        {
-            get
-            {
-                return _nomb_com_c_vnomb;
-            }
-            set
-            {
-                Onnomb_com_c_vnombChanging(value);
-                ReportPropertyChanging("nomb_com_c_vnomb");
-                _nomb_com_c_vnomb = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("nomb_com_c_vnomb");
-                Onnomb_com_c_vnombChanged();
-            }
-        }
-        private global::System.String _nomb_com_c_vnomb;
-        partial void Onnomb_com_c_vnombChanging(global::System.String value);
-        partial void Onnomb_com_c_vnombChanged();
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 nomb_com_c_iid
-        {
-            get
-            {
-                return _nomb_com_c_iid;
-            }
-            set
-            {
-                Onnomb_com_c_iidChanging(value);
-                ReportPropertyChanging("nomb_com_c_iid");
-                _nomb_com_c_iid = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("nomb_com_c_iid");
-                Onnomb_com_c_iidChanged();
-            }
-        }
-        private global::System.Int32 _nomb_com_c_iid;
-        partial void Onnomb_com_c_iidChanging(global::System.Int32 value);
-        partial void Onnomb_com_c_iidChanged();
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String cli_c_vpartida
-        {
-            get
-            {
-                return _cli_c_vpartida;
-            }
-            set
-            {
-                Oncli_c_vpartidaChanging(value);
-                ReportPropertyChanging("cli_c_vpartida");
-                _cli_c_vpartida = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("cli_c_vpartida");
-                Oncli_c_vpartidaChanged();
-            }
-        }
-        private global::System.String _cli_c_vpartida;
-        partial void Oncli_c_vpartidaChanging(global::System.String value);
-        partial void Oncli_c_vpartidaChanged();
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String afiliado
-        {
-            get
-            {
-                return _afiliado;
-            }
-            set
-            {
-                OnafiliadoChanging(value);
-                ReportPropertyChanging("afiliado");
-                _afiliado = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("afiliado");
-                OnafiliadoChanged();
-            }
-        }
-        private global::System.String _afiliado;
-        partial void OnafiliadoChanging(global::System.String value);
-        partial void OnafiliadoChanged();
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String Cobrador
-        {
-            get
-            {
-                return _Cobrador;
-            }
-            set
-            {
-                OnCobradorChanging(value);
-                ReportPropertyChanging("Cobrador");
-                _Cobrador = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Cobrador");
-                OnCobradorChanged();
-            }
-        }
-        private global::System.String _Cobrador;
-        partial void OnCobradorChanging(global::System.String value);
-        partial void OnCobradorChanged();
 
         #endregion
     }

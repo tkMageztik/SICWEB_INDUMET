@@ -13,5 +13,15 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         {
 
         }
+
+        protected void btnGuardar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

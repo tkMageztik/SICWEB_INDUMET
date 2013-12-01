@@ -55,6 +55,7 @@
       <HintPath>..\packages\AjaxControlToolkit.7.0607\lib\40\SanitizerProviders\SanitizerProviders.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -78,18 +79,14 @@
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="bin\AjaxControlToolkit.dll" />
+    <Content Include="bin\ClassLibrary1.dll" />
     <Content Include="bin\HtmlAgilityPack.dll" />
     <Content Include="bin\SanitizerProviders.dll" />
     <Content Include="bin\SIC.Data.dll" />
-    <Content Include="bin\SIC.Data.pdb" />
     <Content Include="bin\SIC.DataLayer.dll" />
-    <Content Include="bin\SIC.DataLayer.pdb" />
     <Content Include="bin\SIC.EntityLayer.dll" />
-    <Content Include="bin\SIC.EntityLayer.pdb" />
     <Content Include="bin\SIC.UIGeneral.dll" />
-    <Content Include="bin\SIC.UIGeneral.pdb" />
     <Content Include="bin\SIC.UserLayer.dll" />
-    <Content Include="bin\SIC.UserLayer.pdb" />
     <Content Include="Bootstrap\css\bootstrap-responsive.css" />
     <Content Include="Bootstrap\css\bootstrap-responsive.min.css" />
     <Content Include="Bootstrap\css\bootstrap.css" />
@@ -98,6 +95,7 @@
     <Content Include="Bootstrap\img\glyphicons-halflings.png" />
     <Content Include="Bootstrap\js\bootstrap.js" />
     <Content Include="Bootstrap\js\bootstrap.min.js" />
+    <Content Include="Global.asax" />
     <Content Include="Imagenes\advance.jpg" />
     <Content Include="Imagenes\animated_favicon1.gif" />
     <Content Include="Imagenes\arrows-ffffff.png" />
@@ -185,7 +183,24 @@
     <Content Include="Imagenes\warning.png" />
     <Content Include="Default.aspx" />
     <Content Include="Interfaces\Mantenimiento\frmRegCliente.aspx" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Content Include="Interfaces\Mantenimiento\frmRegItem.aspx" />
+    <Compile Include="Interfaces\Mantenimiento\frmRegItem.aspx.cs">
+      <DependentUpon>frmRegItem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Interfaces\Mantenimiento\frmRegItem.aspx.designer.cs">
+      <DependentUpon>frmRegItem.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\Mantenimiento\frmRegOC.aspx.cs">
+      <DependentUpon>frmRegOC.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Interfaces\Mantenimiento\frmRegOC.aspx.designer.cs">
+      <DependentUpon>frmRegOC.aspx</DependentUpon>
+    </Compile>
     <Content Include="Interfaces\Mantenimiento\frmRegOC.aspx" />
     <Content Include="Styles\chosen-sprite%402x.png" />
     <Content Include="Styles\chosen-sprite.png" />
@@ -200,7 +215,6 @@
     <Content Include="Styles\MenuMatic.css" />
     <Content Include="Styles\progress.css" />
     <Content Include="Styles\Site.css" />
-    <Content Include="Global.asax" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
@@ -261,9 +275,6 @@
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -284,20 +295,6 @@
     </Compile>
     <Compile Include="Interfaces\Mantenimiento\frmRegCliente.aspx.designer.cs">
       <DependentUpon>frmRegCliente.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Interfaces\Mantenimiento\frmRegItem.aspx.cs">
-      <DependentUpon>frmRegItem.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Interfaces\Mantenimiento\frmRegItem.aspx.designer.cs">
-      <DependentUpon>frmRegItem.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Interfaces\Mantenimiento\frmRegOC.aspx.cs">
-      <DependentUpon>frmRegOC.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Interfaces\Mantenimiento\frmRegOC.aspx.designer.cs">
-      <DependentUpon>frmRegOC.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
@@ -363,7 +360,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>50050</DevelopmentServerPort>
+          <DevelopmentServerPort>59663</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

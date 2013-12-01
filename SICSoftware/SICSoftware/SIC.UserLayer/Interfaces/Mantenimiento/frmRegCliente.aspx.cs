@@ -436,14 +436,14 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 i++;
             }
 
-            string directorio = @"D:\\CREDITOS";
-            string directorio_creditos = directorio;//System.Configuration.ConfigurationManager.AppSettings["DIRECTORIO_USUARIO"];
-            string directorio_credito_comercial = directorio_creditos + "/{0}_{1}";
-            foreach (var nComerciales in BorrarNombresComerciales)
-            {
-                _cliente.RomperRelacion(_tCliente.cli_c_vdoc_id, nComerciales.nomb_com_c_iid);
-                System.IO.Directory.Delete(string.Format(directorio_credito_comercial, nComerciales.nomb_com_c_iid, nComerciales.nomb_com_c_vnomb.Replace(" ", "_")));
-            }
+            //string directorio = @"D:\\CREDITOS";
+            //string directorio_creditos = directorio;//System.Configuration.ConfigurationManager.AppSettings["DIRECTORIO_USUARIO"];
+            //string directorio_credito_comercial = directorio_creditos + "/{0}_{1}";
+            //foreach (var nComerciales in BorrarNombresComerciales)
+            //{
+            //    _cliente.RomperRelacion(_tCliente.cli_c_vdoc_id, nComerciales.nomb_com_c_iid);
+            //    System.IO.Directory.Delete(string.Format(directorio_credito_comercial, nComerciales.nomb_com_c_iid, nComerciales.nomb_com_c_vnomb.Replace(" ", "_")));
+            //}
 
             BorrarNombresComerciales.Clear();
         }
@@ -459,6 +459,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 _clienteNuevo.cli_c_vpartida = txtNumeroPartida.Text.Trim().ToUpper();
                 _clienteNuevo.cli_c_vrubro = txtRubroDetallado.Text.Trim().ToUpper();
                 _clienteNuevo.cli_c_ctlf = txtTelefono.Text.Trim();
+                _clienteNuevo.cli_c_dfecharegistra = DateTime.Now;
                 try
                 {
                     _clienteNuevo.cli_c_dfec_aniv = Convert.ToDateTime(txtFechaAniversario.Text);
@@ -957,10 +958,6 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             ViewState["vsBorrarContactos"] = null;
             ViewState["vsUbigeos"] = null;
         }
-        private void limpiarViews()
-        {
-
-        }
 
         protected void btnCancelarContacto_Click(object sender, EventArgs e)
         {
@@ -1067,7 +1064,6 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                     enlazarNombresComerciales();
                     guardarContactos();
 
-                    mvCliente.ActiveViewIndex = 1;
                     gvNombresComerciales.Columns[2].Visible = true;
                 }
                 if (gvLista.EditIndex > -1)
@@ -1079,20 +1075,17 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                     guardarContactos();
                     modificarContactos();
 
-                    mvCliente.ActiveViewIndex = 1;
+                    gvLista.EditIndex = -1;
                 }
 
-                ListarNomComerciales();
-                ListarDirecciones();
+                limpiarViewsTodos();
 
-                limpiarViews();
-                //TODO: Revisar guardado de clientes, desde modificar al guardar por 
-                //segunda vez gvLista.EditIndex = -1;
-
+                gvLista.EditIndex = -1;
+                ListarClientes();
+                mvCliente.ActiveViewIndex = 0;
 
                 txtNroRuc.ReadOnly = false;
                 txtNroRuc.Enabled = false;
-                gvLista.EditIndex = 0;
             }
             else
             {

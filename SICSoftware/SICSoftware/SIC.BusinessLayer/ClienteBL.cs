@@ -25,10 +25,7 @@ namespace SIC.BusinessLayer
         {
             return new ClienteDA().ListarColaboradoresPorArea(area);
         }
-        public List<SIC_SP_CLIENTE_NOMCOMER_LISTAR_Result> ListarClienteNombreComerciales(string cli_c_vdoc_id, string cli_c_vraz_soc, string nomb_com_c_vnomb)
-        {
-            return new ClienteDA().ListarClienteNombreComerciales(cli_c_vdoc_id, cli_c_vraz_soc, nomb_com_c_vnomb);
-        }
+
         public SIC_T_CLI_CONTAC_CARGO[] ListarCargosContacto()
         {
             return new ClienteDA().ListarCargosContacto();
@@ -108,16 +105,12 @@ namespace SIC.BusinessLayer
         {
             return new ClienteDA().BuscarClientexRuc(_ruc);
         }
-        public SIC_T_CLIENTE BuscarClienteNomComercial(string _nomcom)
-        {
-            return new ClienteDA().BuscarClienteNomComercial(_nomcom);
-        }
 
         public List<SIC_T_NOMB_COM> ListarNombresComerciales(string codCliente)
         {
             return new ClienteDA().ListarNombresComerciales(codCliente);
         }
-       
+
         public List<SIC_T_PARAMETRO_DET> Listar_DocumentosIdentidad()
         {
             return new ClienteDA().Listar_DocumentosIdentidad();
@@ -213,7 +206,7 @@ namespace SIC.BusinessLayer
 
         public List<SIC_T_CLIENTE> ListarClientes(SIC_T_CLIENTE obj)
         {
-            return new ClienteDA().ListarClientes( obj);
+            return new ClienteDA().ListarClientes(obj);
         }
 
         public SIC_T_CLI_DIRECCION DireccionPorRuc(string _strcli_c_cdoc_id)

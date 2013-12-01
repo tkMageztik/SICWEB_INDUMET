@@ -1,0 +1,224 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="SIC.UserLayer.SiteMaster" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<%@ Register Src="~/UserControl/wucMenuDinamico.ascx" TagName="wucMenuDinamico" TagPrefix="uc1" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head id="Head1" runat="server">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="Styles/superfish.css" media="screen" />
+    <link href="Styles/css2.css" rel="stylesheet" type="text/css" />
+    <link href="Bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="Bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
+    <link href="Styles/MenuMatic.css" rel="stylesheet" type="text/css" />
+    <link href="Styles/cssRecibo.css" rel="stylesheet" type="text/css" />
+    <script src="http://localhost:56928/Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
+    <%--<script type="text/javascript" src="../../Scripts/hoverIntent.js"></script>
+    <script type="text/javascript" src="../../Scripts/superfish.js"></script>--%>
+    <script type="text/javascript">
+        // initialise plugins
+        jQuery(function () {
+            //jQuery('ul.sf-menu').superfish();
+        });
+
+        var frameopen = true;
+        function toggleMenu() {
+            if (frameopen) {
+                //            <!--window.parent.top.frameset.cols = "0,*";-->
+                top.document.getElementById('frameset').cols = "0, *";
+                document.getElementById('menu').src = 'images/b_openmenu.gif';
+                document.getElementById('menu').width = 51;
+                document.getElementById('menu').height = 15;
+                //        document.getElementById('menu').align = 'texttop';
+                document.getElementById('menu').hspace = 0;
+                document.getElementById('menu').alt = 'Desplegar menú ';
+                frameopen = false;
+            } else {
+                //<!--window.parent.top.frameset.cols = "200,*";-->
+                top.document.getElementById('frameset').cols = "150, *";
+                document.getElementById('menu').src = 'images/pixelb.gif';
+                document.getElementById('menu').width = 1;
+                document.getElementById('menu').height = 1;
+                frameopen = true;
+            }
+        }
+
+        function show5() {
+            if (!document.layers && !document.all && !document.getElementById)
+                return
+
+            var Digital = new Date()
+            var hours = Digital.getHours()
+            var minutes = Digital.getMinutes()
+            var seconds = Digital.getSeconds()
+
+            var dn = "pm"
+            if (hours < 12)
+                dn = "am"
+            if (hours > 12)
+                hours = hours - 12
+            if (hours == 0)
+                hours = 12
+
+            if (minutes <= 9)
+                minutes = "0" + minutes
+            if (seconds <= 9)
+                seconds = "0" + seconds
+            //change font size here to your desire
+            dows = new Array("Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado");
+            months = new Array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
+            now = new Date();
+            dow = now.getDay();
+            d = now.getDate();
+            m = now.getMonth();
+            h = now.getTime();
+            y = now.getFullYear();  //now.getYear() DEPRECATED
+            myclock = dows[dow] + " " + d + " de " + months[m] + " de " + y + " " + hours + ":" + minutes + ":"
+             + seconds + " " + dn + "&nbsp;"
+            if (document.layers) {
+                document.layers.liveclock.document.write(myclock)
+                document.layers.liveclock.document.close()
+            }
+            else if (document.all)
+                liveclock.innerHTML = myclock
+            else if (document.getElementById)
+                document.getElementById("liveclock").innerHTML = myclock
+            setTimeout("show5()", 1000)
+        }
+        window.onload = show5
+    </script>
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="Form1" runat="server">
+    <asp:ToolkitScriptManager ID="ScriptManager1" runat="server" AsyncPostBackTimeout="1600">
+    </asp:ToolkitScriptManager>
+    <%--  <script type="text/javascript" language="javascript">
+
+            Sys.WebForms.PageRequestManager.getInstance().add_endRequest(EndRequestHandler);
+
+            function EndRequestHandler(sender, args) {
+                if (args.get_error() != undefined) {
+                    args.set_errorHandled(true);
+                }
+            }
+
+    </script>--%>
+    <!--INI CABECERA-->
+    <div id="Cabecera" style="border-style: solid; border-color: #ff0000; border-width: 0px;">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td class="cab-bg-inter" aslign="left">
+                    <h4>
+                        SIC</h4>
+                </td>
+                <td width="394">
+                    <%--<asp:Image ID="Image3" ImageUrl="~/Imagenes/img-cab-rplazas.gif" runat="server" />--%>
+                </td>
+                <td width="276">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td class="txt-cab-usuario" align="right">
+                                <asp:Label ID="lblUserName" runat="server"></asp:Label>
+                            </td>
+                            <td width="20" style="width: 20px; padding-left: 4px;">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="txt-cab-usuario" align="right">
+                                &nbsp;
+                            </td>
+                            <td>
+                                &nbsp;
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="txt-cab-usuario" align="right">
+                                <span id="liveclock"></span>
+                            </td>
+                            <td>
+                                &nbsp;
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td width="50%" height="3" bgcolor="#843388" class="cab-bg-1">
+                </td>
+                <td width="354" height="3" bgcolor="#843388">
+                </td>
+                <td width="315" height="3" bgcolor="#843388">
+                </td>
+            </tr>
+        </table>
+        <table width="100%" align="center" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td align="left" id="td2" bgcolor="#efefef" style="height: 26px;">
+                    <uc1:wucMenuDinamico ID="wucMenuDinamico2" runat="server"></uc1:wucMenuDinamico>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!--FIN CABECERA-->
+    <div id="CuerpoMaestro" class="Body">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tr>
+                <td>
+                    <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                    </asp:ContentPlaceHolder>
+                </td>
+            </tr>
+        </table>
+        <asp:UpdateProgress ID="UpdateProgress1" runat="server">
+            <ProgressTemplate>
+                <div class="capa1">
+                    <asp:Panel ID="pnlCargando" runat="server" BorderColor="RoyalBlue" Height="80px"
+                        Width="280px" BackColor="WhiteSmoke" Font-Size="14px">
+                        <table align="center">
+                            <tr>
+                                <td align="center" class="tit_morado" width="280px">
+                                    Tu solicitud esta siendo procesada
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center">
+                                    <img src="../../Imagenes/Botones/loading.gif" alt="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center">
+                                    <img src="../../Imagenes/Botones/dot-net-green.gif" alt="" />
+                                </td>
+                            </tr>
+                        </table>
+                    </asp:Panel>
+                </div>
+            </ProgressTemplate>
+        </asp:UpdateProgress>
+    </div>
+    <!---INI PIE--->
+    <div id="Div1" class="footer" style="clear: both; display: none">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="height: 35px;
+            margin-bottom: 0px">
+            <tr>
+                <td align="left" style="padding-left: 6px;">
+                    Copyright ®
+                </td>
+                <td width="70">
+                    <%--<asp:Image ID="Image5" ImageUrl="~/Imagenes/logo-pie-realplaza.gif" 
+                        runat="server" Height="38px" />--%>
+                </td>
+                <td width="217" align="left" style="padding-left: 6px;">
+                    ...
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!----FIN PIE---->
+    </form>
+</body>
+</html>

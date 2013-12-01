@@ -15,7 +15,14 @@ namespace SIC.UserLayer.UserControl
         {
             if (!IsPostBack)
             {
-                AgregarMenusPadres(((SIC_T_USUARIO)Session["USUARIO"]).usua_c_cdoc_id);
+                if (Session["USUARIO"] != null)
+                {
+                    AgregarMenusPadres(((SIC_T_USUARIO)Session["USUARIO"]).usua_c_cdoc_id);
+                }
+                else
+                {
+                    Response.Redirect("~/Default.aspx");
+                }
             }
         }
 

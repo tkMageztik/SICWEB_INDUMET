@@ -23,3 +23,12 @@ C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UIGeneral\bin\Debug\SIC
 C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UIGeneral\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UIGeneral\obj\Debug\SIC.UIGeneral.dll
 C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UIGeneral\obj\Debug\SIC.UIGeneral.pdb
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UIGeneral\bin\Debug\SIC.UIGeneral.dll
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UIGeneral\bin\Debug\SIC.UIGeneral.pdb
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UIGeneral\bin\Debug\SIC.Data.dll
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UIGeneral\bin\Debug\SIC.EntityLayer.dll
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UIGeneral\bin\Debug\SIC.Data.pdb
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UIGeneral\bin\Debug\SIC.EntityLayer.pdb
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UIGeneral\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UIGeneral\obj\Debug\SIC.UIGeneral.dll
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UIGeneral\obj\Debug\SIC.UIGeneral.pdb
