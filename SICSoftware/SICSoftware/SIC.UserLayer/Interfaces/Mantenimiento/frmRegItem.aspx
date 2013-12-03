@@ -28,15 +28,19 @@
                                                         <table>
                                                             <tr>
                                                                 <td class="txt-box-estilo">
-                                                                    &nbsp;</td>
+                                                                    &nbsp;
+                                                                </td>
                                                                 <td>
-                                                                    &nbsp;</td>
+                                                                    &nbsp;
+                                                                </td>
                                                                 <td style="width: 20px">
                                                                 </td>
                                                                 <td class="txt-box-estilo">
-                                                                    &nbsp;</td>
+                                                                    &nbsp;
+                                                                </td>
                                                                 <td>
-                                                                    &nbsp;</td>
+                                                                    &nbsp;
+                                                                </td>
                                                                 <td style="width: 20px">
                                                                 </td>
                                                                 <td>
@@ -51,12 +55,12 @@
                                                         <table>
                                                             <tr>
                                                                 <td align="center">
-                                                                    <asp:Button ID="btnBuscar" runat="server" CssClass="button small gris" 
-                                                                        OnClick="btnBuscar_Click" Style="width: 100px" Text="Buscar" />
+                                                                    <asp:Button ID="btnBuscar" runat="server" CssClass="button small gris" OnClick="btnBuscar_Click"
+                                                                        Style="width: 100px" Text="Buscar" />
                                                                 </td>
                                                                 <td align="center">
-                                                                    <asp:Button ID="btnNuevo" runat="server" CssClass="lnk" Height="26px" 
-                                                                        OnClick="btnNuevo_Click" Text="Nuevo" Width="101px" />
+                                                                    <asp:Button ID="btnNuevo" runat="server" CssClass="lnk" Height="26px" OnClick="btnNuevo_Click"
+                                                                        Text="Nuevo" Width="101px" />
                                                                 </td>
                                                             </tr>
                                                         </table>
@@ -73,9 +77,8 @@
                                 <asp:GridView ID="gvListaItem" runat="server" BorderStyle="None" AutoGenerateColumns="False"
                                     GridLines="None" AllowPaging="True" Width="100%" CssClass="mGrid" PagerStyle-CssClass="pgr"
                                     AlternatingRowStyle-CssClass="alt" ShowHeaderWhenEmpty="True" EmptyDataText="No hay datos disponibles."
-                                    PageSize="15" BorderWidth="0px" ViewStateMode="Enabled" 
-                                    OnRowEditing="gvListaItem_RowEditing" DataKeyNames="itm_c_iid" 
-                                    onrowdeleting="gvListaItem_RowDeleting">
+                                    PageSize="15" BorderWidth="0px" ViewStateMode="Enabled" OnRowEditing="gvListaItem_RowEditing"
+                                    DataKeyNames="itm_c_iid" OnRowDeleting="gvListaItem_RowDeleting">
                                     <AlternatingRowStyle CssClass="alt" />
                                     <Columns>
                                         <asp:BoundField DataField="itm_c_ccodigo" HeaderText="Código" />
@@ -91,7 +94,8 @@
                         </tr>
                         <tr>
                             <td align="left" class="tit-nav-paginas">
-                                &nbsp;</td>
+                                &nbsp;
+                            </td>
                         </tr>
                     </table>
                 </asp:View>

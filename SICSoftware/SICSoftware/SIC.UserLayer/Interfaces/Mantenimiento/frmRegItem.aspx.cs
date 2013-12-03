@@ -40,7 +40,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         protected void gvListaItem_RowEditing(object sender, GridViewEditEventArgs e)
         {
             // TODO: TRY CATCH
-            int itemId = (int) this.gvListaItem.DataKeys[e.NewEditIndex].Value;
+            int itemId = (int)this.gvListaItem.DataKeys[e.NewEditIndex].Value;
             this.EditarItem(itemId);
         }
 
@@ -58,7 +58,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-            this.CancelarNuevoEdicionItem();   
+            this.CancelarNuevoEdicionItem();
         }
 
         protected void btnNuevo_Click(object sender, EventArgs e)
@@ -67,7 +67,6 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         }
 
         #endregion
-
 
         #region Métodos
         private void ListarItems()
@@ -116,7 +115,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             this.txtCodigo.Text = string.Empty;
             this.txtDescripcion.Text = string.Empty;
             this.txtPrecio.Text = string.Empty;
-          
+
         }
 
         /// <summary>
@@ -129,7 +128,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             // Luego creamos el objeto
             SIC_T_ITEM nuevoItem = new SIC_T_ITEM();
             nuevoItem.itm_c_ccodigo = this.txtCodigo.Text;
-            nuevoItem.itm_c_dprecio = Decimal.Parse( this.txtPrecio.Text);
+            nuevoItem.itm_c_dprecio = Decimal.Parse(this.txtPrecio.Text);
             nuevoItem.itm_c_vdescripcion = this.txtDescripcion.Text;
             nuevoItem.par_det_c_idd = int.Parse(this.cboUnidad.SelectedValue);
             nuevoItem.itm_c_vpardes = this.cboUnidad.Text;
@@ -184,7 +183,6 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         }
 
         #endregion
-        
 
         public TipoOperacion EscenarioItem
         {
@@ -211,7 +209,8 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-
+            this.ListarItems();
+            upGeneral.Update();
         }
 
         protected void gvListaItem_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -222,8 +221,8 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             upGeneral.Update();
         }
 
-    
 
-      
+
+
     }
 }

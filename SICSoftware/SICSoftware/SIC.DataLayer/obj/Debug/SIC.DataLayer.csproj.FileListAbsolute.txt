@@ -45,17 +45,6 @@ C:\Users\Alvaro\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\bin\Debug\S
 C:\Users\Alvaro\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\obj\Debug\SIC.DataLayer.csprojResolveAssemblyReference.cache
 C:\Users\Alvaro\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\obj\Debug\SIC.DataLayer.dll
 C:\Users\Alvaro\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\obj\Debug\SIC.DataLayer.pdb
-C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\bin\Debug\SIC.DataLayer.dll
-C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\bin\Debug\SIC.DataLayer.pdb
-C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\bin\Debug\SIC.Data.dll
-C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\bin\Debug\SIC.EntityLayer.dll
-C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\bin\Debug\SIC.UIGeneral.dll
-C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\bin\Debug\SIC.Data.pdb
-C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\bin\Debug\SIC.EntityLayer.pdb
-C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\bin\Debug\SIC.UIGeneral.pdb
-C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\obj\Debug\SIC.DataLayer.dll
-C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\obj\Debug\SIC.DataLayer.pdb
 D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\obj\Debug\SIC.DataLayer.csprojResolveAssemblyReference.cache
 D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\bin\Debug\SIC.DataLayer.dll
 D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\bin\Debug\SIC.DataLayer.pdb
@@ -67,3 +56,14 @@ D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\bin\Debug\SIC.En
 D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\bin\Debug\SIC.UIGeneral.pdb
 D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\obj\Debug\SIC.DataLayer.dll
 D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\obj\Debug\SIC.DataLayer.pdb
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\bin\Debug\SIC.DataLayer.dll
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\bin\Debug\SIC.DataLayer.pdb
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\bin\Debug\SIC.Data.dll
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\bin\Debug\SIC.EntityLayer.dll
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\bin\Debug\SIC.UIGeneral.dll
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\bin\Debug\SIC.Data.pdb
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\bin\Debug\SIC.EntityLayer.pdb
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\bin\Debug\SIC.UIGeneral.pdb
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\obj\Debug\SIC.DataLayer.dll
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\obj\Debug\SIC.DataLayer.pdb

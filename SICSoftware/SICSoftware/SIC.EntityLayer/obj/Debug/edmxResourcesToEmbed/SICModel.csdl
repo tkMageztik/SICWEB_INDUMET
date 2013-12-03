@@ -88,22 +88,9 @@
       <End Role="SIC_T_MENU" EntitySet="SIC_T_MENU" />
       <End Role="SIC_T_MENU1" EntitySet="SIC_T_MENU" />
     </AssociationSet>
-    <FunctionImport Name="SIC_SP_LISTAR_HIJOS_MENU" EntitySet="SIC_T_MENU" ReturnType="Collection(SICDBWEBModel.SIC_T_MENU)">
-      <Parameter Name="PC_CODUSUARIO" Mode="In" Type="String" />
-      <Parameter Name="PC_CODMENUPRINCIPAL" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="SIC_SP_LISTAR_PADRES_MENU" EntitySet="SIC_T_MENU" ReturnType="Collection(SICDBWEBModel.SIC_T_MENU)">
-      <Parameter Name="PC_CODUSUARIO" Mode="In" Type="String" />
-    </FunctionImport>
     <FunctionImport Name="SIC_SP_VERIFICAR_ACCESO">
       <Parameter Name="usua_c_cdoc_id" Mode="In" Type="String" />
       <Parameter Name="usua_c_vpass" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="SIC_SP_DESHABILITAR_CLIENTE">
-      <Parameter Name="cli_c_vdoc_id" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="SIC_SP_NOMBRE_COMERCIAL_LISTAR" EntitySet="SIC_T_NOMB_COM" ReturnType="Collection(SICDBWEBModel.SIC_T_NOMB_COM)">
-      <Parameter Name="CLI_C_VDOC_ID" Mode="In" Type="String" />
     </FunctionImport>
     <EntitySet Name="SIC_T_COLABORADOR" EntityType="SICDBWEBModel.SIC_T_COLABORADOR" />
     <AssociationSet Name="FK_SIC_T_COLABORADOR_SIC_T_COLAB_AREA" Association="SICDBWEBModel.FK_SIC_T_COLABORADOR_SIC_T_COLAB_AREA">
@@ -155,6 +142,19 @@
       <End Role="SIC_T_USUARIO_OPCION" EntitySet="SIC_T_USUARIO_OPCION" />
     </AssociationSet>
     <EntitySet Name="SIC_T_ITEM" EntityType="SICDBWEBModel.SIC_T_ITEM" />
+    <FunctionImport Name="SIC_SP_LISTAR_PADRES_MENU" EntitySet="SIC_T_MENU" ReturnType="Collection(SICDBWEBModel.SIC_T_MENU)">
+      <Parameter Name="PC_CODUSUARIO" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SIC_SP_LISTAR_HIJOS_MENU" EntitySet="SIC_T_MENU" ReturnType="Collection(SICDBWEBModel.SIC_T_MENU)">
+      <Parameter Name="PC_CODUSUARIO" Mode="In" Type="String" />
+      <Parameter Name="PC_CODMENUPRINCIPAL" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SIC_SP_NOMBRE_COMERCIAL_LISTAR" EntitySet="SIC_T_NOMB_COM" ReturnType="Collection(SICDBWEBModel.SIC_T_NOMB_COM)">
+      <Parameter Name="CLI_C_VDOC_ID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SIC_SP_DESHABILITAR_CLIENTE">
+      <Parameter Name="cli_c_vdoc_id" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="SIC_T_CLI_CONTAC_CARGO">
     <Key>
@@ -625,7 +625,7 @@
     <Key>
       <PropertyRef Name="itm_c_iid" />
     </Key>
-    <Property Type="Int32" Name="itm_c_iid" Nullable="false" />
+    <Property Type="Int32" Name="itm_c_iid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Type="String" Name="itm_c_ccodigo" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="itm_c_vdescripcion" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Type="Decimal" Name="itm_c_dprecio" Precision="18" Scale="3" />

@@ -8,13 +8,12 @@
 //------------------------------------------------------------------------------
 
 using System;
-using System.ComponentModel;
-using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Linq;
-using System.Runtime.Serialization;
+using System.Data.EntityClient;
+using System.ComponentModel;
 using System.Xml.Serialization;
+using System.Runtime.Serialization;
 
 [assembly: EdmSchemaAttribute()]
 #region Metadatos de relaciones en EDM
@@ -471,7 +470,6 @@ namespace SIC.EntityLayer
         private ObjectSet<SIC_T_ITEM> _SIC_T_ITEM;
 
         #endregion
-
         #region Métodos AddTo
     
         /// <summary>
@@ -667,7 +665,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Importaciones de funciones
     
         /// <summary>
@@ -997,104 +994,6 @@ namespace SIC.EntityLayer
         /// <summary>
         /// No hay documentación de metadatos disponible.
         /// </summary>
-        /// <param name="pC_CODUSUARIO">No hay documentación de metadatos disponible.</param>
-        /// <param name="pC_CODMENUPRINCIPAL">No hay documentación de metadatos disponible.</param>
-        public ObjectResult<SIC_T_MENU> SIC_SP_LISTAR_HIJOS_MENU(global::System.String pC_CODUSUARIO, Nullable<global::System.Int32> pC_CODMENUPRINCIPAL)
-        {
-            ObjectParameter pC_CODUSUARIOParameter;
-            if (pC_CODUSUARIO != null)
-            {
-                pC_CODUSUARIOParameter = new ObjectParameter("PC_CODUSUARIO", pC_CODUSUARIO);
-            }
-            else
-            {
-                pC_CODUSUARIOParameter = new ObjectParameter("PC_CODUSUARIO", typeof(global::System.String));
-            }
-    
-            ObjectParameter pC_CODMENUPRINCIPALParameter;
-            if (pC_CODMENUPRINCIPAL.HasValue)
-            {
-                pC_CODMENUPRINCIPALParameter = new ObjectParameter("PC_CODMENUPRINCIPAL", pC_CODMENUPRINCIPAL);
-            }
-            else
-            {
-                pC_CODMENUPRINCIPALParameter = new ObjectParameter("PC_CODMENUPRINCIPAL", typeof(global::System.Int32));
-            }
-    
-            return base.ExecuteFunction<SIC_T_MENU>("SIC_SP_LISTAR_HIJOS_MENU", pC_CODUSUARIOParameter, pC_CODMENUPRINCIPALParameter);
-        }
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        /// <param name="mergeOption"></param>
-        /// <param name="pC_CODUSUARIO">No hay documentación de metadatos disponible.</param>
-        /// <param name="pC_CODMENUPRINCIPAL">No hay documentación de metadatos disponible.</param>
-        public ObjectResult<SIC_T_MENU> SIC_SP_LISTAR_HIJOS_MENU(global::System.String pC_CODUSUARIO, Nullable<global::System.Int32> pC_CODMENUPRINCIPAL, MergeOption mergeOption)
-        {
-            ObjectParameter pC_CODUSUARIOParameter;
-            if (pC_CODUSUARIO != null)
-            {
-                pC_CODUSUARIOParameter = new ObjectParameter("PC_CODUSUARIO", pC_CODUSUARIO);
-            }
-            else
-            {
-                pC_CODUSUARIOParameter = new ObjectParameter("PC_CODUSUARIO", typeof(global::System.String));
-            }
-    
-            ObjectParameter pC_CODMENUPRINCIPALParameter;
-            if (pC_CODMENUPRINCIPAL.HasValue)
-            {
-                pC_CODMENUPRINCIPALParameter = new ObjectParameter("PC_CODMENUPRINCIPAL", pC_CODMENUPRINCIPAL);
-            }
-            else
-            {
-                pC_CODMENUPRINCIPALParameter = new ObjectParameter("PC_CODMENUPRINCIPAL", typeof(global::System.Int32));
-            }
-    
-            return base.ExecuteFunction<SIC_T_MENU>("SIC_SP_LISTAR_HIJOS_MENU", mergeOption, pC_CODUSUARIOParameter, pC_CODMENUPRINCIPALParameter);
-        }
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        /// <param name="pC_CODUSUARIO">No hay documentación de metadatos disponible.</param>
-        public ObjectResult<SIC_T_MENU> SIC_SP_LISTAR_PADRES_MENU(global::System.String pC_CODUSUARIO)
-        {
-            ObjectParameter pC_CODUSUARIOParameter;
-            if (pC_CODUSUARIO != null)
-            {
-                pC_CODUSUARIOParameter = new ObjectParameter("PC_CODUSUARIO", pC_CODUSUARIO);
-            }
-            else
-            {
-                pC_CODUSUARIOParameter = new ObjectParameter("PC_CODUSUARIO", typeof(global::System.String));
-            }
-    
-            return base.ExecuteFunction<SIC_T_MENU>("SIC_SP_LISTAR_PADRES_MENU", pC_CODUSUARIOParameter);
-        }
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        /// <param name="mergeOption"></param>
-        /// <param name="pC_CODUSUARIO">No hay documentación de metadatos disponible.</param>
-        public ObjectResult<SIC_T_MENU> SIC_SP_LISTAR_PADRES_MENU(global::System.String pC_CODUSUARIO, MergeOption mergeOption)
-        {
-            ObjectParameter pC_CODUSUARIOParameter;
-            if (pC_CODUSUARIO != null)
-            {
-                pC_CODUSUARIOParameter = new ObjectParameter("PC_CODUSUARIO", pC_CODUSUARIO);
-            }
-            else
-            {
-                pC_CODUSUARIOParameter = new ObjectParameter("PC_CODUSUARIO", typeof(global::System.String));
-            }
-    
-            return base.ExecuteFunction<SIC_T_MENU>("SIC_SP_LISTAR_PADRES_MENU", mergeOption, pC_CODUSUARIOParameter);
-        }
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
         /// <param name="usua_c_cdoc_id">No hay documentación de metadatos disponible.</param>
         /// <param name="usua_c_vpass">No hay documentación de metadatos disponible.</param>
         public int SIC_SP_VERIFICAR_ACCESO(global::System.String usua_c_cdoc_id, global::System.String usua_c_vpass)
@@ -1120,63 +1019,6 @@ namespace SIC.EntityLayer
             }
     
             return base.ExecuteFunction("SIC_SP_VERIFICAR_ACCESO", usua_c_cdoc_idParameter, usua_c_vpassParameter);
-        }
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        /// <param name="cli_c_vdoc_id">No hay documentación de metadatos disponible.</param>
-        public int SIC_SP_DESHABILITAR_CLIENTE(global::System.String cli_c_vdoc_id)
-        {
-            ObjectParameter cli_c_vdoc_idParameter;
-            if (cli_c_vdoc_id != null)
-            {
-                cli_c_vdoc_idParameter = new ObjectParameter("cli_c_vdoc_id", cli_c_vdoc_id);
-            }
-            else
-            {
-                cli_c_vdoc_idParameter = new ObjectParameter("cli_c_vdoc_id", typeof(global::System.String));
-            }
-    
-            return base.ExecuteFunction("SIC_SP_DESHABILITAR_CLIENTE", cli_c_vdoc_idParameter);
-        }
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        /// <param name="cLI_C_VDOC_ID">No hay documentación de metadatos disponible.</param>
-        public ObjectResult<SIC_T_NOMB_COM> SIC_SP_NOMBRE_COMERCIAL_LISTAR(global::System.String cLI_C_VDOC_ID)
-        {
-            ObjectParameter cLI_C_VDOC_IDParameter;
-            if (cLI_C_VDOC_ID != null)
-            {
-                cLI_C_VDOC_IDParameter = new ObjectParameter("CLI_C_VDOC_ID", cLI_C_VDOC_ID);
-            }
-            else
-            {
-                cLI_C_VDOC_IDParameter = new ObjectParameter("CLI_C_VDOC_ID", typeof(global::System.String));
-            }
-    
-            return base.ExecuteFunction<SIC_T_NOMB_COM>("SIC_SP_NOMBRE_COMERCIAL_LISTAR", cLI_C_VDOC_IDParameter);
-        }
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        /// <param name="mergeOption"></param>
-        /// <param name="cLI_C_VDOC_ID">No hay documentación de metadatos disponible.</param>
-        public ObjectResult<SIC_T_NOMB_COM> SIC_SP_NOMBRE_COMERCIAL_LISTAR(global::System.String cLI_C_VDOC_ID, MergeOption mergeOption)
-        {
-            ObjectParameter cLI_C_VDOC_IDParameter;
-            if (cLI_C_VDOC_ID != null)
-            {
-                cLI_C_VDOC_IDParameter = new ObjectParameter("CLI_C_VDOC_ID", cLI_C_VDOC_ID);
-            }
-            else
-            {
-                cLI_C_VDOC_IDParameter = new ObjectParameter("CLI_C_VDOC_ID", typeof(global::System.String));
-            }
-    
-            return base.ExecuteFunction<SIC_T_NOMB_COM>("SIC_SP_NOMBRE_COMERCIAL_LISTAR", mergeOption, cLI_C_VDOC_IDParameter);
         }
     
         /// <summary>
@@ -1257,13 +1099,168 @@ namespace SIC.EntityLayer
     
             return base.ExecuteFunction<SIC_T_CLIENTE>("SIC_SP_CLIENTE_LISTAR", mergeOption, cLI_C_VRAZ_SOCParameter, cLI_C_VDOC_IDParameter);
         }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="pC_CODUSUARIO">No hay documentación de metadatos disponible.</param>
+        public ObjectResult<SIC_T_MENU> SIC_SP_LISTAR_PADRES_MENU(global::System.String pC_CODUSUARIO)
+        {
+            ObjectParameter pC_CODUSUARIOParameter;
+            if (pC_CODUSUARIO != null)
+            {
+                pC_CODUSUARIOParameter = new ObjectParameter("PC_CODUSUARIO", pC_CODUSUARIO);
+            }
+            else
+            {
+                pC_CODUSUARIOParameter = new ObjectParameter("PC_CODUSUARIO", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction<SIC_T_MENU>("SIC_SP_LISTAR_PADRES_MENU", pC_CODUSUARIOParameter);
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="mergeOption"></param>
+        /// <param name="pC_CODUSUARIO">No hay documentación de metadatos disponible.</param>
+        public ObjectResult<SIC_T_MENU> SIC_SP_LISTAR_PADRES_MENU(global::System.String pC_CODUSUARIO, MergeOption mergeOption)
+        {
+            ObjectParameter pC_CODUSUARIOParameter;
+            if (pC_CODUSUARIO != null)
+            {
+                pC_CODUSUARIOParameter = new ObjectParameter("PC_CODUSUARIO", pC_CODUSUARIO);
+            }
+            else
+            {
+                pC_CODUSUARIOParameter = new ObjectParameter("PC_CODUSUARIO", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction<SIC_T_MENU>("SIC_SP_LISTAR_PADRES_MENU", mergeOption, pC_CODUSUARIOParameter);
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="pC_CODUSUARIO">No hay documentación de metadatos disponible.</param>
+        /// <param name="pC_CODMENUPRINCIPAL">No hay documentación de metadatos disponible.</param>
+        public ObjectResult<SIC_T_MENU> SIC_SP_LISTAR_HIJOS_MENU(global::System.String pC_CODUSUARIO, Nullable<global::System.Int32> pC_CODMENUPRINCIPAL)
+        {
+            ObjectParameter pC_CODUSUARIOParameter;
+            if (pC_CODUSUARIO != null)
+            {
+                pC_CODUSUARIOParameter = new ObjectParameter("PC_CODUSUARIO", pC_CODUSUARIO);
+            }
+            else
+            {
+                pC_CODUSUARIOParameter = new ObjectParameter("PC_CODUSUARIO", typeof(global::System.String));
+            }
+    
+            ObjectParameter pC_CODMENUPRINCIPALParameter;
+            if (pC_CODMENUPRINCIPAL.HasValue)
+            {
+                pC_CODMENUPRINCIPALParameter = new ObjectParameter("PC_CODMENUPRINCIPAL", pC_CODMENUPRINCIPAL);
+            }
+            else
+            {
+                pC_CODMENUPRINCIPALParameter = new ObjectParameter("PC_CODMENUPRINCIPAL", typeof(global::System.Int32));
+            }
+    
+            return base.ExecuteFunction<SIC_T_MENU>("SIC_SP_LISTAR_HIJOS_MENU", pC_CODUSUARIOParameter, pC_CODMENUPRINCIPALParameter);
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="mergeOption"></param>
+        /// <param name="pC_CODUSUARIO">No hay documentación de metadatos disponible.</param>
+        /// <param name="pC_CODMENUPRINCIPAL">No hay documentación de metadatos disponible.</param>
+        public ObjectResult<SIC_T_MENU> SIC_SP_LISTAR_HIJOS_MENU(global::System.String pC_CODUSUARIO, Nullable<global::System.Int32> pC_CODMENUPRINCIPAL, MergeOption mergeOption)
+        {
+            ObjectParameter pC_CODUSUARIOParameter;
+            if (pC_CODUSUARIO != null)
+            {
+                pC_CODUSUARIOParameter = new ObjectParameter("PC_CODUSUARIO", pC_CODUSUARIO);
+            }
+            else
+            {
+                pC_CODUSUARIOParameter = new ObjectParameter("PC_CODUSUARIO", typeof(global::System.String));
+            }
+    
+            ObjectParameter pC_CODMENUPRINCIPALParameter;
+            if (pC_CODMENUPRINCIPAL.HasValue)
+            {
+                pC_CODMENUPRINCIPALParameter = new ObjectParameter("PC_CODMENUPRINCIPAL", pC_CODMENUPRINCIPAL);
+            }
+            else
+            {
+                pC_CODMENUPRINCIPALParameter = new ObjectParameter("PC_CODMENUPRINCIPAL", typeof(global::System.Int32));
+            }
+    
+            return base.ExecuteFunction<SIC_T_MENU>("SIC_SP_LISTAR_HIJOS_MENU", mergeOption, pC_CODUSUARIOParameter, pC_CODMENUPRINCIPALParameter);
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="cLI_C_VDOC_ID">No hay documentación de metadatos disponible.</param>
+        public ObjectResult<SIC_T_NOMB_COM> SIC_SP_NOMBRE_COMERCIAL_LISTAR(global::System.String cLI_C_VDOC_ID)
+        {
+            ObjectParameter cLI_C_VDOC_IDParameter;
+            if (cLI_C_VDOC_ID != null)
+            {
+                cLI_C_VDOC_IDParameter = new ObjectParameter("CLI_C_VDOC_ID", cLI_C_VDOC_ID);
+            }
+            else
+            {
+                cLI_C_VDOC_IDParameter = new ObjectParameter("CLI_C_VDOC_ID", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction<SIC_T_NOMB_COM>("SIC_SP_NOMBRE_COMERCIAL_LISTAR", cLI_C_VDOC_IDParameter);
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="mergeOption"></param>
+        /// <param name="cLI_C_VDOC_ID">No hay documentación de metadatos disponible.</param>
+        public ObjectResult<SIC_T_NOMB_COM> SIC_SP_NOMBRE_COMERCIAL_LISTAR(global::System.String cLI_C_VDOC_ID, MergeOption mergeOption)
+        {
+            ObjectParameter cLI_C_VDOC_IDParameter;
+            if (cLI_C_VDOC_ID != null)
+            {
+                cLI_C_VDOC_IDParameter = new ObjectParameter("CLI_C_VDOC_ID", cLI_C_VDOC_ID);
+            }
+            else
+            {
+                cLI_C_VDOC_IDParameter = new ObjectParameter("CLI_C_VDOC_ID", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction<SIC_T_NOMB_COM>("SIC_SP_NOMBRE_COMERCIAL_LISTAR", mergeOption, cLI_C_VDOC_IDParameter);
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="cli_c_vdoc_id">No hay documentación de metadatos disponible.</param>
+        public int SIC_SP_DESHABILITAR_CLIENTE(global::System.String cli_c_vdoc_id)
+        {
+            ObjectParameter cli_c_vdoc_idParameter;
+            if (cli_c_vdoc_id != null)
+            {
+                cli_c_vdoc_idParameter = new ObjectParameter("cli_c_vdoc_id", cli_c_vdoc_id);
+            }
+            else
+            {
+                cli_c_vdoc_idParameter = new ObjectParameter("cli_c_vdoc_id", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction("SIC_SP_DESHABILITAR_CLIENTE", cli_c_vdoc_idParameter);
+        }
 
         #endregion
-
     }
+    
 
     #endregion
-
+    
     #region Entidades
     
     /// <summary>
@@ -1288,7 +1285,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -1343,7 +1339,6 @@ namespace SIC.EntityLayer
         partial void Oncli_contac_cargo_c_vnombChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -1370,7 +1365,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -1399,7 +1393,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -1718,7 +1711,6 @@ namespace SIC.EntityLayer
         partial void Oncli_c_vdoc_idChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -1799,7 +1791,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -1826,7 +1817,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -2004,7 +1994,6 @@ namespace SIC.EntityLayer
         partial void Oncli_direc_c_czonarepChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -2085,7 +2074,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -2112,7 +2100,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -2170,7 +2157,6 @@ namespace SIC.EntityLayer
         partial void Oncli_c_vdoc_idChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -2213,7 +2199,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -2238,7 +2223,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -2341,7 +2325,6 @@ namespace SIC.EntityLayer
         partial void Oncli_rs_h_c_dfec_regChanged();
 
         #endregion
-
     
     }
     
@@ -2367,7 +2350,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -2422,7 +2404,6 @@ namespace SIC.EntityLayer
         partial void Oncli_scor_c_vobservChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -2449,7 +2430,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -2476,7 +2456,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -2819,7 +2798,6 @@ namespace SIC.EntityLayer
         partial void Oncli_c_dfec_constChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -3004,7 +2982,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -3029,7 +3006,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -3084,7 +3060,6 @@ namespace SIC.EntityLayer
         partial void Oncolab_area_c_vnombChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -3111,7 +3086,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -3136,7 +3110,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -3191,7 +3164,6 @@ namespace SIC.EntityLayer
         partial void Oncolab_cargo_c_vnombChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -3218,7 +3190,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -3243,7 +3214,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -3418,7 +3388,6 @@ namespace SIC.EntityLayer
         partial void Oncolab_cargo_c_yidChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -3521,7 +3490,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -3546,7 +3514,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -3601,7 +3568,6 @@ namespace SIC.EntityLayer
         partial void Ondepa_c_vnombChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -3628,7 +3594,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -3655,7 +3620,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -3734,7 +3698,6 @@ namespace SIC.EntityLayer
         partial void Onprov_c_ccodChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -3799,7 +3762,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -3824,7 +3786,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -4023,7 +3984,6 @@ namespace SIC.EntityLayer
         partial void Onitm_c_bactivoChanged();
 
         #endregion
-
     
     }
     
@@ -4049,7 +4009,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -4176,7 +4135,6 @@ namespace SIC.EntityLayer
         partial void Onmenu_c_vpag_aspChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -4241,7 +4199,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -4266,7 +4223,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -4321,7 +4277,6 @@ namespace SIC.EntityLayer
         partial void Onnomb_com_c_vnombChanged();
 
         #endregion
-
     
     }
     
@@ -4347,7 +4302,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -4426,7 +4380,6 @@ namespace SIC.EntityLayer
         partial void Onpar_c_bactivoChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -4453,7 +4406,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -4480,7 +4432,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -4826,7 +4777,6 @@ namespace SIC.EntityLayer
         partial void Onpar_det_c_vobsChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -4869,7 +4819,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -4896,7 +4845,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -4975,7 +4923,6 @@ namespace SIC.EntityLayer
         partial void Ondepa_c_ccodChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -5040,7 +4987,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -5067,7 +5013,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -5290,7 +5235,6 @@ namespace SIC.EntityLayer
         partial void Onusua_c_bestadoChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -5317,7 +5261,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -5344,7 +5287,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -5402,7 +5344,6 @@ namespace SIC.EntityLayer
         partial void Onopc_c_iidChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -5445,7 +5386,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -5472,7 +5412,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -5554,7 +5493,6 @@ namespace SIC.EntityLayer
         partial void Onusua_perfil_c_cestadoChanged();
 
         #endregion
-
     
     }
     
@@ -5580,7 +5518,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -5635,7 +5572,6 @@ namespace SIC.EntityLayer
         partial void Onzona_rep_c_czonaChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -5684,7 +5620,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -5709,7 +5644,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -5788,7 +5722,6 @@ namespace SIC.EntityLayer
         partial void Onzona_rep_lug_c_vdescChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -5831,7 +5764,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -5858,7 +5790,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -5964,12 +5895,10 @@ namespace SIC.EntityLayer
         partial void Oncli_c_vraz_socChanged();
 
         #endregion
-
     
     }
 
     #endregion
-
     #region ComplexTypes
     
     /// <summary>
@@ -5994,7 +5923,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -6190,10 +6118,8 @@ namespace SIC.EntityLayer
         partial void Oncolab_cargo_c_yidChanged();
 
         #endregion
-
     }
 
     #endregion
-
     
 }

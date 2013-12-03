@@ -290,5 +290,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SIC_SP_LISTAR_PADRES_MENU" FunctionName="SICDBWEBModel.Store.SIC_SP_LISTAR_PADRES_MENU" />
+    <FunctionImportMapping FunctionImportName="SIC_SP_LISTAR_HIJOS_MENU" FunctionName="SICDBWEBModel.Store.SIC_SP_LISTAR_HIJOS_MENU" />
+    <FunctionImportMapping FunctionImportName="SIC_SP_NOMBRE_COMERCIAL_LISTAR" FunctionName="SICDBWEBModel.Store.SIC_SP_NOMBRE_COMERCIAL_LISTAR" />
+    <FunctionImportMapping FunctionImportName="SIC_SP_DESHABILITAR_CLIENTE" FunctionName="SICDBWEBModel.Store.SIC_SP_DESHABILITAR_CLIENTE" />
   </EntityContainerMapping>
 </Mapping>

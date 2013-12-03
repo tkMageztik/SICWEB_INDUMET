@@ -6,7 +6,6 @@
     <edmx:StorageModels>
     <Schema Namespace="SICDBWEBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="SICDBWEBModelStoreContainer">
-          <EntitySet Name="SIC_T_ITEM" EntityType="SICDBWEBModel.Store.SIC_T_ITEM" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SIC_T_PARAMETRO" EntityType="SICDBWEBModel.Store.SIC_T_PARAMETRO" store:Type="Tables" Schema="General" />
           <EntitySet Name="SIC_T_PARAMETRO_DET" EntityType="SICDBWEBModel.Store.SIC_T_PARAMETRO_DET" store:Type="Tables" Schema="General" />
           <EntitySet Name="SIC_T_CLI_CONTAC_CARGO" EntityType="SICDBWEBModel.Store.SIC_T_CLI_CONTAC_CARGO" store:Type="Tables" Schema="Mantenimiento" />
@@ -21,6 +20,7 @@
           <EntitySet Name="SIC_T_COLABORADOR" EntityType="SICDBWEBModel.Store.SIC_T_COLABORADOR" store:Type="Tables" Schema="Mantenimiento" />
           <EntitySet Name="SIC_T_DEPARTAMENTO" EntityType="SICDBWEBModel.Store.SIC_T_DEPARTAMENTO" store:Type="Tables" Schema="Mantenimiento" />
           <EntitySet Name="SIC_T_DISTRITO" EntityType="SICDBWEBModel.Store.SIC_T_DISTRITO" store:Type="Tables" Schema="Mantenimiento" />
+          <EntitySet Name="SIC_T_ITEM" EntityType="SICDBWEBModel.Store.SIC_T_ITEM" store:Type="Tables" Schema="Mantenimiento" />
           <EntitySet Name="SIC_T_NOMB_COM" EntityType="SICDBWEBModel.Store.SIC_T_NOMB_COM" store:Type="Tables" Schema="Mantenimiento" />
           <EntitySet Name="SIC_T_PROVINCIA" EntityType="SICDBWEBModel.Store.SIC_T_PROVINCIA" store:Type="Tables" Schema="Mantenimiento" />
           <EntitySet Name="SIC_T_ZONA_REPARTO" EntityType="SICDBWEBModel.Store.SIC_T_ZONA_REPARTO" store:Type="Tables" Schema="Mantenimiento" />
@@ -102,19 +102,6 @@
             <End Role="SIC_T_ZONA_REPARTO_LUGAR" EntitySet="SIC_T_ZONA_REPARTO_LUGAR" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="SIC_T_ITEM">
-          <Key>
-            <PropertyRef Name="itm_c_iid" />
-          </Key>
-          <Property Name="itm_c_iid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="itm_c_ccodigo" Type="nvarchar" MaxLength="100" />
-          <Property Name="itm_c_vdescripcion" Type="nvarchar" MaxLength="100" />
-          <Property Name="itm_c_dprecio" Type="decimal" Scale="3" />
-          <Property Name="par_c_idd" Type="int" />
-          <Property Name="par_det_c_idd" Type="int" />
-          <Property Name="itm_c_vpardes" Type="nvarchar" MaxLength="100" />
-          <Property Name="itm_c_bactivo" Type="bit" />
-        </EntityType>
         <EntityType Name="SIC_T_PARAMETRO">
           <Key>
             <PropertyRef Name="par_c_iid" />
@@ -265,6 +252,19 @@
           <Property Name="dist_c_vnomb" Type="varchar" MaxLength="50" />
           <Property Name="prov_c_ccod" Type="char" Nullable="false" MaxLength="4" />
         </EntityType>
+        <EntityType Name="SIC_T_ITEM">
+          <Key>
+            <PropertyRef Name="itm_c_iid" />
+          </Key>
+          <Property Name="itm_c_iid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="itm_c_ccodigo" Type="nvarchar" MaxLength="100" />
+          <Property Name="itm_c_vdescripcion" Type="nvarchar" MaxLength="100" />
+          <Property Name="itm_c_dprecio" Type="decimal" Scale="3" />
+          <Property Name="par_c_idd" Type="int" />
+          <Property Name="par_det_c_idd" Type="int" />
+          <Property Name="itm_c_vpardes" Type="nvarchar" MaxLength="100" />
+          <Property Name="itm_c_bactivo" Type="bit" />
+        </EntityType>
         <EntityType Name="SIC_T_NOMB_COM">
           <Key>
             <PropertyRef Name="nomb_com_c_iid" />
@@ -337,7 +337,7 @@
           <Property Name="usua_perfil_c_cestado" Type="char" MaxLength="1" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'SICDBWEB.Mantenimiento.SIC_VW_CLIENTE_LISTA' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'SICDBWEB_DES.Mantenimiento.SIC_VW_CLIENTE_LISTA' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="SIC_VW_CLIENTE_LISTA">
           <Key>
@@ -583,12 +583,25 @@
         <Function Name="SIC_SP_CLIENTE_VERIFICAR_EXISTENCIA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Mantenimiento">
           <Parameter Name="cli_c_vdoc_id" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="SIC_SP_DESHABILITAR_CLIENTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Mantenimiento">
+          <Parameter Name="cli_c_vdoc_id" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="SIC_SP_NOMB_COMER_OBTENER_POR_NOMBRE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Mantenimiento">
           <Parameter Name="nomb_com_c_vnomb" Type="varchar" Mode="In" />
           <Parameter Name="cli_c_vdoc_id" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="SIC_SP_NOMBRE_COMERCIAL_LISTAR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Mantenimiento">
+          <Parameter Name="CLI_C_VDOC_ID" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="SIC_SP_NOMBRECOMERCIAL_BUSCAR_EXISTENCIA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Mantenimiento">
           <Parameter Name="nomb_com_c_vnomb" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SIC_SP_LISTAR_HIJOS_MENU" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Seguridad">
+          <Parameter Name="PC_CODUSUARIO" Type="char" Mode="In" />
+          <Parameter Name="PC_CODMENUPRINCIPAL" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SIC_SP_LISTAR_PADRES_MENU" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Seguridad">
+          <Parameter Name="PC_CODUSUARIO" Type="char" Mode="In" />
         </Function>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -682,22 +695,9 @@
             <End Role="SIC_T_MENU" EntitySet="SIC_T_MENU" />
             <End Role="SIC_T_MENU1" EntitySet="SIC_T_MENU" />
           </AssociationSet>
-          <FunctionImport Name="SIC_SP_LISTAR_HIJOS_MENU" EntitySet="SIC_T_MENU" ReturnType="Collection(SICDBWEBModel.SIC_T_MENU)">
-            <Parameter Name="PC_CODUSUARIO" Mode="In" Type="String" />
-            <Parameter Name="PC_CODMENUPRINCIPAL" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="SIC_SP_LISTAR_PADRES_MENU" EntitySet="SIC_T_MENU" ReturnType="Collection(SICDBWEBModel.SIC_T_MENU)">
-          <Parameter Name="PC_CODUSUARIO" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="SIC_SP_VERIFICAR_ACCESO">
             <Parameter Name="usua_c_cdoc_id" Mode="In" Type="String" />
             <Parameter Name="usua_c_vpass" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="SIC_SP_DESHABILITAR_CLIENTE">
-          <Parameter Name="cli_c_vdoc_id" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="SIC_SP_NOMBRE_COMERCIAL_LISTAR" EntitySet="SIC_T_NOMB_COM" ReturnType="Collection(SICDBWEBModel.SIC_T_NOMB_COM)">
-          <Parameter Name="CLI_C_VDOC_ID" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="SIC_T_COLABORADOR" EntityType="SICDBWEBModel.SIC_T_COLABORADOR" />
           <AssociationSet Name="FK_SIC_T_COLABORADOR_SIC_T_COLAB_AREA" Association="SICDBWEBModel.FK_SIC_T_COLABORADOR_SIC_T_COLAB_AREA">
@@ -749,6 +749,19 @@
             <End Role="SIC_T_USUARIO_OPCION" EntitySet="SIC_T_USUARIO_OPCION" />
           </AssociationSet>
           <EntitySet Name="SIC_T_ITEM" EntityType="SICDBWEBModel.SIC_T_ITEM" />
+          <FunctionImport Name="SIC_SP_LISTAR_PADRES_MENU" EntitySet="SIC_T_MENU" ReturnType="Collection(SICDBWEBModel.SIC_T_MENU)">
+          <Parameter Name="PC_CODUSUARIO" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SIC_SP_LISTAR_HIJOS_MENU" EntitySet="SIC_T_MENU" ReturnType="Collection(SICDBWEBModel.SIC_T_MENU)">
+            <Parameter Name="PC_CODUSUARIO" Mode="In" Type="String" />
+            <Parameter Name="PC_CODMENUPRINCIPAL" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SIC_SP_NOMBRE_COMERCIAL_LISTAR" EntitySet="SIC_T_NOMB_COM" ReturnType="Collection(SICDBWEBModel.SIC_T_NOMB_COM)">
+          <Parameter Name="CLI_C_VDOC_ID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SIC_SP_DESHABILITAR_CLIENTE">
+            <Parameter Name="cli_c_vdoc_id" Mode="In" Type="String" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="SIC_T_CLI_CONTAC_CARGO">
           <Key>
@@ -1219,7 +1232,7 @@
           <Key>
             <PropertyRef Name="itm_c_iid" />
           </Key>
-          <Property Type="Int32" Name="itm_c_iid" Nullable="false" />
+          <Property Type="Int32" Name="itm_c_iid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="itm_c_ccodigo" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="itm_c_vdescripcion" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="Decimal" Name="itm_c_dprecio" Precision="18" Scale="3" />
@@ -1523,6 +1536,10 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SIC_SP_LISTAR_PADRES_MENU" FunctionName="SICDBWEBModel.Store.SIC_SP_LISTAR_PADRES_MENU" />
+          <FunctionImportMapping FunctionImportName="SIC_SP_LISTAR_HIJOS_MENU" FunctionName="SICDBWEBModel.Store.SIC_SP_LISTAR_HIJOS_MENU" />
+          <FunctionImportMapping FunctionImportName="SIC_SP_NOMBRE_COMERCIAL_LISTAR" FunctionName="SICDBWEBModel.Store.SIC_SP_NOMBRE_COMERCIAL_LISTAR" />
+          <FunctionImportMapping FunctionImportName="SIC_SP_DESHABILITAR_CLIENTE" FunctionName="SICDBWEBModel.Store.SIC_SP_DESHABILITAR_CLIENTE" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1639,8 +1656,8 @@
           <ConnectorPoint PointX="7.125" PointY="4.297841796875" />
           <ConnectorPoint PointX="7.125" PointY="5.59568359375001" />
           <ConnectorPoint PointX="10.125" PointY="5.59568359375001" />
-          <ConnectorPoint PointX="10.125" PointY="7.3848893229166652" />
-          <ConnectorPoint PointX="15.3125" PointY="7.3848893229166652" />
+          <ConnectorPoint PointX="10.125" PointY="7.5571907552083246" />
+          <ConnectorPoint PointX="15.3125" PointY="7.5571907552083246" />
           <ConnectorPoint PointX="15.3125" PointY="8.875" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_CLIENTE_SIC_T_COLABORADOR" >
@@ -1671,7 +1688,7 @@
           <ConnectorPoint PointX="13.875" PointY="2.422841796874998" />
           <ConnectorPoint PointX="14.625" PointY="2.422841796874998" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_ITEM" Width="1.5" PointX="10.375" PointY="4.75" Height="2.3848893229166652" />
+        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_ITEM" Width="1.5" PointX="10.375" PointY="4.75" Height="2.5571907552083246" />
       </Diagram>
     </Diagrams>
   </Designer>

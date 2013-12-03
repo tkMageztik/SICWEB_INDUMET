@@ -296,7 +296,6 @@
     <Compile Include="Interfaces\Mantenimiento\frmRegCliente.aspx.designer.cs">
       <DependentUpon>frmRegCliente.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Interfaces\Mantenimiento\Item.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
