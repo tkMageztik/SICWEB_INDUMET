@@ -100,7 +100,7 @@
                     </table>
                 </asp:View>
                 <asp:View ID="View2" runat="server">
-                    <table style="width: 100%;">
+                    <table style="width: 100%; height: 121px;">
                         <tr>
                             <td class="tit-nav-paginas" align="left" colspan="2">
                                 MANTENIMIENTO &gt; ITEM

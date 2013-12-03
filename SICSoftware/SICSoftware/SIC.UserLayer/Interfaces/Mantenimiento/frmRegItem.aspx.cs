@@ -29,19 +29,26 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         }
 
         protected void Page_Load(object sender, EventArgs e)
-        {
-            this.ListarItems();
+        {            
             if (!IsPostBack)
             {
+                this.ListarItems();
                 this.ListarUnidadMedida();
             }
         }
 
         protected void gvListaItem_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            // TODO: TRY CATCH
-            int itemId = (int)this.gvListaItem.DataKeys[e.NewEditIndex].Value;
-            this.EditarItem(itemId);
+            try
+            {
+                int itemId = (int)this.gvListaItem.DataKeys[e.NewEditIndex].Value;
+                this.EditarItem(itemId);
+            }
+            catch (InvalidCastException icEx)
+            {
+                Mensaje("Error de proceso.", "../Imagenes/warning.png");
+                Console.Write(icEx.Message);
+            }
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
@@ -69,12 +76,19 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         #endregion
 
         #region Métodos
+
+        /// <summary>
+        /// Muesta los items en el gridview de la página.
+        /// </summary>
         private void ListarItems()
         {
             gvListaItem.DataSource = _item.ListarItems();
             gvListaItem.DataBind();
         }
 
+        /// <summary>
+        /// Llena el dropdownlist con el parametro unidad de medida correspondiente
+        /// </summary>
         private void ListarUnidadMedida()
         {
             cboUnidad.DataSource = _parametro.ListarParametros(1);
@@ -99,15 +113,31 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         /// <param name="index"></param>
         private void EditarItem(int idItem)
         {
-            EscenarioItem = TipoOperacion.Modificacion;
-            this.ItemSeleccionado = _item.ObtenerItemPorId(idItem);
-            this.txtCodigo.Text = ItemSeleccionado.itm_c_ccodigo;
-            this.txtDescripcion.Text = ItemSeleccionado.itm_c_vdescripcion;
-            this.txtPrecio.Text = ItemSeleccionado.itm_c_dprecio.ToString();
-            cboUnidad.SelectedIndex = -1;
-            cboUnidad.Items.FindByText(ItemSeleccionado.itm_c_vpardes).Selected = true;
-            mvItem.ActiveViewIndex = 1;
-            upGeneral.Update();
+            this.ItemSeleccionado = _item.ObtenerItemPorId(idItem); // Obtiene el item nuevamente
+
+            // Comprobamos que el item exista (debido a que pudo ser deshabilitado por otra persona)
+            if (this.ItemSeleccionado == null)
+            {
+                Mensaje("Item no encontrado.", "../Imagenes/warning.png");
+            }
+            else
+            {
+                this.EscenarioItem = TipoOperacion.Modificacion;
+
+                // Seteando la data en los controles
+                this.txtCodigo.Text = ItemSeleccionado.itm_c_ccodigo;
+                this.txtDescripcion.Text = ItemSeleccionado.itm_c_vdescripcion;
+                this.txtPrecio.Text = ItemSeleccionado.itm_c_dprecio.ToString();
+                this.cboUnidad.SelectedIndex = -1;
+                var seleccion = cboUnidad.Items.FindByText(ItemSeleccionado.itm_c_vpardes);
+                if (seleccion != null)
+                {
+                    seleccion.Selected = true;
+                }
+
+                mvItem.ActiveViewIndex = 1;
+                upGeneral.Update();
+            }
         }
 
         private void LimpiarCamposNuevoActualizar()
@@ -115,7 +145,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             this.txtCodigo.Text = string.Empty;
             this.txtDescripcion.Text = string.Empty;
             this.txtPrecio.Text = string.Empty;
-
+            this.cboUnidad.SelectedIndex = -1;
         }
 
         /// <summary>
