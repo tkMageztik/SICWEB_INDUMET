@@ -8,12 +8,13 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.ComponentModel;
+using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Data.EntityClient;
-using System.ComponentModel;
-using System.Xml.Serialization;
+using System.Linq;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 [assembly: EdmSchemaAttribute()]
 #region Metadatos de relaciones en EDM
@@ -33,6 +34,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_CLIENTE_SIC_T_CLI_SCORING", "SIC_T_CLI_SCORING", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SIC.EntityLayer.SIC_T_CLI_SCORING), "SIC_T_CLIENTE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_CLIENTE), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_CLIENTE_SIC_T_COLABORADOR", "SIC_T_COLABORADOR", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SIC.EntityLayer.SIC_T_COLABORADOR), "SIC_T_CLIENTE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_CLIENTE), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_CLIENTE_SIC_T_ZONA_REPARTO", "SIC_T_ZONA_REPARTO", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SIC.EntityLayer.SIC_T_ZONA_REPARTO), "SIC_T_CLIENTE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_CLIENTE), true)]
+[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_USUARIO_OPCION_SIC_T_USUARIO", "SIC_T_USUARIO", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_USUARIO), "SIC_T_USUARIO_OPCION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_USUARIO_OPCION), true)]
 
 #endregion
 
@@ -359,22 +361,6 @@ namespace SIC.EntityLayer
         /// <summary>
         /// No hay documentación de metadatos disponible.
         /// </summary>
-        public ObjectSet<SIC_T_USUARIO> SIC_T_USUARIO
-        {
-            get
-            {
-                if ((_SIC_T_USUARIO == null))
-                {
-                    _SIC_T_USUARIO = base.CreateObjectSet<SIC_T_USUARIO>("SIC_T_USUARIO");
-                }
-                return _SIC_T_USUARIO;
-            }
-        }
-        private ObjectSet<SIC_T_USUARIO> _SIC_T_USUARIO;
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
         public ObjectSet<SIC_T_COLABORADOR> SIC_T_COLABORADOR
         {
             get
@@ -419,8 +405,73 @@ namespace SIC.EntityLayer
             }
         }
         private ObjectSet<SIC_VW_CLIENTE_LISTA> _SIC_VW_CLIENTE_LISTA;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        public ObjectSet<SIC_T_USUARIO> SIC_T_USUARIO
+        {
+            get
+            {
+                if ((_SIC_T_USUARIO == null))
+                {
+                    _SIC_T_USUARIO = base.CreateObjectSet<SIC_T_USUARIO>("SIC_T_USUARIO");
+                }
+                return _SIC_T_USUARIO;
+            }
+        }
+        private ObjectSet<SIC_T_USUARIO> _SIC_T_USUARIO;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        public ObjectSet<SIC_T_USUARIO_OPCION> SIC_T_USUARIO_OPCION
+        {
+            get
+            {
+                if ((_SIC_T_USUARIO_OPCION == null))
+                {
+                    _SIC_T_USUARIO_OPCION = base.CreateObjectSet<SIC_T_USUARIO_OPCION>("SIC_T_USUARIO_OPCION");
+                }
+                return _SIC_T_USUARIO_OPCION;
+            }
+        }
+        private ObjectSet<SIC_T_USUARIO_OPCION> _SIC_T_USUARIO_OPCION;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        public ObjectSet<SIC_T_USUARIO_PERFIL> SIC_T_USUARIO_PERFIL
+        {
+            get
+            {
+                if ((_SIC_T_USUARIO_PERFIL == null))
+                {
+                    _SIC_T_USUARIO_PERFIL = base.CreateObjectSet<SIC_T_USUARIO_PERFIL>("SIC_T_USUARIO_PERFIL");
+                }
+                return _SIC_T_USUARIO_PERFIL;
+            }
+        }
+        private ObjectSet<SIC_T_USUARIO_PERFIL> _SIC_T_USUARIO_PERFIL;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        public ObjectSet<SIC_T_ITEM> SIC_T_ITEM
+        {
+            get
+            {
+                if ((_SIC_T_ITEM == null))
+                {
+                    _SIC_T_ITEM = base.CreateObjectSet<SIC_T_ITEM>("SIC_T_ITEM");
+                }
+                return _SIC_T_ITEM;
+            }
+        }
+        private ObjectSet<SIC_T_ITEM> _SIC_T_ITEM;
 
         #endregion
+
         #region Métodos AddTo
     
         /// <summary>
@@ -560,14 +611,6 @@ namespace SIC.EntityLayer
         }
     
         /// <summary>
-        /// Método desusado para agregar un nuevo objeto al EntitySet SIC_T_USUARIO. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
-        /// </summary>
-        public void AddToSIC_T_USUARIO(SIC_T_USUARIO sIC_T_USUARIO)
-        {
-            base.AddObject("SIC_T_USUARIO", sIC_T_USUARIO);
-        }
-    
-        /// <summary>
         /// Método desusado para agregar un nuevo objeto al EntitySet SIC_T_COLABORADOR. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
         /// </summary>
         public void AddToSIC_T_COLABORADOR(SIC_T_COLABORADOR sIC_T_COLABORADOR)
@@ -590,8 +633,41 @@ namespace SIC.EntityLayer
         {
             base.AddObject("SIC_VW_CLIENTE_LISTA", sIC_VW_CLIENTE_LISTA);
         }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet SIC_T_USUARIO. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToSIC_T_USUARIO(SIC_T_USUARIO sIC_T_USUARIO)
+        {
+            base.AddObject("SIC_T_USUARIO", sIC_T_USUARIO);
+        }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet SIC_T_USUARIO_OPCION. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToSIC_T_USUARIO_OPCION(SIC_T_USUARIO_OPCION sIC_T_USUARIO_OPCION)
+        {
+            base.AddObject("SIC_T_USUARIO_OPCION", sIC_T_USUARIO_OPCION);
+        }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet SIC_T_USUARIO_PERFIL. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToSIC_T_USUARIO_PERFIL(SIC_T_USUARIO_PERFIL sIC_T_USUARIO_PERFIL)
+        {
+            base.AddObject("SIC_T_USUARIO_PERFIL", sIC_T_USUARIO_PERFIL);
+        }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet SIC_T_ITEM. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToSIC_T_ITEM(SIC_T_ITEM sIC_T_ITEM)
+        {
+            base.AddObject("SIC_T_ITEM", sIC_T_ITEM);
+        }
 
         #endregion
+
         #region Importaciones de funciones
     
         /// <summary>
@@ -1021,7 +1097,7 @@ namespace SIC.EntityLayer
         /// </summary>
         /// <param name="usua_c_cdoc_id">No hay documentación de metadatos disponible.</param>
         /// <param name="usua_c_vpass">No hay documentación de metadatos disponible.</param>
-        public ObjectResult<SIC_T_USUARIO> SIC_SP_VERIFICAR_ACCESO(global::System.String usua_c_cdoc_id, global::System.String usua_c_vpass)
+        public int SIC_SP_VERIFICAR_ACCESO(global::System.String usua_c_cdoc_id, global::System.String usua_c_vpass)
         {
             ObjectParameter usua_c_cdoc_idParameter;
             if (usua_c_cdoc_id != null)
@@ -1043,37 +1119,7 @@ namespace SIC.EntityLayer
                 usua_c_vpassParameter = new ObjectParameter("usua_c_vpass", typeof(global::System.String));
             }
     
-            return base.ExecuteFunction<SIC_T_USUARIO>("SIC_SP_VERIFICAR_ACCESO", usua_c_cdoc_idParameter, usua_c_vpassParameter);
-        }
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        /// <param name="mergeOption"></param>
-        /// <param name="usua_c_cdoc_id">No hay documentación de metadatos disponible.</param>
-        /// <param name="usua_c_vpass">No hay documentación de metadatos disponible.</param>
-        public ObjectResult<SIC_T_USUARIO> SIC_SP_VERIFICAR_ACCESO(global::System.String usua_c_cdoc_id, global::System.String usua_c_vpass, MergeOption mergeOption)
-        {
-            ObjectParameter usua_c_cdoc_idParameter;
-            if (usua_c_cdoc_id != null)
-            {
-                usua_c_cdoc_idParameter = new ObjectParameter("usua_c_cdoc_id", usua_c_cdoc_id);
-            }
-            else
-            {
-                usua_c_cdoc_idParameter = new ObjectParameter("usua_c_cdoc_id", typeof(global::System.String));
-            }
-    
-            ObjectParameter usua_c_vpassParameter;
-            if (usua_c_vpass != null)
-            {
-                usua_c_vpassParameter = new ObjectParameter("usua_c_vpass", usua_c_vpass);
-            }
-            else
-            {
-                usua_c_vpassParameter = new ObjectParameter("usua_c_vpass", typeof(global::System.String));
-            }
-    
-            return base.ExecuteFunction<SIC_T_USUARIO>("SIC_SP_VERIFICAR_ACCESO", mergeOption, usua_c_cdoc_idParameter, usua_c_vpassParameter);
+            return base.ExecuteFunction("SIC_SP_VERIFICAR_ACCESO", usua_c_cdoc_idParameter, usua_c_vpassParameter);
         }
     
         /// <summary>
@@ -1213,11 +1259,11 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
-    
 
     #endregion
-    
+
     #region Entidades
     
     /// <summary>
@@ -1242,6 +1288,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -1296,6 +1343,7 @@ namespace SIC.EntityLayer
         partial void Oncli_contac_cargo_c_vnombChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -1322,6 +1370,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1350,6 +1399,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -1668,6 +1718,7 @@ namespace SIC.EntityLayer
         partial void Oncli_c_vdoc_idChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -1748,6 +1799,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1774,6 +1826,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -1951,6 +2004,7 @@ namespace SIC.EntityLayer
         partial void Oncli_direc_c_czonarepChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -2031,6 +2085,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2057,6 +2112,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -2114,6 +2170,7 @@ namespace SIC.EntityLayer
         partial void Oncli_c_vdoc_idChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -2156,6 +2213,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2180,6 +2238,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -2282,6 +2341,7 @@ namespace SIC.EntityLayer
         partial void Oncli_rs_h_c_dfec_regChanged();
 
         #endregion
+
     
     }
     
@@ -2307,6 +2367,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -2361,6 +2422,7 @@ namespace SIC.EntityLayer
         partial void Oncli_scor_c_vobservChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -2387,6 +2449,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2413,6 +2476,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -2755,6 +2819,7 @@ namespace SIC.EntityLayer
         partial void Oncli_c_dfec_constChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -2939,6 +3004,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2963,6 +3029,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -3017,6 +3084,7 @@ namespace SIC.EntityLayer
         partial void Oncolab_area_c_vnombChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -3043,6 +3111,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -3067,6 +3136,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -3121,6 +3191,7 @@ namespace SIC.EntityLayer
         partial void Oncolab_cargo_c_vnombChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -3147,6 +3218,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -3171,6 +3243,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -3345,6 +3418,7 @@ namespace SIC.EntityLayer
         partial void Oncolab_cargo_c_yidChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -3447,6 +3521,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -3471,6 +3546,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -3525,6 +3601,7 @@ namespace SIC.EntityLayer
         partial void Ondepa_c_vnombChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -3551,6 +3628,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -3577,6 +3655,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -3655,6 +3734,7 @@ namespace SIC.EntityLayer
         partial void Onprov_c_ccodChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -3719,6 +3799,208 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
+    }
+    
+    /// <summary>
+    /// No hay documentación de metadatos disponible.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SICDBWEBModel", Name="SIC_T_ITEM")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SIC_T_ITEM : EntityObject
+    {
+        #region Método de generador
+    
+        /// <summary>
+        /// Crear un nuevo objeto SIC_T_ITEM.
+        /// </summary>
+        /// <param name="itm_c_iid">Valor inicial de la propiedad itm_c_iid.</param>
+        public static SIC_T_ITEM CreateSIC_T_ITEM(global::System.Int32 itm_c_iid)
+        {
+            SIC_T_ITEM sIC_T_ITEM = new SIC_T_ITEM();
+            sIC_T_ITEM.itm_c_iid = itm_c_iid;
+            return sIC_T_ITEM;
+        }
+
+        #endregion
+
+        #region Propiedades primitivas
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 itm_c_iid
+        {
+            get
+            {
+                return _itm_c_iid;
+            }
+            set
+            {
+                if (_itm_c_iid != value)
+                {
+                    Onitm_c_iidChanging(value);
+                    ReportPropertyChanging("itm_c_iid");
+                    _itm_c_iid = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("itm_c_iid");
+                    Onitm_c_iidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _itm_c_iid;
+        partial void Onitm_c_iidChanging(global::System.Int32 value);
+        partial void Onitm_c_iidChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String itm_c_ccodigo
+        {
+            get
+            {
+                return _itm_c_ccodigo;
+            }
+            set
+            {
+                Onitm_c_ccodigoChanging(value);
+                ReportPropertyChanging("itm_c_ccodigo");
+                _itm_c_ccodigo = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("itm_c_ccodigo");
+                Onitm_c_ccodigoChanged();
+            }
+        }
+        private global::System.String _itm_c_ccodigo;
+        partial void Onitm_c_ccodigoChanging(global::System.String value);
+        partial void Onitm_c_ccodigoChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String itm_c_vdescripcion
+        {
+            get
+            {
+                return _itm_c_vdescripcion;
+            }
+            set
+            {
+                Onitm_c_vdescripcionChanging(value);
+                ReportPropertyChanging("itm_c_vdescripcion");
+                _itm_c_vdescripcion = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("itm_c_vdescripcion");
+                Onitm_c_vdescripcionChanged();
+            }
+        }
+        private global::System.String _itm_c_vdescripcion;
+        partial void Onitm_c_vdescripcionChanging(global::System.String value);
+        partial void Onitm_c_vdescripcionChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> itm_c_dprecio
+        {
+            get
+            {
+                return _itm_c_dprecio;
+            }
+            set
+            {
+                Onitm_c_dprecioChanging(value);
+                ReportPropertyChanging("itm_c_dprecio");
+                _itm_c_dprecio = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("itm_c_dprecio");
+                Onitm_c_dprecioChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _itm_c_dprecio;
+        partial void Onitm_c_dprecioChanging(Nullable<global::System.Decimal> value);
+        partial void Onitm_c_dprecioChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> par_c_idd
+        {
+            get
+            {
+                return _par_c_idd;
+            }
+            set
+            {
+                Onpar_c_iddChanging(value);
+                ReportPropertyChanging("par_c_idd");
+                _par_c_idd = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("par_c_idd");
+                Onpar_c_iddChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _par_c_idd;
+        partial void Onpar_c_iddChanging(Nullable<global::System.Int32> value);
+        partial void Onpar_c_iddChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> par_det_c_idd
+        {
+            get
+            {
+                return _par_det_c_idd;
+            }
+            set
+            {
+                Onpar_det_c_iddChanging(value);
+                ReportPropertyChanging("par_det_c_idd");
+                _par_det_c_idd = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("par_det_c_idd");
+                Onpar_det_c_iddChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _par_det_c_idd;
+        partial void Onpar_det_c_iddChanging(Nullable<global::System.Int32> value);
+        partial void Onpar_det_c_iddChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String itm_c_vpardes
+        {
+            get
+            {
+                return _itm_c_vpardes;
+            }
+            set
+            {
+                Onitm_c_vpardesChanging(value);
+                ReportPropertyChanging("itm_c_vpardes");
+                _itm_c_vpardes = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("itm_c_vpardes");
+                Onitm_c_vpardesChanged();
+            }
+        }
+        private global::System.String _itm_c_vpardes;
+        partial void Onitm_c_vpardesChanging(global::System.String value);
+        partial void Onitm_c_vpardesChanged();
+
+        #endregion
+
+    
     }
     
     /// <summary>
@@ -3743,6 +4025,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -3869,6 +4152,7 @@ namespace SIC.EntityLayer
         partial void Onmenu_c_vpag_aspChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -3933,6 +4217,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -3957,6 +4242,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -4011,6 +4297,7 @@ namespace SIC.EntityLayer
         partial void Onnomb_com_c_vnombChanged();
 
         #endregion
+
     
     }
     
@@ -4036,6 +4323,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -4114,6 +4402,7 @@ namespace SIC.EntityLayer
         partial void Onpar_c_bactivoChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -4140,6 +4429,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -4166,6 +4456,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -4511,6 +4802,7 @@ namespace SIC.EntityLayer
         partial void Onpar_det_c_vobsChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -4553,6 +4845,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -4579,6 +4872,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -4657,6 +4951,7 @@ namespace SIC.EntityLayer
         partial void Ondepa_c_ccodChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -4721,6 +5016,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -4747,6 +5043,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -4969,6 +5266,271 @@ namespace SIC.EntityLayer
         partial void Onusua_c_bestadoChanged();
 
         #endregion
+
+    
+        #region Propiedades de navegación
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_USUARIO_OPCION_SIC_T_USUARIO", "SIC_T_USUARIO_OPCION")]
+        public EntityCollection<SIC_T_USUARIO_OPCION> SIC_T_USUARIO_OPCION
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SIC_T_USUARIO_OPCION>("SICDBWEBModel.FK_SIC_T_USUARIO_OPCION_SIC_T_USUARIO", "SIC_T_USUARIO_OPCION");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SIC_T_USUARIO_OPCION>("SICDBWEBModel.FK_SIC_T_USUARIO_OPCION_SIC_T_USUARIO", "SIC_T_USUARIO_OPCION", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No hay documentación de metadatos disponible.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SICDBWEBModel", Name="SIC_T_USUARIO_OPCION")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SIC_T_USUARIO_OPCION : EntityObject
+    {
+        #region Método de generador
+    
+        /// <summary>
+        /// Crear un nuevo objeto SIC_T_USUARIO_OPCION.
+        /// </summary>
+        /// <param name="usua_c_cdoc_id">Valor inicial de la propiedad usua_c_cdoc_id.</param>
+        /// <param name="opc_c_iid">Valor inicial de la propiedad opc_c_iid.</param>
+        public static SIC_T_USUARIO_OPCION CreateSIC_T_USUARIO_OPCION(global::System.String usua_c_cdoc_id, global::System.Int32 opc_c_iid)
+        {
+            SIC_T_USUARIO_OPCION sIC_T_USUARIO_OPCION = new SIC_T_USUARIO_OPCION();
+            sIC_T_USUARIO_OPCION.usua_c_cdoc_id = usua_c_cdoc_id;
+            sIC_T_USUARIO_OPCION.opc_c_iid = opc_c_iid;
+            return sIC_T_USUARIO_OPCION;
+        }
+
+        #endregion
+
+        #region Propiedades primitivas
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String usua_c_cdoc_id
+        {
+            get
+            {
+                return _usua_c_cdoc_id;
+            }
+            set
+            {
+                if (_usua_c_cdoc_id != value)
+                {
+                    Onusua_c_cdoc_idChanging(value);
+                    ReportPropertyChanging("usua_c_cdoc_id");
+                    _usua_c_cdoc_id = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("usua_c_cdoc_id");
+                    Onusua_c_cdoc_idChanged();
+                }
+            }
+        }
+        private global::System.String _usua_c_cdoc_id;
+        partial void Onusua_c_cdoc_idChanging(global::System.String value);
+        partial void Onusua_c_cdoc_idChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 opc_c_iid
+        {
+            get
+            {
+                return _opc_c_iid;
+            }
+            set
+            {
+                if (_opc_c_iid != value)
+                {
+                    Onopc_c_iidChanging(value);
+                    ReportPropertyChanging("opc_c_iid");
+                    _opc_c_iid = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("opc_c_iid");
+                    Onopc_c_iidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _opc_c_iid;
+        partial void Onopc_c_iidChanging(global::System.Int32 value);
+        partial void Onopc_c_iidChanged();
+
+        #endregion
+
+    
+        #region Propiedades de navegación
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_USUARIO_OPCION_SIC_T_USUARIO", "SIC_T_USUARIO")]
+        public SIC_T_USUARIO SIC_T_USUARIO
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_USUARIO>("SICDBWEBModel.FK_SIC_T_USUARIO_OPCION_SIC_T_USUARIO", "SIC_T_USUARIO").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_USUARIO>("SICDBWEBModel.FK_SIC_T_USUARIO_OPCION_SIC_T_USUARIO", "SIC_T_USUARIO").Value = value;
+            }
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SIC_T_USUARIO> SIC_T_USUARIOReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_USUARIO>("SICDBWEBModel.FK_SIC_T_USUARIO_OPCION_SIC_T_USUARIO", "SIC_T_USUARIO");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SIC_T_USUARIO>("SICDBWEBModel.FK_SIC_T_USUARIO_OPCION_SIC_T_USUARIO", "SIC_T_USUARIO", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No hay documentación de metadatos disponible.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SICDBWEBModel", Name="SIC_T_USUARIO_PERFIL")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SIC_T_USUARIO_PERFIL : EntityObject
+    {
+        #region Método de generador
+    
+        /// <summary>
+        /// Crear un nuevo objeto SIC_T_USUARIO_PERFIL.
+        /// </summary>
+        /// <param name="perf_c_yid">Valor inicial de la propiedad perf_c_yid.</param>
+        /// <param name="usua_c_cdoc_id">Valor inicial de la propiedad usua_c_cdoc_id.</param>
+        public static SIC_T_USUARIO_PERFIL CreateSIC_T_USUARIO_PERFIL(global::System.Byte perf_c_yid, global::System.String usua_c_cdoc_id)
+        {
+            SIC_T_USUARIO_PERFIL sIC_T_USUARIO_PERFIL = new SIC_T_USUARIO_PERFIL();
+            sIC_T_USUARIO_PERFIL.perf_c_yid = perf_c_yid;
+            sIC_T_USUARIO_PERFIL.usua_c_cdoc_id = usua_c_cdoc_id;
+            return sIC_T_USUARIO_PERFIL;
+        }
+
+        #endregion
+
+        #region Propiedades primitivas
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Byte perf_c_yid
+        {
+            get
+            {
+                return _perf_c_yid;
+            }
+            set
+            {
+                if (_perf_c_yid != value)
+                {
+                    Onperf_c_yidChanging(value);
+                    ReportPropertyChanging("perf_c_yid");
+                    _perf_c_yid = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("perf_c_yid");
+                    Onperf_c_yidChanged();
+                }
+            }
+        }
+        private global::System.Byte _perf_c_yid;
+        partial void Onperf_c_yidChanging(global::System.Byte value);
+        partial void Onperf_c_yidChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String usua_c_cdoc_id
+        {
+            get
+            {
+                return _usua_c_cdoc_id;
+            }
+            set
+            {
+                if (_usua_c_cdoc_id != value)
+                {
+                    Onusua_c_cdoc_idChanging(value);
+                    ReportPropertyChanging("usua_c_cdoc_id");
+                    _usua_c_cdoc_id = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("usua_c_cdoc_id");
+                    Onusua_c_cdoc_idChanged();
+                }
+            }
+        }
+        private global::System.String _usua_c_cdoc_id;
+        partial void Onusua_c_cdoc_idChanging(global::System.String value);
+        partial void Onusua_c_cdoc_idChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String usua_perfil_c_cestado
+        {
+            get
+            {
+                return _usua_perfil_c_cestado;
+            }
+            set
+            {
+                Onusua_perfil_c_cestadoChanging(value);
+                ReportPropertyChanging("usua_perfil_c_cestado");
+                _usua_perfil_c_cestado = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("usua_perfil_c_cestado");
+                Onusua_perfil_c_cestadoChanged();
+            }
+        }
+        private global::System.String _usua_perfil_c_cestado;
+        partial void Onusua_perfil_c_cestadoChanging(global::System.String value);
+        partial void Onusua_perfil_c_cestadoChanged();
+
+        #endregion
+
     
     }
     
@@ -4994,6 +5556,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -5048,6 +5611,7 @@ namespace SIC.EntityLayer
         partial void Onzona_rep_c_czonaChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -5096,6 +5660,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -5120,6 +5685,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -5198,6 +5764,7 @@ namespace SIC.EntityLayer
         partial void Onzona_rep_lug_c_vdescChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -5240,6 +5807,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -5266,6 +5834,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -5371,10 +5940,12 @@ namespace SIC.EntityLayer
         partial void Oncli_c_vraz_socChanged();
 
         #endregion
+
     
     }
 
     #endregion
+
     #region ComplexTypes
     
     /// <summary>
@@ -5399,6 +5970,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -5594,8 +6166,10 @@ namespace SIC.EntityLayer
         partial void Oncolab_cargo_c_yidChanged();
 
         #endregion
+
     }
 
     #endregion
+
     
 }

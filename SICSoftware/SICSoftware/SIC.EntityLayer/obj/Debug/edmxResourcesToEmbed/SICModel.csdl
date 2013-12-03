@@ -95,8 +95,7 @@
     <FunctionImport Name="SIC_SP_LISTAR_PADRES_MENU" EntitySet="SIC_T_MENU" ReturnType="Collection(SICDBWEBModel.SIC_T_MENU)">
       <Parameter Name="PC_CODUSUARIO" Mode="In" Type="String" />
     </FunctionImport>
-    <EntitySet Name="SIC_T_USUARIO" EntityType="SICDBWEBModel.SIC_T_USUARIO" />
-    <FunctionImport Name="SIC_SP_VERIFICAR_ACCESO" EntitySet="SIC_T_USUARIO" ReturnType="Collection(SICDBWEBModel.SIC_T_USUARIO)">
+    <FunctionImport Name="SIC_SP_VERIFICAR_ACCESO">
       <Parameter Name="usua_c_cdoc_id" Mode="In" Type="String" />
       <Parameter Name="usua_c_vpass" Mode="In" Type="String" />
     </FunctionImport>
@@ -148,6 +147,14 @@
       <Parameter Name="CLI_C_VDOC_ID" Mode="In" Type="String" />
     </FunctionImport>
     <EntitySet Name="SIC_VW_CLIENTE_LISTA" EntityType="SICDBWEBModel.SIC_VW_CLIENTE_LISTA" />
+    <EntitySet Name="SIC_T_USUARIO" EntityType="SICDBWEBModel.SIC_T_USUARIO" />
+    <EntitySet Name="SIC_T_USUARIO_OPCION" EntityType="SICDBWEBModel.SIC_T_USUARIO_OPCION" />
+    <EntitySet Name="SIC_T_USUARIO_PERFIL" EntityType="SICDBWEBModel.SIC_T_USUARIO_PERFIL" />
+    <AssociationSet Name="FK_SIC_T_USUARIO_OPCION_SIC_T_USUARIO" Association="SICDBWEBModel.FK_SIC_T_USUARIO_OPCION_SIC_T_USUARIO">
+      <End Role="SIC_T_USUARIO" EntitySet="SIC_T_USUARIO" />
+      <End Role="SIC_T_USUARIO_OPCION" EntitySet="SIC_T_USUARIO_OPCION" />
+    </AssociationSet>
+    <EntitySet Name="SIC_T_ITEM" EntityType="SICDBWEBModel.SIC_T_ITEM" />
   </EntityContainer>
   <EntityType Name="SIC_T_CLI_CONTAC_CARGO">
     <Key>
@@ -413,20 +420,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="SIC_T_USUARIO">
-    <Key>
-      <PropertyRef Name="usua_c_cdoc_id" />
-    </Key>
-    <Property Type="String" Name="usua_c_cusu_red" MaxLength="10" FixedLength="true" Unicode="false" />
-    <Property Type="Boolean" Name="usua_c_bpropietarioadministrador" />
-    <Property Type="String" Name="usua_c_cidempresa" MaxLength="11" FixedLength="true" Unicode="false" />
-    <Property Type="String" Name="usua_c_cape_pat" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="usua_c_cape_mat" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="usua_c_cape_nombres" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="usua_c_cdoc_id" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="usua_c_vpass" MaxLength="15" FixedLength="false" Unicode="false" />
-    <Property Type="Boolean" Name="usua_c_bestado" Nullable="false" />
-  </EntityType>
   <EntityType Name="SIC_T_COLABORADOR">
     <Key>
       <PropertyRef Name="colab_c_cdoc_id" />
@@ -582,5 +575,62 @@
     <Property Type="String" Name="cli_c_vdoc_id" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="nomb_com_c_vnomb" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="cli_c_vraz_soc" MaxLength="200" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="SIC_T_USUARIO">
+    <Key>
+      <PropertyRef Name="usua_c_cdoc_id" />
+    </Key>
+    <Property Type="String" Name="usua_c_cusu_red" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Type="Boolean" Name="usua_c_bpropietarioadministrador" />
+    <Property Type="String" Name="usua_c_cidempresa" MaxLength="11" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="usua_c_cape_pat" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="usua_c_cape_mat" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="usua_c_cape_nombres" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="usua_c_cdoc_id" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="usua_c_vpass" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="usua_c_bestado" Nullable="false" />
+    <NavigationProperty Name="SIC_T_USUARIO_OPCION" Relationship="SICDBWEBModel.FK_SIC_T_USUARIO_OPCION_SIC_T_USUARIO" FromRole="SIC_T_USUARIO" ToRole="SIC_T_USUARIO_OPCION" />
+  </EntityType>
+  <EntityType Name="SIC_T_USUARIO_OPCION">
+    <Key>
+      <PropertyRef Name="usua_c_cdoc_id" />
+      <PropertyRef Name="opc_c_iid" />
+    </Key>
+    <Property Type="String" Name="usua_c_cdoc_id" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="opc_c_iid" Nullable="false" />
+    <NavigationProperty Name="SIC_T_USUARIO" Relationship="SICDBWEBModel.FK_SIC_T_USUARIO_OPCION_SIC_T_USUARIO" FromRole="SIC_T_USUARIO_OPCION" ToRole="SIC_T_USUARIO" />
+  </EntityType>
+  <EntityType Name="SIC_T_USUARIO_PERFIL">
+    <Key>
+      <PropertyRef Name="perf_c_yid" />
+      <PropertyRef Name="usua_c_cdoc_id" />
+    </Key>
+    <Property Type="Byte" Name="perf_c_yid" Nullable="false" />
+    <Property Type="String" Name="usua_c_cdoc_id" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="usua_perfil_c_cestado" MaxLength="1" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_SIC_T_USUARIO_OPCION_SIC_T_USUARIO">
+    <End Type="SICDBWEBModel.SIC_T_USUARIO" Role="SIC_T_USUARIO" Multiplicity="1" />
+    <End Type="SICDBWEBModel.SIC_T_USUARIO_OPCION" Role="SIC_T_USUARIO_OPCION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SIC_T_USUARIO">
+        <PropertyRef Name="usua_c_cdoc_id" />
+      </Principal>
+      <Dependent Role="SIC_T_USUARIO_OPCION">
+        <PropertyRef Name="usua_c_cdoc_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="SIC_T_ITEM">
+    <Key>
+      <PropertyRef Name="itm_c_iid" />
+    </Key>
+    <Property Type="Int32" Name="itm_c_iid" Nullable="false" />
+    <Property Type="String" Name="itm_c_ccodigo" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="itm_c_vdescripcion" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="itm_c_dprecio" Precision="18" Scale="3" />
+    <Property Type="Int32" Name="par_c_idd" />
+    <Property Type="Int32" Name="par_det_c_idd" />
+    <Property Type="String" Name="itm_c_vpardes" MaxLength="100" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

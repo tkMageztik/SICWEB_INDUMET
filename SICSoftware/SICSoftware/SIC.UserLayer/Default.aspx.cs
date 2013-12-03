@@ -31,7 +31,7 @@ namespace SIC.UserLayer
             else
             {
                 Session["USUARIO"] = usuario;
-                Response.Redirect("Interfaces/frmPrincipal.aspx");
+                Response.Redirect("Interfaces/Mantenimiento/frmRegItem.aspx");
             }
         }
 

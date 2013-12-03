@@ -9,7 +9,7 @@
     <asp:UpdatePanel ID="upGeneral" UpdateMode="Conditional" ChildrenAsTriggers="False"
         runat="server">
         <ContentTemplate>
-            <asp:MultiView ID="mvItem" runat="server" ActiveViewIndex="1">
+            <asp:MultiView ID="mvItem" runat="server" ActiveViewIndex="0">
                 <asp:View ID="View1" runat="server">
                     <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
                         <tr>
@@ -19,26 +19,78 @@
                         </tr>
                         <tr>
                             <td align="left" class="tit-nav-paginas">
+                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                    <tr>
+                                        <td align="left" class="box-estilo01">
+                                            <table width="100%">
+                                                <tr>
+                                                    <td>
+                                                        <table>
+                                                            <tr>
+                                                                <td class="txt-box-estilo">
+                                                                    &nbsp;</td>
+                                                                <td>
+                                                                    &nbsp;</td>
+                                                                <td style="width: 20px">
+                                                                </td>
+                                                                <td class="txt-box-estilo">
+                                                                    &nbsp;</td>
+                                                                <td>
+                                                                    &nbsp;</td>
+                                                                <td style="width: 20px">
+                                                                </td>
+                                                                <td>
+                                                                </td>
+                                                                <td>
+                                                                    &nbsp;
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                    <td align="right">
+                                                        <table>
+                                                            <tr>
+                                                                <td align="center">
+                                                                    <asp:Button ID="btnBuscar" runat="server" CssClass="button small gris" 
+                                                                        OnClick="btnBuscar_Click" Style="width: 100px" Text="Buscar" />
+                                                                </td>
+                                                                <td align="center">
+                                                                    <asp:Button ID="btnNuevo" runat="server" CssClass="lnk" Height="26px" 
+                                                                        OnClick="btnNuevo_Click" Text="Nuevo" Width="101px" />
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left" class="tit-nav-paginas">
                                 <asp:GridView ID="gvListaItem" runat="server" BorderStyle="None" AutoGenerateColumns="False"
                                     GridLines="None" AllowPaging="True" Width="100%" CssClass="mGrid" PagerStyle-CssClass="pgr"
                                     AlternatingRowStyle-CssClass="alt" ShowHeaderWhenEmpty="True" EmptyDataText="No hay datos disponibles."
-                                    PageSize="15" BorderWidth="0px" ViewStateMode="Enabled" OnRowEditing="gvListaItem_RowEditing">
+                                    PageSize="15" BorderWidth="0px" ViewStateMode="Enabled" 
+                                    OnRowEditing="gvListaItem_RowEditing" DataKeyNames="itm_c_iid">
                                     <AlternatingRowStyle CssClass="alt" />
                                     <Columns>
                                         <asp:BoundField DataField="itm_c_ccodigo" HeaderText="Código" />
                                         <asp:BoundField DataField="itm_c_vdescripcion" HeaderText="Descripción" />
                                         <asp:BoundField DataField="itm_c_dprecio" HeaderText="Precio" />
-                                        <asp:TemplateField HeaderText="Unidad">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblUnidad" runat="server" Text='<%# Eval("SIC_T_PARAMETRO_DET.par_det_c_vdesc") %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
+                                        <asp:BoundField DataField="itm_c_vpardes" HeaderText="Unidad de Medida" />
                                         <asp:CommandField ShowEditButton="True" />
                                         <asp:CommandField ShowDeleteButton="True" />
                                     </Columns>
                                     <PagerStyle CssClass="pgr" />
                                 </asp:GridView>
                             </td>
+                        </tr>
+                        <tr>
+                            <td align="left" class="tit-nav-paginas">
+                                &nbsp;</td>
                         </tr>
                     </table>
                 </asp:View>
@@ -71,13 +123,13 @@
                                             Código
                                         </td>
                                         <td align="left" class="txt-box-estilo">
-                                            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="txtCodigo" runat="server"></asp:TextBox>
                                         </td>
                                         <td align="left" class="txt-box-estilo">
                                             Precio
                                         </td>
                                         <td align="left" class="txt-box-estilo">
-                                            <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="txtPrecio" runat="server"></asp:TextBox>
                                         </td>
                                     </tr>
                                     <tr>
@@ -85,7 +137,7 @@
                                             Descripción
                                         </td>
                                         <td align="left" class="txt-box-estilo">
-                                            <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="txtDescripcion" runat="server"></asp:TextBox>
                                         </td>
                                         <td align="left" class="txt-box-estilo">
                                             Unidad
@@ -106,6 +158,22 @@
                     </table>
                 </asp:View>
             </asp:MultiView>
+            <asp:UpdatePanel ID="upMensaje" runat="server" UpdateMode="Conditional">
+                <ContentTemplate>
+                    <div id="divPopUpMsg" class="PopupOcultar" runat="server">
+                        <table border="0" cellpadding="0" cellspacing="0" width="800px">
+                            <tr>
+                                <td>
+                                    <uc1:Mensaje ID="ucMensaje" Visible="false" runat="server" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </ContentTemplate>
+                <Triggers>
+                    <asp:AsyncPostBackTrigger ControlID="btnGuardar" EventName="Click" />
+                </Triggers>
+            </asp:UpdatePanel>
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

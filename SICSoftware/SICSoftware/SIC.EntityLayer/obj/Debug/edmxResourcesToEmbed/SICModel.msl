@@ -186,25 +186,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="SIC_SP_LISTAR_HIJOS_MENU" FunctionName="SICDBWEBModel.Store.SIC_SP_LISTAR_HIJOS_MENU" />
-    <FunctionImportMapping FunctionImportName="SIC_SP_LISTAR_PADRES_MENU" FunctionName="SICDBWEBModel.Store.SIC_SP_LISTAR_PADRES_MENU" />
-    <EntitySetMapping Name="SIC_T_USUARIO">
-      <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_USUARIO">
-        <MappingFragment StoreEntitySet="SIC_T_USUARIO">
-          <ScalarProperty Name="usua_c_bestado" ColumnName="usua_c_bestado" />
-          <ScalarProperty Name="usua_c_vpass" ColumnName="usua_c_vpass" />
-          <ScalarProperty Name="usua_c_cdoc_id" ColumnName="usua_c_cdoc_id" />
-          <ScalarProperty Name="usua_c_cape_nombres" ColumnName="usua_c_cape_nombres" />
-          <ScalarProperty Name="usua_c_cape_mat" ColumnName="usua_c_cape_mat" />
-          <ScalarProperty Name="usua_c_cape_pat" ColumnName="usua_c_cape_pat" />
-          <ScalarProperty Name="usua_c_cidempresa" ColumnName="usua_c_cidempresa" />
-          <ScalarProperty Name="usua_c_bpropietarioadministrador" ColumnName="usua_c_bpropietarioadministrador" />
-          <ScalarProperty Name="usua_c_cusu_red" ColumnName="usua_c_cusu_red" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="SIC_SP_DESHABILITAR_CLIENTE" FunctionName="SICDBWEBModel.Store.SIC_SP_DESHABILITAR_CLIENTE" />
-    <FunctionImportMapping FunctionImportName="SIC_SP_NOMBRE_COMERCIAL_LISTAR" FunctionName="SICDBWEBModel.Store.SIC_SP_NOMBRE_COMERCIAL_LISTAR" />
     <EntitySetMapping Name="SIC_T_COLABORADOR">
       <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_COLABORADOR">
         <MappingFragment StoreEntitySet="SIC_T_COLABORADOR">
@@ -260,6 +241,51 @@
           <ScalarProperty Name="nomb_com_c_vnomb" ColumnName="nomb_com_c_vnomb" />
           <ScalarProperty Name="cli_c_vdoc_id" ColumnName="cli_c_vdoc_id" />
           <ScalarProperty Name="nomb_com_c_iid" ColumnName="nomb_com_c_iid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SIC_T_USUARIO">
+      <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_USUARIO">
+        <MappingFragment StoreEntitySet="SIC_T_USUARIO">
+          <ScalarProperty Name="usua_c_bestado" ColumnName="usua_c_bestado" />
+          <ScalarProperty Name="usua_c_vpass" ColumnName="usua_c_vpass" />
+          <ScalarProperty Name="usua_c_cdoc_id" ColumnName="usua_c_cdoc_id" />
+          <ScalarProperty Name="usua_c_cape_nombres" ColumnName="usua_c_cape_nombres" />
+          <ScalarProperty Name="usua_c_cape_mat" ColumnName="usua_c_cape_mat" />
+          <ScalarProperty Name="usua_c_cape_pat" ColumnName="usua_c_cape_pat" />
+          <ScalarProperty Name="usua_c_cidempresa" ColumnName="usua_c_cidempresa" />
+          <ScalarProperty Name="usua_c_bpropietarioadministrador" ColumnName="usua_c_bpropietarioadministrador" />
+          <ScalarProperty Name="usua_c_cusu_red" ColumnName="usua_c_cusu_red" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SIC_T_USUARIO_OPCION">
+      <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_USUARIO_OPCION">
+        <MappingFragment StoreEntitySet="SIC_T_USUARIO_OPCION">
+          <ScalarProperty Name="opc_c_iid" ColumnName="opc_c_iid" />
+          <ScalarProperty Name="usua_c_cdoc_id" ColumnName="usua_c_cdoc_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SIC_T_USUARIO_PERFIL">
+      <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_USUARIO_PERFIL">
+        <MappingFragment StoreEntitySet="SIC_T_USUARIO_PERFIL">
+          <ScalarProperty Name="usua_perfil_c_cestado" ColumnName="usua_perfil_c_cestado" />
+          <ScalarProperty Name="usua_c_cdoc_id" ColumnName="usua_c_cdoc_id" />
+          <ScalarProperty Name="perf_c_yid" ColumnName="perf_c_yid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SIC_T_ITEM">
+      <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_ITEM">
+        <MappingFragment StoreEntitySet="SIC_T_ITEM">
+          <ScalarProperty Name="itm_c_vpardes" ColumnName="itm_c_vpardes" />
+          <ScalarProperty Name="par_det_c_idd" ColumnName="par_det_c_idd" />
+          <ScalarProperty Name="par_c_idd" ColumnName="par_c_idd" />
+          <ScalarProperty Name="itm_c_dprecio" ColumnName="itm_c_dprecio" />
+          <ScalarProperty Name="itm_c_vdescripcion" ColumnName="itm_c_vdescripcion" />
+          <ScalarProperty Name="itm_c_ccodigo" ColumnName="itm_c_ccodigo" />
+          <ScalarProperty Name="itm_c_iid" ColumnName="itm_c_iid" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

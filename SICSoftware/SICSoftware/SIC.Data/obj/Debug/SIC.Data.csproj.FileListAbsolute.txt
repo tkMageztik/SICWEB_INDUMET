@@ -18,3 +18,7 @@ C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.Data\bin\Debug\SIC.
 C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.Data\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.Data\obj\Debug\SIC.Data.dll
 C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.Data\obj\Debug\SIC.Data.pdb
+D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.Data\bin\Debug\SIC.Data.dll
+D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.Data\bin\Debug\SIC.Data.pdb
+D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.Data\obj\Debug\SIC.Data.dll
+D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.Data\obj\Debug\SIC.Data.pdb

@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClienteBL.cs" />
+    <Compile Include="ItemBL.cs" />
+    <Compile Include="ParametroBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SeguridadBL.cs" />
     <Compile Include="UbigeoBL.cs" />
