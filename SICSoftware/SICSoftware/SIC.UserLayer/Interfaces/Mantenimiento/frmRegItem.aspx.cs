@@ -113,7 +113,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         /// </summary>
         private void ListarUnidadMedida()
         {
-            cboUnidad.DataSource = _parametro.ListarParametros(1);
+            cboUnidad.DataSource = _parametro.ListarParametros((int) TipoParametro.UNIDAD_DE_MEDIDA);
             cboUnidad.DataTextField = "par_det_c_vdesc";
             cboUnidad.DataValueField = "par_det_c_iid";
             cboUnidad.DataBind();

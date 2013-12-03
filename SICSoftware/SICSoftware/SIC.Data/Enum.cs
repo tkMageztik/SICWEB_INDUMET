@@ -332,12 +332,7 @@ namespace SIC.Data
 
     public enum TipoParametro
     {
-        ESTADOS_GARANTIA = 1,
-        TIPO_DOCUMENTO_IDENTIDAD = 2,
-        ESTADOS_EVALUACION_CREDITO = 3,
-        CORREOS = 4,
-        ESTATUS = 5, //TODO ESTADOS GARANTIA A BORRAR
-        TIPO_PLANTILLA_COMERCIAL = 7
+        UNIDAD_DE_MEDIDA = 1,
     }
 
     public enum DESTINATARIOSCORREO
