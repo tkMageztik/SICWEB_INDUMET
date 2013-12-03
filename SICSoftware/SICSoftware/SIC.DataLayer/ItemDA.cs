@@ -19,6 +19,7 @@ namespace SIC.DataLayer
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {                    
                     return (from x in contexto.SIC_T_ITEM
+                            where x.itm_c_bactivo == true
                             select x).ToList();
                 }
             }
@@ -34,6 +35,7 @@ namespace SIC.DataLayer
             {
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
+                    _pSIC_T_ITEM.itm_c_bactivo = true;
                     contexto.AddToSIC_T_ITEM(_pSIC_T_ITEM);                    
                     contexto.SaveChanges();
                     return true;
@@ -73,8 +75,33 @@ namespace SIC.DataLayer
             using (SICDBWEBEntities contexto = new SICDBWEBEntities())
             {
                 return (from x in contexto.SIC_T_ITEM
-                        where x.itm_c_iid == id
+                        where x.itm_c_iid == id && x.itm_c_bactivo == true
                         select x).FirstOrDefault();
+            }
+        }
+
+        public bool DeshabilitarItem(int id)
+        {
+            using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+            {
+                SIC_T_ITEM varItem = (from x in contexto.SIC_T_ITEM
+                                      where x.itm_c_iid == id
+                                      select x).FirstOrDefault();
+                if (varItem != null)
+                {
+                    varItem.itm_c_bactivo = false;
+                }
+
+                try
+                {
+                    contexto.SaveChanges();
+                    return true;
+                }
+                catch (OptimisticConcurrencyException ex)
+                {
+                    Console.Write(ex.Message);
+                }
+                return false;
             }
         }
 

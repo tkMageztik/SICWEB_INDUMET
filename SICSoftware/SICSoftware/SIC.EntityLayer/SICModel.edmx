@@ -113,6 +113,7 @@
           <Property Name="par_c_idd" Type="int" />
           <Property Name="par_det_c_idd" Type="int" />
           <Property Name="itm_c_vpardes" Type="nvarchar" MaxLength="100" />
+          <Property Name="itm_c_bactivo" Type="bit" />
         </EntityType>
         <EntityType Name="SIC_T_PARAMETRO">
           <Key>
@@ -1225,6 +1226,7 @@
           <Property Type="Int32" Name="par_c_idd" />
           <Property Type="Int32" Name="par_det_c_idd" />
           <Property Type="String" Name="itm_c_vpardes" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="itm_c_bactivo" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1510,6 +1512,7 @@
           <EntitySetMapping Name="SIC_T_ITEM">
             <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_ITEM">
               <MappingFragment StoreEntitySet="SIC_T_ITEM">
+                <ScalarProperty Name="itm_c_bactivo" ColumnName="itm_c_bactivo" />
                 <ScalarProperty Name="itm_c_vpardes" ColumnName="itm_c_vpardes" />
                 <ScalarProperty Name="par_det_c_idd" ColumnName="par_det_c_idd" />
                 <ScalarProperty Name="par_c_idd" ColumnName="par_c_idd" />

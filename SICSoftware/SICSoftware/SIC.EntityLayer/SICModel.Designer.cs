@@ -3997,6 +3997,30 @@ namespace SIC.EntityLayer
         private global::System.String _itm_c_vpardes;
         partial void Onitm_c_vpardesChanging(global::System.String value);
         partial void Onitm_c_vpardesChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> itm_c_bactivo
+        {
+            get
+            {
+                return _itm_c_bactivo;
+            }
+            set
+            {
+                Onitm_c_bactivoChanging(value);
+                ReportPropertyChanging("itm_c_bactivo");
+                _itm_c_bactivo = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("itm_c_bactivo");
+                Onitm_c_bactivoChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _itm_c_bactivo;
+        partial void Onitm_c_bactivoChanging(Nullable<global::System.Boolean> value);
+        partial void Onitm_c_bactivoChanged();
 
         #endregion
 

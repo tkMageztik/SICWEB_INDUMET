@@ -31,6 +31,11 @@ namespace SIC.BusinessLayer
             return new ItemDA().ObtenerItemPorId(id);
         }
 
+        public bool DeshabilitarItem(int id)
+        {
+            return new ItemDA().DeshabilitarItem(id);
+        }
+
         #endregion
     }
 }

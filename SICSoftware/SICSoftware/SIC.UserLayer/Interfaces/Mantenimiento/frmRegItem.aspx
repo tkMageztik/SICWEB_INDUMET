@@ -74,7 +74,8 @@
                                     GridLines="None" AllowPaging="True" Width="100%" CssClass="mGrid" PagerStyle-CssClass="pgr"
                                     AlternatingRowStyle-CssClass="alt" ShowHeaderWhenEmpty="True" EmptyDataText="No hay datos disponibles."
                                     PageSize="15" BorderWidth="0px" ViewStateMode="Enabled" 
-                                    OnRowEditing="gvListaItem_RowEditing" DataKeyNames="itm_c_iid">
+                                    OnRowEditing="gvListaItem_RowEditing" DataKeyNames="itm_c_iid" 
+                                    onrowdeleting="gvListaItem_RowDeleting">
                                     <AlternatingRowStyle CssClass="alt" />
                                     <Columns>
                                         <asp:BoundField DataField="itm_c_ccodigo" HeaderText="Código" />

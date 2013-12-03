@@ -279,6 +279,7 @@
     <EntitySetMapping Name="SIC_T_ITEM">
       <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_ITEM">
         <MappingFragment StoreEntitySet="SIC_T_ITEM">
+          <ScalarProperty Name="itm_c_bactivo" ColumnName="itm_c_bactivo" />
           <ScalarProperty Name="itm_c_vpardes" ColumnName="itm_c_vpardes" />
           <ScalarProperty Name="par_det_c_idd" ColumnName="par_det_c_idd" />
           <ScalarProperty Name="par_c_idd" ColumnName="par_c_idd" />

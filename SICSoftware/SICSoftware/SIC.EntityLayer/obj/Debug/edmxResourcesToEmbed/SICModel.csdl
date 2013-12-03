@@ -632,5 +632,6 @@
     <Property Type="Int32" Name="par_c_idd" />
     <Property Type="Int32" Name="par_det_c_idd" />
     <Property Type="String" Name="itm_c_vpardes" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="itm_c_bactivo" />
   </EntityType>
 </Schema>

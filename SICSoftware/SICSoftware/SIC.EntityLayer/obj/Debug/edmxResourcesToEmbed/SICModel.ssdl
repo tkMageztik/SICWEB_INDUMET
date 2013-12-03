@@ -108,6 +108,7 @@
     <Property Name="par_c_idd" Type="int" />
     <Property Name="par_det_c_idd" Type="int" />
     <Property Name="itm_c_vpardes" Type="nvarchar" MaxLength="100" />
+    <Property Name="itm_c_bactivo" Type="bit" />
   </EntityType>
   <EntityType Name="SIC_T_PARAMETRO">
     <Key>

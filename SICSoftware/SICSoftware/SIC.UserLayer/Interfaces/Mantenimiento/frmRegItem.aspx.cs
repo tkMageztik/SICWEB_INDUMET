@@ -214,6 +214,14 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
         }
 
+        protected void gvListaItem_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            int itemId = (int)this.gvListaItem.DataKeys[e.RowIndex].Value;
+            _item.DeshabilitarItem(itemId);
+            this.ListarItems();
+            upGeneral.Update();
+        }
+
     
 
       
