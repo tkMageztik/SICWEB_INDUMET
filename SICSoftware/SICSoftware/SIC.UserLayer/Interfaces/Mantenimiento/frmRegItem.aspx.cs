@@ -42,6 +42,8 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             try
             {
                 int itemId = (int)this.gvListaItem.DataKeys[e.NewEditIndex].Value;
+                e.NewEditIndex = -1;
+                this.gvListaItem.EditIndex = -1;
                 this.EditarItem(itemId);
             }
             catch (InvalidCastException icEx)
@@ -83,22 +85,6 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         #endregion
 
         #region Métodos
-
-        private void DeshabilitarItem(int itemId)
-        {
-            if (_item.DeshabilitarItem(itemId))
-            {
-                Mensaje("Item Deshabilitado.", "../Imagenes/correcto.png");
-            }
-            else
-            {
-                Mensaje("Error al realizar el proceso.", "../Imagenes/warning.png");
-            }
-
-            this.ListarItems();
-            upGeneral.Update();
-        }
-
         /// <summary>
         /// Muesta los items en el gridview de la página.
         /// </summary>
@@ -113,7 +99,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         /// </summary>
         private void ListarUnidadMedida()
         {
-            cboUnidad.DataSource = _parametro.ListarParametros((int) TipoParametro.UNIDAD_DE_MEDIDA);
+            cboUnidad.DataSource = _parametro.ListarParametros((int)TipoParametro.UNIDAD_DE_MEDIDA);
             cboUnidad.DataTextField = "par_det_c_vdesc";
             cboUnidad.DataValueField = "par_det_c_iid";
             cboUnidad.DataBind();
@@ -126,6 +112,25 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         {
             EscenarioItem = TipoOperacion.Creacion;
             mvItem.ActiveViewIndex = 1;
+            upGeneral.Update();
+        }
+
+        /// <summary>
+        /// Deshabilita el item seleccionado.
+        /// </summary>
+        /// <param name="itemId">Id del item seleccionado</param>
+        private void DeshabilitarItem(int itemId)
+        {
+            if (_item.DeshabilitarItem(itemId))
+            {
+                Mensaje("Item Deshabilitado.", "../Imagenes/correcto.png");
+            }
+            else
+            {
+                Mensaje("Error al realizar el proceso.", "../Imagenes/warning.png");
+            }
+
+            this.ListarItems();
             upGeneral.Update();
         }
 
@@ -162,12 +167,16 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             }
         }
 
+        /// <summary>
+        /// Limpia los campos de la vista Nuevo/Actualizar
+        /// </summary>
         private void LimpiarCamposNuevoActualizar()
         {
             this.txtCodigo.Text = string.Empty;
             this.txtDescripcion.Text = string.Empty;
             this.txtPrecio.Text = string.Empty;
             this.cboUnidad.SelectedIndex = -1;
+            this.cboUnidad.DataBind();
         }
 
         /// <summary>
@@ -201,7 +210,6 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             }
             
             mvItem.ActiveViewIndex = 0;
-            gvListaItem.EditIndex = -1;
             this.ListarItems();
             this.LimpiarCamposNuevoActualizar();
             upGeneral.Update();
@@ -212,13 +220,10 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         /// </summary>
         private void CancelarNuevoEdicionItem()
         {
-            this.EscenarioItem = TipoOperacion.Ninguna;
-            this.txtCodigo.Text = string.Empty;
-            this.txtDescripcion.Text = string.Empty;
-            this.txtPrecio.Text = string.Empty;
-            gvListaItem.EditIndex = -1;
-            gvListaItem.DataBind();
-            mvItem.ActiveViewIndex = 0;
+            LimpiarCamposNuevoActualizar();
+            this.ListarItems();
+
+            mvItem.ActiveViewIndex = 0;            
             upGeneral.Update();
         }
 
@@ -284,7 +289,6 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             }
 
             mvItem.ActiveViewIndex = 0;
-            gvListaItem.EditIndex = -1;
             this.ListarItems();
             upGeneral.Update();
         }
