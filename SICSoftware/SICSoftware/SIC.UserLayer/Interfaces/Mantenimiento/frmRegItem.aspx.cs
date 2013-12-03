@@ -72,10 +72,32 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         {
             this.NuevoItem();
         }
+        
+        protected void gvListaItem_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            int itemId = (int)this.gvListaItem.DataKeys[e.RowIndex].Value;
+            DeshabilitarItem(itemId);
+        }
+
 
         #endregion
 
         #region Métodos
+
+        private void DeshabilitarItem(int itemId)
+        {
+            if (_item.DeshabilitarItem(itemId))
+            {
+                Mensaje("Item Deshabilitado.", "../Imagenes/correcto.png");
+            }
+            else
+            {
+                Mensaje("Error al realizar el proceso.", "../Imagenes/warning.png");
+            }
+
+            this.ListarItems();
+            upGeneral.Update();
+        }
 
         /// <summary>
         /// Muesta los items en el gridview de la página.
@@ -110,7 +132,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         /// <summary>
         /// El formulario se acomodará para la actualización del Item seleccionado.
         /// </summary>
-        /// <param name="index"></param>
+        /// <param name="idItem">Id del item</param>
         private void EditarItem(int idItem)
         {
             this.ItemSeleccionado = _item.ObtenerItemPorId(idItem); // Obtiene el item nuevamente
@@ -153,25 +175,35 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         /// </summary>
         private void GuardarNuevoItem()
         {
-            // Primero validamos
+            if (!VerificarDatosItem())
+            {
+                return;
+            }
 
             // Luego creamos el objeto
             SIC_T_ITEM nuevoItem = new SIC_T_ITEM();
             nuevoItem.itm_c_ccodigo = this.txtCodigo.Text;
-            nuevoItem.itm_c_dprecio = Decimal.Parse(this.txtPrecio.Text);
-            nuevoItem.itm_c_vdescripcion = this.txtDescripcion.Text;
+            decimal precio;
+            decimal.TryParse(txtPrecio.Text, out precio);
+            nuevoItem.itm_c_dprecio = precio;
+            nuevoItem.itm_c_vdescripcion = this.txtDescripcion.Text.Trim();
             nuevoItem.par_det_c_idd = int.Parse(this.cboUnidad.SelectedValue);
             nuevoItem.itm_c_vpardes = this.cboUnidad.Text;
 
             // Ahora insertamos.
-            _item.InsertarItem(nuevoItem);
-
-            // Mostramos mensaje
-            Mensaje("Item insertado con éxito", "../Imagenes/correcto.png");
-
+            if (_item.InsertarItem(nuevoItem))
+            {
+                Mensaje("Item insertado con éxito", "../Imagenes/correcto.png");
+            }
+            else
+            {
+                Mensaje("Error al realizar el proceso.", "../Imagenes/warning.png");
+            }
+            
             mvItem.ActiveViewIndex = 0;
             gvListaItem.EditIndex = -1;
             this.ListarItems();
+            this.LimpiarCamposNuevoActualizar();
             upGeneral.Update();
         }
 
@@ -191,20 +223,65 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         }
 
         /// <summary>
+        /// Verifica los datos del item ingresado o editado.
+        /// </summary>
+        /// <returns><c>True</c> si la data es correcta, 
+        /// <c>False</c> en caso que no cumpla.</returns>
+        private bool VerificarDatosItem()
+        {
+            decimal precio;
+            if (this.txtCodigo.Text.Trim() == string.Empty)
+            {
+                Mensaje("Debe ingresar un Código de Item.", "../Imagenes/warning.png");
+                return false;
+            }
+            else if (this.txtDescripcion.Text.Trim() == string.Empty)
+            {
+                Mensaje("Debe ingresar una descripción del Item.", "../Imagenes/warning.png");
+                return false;
+            }
+            else if (!decimal.TryParse(this.txtPrecio.Text, out precio) )
+            {
+                Mensaje("Debe ingresar un precio válido.", "../Imagenes/warning.png");
+                return false;
+            }
+            else if (precio < 0)
+            {
+                Mensaje("Debe ingresar un precio mayor a 0.", "../Imagenes/warning.png");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        /// <summary>
         /// Actualiza el item seleccionado
         /// </summary>
         private void ActualizarItem()
         {
-            ItemSeleccionado.itm_c_ccodigo = txtCodigo.Text;
-            ItemSeleccionado.itm_c_vdescripcion = txtDescripcion.Text;
-            ItemSeleccionado.itm_c_dprecio = Decimal.Parse(txtPrecio.Text);
+            if (!VerificarDatosItem())
+            {
+                return;   
+            }
+
+            ItemSeleccionado.itm_c_ccodigo = txtCodigo.Text.Trim();
+            ItemSeleccionado.itm_c_vdescripcion = txtDescripcion.Text.Trim();
+            decimal precio;
+            decimal.TryParse(txtPrecio.Text, out precio);
+            ItemSeleccionado.itm_c_dprecio = precio;
             ItemSeleccionado.par_det_c_idd = int.Parse(this.cboUnidad.SelectedValue);
-            ItemSeleccionado.itm_c_vpardes = this.cboUnidad.SelectedItem.Text;
+            ItemSeleccionado.itm_c_vpardes = this.cboUnidad.SelectedItem.Text.Trim();
 
-            _item.ModificarItem(ItemSeleccionado);
-
-            // Mostramos mensaje
-            Mensaje("Item actualizado con éxito", "../Imagenes/correcto.png");
+            if (_item.ModificarItem(ItemSeleccionado))
+            {
+                Mensaje("Item actualizado con éxito", "../Imagenes/correcto.png");
+            }
+            else
+            {
+                Mensaje("Error al realizar el proceso.", "../Imagenes/warning.png");
+            }
 
             mvItem.ActiveViewIndex = 0;
             gvListaItem.EditIndex = -1;
@@ -239,14 +316,6 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            this.ListarItems();
-            upGeneral.Update();
-        }
-
-        protected void gvListaItem_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        {
-            int itemId = (int)this.gvListaItem.DataKeys[e.RowIndex].Value;
-            _item.DeshabilitarItem(itemId);
             this.ListarItems();
             upGeneral.Update();
         }
