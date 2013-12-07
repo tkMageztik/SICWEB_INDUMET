@@ -18,6 +18,19 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         string ShowMessage;
         private ItemBL _item = null;
         private ParametroBL _parametro = null;
+
+        public TipoOperacion EscenarioItem
+        {
+            get { return (TipoOperacion)ViewState["vsEscenarioItem"]; }
+            set { ViewState["vsEscenarioItem"] = value; }
+        }
+
+        public SIC_T_ITEM ItemSeleccionado
+        {
+            get { return (SIC_T_ITEM)ViewState["vsItemSeleccionado"]; }
+            set { ViewState["vsItemSeleccionado"] = value; }
+        }
+
         #endregion
 
         #region EVENTOS
@@ -81,6 +94,11 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             DeshabilitarItem(itemId);
         }
 
+        protected void gvListaItem_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvListaItem.PageIndex = e.NewPageIndex;
+            this.ListarItems();            
+        }
 
         #endregion
 
@@ -90,7 +108,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         /// </summary>
         private void ListarItems()
         {
-            gvListaItem.DataSource = _item.ListarItems();
+            gvListaItem.DataSource = _item.ListarItems(txtFiltroCodigo.Text.Trim(), txtFiltroDescr.Text.Trim());
             gvListaItem.DataBind();
         }
 
@@ -111,6 +129,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         private void NuevoItem()
         {
             EscenarioItem = TipoOperacion.Creacion;
+            lblAccion.Text = "Nuevo";
             mvItem.ActiveViewIndex = 1;
             upGeneral.Update();
         }
@@ -150,6 +169,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             else
             {
                 this.EscenarioItem = TipoOperacion.Modificacion;
+                lblAccion.Text = "Modificar";
 
                 // Seteando la data en los controles
                 this.txtCodigo.Text = ItemSeleccionado.itm_c_ccodigo;
@@ -196,23 +216,34 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             decimal.TryParse(txtPrecio.Text, out precio);
             nuevoItem.itm_c_dprecio = precio;
             nuevoItem.itm_c_vdescripcion = this.txtDescripcion.Text.Trim();
-            nuevoItem.par_det_c_idd = int.Parse(this.cboUnidad.SelectedValue);
+            nuevoItem.itm_c_yumedida = byte.Parse(this.cboUnidad.SelectedValue);
             nuevoItem.itm_c_vpardes = this.cboUnidad.Text;
 
             // Ahora insertamos.
-            if (_item.InsertarItem(nuevoItem))
+            try
             {
-                Mensaje("Item insertado con éxito", "../Imagenes/correcto.png");
+                if (_item.InsertarItem(nuevoItem))
+                {
+                    Mensaje("Item registrado con éxito", "../Imagenes/correcto.png");
+                }
+                else
+                {
+                    Mensaje("Error al realizar el proceso.", "../Imagenes/warning.png");
+                }
+
+                mvItem.ActiveViewIndex = 0;
+                this.ListarItems();
+                this.LimpiarCamposNuevoActualizar();
+                upGeneral.Update();
             }
-            else
+            catch (ArgumentException aeEx)
             {
-                Mensaje("Error al realizar el proceso.", "../Imagenes/warning.png");
+                Mensaje(aeEx.Message, "../Imagenes/warning.png");
             }
-            
-            mvItem.ActiveViewIndex = 0;
-            this.ListarItems();
-            this.LimpiarCamposNuevoActualizar();
-            upGeneral.Update();
+            catch (Exception ex)
+            {
+                Mensaje("Error inesperado al realizar el proceso.", "../Imagenes/warning.png");
+            }
         }
 
         /// <summary>
@@ -235,9 +266,15 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         private bool VerificarDatosItem()
         {
             decimal precio;
+
             if (this.txtCodigo.Text.Trim() == string.Empty)
             {
                 Mensaje("Debe ingresar un Código de Item.", "../Imagenes/warning.png");
+                return false;
+            }
+            else if (this.txtCodigo.Text.Trim().Length > 100)
+            {
+                Mensaje("El código acepta 100 caracteres como máxcimo.", "../Imagenes/warning.png");
                 return false;
             }
             else if (this.txtDescripcion.Text.Trim() == string.Empty)
@@ -245,7 +282,12 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 Mensaje("Debe ingresar una descripción del Item.", "../Imagenes/warning.png");
                 return false;
             }
-            else if (!decimal.TryParse(this.txtPrecio.Text, out precio) )
+            else if (this.txtDescripcion.Text.Trim().Length > 250)
+            {
+                Mensaje("La descripción acepta 250 caracteres como máxcimo.", "../Imagenes/warning.png");
+                return false;
+            }
+            else if (!decimal.TryParse(this.txtPrecio.Text, out precio))
             {
                 Mensaje("Debe ingresar un precio válido.", "../Imagenes/warning.png");
                 return false;
@@ -276,12 +318,12 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             decimal precio;
             decimal.TryParse(txtPrecio.Text, out precio);
             ItemSeleccionado.itm_c_dprecio = precio;
-            ItemSeleccionado.par_det_c_idd = int.Parse(this.cboUnidad.SelectedValue);
+            ItemSeleccionado.itm_c_yumedida = byte.Parse(this.cboUnidad.SelectedValue);
             ItemSeleccionado.itm_c_vpardes = this.cboUnidad.SelectedItem.Text.Trim();
 
             if (_item.ModificarItem(ItemSeleccionado))
             {
-                Mensaje("Item actualizado con éxito", "../Imagenes/correcto.png");
+                Mensaje("Item modificado con éxito", "../Imagenes/correcto.png");
             }
             else
             {
@@ -295,18 +337,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
         #endregion
 
-        public TipoOperacion EscenarioItem
-        {
-            get { return (TipoOperacion)ViewState["vsEscenarioItem"]; }
-            set { ViewState["vsEscenarioItem"] = value; }
-        }
-
-        public SIC_T_ITEM ItemSeleccionado
-        {
-            get { return (SIC_T_ITEM)ViewState["vsItemSeleccionado"]; }
-            set { ViewState["vsItemSeleccionado"] = value; }
-        }
-
+      
 
         private void Mensaje(string mensaje, string ruta)
         {
@@ -323,6 +354,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             this.ListarItems();
             upGeneral.Update();
         }
+
 
 
 

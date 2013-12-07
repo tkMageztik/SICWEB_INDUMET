@@ -333,6 +333,10 @@ namespace SIC.Data
     public enum TipoParametro
     {
         UNIDAD_DE_MEDIDA = 1,
+        DOCUMENTO = 2,
+        IGV = 3,
+        PERCEPCION = 4,
+        MONEDA = 5,
     }
 
     public enum DESTINATARIOSCORREO

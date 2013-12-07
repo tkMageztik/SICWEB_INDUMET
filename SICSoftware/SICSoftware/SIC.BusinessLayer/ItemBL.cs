@@ -16,6 +16,11 @@ namespace SIC.BusinessLayer
             return new ItemDA().ListarItems();
         }
 
+        public List<SIC_T_ITEM> ListarItems(string codigo, string descripcion)
+        {
+            return new ItemDA().ListarItems(codigo,descripcion);
+        }
+
         public bool InsertarItem(SIC_T_ITEM _pSIC_T_ITEM)
         {
             return new ItemDA().InsertarItem(_pSIC_T_ITEM);
@@ -29,6 +34,11 @@ namespace SIC.BusinessLayer
         public SIC_T_ITEM ObtenerItemPorId(int id)
         {
             return new ItemDA().ObtenerItemPorId(id);
+        }
+
+        public SIC_T_ITEM ObtenerItemPorIdNoContext(int id)
+        {
+            return new ItemDA().ObtenerItemPorIdNoContext(id);
         }
 
         public bool DeshabilitarItem(int id)

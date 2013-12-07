@@ -40,6 +40,24 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento {
         protected global::System.Web.UI.WebControls.View View1;
         
         /// <summary>
+        /// Control txtFiltroCodigo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFiltroCodigo;
+        
+        /// <summary>
+        /// Control txtFiltroDescr.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFiltroDescr;
+        
+        /// <summary>
         /// Control btnBuscar.
         /// </summary>
         /// <remarks>
@@ -58,6 +76,15 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento {
         protected global::System.Web.UI.WebControls.Button btnNuevo;
         
         /// <summary>
+        /// Control upGvListaITem.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upGvListaITem;
+        
+        /// <summary>
         /// Control gvListaItem.
         /// </summary>
         /// <remarks>
@@ -74,6 +101,15 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.View View2;
+        
+        /// <summary>
+        /// Control lblAccion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAccion;
         
         /// <summary>
         /// Control btnGuardar.

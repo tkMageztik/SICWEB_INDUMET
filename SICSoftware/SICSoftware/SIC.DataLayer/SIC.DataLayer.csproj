@@ -43,8 +43,10 @@
   <ItemGroup>
     <Compile Include="ClienteDA.cs" />
     <Compile Include="ItemDA.cs" />
+    <Compile Include="OrdenCompraDA.cs" />
     <Compile Include="ParametroDA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProveedorDA.cs" />
     <Compile Include="SeguridadDA.cs" />
     <Compile Include="UbigeoDA.cs" />
   </ItemGroup>

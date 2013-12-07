@@ -14,12 +14,13 @@
                     <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                             <td class="tit-nav-paginas" align="left">
-                                MANTENIMIENTO &gt; ITEM&nbsp; 2
+                                MANTENIMIENTO &gt; ITEM&nbsp;
+                                <br />
                             </td>
                         </tr>
                         <tr>
-                            <td align="left" class="tit-nav-paginas">
-                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                           <td class="txt2" align="left" colspan="2">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                     <tr>
                                         <td align="left" class="box-estilo01">
                                             <table width="100%">
@@ -28,18 +29,18 @@
                                                         <table>
                                                             <tr>
                                                                 <td class="txt-box-estilo">
-                                                                    &nbsp;
+                                                                    Código
                                                                 </td>
                                                                 <td>
-                                                                    &nbsp;
+                                                                    <asp:TextBox ID="txtFiltroCodigo" runat="server" CssClass="ipt_150x20"></asp:TextBox>
                                                                 </td>
                                                                 <td style="width: 20px">
                                                                 </td>
                                                                 <td class="txt-box-estilo">
-                                                                    &nbsp;
+                                                                    Descripción
                                                                 </td>
                                                                 <td>
-                                                                    &nbsp;
+                                                                    <asp:TextBox ID="txtFiltroDescr" runat="server" CssClass="ipt_150x20"></asp:TextBox>
                                                                 </td>
                                                                 <td style="width: 20px">
                                                                 </td>
@@ -74,22 +75,27 @@
                         </tr>
                         <tr>
                             <td align="left" class="tit-nav-paginas">
+                                <asp:UpdatePanel ID="upGvListaITem" UpdateMode="Conditional" runat="server">
+                                <ContentTemplate>
                                 <asp:GridView ID="gvListaItem" runat="server" BorderStyle="None" AutoGenerateColumns="False"
                                     GridLines="None" AllowPaging="True" Width="100%" CssClass="mGrid" PagerStyle-CssClass="pgr"
                                     AlternatingRowStyle-CssClass="alt" ShowHeaderWhenEmpty="True" EmptyDataText="No hay datos disponibles."
                                     PageSize="15" BorderWidth="0px" ViewStateMode="Enabled" OnRowEditing="gvListaItem_RowEditing"
-                                    DataKeyNames="itm_c_iid" OnRowDeleting="gvListaItem_RowDeleting">
+                                    DataKeyNames="itm_c_iid" OnRowDeleting="gvListaItem_RowDeleting" 
+                                        onpageindexchanging="gvListaItem_PageIndexChanging">
                                     <AlternatingRowStyle CssClass="alt" />
                                     <Columns>
-                                        <asp:BoundField DataField="itm_c_ccodigo" HeaderText="Código" />
-                                        <asp:BoundField DataField="itm_c_vdescripcion" HeaderText="Descripción" />
-                                        <asp:BoundField DataField="itm_c_dprecio" HeaderText="Precio" />
-                                        <asp:BoundField DataField="itm_c_vpardes" HeaderText="Unidad de Medida" />
+                                        <asp:BoundField DataField="itm_c_ccodigo" HeaderText="CÓDIGO" />
+                                        <asp:BoundField DataField="itm_c_vdescripcion" HeaderText="DESCRIPCIÓN" />
+                                        <asp:BoundField DataField="itm_c_dprecio" HeaderText="PRECIO" />
+                                        <asp:BoundField DataField="itm_c_vpardes" HeaderText="UNIDAD DE MEDIDA" />
                                         <asp:CommandField ShowEditButton="True" />
                                         <asp:CommandField ShowDeleteButton="True" />
                                     </Columns>
                                     <PagerStyle CssClass="pgr" />
                                 </asp:GridView>
+                                </ContentTemplate>
+                                </asp:UpdatePanel>
                             </td>
                         </tr>
                         <tr>
@@ -100,10 +106,11 @@
                     </table>
                 </asp:View>
                 <asp:View ID="View2" runat="server">
-                    <table style="width: 100%; height: 121px;">
+                    <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
                         <tr>
-                            <td class="tit-nav-paginas" align="left" colspan="2">
-                                MANTENIMIENTO &gt; ITEM
+                            <td align="left" class="tit-nav-paginas">
+                                MANTENIMIENTO &gt; ITEM &gt;
+                                <asp:Label ID="lblAccion" runat="server"></asp:Label>
                             </td>
                             <td align="right">
                                 <table width="220" border="0" cellspacing="0" cellpadding="0">
@@ -121,20 +128,20 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="txt2" align="left" colspan="2" class="box-estilo01">
+                            <td align="center" colspan="2">
                                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                     <tr>
                                         <td align="left" class="txt-box-estilo">
                                             Código
                                         </td>
                                         <td align="left" class="txt-box-estilo">
-                                            <asp:TextBox ID="txtCodigo" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="txtCodigo" runat="server" MaxLength="100"></asp:TextBox>
                                         </td>
                                         <td align="left" class="txt-box-estilo">
                                             Precio
                                         </td>
                                         <td align="left" class="txt-box-estilo">
-                                            <asp:TextBox ID="txtPrecio" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="txtPrecio" runat="server" MaxLength="23"></asp:TextBox>
                                         </td>
                                     </tr>
                                     <tr>
@@ -142,7 +149,7 @@
                                             Descripción
                                         </td>
                                         <td align="left" class="txt-box-estilo">
-                                            <asp:TextBox ID="txtDescripcion" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="txtDescripcion" runat="server" MaxLength="250"></asp:TextBox>
                                         </td>
                                         <td align="left" class="txt-box-estilo">
                                             Unidad

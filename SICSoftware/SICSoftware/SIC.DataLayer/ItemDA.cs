@@ -29,12 +29,50 @@ namespace SIC.DataLayer
             }
         }
 
-        public bool InsertarItem(SIC_T_ITEM _pSIC_T_ITEM)
+        public List<SIC_T_ITEM> ListarItems(string codigo, string descripcion)
         {
             try
             {
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
+                    return (from x in contexto.SIC_T_ITEM
+                            where x.itm_c_bactivo == true
+                              && (codigo == string.Empty || x.itm_c_ccodigo.Contains(codigo))
+                              && (descripcion == string.Empty || x.itm_c_vdescripcion.Contains(descripcion))
+                            select x).ToList();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Inserta el item en la base de datos.
+        /// </summary>
+        /// <param name="_pSIC_T_ITEM">El item a insertar.</param>
+        /// <exception cref="System.ArgumentException">Lanzado cuando el código ya existe en la base de datos.</exception>
+        /// <exception cref="Syste.Data.OptimisticConcurrencyException">Lanzado cuando ocurre una excepción de 
+        /// EntityFramework al guardar el contexto.</exception>
+        /// <returns></returns>
+        public bool InsertarItem(SIC_T_ITEM _pSIC_T_ITEM)
+        {
+            try
+            {
+                
+                using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+                {
+                    int count = (from x in contexto.SIC_T_ITEM
+                                 where x.itm_c_ccodigo.Equals(_pSIC_T_ITEM.itm_c_ccodigo)
+                                 select x).ToList().Count;
+
+                    if (count > 0)
+                    {
+                        throw new ArgumentException("No se puede ingresar un código duplicado.");
+                    }
+
+
                     _pSIC_T_ITEM.itm_c_bactivo = true;
                     contexto.AddToSIC_T_ITEM(_pSIC_T_ITEM);                    
                     contexto.SaveChanges();
@@ -43,9 +81,8 @@ namespace SIC.DataLayer
             }
             catch (Exception ex)
             {
-                return false;
+                throw;
             }
-            finally { }
         }
 
         public bool ModificarItem(SIC_T_ITEM _pSIC_T_ITEM)
@@ -65,8 +102,8 @@ namespace SIC.DataLayer
                 catch (OptimisticConcurrencyException ex)
                 {
                     Console.Write(ex.Message);
+                    throw;
                 }
-                return false;
             }
         }
 
@@ -99,9 +136,8 @@ namespace SIC.DataLayer
                 }
                 catch (OptimisticConcurrencyException ex)
                 {
-                    Console.Write(ex.Message);
+                    throw;
                 }
-                return false;
             }
         }
 
