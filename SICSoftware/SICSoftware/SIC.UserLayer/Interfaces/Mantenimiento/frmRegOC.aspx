@@ -71,7 +71,7 @@
                                                             <tr>
                                                                 <td align="center">
                                                                     <asp:Button ID="btnBuscar" runat="server" CssClass="button small gris" OnClick="btnBuscar_Click"
-                                                                        Style="width: 100px" Text="Buscar" />
+                                                                        Style="width: 100px" Text="Buscar" Enabled="False" />
                                                                 </td>
                                                                 <td align="center">
                                                                     <asp:Button ID="btnNuevo" runat="server" CssClass="lnk" Height="26px" OnClick="btnNuevo_Click"
@@ -151,7 +151,7 @@
                                                         Proveedor
                                                     </td>
                                                     <td align="left" class="style3">
-                                                        <asp:TextBox ID="txtRSProv" runat="server" Width="298px" BackColor="#CCCCCC" 
+                                                        <asp:TextBox ID="txtRSProv" runat="server" Width="282px" BackColor="#CCCCCC" 
                                                             BorderColor="Black" BorderStyle="None" BorderWidth="1px" ReadOnly="True"></asp:TextBox>
                                                         
                                                     </td>
@@ -345,7 +345,7 @@
                                                             <tr>
                                                                 <td align="center">
                                                                     <asp:Button ID="btnBuscarItem" runat="server" CssClass="button small gris"
-                                                                        Style="width: 100px" Text="Buscar" />
+                                                                        Style="width: 100px" Text="Buscar" onclick="btnBuscarItem_Click" />
                                                                 </td>
                                                                 <td align="center">
                                                                     <asp:Button ID="btnRegresarDesdeItems" runat="server" CssClass="button small gris"
@@ -368,8 +368,8 @@
                                 <ContentTemplate>
                                 <asp:GridView ID="gvListaItem" runat="server" BorderStyle="None" AutoGenerateColumns="False"
                                     GridLines="None" AllowPaging="True" Width="100%" CssClass="mGrid" PagerStyle-CssClass="pgr"
-                                    AlternatingRowStyle-CssClass="alt" ShowHeaderWhenEmpty="True" EmptyDataText="No hay datos disponibles."
-                                    PageSize="1" BorderWidth="0px" ViewStateMode="Enabled" 
+                                    AlternatingRowStyle-CssClass="alt" ShowHeaderWhenEmpty="True" 
+                                        EmptyDataText="No hay datos disponibles." BorderWidth="0px" ViewStateMode="Enabled" 
                                     DataKeyNames="itm_c_iid" onpageindexchanging="gvListaItem_PageIndexChanging" 
                                         onrowdatabound="gvListaItem_RowDataBound" >
                                     <AlternatingRowStyle CssClass="alt" />
@@ -462,7 +462,8 @@
                                     AlternatingRowStyle-CssClass="alt" ShowHeaderWhenEmpty="True" EmptyDataText="No hay datos disponibles."
                                     PageSize="15" BorderWidth="0px" AutoGenerateColumns="False" 
                                         DataKeyNames="pro_c_vdoc_id" 
-                                        onselectedindexchanged="gvProveedores_SelectedIndexChanged">
+                                        onselectedindexchanged="gvProveedores_SelectedIndexChanged" 
+                                        onpageindexchanging="gvProveedores_PageIndexChanging">
                                     <AlternatingRowStyle CssClass="alt" />
                                     <Columns>
                                         <asp:BoundField DataField="pro_c_vdoc_id" HeaderText="RUC" />

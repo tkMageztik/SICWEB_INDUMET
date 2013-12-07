@@ -85,15 +85,15 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             this.MostrarNuevaOrdenCompra();
         }
 
-        protected void btnBuscar_Click(object sender, EventArgs e)
-        {
-
-        }
-
         protected void btnBuscarItems_Click(object sender, EventArgs e)
         {
             this.MostrarBusquedaItem();
-        }        
+        }
+        
+        protected void btnBuscarItem_Click(object sender, EventArgs e)
+        {
+            this.ListarItem();
+        }
 
         protected void gvListaItem_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
@@ -129,6 +129,12 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             this.IngresarOC();
+        }
+
+        protected void gvProveedores_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvProveedores.PageIndex = e.NewPageIndex;
+            this.ListarProveedores();
         }
 
         #endregion
@@ -621,6 +627,11 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 return;
             }
         }
+
+        
+
+
+   
 
       
     }
