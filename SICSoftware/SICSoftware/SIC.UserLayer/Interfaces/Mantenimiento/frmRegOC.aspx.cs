@@ -128,7 +128,14 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            this.IngresarOC();
+            if (this.EscenarioOC == TipoOperacion.Creacion)
+            {
+                this.IngresarOC();
+            }
+            else if (this.EscenarioOC == TipoOperacion.Modificacion)
+            {
+                this.ActualizarOC();
+            }
         }
 
         protected void gvProveedores_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -137,9 +144,103 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             this.ListarProveedores();
         }
 
+        protected void gvItemsSeleccionados_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            gvItemsSeleccionados.EditIndex = e.NewEditIndex;
+            if (this.EscenarioOC == TipoOperacion.Modificacion)
+            {
+                gvItemsSeleccionados.DataSource = OCSeleccionado.SIC_T_ORDEN_DE_COMPRA_DET;
+                gvItemsSeleccionados.DataBind();
+            }
+            else if (this.EscenarioOC == TipoOperacion.Creacion)
+            {
+                gvItemsSeleccionados.DataSource = OCNuevo.SIC_T_ORDEN_DE_COMPRA_DET;
+                gvItemsSeleccionados.DataBind();
+            }
+        }
+
+        protected void gvItemsSeleccionados_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            gvItemsSeleccionados.EditIndex = -1;
+            if (this.EscenarioOC == TipoOperacion.Modificacion)
+            {
+                gvItemsSeleccionados.DataSource = OCSeleccionado.SIC_T_ORDEN_DE_COMPRA_DET;
+                gvItemsSeleccionados.DataBind();
+            }
+            else if (this.EscenarioOC == TipoOperacion.Creacion)
+            {
+                gvItemsSeleccionados.DataSource = OCNuevo.SIC_T_ORDEN_DE_COMPRA_DET;
+                gvItemsSeleccionados.DataBind();
+            }
+
+        }
+
+        protected void gvItemsSeleccionados_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            TextBox txtCantidad = (TextBox)gvItemsSeleccionados.Rows[e.RowIndex].FindControl("txtCantidad");
+            int cantidadNueva;
+            if (int.TryParse(txtCantidad.Text, out cantidadNueva) && cantidadNueva > 0)
+            {
+                int itemId = (int)gvItemsSeleccionados.DataKeys[e.RowIndex].Value;
+
+                if (this.EscenarioOC == TipoOperacion.Modificacion)
+                {
+                    SIC_T_ORDEN_DE_COMPRA ordenCompra = this.OCSeleccionado;
+                    foreach (var item in ordenCompra.SIC_T_ORDEN_DE_COMPRA_DET)
+                    {
+                        if (item.ocd_c_iitemid == itemId)
+                        {
+                            item.ocd_c_icantidad = cantidadNueva;
+                            item.ocd_c_dprecio = item.SIC_T_ITEM.itm_c_dprecio * cantidadNueva;
+                            break;
+                        }
+                    }
+                    this.RecalcularMontos(ordenCompra);
+                    gvItemsSeleccionados.EditIndex = -1;
+                    gvItemsSeleccionados.DataSource = ordenCompra.SIC_T_ORDEN_DE_COMPRA_DET;
+                    gvItemsSeleccionados.DataBind();
+                }
+                else if (this.EscenarioOC == TipoOperacion.Creacion)
+                {
+                    SIC_T_ORDEN_DE_COMPRA ordenCompra = this.OCNuevo;
+                    foreach (var item in ordenCompra.SIC_T_ORDEN_DE_COMPRA_DET)
+                    {
+                        if (item.ocd_c_iitemid == itemId)
+                        {
+                            item.ocd_c_icantidad = cantidadNueva;
+                            item.ocd_c_dprecio = item.SIC_T_ITEM.itm_c_dprecio * cantidadNueva;
+                            break;
+                        }
+                    }
+                    this.RecalcularMontos(ordenCompra);
+                    gvItemsSeleccionados.EditIndex = -1;
+                    gvItemsSeleccionados.DataSource = ordenCompra.SIC_T_ORDEN_DE_COMPRA_DET;
+                    gvItemsSeleccionados.DataBind();
+                }
+
+            }
+            else
+            {
+                Mensaje("Debe ingresar un número entero válido mayor a 0.", "../Imagenes/warning.png");
+                return;
+            }
+        }
+
+        protected void gvListaOC_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            int ocId = (int)this.gvListaOC.DataKeys[e.NewEditIndex].Value;
+            e.NewEditIndex = -1;
+            this.gvListaItem.EditIndex = -1;
+            this.ListarOrdenCompra();
+            this.MostrarModificarOrdenCompra(ocId);
+        }
+
         #endregion
 
-      
+        private void EditarOC(int id)
+        {
+
+        }
 
         #region Metodos de Listado
         /// <summary>
@@ -210,9 +311,44 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         /// <summary>
         /// Inicializa y muestra la vista de Modificar OC.
         /// </summary>
-        private void MostrarModificarOrdenCompra()
+        private void MostrarModificarOrdenCompra(int id)
         {
-            throw new NotImplementedException();
+            this.OCSeleccionado = _ordenCompra.ObtenerOrdenCompra(id);
+            this.gvItemsSeleccionados.DataSource = this.OCSeleccionado.SIC_T_ORDEN_DE_COMPRA_DET;
+            this.gvItemsSeleccionados.DataBind();
+            this.EscenarioOC = TipoOperacion.Modificacion;
+            if (OCSeleccionado.odc_c_zfecha.HasValue)
+            {
+                this.calFechaEntrega.SelectedDate = OCSeleccionado.odc_c_zfecha.Value;
+            }
+            else
+            {
+                this.calFechaEntrega.SelectedDate = DateTime.Today;
+            }
+
+            this.ItemsSeleccionadosPreliminar = new List<int>();
+            foreach (var item in OCSeleccionado.SIC_T_ORDEN_DE_COMPRA_DET)
+            {
+                this.ItemsSeleccionadosPreliminar.Add(item.SIC_T_ITEM.itm_c_iid);
+            }
+
+            txtRSProv.Text = this.OCSeleccionado.SIC_T_PROVEEDOR.pro_c_vraz_soc;
+            cboEstado.SelectedIndex = -1;
+            var seleccion = cboEstado.Items.FindByText(OCSeleccionado.ocd_c_vdescestado);
+            if (seleccion != null)
+            {
+                seleccion.Selected = true;
+            }
+
+            cboMoneda.SelectedIndex = -1;
+            seleccion = cboMoneda.Items.FindByText(OCSeleccionado.ocd_c_vdescmoneda);
+            if (seleccion != null)
+            {
+                seleccion.Selected = true;
+            }
+
+            this.mvOC.ActiveViewIndex = 1;
+            this.upGeneral.Update();
         }
 
         /// <summary>
@@ -243,6 +379,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         {
             if (EscenarioOC == TipoOperacion.Creacion || EscenarioOC == TipoOperacion.Modificacion)
             {
+                this.ListarItem();
                 mvOC.ActiveViewIndex = 2;
                 upGeneral.Update();
             }
@@ -475,6 +612,41 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             }
         }
 
+        private void ActualizarOC()
+        {
+            if (!VerificarDatosOC(this.OCSeleccionado))
+            {
+                return;
+            }
+
+            var oc = this.OCSeleccionado;
+            oc.odc_c_zfecha = this.calFechaEntrega.SelectedDate;
+            oc.odc_c_ymoneda = byte.Parse(this.cboMoneda.SelectedValue);
+            oc.ocd_c_vdescmoneda = this.cboMoneda.SelectedItem.Text.Trim();
+            oc.ocd_c_iestado = int.Parse(this.cboEstado.SelectedValue);
+            oc.ocd_c_vdescestado = this.cboEstado.SelectedItem.Text.Trim();
+
+            try
+            {
+                if (_ordenCompra.ModificarOrdenCompra(this.OCSeleccionado))
+                {
+                    Mensaje("Orden de Compra modificada con éxito", "../Imagenes/correcto.png");
+                    this.Limpiar();
+                    this.ListarOrdenCompra();
+                    mvOC.ActiveViewIndex = 0;
+                    upGeneral.Update();
+                }
+                else
+                {
+                    Mensaje("Error al realizar el proceso.", "../Imagenes/warning.png");
+                }
+            }
+            catch (Exception ex)
+            {
+                Mensaje("Error al realizar el proceso.", "../Imagenes/warning.png");
+            }
+        }
+
         /// <summary>
         /// Limpia 
         /// </summary>
@@ -487,6 +659,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             this.txtRSProv.Text = string.Empty;
             this.cboMoneda.SelectedIndex = -1;
             this.cboEstado.SelectedIndex = -1;
+            this.calFechaEntrega.SelectedDate = DateTime.Today;
             this.gvItemsSeleccionados.DataSource = null;
             this.gvItemsSeleccionados.DataBind();
         }
@@ -546,87 +719,18 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             return;
         }
 
-        protected void gvItemsSeleccionados_RowEditing(object sender, GridViewEditEventArgs e)
+
+
+        protected void gvItemsSeleccionados_SelectedIndexChanged(object sender, EventArgs e)
         {
-            gvItemsSeleccionados.EditIndex = e.NewEditIndex;
-            if (this.EscenarioOC == TipoOperacion.Modificacion)
-            {
-                gvItemsSeleccionados.DataSource = OCSeleccionado.SIC_T_ORDEN_DE_COMPRA_DET;
-                gvItemsSeleccionados.DataBind();
-            }
-            else if (this.EscenarioOC == TipoOperacion.Creacion)
-            {
-                gvItemsSeleccionados.DataSource = OCNuevo.SIC_T_ORDEN_DE_COMPRA_DET;
-                gvItemsSeleccionados.DataBind();
-            }
+
         }
 
-        protected void gvItemsSeleccionados_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            gvItemsSeleccionados.EditIndex = -1;
-            if (this.EscenarioOC == TipoOperacion.Modificacion)
-            {
-                gvItemsSeleccionados.DataSource = OCSeleccionado.SIC_T_ORDEN_DE_COMPRA_DET;
-                gvItemsSeleccionados.DataBind();
-            }
-            else if (this.EscenarioOC == TipoOperacion.Creacion)
-            {
-                gvItemsSeleccionados.DataSource = OCNuevo.SIC_T_ORDEN_DE_COMPRA_DET;
-                gvItemsSeleccionados.DataBind();
-            }
-           
+
         }
 
-        protected void gvItemsSeleccionados_RowUpdating(object sender, GridViewUpdateEventArgs e)
-        {
-            TextBox txtCantidad = (TextBox)gvItemsSeleccionados.Rows[e.RowIndex].FindControl("txtCantidad");
-            int cantidadNueva;
-            if(int.TryParse(txtCantidad.Text,out cantidadNueva) && cantidadNueva>0)
-            {
-                int itemId = (int) gvItemsSeleccionados.DataKeys[e.RowIndex].Value;
-
-                if (this.EscenarioOC == TipoOperacion.Modificacion)
-                {
-                    SIC_T_ORDEN_DE_COMPRA ordenCompra = this.OCSeleccionado;
-                    foreach (var item in ordenCompra.SIC_T_ORDEN_DE_COMPRA_DET)
-                    {
-                        if (item.ocd_c_iitemid == itemId)
-                        {
-                            item.ocd_c_icantidad = cantidadNueva;
-                            item.ocd_c_dprecio = item.SIC_T_ITEM.itm_c_dprecio * cantidadNueva;
-                            break;
-                        }
-                    }
-                    this.RecalcularMontos(ordenCompra);
-                    gvItemsSeleccionados.EditIndex = -1;
-                    gvItemsSeleccionados.DataSource = ordenCompra.SIC_T_ORDEN_DE_COMPRA_DET;
-                    gvItemsSeleccionados.DataBind();
-                }
-                else if (this.EscenarioOC == TipoOperacion.Creacion)
-                {
-                    SIC_T_ORDEN_DE_COMPRA ordenCompra = this.OCNuevo;
-                    foreach (var item in ordenCompra.SIC_T_ORDEN_DE_COMPRA_DET)
-                    {
-                        if (item.ocd_c_iitemid == itemId)
-                        {
-                            item.ocd_c_icantidad = cantidadNueva;
-                            item.ocd_c_dprecio = item.SIC_T_ITEM.itm_c_dprecio * cantidadNueva;
-                            break;
-                        }
-                    }
-                    this.RecalcularMontos(ordenCompra);
-                    gvItemsSeleccionados.EditIndex = -1;
-                    gvItemsSeleccionados.DataSource = ordenCompra.SIC_T_ORDEN_DE_COMPRA_DET;
-                    gvItemsSeleccionados.DataBind();
-                }
-                
-            }
-            else
-            {
-                Mensaje("Debe ingresar un número entero válido mayor a 0.", "../Imagenes/warning.png");
-                return;
-            }
-        }
 
         
 

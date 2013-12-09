@@ -92,8 +92,9 @@ namespace SIC.DataLayer
                 SIC_T_ITEM varItem = (from x in contexto.SIC_T_ITEM
                                       where x.itm_c_iid == _pSIC_T_ITEM.itm_c_iid
                                       select x).FirstOrDefault();
-
                 contexto.ApplyCurrentValues("SICDBWEBEntities.SIC_T_ITEM", _pSIC_T_ITEM);
+                
+
                 try
                 {
                     contexto.SaveChanges();
@@ -114,6 +115,18 @@ namespace SIC.DataLayer
                 return (from x in contexto.SIC_T_ITEM
                         where x.itm_c_iid == id && x.itm_c_bactivo == true
                         select x).FirstOrDefault();
+            }
+        }
+
+        public SIC_T_ITEM ObtenerItemPorIdNoContext(int id)
+        {
+            using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+            {
+                var item = (from x in contexto.SIC_T_ITEM
+                        where x.itm_c_iid == id && x.itm_c_bactivo == true
+                        select x).FirstOrDefault();
+                contexto.Detach(item);
+                return item;
             }
         }
 

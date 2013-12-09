@@ -93,7 +93,8 @@
                                 <asp:GridView ID="gvListaOC" runat="server" BorderStyle="None" AutoGenerateColumns="False"
                                     GridLines="None" AllowPaging="True" Width="100%" CssClass="mGrid" PagerStyle-CssClass="pgr"
                                     AlternatingRowStyle-CssClass="alt" ShowHeaderWhenEmpty="True" EmptyDataText="No hay datos disponibles."
-                                    PageSize="15" BorderWidth="0px">
+                                    PageSize="15" BorderWidth="0px" DataKeyNames="odc_c_iid" 
+                                        onrowediting="gvListaOC_RowEditing">
                                     <AlternatingRowStyle CssClass="alt" />
                                     <Columns>
                                         <asp:TemplateField HeaderText="Código">
