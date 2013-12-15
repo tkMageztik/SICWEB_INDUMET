@@ -3,6 +3,7 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <%@ Register Src="~/UserControl/wucMensajeAlerta.ascx" TagName="Mensaje" TagPrefix="uc1" %>
+<%@ Register Src="~/UserControl/wucMensajeAlerta2.ascx" TagName="Mensaje" TagPrefix="uc2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <style type="text/css">
         .style1
@@ -94,7 +95,7 @@
                                     GridLines="None" AllowPaging="True" Width="100%" CssClass="mGrid" PagerStyle-CssClass="pgr"
                                     AlternatingRowStyle-CssClass="alt" ShowHeaderWhenEmpty="True" EmptyDataText="No hay datos disponibles."
                                     PageSize="15" BorderWidth="0px" DataKeyNames="odc_c_iid" 
-                                        onrowediting="gvListaOC_RowEditing">
+                                        onrowediting="gvListaOC_RowEditing" onrowdeleting="gvListaOC_RowDeleting">
                                     <AlternatingRowStyle CssClass="alt" />
                                     <Columns>
                                         <asp:TemplateField HeaderText="Código">
@@ -481,22 +482,24 @@
                     </table>
             </asp:View>
             </asp:MultiView>
-            <asp:UpdatePanel ID="upMensaje" runat="server" UpdateMode="Conditional">
-                <ContentTemplate>
-                    <div id="divPopUpMsg" class="PopupOcultar" runat="server">
-                        <table border="0" cellpadding="0" cellspacing="0" width="800px">
-                            <tr>
-                                <td>
-                                    <uc1:Mensaje ID="ucMensaje" Visible="false" runat="server" />
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </ContentTemplate>
-                <Triggers>
-                    <asp:AsyncPostBackTrigger ControlID="btnGuardar" EventName="Click" />
-                </Triggers>
-            </asp:UpdatePanel>
+        <asp:UpdatePanel ID="upMensaje" runat="server" UpdateMode="Conditional">
+            <ContentTemplate>
+                <div id="divPopUpMsg" class="PopupMostrar" runat="server">
+                    <table border="0" cellpadding="0" cellspacing="0" width="800px">
+                        <tr>
+                            <td>
+                                <uc1:Mensaje ID="ucMensaje" Visible="false" runat="server" />
+                                <uc2:Mensaje ID="ucMensaje2" Visible="false" runat="server" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </ContentTemplate>
+            <Triggers>
+                <asp:AsyncPostBackTrigger ControlID="btnGuardar" EventName="Click" />
+                <asp:AsyncPostBackTrigger ControlID="gvListaOC" EventName="RowDeleting" />
+            </Triggers>
+        </asp:UpdatePanel>
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

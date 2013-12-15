@@ -7,6 +7,8 @@ using System.Web.UI.WebControls;
 using SIC.BusinessLayer;
 using SIC.Data;
 using SIC.EntityLayer;
+using SIC.UserLayer.UserControl;
+using System.Globalization;
 
 namespace SIC.UserLayer.Interfaces.Mantenimiento
 {
@@ -30,6 +32,23 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             set { ViewState["ItemsSeleccionadosPreliminar"] = value; }
         }
 
+        private decimal percepcion
+        {
+            get { return ViewState["OCpercepcion"] == null ? 0.0M : (decimal)ViewState["OCpercepcion"]; }
+            set { ViewState["OCpercepcion"] = value; }
+        }
+
+        private decimal igv
+        {
+            get { return ViewState["OCigv"] == null ? 0.0M : (decimal)ViewState["OCigv"]; }
+            set { ViewState["OCigv"] = value; }
+        }
+
+        private decimal percepcionmax
+        {
+            get { return ViewState["OCpercepcionmax"] == null ? 0.0M : (decimal)ViewState["OCpercepcionmax"]; }
+            set { ViewState["OCpercepcionmax"] = value; }
+        }
 
         private SIC_T_ORDEN_DE_COMPRA OCSeleccionado
         {
@@ -41,6 +60,12 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         {
             get { return ViewState["vsOCNuevo"] as SIC_T_ORDEN_DE_COMPRA; }
             set { ViewState["vsOCNuevo"] = value; }
+        }
+
+        private int OCEliminar
+        {
+            get { return (int) (ViewState["vsOCEliminar"]==null?-1:ViewState["vsOCEliminar"]) ; }
+            set { ViewState["vsOCEliminar"] = value; }
         }
 
         #endregion
@@ -66,7 +91,13 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 this.ListarOrdenCompra();
                 gvItemsSeleccionados.DataSource = null;
                 gvItemsSeleccionados.DataBind();
+                this.ObtenerDatosImpuesto();
             }
+            if (EscenarioOC == TipoOperacion.Eliminacion)
+            {
+                SetearEliminar();
+            }
+            
         }
 
         protected void btnBuscarProveedor_Click(object sender, EventArgs e)
@@ -228,19 +259,44 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
         protected void gvListaOC_RowEditing(object sender, GridViewEditEventArgs e)
         {
+          
             int ocId = (int)this.gvListaOC.DataKeys[e.NewEditIndex].Value;
             e.NewEditIndex = -1;
             this.gvListaItem.EditIndex = -1;
             this.ListarOrdenCompra();
-            this.MostrarModificarOrdenCompra(ocId);
+            this.MostrarModificarOrdenCompra(ocId);            
         }
+
+        protected void gvListaOC_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            this.EscenarioOC = TipoOperacion.Eliminacion;
+            this.OCEliminar = (int)this.gvListaOC.DataKeys[e.RowIndex].Value;
+            this.SetearEliminar();
+
+            this.ucMensaje2.Show("¿Desea eliminar la Orden de Compra seleccionada?", null,
+                                MensajeIcono.Alerta, MensajeBotones.AceptarCancelar);
+        }
+
+        private void SetearEliminar()
+        {
+            ResultadoMensajeHandler handler = null;
+            handler = delegate(object s, ResMsjArgs e2)
+            {
+                if (e2.resultado == MensajeResultado.Aceptar)
+                {
+                    this.DeshabilitarOC(OCEliminar);
+                    this.ucMensaje2.ResultadoMensaje -= handler;
+                }
+
+                this.EscenarioOC = TipoOperacion.Ninguna;
+            };
+
+            this.ucMensaje2.ResultadoMensaje += handler;
+            
+        }
+
 
         #endregion
-
-        private void EditarOC(int id)
-        {
-
-        }
 
         #region Metodos de Listado
         /// <summary>
@@ -289,6 +345,60 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             gvProveedores.DataBind();
         }
 
+        private void ObtenerDatosImpuesto()
+        {
+            var listaPercepcion = this._parametro.ListarParametros((int)TipoParametro.PERCEPCION);
+            var listaIGV = this._parametro.ListarParametros((int)TipoParametro.IGV);
+
+            if (listaIGV.Count == 1)
+            {
+                this.igv = decimal.Parse(listaIGV[0].par_det_c_vcampo_1.ToString(), CultureInfo.InvariantCulture);
+            }
+            else
+            {
+                this.igv = 0.18M;
+            }
+
+            decimal prev, prev2;
+
+            if (listaPercepcion.Count == 2)
+            {
+                prev = decimal.Parse(listaPercepcion[0].par_det_c_vcampo_1.ToString(), CultureInfo.InvariantCulture); 
+                prev2 = decimal.Parse(listaPercepcion[1].par_det_c_vcampo_1.ToString(), CultureInfo.InvariantCulture); 
+
+                if (prev > 1)
+                {
+                    this.percepcionmax = prev;
+                    this.percepcion = prev2;
+                }
+                else
+                {
+                    this.percepcion = prev;
+                    this.percepcionmax = prev2;
+                }
+            }
+            else
+            {
+                this.percepcionmax = 500M;
+                this.percepcion = 0.02M;
+            }
+
+        }
+
+        public void MostrarDatosImpuestos()
+        {
+            if (this.EscenarioOC == TipoOperacion.Creacion)
+            {
+                lblIGV.Text = this.OCNuevo.ocd_c_digv * 100 + "%";
+                lblPercepcion.Text = this.OCNuevo.ocd_c_dpercepcion * 100 + "%";
+            }
+            else if (this.EscenarioOC == TipoOperacion.Modificacion)
+            {
+                lblIGV.Text = this.OCSeleccionado.ocd_c_digv * 100 + "%";
+                lblPercepcion.Text = this.OCSeleccionado.ocd_c_dpercepcion * 100 + "%";
+            }            
+        }
+
         #endregion
 
         #region Metodos de Movimiento
@@ -299,12 +409,18 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         {
             this.OCNuevo = new SIC_T_ORDEN_DE_COMPRA();
             this.OCNuevo.SIC_T_ORDEN_DE_COMPRA_DET = new System.Data.Objects.DataClasses.EntityCollection<SIC_T_ORDEN_DE_COMPRA_DET>();
+            this.OCNuevo.ocd_c_digv = this.igv;
+            this.OCNuevo.ocd_c_dpercepcion = this.percepcion;
+            //-- Missing percepcion max
             this.gvItemsSeleccionados.DataSource = this.OCNuevo.SIC_T_ORDEN_DE_COMPRA_DET;
             this.EscenarioOC = TipoOperacion.Creacion;
             this.lblAccion.Text = "Nuevo";
             this.ItemsSeleccionadosPreliminar = new List<int>();
             this.RecalcularMontos(this.OCNuevo);
             this.mvOC.ActiveViewIndex = 1;
+            this.MostrarDatosImpuestos();
+
+
             this.upGeneral.Update();
         }
 
@@ -326,14 +442,19 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 this.calFechaEntrega.SelectedDate = DateTime.Today;
             }
 
+            this.OCSeleccionado.ocd_c_digv = this.igv;
+            this.OCSeleccionado.ocd_c_dpercepcion = this.percepcion;
+            
             this.ItemsSeleccionadosPreliminar = new List<int>();
             foreach (var item in OCSeleccionado.SIC_T_ORDEN_DE_COMPRA_DET)
             {
                 this.ItemsSeleccionadosPreliminar.Add(item.SIC_T_ITEM.itm_c_iid);
             }
 
-            txtRSProv.Text = this.OCSeleccionado.SIC_T_PROVEEDOR.pro_c_vraz_soc;
+            txtRSProv.Text = this.OCSeleccionado.SIC_T_PROVEEDOR == null ? string.Empty : 
+                                                                           this.OCSeleccionado.SIC_T_PROVEEDOR.pro_c_vraz_soc;
             cboEstado.SelectedIndex = -1;
+
             var seleccion = cboEstado.Items.FindByText(OCSeleccionado.ocd_c_vdescestado);
             if (seleccion != null)
             {
@@ -346,6 +467,9 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             {
                 seleccion.Selected = true;
             }
+
+            this.RecalcularMontos(this.OCSeleccionado);
+            this.MostrarDatosImpuestos();
 
             this.mvOC.ActiveViewIndex = 1;
             this.upGeneral.Update();
@@ -528,12 +652,12 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             }
 
             ordenDeCompra.ocd_c_dsubtotal = subTotal;
-            ordenDeCompra.ocd_c_digv = 0.18M; //!!!!
+            ordenDeCompra.ocd_c_digv = this.igv;
             ordenDeCompra.ocd_c_digvcal = subTotal * ordenDeCompra.ocd_c_digv.Value;
-            ordenDeCompra.ocd_c_dpercepcion = 0.02M; //!!!!
+            ordenDeCompra.ocd_c_dpercepcion = this.percepcion;
             
 
-            if (ordenDeCompra.ocd_c_dsubtotal.Value > 2000M)
+            if (ordenDeCompra.ocd_c_dsubtotal.Value > this.percepcionmax)
             {
                 ordenDeCompra.ocd_c_dpercepcioncal = subTotal * ordenDeCompra.ocd_c_dpercepcion.Value;
             }
@@ -672,7 +796,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 Mensaje("Estado de la página no válido.", "../Imagenes/warning.png");
                 return false;
             }
-            else if (ordenDeCompra.ocd_c_vdocprov_id.Trim() == string.Empty)
+            else if (ordenDeCompra.ocd_c_vdocprov_id == null || ordenDeCompra.ocd_c_vdocprov_id == string.Empty)
             {
                 Mensaje("Debe seleccionar un proveedor.", "../Imagenes/warning.png");
                 return false;
@@ -705,7 +829,29 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
         }
 
+        private void DeshabilitarOC(int idOC)
+        {
+            
+            try
+            {
+                if (this._ordenCompra.DeshabilitarOrdenCompra(idOC))
+                {
+                    Mensaje("Item Deshabilitado.", "../Imagenes/correcto.png");
+                }
+                else
+                {
+                    Mensaje("Error al realizar el proceso.", "../Imagenes/warning.png");
+                }
+            }
+            catch (Exception)
+            {
+                Mensaje("Error al realizar el proceso.", "../Imagenes/warning.png");
+            }
+
         
+            this.ListarOrdenCompra();
+            upGeneral.Update();
+        }
 
         #endregion
 
@@ -719,20 +865,13 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             return;
         }
 
-
-
-        protected void gvItemsSeleccionados_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
 
         }
 
 
-        
+
 
 
    
