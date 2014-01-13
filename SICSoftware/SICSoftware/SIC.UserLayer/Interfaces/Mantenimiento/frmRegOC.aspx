@@ -95,7 +95,8 @@
                                     GridLines="None" AllowPaging="True" Width="100%" CssClass="mGrid" PagerStyle-CssClass="pgr"
                                     AlternatingRowStyle-CssClass="alt" ShowHeaderWhenEmpty="True" EmptyDataText="No hay datos disponibles."
                                     PageSize="15" BorderWidth="0px" DataKeyNames="odc_c_iid" 
-                                        onrowediting="gvListaOC_RowEditing" onrowdeleting="gvListaOC_RowDeleting">
+                                        onrowediting="gvListaOC_RowEditing" onrowdeleting="gvListaOC_RowDeleting" 
+                                        onpageindexchanging="gvListaOC_PageIndexChanging">
                                     <AlternatingRowStyle CssClass="alt" />
                                     <Columns>
                                         <asp:TemplateField HeaderText="Código">
@@ -463,13 +464,13 @@
                                     GridLines="None" AllowPaging="True" Width="100%" CssClass="mGrid" PagerStyle-CssClass="pgr"
                                     AlternatingRowStyle-CssClass="alt" ShowHeaderWhenEmpty="True" EmptyDataText="No hay datos disponibles."
                                     PageSize="15" BorderWidth="0px" AutoGenerateColumns="False" 
-                                        DataKeyNames="pro_c_vdoc_id" 
+                                        DataKeyNames="cli_c_vdoc_id" 
                                         onselectedindexchanged="gvProveedores_SelectedIndexChanged" 
                                         onpageindexchanging="gvProveedores_PageIndexChanging">
                                     <AlternatingRowStyle CssClass="alt" />
                                     <Columns>
-                                        <asp:BoundField DataField="pro_c_vdoc_id" HeaderText="RUC" />
-                                        <asp:BoundField DataField="pro_c_vraz_soc" HeaderText="Razón Social" />
+                                        <asp:BoundField DataField="cli_c_vdoc_id" HeaderText="RUC" />
+                                        <asp:BoundField DataField="cli_c_vraz_soc" HeaderText="Razón Social" />
                                         <asp:CommandField ShowSelectButton="True" />
                                     </Columns>
                                     <PagerStyle CssClass="pgr" />

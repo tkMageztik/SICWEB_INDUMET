@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SIC.UserLayer.Interfaces.Mantenimiento {
+namespace SIC.UserLayer.Interfaces.Movimientos {
     
     
-    public partial class frmRegOC {
+    public partial class frmMovEntrada {
         
         /// <summary>
         /// upGeneral control.
@@ -22,22 +22,22 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento {
         protected global::System.Web.UI.UpdatePanel upGeneral;
         
         /// <summary>
-        /// mvOC control.
+        /// mvMovimientoEntrada control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.MultiView mvOC;
+        protected global::System.Web.UI.WebControls.MultiView mvMovimientoEntrada;
         
         /// <summary>
-        /// View1 control.
+        /// vwListaMovEnt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View View1;
+        protected global::System.Web.UI.WebControls.View vwListaMovEnt;
         
         /// <summary>
         /// btnBuscar control.
@@ -67,22 +67,22 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento {
         protected global::System.Web.UI.UpdatePanel upGvLista;
         
         /// <summary>
-        /// gvListaOC control.
+        /// gvListaMovEn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvListaOC;
+        protected global::System.Web.UI.WebControls.GridView gvListaMovEn;
         
         /// <summary>
-        /// View2 control.
+        /// vwInsModMovEnt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View View2;
+        protected global::System.Web.UI.WebControls.View vwInsModMovEnt;
         
         /// <summary>
         /// lblAccion control.
@@ -112,31 +112,49 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento {
         protected global::System.Web.UI.WebControls.LinkButton btnCancelar;
         
         /// <summary>
-        /// txtRSProv control.
+        /// txtSerieGuia control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRSProv;
+        protected global::System.Web.UI.WebControls.TextBox txtSerieGuia;
         
         /// <summary>
-        /// btnBuscarProveedor control.
+        /// txtNumeroGuia control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnBuscarProveedor;
+        protected global::System.Web.UI.WebControls.TextBox txtNumeroGuia;
         
         /// <summary>
-        /// calFechaEntrega control.
+        /// calFechaGuia control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar calFechaEntrega;
+        protected global::System.Web.UI.WebControls.Calendar calFechaGuia;
+        
+        /// <summary>
+        /// txtSerieFact control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSerieFact;
+        
+        /// <summary>
+        /// txtNumeroFact control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNumeroFact;
         
         /// <summary>
         /// cboEstado control.
@@ -148,13 +166,40 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento {
         protected global::System.Web.UI.WebControls.DropDownList cboEstado;
         
         /// <summary>
-        /// cboMoneda control.
+        /// txtAlmacen control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cboMoneda;
+        protected global::System.Web.UI.WebControls.TextBox txtAlmacen;
+        
+        /// <summary>
+        /// btnBuscarAlmacen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnBuscarAlmacen;
+        
+        /// <summary>
+        /// txtSerieNumeroOC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSerieNumeroOC;
+        
+        /// <summary>
+        /// btnBuscarOC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnBuscarOC;
         
         /// <summary>
         /// gvItemsSeleccionados control.
@@ -166,112 +211,31 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento {
         protected global::System.Web.UI.WebControls.GridView gvItemsSeleccionados;
         
         /// <summary>
-        /// btnBuscarItems control.
+        /// vwListaOrdenCompra control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnBuscarItems;
+        protected global::System.Web.UI.WebControls.View vwListaOrdenCompra;
         
         /// <summary>
-        /// lblIGV control.
+        /// btnFiltrarOC control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblIGV;
+        protected global::System.Web.UI.WebControls.Button btnFiltrarOC;
         
         /// <summary>
-        /// lblIGVCal control.
+        /// btnRegresarDesdeOC control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblIGVCal;
-        
-        /// <summary>
-        /// lblPercepcion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPercepcion;
-        
-        /// <summary>
-        /// lblPercepcionCal control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPercepcionCal;
-        
-        /// <summary>
-        /// lblSubTotal control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSubTotal;
-        
-        /// <summary>
-        /// lblTotal control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotal;
-        
-        /// <summary>
-        /// vwListaItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.View vwListaItem;
-        
-        /// <summary>
-        /// txtFiltroCodigo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFiltroCodigo;
-        
-        /// <summary>
-        /// txtFiltroDescr control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFiltroDescr;
-        
-        /// <summary>
-        /// btnBuscarItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuscarItem;
-        
-        /// <summary>
-        /// btnRegresarDesdeItems control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRegresarDesdeItems;
+        protected global::System.Web.UI.WebControls.Button btnRegresarDesdeOC;
         
         /// <summary>
         /// upGvListaITem control.
@@ -283,40 +247,94 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento {
         protected global::System.Web.UI.UpdatePanel upGvListaITem;
         
         /// <summary>
-        /// gvListaItem control.
+        /// gvListaOC control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvListaItem;
+        protected global::System.Web.UI.WebControls.GridView gvListaOC;
         
         /// <summary>
-        /// vwProveedor control.
+        /// vwAlmacen control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View vwProveedor;
+        protected global::System.Web.UI.WebControls.View vwAlmacen;
         
         /// <summary>
-        /// upProveedor control.
+        /// btnFiltrarAlm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upProveedor;
+        protected global::System.Web.UI.WebControls.Button btnFiltrarAlm;
         
         /// <summary>
-        /// gvProveedores control.
+        /// btnRegresarDesdeAlmacen control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvProveedores;
+        protected global::System.Web.UI.WebControls.Button btnRegresarDesdeAlmacen;
+        
+        /// <summary>
+        /// upGvListaITem0 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upGvListaITem0;
+        
+        /// <summary>
+        /// gvListaAlmacen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvListaAlmacen;
+        
+        /// <summary>
+        /// vwDetalleOC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View vwDetalleOC;
+        
+        /// <summary>
+        /// btnRegresarDetOc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnRegresarDetOc;
+        
+        /// <summary>
+        /// UpdatePanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        
+        /// <summary>
+        /// gvOCDetalle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvOCDetalle;
         
         /// <summary>
         /// upMensaje control.

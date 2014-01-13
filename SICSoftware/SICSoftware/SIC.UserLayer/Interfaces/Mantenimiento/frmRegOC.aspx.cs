@@ -18,7 +18,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         private ParametroBL _parametro = null;
         private OrdenCompraBL _ordenCompra = null;
         private ItemBL _item = null;
-        private ProveedorBL _proveedor = null;
+        private ClienteBL _cliente = null;
 
         private TipoOperacion EscenarioOC
         {
@@ -76,7 +76,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             _parametro = new ParametroBL();
             _item = new ItemBL();
             _ordenCompra = new OrdenCompraBL();
-            _proveedor = new ProveedorBL();
+            _cliente = new ClienteBL();
             EscenarioOC = TipoOperacion.Ninguna;
         }
 
@@ -209,8 +209,8 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         protected void gvItemsSeleccionados_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             TextBox txtCantidad = (TextBox)gvItemsSeleccionados.Rows[e.RowIndex].FindControl("txtCantidad");
-            int cantidadNueva;
-            if (int.TryParse(txtCantidad.Text, out cantidadNueva) && cantidadNueva > 0)
+            decimal cantidadNueva;
+            if (decimal.TryParse(txtCantidad.Text, out cantidadNueva) && cantidadNueva > 0)
             {
                 int itemId = (int)gvItemsSeleccionados.DataKeys[e.RowIndex].Value;
 
@@ -221,7 +221,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                     {
                         if (item.ocd_c_iitemid == itemId)
                         {
-                            item.ocd_c_icantidad = cantidadNueva;
+                            item.ocd_c_dcantidad = cantidadNueva;
                             item.ocd_c_dprecio = item.SIC_T_ITEM.itm_c_dprecio * cantidadNueva;
                             break;
                         }
@@ -238,7 +238,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                     {
                         if (item.ocd_c_iitemid == itemId)
                         {
-                            item.ocd_c_icantidad = cantidadNueva;
+                            item.ocd_c_dcantidad = cantidadNueva;
                             item.ocd_c_dprecio = item.SIC_T_ITEM.itm_c_dprecio * cantidadNueva;
                             break;
                         }
@@ -341,7 +341,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
         private void ListarProveedores()
         {
-            gvProveedores.DataSource = _proveedor.ListarProveedores();
+            gvProveedores.DataSource = _cliente.ListarProveedor();
             gvProveedores.DataBind();
         }
 
@@ -623,7 +623,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 {
                     SIC_T_ITEM itemEncontrado = _item.ObtenerItemPorIdNoContext(idItem);
                     SIC_T_ORDEN_DE_COMPRA_DET nuevoDetalle = new SIC_T_ORDEN_DE_COMPRA_DET();
-                    nuevoDetalle.ocd_c_icantidad = 1;
+                    nuevoDetalle.ocd_c_dcantidad = 1;
                     nuevoDetalle.ocd_c_iitemid = itemEncontrado.itm_c_iid;
                     nuevoDetalle.ocd_c_dprecio = itemEncontrado.itm_c_dprecio;
                     nuevoDetalle.SIC_T_ITEM = itemEncontrado;
@@ -750,6 +750,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             oc.ocd_c_iestado = int.Parse(this.cboEstado.SelectedValue);
             oc.ocd_c_vdescestado = this.cboEstado.SelectedItem.Text.Trim();
 
+
             try
             {
                 if (_ordenCompra.ModificarOrdenCompra(this.OCSeleccionado))
@@ -868,6 +869,12 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void gvListaOC_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvListaOC.PageIndex= e.NewPageIndex;
+            ListarOrdenCompra();
         }
 
 

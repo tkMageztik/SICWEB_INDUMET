@@ -13,15 +13,12 @@ namespace SIC.UserLayer.UserControl
         public event EventHandler UpdateControl;
         public String Mensaje;
         public String Ruta;
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
-        protected void ibtnCancelar_Click(object sender, ImageClickEventArgs e)
-        {
-            ModalPopupExtender1.Hide();
-        }
-
+ 
         public Boolean IsLogin
         {
             get { return status; }
@@ -32,7 +29,7 @@ namespace SIC.UserLayer.UserControl
             if (visibility)
             {
                 lblMensaje.Text = Mensaje;
-                imgmensaje.ImageUrl = Ruta;
+                //imgmensaje.ImageUrl = Ruta;
                 ModalPopupExtender1.Show();
             }
             else
@@ -40,6 +37,9 @@ namespace SIC.UserLayer.UserControl
                 ModalPopupExtender1.Hide();
             }
         }
+
+
+
 
     }
 }
