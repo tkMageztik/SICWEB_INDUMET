@@ -202,6 +202,8 @@
       <DependentUpon>frmRegOC.aspx</DependentUpon>
     </Compile>
     <Content Include="Interfaces\Mantenimiento\frmRegOC.aspx" />
+    <Content Include="Interfaces\Movimientos\frmMovEntrada.aspx" />
+    <Content Include="Interfaces\Movimientos\frmVenta.aspx" />
     <Content Include="Styles\chosen-sprite%402x.png" />
     <Content Include="Styles\chosen-sprite.png" />
     <Content Include="Styles\chosen.css" />
@@ -228,6 +230,7 @@
     <Content Include="Styles\superfish.css" />
     <Content Include="Styles\ui-icons_454545_256x240.png" />
     <Content Include="UserControl\wucMensajeAlerta.ascx" />
+    <Content Include="UserControl\wucMensajeAlerta2.ascx" />
     <Content Include="UserControl\wucMenuDinamico.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -296,6 +299,20 @@
     <Compile Include="Interfaces\Mantenimiento\frmRegCliente.aspx.designer.cs">
       <DependentUpon>frmRegCliente.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\Movimientos\frmMovEntrada.aspx.cs">
+      <DependentUpon>frmMovEntrada.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Interfaces\Movimientos\frmMovEntrada.aspx.designer.cs">
+      <DependentUpon>frmMovEntrada.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\Movimientos\frmVenta.aspx.cs">
+      <DependentUpon>frmVenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Interfaces\Movimientos\frmVenta.aspx.designer.cs">
+      <DependentUpon>frmVenta.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
@@ -310,6 +327,13 @@
     </Compile>
     <Compile Include="UserControl\wucMensajeAlerta.ascx.designer.cs">
       <DependentUpon>wucMensajeAlerta.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\wucMensajeAlerta2.ascx.cs">
+      <DependentUpon>wucMensajeAlerta2.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControl\wucMensajeAlerta2.ascx.designer.cs">
+      <DependentUpon>wucMensajeAlerta2.ascx</DependentUpon>
     </Compile>
     <Compile Include="UserControl\wucMenuDinamico.ascx.cs">
       <DependentUpon>wucMenuDinamico.ascx</DependentUpon>
@@ -360,7 +384,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>59663</DevelopmentServerPort>
+          <DevelopmentServerPort>17745</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>
