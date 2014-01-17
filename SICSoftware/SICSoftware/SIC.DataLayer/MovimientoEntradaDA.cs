@@ -69,6 +69,26 @@ namespace SIC.DataLayer
             {
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
+
+                    // Primero buscamos uno contexto con el mismo 
+                    var  anterior = (from x in contexto.SIC_T_MOVIMIENTO_ENTRADA
+                                     where x.mve_c_bactivo == true && x.mve_c_ioc_id == _pSIC_T_MOVIMIENTO_ENTRADA.mve_c_ioc_id
+                            select x).FirstOrDefault();
+
+                    if (anterior != null)
+                    {
+                        if (anterior.mve_c_vguiaserie == _pSIC_T_MOVIMIENTO_ENTRADA.mve_c_vguiaserie &&
+                            anterior.mve_c_vguianumero == _pSIC_T_MOVIMIENTO_ENTRADA.mve_c_vguianumero)
+                        {
+                            throw new ArgumentException("No se puede ingresar un movimiento con guia repetiuda.");
+                        }
+
+                        anterior.mve_c_iestado = 3;
+                        anterior.mve_c_vdesestado = "CERRADO"; // !
+                        contexto.ApplyCurrentValues("SICDBWEBEntities.SIC_T_MOVIMIENTO_ENTRADA_DETALLE", anterior);
+                    }
+
+
                     foreach (var item in _pSIC_T_MOVIMIENTO_ENTRADA.SIC_T_MOVIMIENTO_ENTRADA_DETALLE)
                     {
                         item.mve_c_iocdet_id = item.SIC_T_ORDEN_DE_COMPRA_DET.odc_det_c_iid;
@@ -78,6 +98,7 @@ namespace SIC.DataLayer
                     _pSIC_T_MOVIMIENTO_ENTRADA.mve_c_ioc_id = _pSIC_T_MOVIMIENTO_ENTRADA.SIC_T_ORDEN_DE_COMPRA.odc_c_iid;
                     _pSIC_T_MOVIMIENTO_ENTRADA.SIC_T_ORDEN_DE_COMPRA = null;
                     contexto.AddToSIC_T_MOVIMIENTO_ENTRADA(_pSIC_T_MOVIMIENTO_ENTRADA);
+                    
                     contexto.SaveChanges();
                     return true;                        
                 }

@@ -55,11 +55,11 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 this.ListarOrdenCompra();
                 this.ListarEstados();
             }
-       }
+        }
 
         protected void gvListaMovEn_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.MostrarModificarMovimientoEntrada((int) this.gvListaMovEn.DataKeys[gvListaMovEn.SelectedIndex].Value);
+            this.MostrarModificarMovimientoEntrada((int)this.gvListaMovEn.DataKeys[gvListaMovEn.SelectedIndex].Value);
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)
@@ -77,7 +77,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         {
             MostrarListadoMovimientoEntrada();
         }
-         
+
         protected void btnBuscarOC_Click(object sender, EventArgs e)
         {
             this.MostrarListaOrdenCompra();
@@ -115,7 +115,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         {
             this.MostrarListaAlmacenes();
         }
-        
+
         protected void btnRegresarDesdeItems_Click(object sender, EventArgs e)
         {
 
@@ -167,7 +167,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                     {
                         if (item.mve_det_c_iid == itemId)
                         {
-                            item.mve_c_dcant_recibida = cantidadNueva;
+                            item.mve_c_ecant_recibida = cantidadNueva;
                             break;
                         }
                     }
@@ -182,7 +182,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                     {
                         if (item.mve_det_c_iid == itemId)
                         {
-                            item.mve_c_dcant_recibida = cantidadNueva;
+                            item.mve_c_ecant_recibida = cantidadNueva;
                             break;
                         }
                     }
@@ -204,8 +204,8 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         private void ListarEstados()
         {
             this.cboEstado.DataSource = _movEntrada.ObtenerMovimientoEstados();
-            cboEstado.DataTextField = "odc_estado_vdescripcion";
-            cboEstado.DataValueField = "odc_estado_iid";
+            cboEstado.DataTextField = "mov_estado_vdescrpcion";
+            cboEstado.DataValueField = "mov_estado_iid";
             cboEstado.DataBind();
         }
 
@@ -217,13 +217,14 @@ namespace SIC.UserLayer.Interfaces.Movimientos
 
         private void ListarOrdenCompra()
         {
-            gvListaOC.DataSource = _ordenCompra.ListarOrdenDeCompraEstado((int) EstadosOrdenCompra.CERRADA);
+            gvListaOC.DataSource = _ordenCompra.ListarOrdenDeCompraEstado((int)EstadosOrdenCompra.CERRADA);
             gvListaOC.DataBind();
         }
 
         private void ListarDetalleOrdenCompra()
         {
-            if(EscenarioMovEn == TipoOperacion.Creacion && MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA!=null){
+            if (EscenarioMovEn == TipoOperacion.Creacion && MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA != null)
+            {
                 gvOCDetalle.DataSource = MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA.SIC_T_ORDEN_DE_COMPRA_DET;
                 gvOCDetalle.DataBind();
             }
@@ -237,8 +238,8 @@ namespace SIC.UserLayer.Interfaces.Movimientos
 
         private void ListarDetalleMovimiento()
         {
-            if (EscenarioMovEn == TipoOperacion.Creacion && this.MovEntNuevo != null )
-            {                
+            if (EscenarioMovEn == TipoOperacion.Creacion && this.MovEntNuevo != null)
+            {
                 this.gvItemsSeleccionados.DataSource = this.MovEntNuevo.SIC_T_MOVIMIENTO_ENTRADA_DETALLE;
                 this.gvItemsSeleccionados.DataBind();
             }
@@ -246,7 +247,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             {
                 this.gvItemsSeleccionados.DataSource = this.MovEntSeleccionado.SIC_T_MOVIMIENTO_ENTRADA_DETALLE;
                 this.gvItemsSeleccionados.DataBind();
-            }    
+            }
         }
 
         #endregion
@@ -281,8 +282,8 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 {
                     seleccion.Selected = true;
                 }
-                
-                
+
+
                 if (MovEntSeleccionado.mve_c_dguiafecha.HasValue)
                 {
                     calFechaGuia.SelectedDate = MovEntSeleccionado.mve_c_dguiafecha.Value;
@@ -312,7 +313,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
 
         private void RegresarDesdeNuevoModificar()
         {
-            this.mvMovimientoEntrada.ActiveViewIndex = 2;
+            this.mvMovimientoEntrada.ActiveViewIndex = 0;
             Limpiar();
             this.ListarMovimientoEntrada();
             this.upGeneral.Update();
@@ -326,6 +327,8 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             this.txtSerieFact.Text = string.Empty;
             this.txtSerieGuia.Text = string.Empty;
             this.txtSerieNumeroOC.Text = string.Empty;
+            this.MovEntNuevo = null;
+            this.MovEntSeleccionado = null;
         }
 
         private void MostrarListaDetalleOC()
@@ -360,7 +363,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             this.upGeneral.Update();
         }
 
-   
+
         #endregion
 
 
@@ -369,7 +372,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         private bool VerificarDatosIngreso()
         {
             DateTime time;
-            string[] formats = {"dd/MM/yyyy", };
+            string[] formats = { "dd/MM/yyyy", };
             //if (!DateTime.TryParse(txtFechaFactura.Text, out time))
             //{
             //    Mensaje("Ingrese una fecha de Factura correcta.", "../Imagenes/warning.png");
@@ -395,7 +398,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 Mensaje("Seleccione una orden de compra.", "../Imagenes/warning.png");
                 return false;
             }
-            else if (this.MovEntNuevo.SIC_T_ALMACEN== null)
+            else if (this.MovEntNuevo.SIC_T_ALMACEN == null)
             {
                 Mensaje("Seleccione un almácén.", "../Imagenes/warning.png");
                 return false;
@@ -420,7 +423,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             //    Mensaje("Ingrese una fecha de Guía correcta.", "../Imagenes/warning.png");
             //    return false;
             //}
-            if(txtNumeroFact.Text.Trim().Length==0 || txtSerieFact.Text.Trim().Length == 0)
+            if (txtNumeroFact.Text.Trim().Length == 0 || txtSerieFact.Text.Trim().Length == 0)
             {
                 Mensaje("Ingrese la serie y número de la Factura.", "../Imagenes/warning.png");
                 return false;
@@ -459,13 +462,13 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             movEntrada.mve_c_vguianumero = txtNumeroGuia.Text;
             movEntrada.mve_c_vguiaserie = txtSerieGuia.Text;
             movEntrada.mve_c_vfacturanumero = txtNumeroFact.Text;
-            movEntrada.mve_c_vfacturaserie= txtSerieFact.Text;
+            movEntrada.mve_c_vfacturaserie = txtSerieFact.Text;
             movEntrada.mve_c_iestado = int.Parse(this.cboEstado.SelectedValue);
             movEntrada.mve_c_vdesestado = cboEstado.SelectedItem.Text.Trim();
             movEntrada.mve_c_bactivo = true;
             movEntrada.mve_c_dfecha = DateTime.Now;
 
-            if(this._movEntrada.InsertarMovimientoEntrada(movEntrada))
+            if (this._movEntrada.InsertarMovimientoEntrada(movEntrada))
             {
                 Mensaje("Insertado con éxito.", "../Imagenes/correcto.png");
                 RegresarDesdeNuevoModificar();
@@ -521,7 +524,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             {
                 this.IngresarMovimientoEntrada();
             }
-        }        
+        }
 
         private void SeleccionarOrdenCompra()
         {
@@ -544,8 +547,8 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                         foreach (var detalle in MovEntNuevo.SIC_T_ORDEN_DE_COMPRA.SIC_T_ORDEN_DE_COMPRA_DET)
                         {
                             var movDet = new SIC_T_MOVIMIENTO_ENTRADA_DETALLE();
-                            movDet.mve_c_dcant_pedida = detalle.ocd_c_dcantidad;
-                            movDet.mve_c_dcant_recibida = 0;
+                            movDet.mve_c_ecant_pedida = detalle.ocd_c_ecantidad;
+                            movDet.mve_c_ecant_recibida = 0;
                             movDet.mve_c_vdescripcion_item = detalle.SIC_T_ITEM.itm_c_vdescripcion;
                             movDet.SIC_T_ORDEN_DE_COMPRA_DET = detalle;
                             MovEntNuevo.SIC_T_MOVIMIENTO_ENTRADA_DETALLE.Add(movDet);
@@ -566,7 +569,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 }
             }
 
-            
+
         }
 
         private void SeleccionarAlmacen()
@@ -574,16 +577,18 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             if (gvListaAlmacen.SelectedIndex != -1)
             {
                 int id = -1;
-                if(Int32.TryParse(gvListaAlmacen.DataKeys[gvListaAlmacen.SelectedIndex].Value.ToString(),out id))
+                if (Int32.TryParse(gvListaAlmacen.DataKeys[gvListaAlmacen.SelectedIndex].Value.ToString(), out id))
                 {
                     if (this.EscenarioMovEn == TipoOperacion.Creacion)
                     {
-                        MovEntNuevo.SIC_T_ALMACEN = _almacen.ObtenerPorIdNoContext(id);
+                        var almacen = _almacen.ObtenerPorIdNoContext(id);
+                        MovEntNuevo.mve_c_iidalmacen = almacen.alm_c_iid;
                         txtAlmacen.Text = MovEntNuevo.SIC_T_ALMACEN != null ? MovEntNuevo.SIC_T_ALMACEN.alm_c_vdes : string.Empty;
                     }
                     else if (this.EscenarioMovEn == TipoOperacion.Modificacion)
                     {
-                        MovEntSeleccionado.SIC_T_ALMACEN = _almacen.ObtenerPorIdNoContext(id);
+                        var almacen = _almacen.ObtenerPorIdNoContext(id);
+                        MovEntSeleccionado.mve_c_iidalmacen = almacen.alm_c_iid;
                         txtAlmacen.Text = MovEntSeleccionado.SIC_T_ALMACEN != null ? MovEntSeleccionado.SIC_T_ALMACEN.alm_c_vdes : string.Empty;
                     }
                 }
@@ -623,10 +628,6 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         {
             this.gvListaAlmacen.PageIndex = e.NewPageIndex;
             this.ListarAlmacenes();
-        }
-
-        
-
-
+        }        
     }
 }

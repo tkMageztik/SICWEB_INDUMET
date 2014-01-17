@@ -231,8 +231,7 @@
                                                
                                                 <tr>
                                                     <td align="left" class="txt-box-estilo">
-                                                        Items
-                                                    </td>
+                                                        Items</td>
                                                     <td align="left" class="txt-box-estilo" colspan="2">
                                                         <asp:GridView ID="gvItemsSeleccionados" runat="server" AllowPaging="True" 
                                                             AlternatingRowStyle-CssClass="alt" BorderStyle="None" BorderWidth="0px" CssClass="mGrid"
@@ -252,12 +251,12 @@
                                                                 </asp:TemplateField>
                                                                 <asp:TemplateField HeaderText="Can. Pedida">
                                                                     <ItemTemplate>
-                                                                        <%# Eval("mve_c_dcant_pedida")%>
+                                                                        <%# Eval("mve_c_ecant_pedida")%>
                                                                     </ItemTemplate>  
                                                                 </asp:TemplateField>
                                                                 <asp:TemplateField HeaderText="Can. Recibida">
                                                                     <ItemTemplate>
-                                                                        <%# Eval("mve_c_dcant_recibida")%>
+                                                                        <%# Eval("mve_c_ecant_recibida")%>
                                                                     </ItemTemplate>  
                                                                     <EditItemTemplate>
                                                                         <asp:TextBox ID="txtCantidad" runat="server"></asp:TextBox>
@@ -382,12 +381,12 @@
                                     <Columns>
                                         <asp:TemplateField HeaderText="Proveedor"> 
                                             <ItemTemplate> 
-                                                <%# Eval("SIC_T_PROVEEDOR.pro_c_vraz_soc")%> 
+                                                <%# Eval("SIC_T_CLIENTE.cli_c_vdoc_id")%> 
                                             </ItemTemplate> 
                                         </asp:TemplateField> 
                                         <asp:BoundField DataField="ocd_c_vdescmoneda" HeaderText="Moneda" />
                                         <asp:BoundField DataField="odc_c_zfecha" HeaderText="Fecha Entrega" />
-                                        <asp:BoundField DataField="ocd_c_dtotal" HeaderText="Total" />
+                                        <asp:BoundField DataField="ocd_c_etotal" HeaderText="Total" />
                                         <asp:CommandField ShowSelectButton="True" />
                                     </Columns>
                                     <PagerStyle CssClass="pgr" />
@@ -590,7 +589,7 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Precio">
                                                     <ItemTemplate>
-                                                        <%# Eval("ocd_c_dprecio")%>
+                                                        <%# Eval("ocd_c_eprecio")%>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                             </Columns>

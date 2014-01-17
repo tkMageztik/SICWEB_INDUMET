@@ -1,6 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
-    EnableEventValidation="false" CodeBehind="frmRegOC.aspx.cs" Inherits="SIC.UserLayer.Interfaces.Mantenimiento.frmRegOC" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="frmVenta.aspx.cs" Inherits="SIC.UserLayer.Interfaces.Movimientos.frmVenta" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <%@ Register Src="~/UserControl/wucMensajeAlerta.ascx" TagName="Mensaje" TagPrefix="uc1" %>
 <%@ Register Src="~/UserControl/wucMensajeAlerta2.ascx" TagName="Mensaje" TagPrefix="uc2" %>
@@ -94,7 +92,7 @@
                                 <asp:GridView ID="gvListaOC" runat="server" BorderStyle="None" AutoGenerateColumns="False"
                                     GridLines="None" AllowPaging="True" Width="100%" CssClass="mGrid" PagerStyle-CssClass="pgr"
                                     AlternatingRowStyle-CssClass="alt" ShowHeaderWhenEmpty="True" EmptyDataText="No hay datos disponibles."
-                                    PageSize="15" BorderWidth="0px" DataKeyNames="odc_c_iid" 
+                                    PageSize="15" BorderWidth="0px" DataKeyNames="ven_c_iid" 
                                         onrowediting="gvListaOC_RowEditing" onrowdeleting="gvListaOC_RowDeleting" 
                                         onpageindexchanging="gvListaOC_PageIndexChanging">
                                     <AlternatingRowStyle CssClass="alt" />
@@ -104,9 +102,9 @@
                                                 <%# Eval("SIC_T_CLIENTE.cli_c_vdoc_id")%>
                                             </ItemTemplate>                             
                                         </asp:TemplateField>
-                                        <asp:BoundField HeaderText="Moneda" DataField="ocd_c_vdescmoneda" />
-                                        <asp:BoundField HeaderText="Fecha Entrega" DataField="odc_c_zfecha" />
-                                        <asp:BoundField HeaderText="Total" DataField="ocd_c_etotal" />
+                                        <asp:BoundField HeaderText="Moneda" DataField="ven_c_vdescmoneda" />
+                                        <asp:BoundField HeaderText="Fecha Entrega" DataField="ven_c_zfecha" />
+                                        <asp:BoundField HeaderText="Total" DataField="ven_c_dtotal" />
                                         <asp:CommandField ShowEditButton="True" />
                                         <asp:CommandField ShowDeleteButton="True" />
                                     </Columns>
@@ -123,7 +121,7 @@
                     <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                             <td class="tit-nav-paginas" align="left">
-                                MANTENIMIENTO &gt; ORDEN DE COMPRA &gt;
+                                MANTENIMIENTO &gt; VENTA &gt;
                                 <asp:Label ID="lblAccion" runat="server"></asp:Label>
                             </td>
                             <td align="right">
@@ -151,7 +149,7 @@
                                             <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                                 <tr>
                                                     <td align="left" class="txt-box-estilo">
-                                                        Proveedor
+                                                        Cliente
                                                     </td>
                                                     <td align="left" class="style3">
                                                         <asp:TextBox ID="txtRSProv" runat="server" Width="282px" BackColor="#CCCCCC" 
@@ -173,9 +171,9 @@
                                                         <asp:Calendar ID="calFechaEntrega" runat="server"></asp:Calendar>
                                                     </td>
                                                     <td align="left" class="style1">
-                                                        Estado </td>
+                                                        Tipo Documento</td>
                                                     <td align="left" class="style1">
-                                                        <asp:DropDownList ID="cboEstado" runat="server" Width="201px">
+                                                        <asp:DropDownList ID="cboTipoDocumento" runat="server" Width="201px">
                                                         </asp:DropDownList>
                                                     </td>
                                                 </tr>
@@ -198,7 +196,7 @@
                                                             AlternatingRowStyle-CssClass="alt" BorderStyle="None" BorderWidth="0px" CssClass="mGrid"
                                                             EmptyDataText="No ha seleccionado ningun item." GridLines="None" 
                                                             Height="16px" PagerStyle-CssClass="pgr" ShowHeaderWhenEmpty="True" ViewStateMode="Enabled" 
-                                                            Width="100%" AutoGenerateColumns="False" DataKeyNames="ocd_c_iitemid" 
+                                                            Width="100%" AutoGenerateColumns="False" DataKeyNames="ven_det_c_iitemid" 
                                                             onrowcancelingedit="gvItemsSeleccionados_RowCancelingEdit" 
                                                             onrowediting="gvItemsSeleccionados_RowEditing" 
                                                             onrowupdating="gvItemsSeleccionados_RowUpdating">
@@ -216,7 +214,7 @@
                                                                 </asp:TemplateField>
                                                                 <asp:TemplateField HeaderText="Cantidad">
                                                                 <ItemTemplate>
-                                                                        <%# Eval("ocd_c_ecantidad")%>
+                                                                        <%# Eval("ven_det_c_ecantidad")%>
                                                                 </ItemTemplate>  
                                                                     <EditItemTemplate>
                                                                         <asp:TextBox ID="txtCantidad" runat="server"></asp:TextBox>
@@ -224,7 +222,7 @@
                                                                 </asp:TemplateField>
                                                                 <asp:TemplateField HeaderText="Precio">
                                                                 <ItemTemplate>
-                                                                        <%# Eval("ocd_c_eprecio")%>
+                                                                        <%# Eval("ven_det_c_eprecio")%>
                                                                 </ItemTemplate>  
                                                                 </asp:TemplateField>
 
@@ -306,7 +304,7 @@
             <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                             <td class="tit-nav-paginas" align="left">
-                                MANTENIMIENTO &gt; ORDEN DE COMPRA &gt; SELECCIONAR ITEM<br />
+                                MANTENIMIENTO &gt; VENTA &gt; SELECCIONAR ITEM<br />
                             </td>
                         </tr>
                         <tr>
@@ -404,7 +402,7 @@
             <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                             <td class="tit-nav-paginas" align="left">
-                                MANTENIMIENTO &gt; ORDEN DE COMPRA &gt; SELECCIONAR PROVEEDOR</td>
+                                MANTENIMIENTO &gt; VENTA &gt; SELECCIONAR PROVEEDOR</td>
                         </tr>
                         <tr>
                            <td class="txt2" align="left" colspan="2">
@@ -504,3 +502,4 @@
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>
+

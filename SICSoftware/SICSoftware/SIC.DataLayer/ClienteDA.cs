@@ -29,6 +29,40 @@ namespace SIC.DataLayer
             }
         }
 
+        public List<SIC_T_CLIENTE> ListarClientesAlt()
+        {
+            try
+            {
+                using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+                {
+                    return (from x in contexto.SIC_T_CLIENTE
+                            where x.cli_c_bactivo == true && x.cli_c_bcliente == true
+                            select x).ToList();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public List<SIC_T_CLIENTE> ListarProveedor()
+        {
+            try
+            {
+                using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+                {
+                    return (from x in contexto.SIC_T_CLIENTE
+                            where x.cli_c_bactivo == true && x.cli_c_bproveedor == true
+                            select x).ToList();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        
 
         public SIC_T_CLIENTE BuscarCliente(string _strRazSoc)
         {
@@ -62,7 +96,6 @@ namespace SIC.DataLayer
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
