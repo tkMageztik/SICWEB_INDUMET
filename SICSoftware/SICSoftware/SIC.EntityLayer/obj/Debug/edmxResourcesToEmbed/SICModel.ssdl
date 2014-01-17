@@ -438,18 +438,18 @@
     <Property Name="odc_c_iid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="odc_c_zfecha" Type="datetime" />
     <Property Name="odc_c_ymoneda" Type="tinyint" />
-    <Property Name="ocd_c_ycondiciones" Type="tinyint" />
-    <Property Name="ocd_c_esubtotal" Type="decimal" Precision="17" Scale="4" />
-    <Property Name="ocd_c_etotal" Type="decimal" Precision="17" Scale="4" />
-    <Property Name="ocd_c_eigv" Type="decimal" Precision="17" Scale="4" />
-    <Property Name="ocd_c_eigvcal" Type="decimal" Precision="17" Scale="4" />
-    <Property Name="ocd_c_epercepcion" Type="decimal" Precision="17" Scale="4" />
-    <Property Name="ocd_c_epercepcioncal" Type="decimal" Precision="17" Scale="4" />
-    <Property Name="ocd_c_iestado" Type="int" />
-    <Property Name="ocd_c_vdescmoneda" Type="varchar" MaxLength="100" />
-    <Property Name="ocd_c_bactivo" Type="bit" />
-    <Property Name="ocd_c_vdescestado" Type="varchar" MaxLength="100" />
-    <Property Name="ocd_c_vdocprov_id" Type="varchar" MaxLength="11" />
+    <Property Name="odc_c_ycondiciones" Type="tinyint" />
+    <Property Name="odc_c_esubtotal" Type="decimal" Precision="17" Scale="4" />
+    <Property Name="odc_c_etotal" Type="decimal" Precision="17" Scale="4" />
+    <Property Name="odc_c_eigv" Type="decimal" Precision="17" Scale="4" />
+    <Property Name="odc_c_eigvcal" Type="decimal" Precision="17" Scale="4" />
+    <Property Name="odc_c_epercepcion" Type="decimal" Precision="17" Scale="4" />
+    <Property Name="odc_c_epercepcioncal" Type="decimal" Precision="17" Scale="4" />
+    <Property Name="odc_c_iestado" Type="int" />
+    <Property Name="odc_c_vdescmoneda" Type="varchar" MaxLength="100" />
+    <Property Name="odc_c_bactivo" Type="bit" />
+    <Property Name="odc_c_vdescestado" Type="varchar" MaxLength="100" />
+    <Property Name="odc_c_vdocprov_id" Type="varchar" MaxLength="11" />
   </EntityType>
   <EntityType Name="SIC_T_ORDEN_DE_COMPRA_DET">
     <Key>
@@ -457,9 +457,9 @@
     </Key>
     <Property Name="odc_det_c_iid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="odc_c_iid" Type="int" Nullable="false" />
-    <Property Name="ocd_c_iitemid" Type="int" Nullable="false" />
-    <Property Name="ocd_c_ecantidad" Type="decimal" Precision="17" Scale="4" />
-    <Property Name="ocd_c_eprecio" Type="decimal" Precision="17" Scale="4" />
+    <Property Name="odc_c_iitemid" Type="int" Nullable="false" />
+    <Property Name="odc_c_ecantidad" Type="decimal" Precision="17" Scale="4" />
+    <Property Name="odc_c_eprecio" Type="decimal" Precision="17" Scale="4" />
   </EntityType>
   <EntityType Name="SIC_T_PROVINCIA">
     <Key>
@@ -838,7 +838,7 @@
         <PropertyRef Name="itm_c_iid" />
       </Principal>
       <Dependent Role="SIC_T_ORDEN_DE_COMPRA_DET">
-        <PropertyRef Name="ocd_c_iitemid" />
+        <PropertyRef Name="odc_c_iitemid" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -862,7 +862,7 @@
         <PropertyRef Name="cli_c_vdoc_id" />
       </Principal>
       <Dependent Role="SIC_T_ORDEN_DE_COMPRA">
-        <PropertyRef Name="ocd_c_vdocprov_id" />
+        <PropertyRef Name="odc_c_vdocprov_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -874,7 +874,7 @@
         <PropertyRef Name="odc_estado_iid" />
       </Principal>
       <Dependent Role="SIC_T_ORDEN_DE_COMPRA">
-        <PropertyRef Name="ocd_c_iestado" />
+        <PropertyRef Name="odc_c_iestado" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

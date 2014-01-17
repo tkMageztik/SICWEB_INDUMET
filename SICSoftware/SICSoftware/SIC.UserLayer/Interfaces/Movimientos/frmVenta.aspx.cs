@@ -89,7 +89,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 this.ListarComboMoneda();
                 this.ListarComboMoneda();
                 this.ListarItem();
-                this.ListarProveedores();
+                this.ListarClientes();
                 this.ListarComboTipoDocumento();
                 this.ListarVentas();
                 gvItemsSeleccionados.DataSource = null;
@@ -157,7 +157,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
 
         protected void gvProveedores_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.SeleccionEmpresa();
+            this.SeleccionCliente();
         }
         
         protected void btnGuardar_Click(object sender, EventArgs e)
@@ -175,7 +175,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         protected void gvProveedores_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvProveedores.PageIndex = e.NewPageIndex;
-            this.ListarProveedores();
+            this.ListarClientes();
         }
 
         protected void gvItemsSeleccionados_RowEditing(object sender, GridViewEditEventArgs e)
@@ -342,9 +342,9 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         }
 
 
-        private void ListarProveedores()
+        private void ListarClientes()
         {
-            gvProveedores.DataSource = _cliente.ListarClientesAlt();
+            gvProveedores.DataSource = _cliente.ListarClientes();
             gvProveedores.DataBind();
         }
 
@@ -539,6 +539,12 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             upGeneral.Update();
         }
 
+        private void RegresarDesdeCliente()
+        {
+            mvOC.ActiveViewIndex = 1;
+            upGeneral.Update();
+        }
+
         /// <summary>
         /// Cancela el proceso, limpia la vista Nuevo/Edicion
         /// y regresa a la vista de la tabla.
@@ -679,10 +685,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             this.lblPercepcionCal.Text = ordenDeCompra.ven_c_dpercepcioncal.Value.ToString();
         }
 
-        /// <summary>
-        /// Selecciona la empresa y regresa a la vista Nuevo/Editar
-        /// </summary>
-        private void SeleccionEmpresa()
+        private void SeleccionCliente()
         {            
             String RUC = this.gvProveedores.DataKeys[gvProveedores.SelectedIndex].Value.ToString();
             if (EscenarioVenta == TipoOperacion.Modificacion)
@@ -802,7 +805,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             }
             else if (ordenDeCompra.ven_c_vdoccli_id == null || ordenDeCompra.ven_c_vdoccli_id == string.Empty)
             {
-                Mensaje("Debe seleccionar un proveedor.", "../Imagenes/warning.png");
+                Mensaje("Debe seleccionar un cliente.", "../Imagenes/warning.png");
                 return false;
             }
             //else if (DateTime.Compare(calFechaEntrega.SelectedDate, DateTime.Today) < 0)
@@ -868,17 +871,18 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             return;
         }
 
-        protected void btnBuscar_Click(object sender, EventArgs e)
-        {
-
-        }
-
         protected void gvListaOC_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvListaOC.PageIndex= e.NewPageIndex;
             ListarVentas();
-        }  
+        }
 
-      
+        protected void btnRegresarDesdeProveedor_Click(object sender, EventArgs e)
+        {
+            RegresarDesdeCliente();
+        }
+
+        
+
     }
 }

@@ -389,38 +389,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="SIC_T_ORDEN_DE_COMPRA">
-      <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_ORDEN_DE_COMPRA">
-        <MappingFragment StoreEntitySet="SIC_T_ORDEN_DE_COMPRA">
-          <ScalarProperty Name="ocd_c_vdocprov_id" ColumnName="ocd_c_vdocprov_id" />
-          <ScalarProperty Name="ocd_c_vdescestado" ColumnName="ocd_c_vdescestado" />
-          <ScalarProperty Name="ocd_c_bactivo" ColumnName="ocd_c_bactivo" />
-          <ScalarProperty Name="ocd_c_vdescmoneda" ColumnName="ocd_c_vdescmoneda" />
-          <ScalarProperty Name="ocd_c_iestado" ColumnName="ocd_c_iestado" />
-          <ScalarProperty Name="ocd_c_epercepcioncal" ColumnName="ocd_c_epercepcioncal" />
-          <ScalarProperty Name="ocd_c_epercepcion" ColumnName="ocd_c_epercepcion" />
-          <ScalarProperty Name="ocd_c_eigvcal" ColumnName="ocd_c_eigvcal" />
-          <ScalarProperty Name="ocd_c_eigv" ColumnName="ocd_c_eigv" />
-          <ScalarProperty Name="ocd_c_etotal" ColumnName="ocd_c_etotal" />
-          <ScalarProperty Name="ocd_c_esubtotal" ColumnName="ocd_c_esubtotal" />
-          <ScalarProperty Name="ocd_c_ycondiciones" ColumnName="ocd_c_ycondiciones" />
-          <ScalarProperty Name="odc_c_ymoneda" ColumnName="odc_c_ymoneda" />
-          <ScalarProperty Name="odc_c_zfecha" ColumnName="odc_c_zfecha" />
-          <ScalarProperty Name="odc_c_iid" ColumnName="odc_c_iid" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="SIC_T_ORDEN_DE_COMPRA_DET">
-      <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_ORDEN_DE_COMPRA_DET">
-        <MappingFragment StoreEntitySet="SIC_T_ORDEN_DE_COMPRA_DET">
-          <ScalarProperty Name="ocd_c_eprecio" ColumnName="ocd_c_eprecio" />
-          <ScalarProperty Name="ocd_c_ecantidad" ColumnName="ocd_c_ecantidad" />
-          <ScalarProperty Name="ocd_c_iitemid" ColumnName="ocd_c_iitemid" />
-          <ScalarProperty Name="odc_c_iid" ColumnName="odc_c_iid" />
-          <ScalarProperty Name="odc_det_c_iid" ColumnName="odc_det_c_iid" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="SIC_T_TASA_CAMBIO">
       <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_TASA_CAMBIO">
         <MappingFragment StoreEntitySet="SIC_T_TASA_CAMBIO">
@@ -461,6 +429,38 @@
           <ScalarProperty Name="ven_det_c_iitemid" ColumnName="ven_det_c_iitemid" />
           <ScalarProperty Name="ven_c_iid" ColumnName="ven_c_iid" />
           <ScalarProperty Name="ven_det_c_iid" ColumnName="ven_det_c_iid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SIC_T_ORDEN_DE_COMPRA">
+      <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_ORDEN_DE_COMPRA">
+        <MappingFragment StoreEntitySet="SIC_T_ORDEN_DE_COMPRA">
+          <ScalarProperty Name="odc_c_vdocprov_id" ColumnName="odc_c_vdocprov_id" />
+          <ScalarProperty Name="odc_c_vdescestado" ColumnName="odc_c_vdescestado" />
+          <ScalarProperty Name="odc_c_bactivo" ColumnName="odc_c_bactivo" />
+          <ScalarProperty Name="odc_c_vdescmoneda" ColumnName="odc_c_vdescmoneda" />
+          <ScalarProperty Name="odc_c_iestado" ColumnName="odc_c_iestado" />
+          <ScalarProperty Name="odc_c_epercepcioncal" ColumnName="odc_c_epercepcioncal" />
+          <ScalarProperty Name="odc_c_epercepcion" ColumnName="odc_c_epercepcion" />
+          <ScalarProperty Name="odc_c_eigvcal" ColumnName="odc_c_eigvcal" />
+          <ScalarProperty Name="odc_c_eigv" ColumnName="odc_c_eigv" />
+          <ScalarProperty Name="odc_c_etotal" ColumnName="odc_c_etotal" />
+          <ScalarProperty Name="odc_c_esubtotal" ColumnName="odc_c_esubtotal" />
+          <ScalarProperty Name="odc_c_ycondiciones" ColumnName="odc_c_ycondiciones" />
+          <ScalarProperty Name="odc_c_ymoneda" ColumnName="odc_c_ymoneda" />
+          <ScalarProperty Name="odc_c_zfecha" ColumnName="odc_c_zfecha" />
+          <ScalarProperty Name="odc_c_iid" ColumnName="odc_c_iid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SIC_T_ORDEN_DE_COMPRA_DET">
+      <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_ORDEN_DE_COMPRA_DET">
+        <MappingFragment StoreEntitySet="SIC_T_ORDEN_DE_COMPRA_DET">
+          <ScalarProperty Name="odc_c_eprecio" ColumnName="odc_c_eprecio" />
+          <ScalarProperty Name="odc_c_ecantidad" ColumnName="odc_c_ecantidad" />
+          <ScalarProperty Name="odc_c_iitemid" ColumnName="odc_c_iitemid" />
+          <ScalarProperty Name="odc_c_iid" ColumnName="odc_c_iid" />
+          <ScalarProperty Name="odc_det_c_iid" ColumnName="odc_det_c_iid" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

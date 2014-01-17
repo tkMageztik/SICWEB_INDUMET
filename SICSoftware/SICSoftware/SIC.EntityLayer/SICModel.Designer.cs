@@ -38,19 +38,19 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_ALMACEN", "SIC_T_ALMACEN", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SIC.EntityLayer.SIC_T_ALMACEN), "SIC_T_MOVIMIENTO_ENTRADA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_MOVIMIENTO_ENTRADA), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_SALIDA_SIC_T_ALMACEN", "SIC_T_ALMACEN", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SIC.EntityLayer.SIC_T_ALMACEN), "SIC_T_MOVIMIENTO_SALIDA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_MOVIMIENTO_SALIDA), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_CLIENTE", "SIC_T_CLIENTE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SIC.EntityLayer.SIC_T_CLIENTE), "SIC_T_MOVIMIENTO_ENTRADA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_MOVIMIENTO_ENTRADA), true)]
-[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_ORDEN_DE_COMPRA_SIC_T_CLIENTE", "SIC_T_CLIENTE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SIC.EntityLayer.SIC_T_CLIENTE), "SIC_T_ORDEN_DE_COMPRA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_ORDEN_DE_COMPRA), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_VENTA_SIC_T_CLIENTE", "SIC_T_CLIENTE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SIC.EntityLayer.SIC_T_CLIENTE), "SIC_T_VENTA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_VENTA), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_ITEM", "SIC_T_ITEM", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SIC.EntityLayer.SIC_T_ITEM), "SIC_T_MOVIMIENTO_SALIDA_DETALLE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_MOVIMIENTO_SALIDA_DETALLE), true)]
-[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ITEM", "SIC_T_ITEM", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_ITEM), "SIC_T_ORDEN_DE_COMPRA_DET", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_ORDEN_DE_COMPRA_DET), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_VENTA_DETALLE_SIC_T_ITEM", "SIC_T_ITEM", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_ITEM), "SIC_T_VENTA_DETALLE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_VENTA_DETALLE), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_MOV_ESTADO", "SIC_T_MOV_ESTADO", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SIC.EntityLayer.SIC_T_MOV_ESTADO), "SIC_T_MOVIMIENTO_ENTRADA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_MOVIMIENTO_ENTRADA), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_ENTRADA_DETALLE_SIC_T_MOVIMIENTO_ENTRADA", "SIC_T_MOVIMIENTO_ENTRADA", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SIC.EntityLayer.SIC_T_MOVIMIENTO_ENTRADA), "SIC_T_MOVIMIENTO_ENTRADA_DETALLE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_MOVIMIENTO_ENTRADA_DETALLE), true)]
+[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_MOVIMIENTO_SALIDA", "SIC_T_MOVIMIENTO_SALIDA", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SIC.EntityLayer.SIC_T_MOVIMIENTO_SALIDA), "SIC_T_MOVIMIENTO_SALIDA_DETALLE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_MOVIMIENTO_SALIDA_DETALLE), true)]
+[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_VENTA_DETALLE_SIC_T_VENTA", "SIC_T_VENTA", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_VENTA), "SIC_T_VENTA_DETALLE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_VENTA_DETALLE), true)]
+[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_ORDEN_DE_COMPRA_SIC_T_CLIENTE", "SIC_T_CLIENTE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SIC.EntityLayer.SIC_T_CLIENTE), "SIC_T_ORDEN_DE_COMPRA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_ORDEN_DE_COMPRA), true)]
+[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ITEM", "SIC_T_ITEM", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_ITEM), "SIC_T_ORDEN_DE_COMPRA_DET", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_ORDEN_DE_COMPRA_DET), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_ORDEN_DE_COMPRA", "SIC_T_ORDEN_DE_COMPRA", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SIC.EntityLayer.SIC_T_ORDEN_DE_COMPRA), "SIC_T_MOVIMIENTO_ENTRADA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_MOVIMIENTO_ENTRADA), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_ENTRADA_DETALLE_SIC_T_ORDEN_DE_COMPRA_DET", "SIC_T_ORDEN_DE_COMPRA_DET", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SIC.EntityLayer.SIC_T_ORDEN_DE_COMPRA_DET), "SIC_T_MOVIMIENTO_ENTRADA_DETALLE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_MOVIMIENTO_ENTRADA_DETALLE), true)]
-[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_MOVIMIENTO_SALIDA", "SIC_T_MOVIMIENTO_SALIDA", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SIC.EntityLayer.SIC_T_MOVIMIENTO_SALIDA), "SIC_T_MOVIMIENTO_SALIDA_DETALLE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_MOVIMIENTO_SALIDA_DETALLE), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_ORDEN_DE_COMPRA_SIC_T_ODC_ESTADO", "SIC_T_ODC_ESTADO", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SIC.EntityLayer.SIC_T_ODC_ESTADO), "SIC_T_ORDEN_DE_COMPRA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_ORDEN_DE_COMPRA), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ORDEN_DE_COMPRA", "SIC_T_ORDEN_DE_COMPRA", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_ORDEN_DE_COMPRA), "SIC_T_ORDEN_DE_COMPRA_DET", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_ORDEN_DE_COMPRA_DET), true)]
-[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_VENTA_DETALLE_SIC_T_VENTA", "SIC_T_VENTA", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_VENTA), "SIC_T_VENTA_DETALLE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_VENTA_DETALLE), true)]
 
 #endregion
 
@@ -617,38 +617,6 @@ namespace SIC.EntityLayer
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<SIC_T_ORDEN_DE_COMPRA> SIC_T_ORDEN_DE_COMPRA
-        {
-            get
-            {
-                if ((_SIC_T_ORDEN_DE_COMPRA == null))
-                {
-                    _SIC_T_ORDEN_DE_COMPRA = base.CreateObjectSet<SIC_T_ORDEN_DE_COMPRA>("SIC_T_ORDEN_DE_COMPRA");
-                }
-                return _SIC_T_ORDEN_DE_COMPRA;
-            }
-        }
-        private ObjectSet<SIC_T_ORDEN_DE_COMPRA> _SIC_T_ORDEN_DE_COMPRA;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<SIC_T_ORDEN_DE_COMPRA_DET> SIC_T_ORDEN_DE_COMPRA_DET
-        {
-            get
-            {
-                if ((_SIC_T_ORDEN_DE_COMPRA_DET == null))
-                {
-                    _SIC_T_ORDEN_DE_COMPRA_DET = base.CreateObjectSet<SIC_T_ORDEN_DE_COMPRA_DET>("SIC_T_ORDEN_DE_COMPRA_DET");
-                }
-                return _SIC_T_ORDEN_DE_COMPRA_DET;
-            }
-        }
-        private ObjectSet<SIC_T_ORDEN_DE_COMPRA_DET> _SIC_T_ORDEN_DE_COMPRA_DET;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<SIC_T_TASA_CAMBIO> SIC_T_TASA_CAMBIO
         {
             get
@@ -693,6 +661,38 @@ namespace SIC.EntityLayer
             }
         }
         private ObjectSet<SIC_T_VENTA_DETALLE> _SIC_T_VENTA_DETALLE;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<SIC_T_ORDEN_DE_COMPRA> SIC_T_ORDEN_DE_COMPRA
+        {
+            get
+            {
+                if ((_SIC_T_ORDEN_DE_COMPRA == null))
+                {
+                    _SIC_T_ORDEN_DE_COMPRA = base.CreateObjectSet<SIC_T_ORDEN_DE_COMPRA>("SIC_T_ORDEN_DE_COMPRA");
+                }
+                return _SIC_T_ORDEN_DE_COMPRA;
+            }
+        }
+        private ObjectSet<SIC_T_ORDEN_DE_COMPRA> _SIC_T_ORDEN_DE_COMPRA;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<SIC_T_ORDEN_DE_COMPRA_DET> SIC_T_ORDEN_DE_COMPRA_DET
+        {
+            get
+            {
+                if ((_SIC_T_ORDEN_DE_COMPRA_DET == null))
+                {
+                    _SIC_T_ORDEN_DE_COMPRA_DET = base.CreateObjectSet<SIC_T_ORDEN_DE_COMPRA_DET>("SIC_T_ORDEN_DE_COMPRA_DET");
+                }
+                return _SIC_T_ORDEN_DE_COMPRA_DET;
+            }
+        }
+        private ObjectSet<SIC_T_ORDEN_DE_COMPRA_DET> _SIC_T_ORDEN_DE_COMPRA_DET;
 
         #endregion
 
@@ -955,22 +955,6 @@ namespace SIC.EntityLayer
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the SIC_T_ORDEN_DE_COMPRA EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToSIC_T_ORDEN_DE_COMPRA(SIC_T_ORDEN_DE_COMPRA sIC_T_ORDEN_DE_COMPRA)
-        {
-            base.AddObject("SIC_T_ORDEN_DE_COMPRA", sIC_T_ORDEN_DE_COMPRA);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the SIC_T_ORDEN_DE_COMPRA_DET EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToSIC_T_ORDEN_DE_COMPRA_DET(SIC_T_ORDEN_DE_COMPRA_DET sIC_T_ORDEN_DE_COMPRA_DET)
-        {
-            base.AddObject("SIC_T_ORDEN_DE_COMPRA_DET", sIC_T_ORDEN_DE_COMPRA_DET);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the SIC_T_TASA_CAMBIO EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToSIC_T_TASA_CAMBIO(SIC_T_TASA_CAMBIO sIC_T_TASA_CAMBIO)
@@ -992,6 +976,22 @@ namespace SIC.EntityLayer
         public void AddToSIC_T_VENTA_DETALLE(SIC_T_VENTA_DETALLE sIC_T_VENTA_DETALLE)
         {
             base.AddObject("SIC_T_VENTA_DETALLE", sIC_T_VENTA_DETALLE);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the SIC_T_ORDEN_DE_COMPRA EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToSIC_T_ORDEN_DE_COMPRA(SIC_T_ORDEN_DE_COMPRA sIC_T_ORDEN_DE_COMPRA)
+        {
+            base.AddObject("SIC_T_ORDEN_DE_COMPRA", sIC_T_ORDEN_DE_COMPRA);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the SIC_T_ORDEN_DE_COMPRA_DET EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToSIC_T_ORDEN_DE_COMPRA_DET(SIC_T_ORDEN_DE_COMPRA_DET sIC_T_ORDEN_DE_COMPRA_DET)
+        {
+            base.AddObject("SIC_T_ORDEN_DE_COMPRA_DET", sIC_T_ORDEN_DE_COMPRA_DET);
         }
 
         #endregion
@@ -3560,28 +3560,6 @@ namespace SIC.EntityLayer
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_ORDEN_DE_COMPRA_SIC_T_CLIENTE", "SIC_T_ORDEN_DE_COMPRA")]
-        public EntityCollection<SIC_T_ORDEN_DE_COMPRA> SIC_T_ORDEN_DE_COMPRA
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SIC_T_ORDEN_DE_COMPRA>("SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_SIC_T_CLIENTE", "SIC_T_ORDEN_DE_COMPRA");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SIC_T_ORDEN_DE_COMPRA>("SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_SIC_T_CLIENTE", "SIC_T_ORDEN_DE_COMPRA", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_VENTA_SIC_T_CLIENTE", "SIC_T_VENTA")]
         public EntityCollection<SIC_T_VENTA> SIC_T_VENTA
         {
@@ -3594,6 +3572,28 @@ namespace SIC.EntityLayer
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SIC_T_VENTA>("SICDBWEBModel.FK_SIC_T_VENTA_SIC_T_CLIENTE", "SIC_T_VENTA", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_ORDEN_DE_COMPRA_SIC_T_CLIENTE", "SIC_T_ORDEN_DE_COMPRA")]
+        public EntityCollection<SIC_T_ORDEN_DE_COMPRA> SIC_T_ORDEN_DE_COMPRA
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SIC_T_ORDEN_DE_COMPRA>("SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_SIC_T_CLIENTE", "SIC_T_ORDEN_DE_COMPRA");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SIC_T_ORDEN_DE_COMPRA>("SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_SIC_T_CLIENTE", "SIC_T_ORDEN_DE_COMPRA", value);
                 }
             }
         }
@@ -4755,28 +4755,6 @@ namespace SIC.EntityLayer
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ITEM", "SIC_T_ORDEN_DE_COMPRA_DET")]
-        public EntityCollection<SIC_T_ORDEN_DE_COMPRA_DET> SIC_T_ORDEN_DE_COMPRA_DET
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SIC_T_ORDEN_DE_COMPRA_DET>("SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ITEM", "SIC_T_ORDEN_DE_COMPRA_DET");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SIC_T_ORDEN_DE_COMPRA_DET>("SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ITEM", "SIC_T_ORDEN_DE_COMPRA_DET", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_VENTA_DETALLE_SIC_T_ITEM", "SIC_T_VENTA_DETALLE")]
         public EntityCollection<SIC_T_VENTA_DETALLE> SIC_T_VENTA_DETALLE
         {
@@ -4789,6 +4767,28 @@ namespace SIC.EntityLayer
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SIC_T_VENTA_DETALLE>("SICDBWEBModel.FK_SIC_T_VENTA_DETALLE_SIC_T_ITEM", "SIC_T_VENTA_DETALLE", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ITEM", "SIC_T_ORDEN_DE_COMPRA_DET")]
+        public EntityCollection<SIC_T_ORDEN_DE_COMPRA_DET> SIC_T_ORDEN_DE_COMPRA_DET
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SIC_T_ORDEN_DE_COMPRA_DET>("SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ITEM", "SIC_T_ORDEN_DE_COMPRA_DET");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SIC_T_ORDEN_DE_COMPRA_DET>("SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ITEM", "SIC_T_ORDEN_DE_COMPRA_DET", value);
                 }
             }
         }
@@ -6788,288 +6788,288 @@ namespace SIC.EntityLayer
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Byte> ocd_c_ycondiciones
+        public Nullable<global::System.Byte> odc_c_ycondiciones
         {
             get
             {
-                return _ocd_c_ycondiciones;
+                return _odc_c_ycondiciones;
             }
             set
             {
-                Onocd_c_ycondicionesChanging(value);
-                ReportPropertyChanging("ocd_c_ycondiciones");
-                _ocd_c_ycondiciones = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ocd_c_ycondiciones");
-                Onocd_c_ycondicionesChanged();
+                Onodc_c_ycondicionesChanging(value);
+                ReportPropertyChanging("odc_c_ycondiciones");
+                _odc_c_ycondiciones = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("odc_c_ycondiciones");
+                Onodc_c_ycondicionesChanged();
             }
         }
-        private Nullable<global::System.Byte> _ocd_c_ycondiciones;
-        partial void Onocd_c_ycondicionesChanging(Nullable<global::System.Byte> value);
-        partial void Onocd_c_ycondicionesChanged();
+        private Nullable<global::System.Byte> _odc_c_ycondiciones;
+        partial void Onodc_c_ycondicionesChanging(Nullable<global::System.Byte> value);
+        partial void Onodc_c_ycondicionesChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> ocd_c_esubtotal
+        public Nullable<global::System.Decimal> odc_c_esubtotal
         {
             get
             {
-                return _ocd_c_esubtotal;
+                return _odc_c_esubtotal;
             }
             set
             {
-                Onocd_c_esubtotalChanging(value);
-                ReportPropertyChanging("ocd_c_esubtotal");
-                _ocd_c_esubtotal = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ocd_c_esubtotal");
-                Onocd_c_esubtotalChanged();
+                Onodc_c_esubtotalChanging(value);
+                ReportPropertyChanging("odc_c_esubtotal");
+                _odc_c_esubtotal = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("odc_c_esubtotal");
+                Onodc_c_esubtotalChanged();
             }
         }
-        private Nullable<global::System.Decimal> _ocd_c_esubtotal;
-        partial void Onocd_c_esubtotalChanging(Nullable<global::System.Decimal> value);
-        partial void Onocd_c_esubtotalChanged();
+        private Nullable<global::System.Decimal> _odc_c_esubtotal;
+        partial void Onodc_c_esubtotalChanging(Nullable<global::System.Decimal> value);
+        partial void Onodc_c_esubtotalChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> ocd_c_etotal
+        public Nullable<global::System.Decimal> odc_c_etotal
         {
             get
             {
-                return _ocd_c_etotal;
+                return _odc_c_etotal;
             }
             set
             {
-                Onocd_c_etotalChanging(value);
-                ReportPropertyChanging("ocd_c_etotal");
-                _ocd_c_etotal = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ocd_c_etotal");
-                Onocd_c_etotalChanged();
+                Onodc_c_etotalChanging(value);
+                ReportPropertyChanging("odc_c_etotal");
+                _odc_c_etotal = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("odc_c_etotal");
+                Onodc_c_etotalChanged();
             }
         }
-        private Nullable<global::System.Decimal> _ocd_c_etotal;
-        partial void Onocd_c_etotalChanging(Nullable<global::System.Decimal> value);
-        partial void Onocd_c_etotalChanged();
+        private Nullable<global::System.Decimal> _odc_c_etotal;
+        partial void Onodc_c_etotalChanging(Nullable<global::System.Decimal> value);
+        partial void Onodc_c_etotalChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> ocd_c_eigv
+        public Nullable<global::System.Decimal> odc_c_eigv
         {
             get
             {
-                return _ocd_c_eigv;
+                return _odc_c_eigv;
             }
             set
             {
-                Onocd_c_eigvChanging(value);
-                ReportPropertyChanging("ocd_c_eigv");
-                _ocd_c_eigv = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ocd_c_eigv");
-                Onocd_c_eigvChanged();
+                Onodc_c_eigvChanging(value);
+                ReportPropertyChanging("odc_c_eigv");
+                _odc_c_eigv = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("odc_c_eigv");
+                Onodc_c_eigvChanged();
             }
         }
-        private Nullable<global::System.Decimal> _ocd_c_eigv;
-        partial void Onocd_c_eigvChanging(Nullable<global::System.Decimal> value);
-        partial void Onocd_c_eigvChanged();
+        private Nullable<global::System.Decimal> _odc_c_eigv;
+        partial void Onodc_c_eigvChanging(Nullable<global::System.Decimal> value);
+        partial void Onodc_c_eigvChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> ocd_c_eigvcal
+        public Nullable<global::System.Decimal> odc_c_eigvcal
         {
             get
             {
-                return _ocd_c_eigvcal;
+                return _odc_c_eigvcal;
             }
             set
             {
-                Onocd_c_eigvcalChanging(value);
-                ReportPropertyChanging("ocd_c_eigvcal");
-                _ocd_c_eigvcal = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ocd_c_eigvcal");
-                Onocd_c_eigvcalChanged();
+                Onodc_c_eigvcalChanging(value);
+                ReportPropertyChanging("odc_c_eigvcal");
+                _odc_c_eigvcal = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("odc_c_eigvcal");
+                Onodc_c_eigvcalChanged();
             }
         }
-        private Nullable<global::System.Decimal> _ocd_c_eigvcal;
-        partial void Onocd_c_eigvcalChanging(Nullable<global::System.Decimal> value);
-        partial void Onocd_c_eigvcalChanged();
+        private Nullable<global::System.Decimal> _odc_c_eigvcal;
+        partial void Onodc_c_eigvcalChanging(Nullable<global::System.Decimal> value);
+        partial void Onodc_c_eigvcalChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> ocd_c_epercepcion
+        public Nullable<global::System.Decimal> odc_c_epercepcion
         {
             get
             {
-                return _ocd_c_epercepcion;
+                return _odc_c_epercepcion;
             }
             set
             {
-                Onocd_c_epercepcionChanging(value);
-                ReportPropertyChanging("ocd_c_epercepcion");
-                _ocd_c_epercepcion = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ocd_c_epercepcion");
-                Onocd_c_epercepcionChanged();
+                Onodc_c_epercepcionChanging(value);
+                ReportPropertyChanging("odc_c_epercepcion");
+                _odc_c_epercepcion = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("odc_c_epercepcion");
+                Onodc_c_epercepcionChanged();
             }
         }
-        private Nullable<global::System.Decimal> _ocd_c_epercepcion;
-        partial void Onocd_c_epercepcionChanging(Nullable<global::System.Decimal> value);
-        partial void Onocd_c_epercepcionChanged();
+        private Nullable<global::System.Decimal> _odc_c_epercepcion;
+        partial void Onodc_c_epercepcionChanging(Nullable<global::System.Decimal> value);
+        partial void Onodc_c_epercepcionChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> ocd_c_epercepcioncal
+        public Nullable<global::System.Decimal> odc_c_epercepcioncal
         {
             get
             {
-                return _ocd_c_epercepcioncal;
+                return _odc_c_epercepcioncal;
             }
             set
             {
-                Onocd_c_epercepcioncalChanging(value);
-                ReportPropertyChanging("ocd_c_epercepcioncal");
-                _ocd_c_epercepcioncal = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ocd_c_epercepcioncal");
-                Onocd_c_epercepcioncalChanged();
+                Onodc_c_epercepcioncalChanging(value);
+                ReportPropertyChanging("odc_c_epercepcioncal");
+                _odc_c_epercepcioncal = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("odc_c_epercepcioncal");
+                Onodc_c_epercepcioncalChanged();
             }
         }
-        private Nullable<global::System.Decimal> _ocd_c_epercepcioncal;
-        partial void Onocd_c_epercepcioncalChanging(Nullable<global::System.Decimal> value);
-        partial void Onocd_c_epercepcioncalChanged();
+        private Nullable<global::System.Decimal> _odc_c_epercepcioncal;
+        partial void Onodc_c_epercepcioncalChanging(Nullable<global::System.Decimal> value);
+        partial void Onodc_c_epercepcioncalChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> ocd_c_iestado
+        public Nullable<global::System.Int32> odc_c_iestado
         {
             get
             {
-                return _ocd_c_iestado;
+                return _odc_c_iestado;
             }
             set
             {
-                Onocd_c_iestadoChanging(value);
-                ReportPropertyChanging("ocd_c_iestado");
-                _ocd_c_iestado = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ocd_c_iestado");
-                Onocd_c_iestadoChanged();
+                Onodc_c_iestadoChanging(value);
+                ReportPropertyChanging("odc_c_iestado");
+                _odc_c_iestado = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("odc_c_iestado");
+                Onodc_c_iestadoChanged();
             }
         }
-        private Nullable<global::System.Int32> _ocd_c_iestado;
-        partial void Onocd_c_iestadoChanging(Nullable<global::System.Int32> value);
-        partial void Onocd_c_iestadoChanged();
+        private Nullable<global::System.Int32> _odc_c_iestado;
+        partial void Onodc_c_iestadoChanging(Nullable<global::System.Int32> value);
+        partial void Onodc_c_iestadoChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String ocd_c_vdescmoneda
+        public global::System.String odc_c_vdescmoneda
         {
             get
             {
-                return _ocd_c_vdescmoneda;
+                return _odc_c_vdescmoneda;
             }
             set
             {
-                Onocd_c_vdescmonedaChanging(value);
-                ReportPropertyChanging("ocd_c_vdescmoneda");
-                _ocd_c_vdescmoneda = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("ocd_c_vdescmoneda");
-                Onocd_c_vdescmonedaChanged();
+                Onodc_c_vdescmonedaChanging(value);
+                ReportPropertyChanging("odc_c_vdescmoneda");
+                _odc_c_vdescmoneda = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("odc_c_vdescmoneda");
+                Onodc_c_vdescmonedaChanged();
             }
         }
-        private global::System.String _ocd_c_vdescmoneda;
-        partial void Onocd_c_vdescmonedaChanging(global::System.String value);
-        partial void Onocd_c_vdescmonedaChanged();
+        private global::System.String _odc_c_vdescmoneda;
+        partial void Onodc_c_vdescmonedaChanging(global::System.String value);
+        partial void Onodc_c_vdescmonedaChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> ocd_c_bactivo
+        public Nullable<global::System.Boolean> odc_c_bactivo
         {
             get
             {
-                return _ocd_c_bactivo;
+                return _odc_c_bactivo;
             }
             set
             {
-                Onocd_c_bactivoChanging(value);
-                ReportPropertyChanging("ocd_c_bactivo");
-                _ocd_c_bactivo = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ocd_c_bactivo");
-                Onocd_c_bactivoChanged();
+                Onodc_c_bactivoChanging(value);
+                ReportPropertyChanging("odc_c_bactivo");
+                _odc_c_bactivo = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("odc_c_bactivo");
+                Onodc_c_bactivoChanged();
             }
         }
-        private Nullable<global::System.Boolean> _ocd_c_bactivo;
-        partial void Onocd_c_bactivoChanging(Nullable<global::System.Boolean> value);
-        partial void Onocd_c_bactivoChanged();
+        private Nullable<global::System.Boolean> _odc_c_bactivo;
+        partial void Onodc_c_bactivoChanging(Nullable<global::System.Boolean> value);
+        partial void Onodc_c_bactivoChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String ocd_c_vdescestado
+        public global::System.String odc_c_vdescestado
         {
             get
             {
-                return _ocd_c_vdescestado;
+                return _odc_c_vdescestado;
             }
             set
             {
-                Onocd_c_vdescestadoChanging(value);
-                ReportPropertyChanging("ocd_c_vdescestado");
-                _ocd_c_vdescestado = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("ocd_c_vdescestado");
-                Onocd_c_vdescestadoChanged();
+                Onodc_c_vdescestadoChanging(value);
+                ReportPropertyChanging("odc_c_vdescestado");
+                _odc_c_vdescestado = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("odc_c_vdescestado");
+                Onodc_c_vdescestadoChanged();
             }
         }
-        private global::System.String _ocd_c_vdescestado;
-        partial void Onocd_c_vdescestadoChanging(global::System.String value);
-        partial void Onocd_c_vdescestadoChanged();
+        private global::System.String _odc_c_vdescestado;
+        partial void Onodc_c_vdescestadoChanging(global::System.String value);
+        partial void Onodc_c_vdescestadoChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String ocd_c_vdocprov_id
+        public global::System.String odc_c_vdocprov_id
         {
             get
             {
-                return _ocd_c_vdocprov_id;
+                return _odc_c_vdocprov_id;
             }
             set
             {
-                Onocd_c_vdocprov_idChanging(value);
-                ReportPropertyChanging("ocd_c_vdocprov_id");
-                _ocd_c_vdocprov_id = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("ocd_c_vdocprov_id");
-                Onocd_c_vdocprov_idChanged();
+                Onodc_c_vdocprov_idChanging(value);
+                ReportPropertyChanging("odc_c_vdocprov_id");
+                _odc_c_vdocprov_id = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("odc_c_vdocprov_id");
+                Onodc_c_vdocprov_idChanged();
             }
         }
-        private global::System.String _ocd_c_vdocprov_id;
-        partial void Onocd_c_vdocprov_idChanging(global::System.String value);
-        partial void Onocd_c_vdocprov_idChanged();
+        private global::System.String _odc_c_vdocprov_id;
+        partial void Onodc_c_vdocprov_idChanging(global::System.String value);
+        partial void Onodc_c_vdocprov_idChanged();
 
         #endregion
 
@@ -7215,13 +7215,13 @@ namespace SIC.EntityLayer
         /// </summary>
         /// <param name="odc_det_c_iid">Initial value of the odc_det_c_iid property.</param>
         /// <param name="odc_c_iid">Initial value of the odc_c_iid property.</param>
-        /// <param name="ocd_c_iitemid">Initial value of the ocd_c_iitemid property.</param>
-        public static SIC_T_ORDEN_DE_COMPRA_DET CreateSIC_T_ORDEN_DE_COMPRA_DET(global::System.Int32 odc_det_c_iid, global::System.Int32 odc_c_iid, global::System.Int32 ocd_c_iitemid)
+        /// <param name="odc_c_iitemid">Initial value of the odc_c_iitemid property.</param>
+        public static SIC_T_ORDEN_DE_COMPRA_DET CreateSIC_T_ORDEN_DE_COMPRA_DET(global::System.Int32 odc_det_c_iid, global::System.Int32 odc_c_iid, global::System.Int32 odc_c_iitemid)
         {
             SIC_T_ORDEN_DE_COMPRA_DET sIC_T_ORDEN_DE_COMPRA_DET = new SIC_T_ORDEN_DE_COMPRA_DET();
             sIC_T_ORDEN_DE_COMPRA_DET.odc_det_c_iid = odc_det_c_iid;
             sIC_T_ORDEN_DE_COMPRA_DET.odc_c_iid = odc_c_iid;
-            sIC_T_ORDEN_DE_COMPRA_DET.ocd_c_iitemid = ocd_c_iitemid;
+            sIC_T_ORDEN_DE_COMPRA_DET.odc_c_iitemid = odc_c_iitemid;
             return sIC_T_ORDEN_DE_COMPRA_DET;
         }
 
@@ -7285,72 +7285,72 @@ namespace SIC.EntityLayer
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 ocd_c_iitemid
+        public global::System.Int32 odc_c_iitemid
         {
             get
             {
-                return _ocd_c_iitemid;
+                return _odc_c_iitemid;
             }
             set
             {
-                Onocd_c_iitemidChanging(value);
-                ReportPropertyChanging("ocd_c_iitemid");
-                _ocd_c_iitemid = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ocd_c_iitemid");
-                Onocd_c_iitemidChanged();
+                Onodc_c_iitemidChanging(value);
+                ReportPropertyChanging("odc_c_iitemid");
+                _odc_c_iitemid = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("odc_c_iitemid");
+                Onodc_c_iitemidChanged();
             }
         }
-        private global::System.Int32 _ocd_c_iitemid;
-        partial void Onocd_c_iitemidChanging(global::System.Int32 value);
-        partial void Onocd_c_iitemidChanged();
+        private global::System.Int32 _odc_c_iitemid;
+        partial void Onodc_c_iitemidChanging(global::System.Int32 value);
+        partial void Onodc_c_iitemidChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> ocd_c_ecantidad
+        public Nullable<global::System.Decimal> odc_c_ecantidad
         {
             get
             {
-                return _ocd_c_ecantidad;
+                return _odc_c_ecantidad;
             }
             set
             {
-                Onocd_c_ecantidadChanging(value);
-                ReportPropertyChanging("ocd_c_ecantidad");
-                _ocd_c_ecantidad = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ocd_c_ecantidad");
-                Onocd_c_ecantidadChanged();
+                Onodc_c_ecantidadChanging(value);
+                ReportPropertyChanging("odc_c_ecantidad");
+                _odc_c_ecantidad = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("odc_c_ecantidad");
+                Onodc_c_ecantidadChanged();
             }
         }
-        private Nullable<global::System.Decimal> _ocd_c_ecantidad;
-        partial void Onocd_c_ecantidadChanging(Nullable<global::System.Decimal> value);
-        partial void Onocd_c_ecantidadChanged();
+        private Nullable<global::System.Decimal> _odc_c_ecantidad;
+        partial void Onodc_c_ecantidadChanging(Nullable<global::System.Decimal> value);
+        partial void Onodc_c_ecantidadChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> ocd_c_eprecio
+        public Nullable<global::System.Decimal> odc_c_eprecio
         {
             get
             {
-                return _ocd_c_eprecio;
+                return _odc_c_eprecio;
             }
             set
             {
-                Onocd_c_eprecioChanging(value);
-                ReportPropertyChanging("ocd_c_eprecio");
-                _ocd_c_eprecio = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ocd_c_eprecio");
-                Onocd_c_eprecioChanged();
+                Onodc_c_eprecioChanging(value);
+                ReportPropertyChanging("odc_c_eprecio");
+                _odc_c_eprecio = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("odc_c_eprecio");
+                Onodc_c_eprecioChanged();
             }
         }
-        private Nullable<global::System.Decimal> _ocd_c_eprecio;
-        partial void Onocd_c_eprecioChanging(Nullable<global::System.Decimal> value);
-        partial void Onocd_c_eprecioChanged();
+        private Nullable<global::System.Decimal> _odc_c_eprecio;
+        partial void Onodc_c_eprecioChanging(Nullable<global::System.Decimal> value);
+        partial void Onodc_c_eprecioChanged();
 
         #endregion
 

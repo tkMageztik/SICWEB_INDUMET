@@ -301,6 +301,24 @@ namespace SIC.UserLayer.Interfaces.Movimientos {
         protected global::System.Web.UI.WebControls.View vwProveedor;
         
         /// <summary>
+        /// btnFiltroProveedor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnFiltroProveedor;
+        
+        /// <summary>
+        /// btnRegresarDesdeProveedor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnRegresarDesdeProveedor;
+        
+        /// <summary>
         /// upProveedor control.
         /// </summary>
         /// <remarks>

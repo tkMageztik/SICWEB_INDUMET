@@ -68,7 +68,7 @@
                                                         <table>
                                                             <tr>
                                                                 <td align="center">
-                                                                    <asp:Button ID="btnBuscar" runat="server" CssClass="button small gris" OnClick="btnBuscar_Click"
+                                                                    <asp:Button ID="btnBuscar" runat="server" CssClass="button small gris"
                                                                         Style="width: 100px" Text="Buscar" Enabled="False" />
                                                                 </td>
                                                                 <td align="center">
@@ -401,7 +401,7 @@
             <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                             <td class="tit-nav-paginas" align="left">
-                                MANTENIMIENTO &gt; VENTA &gt; SELECCIONAR PROVEEDOR</td>
+                                MANTENIMIENTO &gt; VENTA &gt; SELECCIONAR CLIENTE</td>
                         </tr>
                         <tr>
                            <td class="txt2" align="left" colspan="2">
@@ -441,7 +441,20 @@
                                                         <table>
                                                             <tr>
                                                                 <td align="center">
-                                                                    &nbsp;</td>
+                                                                    <table>
+                                                                        <tr>
+                                                                            <td align="center">
+                                                                                <asp:Button ID="btnFiltroProveedor" runat="server" CssClass="button small gris" 
+                                                                                    Style="width: 100px" Text="Buscar" />
+                                                                            </td>
+                                                                            <td align="center">
+                                                                                <asp:Button ID="btnRegresarDesdeProveedor" runat="server" 
+                                                                                    CssClass="button small gris" onclick="btnRegresarDesdeProveedor_Click" 
+                                                                                    Style="width: 100px; height: 26px;" Text="Regresar" />
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </td>
                                                                 <td align="center">
                                                                     &nbsp;</td>
                                                             </tr>
