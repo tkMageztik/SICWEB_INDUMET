@@ -549,7 +549,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                         foreach (var detalle in MovEntNuevo.SIC_T_ORDEN_DE_COMPRA.SIC_T_ORDEN_DE_COMPRA_DET)
                         {
                             var movDet = new SIC_T_MOVIMIENTO_ENTRADA_DETALLE();
-                            movDet.mve_c_ecant_pedida = detalle.ocd_c_ecantidad;
+                            movDet.mve_c_ecant_pedida = detalle.odc_c_ecantidad;
                             movDet.mve_c_ecant_recibida = 0;
                             movDet.mve_c_vdescripcion_item = detalle.SIC_T_ITEM.itm_c_vdescripcion;
                             movDet.SIC_T_ORDEN_DE_COMPRA_DET = detalle;

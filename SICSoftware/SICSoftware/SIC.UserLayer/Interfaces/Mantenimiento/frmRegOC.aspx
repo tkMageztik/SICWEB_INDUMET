@@ -104,9 +104,9 @@
                                                 <%# Eval("SIC_T_CLIENTE.cli_c_vdoc_id")%>
                                             </ItemTemplate>                             
                                         </asp:TemplateField>
-                                        <asp:BoundField HeaderText="Moneda" DataField="ocd_c_vdescmoneda" />
+                                        <asp:BoundField HeaderText="Moneda" DataField="odc_c_vdescmoneda" />
                                         <asp:BoundField HeaderText="Fecha Entrega" DataField="odc_c_zfecha" />
-                                        <asp:BoundField HeaderText="Total" DataField="ocd_c_etotal" />
+                                        <asp:BoundField HeaderText="Total" DataField="odc_c_etotal" />
                                         <asp:CommandField ShowEditButton="True" />
                                         <asp:CommandField ShowDeleteButton="True" />
                                     </Columns>
@@ -198,10 +198,11 @@
                                                             AlternatingRowStyle-CssClass="alt" BorderStyle="None" BorderWidth="0px" CssClass="mGrid"
                                                             EmptyDataText="No ha seleccionado ningun item." GridLines="None" 
                                                             Height="16px" PagerStyle-CssClass="pgr" ShowHeaderWhenEmpty="True" ViewStateMode="Enabled" 
-                                                            Width="100%" AutoGenerateColumns="False" DataKeyNames="ocd_c_iitemid" 
+                                                            Width="100%" AutoGenerateColumns="False" DataKeyNames="odc_c_iitemid" 
                                                             onrowcancelingedit="gvItemsSeleccionados_RowCancelingEdit" 
                                                             onrowediting="gvItemsSeleccionados_RowEditing" 
-                                                            onrowupdating="gvItemsSeleccionados_RowUpdating">
+                                                            onrowupdating="gvItemsSeleccionados_RowUpdating" 
+                                                            onselectedindexchanged="gvItemsSeleccionados_SelectedIndexChanged">
                                                             <AlternatingRowStyle CssClass="alt" />
                                                             <Columns>
                                                                 <asp:TemplateField HeaderText="Código">
@@ -216,7 +217,7 @@
                                                                 </asp:TemplateField>
                                                                 <asp:TemplateField HeaderText="Cantidad">
                                                                 <ItemTemplate>
-                                                                        <%# Eval("ocd_c_ecantidad")%>
+                                                                        <%# Eval("odc_c_ecantidad")%>
                                                                 </ItemTemplate>  
                                                                     <EditItemTemplate>
                                                                         <asp:TextBox ID="txtCantidad" runat="server"></asp:TextBox>
@@ -224,7 +225,7 @@
                                                                 </asp:TemplateField>
                                                                 <asp:TemplateField HeaderText="Precio">
                                                                 <ItemTemplate>
-                                                                        <%# Eval("ocd_c_eprecio")%>
+                                                                        <%# Eval("odc_c_eprecio")%>
                                                                 </ItemTemplate>  
                                                                 </asp:TemplateField>
 
