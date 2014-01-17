@@ -12,7 +12,7 @@ namespace SIC.BusinessLayer
 
         public List<SIC_T_MOVIMIENTO_SALIDA> ListarMovimientoSalida()
         {
-            return new MovimientoSalidaDA().ListarMovimientoSalida();
+            return new MovimientoSalidaDA().ListarMovimientoSalida(); 
         }
 
         public List<SIC_T_MOV_ESTADO> ObtenerMovimientoEstados()

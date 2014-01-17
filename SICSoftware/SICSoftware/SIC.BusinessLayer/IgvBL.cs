@@ -11,7 +11,7 @@ namespace SIC.BusinessLayer
     {
         public SIC_T_IGV ObtenerIgv(DateTime fecha)
         {
-            return new IgvDA().ObtenerIgv(fecha);
+            return new IgvDA().ObtenerIgv(fecha); 
         }
     }
 }

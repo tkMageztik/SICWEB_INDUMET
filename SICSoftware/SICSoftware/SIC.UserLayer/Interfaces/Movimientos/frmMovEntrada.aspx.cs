@@ -544,7 +544,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                         //{
                         //    MovEntNuevo.SIC_T_MOVIMIENTO_ENTRADA_DETALLE = new System.Data.Objects.DataClasses.EntityCollection<SIC_T_MOVIMIENTO_ENTRADA_DETALLE>();
                         //}
-                        MovEntNuevo.SIC_T_MOVIMIENTO_ENTRADA_DETALLE.Clear();
+                        //MovEntNuevo.SIC_T_MOVIMIENTO_ENTRADA_DETALLE.Clear();
 
                         foreach (var detalle in MovEntNuevo.SIC_T_ORDEN_DE_COMPRA.SIC_T_ORDEN_DE_COMPRA_DET)
                         {
