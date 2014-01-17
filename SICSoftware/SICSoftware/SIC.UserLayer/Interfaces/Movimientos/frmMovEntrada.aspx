@@ -384,9 +384,9 @@
                                                 <%# Eval("SIC_T_CLIENTE.cli_c_vdoc_id")%> 
                                             </ItemTemplate> 
                                         </asp:TemplateField> 
-                                        <asp:BoundField DataField="ocd_c_vdescmoneda" HeaderText="Moneda" />
+                                        <asp:BoundField DataField="odc_c_vdescmoneda" HeaderText="Moneda" />
                                         <asp:BoundField DataField="odc_c_zfecha" HeaderText="Fecha Entrega" />
-                                        <asp:BoundField DataField="ocd_c_etotal" HeaderText="Total" />
+                                        <asp:BoundField DataField="odc_c_etotal" HeaderText="Total" />
                                         <asp:CommandField ShowSelectButton="True" />
                                     </Columns>
                                     <PagerStyle CssClass="pgr" />
@@ -558,7 +558,7 @@
                                         <asp:GridView ID="gvOCDetalle" runat="server" AllowPaging="True" 
                                             AlternatingRowStyle-CssClass="alt" AutoGenerateColumns="False" 
                                             BorderStyle="None" BorderWidth="0px" CssClass="mGrid" 
-                                            DataKeyNames="ocd_c_iitemid" EmptyDataText="No ha seleccionado ningun item." 
+                                            DataKeyNames="odc_c_iitemid" EmptyDataText="No ha seleccionado ningun item." 
                                             GridLines="None" Height="16px" 
                                             PagerStyle-CssClass="pgr" 
                                             ShowHeaderWhenEmpty="True" ViewStateMode="Enabled" Width="100%">
@@ -589,7 +589,7 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Precio">
                                                     <ItemTemplate>
-                                                        <%# Eval("ocd_c_eprecio")%>
+                                                        <%# Eval("odc_c_eprecio")%>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                             </Columns>
