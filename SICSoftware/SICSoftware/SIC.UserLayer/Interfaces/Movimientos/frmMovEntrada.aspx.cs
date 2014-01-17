@@ -583,13 +583,13 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                     {
                         var almacen = _almacen.ObtenerPorIdNoContext(id);
                         MovEntNuevo.mve_c_iidalmacen = almacen.alm_c_iid;
-                        txtAlmacen.Text = MovEntNuevo.SIC_T_ALMACEN != null ? MovEntNuevo.SIC_T_ALMACEN.alm_c_vdes : string.Empty;
+                        txtAlmacen.Text = almacen.alm_c_vdes;
                     }
                     else if (this.EscenarioMovEn == TipoOperacion.Modificacion)
                     {
                         var almacen = _almacen.ObtenerPorIdNoContext(id);
                         MovEntSeleccionado.mve_c_iidalmacen = almacen.alm_c_iid;
-                        txtAlmacen.Text = MovEntSeleccionado.SIC_T_ALMACEN != null ? MovEntSeleccionado.SIC_T_ALMACEN.alm_c_vdes : string.Empty;
+                        txtAlmacen.Text = almacen.alm_c_vdes;
                     }
                 }
             }
