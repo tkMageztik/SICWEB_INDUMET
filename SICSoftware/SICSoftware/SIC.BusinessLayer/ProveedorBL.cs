@@ -9,9 +9,10 @@ namespace SIC.BusinessLayer
 {
     public class ProveedorBL
     {
-        public List<SIC_T_PROVEEDOR> ListarProveedores()
-        {
-            return new ProveedorDA().ListarProveedores();
-        }
+        //public List<SIC_T_PROVEEDOR> ListarProveedores()
+        //{
+        //    return new ProveedorDA().ListarProveedores();
+        //}
+
     }
 }

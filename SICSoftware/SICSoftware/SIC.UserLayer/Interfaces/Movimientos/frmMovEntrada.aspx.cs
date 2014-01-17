@@ -467,6 +467,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             movEntrada.mve_c_vdesestado = cboEstado.SelectedItem.Text.Trim();
             movEntrada.mve_c_bactivo = true;
             movEntrada.mve_c_dfecha = DateTime.Now;
+            movEntrada.SIC_T_ALMACEN = null;
 
             if (this._movEntrada.InsertarMovimientoEntrada(movEntrada))
             {
@@ -498,6 +499,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             movEntrada.mve_c_iestado = int.Parse(this.cboEstado.SelectedValue);
             movEntrada.mve_c_vdesestado = cboEstado.SelectedItem.Text.Trim();
             //movEntrada.mve_c_dfecha = DateTime.Now;
+            movEntrada.SIC_T_ALMACEN = null;
 
             if (this._movEntrada.ModificarMovimientoEntrada(movEntrada))
             {
@@ -562,8 +564,9 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                     {
                         MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA = _ordenCompra.ObtenerOrdenCompra(id);
                         txtSerieNumeroOC.Text = MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA != null ? MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA.odc_c_zfecha.ToString() : string.Empty;
-                        MovEntNuevo.SIC_T_MOVIMIENTO_ENTRADA_DETALLE.Clear();
+                        //MovEntSeleccionado.SIC_T_MOVIMIENTO_ENTRADA_DETALLE.Clear();
                         // Todo: mark remove?
+                        this.ListarDetalleMovimiento();
                         this.RegresarDesdeOrdenCompra();
                     }
                 }
@@ -582,12 +585,14 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                     if (this.EscenarioMovEn == TipoOperacion.Creacion)
                     {
                         var almacen = _almacen.ObtenerPorIdNoContext(id);
+                        MovEntNuevo.SIC_T_ALMACEN = almacen;
                         MovEntNuevo.mve_c_iidalmacen = almacen.alm_c_iid;
                         txtAlmacen.Text = almacen.alm_c_vdes;
                     }
                     else if (this.EscenarioMovEn == TipoOperacion.Modificacion)
                     {
                         var almacen = _almacen.ObtenerPorIdNoContext(id);
+                        MovEntSeleccionado.SIC_T_ALMACEN = almacen;
                         MovEntSeleccionado.mve_c_iidalmacen = almacen.alm_c_iid;
                         txtAlmacen.Text = almacen.alm_c_vdes;
                     }

@@ -41,14 +41,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlmacenDA.cs" />
     <Compile Include="ClienteDA.cs" />
+    <Compile Include="IgvDA.cs" />
     <Compile Include="ItemDA.cs" />
+    <Compile Include="MovimientoEntradaDA.cs" />
+    <Compile Include="MovimientoSalidaDA.cs" />
     <Compile Include="OrdenCompraDA.cs" />
     <Compile Include="ParametroDA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProveedorDA.cs" />
     <Compile Include="SeguridadDA.cs" />
+    <Compile Include="TasaCambioDA.cs" />
     <Compile Include="UbigeoDA.cs" />
+    <Compile Include="VentaDA.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SIC.Data\SIC.Data.csproj">

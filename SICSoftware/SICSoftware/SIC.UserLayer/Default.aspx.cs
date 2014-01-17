@@ -13,7 +13,10 @@ namespace SIC.UserLayer
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+#if DEBUG
+            txtUsuario.Text = "admin";
+            txtClave.Text = "juan899833245";
+#endif
         }
 
 
@@ -31,7 +34,7 @@ namespace SIC.UserLayer
             else
             {
                 Session["USUARIO"] = usuario;
-                Response.Redirect("Interfaces/Mantenimiento/frmRegItem.aspx");
+                Response.Redirect("Interfaces/Movimientos/frmMovEntrada.aspx");
             }
         }
 
