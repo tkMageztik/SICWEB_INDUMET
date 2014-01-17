@@ -20,6 +20,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         private ItemBL _item = null;
         private ClienteBL _cliente = null;
         private TasaCambioBL _tasaCambio = null;
+        private IgvBL _igv = null;
 
         private TipoOperacion EscenarioOC
         {
@@ -79,6 +80,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             _ordenCompra = new OrdenCompraBL();
             _cliente = new ClienteBL();
             _tasaCambio = new TasaCambioBL();
+            _igv = new IgvBL();
             EscenarioOC = TipoOperacion.Ninguna;
         }
 
@@ -350,11 +352,11 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         private void ObtenerDatosImpuesto()
         {
             var listaPercepcion = this._parametro.ListarParametros((int)TipoParametro.PERCEPCION);
-            var listaIGV = this._parametro.ListarParametros((int)TipoParametro.IGV);
+            var resultado = this._igv.ObtenerIgv(DateTime.Today);
 
-            if (listaIGV.Count == 1)
+            if (resultado !=null && resultado.igv_c_eigv.HasValue)
             {
-                this.igv = decimal.Parse(listaIGV[0].par_det_c_vcampo_1.ToString(), CultureInfo.InvariantCulture);
+                this.igv = resultado.igv_c_eigv.Value;
             }
             else
             {

@@ -19,6 +19,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         private VentaBL _venta = null; 
         private ItemBL _item = null;
         private ClienteBL _cliente = null;
+        private IgvBL _igv = null;
 
         private TipoOperacion EscenarioVenta
         {
@@ -77,6 +78,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             _item = new ItemBL();
             _venta = new VentaBL();
             _cliente = new ClienteBL();
+            _igv = new IgvBL();
             EscenarioVenta = TipoOperacion.Ninguna;
         }
 
@@ -349,11 +351,12 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         private void ObtenerDatosImpuesto()
         {
             var listaPercepcion = this._parametro.ListarParametros((int)TipoParametro.PERCEPCION);
-            var listaIGV = this._parametro.ListarParametros((int)TipoParametro.IGV);
 
-            if (listaIGV.Count == 1)
+            var resultado = this._igv.ObtenerIgv(DateTime.Today);
+
+            if (resultado != null && resultado.igv_c_eigv.HasValue)
             {
-                this.igv = decimal.Parse(listaIGV[0].par_det_c_vcampo_1.ToString(), CultureInfo.InvariantCulture);
+                this.igv = resultado.igv_c_eigv.Value;
             }
             else
             {
