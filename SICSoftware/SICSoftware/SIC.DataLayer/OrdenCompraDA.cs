@@ -22,7 +22,7 @@ namespace SIC.DataLayer
                 {
                     return (from x in contexto.SIC_T_ORDEN_DE_COMPRA
                                     .Include("SIC_T_CLIENTE")
-                            where x.ocd_c_bactivo == true
+                            where x.odc_c_bactivo == true
                             select x).ToList();
                 }
             }
@@ -40,7 +40,7 @@ namespace SIC.DataLayer
                 {
                     return (from x in contexto.SIC_T_ORDEN_DE_COMPRA
                                     .Include("SIC_T_CLIENTE")
-                            where x.ocd_c_bactivo == true && x.ocd_c_iestado == estado
+                            where x.odc_c_bactivo == true && x.ocd_c_iestado == estado
                             select x).ToList();
                 }
             }
