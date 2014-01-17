@@ -22,7 +22,7 @@ namespace SIC.DataLayer
                 {
                     return (from x in contexto.SIC_T_ORDEN_DE_COMPRA
                                     .Include("SIC_T_CLIENTE")
-                            where x.ocd_c_bactivo == true
+                            where x.odc_c_bactivo == true
                             select x).ToList();
                 }
             }
@@ -40,7 +40,7 @@ namespace SIC.DataLayer
                 {
                     return (from x in contexto.SIC_T_ORDEN_DE_COMPRA
                                     .Include("SIC_T_CLIENTE")
-                            where x.ocd_c_bactivo == true && x.ocd_c_iestado == estado
+                            where x.odc_c_bactivo == true && x.odc_c_iestado == estado
                             select x).ToList();
                 }
             }
@@ -64,7 +64,7 @@ namespace SIC.DataLayer
                     return (from x in contexto.SIC_T_ORDEN_DE_COMPRA
                                         .Include("SIC_T_ORDEN_DE_COMPRA_DET.SIC_T_ITEM")
                                         .Include("SIC_T_CLIENTE")
-                            where x.odc_c_iid == id && x.ocd_c_bactivo == true
+                            where x.odc_c_iid == id && x.odc_c_bactivo == true
                             select x).SingleOrDefault();
                 }
             }
@@ -88,11 +88,11 @@ namespace SIC.DataLayer
                 {
                     foreach (var item in _pSIC_T_ORDEN_DE_COMPRA.SIC_T_ORDEN_DE_COMPRA_DET)
                     {
-                        item.ocd_c_iitemid = item.SIC_T_ITEM.itm_c_iid;
+                        item.odc_c_iitemid = item.SIC_T_ITEM.itm_c_iid;
                         item.SIC_T_ITEM = null;                        
                         //contexto.Attach(item.SIC_T_ITEM);
                     }
-                    _pSIC_T_ORDEN_DE_COMPRA.ocd_c_bactivo = true;
+                    _pSIC_T_ORDEN_DE_COMPRA.odc_c_bactivo = true;
                     contexto.AddToSIC_T_ORDEN_DE_COMPRA(_pSIC_T_ORDEN_DE_COMPRA);                    
                     contexto.SaveChanges();
                     return true;
@@ -116,11 +116,11 @@ namespace SIC.DataLayer
                         new System.Data.Objects.DataClasses.EntityCollection<SIC_T_ORDEN_DE_COMPRA_DET>();
                     foreach (var item in _pSIC_T_ORDEN_DE_COMPRA_DET)
                     {
-                        item.ocd_c_iitemid = item.SIC_T_ITEM.itm_c_iid;
+                        item.odc_c_iitemid = item.SIC_T_ITEM.itm_c_iid;
                         item.SIC_T_ITEM = null;
                         _pSIC_T_ORDEN_DE_COMPRA.SIC_T_ORDEN_DE_COMPRA_DET.Add(item);
                     }
-                    _pSIC_T_ORDEN_DE_COMPRA.ocd_c_bactivo = true;
+                    _pSIC_T_ORDEN_DE_COMPRA.odc_c_bactivo = true;
                     contexto.AddToSIC_T_ORDEN_DE_COMPRA(_pSIC_T_ORDEN_DE_COMPRA);
                     contexto.SaveChanges();
                     return true;
@@ -183,7 +183,7 @@ namespace SIC.DataLayer
 
                     foreach (var detalle in agregar)
                     {
-                        detalle.ocd_c_iitemid = detalle.SIC_T_ITEM.itm_c_iid;
+                        detalle.odc_c_iitemid = detalle.SIC_T_ITEM.itm_c_iid;
                         detalle.SIC_T_ITEM = null;      
                         oc.SIC_T_ORDEN_DE_COMPRA_DET.Add(detalle);                         
                     }
@@ -231,7 +231,7 @@ namespace SIC.DataLayer
                                       select x).FirstOrDefault();
                 if (varItem != null)
                 {
-                    varItem.ocd_c_bactivo = false;
+                    varItem.odc_c_bactivo = false;
                 }
 
                 try
