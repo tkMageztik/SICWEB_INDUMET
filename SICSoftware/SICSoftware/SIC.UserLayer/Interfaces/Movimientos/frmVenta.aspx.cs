@@ -88,6 +88,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 this.ListarComboMoneda();
                 this.ListarItem();
                 this.ListarProveedores();
+                this.ListarComboTipoDocumento();
                 this.ListarVentas();
                 gvItemsSeleccionados.DataSource = null;
                 gvItemsSeleccionados.DataBind();
@@ -455,7 +456,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                                                                            this.VentaSeleccionado.SIC_T_CLIENTE.cli_c_vraz_soc;
             cboTipoDocumento.SelectedIndex = -1;
 
-            var seleccion = cboTipoDocumento.Items.FindByText(VentaSeleccionado.ven_c_vdescestado);
+            var seleccion = cboTipoDocumento.Items.FindByText(VentaSeleccionado.ven_c_vdestipodoc);
             if (seleccion != null)
             {
                 seleccion.Selected = true;
@@ -746,8 +747,8 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             oc.ven_c_zfecha = this.calFechaEntrega.SelectedDate;
             oc.ven_c_ymoneda = byte.Parse(this.cboMoneda.SelectedValue);
             oc.ven_c_vdescmoneda = this.cboMoneda.SelectedItem.Text.Trim();
-            oc.ven_c_iestado = int.Parse(this.cboTipoDocumento.SelectedValue);
-            oc.ven_c_vdescestado = this.cboTipoDocumento.SelectedItem.Text.Trim();
+            //oc.ven_c_iestado = int.Parse(this.cboTipoDocumento.SelectedValue);
+            //oc.ven_c_vdescestado = this.cboTipoDocumento.SelectedItem.Text.Trim();
 
 
             try

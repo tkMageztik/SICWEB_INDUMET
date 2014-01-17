@@ -30,20 +30,21 @@ namespace SIC.DataLayer
 
         public List<SIC_T_VENTA> ListarOrdenDeCompraEstado(int estado)
         {
-            try
-            {
-                using (SICDBWEBEntities contexto = new SICDBWEBEntities())
-                {
-                    return (from x in contexto.SIC_T_VENTA
-                                    .Include("SIC_T_CLIENTE")
-                            where x.ven_c_bactivo == true && x.ven_c_iestado == estado
-                            select x).ToList();
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            throw new NotImplementedException();
+            //try
+            //{
+            //    using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+            //    {
+            //        return (from x in contexto.SIC_T_VENTA
+            //                        .Include("SIC_T_CLIENTE")
+            //                where x.ven_c_bactivo == true && x.ven_c_iestado == estado
+            //                select x).ToList();
+            //    }
+            //}
+            //catch (Exception)
+            //{
+            //    throw;
+            //}
         }
 
         /// <summary>
