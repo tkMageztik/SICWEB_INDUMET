@@ -34,6 +34,9 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_CLIENTE_SIC_T_COLABORADOR", "SIC_T_COLABORADOR", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SIC.EntityLayer.SIC_T_COLABORADOR), "SIC_T_CLIENTE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_CLIENTE), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_CLIENTE_SIC_T_ZONA_REPARTO", "SIC_T_ZONA_REPARTO", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SIC.EntityLayer.SIC_T_ZONA_REPARTO), "SIC_T_CLIENTE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_CLIENTE), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_USUARIO_OPCION_SIC_T_USUARIO", "SIC_T_USUARIO", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_USUARIO), "SIC_T_USUARIO_OPCION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_USUARIO_OPCION), true)]
+[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_ORDEN_DE_COMPRA_SIC_T_ODC_ESTADO", "SIC_T_ODC_ESTADO", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SIC.EntityLayer.SIC_T_ODC_ESTADO), "SIC_T_ORDEN_DE_COMPRA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_ORDEN_DE_COMPRA), true)]
+[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ITEM", "SIC_T_ITEM", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_ITEM), "SIC_T_ORDEN_DE_COMPRA_DET", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_ORDEN_DE_COMPRA_DET), true)]
+[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ORDEN_DE_COMPRA", "SIC_T_ORDEN_DE_COMPRA", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_ORDEN_DE_COMPRA), "SIC_T_ORDEN_DE_COMPRA_DET", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_ORDEN_DE_COMPRA_DET), true)]
 
 #endregion
 
@@ -456,6 +459,38 @@ namespace SIC.EntityLayer
         /// <summary>
         /// No hay documentación de metadatos disponible.
         /// </summary>
+        public ObjectSet<SIC_T_ODC_ESTADO> SIC_T_ODC_ESTADO
+        {
+            get
+            {
+                if ((_SIC_T_ODC_ESTADO == null))
+                {
+                    _SIC_T_ODC_ESTADO = base.CreateObjectSet<SIC_T_ODC_ESTADO>("SIC_T_ODC_ESTADO");
+                }
+                return _SIC_T_ODC_ESTADO;
+            }
+        }
+        private ObjectSet<SIC_T_ODC_ESTADO> _SIC_T_ODC_ESTADO;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        public ObjectSet<SIC_T_ORDEN_DE_COMPRA> SIC_T_ORDEN_DE_COMPRA
+        {
+            get
+            {
+                if ((_SIC_T_ORDEN_DE_COMPRA == null))
+                {
+                    _SIC_T_ORDEN_DE_COMPRA = base.CreateObjectSet<SIC_T_ORDEN_DE_COMPRA>("SIC_T_ORDEN_DE_COMPRA");
+                }
+                return _SIC_T_ORDEN_DE_COMPRA;
+            }
+        }
+        private ObjectSet<SIC_T_ORDEN_DE_COMPRA> _SIC_T_ORDEN_DE_COMPRA;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
         public ObjectSet<SIC_T_ITEM> SIC_T_ITEM
         {
             get
@@ -468,6 +503,22 @@ namespace SIC.EntityLayer
             }
         }
         private ObjectSet<SIC_T_ITEM> _SIC_T_ITEM;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        public ObjectSet<SIC_T_ORDEN_DE_COMPRA_DET> SIC_T_ORDEN_DE_COMPRA_DET
+        {
+            get
+            {
+                if ((_SIC_T_ORDEN_DE_COMPRA_DET == null))
+                {
+                    _SIC_T_ORDEN_DE_COMPRA_DET = base.CreateObjectSet<SIC_T_ORDEN_DE_COMPRA_DET>("SIC_T_ORDEN_DE_COMPRA_DET");
+                }
+                return _SIC_T_ORDEN_DE_COMPRA_DET;
+            }
+        }
+        private ObjectSet<SIC_T_ORDEN_DE_COMPRA_DET> _SIC_T_ORDEN_DE_COMPRA_DET;
 
         #endregion
         #region Métodos AddTo
@@ -657,11 +708,35 @@ namespace SIC.EntityLayer
         }
     
         /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet SIC_T_ODC_ESTADO. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToSIC_T_ODC_ESTADO(SIC_T_ODC_ESTADO sIC_T_ODC_ESTADO)
+        {
+            base.AddObject("SIC_T_ODC_ESTADO", sIC_T_ODC_ESTADO);
+        }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet SIC_T_ORDEN_DE_COMPRA. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToSIC_T_ORDEN_DE_COMPRA(SIC_T_ORDEN_DE_COMPRA sIC_T_ORDEN_DE_COMPRA)
+        {
+            base.AddObject("SIC_T_ORDEN_DE_COMPRA", sIC_T_ORDEN_DE_COMPRA);
+        }
+    
+        /// <summary>
         /// Método desusado para agregar un nuevo objeto al EntitySet SIC_T_ITEM. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
         /// </summary>
         public void AddToSIC_T_ITEM(SIC_T_ITEM sIC_T_ITEM)
         {
             base.AddObject("SIC_T_ITEM", sIC_T_ITEM);
+        }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet SIC_T_ORDEN_DE_COMPRA_DET. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToSIC_T_ORDEN_DE_COMPRA_DET(SIC_T_ORDEN_DE_COMPRA_DET sIC_T_ORDEN_DE_COMPRA_DET)
+        {
+            base.AddObject("SIC_T_ORDEN_DE_COMPRA_DET", sIC_T_ORDEN_DE_COMPRA_DET);
         }
 
         #endregion
@@ -3892,48 +3967,24 @@ namespace SIC.EntityLayer
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> par_c_idd
+        public Nullable<global::System.Byte> itm_c_yumedida
         {
             get
             {
-                return _par_c_idd;
+                return _itm_c_yumedida;
             }
             set
             {
-                Onpar_c_iddChanging(value);
-                ReportPropertyChanging("par_c_idd");
-                _par_c_idd = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("par_c_idd");
-                Onpar_c_iddChanged();
+                Onitm_c_yumedidaChanging(value);
+                ReportPropertyChanging("itm_c_yumedida");
+                _itm_c_yumedida = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("itm_c_yumedida");
+                Onitm_c_yumedidaChanged();
             }
         }
-        private Nullable<global::System.Int32> _par_c_idd;
-        partial void Onpar_c_iddChanging(Nullable<global::System.Int32> value);
-        partial void Onpar_c_iddChanged();
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> par_det_c_idd
-        {
-            get
-            {
-                return _par_det_c_idd;
-            }
-            set
-            {
-                Onpar_det_c_iddChanging(value);
-                ReportPropertyChanging("par_det_c_idd");
-                _par_det_c_idd = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("par_det_c_idd");
-                Onpar_det_c_iddChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _par_det_c_idd;
-        partial void Onpar_det_c_iddChanging(Nullable<global::System.Int32> value);
-        partial void Onpar_det_c_iddChanged();
+        private Nullable<global::System.Byte> _itm_c_yumedida;
+        partial void Onitm_c_yumedidaChanging(Nullable<global::System.Byte> value);
+        partial void Onitm_c_yumedidaChanged();
     
         /// <summary>
         /// No hay documentación de metadatos disponible.
@@ -3985,6 +4036,31 @@ namespace SIC.EntityLayer
 
         #endregion
     
+        #region Propiedades de navegación
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ITEM", "SIC_T_ORDEN_DE_COMPRA_DET")]
+        public EntityCollection<SIC_T_ORDEN_DE_COMPRA_DET> SIC_T_ORDEN_DE_COMPRA_DET
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SIC_T_ORDEN_DE_COMPRA_DET>("SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ITEM", "SIC_T_ORDEN_DE_COMPRA_DET");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SIC_T_ORDEN_DE_COMPRA_DET>("SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ITEM", "SIC_T_ORDEN_DE_COMPRA_DET", value);
+                }
+            }
+        }
+
+        #endregion
     }
     
     /// <summary>
@@ -4278,6 +4354,753 @@ namespace SIC.EntityLayer
 
         #endregion
     
+    }
+    
+    /// <summary>
+    /// No hay documentación de metadatos disponible.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SICDBWEBModel", Name="SIC_T_ODC_ESTADO")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SIC_T_ODC_ESTADO : EntityObject
+    {
+        #region Método de generador
+    
+        /// <summary>
+        /// Crear un nuevo objeto SIC_T_ODC_ESTADO.
+        /// </summary>
+        /// <param name="odc_estado_iid">Valor inicial de la propiedad odc_estado_iid.</param>
+        public static SIC_T_ODC_ESTADO CreateSIC_T_ODC_ESTADO(global::System.Int32 odc_estado_iid)
+        {
+            SIC_T_ODC_ESTADO sIC_T_ODC_ESTADO = new SIC_T_ODC_ESTADO();
+            sIC_T_ODC_ESTADO.odc_estado_iid = odc_estado_iid;
+            return sIC_T_ODC_ESTADO;
+        }
+
+        #endregion
+        #region Propiedades primitivas
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 odc_estado_iid
+        {
+            get
+            {
+                return _odc_estado_iid;
+            }
+            set
+            {
+                if (_odc_estado_iid != value)
+                {
+                    Onodc_estado_iidChanging(value);
+                    ReportPropertyChanging("odc_estado_iid");
+                    _odc_estado_iid = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("odc_estado_iid");
+                    Onodc_estado_iidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _odc_estado_iid;
+        partial void Onodc_estado_iidChanging(global::System.Int32 value);
+        partial void Onodc_estado_iidChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String odc_estado_vdescripcion
+        {
+            get
+            {
+                return _odc_estado_vdescripcion;
+            }
+            set
+            {
+                Onodc_estado_vdescripcionChanging(value);
+                ReportPropertyChanging("odc_estado_vdescripcion");
+                _odc_estado_vdescripcion = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("odc_estado_vdescripcion");
+                Onodc_estado_vdescripcionChanged();
+            }
+        }
+        private global::System.String _odc_estado_vdescripcion;
+        partial void Onodc_estado_vdescripcionChanging(global::System.String value);
+        partial void Onodc_estado_vdescripcionChanged();
+
+        #endregion
+    
+        #region Propiedades de navegación
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_ORDEN_DE_COMPRA_SIC_T_ODC_ESTADO", "SIC_T_ORDEN_DE_COMPRA")]
+        public EntityCollection<SIC_T_ORDEN_DE_COMPRA> SIC_T_ORDEN_DE_COMPRA
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SIC_T_ORDEN_DE_COMPRA>("SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_SIC_T_ODC_ESTADO", "SIC_T_ORDEN_DE_COMPRA");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SIC_T_ORDEN_DE_COMPRA>("SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_SIC_T_ODC_ESTADO", "SIC_T_ORDEN_DE_COMPRA", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No hay documentación de metadatos disponible.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SICDBWEBModel", Name="SIC_T_ORDEN_DE_COMPRA")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SIC_T_ORDEN_DE_COMPRA : EntityObject
+    {
+        #region Método de generador
+    
+        /// <summary>
+        /// Crear un nuevo objeto SIC_T_ORDEN_DE_COMPRA.
+        /// </summary>
+        /// <param name="odc_c_iid">Valor inicial de la propiedad odc_c_iid.</param>
+        public static SIC_T_ORDEN_DE_COMPRA CreateSIC_T_ORDEN_DE_COMPRA(global::System.Int32 odc_c_iid)
+        {
+            SIC_T_ORDEN_DE_COMPRA sIC_T_ORDEN_DE_COMPRA = new SIC_T_ORDEN_DE_COMPRA();
+            sIC_T_ORDEN_DE_COMPRA.odc_c_iid = odc_c_iid;
+            return sIC_T_ORDEN_DE_COMPRA;
+        }
+
+        #endregion
+        #region Propiedades primitivas
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 odc_c_iid
+        {
+            get
+            {
+                return _odc_c_iid;
+            }
+            set
+            {
+                if (_odc_c_iid != value)
+                {
+                    Onodc_c_iidChanging(value);
+                    ReportPropertyChanging("odc_c_iid");
+                    _odc_c_iid = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("odc_c_iid");
+                    Onodc_c_iidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _odc_c_iid;
+        partial void Onodc_c_iidChanging(global::System.Int32 value);
+        partial void Onodc_c_iidChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> odc_c_zfecha
+        {
+            get
+            {
+                return _odc_c_zfecha;
+            }
+            set
+            {
+                Onodc_c_zfechaChanging(value);
+                ReportPropertyChanging("odc_c_zfecha");
+                _odc_c_zfecha = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("odc_c_zfecha");
+                Onodc_c_zfechaChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _odc_c_zfecha;
+        partial void Onodc_c_zfechaChanging(Nullable<global::System.DateTime> value);
+        partial void Onodc_c_zfechaChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Byte> odc_c_ymoneda
+        {
+            get
+            {
+                return _odc_c_ymoneda;
+            }
+            set
+            {
+                Onodc_c_ymonedaChanging(value);
+                ReportPropertyChanging("odc_c_ymoneda");
+                _odc_c_ymoneda = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("odc_c_ymoneda");
+                Onodc_c_ymonedaChanged();
+            }
+        }
+        private Nullable<global::System.Byte> _odc_c_ymoneda;
+        partial void Onodc_c_ymonedaChanging(Nullable<global::System.Byte> value);
+        partial void Onodc_c_ymonedaChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Byte> ocd_c_ycondiciones
+        {
+            get
+            {
+                return _ocd_c_ycondiciones;
+            }
+            set
+            {
+                Onocd_c_ycondicionesChanging(value);
+                ReportPropertyChanging("ocd_c_ycondiciones");
+                _ocd_c_ycondiciones = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ocd_c_ycondiciones");
+                Onocd_c_ycondicionesChanged();
+            }
+        }
+        private Nullable<global::System.Byte> _ocd_c_ycondiciones;
+        partial void Onocd_c_ycondicionesChanging(Nullable<global::System.Byte> value);
+        partial void Onocd_c_ycondicionesChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> ocd_c_dsubtotal
+        {
+            get
+            {
+                return _ocd_c_dsubtotal;
+            }
+            set
+            {
+                Onocd_c_dsubtotalChanging(value);
+                ReportPropertyChanging("ocd_c_dsubtotal");
+                _ocd_c_dsubtotal = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ocd_c_dsubtotal");
+                Onocd_c_dsubtotalChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _ocd_c_dsubtotal;
+        partial void Onocd_c_dsubtotalChanging(Nullable<global::System.Decimal> value);
+        partial void Onocd_c_dsubtotalChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> ocd_c_dtotal
+        {
+            get
+            {
+                return _ocd_c_dtotal;
+            }
+            set
+            {
+                Onocd_c_dtotalChanging(value);
+                ReportPropertyChanging("ocd_c_dtotal");
+                _ocd_c_dtotal = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ocd_c_dtotal");
+                Onocd_c_dtotalChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _ocd_c_dtotal;
+        partial void Onocd_c_dtotalChanging(Nullable<global::System.Decimal> value);
+        partial void Onocd_c_dtotalChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ocd_c_vdocprov_id
+        {
+            get
+            {
+                return _ocd_c_vdocprov_id;
+            }
+            set
+            {
+                Onocd_c_vdocprov_idChanging(value);
+                ReportPropertyChanging("ocd_c_vdocprov_id");
+                _ocd_c_vdocprov_id = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ocd_c_vdocprov_id");
+                Onocd_c_vdocprov_idChanged();
+            }
+        }
+        private global::System.String _ocd_c_vdocprov_id;
+        partial void Onocd_c_vdocprov_idChanging(global::System.String value);
+        partial void Onocd_c_vdocprov_idChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> ocd_c_digv
+        {
+            get
+            {
+                return _ocd_c_digv;
+            }
+            set
+            {
+                Onocd_c_digvChanging(value);
+                ReportPropertyChanging("ocd_c_digv");
+                _ocd_c_digv = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ocd_c_digv");
+                Onocd_c_digvChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _ocd_c_digv;
+        partial void Onocd_c_digvChanging(Nullable<global::System.Decimal> value);
+        partial void Onocd_c_digvChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> ocd_c_digvcal
+        {
+            get
+            {
+                return _ocd_c_digvcal;
+            }
+            set
+            {
+                Onocd_c_digvcalChanging(value);
+                ReportPropertyChanging("ocd_c_digvcal");
+                _ocd_c_digvcal = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ocd_c_digvcal");
+                Onocd_c_digvcalChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _ocd_c_digvcal;
+        partial void Onocd_c_digvcalChanging(Nullable<global::System.Decimal> value);
+        partial void Onocd_c_digvcalChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> ocd_c_dpercepcion
+        {
+            get
+            {
+                return _ocd_c_dpercepcion;
+            }
+            set
+            {
+                Onocd_c_dpercepcionChanging(value);
+                ReportPropertyChanging("ocd_c_dpercepcion");
+                _ocd_c_dpercepcion = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ocd_c_dpercepcion");
+                Onocd_c_dpercepcionChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _ocd_c_dpercepcion;
+        partial void Onocd_c_dpercepcionChanging(Nullable<global::System.Decimal> value);
+        partial void Onocd_c_dpercepcionChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> ocd_c_dpercepcioncal
+        {
+            get
+            {
+                return _ocd_c_dpercepcioncal;
+            }
+            set
+            {
+                Onocd_c_dpercepcioncalChanging(value);
+                ReportPropertyChanging("ocd_c_dpercepcioncal");
+                _ocd_c_dpercepcioncal = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ocd_c_dpercepcioncal");
+                Onocd_c_dpercepcioncalChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _ocd_c_dpercepcioncal;
+        partial void Onocd_c_dpercepcioncalChanging(Nullable<global::System.Decimal> value);
+        partial void Onocd_c_dpercepcioncalChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ocd_c_iestado
+        {
+            get
+            {
+                return _ocd_c_iestado;
+            }
+            set
+            {
+                Onocd_c_iestadoChanging(value);
+                ReportPropertyChanging("ocd_c_iestado");
+                _ocd_c_iestado = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ocd_c_iestado");
+                Onocd_c_iestadoChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ocd_c_iestado;
+        partial void Onocd_c_iestadoChanging(Nullable<global::System.Int32> value);
+        partial void Onocd_c_iestadoChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ocd_c_vdescmoneda
+        {
+            get
+            {
+                return _ocd_c_vdescmoneda;
+            }
+            set
+            {
+                Onocd_c_vdescmonedaChanging(value);
+                ReportPropertyChanging("ocd_c_vdescmoneda");
+                _ocd_c_vdescmoneda = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ocd_c_vdescmoneda");
+                Onocd_c_vdescmonedaChanged();
+            }
+        }
+        private global::System.String _ocd_c_vdescmoneda;
+        partial void Onocd_c_vdescmonedaChanging(global::System.String value);
+        partial void Onocd_c_vdescmonedaChanged();
+
+        #endregion
+    
+        #region Propiedades de navegación
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_ORDEN_DE_COMPRA_SIC_T_ODC_ESTADO", "SIC_T_ODC_ESTADO")]
+        public SIC_T_ODC_ESTADO SIC_T_ODC_ESTADO
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_ODC_ESTADO>("SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_SIC_T_ODC_ESTADO", "SIC_T_ODC_ESTADO").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_ODC_ESTADO>("SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_SIC_T_ODC_ESTADO", "SIC_T_ODC_ESTADO").Value = value;
+            }
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SIC_T_ODC_ESTADO> SIC_T_ODC_ESTADOReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_ODC_ESTADO>("SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_SIC_T_ODC_ESTADO", "SIC_T_ODC_ESTADO");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SIC_T_ODC_ESTADO>("SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_SIC_T_ODC_ESTADO", "SIC_T_ODC_ESTADO", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ORDEN_DE_COMPRA", "SIC_T_ORDEN_DE_COMPRA_DET")]
+        public EntityCollection<SIC_T_ORDEN_DE_COMPRA_DET> SIC_T_ORDEN_DE_COMPRA_DET
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SIC_T_ORDEN_DE_COMPRA_DET>("SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ORDEN_DE_COMPRA", "SIC_T_ORDEN_DE_COMPRA_DET");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SIC_T_ORDEN_DE_COMPRA_DET>("SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ORDEN_DE_COMPRA", "SIC_T_ORDEN_DE_COMPRA_DET", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No hay documentación de metadatos disponible.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SICDBWEBModel", Name="SIC_T_ORDEN_DE_COMPRA_DET")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SIC_T_ORDEN_DE_COMPRA_DET : EntityObject
+    {
+        #region Método de generador
+    
+        /// <summary>
+        /// Crear un nuevo objeto SIC_T_ORDEN_DE_COMPRA_DET.
+        /// </summary>
+        /// <param name="odc_det_c_iid">Valor inicial de la propiedad odc_det_c_iid.</param>
+        /// <param name="odc_c_iid">Valor inicial de la propiedad odc_c_iid.</param>
+        /// <param name="ocd_c_iitemid">Valor inicial de la propiedad ocd_c_iitemid.</param>
+        public static SIC_T_ORDEN_DE_COMPRA_DET CreateSIC_T_ORDEN_DE_COMPRA_DET(global::System.Int32 odc_det_c_iid, global::System.Int32 odc_c_iid, global::System.Int32 ocd_c_iitemid)
+        {
+            SIC_T_ORDEN_DE_COMPRA_DET sIC_T_ORDEN_DE_COMPRA_DET = new SIC_T_ORDEN_DE_COMPRA_DET();
+            sIC_T_ORDEN_DE_COMPRA_DET.odc_det_c_iid = odc_det_c_iid;
+            sIC_T_ORDEN_DE_COMPRA_DET.odc_c_iid = odc_c_iid;
+            sIC_T_ORDEN_DE_COMPRA_DET.ocd_c_iitemid = ocd_c_iitemid;
+            return sIC_T_ORDEN_DE_COMPRA_DET;
+        }
+
+        #endregion
+        #region Propiedades primitivas
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 odc_det_c_iid
+        {
+            get
+            {
+                return _odc_det_c_iid;
+            }
+            set
+            {
+                if (_odc_det_c_iid != value)
+                {
+                    Onodc_det_c_iidChanging(value);
+                    ReportPropertyChanging("odc_det_c_iid");
+                    _odc_det_c_iid = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("odc_det_c_iid");
+                    Onodc_det_c_iidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _odc_det_c_iid;
+        partial void Onodc_det_c_iidChanging(global::System.Int32 value);
+        partial void Onodc_det_c_iidChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 odc_c_iid
+        {
+            get
+            {
+                return _odc_c_iid;
+            }
+            set
+            {
+                if (_odc_c_iid != value)
+                {
+                    Onodc_c_iidChanging(value);
+                    ReportPropertyChanging("odc_c_iid");
+                    _odc_c_iid = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("odc_c_iid");
+                    Onodc_c_iidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _odc_c_iid;
+        partial void Onodc_c_iidChanging(global::System.Int32 value);
+        partial void Onodc_c_iidChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ocd_c_iitemid
+        {
+            get
+            {
+                return _ocd_c_iitemid;
+            }
+            set
+            {
+                Onocd_c_iitemidChanging(value);
+                ReportPropertyChanging("ocd_c_iitemid");
+                _ocd_c_iitemid = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ocd_c_iitemid");
+                Onocd_c_iitemidChanged();
+            }
+        }
+        private global::System.Int32 _ocd_c_iitemid;
+        partial void Onocd_c_iitemidChanging(global::System.Int32 value);
+        partial void Onocd_c_iitemidChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ocd_c_icantidad
+        {
+            get
+            {
+                return _ocd_c_icantidad;
+            }
+            set
+            {
+                Onocd_c_icantidadChanging(value);
+                ReportPropertyChanging("ocd_c_icantidad");
+                _ocd_c_icantidad = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ocd_c_icantidad");
+                Onocd_c_icantidadChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ocd_c_icantidad;
+        partial void Onocd_c_icantidadChanging(Nullable<global::System.Int32> value);
+        partial void Onocd_c_icantidadChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> ocd_c_dprecio
+        {
+            get
+            {
+                return _ocd_c_dprecio;
+            }
+            set
+            {
+                Onocd_c_dprecioChanging(value);
+                ReportPropertyChanging("ocd_c_dprecio");
+                _ocd_c_dprecio = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ocd_c_dprecio");
+                Onocd_c_dprecioChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _ocd_c_dprecio;
+        partial void Onocd_c_dprecioChanging(Nullable<global::System.Decimal> value);
+        partial void Onocd_c_dprecioChanged();
+
+        #endregion
+    
+        #region Propiedades de navegación
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ITEM", "SIC_T_ITEM")]
+        public SIC_T_ITEM SIC_T_ITEM
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_ITEM>("SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ITEM", "SIC_T_ITEM").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_ITEM>("SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ITEM", "SIC_T_ITEM").Value = value;
+            }
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SIC_T_ITEM> SIC_T_ITEMReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_ITEM>("SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ITEM", "SIC_T_ITEM");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SIC_T_ITEM>("SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ITEM", "SIC_T_ITEM", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ORDEN_DE_COMPRA", "SIC_T_ORDEN_DE_COMPRA")]
+        public SIC_T_ORDEN_DE_COMPRA SIC_T_ORDEN_DE_COMPRA
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_ORDEN_DE_COMPRA>("SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ORDEN_DE_COMPRA", "SIC_T_ORDEN_DE_COMPRA").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_ORDEN_DE_COMPRA>("SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ORDEN_DE_COMPRA", "SIC_T_ORDEN_DE_COMPRA").Value = value;
+            }
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SIC_T_ORDEN_DE_COMPRA> SIC_T_ORDEN_DE_COMPRAReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_ORDEN_DE_COMPRA>("SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ORDEN_DE_COMPRA", "SIC_T_ORDEN_DE_COMPRA");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SIC_T_ORDEN_DE_COMPRA>("SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ORDEN_DE_COMPRA", "SIC_T_ORDEN_DE_COMPRA", value);
+                }
+            }
+        }
+
+        #endregion
     }
     
     /// <summary>
