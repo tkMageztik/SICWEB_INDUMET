@@ -743,12 +743,12 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 return;
             }
 
-            var oc = this.VentaSeleccionado;
-            oc.ven_c_zfecha = this.calFechaEntrega.SelectedDate;
-            oc.ven_c_ymoneda = byte.Parse(this.cboMoneda.SelectedValue);
-            oc.ven_c_vdescmoneda = this.cboMoneda.SelectedItem.Text.Trim();
-            //oc.ven_c_iestado = int.Parse(this.cboTipoDocumento.SelectedValue);
-            //oc.ven_c_vdescestado = this.cboTipoDocumento.SelectedItem.Text.Trim();
+            var ven = this.VentaSeleccionado;
+            ven.ven_c_zfecha = this.calFechaEntrega.SelectedDate;
+            ven.ven_c_ymoneda = byte.Parse(this.cboMoneda.SelectedValue);
+            ven.ven_c_vdescmoneda = this.cboMoneda.SelectedItem.Text.Trim();
+            ven.ven_c_itipodoc = int.Parse(this.cboTipoDocumento.SelectedValue);
+            ven.ven_c_vdestipodoc = this.cboTipoDocumento.SelectedItem.Text.Trim();
 
 
             try
@@ -827,7 +827,6 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             {
                 return true;
             }
-
         }
 
         private void DeshabilitarOC(int idOC)
