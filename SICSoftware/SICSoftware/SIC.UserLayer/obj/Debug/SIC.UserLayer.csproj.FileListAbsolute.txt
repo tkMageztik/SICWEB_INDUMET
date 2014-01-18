@@ -109,21 +109,7 @@ C:\Users\Alvaro\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.Dat
 C:\Users\Alvaro\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.EntityLayer.pdb
 C:\Users\Alvaro\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.UIGeneral.pdb
 C:\Users\Alvaro\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.DataLayer.pdb
-C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.UserLayer.dll
-C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.UserLayer.pdb
-C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\ClassLibrary1.dll
-C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.Data.dll
-C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.EntityLayer.dll
-C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.UIGeneral.dll
-C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.DataLayer.dll
-C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\ClassLibrary1.pdb
-C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.Data.pdb
-C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.EntityLayer.pdb
-C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.UIGeneral.pdb
-C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.DataLayer.pdb
 C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\obj\Debug\SIC.UserLayer.dll
-C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\obj\Debug\SIC.UserLayer.pdb
 D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\obj\Debug\SIC.UserLayer.csprojResolveAssemblyReference.cache
 D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.UserLayer.dll
 D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.UserLayer.pdb
