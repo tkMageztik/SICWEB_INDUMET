@@ -32,6 +32,32 @@ namespace SIC.DataLayer
             }   
         }
 
+        /// <summary>
+        /// Lista las ordenes de compra, incluye data del proveedor
+        /// </summary>
+        /// <returns>Lista de ordenes de compra.</returns>
+        public List<SIC_T_ORDEN_DE_COMPRA> ListarOrdenDeCompra(byte? idMoneda, string idProveedor, int? idEstado)
+        {
+            //FILTROS DE LISTA DE ORDENES DE COMPRA (CODIGO CON LIKE %%,MONEDA, PROVEEDOR (EMPRESA), ESTADO)
+            try
+            {
+                using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+                {
+                    return (from x in contexto.SIC_T_ORDEN_DE_COMPRA
+                                    .Include("SIC_T_CLIENTE")
+                            where x.odc_c_bactivo == true &&
+                                ( !idMoneda.HasValue || x.odc_c_ymoneda == idMoneda.Value) &&
+                                ( idProveedor==null || x.odc_c_vdocprov_id.Contains(idProveedor)) &&
+                                ( !idEstado.HasValue || x.odc_c_iestado == idEstado.Value)
+                            select x).ToList();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public List<SIC_T_ORDEN_DE_COMPRA> ListarOrdenDeCompraEstado(int estado)
         {
             try

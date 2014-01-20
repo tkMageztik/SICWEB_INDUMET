@@ -45,19 +45,30 @@
                                                             <tr>
                                                                 <td class="txt-box-estilo">
                                                                     
-                                                                </td>
+                                                                    RUC Prov.</td>
                                                                 <td>
                                                                     
+                                                                    <asp:TextBox ID="txtFiltroRuc" runat="server"></asp:TextBox>
+                                                                    
                                                                 </td>
-                                                                <td style="width: 20px">
-                                                                </td>
+                                                                <td style="width: 20px; margin-left: 160px;">
+                                                                    Moneda</td>
                                                                 <td class="txt-box-estilo">
                                                                     
+                                                                    <asp:DropDownList ID="cboFiltroMoneda" runat="server" 
+                                                                        AppendDataBoundItems="True" AutoPostBack="True" 
+                                                                        onselectedindexchanged="cboMoneda_SelectedIndexChanged" Width="201px">
+                                                                    </asp:DropDownList>
+                                                                    
                                                                 </td>
                                                                 <td>
                                                                     
-                                                                </td>
+                                                                    Estado</td>
                                                                 <td style="width: 20px">
+                                                                    <asp:DropDownList ID="cboFiltroEstado" runat="server" 
+                                                                        AppendDataBoundItems="True" AutoPostBack="True" 
+                                                                        onselectedindexchanged="cboMoneda_SelectedIndexChanged" Width="201px">
+                                                                    </asp:DropDownList>
                                                                 </td>
                                                                 <td>
                                                                 </td>
@@ -72,7 +83,7 @@
                                                             <tr>
                                                                 <td align="center">
                                                                     <asp:Button ID="btnBuscar" runat="server" CssClass="button small gris" OnClick="btnBuscar_Click"
-                                                                        Style="width: 100px" Text="Buscar" Enabled="False" />
+                                                                        Style="width: 100px" Text="Buscar" />
                                                                 </td>
                                                                 <td align="center">
                                                                     <asp:Button ID="btnNuevo" runat="server" CssClass="lnk" Height="26px" OnClick="btnNuevo_Click"
@@ -99,12 +110,13 @@
                                         onpageindexchanging="gvListaOC_PageIndexChanging">
                                     <AlternatingRowStyle CssClass="alt" />
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Código">
+                                        <asp:TemplateField HeaderText="Proveedor">
                                             <ItemTemplate>
-                                                <%# Eval("SIC_T_CLIENTE.cli_c_vdoc_id")%>
+                                                <%# Eval("SIC_T_CLIENTE.cli_c_vraz_soc")%>
                                             </ItemTemplate>                             
                                         </asp:TemplateField>
                                         <asp:BoundField HeaderText="Moneda" DataField="odc_c_vdescmoneda" />
+                                        <asp:BoundField HeaderText="Estado" DataField="odc_c_vdescestado" />
                                         <asp:BoundField HeaderText="Fecha Entrega" DataField="odc_c_zfecha" />
                                         <asp:BoundField HeaderText="Total" DataField="odc_c_etotal" />
                                         <asp:CommandField ShowEditButton="True" />
@@ -151,12 +163,27 @@
                                             <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                                 <tr>
                                                     <td align="left" class="txt-box-estilo">
+                                                        Código</td>
+                                                    <td align="left" class="style3">
+                                                        <asp:TextBox ID="txtSerie" runat="server" Height="26px" MaxLength="3" 
+                                                            Width="54px"></asp:TextBox>
+                                                        &nbsp;-
+                                                        <asp:TextBox ID="txtNumero" runat="server" MaxLength="6"></asp:TextBox>
+                                                        
+                                                    </td>
+                                                    <td align="left" class="txt-box-estilo">
+                                                        &nbsp;</td>
+                                                    <td align="left" class="txt-box-estilo">
+                                                        &nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="txt-box-estilo">
                                                         Proveedor
                                                     </td>
                                                     <td align="left" class="style3">
-                                                        <asp:TextBox ID="txtRSProv" runat="server" Width="282px" BackColor="#CCCCCC" 
-                                                            BorderColor="Black" BorderStyle="None" BorderWidth="1px" ReadOnly="True"></asp:TextBox>
-                                                        
+                                                        <asp:TextBox ID="txtRSProv" runat="server" BackColor="#CCCCCC" 
+                                                            BorderColor="Black" BorderStyle="None" BorderWidth="1px" ReadOnly="True" 
+                                                            Width="282px"></asp:TextBox>
                                                     </td>
                                                     <td align="left" class="txt-box-estilo">
                                                         <asp:LinkButton ID="btnBuscarProveedor" runat="server" CssClass="lnk" 
@@ -175,7 +202,8 @@
                                                     <td align="left" class="style1">
                                                         Estado </td>
                                                     <td align="left" class="style1">
-                                                        <asp:DropDownList ID="cboEstado" runat="server" Width="201px">
+                                                        <asp:DropDownList ID="cboEstado" runat="server" Width="201px" 
+                                                            AutoPostBack="True" onselectedindexchanged="cboEstado_SelectedIndexChanged">
                                                         </asp:DropDownList>
                                                     </td>
                                                 </tr>
@@ -184,7 +212,8 @@
                                                         Moneda
                                                     </td>
                                                     <td align="left" class="style1">
-                                                        <asp:DropDownList ID="cboMoneda" runat="server" Width="201px">
+                                                        <asp:DropDownList ID="cboMoneda" runat="server" Width="201px" 
+                                                            AutoPostBack="True" onselectedindexchanged="cboMoneda_SelectedIndexChanged">
                                                         </asp:DropDownList>
                                                     </td>
                                                 </tr>
@@ -241,6 +270,27 @@
                                                 </tr>
                                                 <tr>
                                                     <td align="left" class="txt-box-estilo">
+                                                        &nbsp;</td>
+                                                    <td align="left" class="txt-box-estilo">
+                                                        &nbsp;</td>
+                                                    <td align="left" class="txt-box-estilo">
+                                                        &nbsp;</td>
+                                                    <td align="left" class="txt-box-estilo">
+                                                        &nbsp;</td>
+                                                </tr>
+                                                 <tr>
+                                                     <td align="left" class="txt-box-estilo">
+                                                         Tasa de Cambio</td>
+                                                     <td align="left" class="txt-box-estilo">
+                                                         <asp:Label ID="lblTC" runat="server"></asp:Label>
+                                                     </td>
+                                                     <td align="left" class="txt-box-estilo">
+                                                         &nbsp;</td>
+                                                     <td align="left" class="txt-box-estilo">
+                                                         &nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="txt-box-estilo">
                                                         &nbsp;
                                                     </td>
                                                     <td align="left" class="txt-box-estilo">
@@ -264,7 +314,7 @@
                                                         Percepción (<asp:Label ID="lblPercepcion" runat="server" Text="2%"></asp:Label>
                                                         )</td>
                                                     <td align="left" class="txt-box-estilo">
-                                                        &nbsp;<asp:Label ID="lblPercepcionCal" runat="server"></asp:Label>
+                                                        <asp:Label ID="lblPercepcionCal" runat="server"></asp:Label>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -385,7 +435,7 @@
                                         </asp:TemplateField> 
                                         <asp:BoundField DataField="itm_c_ccodigo" HeaderText="CÓDIGO" />
                                         <asp:BoundField DataField="itm_c_vdescripcion" HeaderText="DESCRIPCIÓN" />
-                                        <asp:BoundField DataField="itm_c_dprecio" HeaderText="PRECIO" />
+                                        <asp:BoundField DataField="itm_c_dprecio_compra" HeaderText="PRECIO" />
                                         <asp:BoundField DataField="itm_c_vpardes" HeaderText="UNIDAD DE MEDIDA" />
                                     </Columns>
                                     <PagerStyle CssClass="pgr" />

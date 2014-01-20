@@ -225,7 +225,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                         if (item.ven_det_c_iitemid== itemId)
                         {
                             item.ven_det_c_ecantidad = cantidadNueva;
-                            item.ven_det_c_eprecio = item.SIC_T_ITEM.itm_c_dprecio * cantidadNueva;
+                            item.ven_det_c_eprecio = item.SIC_T_ITEM.itm_c_dprecio_compra * cantidadNueva;
                             break;
                         }
                     }
@@ -242,7 +242,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                         if (item.ven_det_c_iitemid == itemId)
                         {
                             item.ven_det_c_ecantidad = cantidadNueva;
-                            item.ven_det_c_eprecio = item.SIC_T_ITEM.itm_c_dprecio * cantidadNueva;
+                            item.ven_det_c_eprecio = item.SIC_T_ITEM.itm_c_dprecio_compra * cantidadNueva;
                             break;
                         }
                     }
@@ -635,7 +635,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                     SIC_T_VENTA_DETALLE nuevoDetalle = new SIC_T_VENTA_DETALLE();
                     nuevoDetalle.ven_det_c_ecantidad = 1;
                     nuevoDetalle.ven_det_c_iitemid = itemEncontrado.itm_c_iid;
-                    nuevoDetalle.ven_det_c_eprecio = itemEncontrado.itm_c_dprecio;
+                    nuevoDetalle.ven_det_c_eprecio = itemEncontrado.itm_c_dprecio_compra;
                     nuevoDetalle.SIC_T_ITEM = itemEncontrado;
                     ordenDeCompra.SIC_T_VENTA_DETALLE.Add(nuevoDetalle);
                 }

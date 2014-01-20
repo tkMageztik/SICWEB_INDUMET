@@ -381,7 +381,7 @@
                                         </asp:TemplateField> 
                                         <asp:BoundField DataField="itm_c_ccodigo" HeaderText="CÓDIGO" />
                                         <asp:BoundField DataField="itm_c_vdescripcion" HeaderText="DESCRIPCIÓN" />
-                                        <asp:BoundField DataField="itm_c_dprecio" HeaderText="PRECIO" />
+                                        <asp:BoundField DataField="itm_c_dprecio_compra" HeaderText="PRECIO" />
                                         <asp:BoundField DataField="itm_c_vpardes" HeaderText="UNIDAD DE MEDIDA" />
                                     </Columns>
                                     <PagerStyle CssClass="pgr" />

@@ -47,6 +47,8 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             {
                 this.ListarItems();
                 this.ListarUnidadMedida();
+                this.ListarFamilia();
+                //this.ListarSubFamilia();
             }
         }
 
@@ -117,10 +119,51 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         /// </summary>
         private void ListarUnidadMedida()
         {
-            cboUnidad.DataSource = _parametro.ListarParametros((int)TipoParametro.UNIDAD_DE_MEDIDA);
+            cboUnidad.DataSource = _parametro.ListarParametros((int) TipoParametro.UNIDAD_DE_MEDIDA);
             cboUnidad.DataTextField = "par_det_c_vdesc";
             cboUnidad.DataValueField = "par_det_c_iid";
             cboUnidad.DataBind();
+        }
+
+
+        /// <summary>
+        /// Lista las familias de items
+        /// </summary>
+        private void ListarFamilia()
+        {
+            cboFamilia.DataSource = _item.ListarFamiliaItem();
+            cboFamilia.DataTextField = "ifm_c_des";
+            cboFamilia.DataValueField = "ifm_c_iid";
+            cboFamilia.DataBind();
+        }
+
+
+        /// <summary>
+        /// Obtiene la sub familia, depende de que familia se haya seleccionado
+        /// </summary>
+        private void ListarSubFamilia()
+        {
+            int idFamilia;
+            if (cboFamilia.SelectedIndex > 0 && int.TryParse(cboFamilia.SelectedValue, out idFamilia) && idFamilia>0)
+            {
+                // TODO: Revisar el selected index 0, deberia funcionar
+                cboSubFamilia.Enabled = true;
+                cboSubFamilia.Items.Clear();
+                cboSubFamilia.Items.Add(new ListItem("-- Seleccionar --", "-1"));
+                cboSubFamilia.DataSource = _item.ListarSubFamiliaItem(idFamilia);
+                cboSubFamilia.DataTextField = "isf_c_des";
+                cboSubFamilia.DataValueField = "isf_c_iid";
+                cboSubFamilia.DataBind();
+            }
+            else
+            {
+                cboSubFamilia.DataSource = null;
+                cboSubFamilia.Enabled = false;
+                cboSubFamilia.Items.Clear();
+                cboSubFamilia.Items.Add(new ListItem("-- Seleccionar --", "-1"));
+                cboSubFamilia.DataBind();
+            }
+            this.upGeneral.Update();
         }
 
         /// <summary>
@@ -131,6 +174,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             EscenarioItem = TipoOperacion.Creacion;
             lblAccion.Text = "Nuevo";
             mvItem.ActiveViewIndex = 1;
+            cboFamilia.ClearSelection();
             upGeneral.Update();
         }
 
@@ -169,17 +213,39 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             else
             {
                 this.EscenarioItem = TipoOperacion.Modificacion;
-                lblAccion.Text = "Modificar";
+                this.lblAccion.Text = "Modificar";
 
-                // Seteando la data en los controles
+                //Seteando la data en los controles
                 this.txtCodigo.Text = ItemSeleccionado.itm_c_ccodigo;
                 this.txtDescripcion.Text = ItemSeleccionado.itm_c_vdescripcion;
-                this.txtPrecio.Text = ItemSeleccionado.itm_c_dprecio.ToString();
+                this.txtPrecioCompra.Text = ItemSeleccionado.itm_c_dprecio_compra.ToString();
+                this.txtPrecioVenta.Text = ItemSeleccionado.itm_c_dprecio_venta.ToString();
                 this.cboUnidad.SelectedIndex = -1;
+
                 var seleccion = cboUnidad.Items.FindByText(ItemSeleccionado.itm_c_vpardes);
                 if (seleccion != null)
                 {
                     seleccion.Selected = true;
+                }
+
+                this.cboFamilia.SelectedIndex = -1;
+                this.cboSubFamilia.SelectedIndex = -1;
+
+                if (ItemSeleccionado.SIC_T_ITEM_SUB_FAMILIA != null)
+                {
+                    seleccion = cboFamilia.Items.FindByText(ItemSeleccionado.SIC_T_ITEM_SUB_FAMILIA.isf_c_ifm_des);
+                    if (seleccion != null)
+                    {
+                        seleccion.Selected = true;
+                    }
+
+                    this.ListarSubFamilia();
+
+                    seleccion = cboSubFamilia.Items.FindByText(ItemSeleccionado.SIC_T_ITEM_SUB_FAMILIA.isf_c_des);
+                    if (seleccion != null)
+                    {
+                        seleccion.Selected = true;
+                    }
                 }
 
                 mvItem.ActiveViewIndex = 1;
@@ -194,7 +260,8 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         {
             this.txtCodigo.Text = string.Empty;
             this.txtDescripcion.Text = string.Empty;
-            this.txtPrecio.Text = string.Empty;
+            this.txtPrecioCompra.Text = string.Empty;
+            this.txtPrecioVenta.Text = string.Empty;
             this.cboUnidad.SelectedIndex = -1;
             this.cboUnidad.DataBind();
         }
@@ -212,12 +279,17 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             // Luego creamos el objeto
             SIC_T_ITEM nuevoItem = new SIC_T_ITEM();
             nuevoItem.itm_c_ccodigo = this.txtCodigo.Text;
-            decimal precio;
-            decimal.TryParse(txtPrecio.Text, out precio);
-            nuevoItem.itm_c_dprecio = precio;
+            decimal precioCompra, precioVenta;
+            int idSubFamilia;
+            decimal.TryParse(txtPrecioCompra.Text, out precioCompra);
+            decimal.TryParse(txtPrecioVenta.Text, out precioVenta);
+            int.TryParse(cboSubFamilia.SelectedValue, out idSubFamilia);
+            nuevoItem.itm_c_dprecio_compra = precioCompra;
+            nuevoItem.itm_c_dprecio_venta = precioVenta;
             nuevoItem.itm_c_vdescripcion = this.txtDescripcion.Text.Trim();
             nuevoItem.itm_c_yumedida = byte.Parse(this.cboUnidad.SelectedValue);
             nuevoItem.itm_c_vpardes = this.cboUnidad.Text;
+            nuevoItem.itm_c_isf_iid = idSubFamilia;
 
             // Ahora insertamos.
             try
@@ -287,14 +359,19 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 Mensaje("La descripción acepta 250 caracteres como máxcimo.", "../Imagenes/warning.png");
                 return false;
             }
-            else if (!decimal.TryParse(this.txtPrecio.Text, out precio))
+            else if (!decimal.TryParse(this.txtPrecioCompra.Text, out precio) && precio > 0)
             {
-                Mensaje("Debe ingresar un precio válido.", "../Imagenes/warning.png");
+                Mensaje("Debe ingresar un precio de compra válido mayor a 0.", "../Imagenes/warning.png");
                 return false;
             }
-            else if (precio < 0)
+            else if (!decimal.TryParse(this.txtPrecioVenta.Text, out precio) && precio > 0)
             {
-                Mensaje("Debe ingresar un precio mayor a 0.", "../Imagenes/warning.png");
+                Mensaje("Debe ingresar un precio de venta válido mayor a 0.", "../Imagenes/warning.png");
+                return false;
+            }
+            else if (cboFamilia.SelectedIndex == 0 || cboSubFamilia.SelectedIndex == 0)
+            {
+                Mensaje("Debe seleccionar la familia y subfamilia.", "../Imagenes/warning.png");
                 return false;
             }
             else
@@ -315,11 +392,16 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
             ItemSeleccionado.itm_c_ccodigo = txtCodigo.Text.Trim();
             ItemSeleccionado.itm_c_vdescripcion = txtDescripcion.Text.Trim();
-            decimal precio;
-            decimal.TryParse(txtPrecio.Text, out precio);
-            ItemSeleccionado.itm_c_dprecio = precio;
+            decimal precioCompra, precioVenta;
+            int idSubFamilia;
+            decimal.TryParse(txtPrecioCompra.Text, out precioCompra);
+            decimal.TryParse(txtPrecioVenta.Text, out precioVenta);
+            int.TryParse(cboSubFamilia.SelectedValue, out idSubFamilia);
+            ItemSeleccionado.itm_c_dprecio_compra = precioCompra;
+            ItemSeleccionado.itm_c_dprecio_venta = precioVenta;            
             ItemSeleccionado.itm_c_yumedida = byte.Parse(this.cboUnidad.SelectedValue);
             ItemSeleccionado.itm_c_vpardes = this.cboUnidad.SelectedItem.Text.Trim();
+            ItemSeleccionado.itm_c_isf_iid = idSubFamilia;
 
             if (_item.ModificarItem(ItemSeleccionado))
             {
@@ -354,6 +436,19 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             this.ListarItems();
             upGeneral.Update();
         }
+
+        protected void cboFamilia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.ListarSubFamilia();
+            upGeneral.Update();
+        }
+
+        protected void View2_Activate(object sender, EventArgs e)
+        {
+            
+        }
+
+
 
 
 

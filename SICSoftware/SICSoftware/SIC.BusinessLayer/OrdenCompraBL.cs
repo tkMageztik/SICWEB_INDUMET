@@ -14,6 +14,10 @@ namespace SIC.BusinessLayer
             return new OrdenCompraDA().ListarOrdenDeCompra();
         }
 
+        public List<SIC_T_ORDEN_DE_COMPRA> ListarOrdenDeCompra(byte? idMoneda, string idProveedor, int? idEstado)
+        {
+            return new OrdenCompraDA().ListarOrdenDeCompra(idMoneda, idProveedor, idEstado);
+        }
         public List<SIC_T_ORDEN_DE_COMPRA> ListarOrdenDeCompraEstado(int estado)
         {
             return new OrdenCompraDA().ListarOrdenDeCompraEstado(estado);

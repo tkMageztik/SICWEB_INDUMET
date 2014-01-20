@@ -46,6 +46,16 @@ namespace SIC.BusinessLayer
             return new ItemDA().DeshabilitarItem(id);
         }
 
+        public List<SIC_T_ITEM_FAMILIA> ListarFamiliaItem()
+        {
+            return new ItemDA().ListarFamiliaItem();
+        }
+
+        public List<SIC_T_ITEM_SUB_FAMILIA> ListarSubFamiliaItem(int idFamilia)
+        {
+            return new ItemDA().ListarSubFamiliaItem(idFamilia);
+        }
+
         #endregion
     }
 }

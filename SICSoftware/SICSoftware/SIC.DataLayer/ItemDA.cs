@@ -113,7 +113,8 @@ namespace SIC.DataLayer
             using (SICDBWEBEntities contexto = new SICDBWEBEntities())
             {
                 return (from x in contexto.SIC_T_ITEM
-                        where x.itm_c_iid == id && x.itm_c_bactivo == true
+                            .Include("SIC_T_ITEM_SUB_FAMILIA")
+                        where x.itm_c_iid == id && x.itm_c_bactivo 
                         select x).FirstOrDefault();
             }
         }
@@ -151,6 +152,41 @@ namespace SIC.DataLayer
                 {
                     throw;
                 }
+            }
+        }
+
+        public List<SIC_T_ITEM_FAMILIA> ListarFamiliaItem()
+        {
+            try
+            {
+                using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+                {
+                    return (from x in contexto.SIC_T_ITEM_FAMILIA
+                                .Include("SIC_T_ITEM_SUB_FAMILIA")
+                            where x.ifm_c_bactivo
+                            select x).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public List<SIC_T_ITEM_SUB_FAMILIA> ListarSubFamiliaItem(int idFamilia)
+        {
+            try
+            {
+                using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+                {
+                    return (from x in contexto.SIC_T_ITEM_SUB_FAMILIA
+                            where x.isf_c_bactivo && x.isf_c_ifm_iid == idFamilia
+                            select x).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
             }
         }
 

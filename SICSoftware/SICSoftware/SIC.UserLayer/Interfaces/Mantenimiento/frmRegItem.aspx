@@ -87,7 +87,7 @@
                                     <Columns>
                                         <asp:BoundField DataField="itm_c_ccodigo" HeaderText="CÓDIGO" />
                                         <asp:BoundField DataField="itm_c_vdescripcion" HeaderText="DESCRIPCIÓN" />
-                                        <asp:BoundField DataField="itm_c_dprecio" HeaderText="PRECIO" />
+                                        <asp:BoundField DataField="itm_c_dprecio_compra" HeaderText="PRECIO" />
                                         <asp:BoundField DataField="itm_c_vpardes" HeaderText="UNIDAD DE MEDIDA" />
                                         <asp:CommandField ShowEditButton="True" />
                                         <asp:CommandField ShowDeleteButton="True" />
@@ -105,7 +105,7 @@
                         </tr>
                     </table>
                 </asp:View>
-                <asp:View ID="View2" runat="server">
+                <asp:View ID="View2" runat="server" onactivate="View2_Activate">
                     <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                             <td align="left" class="tit-nav-paginas">
@@ -138,11 +138,9 @@
                                             <asp:TextBox ID="txtCodigo" runat="server" MaxLength="100"></asp:TextBox>
                                         </td>
                                         <td align="left" class="txt-box-estilo">
-                                            Precio
-                                        </td>
+                                            &nbsp;</td>
                                         <td align="left" class="txt-box-estilo">
-                                            <asp:TextBox ID="txtPrecio" runat="server" MaxLength="23"></asp:TextBox>
-                                        </td>
+                                            &nbsp;</td>
                                     </tr>
                                     <tr>
                                         <td align="left" class="txt-box-estilo">
@@ -157,6 +155,41 @@
                                         <td align="left" class="txt-box-estilo">
                                             <asp:DropDownList ID="cboUnidad" runat="server">
                                             </asp:DropDownList>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" class="txt-box-estilo">
+                                            Familia</td>
+                                        <td align="left" class="txt-box-estilo">
+                                   
+                                            <asp:DropDownList ID="cboFamilia" runat="server" AppendDataBoundItems="true"
+                                             AutoPostBack="True" onselectedindexchanged="cboFamilia_SelectedIndexChanged">
+                                                <asp:ListItem Text="-- Seleccionar --" Value ="-1"></asp:ListItem>
+                                            </asp:DropDownList>
+                                      
+                                        </td>
+                                        <td align="left" class="txt-box-estilo">
+                                            SubFamilia</td>
+                                        <td align="left" class="txt-box-estilo">
+                                  
+                                            <asp:DropDownList ID="cboSubFamilia" runat="server" AppendDataBoundItems="true" >
+
+                                                <asp:ListItem Text="-- Seleccionar --" Value ="-1"></asp:ListItem>
+                                            </asp:DropDownList>
+                                      
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" class="txt-box-estilo">
+                                            Precio de Compra</td>
+                                        <td align="left" class="txt-box-estilo">
+                                            <asp:TextBox ID="txtPrecioCompra" runat="server" MaxLength="23"></asp:TextBox>
+                                        </td>
+                                        <td align="left" class="txt-box-estilo">
+                                            Precio de Venta</td>
+                                        <td align="left" class="txt-box-estilo">
+                                            <asp:TextBox ID="txtPrecioVenta" runat="server" MaxLength="23"></asp:TextBox>
                                         </td>
                                     </tr>
                                 </table>
@@ -183,7 +216,8 @@
                     </div>
                 </ContentTemplate>
                 <Triggers>
-                    <asp:AsyncPostBackTrigger ControlID="btnGuardar" EventName="Click" />
+                    <asp:AsyncPostBackTrigger ControlID="btnGuardar" EventName="Click" />    
+                    <asp:PostBackTrigger ControlID="cboFamilia" />                
                 </Triggers>
             </asp:UpdatePanel>
         </ContentTemplate>

@@ -70,6 +70,12 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             set { ViewState["vsOCEliminar"] = value; }
         }
 
+        private decimal TasaCambio
+        {
+            get { return (decimal)(ViewState["vsOCTC"] == null ? 1.0M : ViewState["vsOCTC"]); }
+            set { ViewState["vsOCTC"] = value; }
+        }
+
         #endregion
 
         #region Eventos
@@ -92,6 +98,9 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 this.ListarCombosEstado();
                 this.ListarItem();
                 this.ListarProveedores();
+                
+                this.ListarComboMonedaFiltro();
+                this.ListarCombosEstadoFiltro();
                 this.ListarOrdenCompra();
                 gvItemsSeleccionados.DataSource = null;
                 gvItemsSeleccionados.DataBind();
@@ -226,7 +235,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                         if (item.odc_c_iitemid == itemId)
                         {
                             item.odc_c_ecantidad = cantidadNueva;
-                            item.odc_c_eprecio = item.SIC_T_ITEM.itm_c_dprecio * cantidadNueva;
+                            item.odc_c_eprecio = item.SIC_T_ITEM.itm_c_dprecio_compra * cantidadNueva;
                             break;
                         }
                     }
@@ -243,7 +252,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                         if (item.odc_c_iitemid == itemId)
                         {
                             item.odc_c_ecantidad = cantidadNueva;
-                            item.odc_c_eprecio= item.SIC_T_ITEM.itm_c_dprecio * cantidadNueva;
+                            item.odc_c_eprecio= item.SIC_T_ITEM.itm_c_dprecio_compra * cantidadNueva;
                             break;
                         }
                     }
@@ -312,6 +321,16 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             cboMoneda.DataTextField = "par_det_c_vdesc";
             cboMoneda.DataValueField = "par_det_c_iid";
             cboMoneda.DataBind();
+
+        }
+
+        private void ListarComboMonedaFiltro()
+        {
+            cboFiltroMoneda.Items.Add(new ListItem("-Seleccionar-", "-1"));
+            cboFiltroMoneda.DataSource = _parametro.ListarParametros((int)TipoParametro.MONEDA);
+            cboFiltroMoneda.DataTextField = "par_det_c_vdesc";
+            cboFiltroMoneda.DataValueField = "par_det_c_iid";
+            cboFiltroMoneda.DataBind();
         }
 
         /// <summary>
@@ -324,14 +343,39 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             cboEstado.DataValueField = "odc_estado_iid";
             cboEstado.DataBind();
         }
+
+        private void ListarCombosEstadoFiltro()
+        {
+            cboFiltroEstado.Items.Add(new ListItem("-Seleccionar-", "-1"));
+            cboFiltroEstado.DataSource = _ordenCompra.ListarEstadosOrdenCompra();
+            cboFiltroEstado.DataTextField = "odc_estado_vdescripcion";
+            cboFiltroEstado.DataValueField = "odc_estado_iid";
+            cboFiltroEstado.DataBind();
+        }
+
         /// <summary>
         /// Carga la lista de Ordenes de Compra
         /// </summary>
         private void ListarOrdenCompra()
         {
-            gvListaOC.DataSource =  _ordenCompra.ListarOrdenDeCompra();
+            byte idB;
+            byte? idMoneda = null;
+            if (cboFiltroMoneda.SelectedIndex > 0 && byte.TryParse(cboFiltroMoneda.SelectedValue, out idB))
+            {
+                idMoneda = idB;
+            }
+
+            int id;
+            int? idEstado = null;
+            if (cboFiltroEstado.SelectedIndex > 0 && int.TryParse(cboFiltroEstado.SelectedValue, out id))
+            {
+                idEstado = id;
+            }
+
+            gvListaOC.DataSource =  _ordenCompra.ListarOrdenDeCompra(idMoneda,txtFiltroRuc.Text.Trim(),idEstado);
             gvListaOC.DataBind();
         }
+
 
         /// <summary>
         /// Carga la lista de items para la busqueda tomando en consideración los filtros.
@@ -411,6 +455,10 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         /// </summary>
         private void MostrarNuevaOrdenCompra()
         {
+            this.txtSerie.Enabled = true;
+            this.txtNumero.Enabled = true;
+            
+
             this.OCNuevo = new SIC_T_ORDEN_DE_COMPRA();
             this.OCNuevo.SIC_T_ORDEN_DE_COMPRA_DET = new System.Data.Objects.DataClasses.EntityCollection<SIC_T_ORDEN_DE_COMPRA_DET>();
             this.OCNuevo.odc_c_eigv = this.igv;
@@ -422,8 +470,10 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             this.ItemsSeleccionadosPreliminar = new List<int>();
             this.RecalcularMontos(this.OCNuevo);
             this.mvOC.ActiveViewIndex = 1;
-            this.MostrarDatosImpuestos();
+            this.cboMoneda.SelectedIndex = 0;
+            this.ObtenerTasaCambio();
 
+            this.ObtenerTasaCambio();
 
             this.upGeneral.Update();
         }
@@ -433,7 +483,17 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         /// </summary>
         private void MostrarModificarOrdenCompra(int id)
         {
+            this.txtSerie.Enabled = false;
+            this.txtNumero.Enabled = false;
+
             this.OCSeleccionado = _ordenCompra.ObtenerOrdenCompra(id);
+            String[] res = OCSeleccionado.odc_c_vcodigo.Split('-');
+            if (res.Length == 2)
+            {
+                this.txtSerie.Text = res[0];
+                this.txtNumero.Text = res[1];
+            }
+
             this.gvItemsSeleccionados.DataSource = this.OCSeleccionado.SIC_T_ORDEN_DE_COMPRA_DET;
             this.gvItemsSeleccionados.DataBind();
             this.EscenarioOC = TipoOperacion.Modificacion;
@@ -471,6 +531,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             {
                 seleccion.Selected = true;
             }
+            this.ObtenerTasaCambio();
 
             this.RecalcularMontos(this.OCSeleccionado);
             this.MostrarDatosImpuestos();
@@ -629,7 +690,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                     SIC_T_ORDEN_DE_COMPRA_DET nuevoDetalle = new SIC_T_ORDEN_DE_COMPRA_DET();
                     nuevoDetalle.odc_c_ecantidad = 1;
                     nuevoDetalle.odc_c_iitemid = itemEncontrado.itm_c_iid;
-                    nuevoDetalle.odc_c_eprecio = itemEncontrado.itm_c_dprecio;
+                    nuevoDetalle.odc_c_eprecio = itemEncontrado.itm_c_dprecio_compra;
                     nuevoDetalle.SIC_T_ITEM = itemEncontrado;
                     ordenDeCompra.SIC_T_ORDEN_DE_COMPRA_DET.Add(nuevoDetalle);
                 }
@@ -641,11 +702,21 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
         /// <summary>
         /// Recalcula los montos de subtotal, igv, percepcion y total de la orden de compra.
+        /// El resultado mostrado dependera de la moneda (soles/dolares) seleccionado
         /// </summary>
         /// <param name="ordenDeCompra"></param>
         private void RecalcularMontos(SIC_T_ORDEN_DE_COMPRA ordenDeCompra)
         {
             decimal subTotal = 0M;
+            String simbolo = "S/.";
+            if (cboMoneda.SelectedIndex == 0)
+            {
+                simbolo = "S/.";
+            }
+            else
+            {
+                simbolo = "US$";
+            }
 
             foreach (var item in ordenDeCompra.SIC_T_ORDEN_DE_COMPRA_DET)
             {
@@ -655,15 +726,14 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 }
             }
 
-            ordenDeCompra.odc_c_esubtotal = subTotal;
-            ordenDeCompra.odc_c_eigv = this.igv;
-            ordenDeCompra.odc_c_eigvcal = subTotal * ordenDeCompra.odc_c_eigv.Value;
-            ordenDeCompra.odc_c_epercepcion = this.percepcion;
-            
+            ordenDeCompra.odc_c_esubtotal = Math.Round(subTotal / this.TasaCambio,2);
+            ordenDeCompra.odc_c_eigv = this.igv ;
+            ordenDeCompra.odc_c_eigvcal = Math.Round(subTotal * ordenDeCompra.odc_c_eigv.Value / this.TasaCambio,2);
+            ordenDeCompra.odc_c_epercepcion = this.percepcion ;
 
-            if (ordenDeCompra.odc_c_esubtotal.Value > this.percepcionmax)
+            if (subTotal > this.percepcionmax)
             {
-                ordenDeCompra.odc_c_epercepcioncal = subTotal * ordenDeCompra.odc_c_epercepcion.Value;
+                ordenDeCompra.odc_c_epercepcioncal = Math.Round(subTotal * ordenDeCompra.odc_c_epercepcion.Value / this.TasaCambio, 2);
             }
             else
             {
@@ -671,12 +741,12 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             }
 
             ordenDeCompra.odc_c_etotal = ordenDeCompra.odc_c_esubtotal + ordenDeCompra.odc_c_eigvcal 
-                                        + ordenDeCompra.odc_c_epercepcioncal;
+                                        + ordenDeCompra.odc_c_epercepcioncal ;
 
-            this.lblSubTotal.Text = ordenDeCompra.odc_c_esubtotal.Value.ToString();
-            this.lblTotal.Text = ordenDeCompra.odc_c_etotal.Value.ToString();
-            this.lblIGVCal.Text = ordenDeCompra.odc_c_eigvcal.Value.ToString();
-            this.lblPercepcionCal.Text = ordenDeCompra.odc_c_epercepcioncal.Value.ToString();
+            this.lblSubTotal.Text = simbolo + " " + ordenDeCompra.odc_c_esubtotal.Value.ToString();
+            this.lblTotal.Text = simbolo + " " + ordenDeCompra.odc_c_etotal.Value.ToString();
+            this.lblIGVCal.Text = simbolo + " " + ordenDeCompra.odc_c_eigvcal.Value.ToString();
+            this.lblPercepcionCal.Text = simbolo + " " + ordenDeCompra.odc_c_epercepcioncal.Value.ToString();
         }
 
         /// <summary>
@@ -714,6 +784,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             }
 
             var oc = this.OCNuevo;
+            oc.odc_c_vcodigo = this.txtSerie.Text + "-" + this.txtNumero.Text;
             oc.odc_c_zfecha = this.calFechaEntrega.SelectedDate;
             oc.odc_c_ymoneda = byte.Parse(this.cboMoneda.SelectedValue);
             oc.odc_c_vdescmoneda = this.cboMoneda.SelectedItem.Text.Trim();
@@ -784,6 +855,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             this.OCNuevo = null;
             this.OCSeleccionado = null;
             this.EscenarioOC = TipoOperacion.Ninguna;
+            this.TasaCambio = 1.0M;
             this.ItemsSeleccionadosPreliminar = null;
             this.txtRSProv.Text = string.Empty;
             this.cboMoneda.SelectedIndex = -1;
@@ -872,7 +944,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-
+            ListarOrdenCompra();
         }
 
         protected void gvListaOC_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -886,6 +958,48 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
         }
 
+        protected void cboEstado_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ObtenerTasaCambio();
+        }
+
+        private void ObtenerTasaCambio()
+        {
+            if (cboMoneda.SelectedIndex == 0)
+            {
+                this.TasaCambio = 1.0M;
+                lblTC.Text = "-";
+
+            }
+            else
+            {
+                var value = this._tasaCambio.ObtenerTasaCambio(DateTime.Today); ;
+
+                if (value != null && value.tsc_c_ecompra.HasValue)
+                {
+                    this.TasaCambio = value.tsc_c_ecompra.Value;
+                }
+                lblTC.Text = value.tsc_c_ecompra.Value.ToString();
+            }
+            
+        }
+
+        protected void cboMoneda_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            if (this.EscenarioOC == TipoOperacion.Creacion)
+            {
+                this.ObtenerTasaCambio();
+                this.RecalcularMontos(this.OCNuevo);
+                this.upGeneral.Update();
+            }
+            else if(this.EscenarioOC == TipoOperacion.Modificacion)
+            {
+                this.ObtenerTasaCambio();
+                this.RecalcularMontos(this.OCSeleccionado);
+                this.upGeneral.Update();
+            }
+        }
 
 
 
