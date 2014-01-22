@@ -47,5 +47,15 @@ namespace SIC.BusinessLayer
         {
             return new OrdenCompraDA().ListarEstadosOrdenCompra();
         }
+
+        public SIC_T_ORDEN_DE_COMPRA ObtenerORdenCompraPorCodigo(String codigo)
+        {
+            return new OrdenCompraDA().ObtenerORdenCompraPorCodigo(codigo);
+        }
+
+        public List<SIC_T_ODC_CLASE> ListarClasesOrdenCompra()
+        {
+            return new OrdenCompraDA().ListarClasesOrdenCompra();
+        }
     }
 }

@@ -50,6 +50,33 @@
                                                                     &nbsp;
                                                                 </td>
                                                             </tr>
+                                                            <tr>
+                                                                <td class="txt-box-estilo">
+                                                                    Familia</td>
+                                                                <td>
+                                                                    <asp:DropDownList ID="cboFiltroFamilia" runat="server" 
+                                                                        AppendDataBoundItems="true" AutoPostBack="True" 
+                                                                        onselectedindexchanged="cboFiltroFamilia_SelectedIndexChanged">
+                                                                        <asp:ListItem Text="-- Seleccionar --" Value="-1"></asp:ListItem>
+                                                                    </asp:DropDownList>
+                                                                </td>
+                                                                <td style="width: 20px">
+                                                                    &nbsp;</td>
+                                                                <td class="txt-box-estilo">
+                                                                    SubFamilia</td>
+                                                                <td>
+                                                                    <asp:DropDownList ID="cboFiltroSubFamilia" runat="server" 
+                                                                        AppendDataBoundItems="true">
+                                                                        <asp:ListItem Text="-- Seleccionar --" Value="-1"></asp:ListItem>
+                                                                    </asp:DropDownList>
+                                                                </td>
+                                                                <td style="width: 20px">
+                                                                    &nbsp;</td>
+                                                                <td>
+                                                                    &nbsp;</td>
+                                                                <td>
+                                                                    &nbsp;</td>
+                                                            </tr>
                                                         </table>
                                                     </td>
                                                     <td align="right">
@@ -147,7 +174,7 @@
                                             Descripción
                                         </td>
                                         <td align="left" class="txt-box-estilo">
-                                            <asp:TextBox ID="txtDescripcion" runat="server" MaxLength="250"></asp:TextBox>
+                                            <asp:TextBox ID="txtDescripcion" runat="server" MaxLength="100"></asp:TextBox>
                                         </td>
                                         <td align="left" class="txt-box-estilo">
                                             Unidad
@@ -184,12 +211,12 @@
                                         <td align="left" class="txt-box-estilo">
                                             Precio de Compra</td>
                                         <td align="left" class="txt-box-estilo">
-                                            <asp:TextBox ID="txtPrecioCompra" runat="server" MaxLength="23"></asp:TextBox>
+                                            <asp:TextBox ID="txtPrecioCompra" runat="server" MaxLength="20"></asp:TextBox>
                                         </td>
                                         <td align="left" class="txt-box-estilo">
                                             Precio de Venta</td>
                                         <td align="left" class="txt-box-estilo">
-                                            <asp:TextBox ID="txtPrecioVenta" runat="server" MaxLength="23"></asp:TextBox>
+                                            <asp:TextBox ID="txtPrecioVenta" runat="server" MaxLength="20"></asp:TextBox>
                                         </td>
                                     </tr>
                                 </table>

@@ -58,6 +58,31 @@ namespace SIC.DataLayer
             }
         }
 
+        public SIC_T_ORDEN_DE_COMPRA ObtenerORdenCompraPorCodigo(String codigo)
+        {
+            try
+            {
+                using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+                {
+                    var result = (from x in contexto.SIC_T_ORDEN_DE_COMPRA
+                            where x.odc_c_bactivo == true 
+                            select x);
+                    if (result.Count() > 0)
+                    {
+                        return result.First();
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public List<SIC_T_ORDEN_DE_COMPRA> ListarOrdenDeCompraEstado(int estado)
         {
             try
@@ -75,6 +100,8 @@ namespace SIC.DataLayer
                 throw;
             }
         }
+
+
 
         /// <summary>
         /// Obtiene la orden de compra por id
@@ -114,9 +141,11 @@ namespace SIC.DataLayer
                 {
                     foreach (var item in _pSIC_T_ORDEN_DE_COMPRA.SIC_T_ORDEN_DE_COMPRA_DET)
                     {
-                        item.odc_c_iitemid = item.SIC_T_ITEM.itm_c_iid;
-                        item.SIC_T_ITEM = null;                        
-                        //contexto.Attach(item.SIC_T_ITEM);
+                        if (item.SIC_T_ITEM != null)
+                        {
+                            item.odc_c_iitemid = item.SIC_T_ITEM.itm_c_iid;
+                            item.SIC_T_ITEM = null;         
+                        }
                     }
                     _pSIC_T_ORDEN_DE_COMPRA.odc_c_bactivo = true;
                     contexto.AddToSIC_T_ORDEN_DE_COMPRA(_pSIC_T_ORDEN_DE_COMPRA);                    
@@ -247,6 +276,21 @@ namespace SIC.DataLayer
             }
         }
 
+        public List<SIC_T_ODC_CLASE> ListarClasesOrdenCompra()
+        {
+            try
+            {
+                using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+                {
+                    return (from x in contexto.SIC_T_ODC_CLASE
+                            select x).ToList();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
         public bool DeshabilitarOrdenCompra(int id)
         {

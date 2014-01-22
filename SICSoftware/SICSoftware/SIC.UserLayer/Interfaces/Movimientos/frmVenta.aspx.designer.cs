@@ -67,13 +67,13 @@ namespace SIC.UserLayer.Interfaces.Movimientos {
         protected global::System.Web.UI.UpdatePanel upGvLista;
         
         /// <summary>
-        /// gvListaOC control.
+        /// gvListaVenta control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvListaOC;
+        protected global::System.Web.UI.WebControls.GridView gvListaVenta;
         
         /// <summary>
         /// View2 control.
@@ -328,13 +328,13 @@ namespace SIC.UserLayer.Interfaces.Movimientos {
         protected global::System.Web.UI.UpdatePanel upProveedor;
         
         /// <summary>
-        /// gvProveedores control.
+        /// gvCliente control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvProveedores;
+        protected global::System.Web.UI.WebControls.GridView gvCliente;
         
         /// <summary>
         /// upMensaje control.

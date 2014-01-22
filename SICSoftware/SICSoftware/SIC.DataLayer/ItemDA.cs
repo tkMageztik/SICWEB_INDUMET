@@ -29,7 +29,7 @@ namespace SIC.DataLayer
             }
         }
 
-        public List<SIC_T_ITEM> ListarItems(string codigo, string descripcion)
+        public List<SIC_T_ITEM> ListarItems(string codigo, string descripcion, int? idSubFamilia)
         {
             try
             {
@@ -38,7 +38,8 @@ namespace SIC.DataLayer
                     return (from x in contexto.SIC_T_ITEM
                             where x.itm_c_bactivo == true
                               && (codigo == string.Empty || x.itm_c_ccodigo.Contains(codigo))
-                              && (descripcion == string.Empty || x.itm_c_vdescripcion.Contains(descripcion))
+                              && (descripcion == string.Empty || x.itm_c_vdescripcion.Contains(descripcion) )
+                              && (!idSubFamilia.HasValue || x.itm_c_isf_iid == idSubFamilia.Value) 
                             select x).ToList();
                 }
             }

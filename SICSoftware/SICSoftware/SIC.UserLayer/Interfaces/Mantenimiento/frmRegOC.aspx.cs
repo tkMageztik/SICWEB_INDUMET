@@ -98,10 +98,11 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 this.ListarCombosEstado();
                 this.ListarItem();
                 this.ListarProveedores();
-                
+                this.ListarFamilia();
                 this.ListarComboMonedaFiltro();
                 this.ListarCombosEstadoFiltro();
                 this.ListarOrdenCompra();
+                this.ListarComboClase();
                 gvItemsSeleccionados.DataSource = null;
                 gvItemsSeleccionados.DataBind();
                 this.ObtenerDatosImpuesto();
@@ -109,8 +110,13 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             if (EscenarioOC == TipoOperacion.Eliminacion)
             {
                 SetearEliminar();
-            }
-            
+            }            
+        }
+
+        protected void cboFamilia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.ListarSubFamilia();
+            upGeneral.Update();
         }
 
         protected void btnBuscarProveedor_Click(object sender, EventArgs e)
@@ -222,8 +228,10 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         protected void gvItemsSeleccionados_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             TextBox txtCantidad = (TextBox)gvItemsSeleccionados.Rows[e.RowIndex].FindControl("txtCantidad");
-            decimal cantidadNueva;
-            if (decimal.TryParse(txtCantidad.Text, out cantidadNueva) && cantidadNueva > 0)
+            TextBox txtPrecio = (TextBox)gvItemsSeleccionados.Rows[e.RowIndex].FindControl("txtPrecio");
+            decimal cantidadNueva, precioNuevo;
+            if (decimal.TryParse(txtCantidad.Text, out cantidadNueva) && cantidadNueva > 0 
+                && decimal.TryParse(txtPrecio.Text, out precioNuevo) && precioNuevo > 0)
             {
                 int itemId = (int)gvItemsSeleccionados.DataKeys[e.RowIndex].Value;
 
@@ -235,7 +243,8 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                         if (item.odc_c_iitemid == itemId)
                         {
                             item.odc_c_ecantidad = cantidadNueva;
-                            item.odc_c_eprecio = item.SIC_T_ITEM.itm_c_dprecio_compra * cantidadNueva;
+                            item.odc_c_epreciounit = precioNuevo;
+                            item.odc_c_epreciototal = item.odc_c_epreciototal * cantidadNueva;
                             break;
                         }
                     }
@@ -252,7 +261,8 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                         if (item.odc_c_iitemid == itemId)
                         {
                             item.odc_c_ecantidad = cantidadNueva;
-                            item.odc_c_eprecio= item.SIC_T_ITEM.itm_c_dprecio_compra * cantidadNueva;
+                            item.odc_c_epreciounit = precioNuevo;
+                            item.odc_c_epreciototal = item.odc_c_epreciototal * cantidadNueva;
                             break;
                         }
                     }
@@ -265,14 +275,13 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             }
             else
             {
-                Mensaje("Debe ingresar un número entero válido mayor a 0.", "../Imagenes/warning.png");
+                Mensaje("Debe ingresar números entero válido mayor a 0.", "../Imagenes/warning.png");
                 return;
             }
         }
 
         protected void gvListaOC_RowEditing(object sender, GridViewEditEventArgs e)
         {
-          
             int ocId = (int)this.gvListaOC.DataKeys[e.NewEditIndex].Value;
             e.NewEditIndex = -1;
             this.gvListaItem.EditIndex = -1;
@@ -285,7 +294,6 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             this.EscenarioOC = TipoOperacion.Eliminacion;
             this.OCEliminar = (int)this.gvListaOC.DataKeys[e.RowIndex].Value;
             this.SetearEliminar();
-
             this.ucMensaje2.Show("¿Desea eliminar la Orden de Compra seleccionada?", null,
                                 MensajeIcono.Alerta, MensajeBotones.AceptarCancelar);
         }
@@ -344,6 +352,34 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             cboEstado.DataBind();
         }
 
+        /// <summary>
+        /// Obtiene la sub familia, depende de que familia se haya seleccionado
+        /// </summary>
+        private void ListarSubFamilia()
+        {
+            int idFamilia;
+            if (cboFamilia.SelectedIndex > 0 && int.TryParse(cboFamilia.SelectedValue, out idFamilia) && idFamilia > 0)
+            {
+                // TODO: Revisar el selected index 0, deberia funcionar
+                cboSubFamilia.Enabled = true;
+                cboSubFamilia.Items.Clear();
+                cboSubFamilia.Items.Add(new ListItem("-- Seleccionar --", "-1"));
+                cboSubFamilia.DataSource = _item.ListarSubFamiliaItem(idFamilia);
+                cboSubFamilia.DataTextField = "isf_c_des";
+                cboSubFamilia.DataValueField = "isf_c_iid";
+                cboSubFamilia.DataBind();
+            }
+            else
+            {
+                cboSubFamilia.DataSource = null;
+                cboSubFamilia.Enabled = false;
+                cboSubFamilia.Items.Clear();
+                cboSubFamilia.Items.Add(new ListItem("-- Seleccionar --", "-1"));
+                cboSubFamilia.DataBind();
+            }
+            this.upGeneral.Update();
+        }
+
         private void ListarCombosEstadoFiltro()
         {
             cboFiltroEstado.Items.Add(new ListItem("-Seleccionar-", "-1"));
@@ -351,6 +387,14 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             cboFiltroEstado.DataTextField = "odc_estado_vdescripcion";
             cboFiltroEstado.DataValueField = "odc_estado_iid";
             cboFiltroEstado.DataBind();
+        }
+
+        private void ListarComboClase()
+        {
+            cboClaseOC.DataSource = _ordenCompra.ListarClasesOrdenCompra();
+            cboClaseOC.DataTextField = "odc_cla_vdes";
+            cboClaseOC.DataValueField = "odc_cla_iid";
+            cboClaseOC.DataBind();
         }
 
         /// <summary>
@@ -382,10 +426,27 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         /// </summary>
         private void ListarItem()
         {
-            gvListaItem.DataSource = _item.ListarItems(txtFiltroCodigo.Text.Trim(), txtFiltroDescr.Text.Trim());
+            int id;
+            int? idSubFamilia = null;
+            if (int.TryParse(cboSubFamilia.SelectedItem.Value, out id) && id>=0)
+            {
+                idSubFamilia = id;
+            }
+            
+            gvListaItem.DataSource = _item.ListarItems(txtFiltroCodigo.Text.Trim(), txtFiltroDescr.Text.Trim(), idSubFamilia);
             gvListaItem.DataBind();
         }
 
+        /// <summary>
+        /// Lista las familias de items
+        /// </summary>
+        private void ListarFamilia()
+        {
+            cboFamilia.DataSource = _item.ListarFamiliaItem();
+            cboFamilia.DataTextField = "ifm_c_des";
+            cboFamilia.DataValueField = "ifm_c_iid";
+            cboFamilia.DataBind();
+        }
 
         private void ListarProveedores()
         {
@@ -457,24 +518,29 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         {
             this.txtSerie.Enabled = true;
             this.txtNumero.Enabled = true;
-            
-
+            this.txtSerie.Text = string.Empty;
+            this.txtNumero.Text = string.Empty;
             this.OCNuevo = new SIC_T_ORDEN_DE_COMPRA();
             this.OCNuevo.SIC_T_ORDEN_DE_COMPRA_DET = new System.Data.Objects.DataClasses.EntityCollection<SIC_T_ORDEN_DE_COMPRA_DET>();
             this.OCNuevo.odc_c_eigv = this.igv;
             this.OCNuevo.odc_c_epercepcion = this.percepcion;
-            //-- Missing percepcion max
+            this.OCNuevo.odc_c_zfecharegistro = DateTime.Now;
             this.gvItemsSeleccionados.DataSource = this.OCNuevo.SIC_T_ORDEN_DE_COMPRA_DET;
             this.EscenarioOC = TipoOperacion.Creacion;
+
+
             this.lblAccion.Text = "Nuevo";
+            this.lblFecha.Text = this.OCNuevo.odc_c_zfecharegistro.Value.ToString("dd/MM/yyyy hh:mm:ss");
+
             this.ItemsSeleccionadosPreliminar = new List<int>();
             this.RecalcularMontos(this.OCNuevo);
             this.mvOC.ActiveViewIndex = 1;
-            this.cboMoneda.SelectedIndex = 0;
-            this.ObtenerTasaCambio();
+            this.cboMoneda.SelectedIndex = -1;
+            this.txtObs.Text = string.Empty;
+            this.cboClaseOC.SelectedIndex = -1;
 
             this.ObtenerTasaCambio();
-
+            this.ObtenerTasaCambio();
             this.upGeneral.Update();
         }
 
@@ -494,21 +560,38 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 this.txtNumero.Text = res[1];
             }
 
+            if (this.OCSeleccionado.odc_c_zfecharegistro.HasValue)
+            {
+                this.lblFecha.Text = this.OCSeleccionado.odc_c_zfecharegistro.Value.ToString("dd/MM/yyyy hh:mmm:ss");
+            }
+
             this.gvItemsSeleccionados.DataSource = this.OCSeleccionado.SIC_T_ORDEN_DE_COMPRA_DET;
             this.gvItemsSeleccionados.DataBind();
             this.EscenarioOC = TipoOperacion.Modificacion;
-            if (OCSeleccionado.odc_c_zfecha.HasValue)
+            this.txtObs.Text = this.OCSeleccionado.odc_c_vobservacion;
+
+            if (OCSeleccionado.odc_c_zfechaentrega_ini.HasValue)
             {
-                this.calFechaEntrega.SelectedDate = OCSeleccionado.odc_c_zfecha.Value;
+                this.txtFecEnIni_CalendarExtender.SelectedDate = OCSeleccionado.odc_c_zfechaentrega_ini.Value;
             }
             else
             {
-                this.calFechaEntrega.SelectedDate = DateTime.Today;
+                this.txtFecEnIni_CalendarExtender.SelectedDate = DateTime.Today;
             }
+
+            if (OCSeleccionado.odc_c_zfechaentrega_fin.HasValue)
+            {
+                this.txtFecEntFin_CalendarExtender.SelectedDate = OCSeleccionado.odc_c_zfechaentrega_fin.Value;
+            }
+            else
+            {
+                this.txtFecEntFin_CalendarExtender.SelectedDate = DateTime.Today;
+            }
+
+            
 
             this.OCSeleccionado.odc_c_eigv = this.igv;
             this.OCSeleccionado.odc_c_epercepcion = this.percepcion;
-            
             this.ItemsSeleccionadosPreliminar = new List<int>();
             foreach (var item in OCSeleccionado.SIC_T_ORDEN_DE_COMPRA_DET)
             {
@@ -532,6 +615,13 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 seleccion.Selected = true;
             }
             this.ObtenerTasaCambio();
+
+            cboClaseOC.SelectedIndex = -1;
+            seleccion = cboClaseOC.Items.FindByText(OCSeleccionado.odc_c_clase_des);
+            if (seleccion != null)
+            {
+                seleccion.Selected = true;
+            }
 
             this.RecalcularMontos(this.OCSeleccionado);
             this.MostrarDatosImpuestos();
@@ -690,7 +780,8 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                     SIC_T_ORDEN_DE_COMPRA_DET nuevoDetalle = new SIC_T_ORDEN_DE_COMPRA_DET();
                     nuevoDetalle.odc_c_ecantidad = 1;
                     nuevoDetalle.odc_c_iitemid = itemEncontrado.itm_c_iid;
-                    nuevoDetalle.odc_c_eprecio = itemEncontrado.itm_c_dprecio_compra;
+                    nuevoDetalle.odc_c_epreciounit= itemEncontrado.itm_c_dprecio_compra;
+                    nuevoDetalle.odc_c_epreciototal = itemEncontrado.itm_c_dprecio_compra;
                     nuevoDetalle.SIC_T_ITEM = itemEncontrado;
                     ordenDeCompra.SIC_T_ORDEN_DE_COMPRA_DET.Add(nuevoDetalle);
                 }
@@ -720,9 +811,9 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
             foreach (var item in ordenDeCompra.SIC_T_ORDEN_DE_COMPRA_DET)
             {
-                if (item.odc_c_eprecio.HasValue)
+                if (item.odc_c_epreciototal.HasValue)
                 {
-                    subTotal += item.odc_c_eprecio.Value;
+                    subTotal += item.odc_c_epreciototal.Value;
                 }
             }
 
@@ -743,10 +834,10 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             ordenDeCompra.odc_c_etotal = ordenDeCompra.odc_c_esubtotal + ordenDeCompra.odc_c_eigvcal 
                                         + ordenDeCompra.odc_c_epercepcioncal ;
 
-            this.lblSubTotal.Text = simbolo + " " + ordenDeCompra.odc_c_esubtotal.Value.ToString();
-            this.lblTotal.Text = simbolo + " " + ordenDeCompra.odc_c_etotal.Value.ToString();
-            this.lblIGVCal.Text = simbolo + " " + ordenDeCompra.odc_c_eigvcal.Value.ToString();
-            this.lblPercepcionCal.Text = simbolo + " " + ordenDeCompra.odc_c_epercepcioncal.Value.ToString();
+            this.lblSubTotal.Text = simbolo + " " + ordenDeCompra.odc_c_esubtotal.Value.ToString("F2", CultureInfo.InvariantCulture);
+            this.lblTotal.Text = simbolo + " " + ordenDeCompra.odc_c_etotal.Value.ToString("F2", CultureInfo.InvariantCulture);
+            this.lblIGVCal.Text = simbolo + " " + ordenDeCompra.odc_c_eigvcal.Value.ToString("F2", CultureInfo.InvariantCulture);
+            this.lblPercepcionCal.Text = simbolo + " " + ordenDeCompra.odc_c_epercepcioncal.Value.ToString("F2", CultureInfo.InvariantCulture);
         }
 
         /// <summary>
@@ -783,13 +874,28 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 return;
             }
 
-            var oc = this.OCNuevo;
+            string[] formats= {"dd/MM/yyyy"};
+
+             var oc = this.OCNuevo;
             oc.odc_c_vcodigo = this.txtSerie.Text + "-" + this.txtNumero.Text;
-            oc.odc_c_zfecha = this.calFechaEntrega.SelectedDate;
+            oc.odc_c_zfechaentrega_ini = DateTime.ParseExact(txtFecEnIni.Text, "dd/MM/yyyy", 
+                                new CultureInfo("en-US"), DateTimeStyles.None);
+            oc.odc_c_zfechaentrega_fin = DateTime.ParseExact(txtFecEntFin.Text, "dd/MM/yyyy",
+                                new CultureInfo("en-US"), DateTimeStyles.None); 
             oc.odc_c_ymoneda = byte.Parse(this.cboMoneda.SelectedValue);
             oc.odc_c_vdescmoneda = this.cboMoneda.SelectedItem.Text.Trim();
             oc.odc_c_iestado = int.Parse(this.cboEstado.SelectedValue);
+            oc.odc_c_vdescestado = this.cboEstado.SelectedItem.Text.Trim();
+            oc.odc_c_vobservacion = txtObs.Text;
+            oc.odc_c_clase_iid = int.Parse(this.cboEstado.SelectedValue);
+            oc.odc_c_clase_des = this.cboEstado.SelectedItem.Text.Trim();
 
+            SIC_T_USUARIO usuarioActual = Session["USUARIO"] as SIC_T_USUARIO;
+            if (usuarioActual != null)
+            {
+                oc.odc_c_iid_usuario_creador = usuarioActual.usua_c_cdoc_id;
+            }
+            
             try
             {
                 if (_ordenCompra.InsertarOrdenCompra(this.OCNuevo))
@@ -819,12 +925,25 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             }
 
             var oc = this.OCSeleccionado;
-            oc.odc_c_zfecha = this.calFechaEntrega.SelectedDate;
+            oc.odc_c_zfechaentrega_ini = DateTime.ParseExact(txtFecEnIni.Text, "dd/MM/yyyy",
+                                           new CultureInfo("en-US"), DateTimeStyles.None);
+            oc.odc_c_zfechaentrega_fin = DateTime.ParseExact(txtFecEntFin.Text, "dd/MM/yyyy",
+                                new CultureInfo("en-US"), DateTimeStyles.None); 
             oc.odc_c_ymoneda = byte.Parse(this.cboMoneda.SelectedValue);
             oc.odc_c_vdescmoneda = this.cboMoneda.SelectedItem.Text.Trim();
             oc.odc_c_iestado = int.Parse(this.cboEstado.SelectedValue);
             oc.odc_c_vdescestado = this.cboEstado.SelectedItem.Text.Trim();
+            oc.odc_c_vobservacion = txtObs.Text;
+            oc.odc_c_clase_iid = int.Parse(this.cboEstado.SelectedValue);
+            oc.odc_c_clase_des = this.cboEstado.SelectedItem.Text.Trim();
 
+            SIC_T_USUARIO usuarioActual = Session["USUARIO"] as SIC_T_USUARIO;
+            if (usuarioActual != null)
+            {
+                oc.odc_c_iid_usuario_mod = usuarioActual.usua_c_cdoc_id;
+            }
+
+            oc.odc_c_zfecharmod = DateTime.Now;
 
             try
             {
@@ -860,7 +979,9 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             this.txtRSProv.Text = string.Empty;
             this.cboMoneda.SelectedIndex = -1;
             this.cboEstado.SelectedIndex = -1;
-            this.calFechaEntrega.SelectedDate = DateTime.Today;
+            this.txtFecEnIni_CalendarExtender.SelectedDate = DateTime.Today;
+            this.txtFecEntFin_CalendarExtender.SelectedDate = DateTime.Today;
+            this.txtObs.Text = string.Empty;
             this.gvItemsSeleccionados.DataSource = null;
             this.gvItemsSeleccionados.DataBind();
         }
@@ -868,6 +989,8 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
         private bool VerificarDatosOC(SIC_T_ORDEN_DE_COMPRA ordenDeCompra)
         {
+            DateTime fechaInicio, fechaFin;
+
             if (ordenDeCompra == null)
             {
                 Mensaje("Estado de la página no válido.", "../Imagenes/warning.png");
@@ -893,10 +1016,32 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 Mensaje("Debe seleccionar un tipo de Moneda.", "../Imagenes/warning.png");
                 return false;
             }
+            else if (cboClaseOC.SelectedIndex == -1)
+            {
+                Mensaje("Debe seleccionar la clase de la orden de compra.", "../Imagenes/warning.png");
+                return false;
+            }
             else if (ordenDeCompra.SIC_T_ORDEN_DE_COMPRA_DET == null
                 || ordenDeCompra.SIC_T_ORDEN_DE_COMPRA_DET.Count == 0)
             {
                 Mensaje("Debe seleccionar al menos un item.", "../Imagenes/warning.png");
+                return false;
+            }
+            else if (!DateTime.TryParseExact(txtFecEnIni.Text, "dd/MM/yyyy", new CultureInfo("en-US"), DateTimeStyles.None, out fechaInicio)
+                || !DateTime.TryParseExact(txtFecEntFin.Text, "dd/MM/yyyy", new CultureInfo("en-US"), DateTimeStyles.None, out fechaFin))
+            {
+                Mensaje("Se requiere fechas válidas con formato dd/MM/yyyy.", "../Imagenes/warning.png");
+                return false;
+            }
+            else if (fechaInicio >= fechaFin)
+            {
+                Mensaje("La fecha de entrega final debe ser posterior a la fecha de entrega inicial.", "../Imagenes/warning.png");
+                return false;
+            }
+            else if (this.EscenarioOC == TipoOperacion.Creacion
+                && (null == _ordenCompra.ObtenerORdenCompraPorCodigo(this.txtSerie.Text + "-" + this.txtNumero.Text)))
+            {
+                Mensaje("El codigo ya existe.", "../Imagenes/warning.png");
                 return false;
             }
             else
@@ -1001,11 +1146,22 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             }
         }
 
-
-
-
-   
-
-      
+        protected void gvListaItem_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow &&
+               (e.Row.RowState == DataControlRowState.Normal ||
+                e.Row.RowState == DataControlRowState.Alternate))
+            {
+                CheckBox chkBxSelect = (CheckBox)e.Row.Cells[1].FindControl("chkSelect");
+                CheckBox chkBxHeader = (CheckBox)this.gvListaItem.HeaderRow.FindControl("chkAll");
+                chkBxSelect.Attributes["onclick"] = string.Format
+                                                       (
+                                                          "javascript:ChildClick(this,'{0}');",
+                                                          chkBxHeader.ClientID
+                                                       );
+            }
+        }
+        
+              
     }
 }

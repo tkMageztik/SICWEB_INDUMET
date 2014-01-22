@@ -16,9 +16,9 @@ namespace SIC.BusinessLayer
             return new ItemDA().ListarItems();
         }
 
-        public List<SIC_T_ITEM> ListarItems(string codigo, string descripcion)
+        public List<SIC_T_ITEM> ListarItems(string codigo, string descripcion, int? idSubFamilia)
         {
-            return new ItemDA().ListarItems(codigo,descripcion);
+            return new ItemDA().ListarItems(codigo,descripcion, idSubFamilia);
         }
 
         public bool InsertarItem(SIC_T_ITEM _pSIC_T_ITEM)

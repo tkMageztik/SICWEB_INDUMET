@@ -155,7 +155,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             this.RegresarDesdeListaItems();
         }
 
-        protected void gvProveedores_SelectedIndexChanged(object sender, EventArgs e)
+        protected void gvCliente_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.SeleccionCliente();
         }
@@ -172,9 +172,9 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             }
         }
 
-        protected void gvProveedores_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        protected void gvCliente_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            gvProveedores.PageIndex = e.NewPageIndex;
+            gvCliente.PageIndex = e.NewPageIndex;
             this.ListarClientes();
         }
 
@@ -260,20 +260,20 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             }
         }
 
-        protected void gvListaOC_RowEditing(object sender, GridViewEditEventArgs e)
+        protected void gvListaVenta_RowEditing(object sender, GridViewEditEventArgs e)
         {
           
-            int ocId = (int)this.gvListaOC.DataKeys[e.NewEditIndex].Value;
+            int ocId = (int)this.gvListaVenta.DataKeys[e.NewEditIndex].Value;
             e.NewEditIndex = -1;
             this.gvListaItem.EditIndex = -1;
             this.ListarVentas();
             this.MostrarModificarOrdenCompra(ocId);            
         }
 
-        protected void gvListaOC_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        protected void gvListaVenta_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             this.EscenarioVenta = TipoOperacion.Eliminacion;
-            this.VentaEliminar = (int)this.gvListaOC.DataKeys[e.RowIndex].Value;
+            this.VentaEliminar = (int)this.gvListaVenta.DataKeys[e.RowIndex].Value;
             this.SetearEliminar();
 
             this.ucMensaje2.Show("¿Desea eliminar la Venta seleccionada?", null,
@@ -328,8 +328,8 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         /// </summary>
         private void ListarVentas()
         {
-            gvListaOC.DataSource =  _venta.ListarVentas();
-            gvListaOC.DataBind();
+            gvListaVenta.DataSource =  _venta.ListarVentas();
+            gvListaVenta.DataBind();
         }
 
         /// <summary>
@@ -337,15 +337,15 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         /// </summary>
         private void ListarItem()
         {
-            gvListaItem.DataSource = _item.ListarItems(txtFiltroCodigo.Text.Trim(), txtFiltroDescr.Text.Trim());
+            gvListaItem.DataSource = _item.ListarItems(txtFiltroCodigo.Text.Trim(), txtFiltroDescr.Text.Trim(), null);
             gvListaItem.DataBind();
         }
 
 
         private void ListarClientes()
         {
-            gvProveedores.DataSource = _cliente.ListarClientes();
-            gvProveedores.DataBind();
+            gvCliente.DataSource = _cliente.ListarClientes();
+            gvCliente.DataBind();
         }
 
         private void ObtenerDatosImpuesto()
@@ -687,7 +687,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
 
         private void SeleccionCliente()
         {            
-            String RUC = this.gvProveedores.DataKeys[gvProveedores.SelectedIndex].Value.ToString();
+            String RUC = this.gvCliente.DataKeys[gvCliente.SelectedIndex].Value.ToString();
             if (EscenarioVenta == TipoOperacion.Modificacion)
             {
                 this.VentaSeleccionado.ven_c_vdoccli_id = RUC;
@@ -697,9 +697,9 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 this.VentaNuevo.ven_c_vdoccli_id = RUC;
             }
 
-            if (gvProveedores.Rows[gvProveedores.SelectedIndex].Cells[1].Text != null)
+            if (gvCliente.Rows[gvCliente.SelectedIndex].Cells[1].Text != null)
             {
-                txtRSProv.Text = gvProveedores.Rows[gvProveedores.SelectedIndex].Cells[1].Text;
+                txtRSProv.Text = gvCliente.Rows[gvCliente.SelectedIndex].Cells[1].Text;
             }
 
             mvOC.ActiveViewIndex = 1;
@@ -871,9 +871,9 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             return;
         }
 
-        protected void gvListaOC_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        protected void gvListaVenta_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            gvListaOC.PageIndex= e.NewPageIndex;
+            gvListaVenta.PageIndex= e.NewPageIndex;
             ListarVentas();
         }
 
@@ -881,6 +881,10 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         {
             RegresarDesdeCliente();
         }
+
+ 
+
+
 
         
 

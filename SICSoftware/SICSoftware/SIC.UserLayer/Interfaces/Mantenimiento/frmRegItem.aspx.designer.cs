@@ -58,6 +58,24 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento {
         protected global::System.Web.UI.WebControls.TextBox txtFiltroDescr;
         
         /// <summary>
+        /// cboFiltroFamilia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cboFiltroFamilia;
+        
+        /// <summary>
+        /// cboFiltroSubFamilia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cboFiltroSubFamilia;
+        
+        /// <summary>
         /// btnBuscar control.
         /// </summary>
         /// <remarks>

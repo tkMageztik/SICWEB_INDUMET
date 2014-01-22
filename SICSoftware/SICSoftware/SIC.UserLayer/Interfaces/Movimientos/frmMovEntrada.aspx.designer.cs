@@ -112,31 +112,31 @@ namespace SIC.UserLayer.Interfaces.Movimientos {
         protected global::System.Web.UI.WebControls.LinkButton btnCancelar;
         
         /// <summary>
-        /// txtSerieGuia control.
+        /// txtSerieNumeroOC control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSerieGuia;
+        protected global::System.Web.UI.WebControls.TextBox txtSerieNumeroOC;
         
         /// <summary>
-        /// txtNumeroGuia control.
+        /// btnBuscarOC control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNumeroGuia;
+        protected global::System.Web.UI.WebControls.LinkButton btnBuscarOC;
         
         /// <summary>
-        /// calFechaGuia control.
+        /// txtProveedorOC control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar calFechaGuia;
+        protected global::System.Web.UI.WebControls.TextBox txtProveedorOC;
         
         /// <summary>
         /// txtSerieFact control.
@@ -155,6 +155,42 @@ namespace SIC.UserLayer.Interfaces.Movimientos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNumeroFact;
+        
+        /// <summary>
+        /// txtFechaGuia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFechaGuia;
+        
+        /// <summary>
+        /// txtFechaGuia_CalendarExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender txtFechaGuia_CalendarExtender;
+        
+        /// <summary>
+        /// txtSerieGuia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSerieGuia;
+        
+        /// <summary>
+        /// txtNumeroGuia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNumeroGuia;
         
         /// <summary>
         /// cboEstado control.
@@ -184,24 +220,6 @@ namespace SIC.UserLayer.Interfaces.Movimientos {
         protected global::System.Web.UI.WebControls.LinkButton btnBuscarAlmacen;
         
         /// <summary>
-        /// txtSerieNumeroOC control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSerieNumeroOC;
-        
-        /// <summary>
-        /// btnBuscarOC control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnBuscarOC;
-        
-        /// <summary>
         /// gvItemsSeleccionados control.
         /// </summary>
         /// <remarks>
@@ -209,6 +227,15 @@ namespace SIC.UserLayer.Interfaces.Movimientos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvItemsSeleccionados;
+        
+        /// <summary>
+        /// txtObs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtObs;
         
         /// <summary>
         /// vwListaOrdenCompra control.

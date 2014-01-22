@@ -46,6 +46,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             if (!IsPostBack)
             {
                 this.ListarItems();
+                this.ListarFiltroFamilia();
                 this.ListarUnidadMedida();
                 this.ListarFamilia();
                 //this.ListarSubFamilia();
@@ -110,7 +111,14 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         /// </summary>
         private void ListarItems()
         {
-            gvListaItem.DataSource = _item.ListarItems(txtFiltroCodigo.Text.Trim(), txtFiltroDescr.Text.Trim());
+            int id;
+            int? idSubFamilia = null;
+            if (int.TryParse(cboFiltroSubFamilia.SelectedItem.Value, out id) && id >= 0)
+            {
+                idSubFamilia = id;
+            }
+
+            gvListaItem.DataSource = _item.ListarItems(txtFiltroCodigo.Text.Trim(), txtFiltroDescr.Text.Trim(), idSubFamilia);
             gvListaItem.DataBind();
         }
 
@@ -137,6 +145,16 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             cboFamilia.DataBind();
         }
 
+        /// <summary>
+        /// Lista las familias de items
+        /// </summary>
+        private void ListarFiltroFamilia()
+        {
+            cboFiltroFamilia.DataSource = _item.ListarFamiliaItem();
+            cboFiltroFamilia.DataTextField = "ifm_c_des";
+            cboFiltroFamilia.DataValueField = "ifm_c_iid";
+            cboFiltroFamilia.DataBind();
+        }
 
         /// <summary>
         /// Obtiene la sub familia, depende de que familia se haya seleccionado
@@ -162,6 +180,34 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 cboSubFamilia.Items.Clear();
                 cboSubFamilia.Items.Add(new ListItem("-- Seleccionar --", "-1"));
                 cboSubFamilia.DataBind();
+            }
+            this.upGeneral.Update();
+        }
+
+        /// <summary>
+        /// Obtiene la sub familia, depende de que familia se haya seleccionado
+        /// </summary>
+        private void ListarFiltroSubFamilia()
+        {
+            int idFamilia;
+            if (cboFiltroFamilia.SelectedIndex > 0 && int.TryParse(cboFiltroFamilia.SelectedValue, out idFamilia) && idFamilia > 0)
+            {
+                // TODO: Revisar el selected index 0, deberia funcionar
+                cboFiltroSubFamilia.Enabled = true;
+                cboFiltroSubFamilia.Items.Clear();
+                cboFiltroSubFamilia.Items.Add(new ListItem("-- Seleccionar --", "-1"));
+                cboFiltroSubFamilia.DataSource = _item.ListarSubFamiliaItem(idFamilia);
+                cboFiltroSubFamilia.DataTextField = "isf_c_des";
+                cboFiltroSubFamilia.DataValueField = "isf_c_iid";
+                cboFiltroSubFamilia.DataBind();
+            }
+            else
+            {
+                cboFiltroSubFamilia.DataSource = null;
+                cboFiltroSubFamilia.Enabled = false;
+                cboFiltroSubFamilia.Items.Clear();
+                cboFiltroSubFamilia.Items.Add(new ListItem("-- Seleccionar --", "-1"));
+                cboFiltroSubFamilia.DataBind();
             }
             this.upGeneral.Update();
         }
@@ -446,6 +492,12 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         protected void View2_Activate(object sender, EventArgs e)
         {
             
+        }
+
+        protected void cboFiltroFamilia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.ListarFiltroSubFamilia();
+            upGeneral.Update();
         }
 
 

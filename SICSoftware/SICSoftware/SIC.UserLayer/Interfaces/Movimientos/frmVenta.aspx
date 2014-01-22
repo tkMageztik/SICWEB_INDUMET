@@ -88,12 +88,12 @@
                             <td align="left" class="tit-nav-paginas">
                                 <asp:UpdatePanel ID="upGvLista" runat="server" UpdateMode="Conditional">
                                 <ContentTemplate>
-                                <asp:GridView ID="gvListaOC" runat="server" BorderStyle="None" AutoGenerateColumns="False"
+                                <asp:GridView ID="gvListaVenta" runat="server" BorderStyle="None" AutoGenerateColumns="False"
                                     GridLines="None" AllowPaging="True" Width="100%" CssClass="mGrid" PagerStyle-CssClass="pgr"
                                     AlternatingRowStyle-CssClass="alt" ShowHeaderWhenEmpty="True" EmptyDataText="No hay datos disponibles."
                                     PageSize="15" BorderWidth="0px" DataKeyNames="ven_c_iid" 
-                                        onrowediting="gvListaOC_RowEditing" onrowdeleting="gvListaOC_RowDeleting" 
-                                        onpageindexchanging="gvListaOC_PageIndexChanging">
+                                        onrowediting="gvListaVenta" onrowdeleting="gvListaVenta_RowDeleting" 
+                                        onpageindexchanging="gvListaVenta_PageIndexChanging">
                                     <AlternatingRowStyle CssClass="alt" />
                                     <Columns>
                                         <asp:TemplateField HeaderText="Código">
@@ -431,9 +431,6 @@
                                                                 </td>
                                                                 <td>
                                                                 </td>
-                                                                <td>
-                                                                    &nbsp;
-                                                                </td>
                                                             </tr>
                                                         </table>
                                                     </td>
@@ -470,13 +467,13 @@
                             <td align="left" class="tit-nav-paginas">
                                 <asp:UpdatePanel ID="upProveedor" runat="server" UpdateMode="Conditional">
                                 <ContentTemplate>
-                                <asp:GridView ID="gvProveedores" runat="server" BorderStyle="None"
+                                <asp:GridView ID="gvCliente" runat="server" BorderStyle="None"
                                     GridLines="None" AllowPaging="True" Width="100%" CssClass="mGrid" PagerStyle-CssClass="pgr"
                                     AlternatingRowStyle-CssClass="alt" ShowHeaderWhenEmpty="True" EmptyDataText="No hay datos disponibles."
                                     PageSize="15" BorderWidth="0px" AutoGenerateColumns="False" 
                                         DataKeyNames="cli_c_vdoc_id" 
-                                        onselectedindexchanged="gvProveedores_SelectedIndexChanged" 
-                                        onpageindexchanging="gvProveedores_PageIndexChanging">
+                                        onselectedindexchanged="gvCliente_SelectedIndexChanged" 
+                                        onpageindexchanging="gvCliente_PageIndexChanging">
                                     <AlternatingRowStyle CssClass="alt" />
                                     <Columns>
                                         <asp:BoundField DataField="cli_c_vdoc_id" HeaderText="RUC" />
