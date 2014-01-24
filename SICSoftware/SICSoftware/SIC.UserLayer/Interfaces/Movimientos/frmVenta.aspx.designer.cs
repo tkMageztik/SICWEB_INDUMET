@@ -130,22 +130,13 @@ namespace SIC.UserLayer.Interfaces.Movimientos {
         protected global::System.Web.UI.WebControls.LinkButton btnBuscarProveedor;
         
         /// <summary>
-        /// calFechaEntrega control.
+        /// lblFechaRegistro control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar calFechaEntrega;
-        
-        /// <summary>
-        /// cboTipoDocumento control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cboTipoDocumento;
+        protected global::System.Web.UI.WebControls.Label lblFechaRegistro;
         
         /// <summary>
         /// cboMoneda control.
@@ -155,6 +146,15 @@ namespace SIC.UserLayer.Interfaces.Movimientos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList cboMoneda;
+        
+        /// <summary>
+        /// cboTipoDocumento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cboTipoDocumento;
         
         /// <summary>
         /// gvItemsSeleccionados control.
@@ -175,6 +175,15 @@ namespace SIC.UserLayer.Interfaces.Movimientos {
         protected global::System.Web.UI.WebControls.LinkButton btnBuscarItems;
         
         /// <summary>
+        /// lblTC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTC;
+        
+        /// <summary>
         /// lblIGV control.
         /// </summary>
         /// <remarks>
@@ -191,24 +200,6 @@ namespace SIC.UserLayer.Interfaces.Movimientos {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblIGVCal;
-        
-        /// <summary>
-        /// lblPercepcion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPercepcion;
-        
-        /// <summary>
-        /// lblPercepcionCal control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPercepcionCal;
         
         /// <summary>
         /// lblSubTotal control.

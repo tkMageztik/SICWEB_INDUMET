@@ -165,7 +165,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                     SIC_T_MOVIMIENTO_ENTRADA movimientoEntrada = this.MovEntSeleccionado;
                     foreach (var item in movimientoEntrada.SIC_T_MOVIMIENTO_ENTRADA_DETALLE)
                     {
-                        if (item.mve_det_c_iid == itemId)
+                        if (item.mve_c_iocdet_id == itemId)
                         {
                             item.mve_c_ecant_recibida = cantidadNueva;
                             break;
@@ -180,7 +180,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                     SIC_T_MOVIMIENTO_ENTRADA movimientoEntrada = this.MovEntNuevo;
                     foreach (var item in movimientoEntrada.SIC_T_MOVIMIENTO_ENTRADA_DETALLE)
                     {
-                        if (item.mve_det_c_iid == itemId)
+                        if (item.mve_c_iocdet_id == itemId)
                         {
                             item.mve_c_ecant_recibida = cantidadNueva;
                             break;
@@ -217,7 +217,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
 
         private void ListarOrdenCompra()
         {
-            gvListaOC.DataSource = _ordenCompra.ListarOrdenDeCompraEstado((int)EstadosOrdenCompra.CERRADA);
+            gvListaOC.DataSource = _ordenCompra.ListarOrdenDeCompraEstado((int)EstadosOrdenCompra.ABIERTA);
             gvListaOC.DataBind();
         }
 
@@ -255,10 +255,11 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         #region Metodos de movimiento en la pagina
         private void MostrarNuevoMoviminetoEntrada()
         {
+            this.Limpiar();
             this.EscenarioMovEn = TipoOperacion.Creacion;
             this.MovEntNuevo = new SIC_T_MOVIMIENTO_ENTRADA();
-            this.mvMovimientoEntrada.ActiveViewIndex = 1;
-            this.Limpiar();
+            this.MovEntNuevo.mve_c_zfecharegistro = DateTime.Now;
+            this.mvMovimientoEntrada.ActiveViewIndex = 1;            
             this.upGeneral.Update();
         }
 
@@ -272,10 +273,61 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 this.ListarDetalleMovimiento();
                 txtAlmacen.Text = MovEntSeleccionado.SIC_T_ALMACEN != null ? MovEntSeleccionado.SIC_T_ALMACEN.alm_c_vdes : string.Empty;
                 txtSerieNumeroOC.Text = MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA != null ? MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA.odc_c_vcodigo.ToString() : string.Empty;
-                txtNumeroFact.Text = MovEntSeleccionado.mve_c_vfacturanumero;
-                txtNumeroGuia.Text = MovEntSeleccionado.mve_c_vguianumero;
-                txtSerieFact.Text = MovEntSeleccionado.mve_c_vfacturaserie;
-                txtSerieGuia.Text = MovEntSeleccionado.mve_c_vguiaserie;
+                txtProveedorOC.Text = MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA != null && MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE != null ?
+                                    MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vraz_soc : string.Empty;
+                txtObs.Text = MovEntSeleccionado.mve_c_vobservacion;
+
+                if (MovEntSeleccionado.mve_c_zfacturafecha.HasValue)
+                {
+                    txtFechaFact.Text = MovEntSeleccionado.mve_c_zfacturafecha.Value.ToString("dd/MM/yyyy");
+                    txtFechaFact_CalendarExtender.SelectedDate = MovEntSeleccionado.mve_c_zfacturafecha.Value;
+                }
+                else
+                {
+                    txtFechaFact.Text = String.Empty;
+                    txtFechaFact_CalendarExtender.SelectedDate = DateTime.Today;
+                }
+
+                if (MovEntSeleccionado.mve_c_zfacturafecha.HasValue)
+                {
+                    txtFechaFact.Text = MovEntSeleccionado.mve_c_zfacturafecha.Value.ToString("dd/MM/yyyy");
+                    txtFechaFact_CalendarExtender.SelectedDate = MovEntSeleccionado.mve_c_zfacturafecha.Value;
+                }
+                else
+                {
+                    txtFechaFact.Text = String.Empty;
+                    txtFechaFact_CalendarExtender.SelectedDate = DateTime.Today;
+                }
+
+                String[] factCod, guiaCod;
+                if (MovEntSeleccionado.mve_c_vfacturacodigo != null)
+                {
+                    factCod = MovEntSeleccionado.mve_c_vfacturacodigo.Split('-');
+                    if (factCod.Count() == 2)
+                    {
+                        txtSerieFact.Text = factCod[0];
+                        txtNumeroFact.Text = factCod[1];
+                    }
+                    else
+                    {
+                        txtNumeroFact.Text = MovEntSeleccionado.mve_c_vfacturacodigo;
+                    }
+                }
+
+                if (MovEntSeleccionado.mve_c_vguiacodigo != null)
+                {
+                    guiaCod = MovEntSeleccionado.mve_c_vguiacodigo.Split('-');
+                    if (guiaCod.Count() == 2)
+                    {
+                        txtSerieGuia.Text = guiaCod[0];
+                        txtNumeroGuia.Text = guiaCod[1];
+                    }
+                    else
+                    {
+                        txtNumeroGuia.Text = MovEntSeleccionado.mve_c_vguiacodigo;
+                    }
+                }
+
 
                 cboEstado.SelectedIndex = -1;
                 var seleccion = cboEstado.Items.FindByText(MovEntSeleccionado.mve_c_vdesestado);
@@ -285,9 +337,9 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 }
 
 
-                if (MovEntSeleccionado.mve_c_dguiafecha.HasValue)
+                if (MovEntSeleccionado.mve_c_zguiafecha.HasValue)
                 {
-                    txtFechaGuia_CalendarExtender.SelectedDate = MovEntSeleccionado.mve_c_dguiafecha.Value;
+                    txtFechaGuia_CalendarExtender.SelectedDate = MovEntSeleccionado.mve_c_zguiafecha.Value;
                 }
                 this.upGeneral.Update();
             }
@@ -328,6 +380,8 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             this.txtSerieFact.Text = string.Empty;
             this.txtSerieGuia.Text = string.Empty;
             this.txtSerieNumeroOC.Text = string.Empty;
+            this.txtFechaGuia.Text = string.Empty;
+            this.txtFechaFact.Text = string.Empty;
             this.MovEntNuevo = null;
             this.txtObs.Text = string.Empty;
             this.MovEntSeleccionado = null;
@@ -379,9 +433,9 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             //    Mensaje("Ingrese una fecha de Factura correcta.", "../Imagenes/warning.png");
             //    return false;
             //}
-            if (!DateTime.TryParseExact(txtFechaGuia.Text, "dd/MM/yyyy", new CultureInfo("en-US"), DateTimeStyles.None, out time))
+            if (!DateTime.TryParseExact(txtFechaFact.Text, "dd/MM/yyyy", new CultureInfo("en-US"), DateTimeStyles.None, out time))
             {
-                Mensaje("Ingrese una fecha de Guía correcta.", "../Imagenes/warning.png");
+                Mensaje("Ingrese una fecha de factura correcta.", "../Imagenes/warning.png");
                 return false;
             }
             if (txtNumeroFact.Text.Trim().Length == 0 || txtSerieFact.Text.Trim().Length == 0)
@@ -389,11 +443,16 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 Mensaje("Ingrese la serie y número de la Factura.", "../Imagenes/warning.png");
                 return false;
             }
-            else if (txtNumeroGuia.Text.Trim().Length == 0 || txtSerieGuia.Text.Trim().Length == 0)
+            if (txtFechaFact.Text.Trim() != string.Empty && !DateTime.TryParseExact(txtFechaFact.Text, "dd/MM/yyyy", new CultureInfo("en-US"), DateTimeStyles.None, out time))
             {
-                Mensaje("Ingrese la serie y número de la Guía.", "../Imagenes/warning.png");
+                Mensaje("Ingrese una fecha de guia correcta, o borre la fecha.", "../Imagenes/warning.png");
                 return false;
             }
+            //else if (txtNumeroGuia.Text.Trim().Length == 0 || txtSerieGuia.Text.Trim().Length == 0)
+            //{
+            //    Mensaje("Ingrese la serie y número de la Guía.", "../Imagenes/warning.png");
+            //    return false;
+            //}
             else if (this.MovEntNuevo.SIC_T_ORDEN_DE_COMPRA == null)
             {
                 Mensaje("Seleccione una orden de compra.", "../Imagenes/warning.png");
@@ -413,15 +472,14 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         private bool VerificarDatosModificacion()
         {
             DateTime time;
-            string[] formats = { "dd/MM/yyyy", };
             //if (!DateTime.TryParse(txtFechaFactura.Text, out time))
             //{
             //    Mensaje("Ingrese una fecha de Factura correcta.", "../Imagenes/warning.png");
             //    return false;
             //}
-            if (!DateTime.TryParseExact(txtFechaGuia.Text, "dd/MM/yyyy", new CultureInfo("en-US"), DateTimeStyles.None, out time))
+            if (!DateTime.TryParseExact(txtFechaFact.Text, "dd/MM/yyyy", new CultureInfo("en-US"), DateTimeStyles.None, out time))
             {
-                Mensaje("Ingrese una fecha de Guía correcta.", "../Imagenes/warning.png");
+                Mensaje("Ingrese una fecha de factura correcta.", "../Imagenes/warning.png");
                 return false;
             }
             if (txtNumeroFact.Text.Trim().Length == 0 || txtSerieFact.Text.Trim().Length == 0)
@@ -429,9 +487,9 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 Mensaje("Ingrese la serie y número de la Factura.", "../Imagenes/warning.png");
                 return false;
             }
-            else if (txtNumeroGuia.Text.Trim().Length == 0 || txtSerieGuia.Text.Trim().Length == 0)
+            if (txtFechaFact.Text.Trim() != string.Empty && !DateTime.TryParseExact(txtFechaFact.Text, "dd/MM/yyyy", new CultureInfo("en-US"), DateTimeStyles.None, out time))
             {
-                Mensaje("Ingrese la serie y número de la Guía.", "../Imagenes/warning.png");
+                Mensaje("Ingrese una fecha de guia correcta, o borre la fecha.", "../Imagenes/warning.png");
                 return false;
             }
             else if (this.MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA == null)
@@ -457,16 +515,23 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 return;
             }
 
-            SIC_T_MOVIMIENTO_ENTRADA movEntrada = this.MovEntNuevo;
-            movEntrada.mve_c_dguiafecha = DateTime.ParseExact(txtFechaGuia.Text, "dd/MM/yyyy", new CultureInfo("en-US"), DateTimeStyles.None );
-            movEntrada.mve_c_vguianumero = txtNumeroGuia.Text;
-            movEntrada.mve_c_vguiaserie = txtSerieGuia.Text;
-            movEntrada.mve_c_vfacturanumero = txtNumeroFact.Text;
-            movEntrada.mve_c_vfacturaserie = txtSerieFact.Text;
+            SIC_T_MOVIMIENTO_ENTRADA movEntrada = this.MovEntNuevo;            
+            movEntrada.mve_c_vfacturacodigo = txtSerieFact.Text + "-" + txtNumeroFact.Text;
+            movEntrada.mve_c_zfacturafecha = DateTime.ParseExact(txtFechaFact.Text, "dd/MM/yyyy", new CultureInfo("en-US"), DateTimeStyles.None);            
+            movEntrada.mve_c_vguiacodigo = txtSerieGuia.Text + "-" + txtNumeroGuia.Text;
+            if(txtFechaGuia.Text == string.Empty)
+            {
+                movEntrada.mve_c_zguiafecha =  null;
+            }
+            else
+            {
+                movEntrada.mve_c_zguiafecha =  DateTime.ParseExact(txtFechaGuia.Text, "dd/MM/yyyy", new CultureInfo("en-US"), DateTimeStyles.None);
+            }            
+
             movEntrada.mve_c_iestado = int.Parse(this.cboEstado.SelectedValue);
             movEntrada.mve_c_vdesestado = cboEstado.SelectedItem.Text.Trim();
             movEntrada.mve_c_bactivo = true;
-            movEntrada.mve_c_dfecha = DateTime.Now;
+            movEntrada.mve_c_zfecharegistro = DateTime.Now;
             movEntrada.mve_c_vobservacion = txtObs.Text;
             movEntrada.SIC_T_ALMACEN = null;
 
@@ -490,21 +555,28 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             }
 
             SIC_T_MOVIMIENTO_ENTRADA movEntrada = this.MovEntSeleccionado;
-            movEntrada.mve_c_dguiafecha = DateTime.ParseExact(txtFechaGuia.Text, "dd/MM/yyyy", new CultureInfo("en-US"), DateTimeStyles.None );
-            //movEntrada. = DateTime.Parse(txtFechaGuia.Text);
-            movEntrada.mve_c_vguianumero = txtNumeroGuia.Text;
-            movEntrada.mve_c_vguiaserie = txtSerieGuia.Text;
-            movEntrada.mve_c_vfacturanumero = txtNumeroFact.Text;
-            movEntrada.mve_c_vfacturaserie = txtSerieFact.Text;
-            movEntrada.mve_c_bactivo = true;
+            movEntrada.mve_c_vfacturacodigo = txtSerieFact.Text + "-" + txtNumeroFact.Text;
+            movEntrada.mve_c_zfacturafecha = DateTime.ParseExact(txtFechaFact.Text, "dd/MM/yyyy", new CultureInfo("en-US"), DateTimeStyles.None);
+            movEntrada.mve_c_vguiacodigo = txtSerieGuia.Text + "-" + txtNumeroGuia.Text;
+            if (txtFechaGuia.Text == string.Empty)
+            {
+                movEntrada.mve_c_zguiafecha = null;
+            }
+            else
+            {
+                movEntrada.mve_c_zguiafecha = DateTime.ParseExact(txtFechaGuia.Text, "dd/MM/yyyy", new CultureInfo("en-US"), DateTimeStyles.None);
+            }
+
             movEntrada.mve_c_iestado = int.Parse(this.cboEstado.SelectedValue);
             movEntrada.mve_c_vdesestado = cboEstado.SelectedItem.Text.Trim();
+            movEntrada.mve_c_bactivo = true;
+            movEntrada.mve_c_zfecharegistro = DateTime.Now;
             movEntrada.mve_c_vobservacion = txtObs.Text;
             movEntrada.SIC_T_ALMACEN = null;
 
             if (this._movEntrada.ModificarMovimientoEntrada(movEntrada))
             {
-                Mensaje("Insertado con éxito.", "../Imagenes/correcto.png");
+                Mensaje("Modificado con éxito.", "../Imagenes/correcto.png");
                 RegresarDesdeNuevoModificar();
             }
             else
@@ -538,15 +610,9 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 {
                     if (this.EscenarioMovEn == TipoOperacion.Creacion)
                     {
-                        MovEntNuevo.SIC_T_ORDEN_DE_COMPRA = _ordenCompra.ObtenerOrdenCompra(id);
+                        MovEntNuevo.SIC_T_ORDEN_DE_COMPRA = _ordenCompra.ObtenerOrdenCompraNoContext(id);
                         txtSerieNumeroOC.Text = MovEntNuevo.SIC_T_ORDEN_DE_COMPRA != null ? MovEntNuevo.SIC_T_ORDEN_DE_COMPRA.odc_c_vcodigo.ToString() : string.Empty;
                         txtProveedorOC.Text = MovEntNuevo.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vraz_soc;
-
-                        //if (MovEntNuevo.SIC_T_MOVIMIENTO_ENTRADA_DETALLE == null)
-                        //{
-                        //    MovEntNuevo.SIC_T_MOVIMIENTO_ENTRADA_DETALLE = new System.Data.Objects.DataClasses.EntityCollection<SIC_T_MOVIMIENTO_ENTRADA_DETALLE>();
-                        //}
-                        //MovEntNuevo.SIC_T_MOVIMIENTO_ENTRADA_DETALLE.Clear();
 
                         foreach (var detalle in MovEntNuevo.SIC_T_ORDEN_DE_COMPRA.SIC_T_ORDEN_DE_COMPRA_DET)
                         {
@@ -564,10 +630,19 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                     }
                     else if (this.EscenarioMovEn == TipoOperacion.Modificacion)
                     {
-                        MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA = _ordenCompra.ObtenerOrdenCompra(id);
+                        MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA = _ordenCompra.ObtenerOrdenCompraNoContext(id);
                         txtSerieNumeroOC.Text = MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA != null ? MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA.odc_c_vcodigo.ToString() : string.Empty;
-                        //MovEntSeleccionado.SIC_T_MOVIMIENTO_ENTRADA_DETALLE.Clear();
-                        // Todo: mark remove?
+
+                        foreach (var detalle in MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA.SIC_T_ORDEN_DE_COMPRA_DET)
+                        {
+                            var movDet = new SIC_T_MOVIMIENTO_ENTRADA_DETALLE();
+                            movDet.mve_c_ecant_pedida = detalle.odc_c_ecantidad;
+                            movDet.mve_c_ecant_recibida = 0;
+                            movDet.mve_c_vdescripcion_item = detalle.SIC_T_ITEM.itm_c_vdescripcion;
+                            movDet.SIC_T_ORDEN_DE_COMPRA_DET = detalle;
+                            MovEntSeleccionado.SIC_T_MOVIMIENTO_ENTRADA_DETALLE.Add(movDet);
+                        }
+
                         this.ListarDetalleMovimiento();
                         this.RegresarDesdeOrdenCompra();
                     }

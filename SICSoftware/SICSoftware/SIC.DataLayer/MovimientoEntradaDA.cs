@@ -15,6 +15,8 @@ namespace SIC.DataLayer
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
                     return (from x in contexto.SIC_T_MOVIMIENTO_ENTRADA
+                             .Include("SIC_T_ORDEN_DE_COMPRA")
+                             .Include("SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE")
                              .Include("SIC_T_MOVIMIENTO_ENTRADA_DETALLE")
                             where x.mve_c_bactivo == true
                             select x).ToList();
@@ -53,6 +55,7 @@ namespace SIC.DataLayer
                              .Include("SIC_T_MOVIMIENTO_ENTRADA_DETALLE")
                              .Include("SIC_T_ALMACEN")
                              .Include("SIC_T_ORDEN_DE_COMPRA")
+                             .Include("SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE")
                             where x.mve_c_bactivo == true && x.mve_c_iid == id
                             select x).FirstOrDefault();
                 }
@@ -70,18 +73,17 @@ namespace SIC.DataLayer
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
 
-                    // Primero buscamos uno contexto con el mismo 
+                    // Primero buscamos uno con la misma orden de compra
                     var  anterior = (from x in contexto.SIC_T_MOVIMIENTO_ENTRADA
                                      where x.mve_c_bactivo == true && x.mve_c_ioc_id == _pSIC_T_MOVIMIENTO_ENTRADA.mve_c_ioc_id
                             select x).FirstOrDefault();
 
                     if (anterior != null)
                     {
-                        if (anterior.mve_c_vguiaserie == _pSIC_T_MOVIMIENTO_ENTRADA.mve_c_vguiaserie &&
-                            anterior.mve_c_vguianumero == _pSIC_T_MOVIMIENTO_ENTRADA.mve_c_vguianumero)
-                        {
-                            throw new ArgumentException("No se puede ingresar un movimiento con guia repetiuda.");
-                        }
+                        //if (anterior.mve_c_vguiacodigo == _pSIC_T_MOVIMIENTO_ENTRADA.mve_c_vguiacodigo)
+                        //{
+                        //    throw new ArgumentException("No se puede ingresar un movimiento con guia repetiuda.");
+                        //}
 
                         anterior.mve_c_iestado = 3;
                         anterior.mve_c_vdesestado = "CERRADO"; // !

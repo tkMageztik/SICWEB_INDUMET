@@ -28,6 +28,12 @@ namespace SIC.BusinessLayer
             return new OrdenCompraDA().ObtenerOrdenCompra(id);
         }
 
+        public SIC_T_ORDEN_DE_COMPRA ObtenerOrdenCompraNoContext(int id)
+        {
+            return new OrdenCompraDA().ObtenerOrdenCompraNoContext(id);
+        }
+        
+
         public bool InsertarOrdenCompra(SIC_T_ORDEN_DE_COMPRA _pSIC_T_ORDEN_DE_COMPRA)
         {
             return new OrdenCompraDA().InsertarOrdenCompra(_pSIC_T_ORDEN_DE_COMPRA);

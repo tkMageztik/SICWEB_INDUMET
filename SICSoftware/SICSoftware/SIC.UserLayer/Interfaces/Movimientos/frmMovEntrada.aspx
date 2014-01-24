@@ -5,30 +5,7 @@
 <%@ Register Src="~/UserControl/wucMensajeAlerta2.ascx" TagName="Mensaje" TagPrefix="uc2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
-    <style type="text/css">
-        .style1
-        {
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 11.5px;
-            color: #686168;
-            height: 19px;
-        }
-        .style2
-        {
-            height: 19px;
-        }
-        .style3
-        {
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 11.5px;
-            color: #686168;
-            height: 20px;
-        }
-        .style4
-        {
-            height: 20px;
-        }
-    </style>
+    
     </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <asp:UpdatePanel ID="upGeneral" UpdateMode="Conditional" runat="server">
@@ -105,8 +82,10 @@
                                         onselectedindexchanged="gvListaMovEn_SelectedIndexChanged" >
                                     <AlternatingRowStyle CssClass="alt" />
                                     <Columns>
-                                        <asp:BoundField HeaderText="Fecha" DataField="mve_c_dfecha" />                                        
-                                        <asp:CommandField ShowSelectButton="True" />
+                                        <asp:BoundField HeaderText="RUC Proveedor" DataField="SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vraz_soc"/>
+                                        <asp:BoundField HeaderText="Razon Social Proveedor" DataField="SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vdoc_id"/>                                        
+                                        <asp:BoundField HeaderText="Fecha" DataField="mve_c_zfecharegistro" />                                        
+                                        <asp:CommandField ShowSelectButton="True" SelectText="Seleccionar" />
                                     </Columns>
                                     <PagerStyle CssClass="pgr" />
                                 </asp:GridView>
@@ -148,9 +127,13 @@
                                         <td align="left" class="box-estilo01">
                                             <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                                 <tr>
-                                                    <td align="left" class="style1">
+                                                    <td align="left" class="style37">
                                                         <strong>Datos de la Orden de Compra</strong></td>
+                                                    <td align="left" class="style21" width="500px">
+                                                        &nbsp;</td>
                                                     <td align="left" class="style2">
+                                                        &nbsp;</td>
+                                                    <td align="left" class="style30">
                                                         &nbsp;</td>
                                                     <td align="left" class="style1">
                                                         &nbsp;</td>
@@ -158,71 +141,96 @@
                                                         &nbsp;</td>
                                                 </tr>
                                                 <tr>
-                                                    <td align="left" class="style1">
+                                                    <td align="left" class="style37">
                                                         Serie - Número</td>
-                                                    <td align="left" class="style2">
+                                                    <td align="left">
                                                         <asp:TextBox ID="txtSerieNumeroOC" runat="server" ReadOnly="True"></asp:TextBox>
                                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        </td>
+                                                    <td align="left" class="style2">
                                                         <asp:LinkButton ID="btnBuscarOC" runat="server" CssClass="lnk" 
                                                             onclick="btnBuscarOC_Click">Buscar</asp:LinkButton>
                                                     </td>
+                                                    <td align="left" class="style30">
+                                                        &nbsp;</td>
                                                     <td align="left" class="style1">
                                                         &nbsp;</td>
                                                     <td align="left" class="style1">
                                                         &nbsp;</td>
                                                 </tr>
                                                 <tr>
-                                                    <td align="left" class="style1">
+                                                    <td align="left" class="style37">
                                                         Proveedor</td>
-                                                    <td align="left" class="style2">
-                                                        <asp:TextBox ID="txtProveedorOC" runat="server" ReadOnly="True"></asp:TextBox>
+                                                    <td align="left" class="style21">
+                                                        <asp:TextBox ID="txtProveedorOC" runat="server" ReadOnly="True" Width="382px" 
+                                                            Height="27px"></asp:TextBox>
                                                     </td>
+                                                    <td align="left" class="style2">
+                                                    </td>
+                                                    <td align="left" class="style30">
+                                                        &nbsp;</td>
                                                     <td align="left" class="style1">
                                                     </td>
                                                     <td align="left" class="style1">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td align="left" class="style3">
+                                                    <td align="left" class="style14">
+                                                    </td>
+                                                    <td align="left" class="style10">
                                                     </td>
                                                     <td align="left" class="style4">
-                                                    </td>
+                                                        &nbsp;</td>
+                                                    <td align="left" class="style31">
+                                                        &nbsp;</td>
                                                     <td align="left" class="style3">
                                                     </td>
                                                     <td align="left" class="style3">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td align="left" class="style1">
+                                                    <td align="left" class="style37">
                                                         <strong>Datos de la Factura</strong></td>
-                                                    <td align="left" class="style2">
+                                                    <td align="left" class="style21">
                                                     </td>
+                                                    <td align="left" class="style2">
+                                                        &nbsp;</td>
+                                                    <td align="left" class="style30">
+                                                        &nbsp;</td>
                                                     <td align="left" class="style1">
                                                     </td>
                                                     <td align="left" class="style1">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td align="left" class="txt-box-estilo">
+                                                    <td align="left" class="style38">
                                                         Serie - Número</td>
-                                                    <td align="left" class="style1" style="margin-left: 120px">
-                                                        <asp:TextBox ID="txtSerieFact" runat="server" Width="35px"></asp:TextBox>
+                                                    <td align="left" style="margin-left: 120px">
+                                                        <asp:TextBox ID="txtSerieFact" runat="server" Width="35px" MaxLength="3"></asp:TextBox>
                                                         &nbsp;-
-                                                        <asp:TextBox ID="txtNumeroFact" runat="server"></asp:TextBox>
+                                                        <asp:TextBox ID="txtNumeroFact" runat="server" Width="328px" MaxLength="6"></asp:TextBox>
                                                     </td>
+                                                    <td align="left" class="style1" style="margin-left: 120px">
+                                                        &nbsp;</td>
+                                                    <td align="left" class="style30">
+                                                        &nbsp;</td>
                                                     <td align="left" class="style1">
-                                                        Fecha de Guía</td>
+                                                        Fecha de Factura</td>
                                                     <td align="left" class="style1">
-                                                        <asp:TextBox ID="txtFechaGuia" runat="server"></asp:TextBox>
-                                                        <asp:CalendarExtender ID="txtFechaGuia_CalendarExtender" runat="server" 
-                                                            TargetControlID="txtFechaGuia">
+                                                        <asp:TextBox ID="txtFechaFact" runat="server"></asp:TextBox>
+                                                        <asp:CalendarExtender ID="txtFechaFact_CalendarExtender" runat="server" 
+                                                            TargetControlID="txtFechaFact">
                                                         </asp:CalendarExtender>
                                                         </td>
                                                 </tr>
                                                 <tr>
-                                                    <td align="left" class="txt-box-estilo">
+                                                    <td align="left" class="style38">
                                                         <strong>Datos de la Guía</strong></td>
+                                                    <td align="left" class="style22">
+                                                        &nbsp;</td>
                                                     <td align="left" class="style1">
+                                                        &nbsp;</td>
+                                                    <td align="left" class="style30">
                                                         &nbsp;</td>
                                                     <td align="left" class="style1">
                                                         &nbsp;</td>
@@ -231,66 +239,95 @@
                                                 </tr>
                                                
                                                 <tr>
-                                                    <td align="left" class="txt-box-estilo">
+                                                    <td align="left" class="style24">
                                                         Serie - Número</td>
-                                                    <td align="left" class="style1">
-                                                        <asp:TextBox ID="txtSerieGuia" runat="server" Width="35px"></asp:TextBox>
+                                                    <td align="left" class="style25">
+                                                        <asp:TextBox ID="txtSerieGuia" runat="server" Width="35px" MaxLength="3"></asp:TextBox>
                                                         &nbsp;-
-                                                        <asp:TextBox ID="txtNumeroGuia" runat="server"></asp:TextBox>
+                                                        <asp:TextBox ID="txtNumeroGuia" runat="server" MaxLength="6" Width="328px"></asp:TextBox>
                                                     </td>
-                                                    <td align="left" class="style1">
+                                                    <td align="left" class="style26">
+                                                        </td>
+                                                    <td align="left" class="style32">
                                                         &nbsp;</td>
-                                                    <td align="left" class="style1">
-                                                        &nbsp;</td>
+                                                    <td align="left" class="style26">
+                                                        Fecha de Guia</td>
+                                                    <td align="left" class="style26">
+                                                        <asp:TextBox ID="txtFechaGuia" runat="server"></asp:TextBox>
+                                                        <asp:CalendarExtender ID="txtFechaGuia_CalendarExtender" runat="server" 
+                                                            TargetControlID="txtFechaGuia">
+                                                        </asp:CalendarExtender>
+                                                    </td>
                                                 </tr>
                                                
                                                 <tr>
-                                                    <td align="left" class="txt-box-estilo">
+                                                    <td align="left" class="style38">
+                                                        &nbsp;</td>
+                                                    <td align="left" class="style22">
+                                                        &nbsp;</td>
+                                                    <td align="left" class="style1">
+                                                        &nbsp;</td>
+                                                    <td align="left" class="style30">
                                                         &nbsp;</td>
                                                     <td align="left" class="style1">
                                                         &nbsp;</td>
                                                     <td align="left" class="style1">
-                                                        Estado</td>
-                                                    <td align="left" class="style1">
-                                                        <asp:DropDownList ID="cboEstado" runat="server">
-                                                        </asp:DropDownList>
-                                                    </td>
+                                                        &nbsp;</td>
                                                 </tr>
                                                
                                                 <tr>
                                                     <td align="left" class="style3" colspan="2">
                                                         <strong>Datos del Almacén</strong></td>
                                                     <td align="left" class="style3">
-                                                        </td>
+                                                        &nbsp;</td>
+                                                    <td align="left" class="style31">
+                                                        &nbsp;</td>
+                                                    <td align="left" class="style3">
+                                                    </td>
                                                     <td align="left" class="style3">
                                                         </td>
                                                 </tr>
                                                 <tr>
-                                                    <td align="left" class="txt-box-estilo">
+                                                    <td align="left" class="style27">
                                                         Almacén</td>
-                                                    <td align="left" class="txt-box-estilo">
-                                                        <asp:TextBox ID="txtAlmacen" runat="server" ReadOnly="True"></asp:TextBox>
+                                                    <td align="left" class="style28">
+                                                        <asp:TextBox ID="txtAlmacen" runat="server" ReadOnly="True" Height="24px" 
+                                                            Width="385px"></asp:TextBox>
                                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        </td>
+                                                    <td align="left" class="style29">
                                                         <asp:LinkButton ID="btnBuscarAlmacen" runat="server" CssClass="lnk" 
                                                             onclick="btnBuscarAlmacen_Click">Buscar</asp:LinkButton>
                                                     </td>
-                                                    <td align="left" class="style1">
+                                                    <td align="left" class="style33">
                                                         &nbsp;</td>
-                                                    <td align="left" class="style1">
-                                                        &nbsp;</td>
+                                                    <td align="left" class="style29">
+                                                        Estado</td>
+                                                    <td align="left" class="style29">
+                                                        <asp:DropDownList ID="cboEstado" runat="server">
+                                                        </asp:DropDownList>
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td align="left" class="txt-box-estilo" colspan="2">
                                                         &nbsp;</td>
+                                                    <td align="left" class="txt-box-estilo">
+                                                        &nbsp;</td>
+                                                    <td align="left" class="style30">
+                                                        &nbsp;</td>
                                                     <td align="left" class="style1">
                                                         &nbsp;</td>
                                                     <td align="left" class="style1">
                                                         &nbsp;</td>
                                                 </tr>
                                                 <tr>
-                                                    <td align="left" class="txt-box-estilo">
+                                                    <td align="left" class="style38">
+                                                        &nbsp;</td>
+                                                    <td align="left" class="style23">
                                                         &nbsp;</td>
                                                     <td align="left" class="txt-box-estilo">
+                                                        &nbsp;</td>
+                                                    <td align="left" class="style30">
                                                         &nbsp;</td>
                                                     <td align="left" class="style1">
                                                         &nbsp;</td>
@@ -299,14 +336,14 @@
                                                 </tr>
                                                
                                                 <tr>
-                                                    <td align="left" class="txt-box-estilo">
+                                                    <td align="left" class="style38">
                                                         Items</td>
-                                                    <td align="left" class="txt-box-estilo" colspan="2">
+                                                    <td align="left" class="txt-box-estilo" colspan="4" width="40%">
                                                         <asp:GridView ID="gvItemsSeleccionados" runat="server" AllowPaging="True" 
                                                             AlternatingRowStyle-CssClass="alt" BorderStyle="None" BorderWidth="0px" CssClass="mGrid"
                                                             EmptyDataText="No ha seleccionado ningun item." GridLines="None" 
                                                             Height="16px" PagerStyle-CssClass="pgr" ShowHeaderWhenEmpty="True" ViewStateMode="Enabled" 
-                                                            Width="100%" AutoGenerateColumns="False" DataKeyNames="mve_det_c_iid" 
+                                                            Width="100%" AutoGenerateColumns="False" DataKeyNames="mve_c_iocdet_id" 
                                                             onrowcancelingedit="gvItemsSeleccionados_RowCancelingEdit" 
                                                             onrowediting="gvItemsSeleccionados_RowEditing" 
                                                             onrowupdating="gvItemsSeleccionados_RowUpdating" 
@@ -328,12 +365,14 @@
                                                                         <%# Eval("mve_c_ecant_recibida")%>
                                                                     </ItemTemplate>  
                                                                     <EditItemTemplate>
-                                                                        <asp:TextBox ID="txtCantidad" runat="server"></asp:TextBox>
+                                                                        <asp:TextBox ID="txtCantidad" runat="server"
+                                                                                Text='<%# Bind("mve_c_ecant_recibida") %> '></asp:TextBox>
                                                                     </EditItemTemplate>
                                                                 </asp:TemplateField>
                                                                 
 
-                                                                <asp:CommandField ShowEditButton="True" />
+                                                                <asp:CommandField ShowEditButton="True" CancelText="Cancelar" 
+                                                                    DeleteText="Eliminar" EditText="Editar" UpdateText="Actualizar" />
                                                             </Columns>
                                                             <PagerStyle CssClass="pgr" />
                                                         </asp:GridView>
@@ -342,13 +381,17 @@
                                                         &nbsp;</td>
                                                 </tr>
                                                 <tr>
-                                                    <td align="left" class="txt-box-estilo">
+                                                    <td align="left" class="style38">
                                                         &nbsp; Observaciones</td>
-                                                    <td align="left" class="txt-box-estilo">
+                                                    <td align="left" class="style23">
                                                         &nbsp;
                                                         <asp:TextBox ID="txtObs" runat="server" Height="54px" MaxLength="350" 
                                                             TextMode="MultiLine" Width="462px"></asp:TextBox>
                                                     </td>
+                                                    <td align="left" class="txt-box-estilo">
+                                                        &nbsp;</td>
+                                                    <td align="left" class="style34">
+                                                        &nbsp;</td>
                                                     <td align="left" class="txt-box-estilo">
                                                         &nbsp;
                                                     </td>
@@ -357,12 +400,16 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td align="left" class="txt-box-estilo">
+                                                    <td align="left" class="style38">
+                                                        &nbsp;
+                                                    </td>
+                                                    <td align="left" class="style23">
                                                         &nbsp;
                                                     </td>
                                                     <td align="left" class="txt-box-estilo">
-                                                        &nbsp;
-                                                    </td>
+                                                        &nbsp;</td>
+                                                    <td align="left" class="style34">
+                                                        &nbsp;</td>
                                                     <td align="left" class="txt-box-estilo">
                                                         &nbsp;
                                                     </td>
@@ -455,9 +502,9 @@
                                             </ItemTemplate> 
                                         </asp:TemplateField> 
                                         <asp:BoundField DataField="odc_c_vdescmoneda" HeaderText="Moneda" />
-                                        <asp:BoundField DataField="odc_c_zfecha" HeaderText="Fecha Entrega" />
+                                        <asp:BoundField DataField="odc_c_zfecharegistro" HeaderText="Fecha Entrega" />
                                         <asp:BoundField DataField="odc_c_etotal" HeaderText="Total" />
-                                        <asp:CommandField ShowSelectButton="True" />
+                                        <asp:CommandField ShowSelectButton="True" SelectText="Seleccionar" />
                                     </Columns>
                                     <PagerStyle CssClass="pgr" />
                                 </asp:GridView>
@@ -547,7 +594,7 @@
                                             <AlternatingRowStyle CssClass="alt" />
                                             <Columns>
                                                 <asp:BoundField DataField="alm_c_vdes" HeaderText="Almacén" />
-                                                <asp:CommandField ShowSelectButton="True" />
+                                                <asp:CommandField ShowSelectButton="True" SelectText="Seleccionar" />
                                             </Columns>
                                             <PagerStyle CssClass="pgr" />
                                         </asp:GridView>

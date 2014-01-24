@@ -175,24 +175,6 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento {
         protected global::System.Web.UI.WebControls.DropDownList cboUnidad;
         
         /// <summary>
-        /// cboFamilia control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cboFamilia;
-        
-        /// <summary>
-        /// cboSubFamilia control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cboSubFamilia;
-        
-        /// <summary>
         /// txtPrecioCompra control.
         /// </summary>
         /// <remarks>
@@ -209,6 +191,24 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPrecioVenta;
+        
+        /// <summary>
+        /// cboFamilia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cboFamilia;
+        
+        /// <summary>
+        /// cboSubFamilia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cboSubFamilia;
         
         /// <summary>
         /// upMensaje control.

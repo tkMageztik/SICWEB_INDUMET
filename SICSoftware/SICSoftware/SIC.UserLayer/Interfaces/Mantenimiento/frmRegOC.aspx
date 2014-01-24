@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
-    EnableEventValidation="false" CodeBehind="frmRegOC.aspx.cs" Inherits="SIC.UserLayer.Interfaces.Mantenimiento.frmRegOC" %>
+    EnableEventValidation="false" CodeBehind="frmRegOC.aspx.cs" Inherits="SIC.UserLayer.Interfaces.Mantenimiento.frmRegOC" Culture="auto" UICulture="auto"%>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <%@ Register Src="~/UserControl/wucMensajeAlerta.ascx" TagName="Mensaje" TagPrefix="uc1" %>
@@ -11,16 +11,13 @@
             font-family: Arial, Helvetica, sans-serif;
             font-size: 11.5px;
             color: #686168;
-            height: 59px;
+            height: 20px;
         }
-        .style3
+        .style2
         {
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 11.5px;
-            color: #686168;
-            width: 305px;
+            height: 20px;
         }
-        </style>
+    </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -167,8 +164,9 @@
                                         <asp:BoundField HeaderText="Moneda" DataField="odc_c_vdescmoneda" />
                                         <asp:BoundField HeaderText="Estado" DataField="odc_c_vdescestado" />
                                         <asp:BoundField HeaderText="Total" DataField="odc_c_etotal" />
-                                        <asp:CommandField ShowEditButton="True" />
-                                        <asp:CommandField ShowDeleteButton="True" />
+                                        <asp:CommandField ShowEditButton="True" CancelText="Cancelar" 
+                                            DeleteText="Eliminar" EditText="Modificar" />
+                                        <asp:CommandField ShowDeleteButton="True" DeleteText="Eliminar" />
                                     </Columns>
                                     <PagerStyle CssClass="pgr" />
                                 </asp:GridView>
@@ -248,7 +246,7 @@
                                                 <tr>
                                                     <td align="left" class="txt-box-estilo">
                                                         Rango de entrega</td>
-                                                    <td align="left" class="style1">
+                                                    <td align="left" class="style4">
                                                         <asp:TextBox ID="txtFecEnIni" runat="server" Width="95px"></asp:TextBox>
                                                         <asp:CalendarExtender ID="txtFecEnIni_CalendarExtender" runat="server" 
                                                             Format="dd/MM/yyyy" TargetControlID="txtFecEnIni" TodaysDateFormat="dd/MM/yyyy">
@@ -275,7 +273,7 @@
                                                     <td align="left" class="txt-box-estilo">
                                                         Clase
                                                     </td>
-                                                    <td align="left" class="style1">
+                                                    <td align="left" class="style4">
                                                         <asp:DropDownList ID="cboClaseOC" runat="server" AutoPostBack="True" 
                                                             Width="201px">
                                                         </asp:DropDownList>
@@ -289,6 +287,24 @@
                                                         <asp:DropDownList ID="cboMoneda" runat="server" Width="201px" 
                                                             AutoPostBack="True" onselectedindexchanged="cboMoneda_SelectedIndexChanged">
                                                         </asp:DropDownList>
+                                                    </td>
+                                                </tr>
+                                               
+                                                <tr>
+                                                    <td align="left" class="style1">
+                                                        Direccion de entrega</td>
+                                                    <td align="left" class="style2">
+                                                        <asp:TextBox ID="txtDirecEntrega" runat="server" BackColor="#CCCCCC" 
+                                                            BorderColor="Black" BorderStyle="None" BorderWidth="1px" ReadOnly="True" 
+                                                            Width="282px"></asp:TextBox>
+                                                    </td>
+                                                    <td align="left" class="style1">
+                                                        <asp:LinkButton ID="btnBuscarDireccion" runat="server" CssClass="lnk" 
+                                                            OnClick="btnBuscarDireccion_Click">Buscar</asp:LinkButton>
+                                                    </td>
+                                                    <td align="left" class="style1">
+                                                    </td>
+                                                    <td align="left" class="style1">
                                                     </td>
                                                 </tr>
                                                
@@ -320,12 +336,12 @@
                                                             <Columns>
                                                                 <asp:TemplateField HeaderText="Código">
                                                                     <ItemTemplate>
-                                                                        <%# Eval("SIC_T_ITEM.itm_c_ccodigo")%>
+                                                                        <%# Eval("codigoItem")%>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
                                                                 <asp:TemplateField HeaderText="Descripción">
                                                                     <ItemTemplate>
-                                                                        <%# Eval("SIC_T_ITEM.itm_c_vdescripcion")%>
+                                                                        <%# Eval("descItem")%>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
                                                                 <asp:TemplateField HeaderText="Cantidad">
@@ -355,10 +371,11 @@
                                                                         <%# Eval("odc_c_epreciototal")%>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
-                                                                <asp:CommandField ShowEditButton="True" />
-                                                                <asp:TemplateField HeaderText="Unit. Ref.">
+                                                                <asp:CommandField ShowEditButton="True" CancelText="Cancelar" 
+                                                                    DeleteText="Eliminar" EditText="Editar" UpdateText="Actualizar" />
+                                                                <asp:TemplateField HeaderText="Unit. Ref. (Soles)">
                                                                     <ItemTemplate>
-                                                                        <%# Eval("SIC_T_ITEM.itm_c_dprecio_compra ")%>
+                                                                        <%# Eval("precioReferenciaSoles")%>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
                                                             </Columns>
@@ -373,7 +390,7 @@
                                                 <tr>
                                                     <td align="left" class="txt-box-estilo">
                                                         &nbsp;</td>
-                                                    <td align="left" class="txt-box-estilo">
+                                                    <td align="left" class="style3">
                                                         &nbsp;</td>
                                                     <td align="left" class="txt-box-estilo">
                                                         &nbsp;</td>
@@ -385,21 +402,22 @@
                                                  <tr>
                                                      <td align="left" class="txt-box-estilo">
                                                          Tasa de Cambio</td>
-                                                     <td align="left" class="txt-box-estilo">
+                                                     <td align="left" class="style3">
                                                          <asp:Label ID="lblTC" runat="server"></asp:Label>
                                                      </td>
                                                      <td align="left" class="txt-box-estilo">
                                                          &nbsp;</td>
                                                      <td align="left" class="txt-box-estilo">
-                                                         &nbsp;</td>
+                                                         Percepcio aplica cuando pasa:</td>
                                                      <td align="left" class="txt-box-estilo">
-                                                         &nbsp;</td>
+                                                         <asp:Label ID="lblPercepMax" runat="server"></asp:Label>
+                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td align="left" class="txt-box-estilo">
                                                         &nbsp;
                                                     </td>
-                                                    <td align="left" class="txt-box-estilo">
+                                                    <td align="left" class="style3">
                                                         &nbsp;
                                                     </td>
                                                     <td align="left" class="txt-box-estilo">
@@ -421,8 +439,11 @@
                                                     <td align="left" class="txt-box-estilo">
                                                         &nbsp;</td>
                                                      <td align="left" class="txt-box-estilo">
-                                                         Percepción (<asp:Label ID="lblPercepcion" runat="server" Text="2%"></asp:Label>
-                                                         )</td>
+                                                         <asp:CheckBox ID="chkPercepcion" runat="server" AutoPostBack="True" 
+                                                             oncheckedchanged="chkPercepcion_CheckedChanged" />Percepción (<asp:Label ID="lblPercepcion" runat="server" Text="2%"></asp:Label>
+                                                         )
+                                                         
+                                                     </td>
                                                     <td align="left" class="txt-box-estilo">
                                                         <asp:Label ID="lblPercepcionCal" runat="server"></asp:Label>
                                                     </td>
@@ -431,7 +452,7 @@
                                                     <td align="left" class="txt-box-estilo">
                                                         Sub Total
                                                     </td>
-                                                    <td align="left" class="txt-box-estilo">
+                                                    <td align="left" class="style3">
                                                         <asp:Label ID="lblSubTotal" runat="server" Text="[SubTotal]"></asp:Label>
                                                     </td>
                                                     <td align="left" class="txt-box-estilo">
@@ -447,7 +468,7 @@
                                                     <td align="left" class="txt-box-estilo">
                                                         &nbsp;
                                                     </td>
-                                                    <td align="left" class="txt-box-estilo">
+                                                    <td align="left" class="style3">
                                                         &nbsp;
                                                     </td>
                                                     <td align="left" class="txt-box-estilo">
@@ -652,7 +673,10 @@
                                                                 <td align="center">
                                                                     &nbsp;</td>
                                                                 <td align="center">
-                                                                    &nbsp;</td>
+                                                                    <asp:Button ID="btnRgresarDesdeProveedor" runat="server" 
+                                                                        CssClass="button small gris" onclick="btnRgresarDesdeProveedor_Click" 
+                                                                        Style="width: 100px; height: 26px;" Text="Regresar" />
+                                                                </td>
                                                             </tr>
                                                         </table>
                                                     </td>
@@ -677,7 +701,92 @@
                                     <Columns>
                                         <asp:BoundField DataField="cli_c_vdoc_id" HeaderText="RUC" />
                                         <asp:BoundField DataField="cli_c_vraz_soc" HeaderText="Razón Social" />
-                                        <asp:CommandField ShowSelectButton="True" />
+                                        <asp:CommandField ShowSelectButton="True" SelectText="Seleccionar" />
+                                    </Columns>
+                                    <PagerStyle CssClass="pgr" />
+                                </asp:GridView>
+                                </ContentTemplate>
+                                </asp:UpdatePanel>
+                                
+                            </td>
+                        </tr>
+                    </table>
+            </asp:View>
+            <asp:View ID="vwDireccion" runat=
+            "server">
+            <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td class="tit-nav-paginas" align="left">
+                                MANTENIMIENTO &gt; ORDEN DE COMPRA &gt; SELECCIONAR DIRECCION DE ENTREGA</td>
+                        </tr>
+                        <tr>
+                           <td class="txt2" align="left" colspan="2">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <td align="left" class="box-estilo01">
+                                            <table width="100%">
+                                                <tr>
+                                                    <td>
+                                                        <table>
+                                                            <tr>
+                                                                <td class="txt-box-estilo">
+                                                                    
+                                                                </td>
+                                                                <td>
+                                                                    
+                                                                </td>
+                                                                <td style="width: 20px">
+                                                                </td>
+                                                                <td class="txt-box-estilo">
+                                                                    
+                                                                </td>
+                                                                <td>
+                                                                    
+                                                                </td>
+                                                                <td style="width: 20px">
+                                                                </td>
+                                                                <td>
+                                                                </td>
+                                                                <td>
+                                                                    &nbsp;
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                    <td align="right">
+                                                        <table>
+                                                            <tr>
+                                                                <td align="center">
+                                                                    &nbsp;</td>
+                                                                <td align="center">
+                                                                    <asp:Button ID="btnRegresarDireccion" runat="server" 
+                                                                        CssClass="button small gris" onclick="btnRegresarDireccion_Click" 
+                                                                        Style="width: 100px; " Text="Regresar" />
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        <tr>
+                            <td align="left" class="tit-nav-paginas">
+                                <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+                                <ContentTemplate>
+                                <asp:GridView ID="gvDireccion" runat="server" BorderStyle="None"
+                                    GridLines="None" AllowPaging="True" Width="100%" CssClass="mGrid" PagerStyle-CssClass="pgr"
+                                    AlternatingRowStyle-CssClass="alt" ShowHeaderWhenEmpty="True" EmptyDataText="No hay datos disponibles."
+                                    PageSize="15" BorderWidth="0px" AutoGenerateColumns="False" 
+                                        DataKeyNames="emp_dir_c_iid" 
+                                        onpageindexchanging="gvDireccion_PageIndexChanging" 
+                                        onselectedindexchanged="gvDireccion_SelectedIndexChanged" >
+                                    <AlternatingRowStyle CssClass="alt" />
+                                    <Columns>
+                                        <asp:BoundField DataField="emp_dir_c_vdireccion" HeaderText="DIRECCION" />
+                                        <asp:CommandField ShowSelectButton="True" SelectText="Seleccionar" />
                                     </Columns>
                                     <PagerStyle CssClass="pgr" />
                                 </asp:GridView>

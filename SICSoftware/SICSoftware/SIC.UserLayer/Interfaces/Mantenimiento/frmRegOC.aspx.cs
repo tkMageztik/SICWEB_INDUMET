@@ -21,6 +21,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         private ClienteBL _cliente = null;
         private TasaCambioBL _tasaCambio = null;
         private IgvBL _igv = null;
+        private EmpresaBL _empresa = null;
 
         private TipoOperacion EscenarioOC
         {
@@ -76,6 +77,12 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             set { ViewState["vsOCTC"] = value; }
         }
 
+        private bool percepcionactive
+        {
+            get { return (bool)(ViewState["vsOCPercepcionActive"] == null ? false : ViewState["vsOCPercepcionActive"]); }
+            set { ViewState["vsOCPercepcionActive"] = value; }
+        }
+
         #endregion
 
         #region Eventos
@@ -87,6 +94,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             _cliente = new ClienteBL();
             _tasaCambio = new TasaCambioBL();
             _igv = new IgvBL();
+            _empresa = new EmpresaBL();
             EscenarioOC = TipoOperacion.Ninguna;
         }
 
@@ -103,6 +111,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 this.ListarCombosEstadoFiltro();
                 this.ListarOrdenCompra();
                 this.ListarComboClase();
+                this.ListarDirecciones();
                 gvItemsSeleccionados.DataSource = null;
                 gvItemsSeleccionados.DataBind();
                 this.ObtenerDatosImpuesto();
@@ -244,6 +253,15 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                         {
                             item.odc_c_ecantidad = cantidadNueva;
                             item.odc_c_epreciounit = precioNuevo;
+                            if (cboMoneda.SelectedIndex == 0)
+                            {
+                                item.precioUnitarioSoles = precioNuevo;
+                            }
+                            else
+                            {
+                                item.precioUnitarioSoles = precioNuevo * this.TasaCambio;
+;
+                            }
                             item.odc_c_epreciototal = item.odc_c_epreciototal * cantidadNueva;
                             break;
                         }
@@ -527,10 +545,10 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             this.OCNuevo.odc_c_zfecharegistro = DateTime.Now;
             this.gvItemsSeleccionados.DataSource = this.OCNuevo.SIC_T_ORDEN_DE_COMPRA_DET;
             this.EscenarioOC = TipoOperacion.Creacion;
-
+            this.chkPercepcion.Checked = false;
 
             this.lblAccion.Text = "Nuevo";
-            this.lblFecha.Text = this.OCNuevo.odc_c_zfecharegistro.Value.ToString("dd/MM/yyyy hh:mm:ss");
+            this.lblFecha.Text = this.OCNuevo.odc_c_zfecharegistro.Value.ToString("dd/MM/yyyy");
 
             this.ItemsSeleccionadosPreliminar = new List<int>();
             this.RecalcularMontos(this.OCNuevo);
@@ -539,8 +557,10 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             this.txtObs.Text = string.Empty;
             this.cboClaseOC.SelectedIndex = -1;
 
-            this.ObtenerTasaCambio();
-            this.ObtenerTasaCambio();
+            this.txtFecEnIni.Text = string.Empty;
+            this.txtFecEntFin.Text = string.Empty;
+
+            this.ObtenerTasaCambio(this.OCNuevo.odc_c_zfecharegistro.Value);
             this.upGeneral.Update();
         }
 
@@ -553,6 +573,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             this.txtNumero.Enabled = false;
 
             this.OCSeleccionado = _ordenCompra.ObtenerOrdenCompra(id);
+
             String[] res = OCSeleccionado.odc_c_vcodigo.Split('-');
             if (res.Length == 2)
             {
@@ -562,13 +583,14 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
             if (this.OCSeleccionado.odc_c_zfecharegistro.HasValue)
             {
-                this.lblFecha.Text = this.OCSeleccionado.odc_c_zfecharegistro.Value.ToString("dd/MM/yyyy hh:mmm:ss");
+                this.lblFecha.Text = this.OCSeleccionado.odc_c_zfecharegistro.Value.ToString("dd/MM/yyyy");
             }
 
-            this.gvItemsSeleccionados.DataSource = this.OCSeleccionado.SIC_T_ORDEN_DE_COMPRA_DET;
-            this.gvItemsSeleccionados.DataBind();
+
             this.EscenarioOC = TipoOperacion.Modificacion;
             this.txtObs.Text = this.OCSeleccionado.odc_c_vobservacion;
+            this.txtDirecEntrega.Text = this.OCSeleccionado.odc_c_vdireccion;
+            this.chkPercepcion.Checked = OCSeleccionado.odc_c_bactivo;
 
             if (OCSeleccionado.odc_c_zfechaentrega_ini.HasValue)
             {
@@ -586,9 +608,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             else
             {
                 this.txtFecEntFin_CalendarExtender.SelectedDate = DateTime.Today;
-            }
-
-            
+            }            
 
             this.OCSeleccionado.odc_c_eigv = this.igv;
             this.OCSeleccionado.odc_c_epercepcion = this.percepcion;
@@ -614,7 +634,38 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             {
                 seleccion.Selected = true;
             }
-            this.ObtenerTasaCambio();
+            this.ObtenerTasaCambio(this.OCSeleccionado.odc_c_zfecharegistro.Value );
+
+            foreach (var item in OCSeleccionado.SIC_T_ORDEN_DE_COMPRA_DET)
+            {
+                item.codigoItem = item.SIC_T_ITEM.itm_c_ccodigo;
+                item.descItem = item.SIC_T_ITEM.itm_c_vdescripcion;
+
+                if (item.SIC_T_ITEM != null && item.SIC_T_ITEM.itm_c_dprecio_compra.HasValue)
+                {
+                    item.precioReferenciaSoles = item.SIC_T_ITEM.itm_c_dprecio_compra.Value;                 
+                }
+                else
+                {
+                    item.precioReferencia = 0;
+                }
+
+                if (cboMoneda.SelectedIndex == 0)
+                {
+                    item.precioReferencia = item.precioReferenciaSoles;
+                    item.precioUnitarioSoles = item.odc_c_epreciounit.HasValue ? item.odc_c_epreciounit.Value : 0;
+                }
+                else
+                {
+                    item.precioReferencia = Math.Round(item.precioReferenciaSoles / this.TasaCambio,2);
+                    item.precioUnitarioSoles = item.odc_c_epreciounit.HasValue ? 
+                        Math.Round(item.odc_c_epreciounit.Value * this.TasaCambio,2) : 0;
+                }   
+
+            }
+
+            this.gvItemsSeleccionados.DataSource = this.OCSeleccionado.SIC_T_ORDEN_DE_COMPRA_DET;
+            this.gvItemsSeleccionados.DataBind();
 
             cboClaseOC.SelectedIndex = -1;
             seleccion = cboClaseOC.Items.FindByText(OCSeleccionado.odc_c_clase_des);
@@ -688,6 +739,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
             mvOC.ActiveViewIndex = 1;
             upGeneral.Update();
+
         }
 
         /// <summary>
@@ -771,19 +823,62 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 ordenDeCompra.SIC_T_ORDEN_DE_COMPRA_DET.Remove(item);
             }
 
+            decimal precioReferencia, precioReferenciaSoles;
             // Ahora agregamos los nuevos
             foreach (int idItem in listaPrel)
             {
                 if (!ordenDeCompra.SIC_T_ORDEN_DE_COMPRA_DET.Where(x => x.odc_c_iitemid == idItem).Any())
                 {
                     SIC_T_ITEM itemEncontrado = _item.ObtenerItemPorIdNoContext(idItem);
+                    if (itemEncontrado.itm_c_dprecio_compra.HasValue)
+                    {
+                        precioReferencia = (cboMoneda.SelectedIndex == 0 ? itemEncontrado.itm_c_dprecio_compra.Value
+                                                                        : Math.Round(itemEncontrado.itm_c_dprecio_compra.Value / this.TasaCambio));
+                        precioReferenciaSoles = itemEncontrado.itm_c_dprecio_compra.Value;
+                    }
+                    else
+                    {
+                        precioReferencia = 0;
+                        precioReferenciaSoles = 0;
+                    }
+
                     SIC_T_ORDEN_DE_COMPRA_DET nuevoDetalle = new SIC_T_ORDEN_DE_COMPRA_DET();
                     nuevoDetalle.odc_c_ecantidad = 1;
                     nuevoDetalle.odc_c_iitemid = itemEncontrado.itm_c_iid;
-                    nuevoDetalle.odc_c_epreciounit= itemEncontrado.itm_c_dprecio_compra;
-                    nuevoDetalle.odc_c_epreciototal = itemEncontrado.itm_c_dprecio_compra;
-                    nuevoDetalle.SIC_T_ITEM = itemEncontrado;
+                    nuevoDetalle.odc_c_epreciounit = precioReferencia;
+                    nuevoDetalle.odc_c_epreciototal = precioReferencia;
+                    nuevoDetalle.precioReferencia = precioReferencia;
+                    nuevoDetalle.precioReferenciaSoles = precioReferenciaSoles;
+                    nuevoDetalle.precioUnitarioSoles = itemEncontrado.itm_c_dprecio_compra.HasValue ? itemEncontrado.itm_c_dprecio_compra.Value
+                                                                                                          : 0;
+                    nuevoDetalle.codigoItem = itemEncontrado.itm_c_ccodigo;
+                    nuevoDetalle.descItem = itemEncontrado.itm_c_vdescripcion;
+
+                    //nuevoDetalle.SIC_T_ITEM = itemEncontrado;
                     ordenDeCompra.SIC_T_ORDEN_DE_COMPRA_DET.Add(nuevoDetalle);
+                }
+            }
+
+            gvItemsSeleccionados.DataSource = ordenDeCompra.SIC_T_ORDEN_DE_COMPRA_DET;
+            gvItemsSeleccionados.DataBind();
+        }
+
+        private void CambiarMonedaListaItem(SIC_T_ORDEN_DE_COMPRA ordenDeCompra)
+        {
+            bool bSoles = cboMoneda.SelectedIndex == 0;
+            foreach (var item in ordenDeCompra.SIC_T_ORDEN_DE_COMPRA_DET)
+            {
+                if (bSoles)
+                {
+                    item.odc_c_epreciounit = item.precioUnitarioSoles;
+                    item.precioReferencia = item.precioReferenciaSoles;
+                    item.odc_c_epreciototal = item.odc_c_epreciounit * item.odc_c_ecantidad; 
+                }
+                else
+                {
+                    item.odc_c_epreciounit = Math.Round(item.precioUnitarioSoles / this.TasaCambio, 2);
+                    item.precioReferencia = Math.Round(item.precioReferenciaSoles / this.TasaCambio, 2);
+                    item.odc_c_epreciototal = item.odc_c_epreciounit * item.odc_c_ecantidad; 
                 }
             }
 
@@ -800,7 +895,8 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         {
             decimal subTotal = 0M;
             String simbolo = "S/.";
-            if (cboMoneda.SelectedIndex == 0)
+            bool bSoles = cboMoneda.SelectedIndex == 0;
+            if (bSoles)
             {
                 simbolo = "S/.";
             }
@@ -816,15 +912,15 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                     subTotal += item.odc_c_epreciototal.Value;
                 }
             }
-
-            ordenDeCompra.odc_c_esubtotal = Math.Round(subTotal / this.TasaCambio,2);
+            
+            ordenDeCompra.odc_c_esubtotal =subTotal;
             ordenDeCompra.odc_c_eigv = this.igv ;
-            ordenDeCompra.odc_c_eigvcal = Math.Round(subTotal * ordenDeCompra.odc_c_eigv.Value / this.TasaCambio,2);
+            ordenDeCompra.odc_c_eigvcal = Math.Round(subTotal * ordenDeCompra.odc_c_eigv.Value ,2);
             ordenDeCompra.odc_c_epercepcion = this.percepcion ;
 
-            if (subTotal > this.percepcionmax)
+            if (chkPercepcion.Checked && subTotal > this.percepcionmax)
             {
-                ordenDeCompra.odc_c_epercepcioncal = Math.Round(subTotal * ordenDeCompra.odc_c_epercepcion.Value / this.TasaCambio, 2);
+                ordenDeCompra.odc_c_epercepcioncal = Math.Round(subTotal * ordenDeCompra.odc_c_epercepcion.Value, 2);
             }
             else
             {
@@ -834,10 +930,19 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             ordenDeCompra.odc_c_etotal = ordenDeCompra.odc_c_esubtotal + ordenDeCompra.odc_c_eigvcal 
                                         + ordenDeCompra.odc_c_epercepcioncal ;
 
+            this.lblPercepMax.Text = simbolo + " " + (bSoles?this.percepcionmax:Math.Round(this.percepcionmax/this.TasaCambio, 2));
+
             this.lblSubTotal.Text = simbolo + " " + ordenDeCompra.odc_c_esubtotal.Value.ToString("F2", CultureInfo.InvariantCulture);
             this.lblTotal.Text = simbolo + " " + ordenDeCompra.odc_c_etotal.Value.ToString("F2", CultureInfo.InvariantCulture);
             this.lblIGVCal.Text = simbolo + " " + ordenDeCompra.odc_c_eigvcal.Value.ToString("F2", CultureInfo.InvariantCulture);
-            this.lblPercepcionCal.Text = simbolo + " " + ordenDeCompra.odc_c_epercepcioncal.Value.ToString("F2", CultureInfo.InvariantCulture);
+            if (chkPercepcion.Checked)
+            {
+                this.lblPercepcionCal.Text = simbolo + " " + ordenDeCompra.odc_c_epercepcioncal.Value.ToString("F2", CultureInfo.InvariantCulture);
+            }
+            else
+            {
+                this.lblPercepcionCal.Text = "-";
+            }
         }
 
         /// <summary>
@@ -889,6 +994,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             oc.odc_c_vobservacion = txtObs.Text;
             oc.odc_c_clase_iid = int.Parse(this.cboEstado.SelectedValue);
             oc.odc_c_clase_des = this.cboEstado.SelectedItem.Text.Trim();
+            oc.odc_c_bpercepcion = this.chkPercepcion.Checked;
 
             SIC_T_USUARIO usuarioActual = Session["USUARIO"] as SIC_T_USUARIO;
             if (usuarioActual != null)
@@ -936,6 +1042,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             oc.odc_c_vobservacion = txtObs.Text;
             oc.odc_c_clase_iid = int.Parse(this.cboEstado.SelectedValue);
             oc.odc_c_clase_des = this.cboEstado.SelectedItem.Text.Trim();
+            oc.odc_c_bpercepcion = this.chkPercepcion.Checked;
 
             SIC_T_USUARIO usuarioActual = Session["USUARIO"] as SIC_T_USUARIO;
             if (usuarioActual != null)
@@ -1001,6 +1108,11 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 Mensaje("Debe seleccionar un proveedor.", "../Imagenes/warning.png");
                 return false;
             }
+            else if (ordenDeCompra.odc_c_idireccion <= 0)
+            {
+                Mensaje("Debe seleccionar una dirección.", "../Imagenes/warning.png");
+                return false;
+            }
             //else if (DateTime.Compare(calFechaEntrega.SelectedDate, DateTime.Today) < 0)
             //{
             //    Mensaje("Debe ingresar una fecha válida.", "../Imagenes/warning.png");
@@ -1038,8 +1150,14 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 Mensaje("La fecha de entrega final debe ser posterior a la fecha de entrega inicial.", "../Imagenes/warning.png");
                 return false;
             }
+            else if (fechaInicio.Date < ordenDeCompra.odc_c_zfecharegistro.Value.Date)
+            {
+                Mensaje("La fecha de entrega inicial debe ser el mismo dia o despues de la fecha de registro.", "../Imagenes/warning.png");
+                return false;
+
+            }
             else if (this.EscenarioOC == TipoOperacion.Creacion
-                && (null == _ordenCompra.ObtenerORdenCompraPorCodigo(this.txtSerie.Text + "-" + this.txtNumero.Text)))
+                && (null != _ordenCompra.ObtenerORdenCompraPorCodigo(this.txtSerie.Text + "-" + this.txtNumero.Text)))
             {
                 Mensaje("El codigo ya existe.", "../Imagenes/warning.png");
                 return false;
@@ -1105,43 +1223,41 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
         protected void cboEstado_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ObtenerTasaCambio();
+            if (EscenarioOC == TipoOperacion.Creacion)
+            {
+                ObtenerTasaCambio(this.OCNuevo.odc_c_zfecharegistro.HasValue ?
+                                    this.OCNuevo.odc_c_zfecharegistro.Value : DateTime.Today);
+            }
+            else if(EscenarioOC == TipoOperacion.Modificacion)
+            {
+                ObtenerTasaCambio(this.OCSeleccionado.odc_c_zfecharegistro.HasValue ?
+                                    this.OCSeleccionado.odc_c_zfecharegistro.Value : DateTime.Today);
+            }
         }
 
-        private void ObtenerTasaCambio()
+        private void ObtenerTasaCambio(DateTime fechaTC)
         {
-            if (cboMoneda.SelectedIndex == 0)
-            {
-                this.TasaCambio = 1.0M;
-                lblTC.Text = "-";
+            var value = this._tasaCambio.ObtenerTasaCambio(fechaTC); 
 
-            }
-            else
+            if (value != null && value.tsc_c_ecompra.HasValue)
             {
-                var value = this._tasaCambio.ObtenerTasaCambio(DateTime.Today); ;
-
-                if (value != null && value.tsc_c_ecompra.HasValue)
-                {
-                    this.TasaCambio = value.tsc_c_ecompra.Value;
-                }
-                lblTC.Text = value.tsc_c_ecompra.Value.ToString();
+                this.TasaCambio = value.tsc_c_ecompra.Value;
             }
-            
+            lblTC.Text = value.tsc_c_ecompra.Value.ToString();        
         }
 
         protected void cboMoneda_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
+        {            
             if (this.EscenarioOC == TipoOperacion.Creacion)
             {
-                this.ObtenerTasaCambio();
-                this.RecalcularMontos(this.OCNuevo);
+                CambiarMonedaListaItem(this.OCNuevo);
+                RecalcularMontos(this.OCNuevo);
                 this.upGeneral.Update();
             }
             else if(this.EscenarioOC == TipoOperacion.Modificacion)
             {
-                this.ObtenerTasaCambio();
-                this.RecalcularMontos(this.OCSeleccionado);
+                CambiarMonedaListaItem(this.OCSeleccionado);
+                RecalcularMontos(this.OCSeleccionado);
                 this.upGeneral.Update();
             }
         }
@@ -1161,7 +1277,76 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                                                        );
             }
         }
-        
+
+        protected void chkPercepcion_CheckedChanged(object sender, EventArgs e)
+        {
+            percepcionactive = chkPercepcion.Checked;
+            if (EscenarioOC == TipoOperacion.Creacion)
+            {
+
+                RecalcularMontos(this.OCNuevo);
+            }
+            else if (EscenarioOC == TipoOperacion.Modificacion)
+            {
+                RecalcularMontos(this.OCSeleccionado);
+            }
+        }
+
+        protected void gvDireccion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int id =(int) this.gvDireccion.DataKeys[gvDireccion.SelectedIndex].Value;
+            var res = _empresa.ObtenerDireccionEmpresa(id);
+
+            if(res!=null)
+            {
+                if (this.EscenarioOC == TipoOperacion.Creacion)
+                {
+                    this.OCNuevo.odc_c_idireccion = res.emp_dir_c_iid;
+                    this.OCNuevo.odc_c_vdireccion = res.emp_dir_c_vdireccion;
+                }
+                else if (this.EscenarioOC == TipoOperacion.Modificacion)
+                {
+                    this.OCSeleccionado.odc_c_idireccion = res.emp_dir_c_iid;
+                    this.OCSeleccionado.odc_c_vdireccion = res.emp_dir_c_vdireccion;
+                
+                }
+                this.txtDirecEntrega.Text = res.emp_dir_c_vdireccion;
+            }
+            mvOC.ActiveViewIndex = 1;
+            upGeneral.Update();
+        }
+
+
+        protected void gvDireccion_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvDireccion.PageIndex = e.NewPageIndex;
+            this.ListarDirecciones();
+        }
+
+        private void ListarDirecciones()
+        {
+            gvDireccion.DataSource = _empresa.ListarDireccionEmpresa();
+            gvDireccion.DataBind();
+        }
+
+        protected void btnRgresarDesdeProveedor_Click(object sender, EventArgs e)
+        {
+            mvOC.ActiveViewIndex = 1;
+            upGeneral.Update();
+        }
+
+        protected void btnRegresarDireccion_Click(object sender, EventArgs e)
+        {
+            mvOC.ActiveViewIndex = 1;
+            upGeneral.Update();
+        }
+
+        protected void btnBuscarDireccion_Click(object sender, EventArgs e)
+        {
+            mvOC.ActiveViewIndex = 4;
+            upGeneral.Update();
+        }
+
               
     }
 }

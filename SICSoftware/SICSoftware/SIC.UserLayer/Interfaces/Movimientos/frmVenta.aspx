@@ -3,26 +3,59 @@
 <%@ Register Src="~/UserControl/wucMensajeAlerta.ascx" TagName="Mensaje" TagPrefix="uc1" %>
 <%@ Register Src="~/UserControl/wucMensajeAlerta2.ascx" TagName="Mensaje" TagPrefix="uc2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
-    <style type="text/css">
-        .style1
-        {
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 11.5px;
-            color: #686168;
-            height: 59px;
-        }
-        .style3
-        {
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 11.5px;
-            color: #686168;
-            width: 305px;
-        }
-    </style>
+    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
    <asp:UpdatePanel ID="upGeneral" UpdateMode="Conditional" runat="server">
         <ContentTemplate>
+        <script type="text/javascript">
+            var TotalChkBx;
+            var Counter;
+
+            window.onload = function () {
+                //Get total no. of CheckBoxes in side the GridView.
+                TotalChkBx = parseInt('<%= this.gvListaItem.Rows.Count %>');
+
+                //Get total no. of checked CheckBoxes in side the GridView.
+                Counter = 0;
+            }
+
+            function HeaderClick(CheckBox) {
+                //Get target base & child control.
+                var TargetBaseControl =
+       document.getElementById('<%= this.gvListaItem.ClientID %>');
+                var TargetChildControl = "chkSelect";
+
+                //Get all the control of the type INPUT in the base control.
+                var Inputs = TargetBaseControl.getElementsByTagName("input");
+
+                //Checked/Unchecked all the checkBoxes in side the GridView.
+                for (var n = 0; n < Inputs.length; ++n)
+                    if (Inputs[n].type == 'checkbox' &&
+                Inputs[n].id.indexOf(TargetChildControl, 0) >= 0)
+                        Inputs[n].checked = CheckBox.checked;
+
+                //Reset Counter
+                Counter = CheckBox.checked ? TotalChkBx : 0;
+            }
+
+            function ChildClick(CheckBox, HCheckBox) {
+                //get target control.
+                var HeaderCheckBox = document.getElementById(HCheckBox);
+
+                //Modifiy Counter; 
+                if (CheckBox.checked && Counter < TotalChkBx)
+                    Counter++;
+                else if (Counter > 0)
+                    Counter--;
+
+                //Change state of the header CheckBox.
+                if (Counter < TotalChkBx)
+                    HeaderCheckBox.checked = false;
+                else if (Counter == TotalChkBx)
+                    HeaderCheckBox.checked = true;
+            }
+</script>
             <asp:MultiView ID="mvOC" runat="server" ActiveViewIndex="0">
                 <asp:View ID="View1" runat="server">
                     <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
@@ -92,7 +125,7 @@
                                     GridLines="None" AllowPaging="True" Width="100%" CssClass="mGrid" PagerStyle-CssClass="pgr"
                                     AlternatingRowStyle-CssClass="alt" ShowHeaderWhenEmpty="True" EmptyDataText="No hay datos disponibles."
                                     PageSize="15" BorderWidth="0px" DataKeyNames="ven_c_iid" 
-                                        onrowediting="gvListaVenta" onrowdeleting="gvListaVenta_RowDeleting" 
+                                        onrowediting="gvListaVenta_RowEditing" onrowdeleting="gvListaVenta_RowDeleting" 
                                         onpageindexchanging="gvListaVenta_PageIndexChanging">
                                     <AlternatingRowStyle CssClass="alt" />
                                     <Columns>
@@ -103,9 +136,10 @@
                                         </asp:TemplateField>
                                         <asp:BoundField HeaderText="Moneda" DataField="ven_c_vdescmoneda" />
                                         <asp:BoundField HeaderText="Fecha Entrega" DataField="ven_c_zfecha" />
-                                        <asp:BoundField HeaderText="Total" DataField="ven_c_dtotal" />
-                                        <asp:CommandField ShowEditButton="True" />
-                                        <asp:CommandField ShowDeleteButton="True" />
+                                        <asp:BoundField HeaderText="Total" DataField="ven_c_etotal" />
+                                        <asp:CommandField ShowEditButton="True" CancelText="Cancelar" 
+                                            DeleteText="Eliminar" EditText="Editar" />
+                                        <asp:CommandField ShowDeleteButton="True" DeleteText="Eliminar" />
                                     </Columns>
                                     <PagerStyle CssClass="pgr" />
                                 </asp:GridView>
@@ -155,33 +189,33 @@
                                                             BorderColor="Black" BorderStyle="None" BorderWidth="1px" ReadOnly="True"></asp:TextBox>
                                                         
                                                     </td>
-                                                    <td align="left" class="txt-box-estilo">
+                                                    <td>
                                                         <asp:LinkButton ID="btnBuscarProveedor" runat="server" CssClass="lnk" 
                                                             OnClick="btnBuscarProveedor_Click">Buscar</asp:LinkButton>
+                                                    </td>
+                                                    <td class="style1">
+                                                        Fecha</td>
+                                                    <td align="left" class="txt-box-estilo">
+                                                        <asp:Label ID="lblFechaRegistro" runat="server"></asp:Label>
                                                     </td>
                                                     <td align="left" class="txt-box-estilo">
                                                         &nbsp;</td>
                                                 </tr>
                                                 <tr>
-                                                    <td align="left" class="txt-box-estilo" rowspan="2">
-                                                        Fecha Entrega
+                                                    <td align="left" class="txt-box-estilo">
+                                                        Moneda
                                                     </td>
-                                                    <td align="left" class="style1" rowspan="2">
-                                                        <asp:Calendar ID="calFechaEntrega" runat="server"></asp:Calendar>
+                                                    <td align="left" class="style1">
+                                                        <asp:DropDownList ID="cboMoneda" runat="server" AutoPostBack="True" 
+                                                            onselectedindexchanged="cboMoneda_SelectedIndexChanged" Width="201px">
+                                                        </asp:DropDownList>
                                                     </td>
+                                                    <td align="left" class="style1">
+                                                        &nbsp;</td>
                                                     <td align="left" class="style1">
                                                         Tipo Documento</td>
                                                     <td align="left" class="style1">
                                                         <asp:DropDownList ID="cboTipoDocumento" runat="server" Width="201px">
-                                                        </asp:DropDownList>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td align="left" class="style1">
-                                                        Moneda
-                                                    </td>
-                                                    <td align="left" class="style1">
-                                                        <asp:DropDownList ID="cboMoneda" runat="server" Width="201px">
                                                         </asp:DropDownList>
                                                     </td>
                                                 </tr>
@@ -190,7 +224,7 @@
                                                     <td align="left" class="txt-box-estilo">
                                                         Items
                                                     </td>
-                                                    <td align="left" class="txt-box-estilo" colspan="2">
+                                                    <td align="left" class="txt-box-estilo" colspan="3">
                                                         <asp:GridView ID="gvItemsSeleccionados" runat="server" AllowPaging="True" 
                                                             AlternatingRowStyle-CssClass="alt" BorderStyle="None" BorderWidth="0px" CssClass="mGrid"
                                                             EmptyDataText="No ha seleccionado ningun item." GridLines="None" 
@@ -203,29 +237,48 @@
                                                             <Columns>
                                                                 <asp:TemplateField HeaderText="Código">
                                                                     <ItemTemplate>
-                                                                        <%# Eval("SIC_T_ITEM.itm_c_ccodigo")%>
-                                                                    </ItemTemplate>                             
+                                                                        <%# Eval("codigoItem")%>
+                                                                    </ItemTemplate>
                                                                 </asp:TemplateField>
                                                                 <asp:TemplateField HeaderText="Descripción">
-                                                                <ItemTemplate>
-                                                                        <%# Eval("SIC_T_ITEM.itm_c_vdescripcion")%>
-                                                                </ItemTemplate>  
+                                                                    <ItemTemplate>
+                                                                        <%# Eval("descItem")%>
+                                                                    </ItemTemplate>
                                                                 </asp:TemplateField>
                                                                 <asp:TemplateField HeaderText="Cantidad">
                                                                 <ItemTemplate>
                                                                         <%# Eval("ven_det_c_ecantidad")%>
                                                                 </ItemTemplate>  
                                                                     <EditItemTemplate>
-                                                                        <asp:TextBox ID="txtCantidad" runat="server"></asp:TextBox>
+                                                                        <asp:TextBox ID="txtCantidad" runat="server"
+                                                                        Text='<%# Bind("ven_det_c_ecantidad") %> '>
+                                                                        </asp:TextBox>
                                                                     </EditItemTemplate>
                                                                 </asp:TemplateField>
-                                                                <asp:TemplateField HeaderText="Precio">
+                                                                <asp:TemplateField HeaderText="Unitario">
                                                                 <ItemTemplate>
-                                                                        <%# Eval("ven_det_c_eprecio")%>
+                                                                        <%# Eval("ven_det_c_epreciounit")%>
+                                                                </ItemTemplate>  
+                                                                <EditItemTemplate>
+                                                                        <asp:TextBox ID="txtPrecio" runat="server"
+                                                                            Text='<%# Bind("ven_det_c_epreciounit") %> '>
+                                                                        </asp:TextBox>
+                                                                </EditItemTemplate>
+                                                                </asp:TemplateField>
+
+                                                                <asp:TemplateField HeaderText="CxU">
+                                                                <ItemTemplate>
+                                                                        <%# Eval("ven_det_c_epreciototal")%>
                                                                 </ItemTemplate>  
                                                                 </asp:TemplateField>
 
-                                                                <asp:CommandField ShowEditButton="True" />
+                                                                <asp:CommandField ShowEditButton="True" CancelText="Cancelar" EditText="Editar" 
+                                                                    UpdateText="Actualizar" />
+                                                                <asp:TemplateField HeaderText="Unit. Ref. (Soles)">
+                                                                    <ItemTemplate>
+                                                                        <%# Eval("precioReferenciaSoles")%>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
                                                             </Columns>
                                                             <PagerStyle CssClass="pgr" />
                                                         </asp:GridView>
@@ -237,17 +290,31 @@
                                                 </tr>
                                                 <tr>
                                                     <td align="left" class="txt-box-estilo">
-                                                        &nbsp;
+                                                        &nbsp;Tasa de Cambio</td>
+                                                    <td align="left" class="txt-box-estilo">
+                                                        <asp:Label ID="lblTC" runat="server"></asp:Label>
                                                     </td>
                                                     <td align="left" class="txt-box-estilo">
-                                                        &nbsp;
-                                                    </td>
+                                                        &nbsp;</td>
                                                     <td align="left" class="txt-box-estilo">
-                                                        &nbsp;
-                                                    </td>
+                                                        &nbsp;</td>
                                                     <td align="left" class="txt-box-estilo">
-                                                        &nbsp;
-                                                    </td>
+                                                        &nbsp;</td>
+                                                </tr>
+                                                 <tr>
+                                                     <td align="left" class="txt-box-estilo">
+                                                         &nbsp;</td>
+                                                     <td align="left" class="txt-box-estilo">
+                                                         &nbsp;
+                                                     </td>
+                                                     <td align="left" class="txt-box-estilo">
+                                                         &nbsp;</td>
+                                                     <td align="left" class="txt-box-estilo">
+                                                         &nbsp;
+                                                     </td>
+                                                     <td align="left" class="txt-box-estilo">
+                                                         &nbsp;
+                                                     </td>
                                                 </tr>
                                                  <tr>
                                                     <td align="left" class="txt-box-estilo">
@@ -257,11 +324,9 @@
                                                         <asp:Label ID="lblIGVCal" runat="server"></asp:Label>
                                                     </td>
                                                     <td align="left" class="txt-box-estilo">
-                                                        Percepción (<asp:Label ID="lblPercepcion" runat="server" Text="2%"></asp:Label>
-                                                        )</td>
-                                                    <td align="left" class="txt-box-estilo">
-                                                        &nbsp;<asp:Label ID="lblPercepcionCal" runat="server"></asp:Label>
-                                                    </td>
+                                                        &nbsp;</td>
+                                                     <td align="left" class="txt-box-estilo">
+                                                         &nbsp;</td>
                                                 </tr>
                                                 <tr>
                                                     <td align="left" class="txt-box-estilo">
@@ -270,6 +335,8 @@
                                                     <td align="left" class="txt-box-estilo">
                                                         <asp:Label ID="lblSubTotal" runat="server" Text="[SubTotal]"></asp:Label>
                                                     </td>
+                                                    <td align="left" class="txt-box-estilo">
+                                                        &nbsp;</td>
                                                     <td align="left" class="txt-box-estilo">
                                                         Total
                                                     </td>
@@ -284,6 +351,8 @@
                                                     <td align="left" class="txt-box-estilo">
                                                         &nbsp;
                                                     </td>
+                                                    <td align="left" class="txt-box-estilo">
+                                                        &nbsp;</td>
                                                     <td align="left" class="txt-box-estilo">
                                                         &nbsp;
                                                     </td>
@@ -371,10 +440,14 @@
                                     AlternatingRowStyle-CssClass="alt" ShowHeaderWhenEmpty="True" 
                                         EmptyDataText="No hay datos disponibles." BorderWidth="0px" ViewStateMode="Enabled" 
                                     DataKeyNames="itm_c_iid" onpageindexchanging="gvListaItem_PageIndexChanging" 
-                                        onrowdatabound="gvListaItem_RowDataBound" >
+                                        onrowdatabound="gvListaItem_RowDataBound" 
+                                        onrowcreated="gvListaItem_RowCreated" >
                                     <AlternatingRowStyle CssClass="alt" />
                                     <Columns>
                                         <asp:TemplateField HeaderText="SELECCIONAR"> 
+                                            <HeaderTemplate>
+                                                <asp:CheckBox ID="chkAll" runat="server" onclick="javascript:HeaderClick(this);" />
+                                            </HeaderTemplate>
                                             <ItemTemplate> 
                                                 <asp:CheckBox ID="chkSelect" runat="server" /> 
                                             </ItemTemplate> 
@@ -505,7 +578,7 @@
             </ContentTemplate>
             <Triggers>
                 <asp:AsyncPostBackTrigger ControlID="btnGuardar" EventName="Click" />
-                <asp:AsyncPostBackTrigger ControlID="gvListaOC" EventName="RowDeleting" />
+                <asp:AsyncPostBackTrigger ControlID="gvListaVenta" EventName="RowDeleting" />
             </Triggers>
         </asp:UpdatePanel>
         </ContentTemplate>

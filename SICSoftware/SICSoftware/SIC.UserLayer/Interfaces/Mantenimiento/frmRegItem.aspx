@@ -114,9 +114,12 @@
                                     <Columns>
                                         <asp:BoundField DataField="itm_c_ccodigo" HeaderText="CÓDIGO" />
                                         <asp:BoundField DataField="itm_c_vdescripcion" HeaderText="DESCRIPCIÓN" />
-                                        <asp:BoundField DataField="itm_c_dprecio_compra" HeaderText="PRECIO" />
+                                        <asp:BoundField DataField="itm_c_dprecio_compra" HeaderText="PRECIO COMPRA" />
                                         <asp:BoundField DataField="itm_c_vpardes" HeaderText="UNIDAD DE MEDIDA" />
-                                        <asp:CommandField ShowEditButton="True" />
+                                        <asp:BoundField DataField="SIC_T_ITEM_SUB_FAMILIA.isf_c_ifm_des" HeaderText="FAMILIA" />
+                                        <asp:BoundField DataField="SIC_T_ITEM_SUB_FAMILIA.isf_c_des" HeaderText="SUBFAMILIA" />
+                                        <asp:CommandField ShowEditButton="True" CancelText="Cancelar" 
+                                            DeleteText="Eliminar" EditText="Editar" />
                                         <asp:CommandField ShowDeleteButton="True" />
                                     </Columns>
                                     <PagerStyle CssClass="pgr" />
@@ -158,16 +161,16 @@
                             <td align="center" colspan="2">
                                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                     <tr>
-                                        <td align="left" class="txt-box-estilo">
+                                        <td align="left" class="style1">
                                             Código
                                         </td>
-                                        <td align="left" class="txt-box-estilo">
+                                        <td align="left" class="style1">
                                             <asp:TextBox ID="txtCodigo" runat="server" MaxLength="100"></asp:TextBox>
                                         </td>
-                                        <td align="left" class="txt-box-estilo">
-                                            &nbsp;</td>
-                                        <td align="left" class="txt-box-estilo">
-                                            &nbsp;</td>
+                                        <td align="left" class="style1">
+                                            </td>
+                                        <td align="left" class="style1">
+                                            </td>
                                     </tr>
                                     <tr>
                                         <td align="left" class="txt-box-estilo">
@@ -186,38 +189,47 @@
                                     </tr>
                                     <tr>
                                         <td align="left" class="txt-box-estilo">
-                                            Familia</td>
+                                            Precio de Compra</td>
                                         <td align="left" class="txt-box-estilo">
                                    
-                                            <asp:DropDownList ID="cboFamilia" runat="server" AppendDataBoundItems="true"
-                                             AutoPostBack="True" onselectedindexchanged="cboFamilia_SelectedIndexChanged">
-                                                <asp:ListItem Text="-- Seleccionar --" Value ="-1"></asp:ListItem>
-                                            </asp:DropDownList>
+                                            <asp:TextBox ID="txtPrecioCompra" runat="server" MaxLength="20"></asp:TextBox>
                                       
                                         </td>
                                         <td align="left" class="txt-box-estilo">
-                                            SubFamilia</td>
+                                            Precio de Venta</td>
                                         <td align="left" class="txt-box-estilo">
                                   
-                                            <asp:DropDownList ID="cboSubFamilia" runat="server" AppendDataBoundItems="true" >
-
-                                                <asp:ListItem Text="-- Seleccionar --" Value ="-1"></asp:ListItem>
-                                            </asp:DropDownList>
+                                            <asp:TextBox ID="txtPrecioVenta" runat="server" MaxLength="20"></asp:TextBox>
                                       
                                             
                                         </td>
                                     </tr>
                                     <tr>
                                         <td align="left" class="txt-box-estilo">
-                                            Precio de Compra</td>
+                                            Familia</td>
                                         <td align="left" class="txt-box-estilo">
-                                            <asp:TextBox ID="txtPrecioCompra" runat="server" MaxLength="20"></asp:TextBox>
+                                            <asp:DropDownList ID="cboFamilia" runat="server" AppendDataBoundItems="true" 
+                                                AutoPostBack="True" onselectedindexchanged="cboFamilia_SelectedIndexChanged">
+                                                <asp:ListItem Text="-- Seleccionar --" Value="-1"></asp:ListItem>
+                                            </asp:DropDownList>
                                         </td>
                                         <td align="left" class="txt-box-estilo">
-                                            Precio de Venta</td>
+                                            SubFamilia</td>
                                         <td align="left" class="txt-box-estilo">
-                                            <asp:TextBox ID="txtPrecioVenta" runat="server" MaxLength="20"></asp:TextBox>
+                                            <asp:DropDownList ID="cboSubFamilia" runat="server" AppendDataBoundItems="true">
+                                                <asp:ListItem Text="-- Seleccionar --" Value="-1"></asp:ListItem>
+                                            </asp:DropDownList>
                                         </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" class="txt-box-estilo">
+                                            &nbsp;</td>
+                                        <td align="left" class="txt-box-estilo">
+                                            &nbsp;</td>
+                                        <td align="left" class="txt-box-estilo">
+                                            &nbsp;</td>
+                                        <td align="left" class="style2">
+                                            Todos los campos son obligatiorios</td>
                                     </tr>
                                 </table>
                             </td>

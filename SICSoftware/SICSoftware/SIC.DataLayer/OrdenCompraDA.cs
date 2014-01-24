@@ -65,7 +65,7 @@ namespace SIC.DataLayer
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
                     var result = (from x in contexto.SIC_T_ORDEN_DE_COMPRA
-                            where x.odc_c_bactivo == true 
+                            where x.odc_c_bactivo == true && x.odc_c_vcodigo==codigo
                             select x);
                     if (result.Count() > 0)
                     {
@@ -114,11 +114,39 @@ namespace SIC.DataLayer
             {
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
-                    return (from x in contexto.SIC_T_ORDEN_DE_COMPRA
+                    var result = (from x in contexto.SIC_T_ORDEN_DE_COMPRA
                                         .Include("SIC_T_ORDEN_DE_COMPRA_DET.SIC_T_ITEM")
                                         .Include("SIC_T_CLIENTE")
                             where x.odc_c_iid == id && x.odc_c_bactivo == true
                             select x).SingleOrDefault();
+
+                    return result;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Obtiene la orden de compra por id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public SIC_T_ORDEN_DE_COMPRA ObtenerOrdenCompraNoContext(int id)
+        {
+            try
+            {
+                using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+                {
+                    var result = (from x in contexto.SIC_T_ORDEN_DE_COMPRA
+                                        .Include("SIC_T_ORDEN_DE_COMPRA_DET.SIC_T_ITEM")
+                                        .Include("SIC_T_CLIENTE")
+                                  where x.odc_c_iid == id && x.odc_c_bactivo == true
+                                  select x).SingleOrDefault();
+                    contexto.Detach(result);
+                    return result;
                 }
             }
             catch (Exception)
