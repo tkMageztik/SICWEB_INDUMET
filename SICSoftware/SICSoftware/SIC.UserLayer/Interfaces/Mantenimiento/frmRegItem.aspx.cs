@@ -334,7 +334,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             nuevoItem.itm_c_dprecio_venta = precioVenta;
             nuevoItem.itm_c_vdescripcion = this.txtDescripcion.Text.Trim();
             nuevoItem.itm_c_yumedida = byte.Parse(this.cboUnidad.SelectedValue);
-            nuevoItem.itm_c_vpardes = this.cboUnidad.Text;
+            nuevoItem.itm_c_vpardes = this.cboUnidad.SelectedItem.ToString();
             nuevoItem.itm_c_isf_iid = idSubFamilia;
 
             // Ahora insertamos.

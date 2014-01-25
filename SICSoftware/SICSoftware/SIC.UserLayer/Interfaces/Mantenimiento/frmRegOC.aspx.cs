@@ -1168,7 +1168,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             oc.odc_c_iestado = int.Parse(this.cboEstado.SelectedValue);
             oc.odc_c_vdescestado = this.cboEstado.SelectedItem.Text.Trim();
             oc.odc_c_vobservacion = txtObs.Text;
-            oc.odc_c_clase_iid = int.Parse(this.cboEstado.SelectedValue);
+            oc.odc_c_clase_iid = int.Parse(this.cboClaseOC.SelectedValue);
             oc.odc_c_clase_des = this.cboClaseOC.SelectedItem.Text.Trim();
             oc.odc_c_bpercepcion = this.chkPercepcion.Checked;
 
@@ -1222,7 +1222,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             oc.odc_c_iestado = int.Parse(this.cboEstado.SelectedValue);
             oc.odc_c_vdescestado = this.cboEstado.SelectedItem.Text.Trim();
             oc.odc_c_vobservacion = txtObs.Text;
-            oc.odc_c_clase_iid = int.Parse(this.cboEstado.SelectedValue);
+            oc.odc_c_clase_iid = int.Parse(this.cboClaseOC.SelectedValue);
             oc.odc_c_clase_des = this.cboClaseOC.SelectedItem.Text.Trim();
             oc.odc_c_bpercepcion = this.chkPercepcion.Checked;
 

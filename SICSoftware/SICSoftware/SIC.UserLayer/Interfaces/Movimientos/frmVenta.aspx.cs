@@ -489,7 +489,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
 
             txtRSProv.Text = this.VentaSeleccionado.SIC_T_CLIENTE == null ? string.Empty : 
                                                                            this.VentaSeleccionado.SIC_T_CLIENTE.cli_c_vraz_soc;
-            txtRSProv.Text = this.VentaSeleccionado.SIC_T_CLIENTE == null ? string.Empty :
+            txtRucProv.Text = this.VentaSeleccionado.SIC_T_CLIENTE == null ? string.Empty :
                                                                            this.VentaSeleccionado.SIC_T_CLIENTE.cli_c_vdoc_id;
             cboTipoDocumento.SelectedIndex = -1;
 
