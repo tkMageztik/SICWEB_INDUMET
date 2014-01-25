@@ -19,6 +19,7 @@ namespace SIC.DataLayer
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {                    
                     return (from x in contexto.SIC_T_ITEM
+                            .Include("SIC_T_ITEM_SUB_FAMILIA")
                             where x.itm_c_bactivo == true
                             select x).ToList();
                 }
@@ -36,10 +37,12 @@ namespace SIC.DataLayer
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
                     return (from x in contexto.SIC_T_ITEM
+                            .Include("SIC_T_ITEM_SUB_FAMILIA")
                             where x.itm_c_bactivo == true
                               && (codigo == string.Empty || x.itm_c_ccodigo.Contains(codigo))
                               && (descripcion == string.Empty || x.itm_c_vdescripcion.Contains(descripcion) )
                               && (!idSubFamilia.HasValue || x.itm_c_isf_iid == idSubFamilia.Value) 
+
                             select x).ToList();
                 }
             }

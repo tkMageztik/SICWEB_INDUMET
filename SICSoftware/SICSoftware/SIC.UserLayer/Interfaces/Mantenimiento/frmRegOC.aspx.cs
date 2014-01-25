@@ -262,7 +262,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                                 item.precioUnitarioSoles = precioNuevo * this.TasaCambio;
 ;
                             }
-                            item.odc_c_epreciototal = item.odc_c_epreciototal * cantidadNueva;
+                            item.odc_c_epreciototal = item.odc_c_epreciounit * cantidadNueva;
                             break;
                         }
                     }
@@ -280,7 +280,16 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                         {
                             item.odc_c_ecantidad = cantidadNueva;
                             item.odc_c_epreciounit = precioNuevo;
-                            item.odc_c_epreciototal = item.odc_c_epreciototal * cantidadNueva;
+                            if (cboMoneda.SelectedIndex == 0)
+                            {
+                                item.precioUnitarioSoles = precioNuevo;
+                            }
+                            else
+                            {
+                                item.precioUnitarioSoles = precioNuevo * this.TasaCambio;
+                                ;
+                            }
+                            item.odc_c_epreciototal = item.odc_c_epreciounit * cantidadNueva;
                             break;
                         }
                     }
@@ -534,6 +543,8 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         /// </summary>
         private void MostrarNuevaOrdenCompra()
         {
+            this.Limpiar();
+
             this.txtSerie.Enabled = true;
             this.txtNumero.Enabled = true;
             this.txtSerie.Text = string.Empty;
@@ -569,6 +580,8 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         /// </summary>
         private void MostrarModificarOrdenCompra(int id)
         {
+            this.Limpiar();
+
             this.txtSerie.Enabled = false;
             this.txtNumero.Enabled = false;
 
@@ -918,7 +931,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             ordenDeCompra.odc_c_eigvcal = Math.Round(subTotal * ordenDeCompra.odc_c_eigv.Value ,2);
             ordenDeCompra.odc_c_epercepcion = this.percepcion ;
 
-            if (chkPercepcion.Checked && subTotal > this.percepcionmax)
+            if (chkPercepcion.Checked && subTotal >= this.percepcionmax)
             {
                 ordenDeCompra.odc_c_epercepcioncal = Math.Round(subTotal * ordenDeCompra.odc_c_epercepcion.Value, 2);
             }

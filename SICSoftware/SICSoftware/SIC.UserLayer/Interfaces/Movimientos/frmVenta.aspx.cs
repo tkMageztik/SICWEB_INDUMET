@@ -220,8 +220,10 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         protected void gvItemsSeleccionados_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             TextBox txtCantidad = (TextBox)gvItemsSeleccionados.Rows[e.RowIndex].FindControl("txtCantidad");
-            decimal cantidadNueva;
-            if (decimal.TryParse(txtCantidad.Text, out cantidadNueva) && cantidadNueva > 0)
+            TextBox txtPrecio = (TextBox)gvItemsSeleccionados.Rows[e.RowIndex].FindControl("txtPrecio");
+            decimal cantidadNueva, precioNuevo;
+            if (decimal.TryParse(txtCantidad.Text, out cantidadNueva) && cantidadNueva > 0
+                && decimal.TryParse(txtPrecio.Text, out precioNuevo) && precioNuevo > 0)
             {
                 int itemId = (int)gvItemsSeleccionados.DataKeys[e.RowIndex].Value;
 
@@ -233,7 +235,16 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                         if (item.ven_det_c_iitemid== itemId)
                         {
                             item.ven_det_c_ecantidad = cantidadNueva;
-                            item.ven_det_c_epreciounit = item.SIC_T_ITEM.itm_c_dprecio_compra;
+                            item.ven_det_c_epreciounit = precioNuevo;
+                            if (cboMoneda.SelectedIndex == 0)
+                            {
+                                item.precioUnitarioSoles = precioNuevo;
+                            }
+                            else
+                            {
+                                item.precioUnitarioSoles = precioNuevo * this.TasaCambio;
+                                ;
+                            }
                             item.ven_det_c_epreciototal = item.ven_det_c_epreciounit * cantidadNueva;
                             break;
                         }
@@ -261,7 +272,6 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                     gvItemsSeleccionados.DataSource = ordenCompra.SIC_T_VENTA_DETALLE;
                     gvItemsSeleccionados.DataBind();
                 }
-
             }
             else
             {
@@ -962,7 +972,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             }
             else if (this.EscenarioVenta == TipoOperacion.Modificacion)
             {
-                CambiarMonedaListaItem(this.VentaNuevo);
+                CambiarMonedaListaItem(this.VentaSeleccionado);
                 this.RecalcularMontos(this.VentaSeleccionado);
                 this.upGeneral.Update();
             }

@@ -408,7 +408,7 @@
                                                      <td align="left" class="txt-box-estilo">
                                                          &nbsp;</td>
                                                      <td align="left" class="txt-box-estilo">
-                                                         Percepcio aplica cuando pasa:</td>
+                                                         Percepcio aplica apartir de:</td>
                                                      <td align="left" class="txt-box-estilo">
                                                          <asp:Label ID="lblPercepMax" runat="server"></asp:Label>
                                                      </td>

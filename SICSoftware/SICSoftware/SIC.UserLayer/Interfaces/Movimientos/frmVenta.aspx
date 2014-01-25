@@ -129,14 +129,14 @@
                                         onpageindexchanging="gvListaVenta_PageIndexChanging">
                                     <AlternatingRowStyle CssClass="alt" />
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Código">
+                                        <asp:TemplateField HeaderText="CODIGO">
                                             <ItemTemplate>
                                                 <%# Eval("SIC_T_CLIENTE.cli_c_vdoc_id")%>
                                             </ItemTemplate>                             
                                         </asp:TemplateField>
-                                        <asp:BoundField HeaderText="Moneda" DataField="ven_c_vdescmoneda" />
-                                        <asp:BoundField HeaderText="Fecha Entrega" DataField="ven_c_zfecha" />
-                                        <asp:BoundField HeaderText="Total" DataField="ven_c_etotal" />
+                                        <asp:BoundField HeaderText="MONEDA" DataField="ven_c_vdescmoneda" />
+                                        <asp:BoundField HeaderText="FECHA DE REGISTRO" DataField="ven_c_zfecha" />
+                                        <asp:BoundField HeaderText="TOTAL" DataField="ven_c_etotal" />
                                         <asp:CommandField ShowEditButton="True" CancelText="Cancelar" 
                                             DeleteText="Eliminar" EditText="Editar" />
                                         <asp:CommandField ShowDeleteButton="True" DeleteText="Eliminar" />
