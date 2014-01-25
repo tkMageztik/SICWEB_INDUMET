@@ -116,8 +116,19 @@
                                         <asp:BoundField DataField="itm_c_vdescripcion" HeaderText="DESCRIPCIÓN" />
                                         <asp:BoundField DataField="itm_c_dprecio_compra" HeaderText="PRECIO COMPRA" />
                                         <asp:BoundField DataField="itm_c_vpardes" HeaderText="UNIDAD DE MEDIDA" />
-                                        <asp:BoundField DataField="SIC_T_ITEM_SUB_FAMILIA.isf_c_ifm_des" HeaderText="FAMILIA" />
-                                        <asp:BoundField DataField="SIC_T_ITEM_SUB_FAMILIA.isf_c_des" HeaderText="SUBFAMILIA" />
+                                        
+                                        <asp:TemplateField HeaderText="FAMILIA">
+                                            <ItemTemplate>
+                                                <%# Eval("SIC_T_ITEM_SUB_FAMILIA.isf_c_ifm_des")%>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="SUBFAMILIA">
+                                            <ItemTemplate>
+                                                <%# Eval("SIC_T_ITEM_SUB_FAMILIA.isf_c_des")%>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
                                         <asp:CommandField ShowEditButton="True" CancelText="Cancelar" 
                                             DeleteText="Eliminar" EditText="Editar" />
                                         <asp:CommandField ShowDeleteButton="True" />

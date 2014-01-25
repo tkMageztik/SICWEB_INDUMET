@@ -14,6 +14,14 @@ using System.Text;
 
 namespace SIC.Data
 {
+
+    public enum EstadoOC
+    {
+        PLANEADA = 1,
+        ABIERTA = 2,
+        CERRADA = 3,
+        VENCIDA = 4,
+    }
     public enum Calificacion
     {
         POSITIVO,
@@ -112,7 +120,7 @@ namespace SIC.Data
         COBRANZAS = 6
     }
 
-
+    
 
 
     public enum ValorTabla

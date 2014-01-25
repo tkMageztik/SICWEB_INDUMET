@@ -266,8 +266,12 @@ namespace SIC.DataLayer
 
                     foreach (var detalle in agregar)
                     {
-                        detalle.odc_c_iitemid = detalle.SIC_T_ITEM.itm_c_iid;
-                        detalle.SIC_T_ITEM = null;      
+                        if(detalle.SIC_T_ITEM != null)
+                        {
+                            detalle.odc_c_iitemid = detalle.SIC_T_ITEM.itm_c_iid;
+                            detalle.SIC_T_ITEM = null;    
+                        }
+
                         oc.SIC_T_ORDEN_DE_COMPRA_DET.Add(detalle);                         
                     }
 

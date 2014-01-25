@@ -259,7 +259,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             this.EscenarioMovEn = TipoOperacion.Creacion;
             this.MovEntNuevo = new SIC_T_MOVIMIENTO_ENTRADA();
             this.MovEntNuevo.mve_c_zfecharegistro = DateTime.Now;
-            this.mvMovimientoEntrada.ActiveViewIndex = 1;            
+            this.mvMovimientoEntrada.ActiveViewIndex = 1;
             this.upGeneral.Update();
         }
 
@@ -280,23 +280,23 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 if (MovEntSeleccionado.mve_c_zfacturafecha.HasValue)
                 {
                     txtFechaFact.Text = MovEntSeleccionado.mve_c_zfacturafecha.Value.ToString("dd/MM/yyyy");
-                    txtFechaFact_CalendarExtender.SelectedDate = MovEntSeleccionado.mve_c_zfacturafecha.Value;
+                    //txtFechaFact_CalendarExtender.SelectedDate = MovEntSeleccionado.mve_c_zfacturafecha.Value;
                 }
                 else
                 {
                     txtFechaFact.Text = String.Empty;
-                    txtFechaFact_CalendarExtender.SelectedDate = DateTime.Today;
+                    //txtFechaFact_CalendarExtender.SelectedDate = DateTime.Today;
                 }
 
-                if (MovEntSeleccionado.mve_c_zfacturafecha.HasValue)
+                if (MovEntSeleccionado.mve_c_zguiafecha.HasValue)
                 {
-                    txtFechaFact.Text = MovEntSeleccionado.mve_c_zfacturafecha.Value.ToString("dd/MM/yyyy");
-                    txtFechaFact_CalendarExtender.SelectedDate = MovEntSeleccionado.mve_c_zfacturafecha.Value;
+                    txtFechaGuia.Text = MovEntSeleccionado.mve_c_zguiafecha.Value.ToString("dd/MM/yyyy");
+                    //txtFechaFact_CalendarExtender.SelectedDate = MovEntSeleccionado.mve_c_zfacturafecha.Value;
                 }
                 else
                 {
-                    txtFechaFact.Text = String.Empty;
-                    txtFechaFact_CalendarExtender.SelectedDate = DateTime.Today;
+                    txtFechaGuia.Text = String.Empty;
+                    //txtFechaFact_CalendarExtender.SelectedDate = DateTime.Today;
                 }
 
                 String[] factCod, guiaCod;

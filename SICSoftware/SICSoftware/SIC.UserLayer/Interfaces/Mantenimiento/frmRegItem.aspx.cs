@@ -117,7 +117,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             {
                 idSubFamilia = id;
             }
-
+            
             gvListaItem.DataSource = _item.ListarItems(txtFiltroCodigo.Text.Trim(), txtFiltroDescr.Text.Trim(), idSubFamilia);
             gvListaItem.DataBind();
         }

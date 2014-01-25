@@ -129,14 +129,19 @@
                                         onpageindexchanging="gvListaVenta_PageIndexChanging">
                                     <AlternatingRowStyle CssClass="alt" />
                                     <Columns>
-                                        <asp:TemplateField HeaderText="CODIGO">
+                                        <asp:TemplateField HeaderText="RUC CLIENTE">
                                             <ItemTemplate>
                                                 <%# Eval("SIC_T_CLIENTE.cli_c_vdoc_id")%>
                                             </ItemTemplate>                             
                                         </asp:TemplateField>
-                                        <asp:BoundField HeaderText="MONEDA" DataField="ven_c_vdescmoneda" />
+                                        <asp:TemplateField HeaderText="RAZ. SOCIAL CLIENTE">
+                                            <ItemTemplate>
+                                                <%# Eval("SIC_T_CLIENTE.cli_c_vraz_soc")%>
+                                            </ItemTemplate>                             
+                                        </asp:TemplateField>
+                                        <asp:BoundField HeaderText="MONEDA" DataField="ven_c_vdescmoneda" />                                        
+                                        <asp:BoundField HeaderText="MONTO TOTAL" DataField="ven_c_etotal" />
                                         <asp:BoundField HeaderText="FECHA DE REGISTRO" DataField="ven_c_zfecha" />
-                                        <asp:BoundField HeaderText="TOTAL" DataField="ven_c_etotal" />
                                         <asp:CommandField ShowEditButton="True" CancelText="Cancelar" 
                                             DeleteText="Eliminar" EditText="Editar" />
                                         <asp:CommandField ShowDeleteButton="True" DeleteText="Eliminar" />
@@ -184,20 +189,39 @@
                                                     <td align="left" class="txt-box-estilo">
                                                         Cliente
                                                     </td>
-                                                    <td align="left" class="style3">
+                                                    <td align="left" class="style3" style="margin-left: 40px">
                                                         <asp:TextBox ID="txtRSProv" runat="server" Width="282px" BackColor="#CCCCCC" 
                                                             BorderColor="Black" BorderStyle="None" BorderWidth="1px" ReadOnly="True"></asp:TextBox>
                                                         
-                                                    </td>
-                                                    <td>
+                                                        &nbsp;
                                                         <asp:LinkButton ID="btnBuscarProveedor" runat="server" CssClass="lnk" 
                                                             OnClick="btnBuscarProveedor_Click">Buscar</asp:LinkButton>
+                                                        
                                                     </td>
+                                                    <td>
+                                                        &nbsp;</td>
                                                     <td class="style1">
                                                         Fecha</td>
                                                     <td align="left" class="txt-box-estilo">
                                                         <asp:Label ID="lblFechaRegistro" runat="server"></asp:Label>
                                                     </td>
+                                                    <td align="left" class="txt-box-estilo">
+                                                        &nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="txt-box-estilo">
+                                                        &nbsp;</td>
+                                                    <td align="left" class="style3">
+                                                        <asp:TextBox ID="txtRucProv" runat="server" BackColor="#CCCCCC" 
+                                                            BorderColor="Black" BorderStyle="None" BorderWidth="1px" ReadOnly="True" 
+                                                            Width="282px"></asp:TextBox>
+                                                    </td>
+                                                    <td>
+                                                        &nbsp;</td>
+                                                    <td class="style1">
+                                                        &nbsp;</td>
+                                                    <td align="left" class="txt-box-estilo">
+                                                        &nbsp;</td>
                                                     <td align="left" class="txt-box-estilo">
                                                         &nbsp;</td>
                                                 </tr>
@@ -266,7 +290,7 @@
                                                                 </EditItemTemplate>
                                                                 </asp:TemplateField>
 
-                                                                <asp:TemplateField HeaderText="CxU">
+                                                                <asp:TemplateField HeaderText="Sub Total">
                                                                 <ItemTemplate>
                                                                         <%# Eval("ven_det_c_epreciototal")%>
                                                                 </ItemTemplate>  

@@ -262,7 +262,16 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                         if (item.ven_det_c_iitemid == itemId)
                         {
                             item.ven_det_c_ecantidad = cantidadNueva;
-                            item.ven_det_c_epreciounit = item.SIC_T_ITEM.itm_c_dprecio_compra;
+                            item.ven_det_c_epreciounit = precioNuevo;
+                            if (cboMoneda.SelectedIndex == 0)
+                            {
+                                item.precioUnitarioSoles = precioNuevo;
+                            }
+                            else
+                            {
+                                item.precioUnitarioSoles = precioNuevo * this.TasaCambio;
+                                ;
+                            }
                             item.ven_det_c_epreciototal = item.ven_det_c_epreciounit * cantidadNueva;
                             break;
                         }
@@ -480,6 +489,8 @@ namespace SIC.UserLayer.Interfaces.Movimientos
 
             txtRSProv.Text = this.VentaSeleccionado.SIC_T_CLIENTE == null ? string.Empty : 
                                                                            this.VentaSeleccionado.SIC_T_CLIENTE.cli_c_vraz_soc;
+            txtRSProv.Text = this.VentaSeleccionado.SIC_T_CLIENTE == null ? string.Empty :
+                                                                           this.VentaSeleccionado.SIC_T_CLIENTE.cli_c_vdoc_id;
             cboTipoDocumento.SelectedIndex = -1;
 
             var seleccion = cboTipoDocumento.Items.FindByText(VentaSeleccionado.ven_c_vdestipodoc);
@@ -785,6 +796,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             if (gvCliente.Rows[gvCliente.SelectedIndex].Cells[1].Text != null)
             {
                 txtRSProv.Text = gvCliente.Rows[gvCliente.SelectedIndex].Cells[1].Text;
+                txtRucProv.Text = gvCliente.Rows[gvCliente.SelectedIndex].Cells[0].Text;
             }
 
             mvOC.ActiveViewIndex = 1;
@@ -873,6 +885,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             this.EscenarioVenta = TipoOperacion.Ninguna;
             this.ItemsSeleccionadosPreliminar = null;
             this.txtRSProv.Text = string.Empty;
+            this.txtRucProv.Text = string.Empty;
             this.cboMoneda.SelectedIndex = -1;
             this.cboTipoDocumento.SelectedIndex = -1;
             this.lblFechaRegistro.Text = string.Empty;
@@ -916,13 +929,12 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         }
 
         private void DeshabilitarOC(int idOC)
-        {
-            
+        {            
             try
             {
                 if (this._venta.DeshabilitarOrdenCompra(idOC))
                 {
-                    Mensaje("Item Deshabilitado.", "../Imagenes/correcto.png");
+                    Mensaje("Venta deshabilitada.", "../Imagenes/correcto.png");
                 }
                 else
                 {
