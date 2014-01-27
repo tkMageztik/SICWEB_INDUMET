@@ -152,14 +152,23 @@
                                                 <AlternatingRowStyle CssClass="alt" />
                                                 <Columns>
                                                     <asp:BoundField HeaderText="CODIGO DE OC" DataField="odc_c_vcodigo" />
+                                                    <asp:TemplateField HeaderText="RUC PROVEEDOR">
+                                                        <ItemTemplate>
+                                                            <%# Eval("SIC_T_CLIENTE.cli_c_vdoc_id")%>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="PROVEEDOR">
                                                         <ItemTemplate>
                                                             <%# Eval("SIC_T_CLIENTE.cli_c_vraz_soc")%>
                                                         </ItemTemplate>
-                                                    </asp:TemplateField>
+                                                    </asp:TemplateField>                                                    
                                                     <asp:BoundField HeaderText="ESTADO" DataField="odc_c_vdescestado" />
                                                     <asp:BoundField HeaderText="MONEDA" DataField="odc_c_vdescmoneda" />
-                                                    <asp:BoundField HeaderText="TOTAL" DataField="odc_c_etotal" />
+                                                    <asp:TemplateField  HeaderText="MONTO TOTAL">
+                                                        <ItemTemplate>
+                                                            <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("odc_c_etotal"))%>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
                                                     <asp:CommandField SelectText="Ver" ShowSelectButton="True" />
                                                     <asp:CommandField ShowEditButton="True" CancelText="Cancelar" DeleteText="Eliminar"
                                                         EditText="Modificar" />
@@ -228,10 +237,12 @@
                                                     <td align="left" class="style3">
                                                         <asp:TextBox ID="txtRSProv" runat="server" BackColor="#CCCCCC" BorderColor="Black"
                                                             BorderStyle="None" BorderWidth="1px" ReadOnly="True" Width="282px"></asp:TextBox>
+                                                        &nbsp;
+                                                        <asp:LinkButton ID="btnBuscarProveedor" runat="server" CssClass="lnk" 
+                                                            OnClick="btnBuscarProveedor_Click">Buscar</asp:LinkButton>
                                                     </td>
                                                     <td align="left" class="txt-box-estilo">
-                                                        <asp:LinkButton ID="btnBuscarProveedor" runat="server" CssClass="lnk" OnClick="btnBuscarProveedor_Click">Buscar</asp:LinkButton>
-                                                    </td>
+                                                        &nbsp;</td>
                                                     <td align="left" class="txt-box-estilo">
                                                         &nbsp;
                                                     </td>
@@ -293,10 +304,12 @@
                                                     <td align="left" class="style2">
                                                         <asp:TextBox ID="txtDirecEntrega" runat="server" BackColor="#CCCCCC" BorderColor="Black"
                                                             BorderStyle="None" BorderWidth="1px" ReadOnly="True" Width="282px"></asp:TextBox>
+                                                        &nbsp;
+                                                        <asp:LinkButton ID="btnBuscarDireccion" runat="server" CssClass="lnk" 
+                                                            OnClick="btnBuscarDireccion_Click">Buscar</asp:LinkButton>
                                                     </td>
                                                     <td align="left" class="style1">
-                                                        <asp:LinkButton ID="btnBuscarDireccion" runat="server" CssClass="lnk" OnClick="btnBuscarDireccion_Click">Buscar</asp:LinkButton>
-                                                    </td>
+                                                        &nbsp;</td>
                                                     <td align="left" class="style1">
                                                     </td>
                                                     <td align="left" class="style1">
@@ -339,34 +352,36 @@
                                                                 </asp:TemplateField>
                                                                 <asp:TemplateField HeaderText="Cantidad">
                                                                     <ItemTemplate>
-                                                                        <%# Eval("odc_c_ecantidad")%>
+                                                                        <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}",Eval("odc_c_ecantidad"))%>
                                                                     </ItemTemplate>
                                                                     <EditItemTemplate>
-                                                                        <asp:TextBox ID="txtCantidad" runat="server" Text='<%# Bind("odc_c_ecantidad") %> '>
+                                                                        <asp:TextBox ID="txtCantidad" runat="server" 
+                                                                        Text='<%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("odc_c_ecantidad") )%> '>
                                                                         
                                                                         </asp:TextBox>
                                                                     </EditItemTemplate>
                                                                 </asp:TemplateField>
                                                                 <asp:TemplateField HeaderText="Unitario">
                                                                     <ItemTemplate>
-                                                                        <%# Eval("odc_c_epreciounit")%>
+                                                                        <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("odc_c_epreciounit") )%>
                                                                     </ItemTemplate>
                                                                     <EditItemTemplate>
-                                                                        <asp:TextBox ID="txtPrecio" runat="server" Text='<%# Bind("odc_c_epreciounit") %> '>
-                                                                           
+                                                                        <asp:TextBox ID="txtPrecio" runat="server" 
+                                                                        Text='<%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("odc_c_epreciounit") )%> '>
+                                                                               
                                                                         </asp:TextBox>
                                                                     </EditItemTemplate>
                                                                 </asp:TemplateField>
                                                                 <asp:TemplateField HeaderText="Sub Total">
                                                                     <ItemTemplate>
-                                                                        <%# Eval("odc_c_epreciototal")%>
+                                                                        <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}",Eval("odc_c_epreciototal"))%>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
                                                                 <asp:CommandField  ShowEditButton="True" CancelText="Cancelar" DeleteText="Eliminar"
                                                                     EditText="Editar" UpdateText="Actualizar" />
                                                                 <asp:TemplateField HeaderText="Unit. Ref. (Soles)">
                                                                     <ItemTemplate>
-                                                                        <%# Eval("precioReferenciaSoles")%>
+                                                                        <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}",Eval("precioReferenciaSoles"))%>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
                                                             </Columns>
@@ -399,14 +414,14 @@
                                                     <td align="left" class="txt-box-estilo">
                                                         Tasa de Cambio
                                                     </td>
-                                                    <td align="left" class="style3">
+                                                    <td align="left" class="txt-box-estilo">
                                                         <asp:Label ID="lblTC" runat="server"></asp:Label>
                                                     </td>
                                                     <td align="left" class="txt-box-estilo">
                                                         &nbsp;
                                                     </td>
                                                     <td align="left" class="txt-box-estilo">
-                                                        Percepcio aplica apartir de:
+                                                        Percepción aplica a partir de:
                                                     </td>
                                                     <td align="left" class="txt-box-estilo">
                                                         <asp:Label ID="lblPercepMax" runat="server"></asp:Label>
@@ -434,7 +449,7 @@
                                                         I.G.V.&nbsp;(<asp:Label ID="lblIGV" runat="server" Text="18%"></asp:Label>
                                                         )
                                                     </td>
-                                                    <td align="left" class="style3">
+                                                    <td align="left" class="txt-box-estilo">
                                                         <asp:Label ID="lblIGVCal" runat="server"></asp:Label>
                                                     </td>
                                                     <td align="left" class="txt-box-estilo">
@@ -453,8 +468,8 @@
                                                     <td align="left" class="txt-box-estilo">
                                                         Sub Total
                                                     </td>
-                                                    <td align="left" class="style3">
-                                                        <asp:Label ID="lblSubTotal" runat="server" Text="[SubTotal]"></asp:Label>
+                                                    <td align="left" class="txt-box-estilo">
+                                                        <asp:Label ID="lblSubTotal" runat="server"></asp:Label>
                                                     </td>
                                                     <td align="left" class="txt-box-estilo">
                                                         &nbsp;
@@ -463,14 +478,14 @@
                                                         Total
                                                     </td>
                                                     <td align="left" class="txt-box-estilo">
-                                                        <asp:Label ID="lblTotal" runat="server" Text="[SubTotal]"></asp:Label>
+                                                        <asp:Label ID="lblTotal" runat="server"></asp:Label>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td align="left" class="txt-box-estilo">
                                                         &nbsp;
                                                     </td>
-                                                    <td align="left" class="style3">
+                                                    <td align="left" class="txt-box-estilo">
                                                         &nbsp;
                                                     </td>
                                                     <td align="left" class="txt-box-estilo">

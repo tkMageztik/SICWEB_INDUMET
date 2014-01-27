@@ -222,8 +222,8 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             TextBox txtCantidad = (TextBox)gvItemsSeleccionados.Rows[e.RowIndex].FindControl("txtCantidad");
             TextBox txtPrecio = (TextBox)gvItemsSeleccionados.Rows[e.RowIndex].FindControl("txtPrecio");
             decimal cantidadNueva, precioNuevo;
-            if (decimal.TryParse(txtCantidad.Text, out cantidadNueva) && cantidadNueva > 0
-                && decimal.TryParse(txtPrecio.Text, out precioNuevo) && precioNuevo > 0)
+            if (decimal.TryParse(txtCantidad.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out cantidadNueva) && cantidadNueva > 0
+                && decimal.TryParse(txtPrecio.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out precioNuevo) && precioNuevo > 0)
             {
                 int itemId = (int)gvItemsSeleccionados.DataKeys[e.RowIndex].Value;
 
@@ -353,11 +353,22 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             cboTipoDocumento.DataBind();
         }
         /// <summary>
-        /// Carga la lista de Ordenes de Compra
+        /// Carga la lista de Ventas
         /// </summary>
         private void ListarVentas()
         {
-            gvListaVenta.DataSource =  _venta.ListarVentas();
+            DateTime inicio, fin;
+            DateTime? fi = null, ff = null;
+            if (DateTime.TryParseExact(txtFiltroFecIni.Text, "dd/MM/yyyy", new CultureInfo("en-US"), DateTimeStyles.None, out inicio))
+            {
+                fi = inicio;
+            }
+
+            if (DateTime.TryParseExact(txtFiltroFecFin.Text, "dd/MM/yyyy", new CultureInfo("en-US"), DateTimeStyles.None, out fin))
+            {
+                ff = fin;
+            }
+            gvListaVenta.DataSource =  _venta.ListarVentas(txtFiltroRuc.Text,txtFiltroRS.Text, fi,ff);
             gvListaVenta.DataBind();
         }
 
@@ -442,7 +453,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             {
                 this.TasaCambio = value.tsc_c_ecompra.Value;
             }
-            lblTC.Text = value.tsc_c_ecompra.Value.ToString();
+            lblTC.Text = "S/. " + value.tsc_c_ecompra.Value.ToString("F4", CultureInfo.InvariantCulture);
         }
 
         #region Metodos de Movimiento
@@ -477,6 +488,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             this.gvItemsSeleccionados.DataSource = this.VentaSeleccionado.SIC_T_VENTA_DETALLE;
             this.gvItemsSeleccionados.DataBind();
             this.EscenarioVenta = TipoOperacion.Modificacion;
+            this.lblAccion.Text = "Modificar";
             this.VentaSeleccionado.ven_c_eigv = this.igv;
             //this.VentaSeleccionado.ven_c_dpercepcion = this.percepcion;
             this.lblFechaRegistro.Text = VentaSeleccionado.ven_c_zfecha.Value.ToString("dd/MM/yyyy");
@@ -1048,6 +1060,11 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                                                           chkBxHeader.ClientID
                                                        );
             }
+        }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            ListarVentas();
         }
 
  

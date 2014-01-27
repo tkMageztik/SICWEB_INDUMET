@@ -140,12 +140,20 @@ namespace SIC.DataLayer
             {
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
+                    contexto.SIC_T_ORDEN_DE_COMPRA.MergeOption = System.Data.Objects.MergeOption.NoTracking;
                     var result = (from x in contexto.SIC_T_ORDEN_DE_COMPRA
-                                        .Include("SIC_T_ORDEN_DE_COMPRA_DET.SIC_T_ITEM")
                                         .Include("SIC_T_CLIENTE")
+                                        .Include("SIC_T_ORDEN_DE_COMPRA_DET.SIC_T_ITEM")                                        
                                   where x.odc_c_iid == id && x.odc_c_bactivo == true
                                   select x).SingleOrDefault();
-                    contexto.Detach(result);
+                    SIC_T_CLIENTE cli = result.SIC_T_CLIENTE;
+                    //var listDetalle = result.SIC_T_ORDEN_DE_COMPRA_DET;
+
+                    //contexto.Detach(cli);
+                    //contexto.Detach(result);
+                    //contexto.Detach(listDetalle);
+                    
+                    //result.SIC_T_CLIENTE = cli;
                     return result;
                 }
             }

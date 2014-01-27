@@ -1,4 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="frmMovEntrada.aspx.cs" Inherits="SIC.UserLayer.Interfaces.Movimientos.frmMovEntrada" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="frmMovEntrada.aspx.cs" Inherits="SIC.UserLayer.Interfaces.Movimientos.frmMovEntrada" 
+Culture="es-PE" UICulture="es-PE" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <%@ Register Src="~/UserControl/wucMensajeAlerta.ascx" TagName="Mensaje" TagPrefix="uc1" %>
@@ -29,16 +30,20 @@
                                                             <tr>
                                                                 <td class="txt-box-estilo">
                                                                     
-                                                                </td>
-                                                                <td>
+                                                                    RUC</td>
+                                                                <td style="margin-left: 80px">
+                                                                    
+                                                                    <asp:TextBox ID="txtFiltroRuc" runat="server"></asp:TextBox>
                                                                     
                                                                 </td>
                                                                 <td style="width: 20px">
                                                                 </td>
                                                                 <td class="txt-box-estilo">
                                                                     
-                                                                </td>
+                                                                    Razón Social</td>
                                                                 <td>
+                                                                    
+                                                                    <asp:TextBox ID="txtFiltroRS" runat="server"></asp:TextBox>
                                                                     
                                                                 </td>
                                                                 <td style="width: 20px">
@@ -49,6 +54,30 @@
                                                                     &nbsp;
                                                                 </td>
                                                             </tr>
+                                                            <tr>
+                                                                <td class="txt-box-estilo">
+                                                                    Desde</td>
+                                                                <td style="margin-left: 80px">
+                                                                    <asp:TextBox ID="txtFiltroFecIni" runat="server"></asp:TextBox>
+                                                                    &nbsp;<asp:CalendarExtender ID="txtFiltroFecIni_CalendarExtender" runat="server" 
+                                                                    TargetControlID="txtFiltroFecIni" Format="dd/MM/yyyy" TodaysDateFormat="dd/MM/yyyy"/>
+                                                                </td>
+                                                                <td style="width: 20px">
+                                                                    &nbsp;</td>
+                                                                <td class="txt-box-estilo">
+                                                                    Hasta</td>
+                                                                <td>
+                                                                    <asp:TextBox ID="txtFiltroFecFin" runat="server"></asp:TextBox>
+                                                                    <asp:CalendarExtender ID="txtFiltroFecFin_CalendarExtender" runat="server" 
+                                                                    TargetControlID="txtFiltroFecFin" Format="dd/MM/yyyy" TodaysDateFormat="dd/MM/yyyy"/>
+                                                                </td>
+                                                                <td style="width: 20px">
+                                                                    &nbsp;</td>
+                                                                <td>
+                                                                    &nbsp;</td>
+                                                                <td>
+                                                                    &nbsp;</td>
+                                                            </tr>
                                                         </table>
                                                     </td>
                                                     <td align="right">
@@ -56,7 +85,7 @@
                                                             <tr>
                                                                 <td align="center">
                                                                     <asp:Button ID="btnBuscar" runat="server" CssClass="button small gris" OnClick="btnBuscar_Click"
-                                                                        Style="width: 100px" Text="Buscar" Enabled="False" />
+                                                                        Style="width: 100px; height: 26px;" Text="Buscar" />
                                                                 </td>
                                                                 <td align="center">
                                                                     <asp:Button ID="btnNuevo" runat="server" CssClass="lnk" Height="26px" OnClick="btnNuevo_Click"
@@ -82,10 +111,18 @@
                                         onselectedindexchanged="gvListaMovEn_SelectedIndexChanged" >
                                     <AlternatingRowStyle CssClass="alt" />
                                     <Columns>
-                                        <asp:BoundField HeaderText="RUC Proveedor" DataField="SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vraz_soc"/>
-                                        <asp:BoundField HeaderText="Razon Social Proveedor" DataField="SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vdoc_id"/>                                        
+                                         <asp:TemplateField HeaderText="RUC PROVEEDOR">
+                                            <ItemTemplate>
+                                                <%# Eval("SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vdoc_id")%>
+                                            </ItemTemplate>                             
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="RAZON SOCIAL PROVEEDOR">
+                                            <ItemTemplate>
+                                                <%# Eval("SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vraz_soc")%>
+                                            </ItemTemplate>                             
+                                        </asp:TemplateField>
                                         <asp:BoundField HeaderText="Fecha" DataField="mve_c_zfecharegistro" />                                        
-                                        <asp:CommandField ShowSelectButton="True" SelectText="Seleccionar" />
+                                        <asp:CommandField ShowSelectButton="True" SelectText="Modificar" />
                                     </Columns>
                                     <PagerStyle CssClass="pgr" />
                                 </asp:GridView>
@@ -145,12 +182,11 @@
                                                         Serie - Número</td>
                                                     <td align="left">
                                                         <asp:TextBox ID="txtSerieNumeroOC" runat="server" ReadOnly="True"></asp:TextBox>
-                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        &nbsp;&nbsp;<asp:LinkButton ID="btnBuscarOC" runat="server" CssClass="lnk" 
+                                                            onclick="btnBuscarOC_Click">Buscar</asp:LinkButton>
                                                         </td>
                                                     <td align="left" class="style2">
-                                                        <asp:LinkButton ID="btnBuscarOC" runat="server" CssClass="lnk" 
-                                                            onclick="btnBuscarOC_Click">Buscar</asp:LinkButton>
-                                                    </td>
+                                                        &nbsp;</td>
                                                     <td align="left" class="style30">
                                                         &nbsp;</td>
                                                     <td align="left" class="style1">
@@ -219,7 +255,8 @@
                                                     <td align="left" class="style1">
                                                         <asp:TextBox ID="txtFechaFact" runat="server"></asp:TextBox>
                                                         <asp:CalendarExtender ID="txtFechaFact_CalendarExtender" runat="server" 
-                                                            TargetControlID="txtFechaFact">
+                                                            TargetControlID="txtFechaFact" Format="dd/MM/yyyy" 
+                                                            TodaysDateFormat="dd/MM/yyyy">
                                                         </asp:CalendarExtender>
                                                         </td>
                                                 </tr>
@@ -255,7 +292,8 @@
                                                     <td align="left" class="style26">
                                                         <asp:TextBox ID="txtFechaGuia" runat="server"></asp:TextBox>
                                                         <asp:CalendarExtender ID="txtFechaGuia_CalendarExtender" runat="server" 
-                                                            TargetControlID="txtFechaGuia">
+                                                            TargetControlID="txtFechaGuia" Format="dd/MM/yyyy" 
+                                                            TodaysDateFormat="dd/MM/yyyy">
                                                         </asp:CalendarExtender>
                                                     </td>
                                                 </tr>
@@ -294,11 +332,11 @@
                                                         <asp:TextBox ID="txtAlmacen" runat="server" ReadOnly="True" Height="24px" 
                                                             Width="385px"></asp:TextBox>
                                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                        </td>
-                                                    <td align="left" class="style29">
                                                         <asp:LinkButton ID="btnBuscarAlmacen" runat="server" CssClass="lnk" 
                                                             onclick="btnBuscarAlmacen_Click">Buscar</asp:LinkButton>
-                                                    </td>
+                                                        </td>
+                                                    <td align="left" class="style29">
+                                                        &nbsp;</td>
                                                     <td align="left" class="style33">
                                                         &nbsp;</td>
                                                     <td align="left" class="style29">
@@ -357,12 +395,12 @@
                                                                 </asp:TemplateField>
                                                                 <asp:TemplateField HeaderText="Can. Pedida">
                                                                     <ItemTemplate>
-                                                                        <%# Eval("mve_c_ecant_pedida")%>
+                                                                        <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("mve_c_ecant_pedida"))%>
                                                                     </ItemTemplate>  
                                                                 </asp:TemplateField>
                                                                 <asp:TemplateField HeaderText="Can. Recibida">
                                                                     <ItemTemplate>
-                                                                        <%# Eval("mve_c_ecant_recibida")%>
+                                                                        <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("mve_c_ecant_recibida"))%>
                                                                     </ItemTemplate>  
                                                                     <EditItemTemplate>
                                                                         <asp:TextBox ID="txtCantidad" runat="server"

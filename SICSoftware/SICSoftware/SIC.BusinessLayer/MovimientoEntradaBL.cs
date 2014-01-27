@@ -14,6 +14,11 @@ namespace SIC.BusinessLayer
             return new MovimientoEntradaDA().ObtenerMovimientoEntrada();
         }
 
+        public List<SIC_T_MOVIMIENTO_ENTRADA> ObtenerMovimientosEntrada(String ruc, String razonSocial,                                                 DateTime? inicio, DateTime? fin)
+        {
+            return new MovimientoEntradaDA().ObtenerMovimientoEntrada(ruc,razonSocial,inicio,fin);
+        }
+
         public List<SIC_T_MOV_ESTADO> ObtenerMovimientoEstados()
         {
             return new MovimientoEntradaDA().ObtenerMovimientoEstados();

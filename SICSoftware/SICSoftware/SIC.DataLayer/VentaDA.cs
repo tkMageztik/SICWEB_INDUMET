@@ -28,23 +28,38 @@ namespace SIC.DataLayer
             }   
         }
 
+        public List<SIC_T_VENTA> ListarVentas(string ruc, string razonSocial, DateTime? inicio, DateTime? fin)
+        {
+            try
+            {
+                using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+                {
+                    return (from x in contexto.SIC_T_VENTA
+                                    .Include("SIC_T_CLIENTE")
+                            where x.ven_c_bactivo == true
+                                && (ruc== null || ruc==string.Empty || 
+                                            (x.SIC_T_CLIENTE!=null
+                                            && x.SIC_T_CLIENTE.cli_c_vdoc_id.Contains(ruc)))
+                                && (razonSocial == null || razonSocial == string.Empty ||
+                                            (x.SIC_T_CLIENTE!=null
+                                            && x.SIC_T_CLIENTE.cli_c_vraz_soc.Contains(razonSocial)))
+                                && (inicio==null || x.ven_c_zfecha.Value >= inicio)
+                                && (fin==null || (x.ven_c_zfecha.Value.Year <= fin.Value.Year 
+                                                 && x.ven_c_zfecha.Value.Month <= fin.Value.Month 
+                                                 && x.ven_c_zfecha.Value.Day <= fin.Value.Day)) 
+                            select x).ToList();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }   
+        }
+
+
         public List<SIC_T_VENTA> ListarOrdenDeCompraEstado(int estado)
         {
             throw new NotImplementedException();
-            //try
-            //{
-            //    using (SICDBWEBEntities contexto = new SICDBWEBEntities())
-            //    {
-            //        return (from x in contexto.SIC_T_VENTA
-            //                        .Include("SIC_T_CLIENTE")
-            //                where x.ven_c_bactivo == true && x.ven_c_iestado == estado
-            //                select x).ToList();
-            //    }
-            //}
-            //catch (Exception)
-            //{
-            //    throw;
-            //}
         }
 
         /// <summary>

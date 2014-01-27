@@ -4,6 +4,16 @@
 <%@ Register Src="~/UserControl/wucMensajeAlerta2.ascx" TagName="Mensaje" TagPrefix="uc2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     
+    <style type="text/css">
+        .style1
+        {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 11.5px;
+            color: #686168;
+            height: 20px;
+        }
+        </style>
+    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
    <asp:UpdatePanel ID="upGeneral" UpdateMode="Conditional" runat="server">
@@ -75,16 +85,20 @@
                                                             <tr>
                                                                 <td class="txt-box-estilo">
                                                                     
-                                                                </td>
+                                                                    RUC</td>
                                                                 <td>
+                                                                    
+                                                                    <asp:TextBox ID="txtFiltroRuc" runat="server"></asp:TextBox>
                                                                     
                                                                 </td>
                                                                 <td style="width: 20px">
                                                                 </td>
                                                                 <td class="txt-box-estilo">
                                                                     
-                                                                </td>
+                                                                    Razón Social</td>
                                                                 <td>
+                                                                    
+                                                                    <asp:TextBox ID="txtFiltroRS" runat="server"></asp:TextBox>
                                                                     
                                                                 </td>
                                                                 <td style="width: 20px">
@@ -95,6 +109,32 @@
                                                                     &nbsp;
                                                                 </td>
                                                             </tr>
+                                                            <tr>
+                                                                <td class="txt-box-estilo">
+                                                                    Desde</td>
+                                                                <td>
+                                                                    <asp:TextBox ID="txtFiltroFecIni" runat="server"></asp:TextBox>
+                                                                    <asp:CalendarExtender ID="txtFiltroFecIni_CalendarExtender" runat="server" 
+                                                                        Format="dd/MM/yyyy" TargetControlID="txtFiltroFecIni" 
+                                                                        TodaysDateFormat="dd/MM/yyyy" />
+                                                                </td>
+                                                                <td style="width: 20px">
+                                                                    &nbsp;</td>
+                                                                <td class="txt-box-estilo">
+                                                                    Hasta</td>
+                                                                <td>
+                                                                    <asp:TextBox ID="txtFiltroFecFin" runat="server"></asp:TextBox>
+                                                                    <asp:CalendarExtender ID="txtFiltroFecFin_CalendarExtender" runat="server" 
+                                                                        Format="dd/MM/yyyy" TargetControlID="txtFiltroFecFin" 
+                                                                        TodaysDateFormat="dd/MM/yyyy" />
+                                                                </td>
+                                                                <td style="width: 20px">
+                                                                    &nbsp;</td>
+                                                                <td>
+                                                                    &nbsp;</td>
+                                                                <td>
+                                                                    &nbsp;</td>
+                                                            </tr>
                                                         </table>
                                                     </td>
                                                     <td align="right">
@@ -102,7 +142,7 @@
                                                             <tr>
                                                                 <td align="center">
                                                                     <asp:Button ID="btnBuscar" runat="server" CssClass="button small gris"
-                                                                        Style="width: 100px" Text="Buscar" Enabled="False" />
+                                                                        Style="width: 100px" Text="Buscar" onclick="btnBuscar_Click" />
                                                                 </td>
                                                                 <td align="center">
                                                                     <asp:Button ID="btnNuevo" runat="server" CssClass="lnk" Height="26px" OnClick="btnNuevo_Click"
@@ -139,8 +179,13 @@
                                                 <%# Eval("SIC_T_CLIENTE.cli_c_vraz_soc")%>
                                             </ItemTemplate>                             
                                         </asp:TemplateField>
+                                        <asp:BoundField HeaderText="TIPO DOCUMENTO" DataField="ven_c_vdestipodoc" />                                        
                                         <asp:BoundField HeaderText="MONEDA" DataField="ven_c_vdescmoneda" />                                        
-                                        <asp:BoundField HeaderText="MONTO TOTAL" DataField="ven_c_etotal" />
+                                        <asp:TemplateField  HeaderText="MONTO TOTAL">
+                                            <ItemTemplate>
+                                                <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("ven_c_etotal"))%>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
                                         <asp:BoundField HeaderText="FECHA DE REGISTRO" DataField="ven_c_zfecha" />
                                         <asp:CommandField ShowEditButton="True" CancelText="Cancelar" 
                                             DeleteText="Eliminar" EditText="Editar" />
@@ -210,7 +255,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td align="left" class="txt-box-estilo">
-                                                        &nbsp;</td>
+                                                        RUC</td>
                                                     <td align="left" class="style3">
                                                         <asp:TextBox ID="txtRucProv" runat="server" BackColor="#CCCCCC" 
                                                             BorderColor="Black" BorderStyle="None" BorderWidth="1px" ReadOnly="True" 
@@ -271,28 +316,27 @@
                                                                 </asp:TemplateField>
                                                                 <asp:TemplateField HeaderText="Cantidad">
                                                                 <ItemTemplate>
-                                                                        <%# Eval("ven_det_c_ecantidad")%>
+                                                                        <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("ven_det_c_ecantidad"))%>
                                                                 </ItemTemplate>  
                                                                     <EditItemTemplate>
                                                                         <asp:TextBox ID="txtCantidad" runat="server"
-                                                                        Text='<%# Bind("ven_det_c_ecantidad") %> '>
+                                                                            Text='<%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("ven_det_c_ecantidad") )%> '>
                                                                         </asp:TextBox>
                                                                     </EditItemTemplate>
                                                                 </asp:TemplateField>
                                                                 <asp:TemplateField HeaderText="Unitario">
                                                                 <ItemTemplate>
-                                                                        <%# Eval("ven_det_c_epreciounit")%>
+                                                                        <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("ven_det_c_epreciounit"))%>                                                                        
                                                                 </ItemTemplate>  
                                                                 <EditItemTemplate>
-                                                                        <asp:TextBox ID="txtPrecio" runat="server"
-                                                                            Text='<%# Bind("ven_det_c_epreciounit") %> '>
+                                                                        <asp:TextBox ID="txtPrecio" runat="server" Text='<%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("ven_det_c_epreciounit") )%> '>
                                                                         </asp:TextBox>
                                                                 </EditItemTemplate>
                                                                 </asp:TemplateField>
 
                                                                 <asp:TemplateField HeaderText="Sub Total">
                                                                 <ItemTemplate>
-                                                                        <%# Eval("ven_det_c_epreciototal")%>
+                                                                        <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("ven_det_c_epreciototal"))%>
                                                                 </ItemTemplate>  
                                                                 </asp:TemplateField>
 
@@ -300,7 +344,7 @@
                                                                     UpdateText="Actualizar" />
                                                                 <asp:TemplateField HeaderText="Unit. Ref. (Soles)">
                                                                     <ItemTemplate>
-                                                                        <%# Eval("precioReferenciaSoles")%>
+                                                                        <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("precioReferenciaSoles"))%>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
                                                             </Columns>
@@ -313,17 +357,17 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td align="left" class="txt-box-estilo">
+                                                    <td align="left" class="style1">
                                                         &nbsp;Tasa de Cambio</td>
-                                                    <td align="left" class="txt-box-estilo">
+                                                    <td align="left" class="style1">
                                                         <asp:Label ID="lblTC" runat="server"></asp:Label>
                                                     </td>
-                                                    <td align="left" class="txt-box-estilo">
-                                                        &nbsp;</td>
-                                                    <td align="left" class="txt-box-estilo">
-                                                        &nbsp;</td>
-                                                    <td align="left" class="txt-box-estilo">
-                                                        &nbsp;</td>
+                                                    <td align="left" class="style1">
+                                                        </td>
+                                                    <td align="left" class="style1">
+                                                        </td>
+                                                    <td align="left" class="style1">
+                                                        </td>
                                                 </tr>
                                                  <tr>
                                                      <td align="left" class="txt-box-estilo">
@@ -341,16 +385,16 @@
                                                      </td>
                                                 </tr>
                                                  <tr>
-                                                    <td align="left" class="txt-box-estilo">
+                                                    <td align="left" class="style1">
                                                         I.G.V.&nbsp;(<asp:Label ID="lblIGV" runat="server" Text="18%"></asp:Label>
                                                         )</td>
-                                                    <td align="left" class="style3">
+                                                    <td align="left" class="txt-box-estilo">
                                                         <asp:Label ID="lblIGVCal" runat="server"></asp:Label>
                                                     </td>
-                                                    <td align="left" class="txt-box-estilo">
-                                                        &nbsp;</td>
-                                                     <td align="left" class="txt-box-estilo">
-                                                         &nbsp;</td>
+                                                    <td align="left" class="style1">
+                                                        </td>
+                                                     <td align="left" class="style1">
+                                                         </td>
                                                 </tr>
                                                 <tr>
                                                     <td align="left" class="txt-box-estilo">

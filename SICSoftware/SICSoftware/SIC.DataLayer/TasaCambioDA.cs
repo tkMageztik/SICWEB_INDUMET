@@ -14,9 +14,9 @@ namespace SIC.DataLayer
             {                
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
-                    var result =  from x in contexto.SIC_T_TASA_CAMBIO
-                            where x.tsc_c_dinicio < fecha
-                            select x;
+                    var result = (from x in contexto.SIC_T_TASA_CAMBIO
+                                  where x.tsc_c_dinicio < fecha
+                                  select x).OrderByDescending( x => x.tsc_c_dinicio );
                     if (result.Count() > 0)
                     {
                         return result.First();

@@ -28,6 +28,37 @@ namespace SIC.DataLayer
             }
         }
 
+        public List<SIC_T_MOVIMIENTO_ENTRADA> ObtenerMovimientoEntrada(String ruc, String razonSocial, 
+                                                DateTime? inicio, DateTime? fin)
+        {
+            try
+            {
+                using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+                {
+                    return (from x in contexto.SIC_T_MOVIMIENTO_ENTRADA
+                             .Include("SIC_T_ORDEN_DE_COMPRA")
+                             .Include("SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE")
+                             .Include("SIC_T_MOVIMIENTO_ENTRADA_DETALLE")
+                            where x.mve_c_bactivo == true 
+                                && (ruc== null || ruc==string.Empty || 
+                                            (x.SIC_T_ORDEN_DE_COMPRA != null && x.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE!=null
+                                            && x.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vdoc_id.Contains(ruc)))
+                                && (razonSocial == null || razonSocial == string.Empty ||
+                                            (x.SIC_T_ORDEN_DE_COMPRA != null && x.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE!=null
+                                            && x.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vraz_soc.Contains(razonSocial)))
+                                && (inicio==null || x.mve_c_zfecharegistro.Value >= inicio)
+                                && (fin == null || (x.mve_c_zfecharegistro.Value.Year <= fin.Value.Year
+                                                 && x.mve_c_zfecharegistro.Value.Month <= fin.Value.Month
+                                                 && x.mve_c_zfecharegistro.Value.Day <= fin.Value.Day)) 
+                            select x).ToList();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public List<SIC_T_MOV_ESTADO> ObtenerMovimientoEstados()
         {
             try

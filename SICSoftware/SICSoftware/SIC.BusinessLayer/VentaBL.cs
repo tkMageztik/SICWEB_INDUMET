@@ -9,9 +9,14 @@ namespace SIC.BusinessLayer
 {
     public class VentaBL
     {
-        public List<SIC_T_VENTA> ListarVentas()
+        //public List<SIC_T_VENTA> ListarVentas()
+        //{
+        //    return new VentaDA().ListarVentas();
+        //}
+
+        public List<SIC_T_VENTA> ListarVentas(string ruc, string razonSocial, DateTime? inicio, DateTime? fin)
         {
-            return new VentaDA().ListarVentas();
+            return new VentaDA().ListarVentas(ruc,razonSocial,inicio,fin);
         }
 
         public List<SIC_T_VENTA> ListarOrdenDeCompraEstado(int estado)

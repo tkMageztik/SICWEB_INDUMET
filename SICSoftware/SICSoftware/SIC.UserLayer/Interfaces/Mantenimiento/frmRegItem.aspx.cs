@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using SIC.BusinessLayer;
 using SIC.Data;
 using SIC.EntityLayer;
+using System.Globalization;
 
 
 
@@ -264,8 +265,14 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 //Seteando la data en los controles
                 this.txtCodigo.Text = ItemSeleccionado.itm_c_ccodigo;
                 this.txtDescripcion.Text = ItemSeleccionado.itm_c_vdescripcion;
-                this.txtPrecioCompra.Text = ItemSeleccionado.itm_c_dprecio_compra.ToString();
-                this.txtPrecioVenta.Text = ItemSeleccionado.itm_c_dprecio_venta.ToString();
+                if (ItemSeleccionado.itm_c_dprecio_compra.HasValue)
+                {
+                    this.txtPrecioCompra.Text = ItemSeleccionado.itm_c_dprecio_compra.Value.ToString("F2", CultureInfo.InvariantCulture);
+                }
+                if (ItemSeleccionado.itm_c_dprecio_venta.HasValue)
+                {
+                    this.txtPrecioVenta.Text = ItemSeleccionado.itm_c_dprecio_venta.Value.ToString("F2", CultureInfo.InvariantCulture);
+                }
                 this.cboUnidad.SelectedIndex = -1;
 
                 var seleccion = cboUnidad.Items.FindByText(ItemSeleccionado.itm_c_vpardes);
@@ -310,6 +317,8 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             this.txtPrecioVenta.Text = string.Empty;
             this.cboUnidad.SelectedIndex = -1;
             this.cboUnidad.DataBind();
+            this.cboFamilia.SelectedIndex = 0;
+            this.cboSubFamilia.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -327,8 +336,8 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             nuevoItem.itm_c_ccodigo = this.txtCodigo.Text;
             decimal precioCompra, precioVenta;
             int idSubFamilia;
-            decimal.TryParse(txtPrecioCompra.Text, out precioCompra);
-            decimal.TryParse(txtPrecioVenta.Text, out precioVenta);
+            decimal.TryParse(txtPrecioCompra.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out precioCompra);
+            decimal.TryParse(txtPrecioVenta.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out precioVenta);
             int.TryParse(cboSubFamilia.SelectedValue, out idSubFamilia);
             nuevoItem.itm_c_dprecio_compra = precioCompra;
             nuevoItem.itm_c_dprecio_venta = precioVenta;
@@ -405,12 +414,12 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 Mensaje("La descripción acepta 250 caracteres como máxcimo.", "../Imagenes/warning.png");
                 return false;
             }
-            else if (!decimal.TryParse(this.txtPrecioCompra.Text, out precio) && precio > 0)
+            else if (!decimal.TryParse(this.txtPrecioCompra.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out precio) && precio <= 0)
             {
                 Mensaje("Debe ingresar un precio de compra válido mayor a 0.", "../Imagenes/warning.png");
                 return false;
             }
-            else if (!decimal.TryParse(this.txtPrecioVenta.Text, out precio) && precio > 0)
+            else if (!decimal.TryParse(this.txtPrecioVenta.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out precio) && precio <= 0)
             {
                 Mensaje("Debe ingresar un precio de venta válido mayor a 0.", "../Imagenes/warning.png");
                 return false;
@@ -440,8 +449,8 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             ItemSeleccionado.itm_c_vdescripcion = txtDescripcion.Text.Trim();
             decimal precioCompra, precioVenta;
             int idSubFamilia;
-            decimal.TryParse(txtPrecioCompra.Text, out precioCompra);
-            decimal.TryParse(txtPrecioVenta.Text, out precioVenta);
+            decimal.TryParse(txtPrecioCompra.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out precioCompra);
+            decimal.TryParse(txtPrecioVenta.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out precioVenta);
             int.TryParse(cboSubFamilia.SelectedValue, out idSubFamilia);
             ItemSeleccionado.itm_c_dprecio_compra = precioCompra;
             ItemSeleccionado.itm_c_dprecio_venta = precioVenta;            

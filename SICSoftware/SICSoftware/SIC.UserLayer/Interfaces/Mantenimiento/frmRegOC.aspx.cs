@@ -238,9 +238,10 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         {
             TextBox txtCantidad = (TextBox)gvItemsSeleccionados.Rows[e.RowIndex].FindControl("txtCantidad");
             TextBox txtPrecio = (TextBox)gvItemsSeleccionados.Rows[e.RowIndex].FindControl("txtPrecio");
+
             decimal cantidadNueva, precioNuevo;
-            if (decimal.TryParse(txtCantidad.Text, out cantidadNueva) && cantidadNueva > 0
-                && decimal.TryParse(txtPrecio.Text, out precioNuevo) && precioNuevo > 0)
+            if (decimal.TryParse(txtCantidad.Text, NumberStyles.Any,CultureInfo.InvariantCulture, out cantidadNueva) && cantidadNueva > 0
+                && decimal.TryParse(txtPrecio.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out precioNuevo) && precioNuevo > 0)
             {
                 int itemId = (int)gvItemsSeleccionados.DataKeys[e.RowIndex].Value;
 
@@ -322,9 +323,9 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             
             this.OCEliminar = (int)this.gvListaOC.DataKeys[e.RowIndex].Value;
             var oc = this.OCSeleccionado = _ordenCompra.ObtenerOrdenCompra(OCEliminar);
-            if (oc != null && oc.odc_c_iestado.Value != (int)EstadoOC.ABIERTA && oc.odc_c_iestado.Value != (int)EstadoOC.VENCIDA)
+            if (oc != null && (oc.odc_c_iestado.Value == (int)EstadoOC.ABIERTA || oc.odc_c_iestado.Value == (int)EstadoOC.VENCIDA))
             {
-                this.Mensaje("Solo se puede eliminar ordenes de compra en estado ABIERTA o VENCIDA.", "../Imagenes/warning.png");
+                this.Mensaje("No se puede eliminar ordenes de compra en estado ABIERTA o VENCIDA.", "../Imagenes/warning.png");
                 return;
             }
 
@@ -604,7 +605,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             this.txtSerie.Enabled = false;
             this.txtNumero.Enabled = false;
 
-
+            this.lblAccion.Text = "Modificar";
 
 
 
@@ -1428,7 +1429,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             {
                 this.TasaCambio = value.tsc_c_ecompra.Value;
             }
-            lblTC.Text = value.tsc_c_ecompra.Value.ToString();
+            lblTC.Text ="S/. " +  value.tsc_c_ecompra.Value.ToString("F4", CultureInfo.InvariantCulture);
         }
 
         protected void cboMoneda_SelectedIndexChanged(object sender, EventArgs e)

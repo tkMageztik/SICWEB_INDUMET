@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
-    CodeBehind="frmRegItem.aspx.cs" Inherits="SIC.UserLayer.Interfaces.Mantenimiento.frmRegItem" %>
+    CodeBehind="frmRegItem.aspx.cs" Inherits="SIC.UserLayer.Interfaces.Mantenimiento.frmRegItem" 
+    Culture="auto" UICulture="auto" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <%@ Register Src="~/UserControl/wucMensajeAlerta.ascx" TagName="Mensaje" TagPrefix="uc1" %>
@@ -114,8 +115,18 @@
                                     <Columns>
                                         <asp:BoundField DataField="itm_c_ccodigo" HeaderText="CÓDIGO" />
                                         <asp:BoundField DataField="itm_c_vdescripcion" HeaderText="DESCRIPCIÓN" />
-                                        <asp:BoundField DataField="itm_c_dprecio_compra" HeaderText="PRECIO COMPRA" />
+                                        <asp:TemplateField HeaderText="PRECIO COMPRA">
+                                            <ItemTemplate>
+                                                <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("itm_c_dprecio_compra"))%>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="PRECIO VENTA">
+                                            <ItemTemplate>
+                                                <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("itm_c_dprecio_venta"))%>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
                                         <asp:BoundField DataField="itm_c_vpardes" HeaderText="UNIDAD DE MEDIDA" />
+
                                         
                                         <asp:TemplateField HeaderText="FAMILIA">
                                             <ItemTemplate>

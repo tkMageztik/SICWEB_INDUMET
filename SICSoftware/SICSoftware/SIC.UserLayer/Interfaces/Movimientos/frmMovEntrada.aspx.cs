@@ -64,7 +64,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-
+            ListarMovimientoEntrada();
         }
 
         protected void btnNuevo_Click(object sender, EventArgs e)
@@ -211,7 +211,19 @@ namespace SIC.UserLayer.Interfaces.Movimientos
 
         private void ListarMovimientoEntrada()
         {
-            this.gvListaMovEn.DataSource = _movEntrada.ObtenerMovimientosEntrada();
+            DateTime inicio, fin;
+            DateTime? fi = null, ff = null;
+            if (DateTime.TryParseExact(txtFiltroFecIni.Text, "dd/MM/yyyy", new CultureInfo("en-US"), DateTimeStyles.None, out inicio))
+            {
+                fi = inicio;
+            }
+
+            if (DateTime.TryParseExact(txtFiltroFecFin.Text, "dd/MM/yyyy", new CultureInfo("en-US"), DateTimeStyles.None, out fin))
+            {
+                ff = fin;
+            }
+            this.gvListaMovEn.DataSource = _movEntrada.ObtenerMovimientosEntrada(this.txtFiltroRuc.Text, this.txtFiltroRS.Text, fi,ff);
+            //this.gvListaMovEn.DataSource = _movEntrada.ObtenerMovimientosEntrada();
             this.gvListaMovEn.DataBind();
         }
 
@@ -336,11 +348,6 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                     seleccion.Selected = true;
                 }
 
-
-                if (MovEntSeleccionado.mve_c_zguiafecha.HasValue)
-                {
-                    txtFechaGuia_CalendarExtender.SelectedDate = MovEntSeleccionado.mve_c_zguiafecha.Value;
-                }
                 this.upGeneral.Update();
             }
             else
@@ -375,6 +382,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         private void Limpiar()
         {
             this.txtAlmacen.Text = string.Empty;
+            this.txtProveedorOC.Text = string.Empty;
             this.txtNumeroFact.Text = string.Empty;
             this.txtNumeroGuia.Text = string.Empty;
             this.txtSerieFact.Text = string.Empty;
@@ -632,6 +640,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                     {
                         MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA = _ordenCompra.ObtenerOrdenCompraNoContext(id);
                         txtSerieNumeroOC.Text = MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA != null ? MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA.odc_c_vcodigo.ToString() : string.Empty;
+                        txtProveedorOC.Text = MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vraz_soc;
 
                         foreach (var detalle in MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA.SIC_T_ORDEN_DE_COMPRA_DET)
                         {
@@ -710,6 +719,8 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         {
             this.gvListaAlmacen.PageIndex = e.NewPageIndex;
             this.ListarAlmacenes();
-        }        
+        }
+
+   
     }
 }
