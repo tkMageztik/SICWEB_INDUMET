@@ -232,15 +232,10 @@
                                             <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                                 <tr>
                                                     <td align="left" class="txt-box-estilo">
-                                                        Cliente
-                                                    </td>
+                                                        Centro de Costo&nbsp;</td>
                                                     <td align="left" class="style3" style="margin-left: 40px">
-                                                        <asp:TextBox ID="txtRSProv" runat="server" Width="282px" BackColor="#CCCCCC" 
-                                                            BorderColor="Black" BorderStyle="None" BorderWidth="1px" ReadOnly="True"></asp:TextBox>
-                                                        
-                                                        &nbsp;
-                                                        <asp:LinkButton ID="btnBuscarProveedor" runat="server" CssClass="lnk" 
-                                                            OnClick="btnBuscarProveedor_Click">Buscar</asp:LinkButton>
+                                                        <asp:DropDownList ID="cboCentroCosto" runat="server">
+                                                        </asp:DropDownList>
                                                         
                                                     </td>
                                                     <td>
@@ -255,18 +250,23 @@
                                                 </tr>
                                                 <tr>
                                                     <td align="left" class="txt-box-estilo">
-                                                        RUC</td>
+                                                        Cliente </td>
                                                     <td align="left" class="style3">
-                                                        <asp:TextBox ID="txtRucProv" runat="server" BackColor="#CCCCCC" 
+                                                        <asp:TextBox ID="txtRSProv" runat="server" BackColor="#CCCCCC" 
                                                             BorderColor="Black" BorderStyle="None" BorderWidth="1px" ReadOnly="True" 
                                                             Width="282px"></asp:TextBox>
+                                                        &nbsp;<asp:LinkButton ID="btnBuscarProveedor" runat="server" CssClass="lnk" 
+                                                            OnClick="btnBuscarProveedor_Click">Buscar</asp:LinkButton>
                                                     </td>
                                                     <td>
                                                         &nbsp;</td>
                                                     <td class="style1">
-                                                        &nbsp;</td>
+                                                        RUC</td>
                                                     <td align="left" class="txt-box-estilo">
-                                                        &nbsp;</td>
+                                                        <asp:TextBox ID="txtRucProv" runat="server" BackColor="#CCCCCC" 
+                                                            BorderColor="Black" BorderStyle="None" BorderWidth="1px" ReadOnly="True" 
+                                                            Width="282px"></asp:TextBox>
+                                                    </td>
                                                     <td align="left" class="txt-box-estilo">
                                                         &nbsp;</td>
                                                 </tr>
@@ -467,9 +467,11 @@
                                                                 <td>
                                                                     <asp:TextBox ID="txtFiltroDescr" runat="server" CssClass="ipt_150x20"></asp:TextBox>
                                                                 </td>
-                                                                <td style="width: 20px">
-                                                                </td>
+                                                                <td style="width: 20px" class="txt-box-estilo">
+                                                                    Almacen</td>
                                                                 <td>
+                                                                    <asp:DropDownList ID="cboFiltroAlmacen" runat="server">
+                                                                    </asp:DropDownList>
                                                                 </td>
                                                                 <td>
                                                                     &nbsp;

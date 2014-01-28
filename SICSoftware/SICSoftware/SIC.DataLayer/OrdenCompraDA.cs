@@ -147,13 +147,6 @@ namespace SIC.DataLayer
                                   where x.odc_c_iid == id && x.odc_c_bactivo == true
                                   select x).SingleOrDefault();
                     SIC_T_CLIENTE cli = result.SIC_T_CLIENTE;
-                    //var listDetalle = result.SIC_T_ORDEN_DE_COMPRA_DET;
-
-                    //contexto.Detach(cli);
-                    //contexto.Detach(result);
-                    //contexto.Detach(listDetalle);
-                    
-                    //result.SIC_T_CLIENTE = cli;
                     return result;
                 }
             }

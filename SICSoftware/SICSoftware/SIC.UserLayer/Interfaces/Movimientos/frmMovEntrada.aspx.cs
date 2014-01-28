@@ -277,8 +277,15 @@ namespace SIC.UserLayer.Interfaces.Movimientos
 
         private void MostrarModificarMovimientoEntrada(int idMovimiento)
         {
-            this.EscenarioMovEn = TipoOperacion.Modificacion;
+            
             this.MovEntSeleccionado = _movEntrada.ObtenerMovimientoEntradaPorId(idMovimiento);
+            if (MovEntSeleccionado.mve_c_ioc_id == (int)EstadoMovimiento.CERRADA)
+            {
+                this.Mensaje("No se puede modificar movimientos en estado CERRADO.", "../Imagenes/warning.png");
+                return;
+            }
+
+            this.EscenarioMovEn = TipoOperacion.Modificacion;
             if (MovEntSeleccionado != null)
             {
                 this.mvMovimientoEntrada.ActiveViewIndex = 1;
@@ -292,23 +299,19 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 if (MovEntSeleccionado.mve_c_zfacturafecha.HasValue)
                 {
                     txtFechaFact.Text = MovEntSeleccionado.mve_c_zfacturafecha.Value.ToString("dd/MM/yyyy");
-                    //txtFechaFact_CalendarExtender.SelectedDate = MovEntSeleccionado.mve_c_zfacturafecha.Value;
                 }
                 else
                 {
                     txtFechaFact.Text = String.Empty;
-                    //txtFechaFact_CalendarExtender.SelectedDate = DateTime.Today;
                 }
 
                 if (MovEntSeleccionado.mve_c_zguiafecha.HasValue)
                 {
                     txtFechaGuia.Text = MovEntSeleccionado.mve_c_zguiafecha.Value.ToString("dd/MM/yyyy");
-                    //txtFechaFact_CalendarExtender.SelectedDate = MovEntSeleccionado.mve_c_zfacturafecha.Value;
                 }
                 else
                 {
                     txtFechaGuia.Text = String.Empty;
-                    //txtFechaFact_CalendarExtender.SelectedDate = DateTime.Today;
                 }
 
                 String[] factCod, guiaCod;
@@ -392,7 +395,10 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             this.txtFechaFact.Text = string.Empty;
             this.MovEntNuevo = null;
             this.txtObs.Text = string.Empty;
+            this.gvItemsSeleccionados.DataSource = null;
+            this.gvItemsSeleccionados.DataBind();
             this.MovEntSeleccionado = null;
+            this.MovEntNuevo = null;
         }
 
         private void MostrarListaDetalleOC()
@@ -427,7 +433,6 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             this.upGeneral.Update();
         }
 
-
         #endregion
 
 
@@ -436,31 +441,21 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         private bool VerificarDatosIngreso()
         {
             DateTime time;
-            //if (!DateTime.TryParse(txtFechaFactura.Text, out time))
-            //{
-            //    Mensaje("Ingrese una fecha de Factura correcta.", "../Imagenes/warning.png");
-            //    return false;
-            //}
             if (!DateTime.TryParseExact(txtFechaFact.Text, "dd/MM/yyyy", new CultureInfo("en-US"), DateTimeStyles.None, out time))
             {
                 Mensaje("Ingrese una fecha de factura correcta.", "../Imagenes/warning.png");
                 return false;
             }
-            if (txtNumeroFact.Text.Trim().Length == 0 || txtSerieFact.Text.Trim().Length == 0)
+            else if (txtNumeroFact.Text.Trim().Length == 0 || txtSerieFact.Text.Trim().Length == 0)
             {
                 Mensaje("Ingrese la serie y número de la Factura.", "../Imagenes/warning.png");
                 return false;
             }
-            if (txtFechaFact.Text.Trim() != string.Empty && !DateTime.TryParseExact(txtFechaFact.Text, "dd/MM/yyyy", new CultureInfo("en-US"), DateTimeStyles.None, out time))
+            else if (txtFechaFact.Text.Trim() != string.Empty && !DateTime.TryParseExact(txtFechaFact.Text, "dd/MM/yyyy", new CultureInfo("en-US"), DateTimeStyles.None, out time))
             {
                 Mensaje("Ingrese una fecha de guia correcta, o borre la fecha.", "../Imagenes/warning.png");
                 return false;
             }
-            //else if (txtNumeroGuia.Text.Trim().Length == 0 || txtSerieGuia.Text.Trim().Length == 0)
-            //{
-            //    Mensaje("Ingrese la serie y número de la Guía.", "../Imagenes/warning.png");
-            //    return false;
-            //}
             else if (this.MovEntNuevo.SIC_T_ORDEN_DE_COMPRA == null)
             {
                 Mensaje("Seleccione una orden de compra.", "../Imagenes/warning.png");
@@ -480,22 +475,17 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         private bool VerificarDatosModificacion()
         {
             DateTime time;
-            //if (!DateTime.TryParse(txtFechaFactura.Text, out time))
-            //{
-            //    Mensaje("Ingrese una fecha de Factura correcta.", "../Imagenes/warning.png");
-            //    return false;
-            //}
             if (!DateTime.TryParseExact(txtFechaFact.Text, "dd/MM/yyyy", new CultureInfo("en-US"), DateTimeStyles.None, out time))
             {
                 Mensaje("Ingrese una fecha de factura correcta.", "../Imagenes/warning.png");
                 return false;
             }
-            if (txtNumeroFact.Text.Trim().Length == 0 || txtSerieFact.Text.Trim().Length == 0)
+            else if (txtNumeroFact.Text.Trim().Length == 0 || txtSerieFact.Text.Trim().Length == 0)
             {
                 Mensaje("Ingrese la serie y número de la Factura.", "../Imagenes/warning.png");
                 return false;
             }
-            if (txtFechaFact.Text.Trim() != string.Empty && !DateTime.TryParseExact(txtFechaFact.Text, "dd/MM/yyyy", new CultureInfo("en-US"), DateTimeStyles.None, out time))
+            else if (txtFechaFact.Text.Trim() != string.Empty && !DateTime.TryParseExact(txtFechaFact.Text, "dd/MM/yyyy", new CultureInfo("en-US"), DateTimeStyles.None, out time))
             {
                 Mensaje("Ingrese una fecha de guia correcta, o borre la fecha.", "../Imagenes/warning.png");
                 return false;
@@ -542,15 +532,26 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             movEntrada.mve_c_zfecharegistro = DateTime.Now;
             movEntrada.mve_c_vobservacion = txtObs.Text;
             movEntrada.SIC_T_ALMACEN = null;
-
-            if (this._movEntrada.InsertarMovimientoEntrada(movEntrada))
+            try
             {
-                Mensaje("Insertado con éxito.", "../Imagenes/correcto.png");
-                RegresarDesdeNuevoModificar();
+                if (this._movEntrada.InsertarMovimientoEntrada(movEntrada))
+                {
+                    Mensaje("Insertado con éxito.", "../Imagenes/correcto.png");
+                    RegresarDesdeNuevoModificar();
+                }
+                else
+                {
+                    Mensaje("Error en el proceso.", "../Imagenes/warning.png");
+                }
             }
-            else
+            catch(Exception ex)
             {
-                Mensaje("Error en el proceso.", "../Imagenes/warning.png");
+                #if DEBUG
+                    Mensaje("Error Fatal : \n" + ex.Message 
+                        + "\n" + ex.InnerException!=null?ex.InnerException.Message:string.Empty , "../Imagenes/warning.png");
+                #else
+                    Mensaje("Error en el proceso.", "../Imagenes/warning.png");
+                #endif
             }
 
         }
@@ -582,14 +583,26 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             movEntrada.mve_c_vobservacion = txtObs.Text;
             movEntrada.SIC_T_ALMACEN = null;
 
-            if (this._movEntrada.ModificarMovimientoEntrada(movEntrada))
+            try
             {
-                Mensaje("Modificado con éxito.", "../Imagenes/correcto.png");
-                RegresarDesdeNuevoModificar();
+                if (this._movEntrada.ModificarMovimientoEntrada(movEntrada))
+                {
+                    Mensaje("Modificado con éxito.", "../Imagenes/correcto.png");
+                    RegresarDesdeNuevoModificar();
+                }
+                else
+                {
+                    Mensaje("Error en el proceso.", "../Imagenes/warning.png");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Mensaje("Error en el proceso.", "../Imagenes/warning.png");
+            #if DEBUG
+                Mensaje("Error Fatal : \n" + ex.Message
+                    + "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty, "../Imagenes/warning.png");
+            #else
+                    Mensaje("Error en el proceso.", "../Imagenes/warning.png");
+            #endif
             }
         }
 
@@ -629,12 +642,12 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                             movDet.mve_c_ecant_recibida = 0;
                             movDet.mve_c_vdescripcion_item = detalle.SIC_T_ITEM.itm_c_vdescripcion;
                             movDet.SIC_T_ORDEN_DE_COMPRA_DET = detalle;
+                            movDet.mve_c_iocdet_id = detalle.odc_det_c_iid;
                             MovEntNuevo.SIC_T_MOVIMIENTO_ENTRADA_DETALLE.Add(movDet);
                         }
 
                         this.ListarDetalleMovimiento();
                         this.RegresarDesdeOrdenCompra();
-
                     }
                     else if (this.EscenarioMovEn == TipoOperacion.Modificacion)
                     {
@@ -649,6 +662,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                             movDet.mve_c_ecant_recibida = 0;
                             movDet.mve_c_vdescripcion_item = detalle.SIC_T_ITEM.itm_c_vdescripcion;
                             movDet.SIC_T_ORDEN_DE_COMPRA_DET = detalle;
+                            movDet.mve_c_iocdet_id = detalle.odc_det_c_iid;
                             MovEntSeleccionado.SIC_T_MOVIMIENTO_ENTRADA_DETALLE.Add(movDet);
                         }
 
@@ -686,11 +700,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             }
 
             this.RegresarDesdeAlmacenes();
-
         }
-
-
-
 
         private void Mensaje(string mensaje, string ruta)
         {
@@ -719,8 +729,6 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         {
             this.gvListaAlmacen.PageIndex = e.NewPageIndex;
             this.ListarAlmacenes();
-        }
-
-   
+        }   
     }
 }

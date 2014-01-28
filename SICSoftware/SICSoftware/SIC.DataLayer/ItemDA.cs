@@ -12,24 +12,6 @@ namespace SIC.DataLayer
 
         #region "Métodos"
 
-        public List<SIC_T_ITEM> ListarItems()
-        {
-            try
-            {
-                using (SICDBWEBEntities contexto = new SICDBWEBEntities())
-                {                    
-                    return (from x in contexto.SIC_T_ITEM
-                            .Include("SIC_T_ITEM_SUB_FAMILIA")
-                            where x.itm_c_bactivo == true
-                            select x).ToList();
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
         public List<SIC_T_ITEM> ListarItems(string codigo, string descripcion, int? idSubFamilia)
         {
             try
@@ -51,6 +33,9 @@ namespace SIC.DataLayer
                 throw;
             }
         }
+
+       
+       
 
         /// <summary>
         /// Inserta el item en la base de datos.
@@ -124,13 +109,13 @@ namespace SIC.DataLayer
         }
 
         public SIC_T_ITEM ObtenerItemPorIdNoContext(int id)
-        {
+        {            
             using (SICDBWEBEntities contexto = new SICDBWEBEntities())
             {
+                contexto.SIC_T_ITEM.MergeOption = System.Data.Objects.MergeOption.NoTracking;
                 var item = (from x in contexto.SIC_T_ITEM
                         where x.itm_c_iid == id && x.itm_c_bactivo == true
                         select x).FirstOrDefault();
-                contexto.Detach(item);
                 return item;
             }
         }

@@ -122,6 +122,7 @@ Culture="es-PE" UICulture="es-PE" %>
                                             </ItemTemplate>                             
                                         </asp:TemplateField>
                                         <asp:BoundField HeaderText="Fecha" DataField="mve_c_zfecharegistro" />                                        
+                                         <asp:BoundField DataField="mve_c_vdesestado" HeaderText="Estado" />
                                         <asp:CommandField ShowSelectButton="True" SelectText="Modificar" />
                                     </Columns>
                                     <PagerStyle CssClass="pgr" />
@@ -181,7 +182,8 @@ Culture="es-PE" UICulture="es-PE" %>
                                                     <td align="left" class="style37">
                                                         Serie - Número</td>
                                                     <td align="left">
-                                                        <asp:TextBox ID="txtSerieNumeroOC" runat="server" ReadOnly="True"></asp:TextBox>
+                                                        <asp:TextBox ID="txtSerieNumeroOC" runat="server" ReadOnly="True" Height="26px" 
+                                                            Width="206px"></asp:TextBox>
                                                         &nbsp;&nbsp;<asp:LinkButton ID="btnBuscarOC" runat="server" CssClass="lnk" 
                                                             onclick="btnBuscarOC_Click">Buscar</asp:LinkButton>
                                                         </td>

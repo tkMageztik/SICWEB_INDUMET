@@ -166,6 +166,24 @@ namespace SIC.UserLayer.Interfaces.Movimientos {
         protected global::System.Web.UI.WebControls.LinkButton btnCancelar;
         
         /// <summary>
+        /// Control cboCentroCosto.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cboCentroCosto;
+        
+        /// <summary>
+        /// Control lblFechaRegistro.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFechaRegistro;
+        
+        /// <summary>
         /// Control txtRSProv.
         /// </summary>
         /// <remarks>
@@ -182,15 +200,6 @@ namespace SIC.UserLayer.Interfaces.Movimientos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnBuscarProveedor;
-        
-        /// <summary>
-        /// Control lblFechaRegistro.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFechaRegistro;
         
         /// <summary>
         /// Control txtRucProv.
@@ -308,6 +317,15 @@ namespace SIC.UserLayer.Interfaces.Movimientos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtFiltroDescr;
+        
+        /// <summary>
+        /// Control cboFiltroAlmacen.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cboFiltroAlmacen;
         
         /// <summary>
         /// Control btnBuscarItem.

@@ -22,6 +22,13 @@ namespace SIC.Data
         CERRADA = 3,
         VENCIDA = 4,
     }
+
+    public enum EstadoMovimiento
+    {
+        POR_REGULARIZAR = 2,
+        CERRADA = 3,
+    }
+
     public enum Calificacion
     {
         POSITIVO,

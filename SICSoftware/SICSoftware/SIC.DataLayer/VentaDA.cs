@@ -43,10 +43,10 @@ namespace SIC.DataLayer
                                 && (razonSocial == null || razonSocial == string.Empty ||
                                             (x.SIC_T_CLIENTE!=null
                                             && x.SIC_T_CLIENTE.cli_c_vraz_soc.Contains(razonSocial)))
-                                && (inicio==null || x.ven_c_zfecha.Value >= inicio)
-                                && (fin==null || (x.ven_c_zfecha.Value.Year <= fin.Value.Year 
-                                                 && x.ven_c_zfecha.Value.Month <= fin.Value.Month 
-                                                 && x.ven_c_zfecha.Value.Day <= fin.Value.Day)) 
+                                && (inicio==null || x.ven_c_zfecha >= inicio)
+                                && (fin==null || (x.ven_c_zfecha.Year <= fin.Value.Year 
+                                                 && x.ven_c_zfecha.Month <= fin.Value.Month 
+                                                 && x.ven_c_zfecha.Day <= fin.Value.Day)) 
                             select x).ToList();
                 }
             }

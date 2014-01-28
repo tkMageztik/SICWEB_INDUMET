@@ -66,7 +66,6 @@ namespace SIC.DataLayer
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
                     return (from x in contexto.SIC_T_MOV_ESTADO
-                            //where x.mov_c_bactivo == true
                             select x).ToList();
                 }
             }
@@ -84,6 +83,7 @@ namespace SIC.DataLayer
                 {
                     return (from x in contexto.SIC_T_MOVIMIENTO_ENTRADA
                              .Include("SIC_T_MOVIMIENTO_ENTRADA_DETALLE")
+                             .Include("SIC_T_MOVIMIENTO_ENTRADA_DETALLE.SIC_T_ORDEN_DE_COMPRA_DET")
                              .Include("SIC_T_ALMACEN")
                              .Include("SIC_T_ORDEN_DE_COMPRA")
                              .Include("SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE")
@@ -103,35 +103,32 @@ namespace SIC.DataLayer
             {
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
-
-                    // Primero buscamos uno con la misma orden de compra
-                    var  anterior = (from x in contexto.SIC_T_MOVIMIENTO_ENTRADA
-                                     where x.mve_c_bactivo == true && x.mve_c_ioc_id == _pSIC_T_MOVIMIENTO_ENTRADA.mve_c_ioc_id
-                            select x).FirstOrDefault();
-
-                    if (anterior != null)
+                    // Si el estado es cerrado (3), se debe guardar  el itemalmacen
+                    if (_pSIC_T_MOVIMIENTO_ENTRADA.mve_c_iestado == 3) // Cerrado, esto es proceso de negocio como hacerlo dedse afuera?
                     {
-                        //if (anterior.mve_c_vguiacodigo == _pSIC_T_MOVIMIENTO_ENTRADA.mve_c_vguiacodigo)
-                        //{
-                        //    throw new ArgumentException("No se puede ingresar un movimiento con guia repetiuda.");
-                        //}
-
-                        anterior.mve_c_iestado = 3;
-                        anterior.mve_c_vdesestado = "CERRADO"; // !
-                        contexto.ApplyCurrentValues("SICDBWEBEntities.SIC_T_MOVIMIENTO_ENTRADA_DETALLE", anterior);
+                        ItemAlmacenDA iada = new ItemAlmacenDA();
+                        foreach (var item in _pSIC_T_MOVIMIENTO_ENTRADA.SIC_T_MOVIMIENTO_ENTRADA_DETALLE)
+                        {
+                            iada.ModificarItemAlmacen(contexto, item.SIC_T_ORDEN_DE_COMPRA_DET.odc_c_iitemid,
+                                _pSIC_T_MOVIMIENTO_ENTRADA.mve_c_iidalmacen.Value, item.mve_c_ecant_recibida.Value);
+                        }
+                        _pSIC_T_MOVIMIENTO_ENTRADA.mve_c_bingresado = true;
                     }
-
 
                     foreach (var item in _pSIC_T_MOVIMIENTO_ENTRADA.SIC_T_MOVIMIENTO_ENTRADA_DETALLE)
                     {
                         item.mve_c_iocdet_id = item.SIC_T_ORDEN_DE_COMPRA_DET.odc_det_c_iid;
                         item.SIC_T_ORDEN_DE_COMPRA_DET = null;
                     }
+
                     _pSIC_T_MOVIMIENTO_ENTRADA.mve_c_bactivo = true;
                     _pSIC_T_MOVIMIENTO_ENTRADA.mve_c_ioc_id = _pSIC_T_MOVIMIENTO_ENTRADA.SIC_T_ORDEN_DE_COMPRA.odc_c_iid;
                     _pSIC_T_MOVIMIENTO_ENTRADA.SIC_T_ORDEN_DE_COMPRA = null;
-                    contexto.AddToSIC_T_MOVIMIENTO_ENTRADA(_pSIC_T_MOVIMIENTO_ENTRADA);
-                    
+                    _pSIC_T_MOVIMIENTO_ENTRADA.mve_c_bingresado = false;
+
+                   
+                    contexto.AddToSIC_T_MOVIMIENTO_ENTRADA(_pSIC_T_MOVIMIENTO_ENTRADA);                    
+
                     contexto.SaveChanges();
                     return true;                        
                 }
@@ -152,6 +149,18 @@ namespace SIC.DataLayer
                              .Include("SIC_T_MOVIMIENTO_ENTRADA_DETALLE")
                                     where x.mve_c_bactivo == true && x.mve_c_iid == _pSIC_T_MOVIMIENTO_ENTRADA.mve_c_iid
                             select x).FirstOrDefault();
+
+                    // Si el estado es cerrado (3), se debe guardar  el itemalmacen
+                    if (!_pSIC_T_MOVIMIENTO_ENTRADA.mve_c_bingresado && _pSIC_T_MOVIMIENTO_ENTRADA.mve_c_iestado == 3) // Cerrado, esto es proceso de negocio como hacerlo dedse afuera?
+                    {
+                        ItemAlmacenDA iada = new ItemAlmacenDA();
+                        foreach (var item in _pSIC_T_MOVIMIENTO_ENTRADA.SIC_T_MOVIMIENTO_ENTRADA_DETALLE)
+                        {
+                            iada.ModificarItemAlmacen(contexto, item.SIC_T_ORDEN_DE_COMPRA_DET.odc_c_iitemid,
+                                _pSIC_T_MOVIMIENTO_ENTRADA.mve_c_iidalmacen.Value, item.mve_c_ecant_recibida.Value);
+                        }
+                        _pSIC_T_MOVIMIENTO_ENTRADA.mve_c_bingresado = true;
+                    }
 
                     foreach (var item in _pSIC_T_MOVIMIENTO_ENTRADA.SIC_T_MOVIMIENTO_ENTRADA_DETALLE)
                     {
@@ -177,6 +186,7 @@ namespace SIC.DataLayer
 
                     _pSIC_T_MOVIMIENTO_ENTRADA.mve_c_ioc_id = _pSIC_T_MOVIMIENTO_ENTRADA.SIC_T_ORDEN_DE_COMPRA.odc_c_iid;
                     _pSIC_T_MOVIMIENTO_ENTRADA.SIC_T_ORDEN_DE_COMPRA = null;
+
 
                     contexto.ApplyCurrentValues("SICDBWEBEntities.SIC_T_MOVIMIENTO_ENTRADA", _pSIC_T_MOVIMIENTO_ENTRADA);
                     contexto.SaveChanges();

@@ -11,11 +11,7 @@ namespace SIC.BusinessLayer
     {
         #region "METODOS"
 
-        public List<SIC_T_ITEM> ListarItems()
-        {
-            return new ItemDA().ListarItems();
-        }
-
+       
         public List<SIC_T_ITEM> ListarItems(string codigo, string descripcion, int? idSubFamilia)
         {
             return new ItemDA().ListarItems(codigo,descripcion, idSubFamilia);
