@@ -130,7 +130,7 @@
                                         
                                         <asp:TemplateField HeaderText="FAMILIA">
                                             <ItemTemplate>
-                                                <%# Eval("SIC_T_ITEM_SUB_FAMILIA.isf_c_ifm_des")%>
+                                                <%# Eval("SIC_T_ITEM_SUB_FAMILIA.SIC_T_ITEM_FAMILIA.ifm_c_des")%>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -183,7 +183,7 @@
                             <td align="center" colspan="2">
                                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                     <tr>
-                                        <td align="left" class="style1">
+                                        <td align="left" class="txt-box-estilo">
                                             Código
                                         </td>
                                         <td align="left" class="style1">
@@ -202,8 +202,7 @@
                                             <asp:TextBox ID="txtDescripcion" runat="server" MaxLength="100"></asp:TextBox>
                                         </td>
                                         <td align="left" class="txt-box-estilo">
-                                            Unidad
-                                        </td>
+                                            Unidad de Medida</td>
                                         <td align="left" class="txt-box-estilo">
                                             <asp:DropDownList ID="cboUnidad" runat="server">
                                             </asp:DropDownList>
@@ -251,7 +250,7 @@
                                         <td align="left" class="txt-box-estilo">
                                             &nbsp;</td>
                                         <td align="left" class="style2">
-                                            Todos los campos son obligatiorios</td>
+                                            &nbsp;</td>
                                     </tr>
                                 </table>
                             </td>

@@ -63,11 +63,11 @@ namespace SIC.DataLayer
         }
 
         /// <summary>
-        /// Obtiene la orden de compra por id
+        /// Obtiene la venta por id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public SIC_T_VENTA ObtenerOrdenCompra(int id)
+        public SIC_T_VENTA ObtenerVenta(int id)
         {
             try
             {
@@ -76,6 +76,7 @@ namespace SIC.DataLayer
                     return (from x in contexto.SIC_T_VENTA
                                         .Include("SIC_T_VENTA_DETALLE.SIC_T_ITEM")
                                         .Include("SIC_T_CLIENTE")
+                                        .Include("SIC_T_EMP_CENTRO_COSTO")
                             where x.ven_c_iid == id && x.ven_c_bactivo == true
                             select x).SingleOrDefault();
                 }

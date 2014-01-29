@@ -24,9 +24,9 @@ namespace SIC.BusinessLayer
             return new VentaDA().ListarOrdenDeCompraEstado(estado);
         }
 
-        public SIC_T_VENTA ObtenerOrdenCompra(int id)
+        public SIC_T_VENTA ObtenerVenta(int id)
         {
-            return new VentaDA().ObtenerOrdenCompra(id);
+            return new VentaDA().ObtenerVenta(id);
         }
 
         public bool InsertarOrdenCompra(SIC_T_VENTA _pSIC_T_VENTA)

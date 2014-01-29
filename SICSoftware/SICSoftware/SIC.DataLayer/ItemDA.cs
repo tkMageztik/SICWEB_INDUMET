@@ -12,7 +12,7 @@ namespace SIC.DataLayer
 
         #region "Métodos"
 
-        public List<SIC_T_ITEM> ListarItems(string codigo, string descripcion, int? idSubFamilia)
+        public List<SIC_T_ITEM> ListarItems(string codigo, string descripcion, int? idFamilia, int? idSubFamilia)
         {
             try
             {
@@ -20,11 +20,14 @@ namespace SIC.DataLayer
                 {
                     return (from x in contexto.SIC_T_ITEM
                             .Include("SIC_T_ITEM_SUB_FAMILIA")
+                            .Include("SIC_T_ITEM_SUB_FAMILIA.SIC_T_ITEM_FAMILIA")
                             where x.itm_c_bactivo == true
                               && (codigo == string.Empty || x.itm_c_ccodigo.Contains(codigo))
                               && (descripcion == string.Empty || x.itm_c_vdescripcion.Contains(descripcion) )
-                              && (!idSubFamilia.HasValue || x.itm_c_isf_iid == idSubFamilia.Value) 
-
+                              && ( idSubFamilia.HasValue ? x.itm_c_isf_iid == idSubFamilia 
+                                                         : (!idFamilia.HasValue 
+                                                            || x.SIC_T_ITEM_SUB_FAMILIA.isf_c_ifm_iid == idFamilia.Value)
+                                 )
                             select x).ToList();
                 }
             }
@@ -103,6 +106,7 @@ namespace SIC.DataLayer
             {
                 return (from x in contexto.SIC_T_ITEM
                             .Include("SIC_T_ITEM_SUB_FAMILIA")
+                            .Include("SIC_T_ITEM_SUB_FAMILIA.SIC_T_ITEM_FAMILIA")
                         where x.itm_c_iid == id && x.itm_c_bactivo 
                         select x).FirstOrDefault();
             }

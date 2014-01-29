@@ -114,12 +114,17 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         {
             int id;
             int? idSubFamilia = null;
+            int? idFamilia = null;
             if (int.TryParse(cboFiltroSubFamilia.SelectedItem.Value, out id) && id >= 0)
             {
                 idSubFamilia = id;
             }
+            if (int.TryParse(cboFiltroFamilia.SelectedItem.Value, out id) && id >= 0)
+            {
+                idFamilia = id;
+            }
             
-            gvListaItem.DataSource = _item.ListarItems(txtFiltroCodigo.Text.Trim(), txtFiltroDescr.Text.Trim(), idSubFamilia);
+            gvListaItem.DataSource = _item.ListarItems(txtFiltroCodigo.Text.Trim(), txtFiltroDescr.Text.Trim(), idFamilia, idSubFamilia);
             gvListaItem.DataBind();
         }
 
@@ -265,14 +270,8 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 //Seteando la data en los controles
                 this.txtCodigo.Text = ItemSeleccionado.itm_c_ccodigo;
                 this.txtDescripcion.Text = ItemSeleccionado.itm_c_vdescripcion;
-                if (ItemSeleccionado.itm_c_dprecio_compra.HasValue)
-                {
-                    this.txtPrecioCompra.Text = ItemSeleccionado.itm_c_dprecio_compra.Value.ToString("F2", CultureInfo.InvariantCulture);
-                }
-                if (ItemSeleccionado.itm_c_dprecio_venta.HasValue)
-                {
-                    this.txtPrecioVenta.Text = ItemSeleccionado.itm_c_dprecio_venta.Value.ToString("F2", CultureInfo.InvariantCulture);
-                }
+                this.txtPrecioCompra.Text = ItemSeleccionado.itm_c_dprecio_compra.ToString("F2", CultureInfo.InvariantCulture);
+                this.txtPrecioVenta.Text = ItemSeleccionado.itm_c_dprecio_venta.ToString("F2", CultureInfo.InvariantCulture);                
                 this.cboUnidad.SelectedIndex = -1;
 
                 var seleccion = cboUnidad.Items.FindByText(ItemSeleccionado.itm_c_vpardes);
@@ -286,7 +285,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
                 if (ItemSeleccionado.SIC_T_ITEM_SUB_FAMILIA != null)
                 {
-                    seleccion = cboFamilia.Items.FindByText(ItemSeleccionado.SIC_T_ITEM_SUB_FAMILIA.isf_c_ifm_des);
+                    seleccion = cboFamilia.Items.FindByText(ItemSeleccionado.SIC_T_ITEM_SUB_FAMILIA.SIC_T_ITEM_FAMILIA.ifm_c_des);
                     if (seleccion != null)
                     {
                         seleccion.Selected = true;
@@ -302,7 +301,6 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 }
 
                 mvItem.ActiveViewIndex = 1;
-                upGeneral.Update();
             }
         }
 
@@ -489,13 +487,11 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
             this.ListarItems();
-            upGeneral.Update();
         }
 
         protected void cboFamilia_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.ListarSubFamilia();
-            upGeneral.Update();
         }
 
         protected void View2_Activate(object sender, EventArgs e)

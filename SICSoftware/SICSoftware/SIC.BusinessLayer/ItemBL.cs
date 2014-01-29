@@ -12,9 +12,9 @@ namespace SIC.BusinessLayer
         #region "METODOS"
 
        
-        public List<SIC_T_ITEM> ListarItems(string codigo, string descripcion, int? idSubFamilia)
+        public List<SIC_T_ITEM> ListarItems(string codigo, string descripcion, int? idFamilia, int? idSubFamilia)
         {
-            return new ItemDA().ListarItems(codigo,descripcion, idSubFamilia);
+            return new ItemDA().ListarItems(codigo,descripcion, idFamilia, idSubFamilia);
         }
 
         public bool InsertarItem(SIC_T_ITEM _pSIC_T_ITEM)

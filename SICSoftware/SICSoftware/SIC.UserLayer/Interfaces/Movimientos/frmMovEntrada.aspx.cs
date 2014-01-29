@@ -295,15 +295,9 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 txtProveedorOC.Text = MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA != null && MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE != null ?
                                     MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vraz_soc : string.Empty;
                 txtObs.Text = MovEntSeleccionado.mve_c_vobservacion;
-
-                if (MovEntSeleccionado.mve_c_zfacturafecha.HasValue)
-                {
-                    txtFechaFact.Text = MovEntSeleccionado.mve_c_zfacturafecha.Value.ToString("dd/MM/yyyy");
-                }
-                else
-                {
-                    txtFechaFact.Text = String.Empty;
-                }
+                txtFechaFact.Text = MovEntSeleccionado.mve_c_zfacturafecha.ToString("dd/MM/yyyy");
+                
+                
 
                 if (MovEntSeleccionado.mve_c_zguiafecha.HasValue)
                 {

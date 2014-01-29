@@ -46,10 +46,10 @@ namespace SIC.DataLayer
                                 && (razonSocial == null || razonSocial == string.Empty ||
                                             (x.SIC_T_ORDEN_DE_COMPRA != null && x.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE!=null
                                             && x.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vraz_soc.Contains(razonSocial)))
-                                && (inicio==null || x.mve_c_zfecharegistro.Value >= inicio)
-                                && (fin == null || (x.mve_c_zfecharegistro.Value.Year <= fin.Value.Year
-                                                 && x.mve_c_zfecharegistro.Value.Month <= fin.Value.Month
-                                                 && x.mve_c_zfecharegistro.Value.Day <= fin.Value.Day)) 
+                                && (inicio==null || x.mve_c_zfecharegistro >= inicio)
+                                && (fin == null || (x.mve_c_zfecharegistro.Year <= fin.Value.Year
+                                                 && x.mve_c_zfecharegistro.Month <= fin.Value.Month
+                                                 && x.mve_c_zfecharegistro.Day <= fin.Value.Day)) 
                             select x).ToList();
                 }
             }
@@ -110,7 +110,7 @@ namespace SIC.DataLayer
                         foreach (var item in _pSIC_T_MOVIMIENTO_ENTRADA.SIC_T_MOVIMIENTO_ENTRADA_DETALLE)
                         {
                             iada.ModificarItemAlmacen(contexto, item.SIC_T_ORDEN_DE_COMPRA_DET.odc_c_iitemid,
-                                _pSIC_T_MOVIMIENTO_ENTRADA.mve_c_iidalmacen.Value, item.mve_c_ecant_recibida.Value);
+                                _pSIC_T_MOVIMIENTO_ENTRADA.mve_c_iidalmacen, item.mve_c_ecant_recibida);
                         }
                         _pSIC_T_MOVIMIENTO_ENTRADA.mve_c_bingresado = true;
                     }
@@ -157,7 +157,7 @@ namespace SIC.DataLayer
                         foreach (var item in _pSIC_T_MOVIMIENTO_ENTRADA.SIC_T_MOVIMIENTO_ENTRADA_DETALLE)
                         {
                             iada.ModificarItemAlmacen(contexto, item.SIC_T_ORDEN_DE_COMPRA_DET.odc_c_iitemid,
-                                _pSIC_T_MOVIMIENTO_ENTRADA.mve_c_iidalmacen.Value, item.mve_c_ecant_recibida.Value);
+                                _pSIC_T_MOVIMIENTO_ENTRADA.mve_c_iidalmacen, item.mve_c_ecant_recibida);
                         }
                         _pSIC_T_MOVIMIENTO_ENTRADA.mve_c_bingresado = true;
                     }

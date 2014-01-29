@@ -234,7 +234,9 @@
                                                     <td align="left" class="txt-box-estilo">
                                                         Centro de Costo&nbsp;</td>
                                                     <td align="left" class="style3" style="margin-left: 40px">
-                                                        <asp:DropDownList ID="cboCentroCosto" runat="server">
+                                                        <asp:DropDownList ID="cboCentroCosto" runat="server" 
+                                                            AppendDataBoundItems="True" AutoPostBack="True" 
+                                                            onselectedindexchanged="cboCentroCosto_SelectedIndexChanged" Width="201px">
                                                         </asp:DropDownList>
                                                         
                                                     </td>
