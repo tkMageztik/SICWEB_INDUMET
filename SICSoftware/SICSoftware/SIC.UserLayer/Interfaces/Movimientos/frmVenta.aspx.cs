@@ -18,10 +18,12 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         private ParametroBL _parametro = null;
         private VentaBL _venta = null; 
         private ItemBL _item = null;
+        private ItemAlmacenBL _itemAlmacen = null;
         private ClienteBL _cliente = null;
         private IgvBL _igv = null;
         private TasaCambioBL _tasaCambio = null;
         private CentroCostoBL _centroCosto = null;
+        private AlmacenBL _almacen = null;
 
         private TipoOperacion EscenarioVenta
         {
@@ -35,23 +37,11 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             set { ViewState["ItemsSeleccionadosPreliminar"] = value; }
         }
 
-        //private decimal percepcion
-        //{
-        //    get { return ViewState["Venpercepcion"] == null ? 0.0M : (decimal)ViewState["Venpercepcion"]; }
-        //    set { ViewState["Venpercepcion"] = value; }
-        //}
-
         private decimal igv
         {
             get { return ViewState["Venigv"] == null ? 0.0M : (decimal)ViewState["Venigv"]; }
             set { ViewState["Venigv"] = value; }
         }
-
-        //private decimal percepcionmax
-        //{
-        //    get { return ViewState["Venpercepcionmax"] == null ? 0.0M : (decimal)ViewState["Venpercepcionmax"]; }
-        //    set { ViewState["Venpercepcionmax"] = value; }
-        //}
 
         private SIC_T_VENTA VentaSeleccionado
         {
@@ -84,11 +74,13 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         {
             _parametro = new ParametroBL();
             _item = new ItemBL();
+            _itemAlmacen = new ItemAlmacenBL();
             _venta = new VentaBL();
             _cliente = new ClienteBL();
             _igv = new IgvBL();
             _tasaCambio = new TasaCambioBL();
             _centroCosto = new CentroCostoBL();
+            _almacen = new AlmacenBL();
             EscenarioVenta = TipoOperacion.Ninguna;
         }
 
@@ -98,7 +90,6 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             {
                 this.ListarComboMoneda();
                 this.ListarComboMoneda();
-                this.ListarItem();
                 this.ListarClientes();
                 this.ListarComboTipoDocumento();
                 this.ListarVentas();
@@ -124,11 +115,11 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 VentaNuevo.SIC_T_VENTA_DETALLE.Clear();
                 if (idCentro != -1)
                 {
-                    btnBuscarItem.Enabled = true;
+                    btnBuscarItems.Enabled = true;
                 }
                 else
                 {
-                    btnBuscarItem.Enabled = false;
+                    btnBuscarItems.Enabled = false;
                 }
             }
         }
@@ -154,7 +145,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             this.MostrarBusquedaItem();
         }
         
-        protected void btnBuscarItem_Click(object sender, EventArgs e)
+        protected void btnFiltrarItem_Click(object sender, EventArgs e)
         {
             this.ListarItem();
         }
@@ -326,7 +317,6 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             this.EscenarioVenta = TipoOperacion.Eliminacion;
             this.VentaEliminar = (int)this.gvListaVenta.DataKeys[e.RowIndex].Value;
             this.SetearEliminar();
-
             this.ucMensaje2.Show("¿Desea eliminar la Venta seleccionada?", null,
                                 MensajeIcono.Alerta, MensajeBotones.AceptarCancelar);
         }
@@ -410,8 +400,68 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         /// </summary>
         private void ListarItem()
         {
-            gvListaItem.DataSource = _item.ListarItems(txtFiltroCodigo.Text.Trim(), txtFiltroDescr.Text.Trim(), null,  null);
+            int id;
+            int? idAlmacen = null;
+
+            if (int.TryParse(cboCentroCosto.SelectedValue, out id) && id != -1)
+            {
+                idAlmacen = id;
+            }
+
+            gvListaItem.DataSource = _itemAlmacen.ListarItemAlmacen(idAlmacen, txtFiltroCodigo.Text.Trim(), txtFiltroDescr.Text.Trim(), null,  null);
             gvListaItem.DataBind();
+        }
+
+        /// <summary>
+        /// Lista las familias de items
+        /// </summary>
+        private void ListarFiltroFamilia()
+        {
+            cboFiltroFamilia.DataSource = _item.ListarFamiliaItem();
+            cboFiltroFamilia.DataTextField = "ifm_c_des";
+            cboFiltroFamilia.DataValueField = "ifm_c_iid";
+            cboFiltroFamilia.DataBind();
+        }
+
+        /// <summary>
+        /// Obtiene la sub familia, depende de que familia se haya seleccionado
+        /// </summary>
+        private void ListarFiltroSubFamilia()
+        {
+            int idFamilia;
+            if (cboFiltroFamilia.SelectedIndex > 0 && int.TryParse(cboFiltroFamilia.SelectedValue, out idFamilia) && idFamilia > 0)
+            {
+                cboFiltroSubFamilia.Enabled = true;
+                cboFiltroSubFamilia.Items.Clear();
+                cboFiltroSubFamilia.Items.Add(new ListItem("-- Seleccionar --", "-1"));
+                cboFiltroSubFamilia.DataSource = _item.ListarSubFamiliaItem(idFamilia);
+                cboFiltroSubFamilia.DataTextField = "isf_c_des";
+                cboFiltroSubFamilia.DataValueField = "isf_c_iid";
+                cboFiltroSubFamilia.DataBind();
+            }
+            else
+            {
+                cboFiltroSubFamilia.DataSource = null;
+                cboFiltroSubFamilia.Enabled = false;
+                cboFiltroSubFamilia.Items.Clear();
+                cboFiltroSubFamilia.Items.Add(new ListItem("-- Seleccionar --", "-1"));
+                cboFiltroSubFamilia.DataBind();
+            }
+            this.upGeneral.Update();
+        }
+
+        private void ListarFiltroAlmacen()
+        {
+            int idCentroCosto = -1;
+            if(int.TryParse(cboCentroCosto.SelectedValue,out idCentroCosto) && idCentroCosto !=-1)
+            {
+                cboFiltroAlmacen.Items.Clear();
+                cboFiltroAlmacen.Items.Add(new ListItem("-- Seleccionar --", "-1"));
+                cboFiltroAlmacen.DataSource = _almacen.ListaAlmacenCentroCosto(idCentroCosto);
+                cboFiltroAlmacen.DataTextField = "alm_c_vdes";
+                cboFiltroAlmacen.DataValueField = "alm_c_iid";
+                cboFiltroAlmacen.DataBind();
+            }
         }
 
 
@@ -423,10 +473,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
 
         private void ObtenerDatosImpuesto()
         {
-            //var listaPercepcion = this._parametro.ListarParametros((int)TipoParametro.PERCEPCION);
-
             var resultado = this._igv.ObtenerIgv(DateTime.Today);
-
             if (resultado != null && resultado.igv_c_eigv.HasValue)
             {
                 this.igv = resultado.igv_c_eigv.Value;
@@ -435,31 +482,6 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             {
                 this.igv = 0.18M;
             }
-
-            //decimal prev, prev2;
-
-            //if (listaPercepcion.Count == 2)
-            //{
-            //    prev = decimal.Parse(listaPercepcion[0].par_det_c_vcampo_1.ToString(), CultureInfo.InvariantCulture); 
-            //    prev2 = decimal.Parse(listaPercepcion[1].par_det_c_vcampo_1.ToString(), CultureInfo.InvariantCulture); 
-
-            //    if (prev > 1)
-            //    {
-            //        this.percepcionmax = prev;
-            //        this.percepcion = prev2;
-            //    }
-            //    else
-            //    {
-            //        this.percepcion = prev;
-            //        this.percepcionmax = prev2;
-            //    }
-            //}
-            //else
-            //{
-            //    this.percepcionmax = 500M;
-            //    this.percepcion = 0.02M;
-            //}
-
         }
 
         public void MostrarDatosImpuestos()
@@ -467,12 +489,10 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             if (this.EscenarioVenta == TipoOperacion.Creacion)
             {
                 lblIGV.Text = this.VentaNuevo.ven_c_eigv * 100 + "%";
-                //lblPercepcion.Text = this.VentaNuevo.ven_c_dpercepcion * 100 + "%";
             }
             else if (this.EscenarioVenta == TipoOperacion.Modificacion)
             {
                 lblIGV.Text = this.VentaSeleccionado.ven_c_eigv * 100 + "%";
-                //lblPercepcion.Text = this.VentaSeleccionado.ven_c_dpercepcion * 100 + "%";
             }            
         }
 
@@ -481,8 +501,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         private void ObtenerTasaCambio(DateTime fechaTC)
         {
             var value = this._tasaCambio.ObtenerTasaCambio(fechaTC);
-            this.TasaCambio = value.tsc_c_ecompra;
-            
+            this.TasaCambio = value.tsc_c_ecompra;            
             lblTC.Text = "S/. " + value.tsc_c_ecompra.ToString("F4", CultureInfo.InvariantCulture);
         }
 
@@ -495,7 +514,6 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             this.VentaNuevo = new SIC_T_VENTA();
             this.VentaNuevo.SIC_T_VENTA_DETALLE = new System.Data.Objects.DataClasses.EntityCollection<SIC_T_VENTA_DETALLE>();
             this.VentaNuevo.ven_c_eigv = this.igv;
-            //this.VentaNuevo.ven_c_dpercepcion = this.percepcion;
             this.VentaNuevo.ven_c_zfecha = DateTime.Now;
             this.lblFechaRegistro.Text = VentaNuevo.ven_c_zfecha.ToString("dd/MM/yyyy");
             this.gvItemsSeleccionados.DataSource = this.VentaNuevo.SIC_T_VENTA_DETALLE;
@@ -506,7 +524,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             this.RecalcularMontos(this.VentaNuevo);
             this.mvOC.ActiveViewIndex = 1;
             this.MostrarDatosImpuestos();
-            this.btnBuscarItem.Enabled = false;
+            this.btnBuscarItems.Enabled = false;
             this.cboCentroCosto.Enabled = true;
             this.upGeneral.Update();
         }
@@ -522,9 +540,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             this.EscenarioVenta = TipoOperacion.Modificacion;
             this.lblAccion.Text = "Modificar";
             this.VentaSeleccionado.ven_c_eigv = this.igv;
-            //this.VentaSeleccionado.ven_c_dpercepcion = this.percepcion;
-            this.lblFechaRegistro.Text = VentaSeleccionado.ven_c_zfecha.ToString("dd/MM/yyyy");
-            
+            this.lblFechaRegistro.Text = VentaSeleccionado.ven_c_zfecha.ToString("dd/MM/yyyy");            
             this.ItemsSeleccionadosPreliminar = new List<int>();
             foreach (var item in VentaSeleccionado.SIC_T_VENTA_DETALLE)
             {
@@ -536,7 +552,6 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             txtRucProv.Text = this.VentaSeleccionado.SIC_T_CLIENTE == null ? string.Empty :
                                                                            this.VentaSeleccionado.SIC_T_CLIENTE.cli_c_vdoc_id;
             cboTipoDocumento.SelectedIndex = -1;
-
             var seleccion = cboTipoDocumento.Items.FindByText(VentaSeleccionado.ven_c_vdestipodoc);
             if (seleccion != null)
             {
@@ -549,13 +564,12 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             {
                 seleccion.Selected = true;
             }
-            this.ObtenerTasaCambio(VentaSeleccionado.ven_c_zfecha);
 
+            this.ObtenerTasaCambio(VentaSeleccionado.ven_c_zfecha);
             foreach (var item in VentaSeleccionado.SIC_T_VENTA_DETALLE)
             {
                 item.codigoItem = item.SIC_T_ITEM.itm_c_ccodigo;
                 item.descItem = item.SIC_T_ITEM.itm_c_vdescripcion;
-
                 if (item.SIC_T_ITEM != null)
                 {
                     item.precioReferenciaSoles = item.SIC_T_ITEM.itm_c_dprecio_compra;
@@ -575,7 +589,6 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                     item.precioReferencia = Math.Round(item.precioReferenciaSoles / this.TasaCambio, 2);
                     item.precioUnitarioSoles = Math.Round(item.ven_det_c_epreciounit * this.TasaCambio, 2);
                 }
-
             }
 
             this.gvItemsSeleccionados.DataSource = this.VentaSeleccionado.SIC_T_VENTA_DETALLE;
@@ -585,11 +598,11 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             if (seleccion != null)
             {
                 seleccion.Selected = true;
-                this.btnBuscarItem.Enabled = true;
+                this.btnBuscarItems.Enabled = true;
             }
             else
             {
-                this.btnBuscarItem.Enabled = false;
+                this.btnBuscarItems.Enabled = false;
             }
             
             this.RecalcularMontos(this.VentaSeleccionado);
@@ -627,6 +640,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         {
             if (EscenarioVenta == TipoOperacion.Creacion || EscenarioVenta == TipoOperacion.Modificacion)
             {
+                this.ListarFiltroAlmacen();
                 this.ListarItem();
                 mvOC.ActiveViewIndex = 2;
                 upGeneral.Update();
@@ -1087,6 +1101,11 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
             ListarVentas();
+        }
+
+        protected void cboFiltroFamilia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.ListarFiltroSubFamilia();
         }
 
         

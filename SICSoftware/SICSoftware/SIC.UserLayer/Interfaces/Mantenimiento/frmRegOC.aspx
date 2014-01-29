@@ -111,7 +111,7 @@
                                                                         AutoPostBack="True" OnSelectedIndexChanged="cboMoneda_SelectedIndexChanged" Width="201px">
                                                                     </asp:DropDownList>
                                                                 </td>
-                                                                <td>
+                                                                <td style="font-weight: 700">
                                                                 </td>
                                                                 <td>
                                                                     &nbsp;

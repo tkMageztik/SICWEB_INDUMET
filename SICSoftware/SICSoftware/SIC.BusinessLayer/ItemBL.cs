@@ -52,6 +52,16 @@ namespace SIC.BusinessLayer
             return new ItemDA().ListarSubFamiliaItem(idFamilia);
         }
 
+        public void AgregarFamilia(SIC_T_ITEM_FAMILIA _pSIC_T_ITEM_FAMILIA)
+        {
+            new ItemDA().AgregarFamilia(_pSIC_T_ITEM_FAMILIA);
+        }
+
+        public void AgregarSubFamilia(SIC_T_ITEM_SUB_FAMILIA _pSIC_T_ITEM_SUB_FAMILIA)
+        {
+            new ItemDA().AgregarSubFamilia(_pSIC_T_ITEM_SUB_FAMILIA);
+        }
+
         #endregion
     }
 }

@@ -14,6 +14,11 @@ namespace SIC.BusinessLayer
             return new AlmacenDA().ObtenerAlmacenes();
         }
 
+        public List<SIC_T_ALMACEN> ListaAlmacenCentroCosto(int idCentroCosto)
+        {
+            return new AlmacenDA().ListaAlmacenCentroCosto(idCentroCosto);
+        }
+
         public SIC_T_ALMACEN ObtenerPorId(int id)
         {
             return new AlmacenDA().ObtenerPorId(id);

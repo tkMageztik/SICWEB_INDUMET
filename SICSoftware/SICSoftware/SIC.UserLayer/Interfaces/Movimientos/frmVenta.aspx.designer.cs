@@ -328,13 +328,31 @@ namespace SIC.UserLayer.Interfaces.Movimientos {
         protected global::System.Web.UI.WebControls.DropDownList cboFiltroAlmacen;
         
         /// <summary>
-        /// Control btnBuscarItem.
+        /// Control cboFiltroFamilia.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuscarItem;
+        protected global::System.Web.UI.WebControls.DropDownList cboFiltroFamilia;
+        
+        /// <summary>
+        /// Control cboFiltroSubFamilia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cboFiltroSubFamilia;
+        
+        /// <summary>
+        /// Control btnFiltrarItems.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnFiltrarItems;
         
         /// <summary>
         /// Control btnRegresarDesdeItems.

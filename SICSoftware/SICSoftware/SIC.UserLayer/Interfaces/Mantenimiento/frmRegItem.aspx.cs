@@ -8,6 +8,7 @@ using SIC.BusinessLayer;
 using SIC.Data;
 using SIC.EntityLayer;
 using System.Globalization;
+using SIC.UserLayer.UserControl;
 
 
 
@@ -31,6 +32,11 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             get { return (SIC_T_ITEM)ViewState["vsItemSeleccionado"]; }
             set { ViewState["vsItemSeleccionado"] = value; }
         }
+        private int ItemEliminar
+        {
+            get { return (int)(ViewState["vsItemEliminar"] == null ? -1 : ViewState["vsItemEliminar"]); }
+            set { ViewState["vsItemEliminar"] = value; }
+        }
 
         #endregion
 
@@ -51,6 +57,10 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 this.ListarUnidadMedida();
                 this.ListarFamilia();
                 //this.ListarSubFamilia();
+            }
+            if (EscenarioItem == TipoOperacion.Eliminacion)
+            {
+                SetearEliminar();
             }
         }
 
@@ -94,8 +104,29 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         
         protected void gvListaItem_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            int itemId = (int)this.gvListaItem.DataKeys[e.RowIndex].Value;
-            DeshabilitarItem(itemId);
+            this.EscenarioItem = TipoOperacion.Eliminacion;
+            this.ItemEliminar = (int)this.gvListaItem.DataKeys[e.RowIndex].Value;
+            this.SetearEliminar();
+            this.ucMensaje2.Show("¿Desea eliminar el Item seleccionado?", null,
+                                MensajeIcono.Alerta, MensajeBotones.AceptarCancelar);
+        }
+
+        private void SetearEliminar()
+        {
+            ResultadoMensajeHandler handler = null;
+            handler = delegate(object s, ResMsjArgs e2)
+            {
+                if (e2.resultado == MensajeResultado.Aceptar)
+                {
+                    this.DeshabilitarItem(ItemEliminar);
+                    this.ucMensaje2.ResultadoMensaje -= handler;
+                }
+
+                this.EscenarioItem = TipoOperacion.Ninguna;
+            };
+
+            this.ucMensaje2.ResultadoMensaje += handler;
+            
         }
 
         protected void gvListaItem_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -126,6 +157,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             
             gvListaItem.DataSource = _item.ListarItems(txtFiltroCodigo.Text.Trim(), txtFiltroDescr.Text.Trim(), idFamilia, idSubFamilia);
             gvListaItem.DataBind();
+            upGeneral.Update();
         }
 
         /// <summary>
@@ -145,6 +177,8 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         /// </summary>
         private void ListarFamilia()
         {
+            cboFamilia.Items.Clear();
+            cboFamilia.Items.Add(new ListItem("-- Seleccionar --"));
             cboFamilia.DataSource = _item.ListarFamiliaItem();
             cboFamilia.DataTextField = "ifm_c_des";
             cboFamilia.DataValueField = "ifm_c_iid";
@@ -156,10 +190,25 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         /// </summary>
         private void ListarFiltroFamilia()
         {
+            cboFiltroFamilia.Items.Clear();
+            cboFiltroFamilia.Items.Add(new ListItem("-- Seleccionar --"));
             cboFiltroFamilia.DataSource = _item.ListarFamiliaItem();
             cboFiltroFamilia.DataTextField = "ifm_c_des";
             cboFiltroFamilia.DataValueField = "ifm_c_iid";
             cboFiltroFamilia.DataBind();
+        }
+
+        /// <summary>
+        /// Lista las familias de items
+        /// </summary>
+        private void ListarFiltroFamiliaAgr()
+        {
+            cboFamiliaAgr.Items.Clear();
+            cboFamiliaAgr.Items.Add(new ListItem("-- Insertar Nuevo --"));
+            cboFamiliaAgr.DataSource = _item.ListarFamiliaItem();
+            cboFamiliaAgr.DataTextField = "ifm_c_des";
+            cboFamiliaAgr.DataValueField = "ifm_c_iid";
+            cboFamiliaAgr.DataBind();
         }
 
         /// <summary>
@@ -168,7 +217,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         private void ListarSubFamilia()
         {
             int idFamilia;
-            if (cboFamilia.SelectedIndex > 0 && int.TryParse(cboFamilia.SelectedValue, out idFamilia) && idFamilia>0)
+            if (cboFamilia.SelectedIndex > 0 && int.TryParse(cboFamilia.SelectedValue, out idFamilia) && idFamilia > 0)
             {
                 // TODO: Revisar el selected index 0, deberia funcionar
                 cboSubFamilia.Enabled = true;
@@ -186,6 +235,37 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 cboSubFamilia.Items.Clear();
                 cboSubFamilia.Items.Add(new ListItem("-- Seleccionar --", "-1"));
                 cboSubFamilia.DataBind();
+            }
+            this.upGeneral.Update();
+        }
+
+        /// <summary>
+        /// Obtiene la sub familia, depende de que familia se haya seleccionado
+        /// </summary>
+        private void ListarSubFamiliaAgr()
+        {
+            int idFamilia;
+            if (cboFamiliaAgr.SelectedIndex > 0 && int.TryParse(cboFamiliaAgr.SelectedValue, out idFamilia) && idFamilia > 0)
+            {
+                // TODO: Revisar el selected index 0, deberia funcionar
+                cboSubFamiliaAgr.Enabled = true;
+                cboSubFamiliaAgr.Items.Clear();
+                cboSubFamiliaAgr.DataSource = _item.ListarSubFamiliaItem(idFamilia);
+                cboSubFamiliaAgr.DataTextField = "isf_c_des";
+                cboSubFamiliaAgr.DataValueField = "isf_c_iid";
+                cboSubFamiliaAgr.DataBind();
+                btnAgregarSubFamilia.Enabled = true;
+                txtNombreSubFamilia.Enabled = true;
+            }
+            else
+            {
+                cboSubFamiliaAgr.DataSource = null;
+                cboSubFamiliaAgr.Enabled = false;
+                cboSubFamiliaAgr.Items.Clear();
+                cboSubFamiliaAgr.Items.Add(new ListItem("-- Seleccione una Familia --", "-1"));
+                cboSubFamiliaAgr.DataBind();
+                btnAgregarSubFamilia.Enabled = false;
+                txtNombreSubFamilia.Enabled = false;
             }
             this.upGeneral.Update();
         }
@@ -227,6 +307,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             lblAccion.Text = "Nuevo";
             mvItem.ActiveViewIndex = 1;
             cboFamilia.ClearSelection();
+            ListarSubFamilia();
             upGeneral.Update();
         }
 
@@ -504,6 +585,136 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             this.ListarFiltroSubFamilia();
             upGeneral.Update();
         }
+
+        protected void btnMostrarAgregarFam_Click(object sender, EventArgs e)
+        {
+            MostarVistaAgregarFamilia();
+        }
+
+        private void MostarVistaAgregarFamilia()
+        {
+            txtNombreFamilia.Text = String.Empty;
+            txtNombreFamilia.Enabled = true;
+            btnAgregarFamilia.Enabled = true;
+            this.ListarFiltroFamiliaAgr();
+            this.ListarSubFamiliaAgr();
+            mvItem.ActiveViewIndex = 2;
+            txtNombreFamilia.Text = string.Empty;
+            txtNombreSubFamilia.Text = string.Empty;
+            upGeneral.Update();
+        }
+
+        protected void btnAgregarFamilia_Click(object sender, EventArgs e)
+        {
+            InsertarFamilia();
+        }
+
+        private void InsertarFamilia()
+        {
+            if (txtNombreFamilia.Text.Trim() == string.Empty)
+            {
+                Mensaje("Ingrese un nombre de Familia.", "../Imagenes/warning.png");
+                upGeneral.Update();
+            }
+            else
+            {
+                SIC_T_ITEM_FAMILIA fam = new SIC_T_ITEM_FAMILIA();
+                fam.ifm_c_des = txtNombreFamilia.Text.Trim();
+                try
+                {
+                    _item.AgregarFamilia(fam);
+                    ListarFiltroFamiliaAgr();
+                    txtNombreFamilia.Text = string.Empty;
+                    Mensaje("Familia ingresada.", "../Imagenes/warning.png");
+                    upGeneral.Update();
+                }
+                catch (Exception ex)
+                {
+#if DEBUG
+                    Mensaje("Error al realizar el proceso.\n" + ex.Message + "\n"
+                        + ex.InnerException != null ? ex.InnerException.Message : string.Empty, "../Imagenes/warning.png");
+#else
+                    Mensaje("Error al realizar el proceso.", "../Imagenes/warning.png");
+#endif
+                    upGeneral.Update();
+                }
+            }
+        }
+
+        protected void cboFamiliaAgr_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboFamiliaAgr.SelectedIndex == 0)
+            {
+                txtNombreFamilia.Enabled = true;
+                txtNombreFamilia.Text = String.Empty;
+                btnAgregarFamilia.Enabled = true;
+            }
+            else
+            {
+                txtNombreFamilia.Enabled = false;
+                txtNombreFamilia.Text = String.Empty;
+                btnAgregarFamilia.Enabled = false;
+            }
+
+            ListarSubFamiliaAgr();
+            upGeneral.Update();
+        }
+
+        protected void btnAgregarSubFamilia_Click(object sender, EventArgs e)
+        {
+            InsertarSubFamilia();
+        }
+
+        private void InsertarSubFamilia()
+        {
+            int idFamilia = -1;
+            if (!int.TryParse(cboFamiliaAgr.SelectedValue,out idFamilia) || idFamilia == -1 )
+            {
+                Mensaje("Seleccione una familia.", "../Imagenes/warning.png");
+                upGeneral.Update();
+            }
+            else if (txtNombreSubFamilia.Text.Trim() == string.Empty)
+            {
+                Mensaje("Ingrese un nombre de SubFamilia.", "../Imagenes/warning.png");
+                upGeneral.Update();
+            }
+            else
+            {
+                SIC_T_ITEM_SUB_FAMILIA sub = new SIC_T_ITEM_SUB_FAMILIA();
+                sub.isf_c_des = txtNombreSubFamilia.Text.Trim();
+                sub.isf_c_ifm_iid = idFamilia;
+                try
+                {
+                    _item.AgregarSubFamilia(sub);
+                    ListarSubFamiliaAgr();
+                    txtNombreSubFamilia.Text = string.Empty;
+                    Mensaje("SubFamilia ingresada.", "../Imagenes/warning.png");
+                    upGeneral.Update();
+                }
+                catch (Exception ex)
+                {
+#if DEBUG
+                    Mensaje("Error al realizar el proceso.\n" + ex.Message + "\n"
+                        + ex.InnerException != null ? ex.InnerException.Message : string.Empty, "../Imagenes/warning.png");
+#else
+                    Mensaje("Error al realizar el proceso.", "../Imagenes/warning.png");
+#endif
+                }
+            }
+        }
+
+        protected void lnkRegresar_Click(object sender, EventArgs e)
+        {
+            ListarFiltroFamilia();
+            ListarFiltroSubFamilia();
+            ListarFamilia();
+            ListarSubFamilia();
+            
+            mvItem.ActiveViewIndex = 1;
+            upGeneral.Update();
+        }
+
+
 
 
 

@@ -4,11 +4,53 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <%@ Register Src="~/UserControl/wucMensajeAlerta.ascx" TagName="Mensaje" TagPrefix="uc1" %>
+<%@ Register Src="~/UserControl/wucMensajeAlerta2.ascx" TagName="Mensaje" TagPrefix="uc2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+    <style type="text/css">
+        .style1
+        {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 11.5px;
+            color: #686168;
+            height: 21px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+<script language="javascript" type="text/javascript">
+    // Except only numbers and dot (.) for salary textbox
+    function onlyDotsAndNumbers(event) {
+        var charCode = (event.which) ? event.which : event.keyCode
+        if (charCode == 46) {
+            return true;
+        }
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    }
+    //Except only numbers for Age textbox
+    function onlyNumbers(event) {
+        var charCode = (event.which) ? event.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    }
+
+    // No alphabets for Emp No textbox
+    function noAlphabets(event) {
+        var charCode = (event.which) ? event.which : event.keyCode
+        if ((charCode >= 97) && (charCode <= 122) || (charCode >= 65) && (charCode <= 90))
+            return false;
+
+        return true;
+    }
+</script>
     <asp:UpdatePanel ID="upGeneral" UpdateMode="Conditional" ChildrenAsTriggers="False"
         runat="server">
+        
+
         <ContentTemplate>
             <asp:MultiView ID="mvItem" runat="server" ActiveViewIndex="0">
                 <asp:View ID="View1" runat="server">
@@ -92,8 +134,20 @@
                                                                         Text="Nuevo" Width="101px" />
                                                                 </td>
                                                             </tr>
+                                                            <tr>
+                                                                <td align="center">
+                                                                    &nbsp;</td>
+                                                                <td align="center">
+                                                                    &nbsp;</td>
+                                                            </tr>
                                                         </table>
                                                     </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        &nbsp;</td>
+                                                    <td align="right">
+                                                        &nbsp;</td>
                                                 </tr>
                                             </table>
                                         </td>
@@ -126,8 +180,6 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:BoundField DataField="itm_c_vpardes" HeaderText="UNIDAD DE MEDIDA" />
-
-                                        
                                         <asp:TemplateField HeaderText="FAMILIA">
                                             <ItemTemplate>
                                                 <%# Eval("SIC_T_ITEM_SUB_FAMILIA.SIC_T_ITEM_FAMILIA.ifm_c_des")%>
@@ -180,9 +232,12 @@
                             </td>
                         </tr>
                         <tr>
-                            <td align="center" colspan="2">
+                            <td colspan="2" lign="center">
                                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                     <tr>
+                                        <td align="left" class="box-estilo01">
+                                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                <tr>
                                         <td align="left" class="txt-box-estilo">
                                             Código
                                         </td>
@@ -213,14 +268,14 @@
                                             Precio de Compra</td>
                                         <td align="left" class="txt-box-estilo">
                                    
-                                            <asp:TextBox ID="txtPrecioCompra" runat="server" MaxLength="20"></asp:TextBox>
+                                            <asp:TextBox ID="txtPrecioCompra" runat="server" onkeypress="return onlyDotsAndNumbers(event)" MaxLength="20"></asp:TextBox>
                                       
                                         </td>
                                         <td align="left" class="txt-box-estilo">
                                             Precio de Venta</td>
                                         <td align="left" class="txt-box-estilo">
                                   
-                                            <asp:TextBox ID="txtPrecioVenta" runat="server" MaxLength="20"></asp:TextBox>
+                                            <asp:TextBox ID="txtPrecioVenta" runat="server" onkeypress="return onlyDotsAndNumbers(event)" MaxLength="20"></asp:TextBox>
                                       
                                             
                                         </td>
@@ -233,6 +288,8 @@
                                                 AutoPostBack="True" onselectedindexchanged="cboFamilia_SelectedIndexChanged">
                                                 <asp:ListItem Text="-- Seleccionar --" Value="-1"></asp:ListItem>
                                             </asp:DropDownList>
+                                            <asp:LinkButton ID="btnMostrarAgregarFam0" runat="server" CssClass="lnk" 
+                                                OnClick="btnMostrarAgregarFam_Click">Agregar</asp:LinkButton>
                                         </td>
                                         <td align="left" class="txt-box-estilo">
                                             SubFamilia</td>
@@ -240,6 +297,8 @@
                                             <asp:DropDownList ID="cboSubFamilia" runat="server" AppendDataBoundItems="true">
                                                 <asp:ListItem Text="-- Seleccionar --" Value="-1"></asp:ListItem>
                                             </asp:DropDownList>
+                                            <asp:LinkButton ID="btnMostrarAgregarFam" runat="server" CssClass="lnk" 
+                                                OnClick="btnMostrarAgregarFam_Click">Agregar</asp:LinkButton>
                                         </td>
                                     </tr>
                                     <tr>
@@ -251,13 +310,114 @@
                                             &nbsp;</td>
                                         <td align="left" class="style2">
                                             &nbsp;</td>
+                                   </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </asp:View>
+                <asp:View ID="vwAgregarFamilia" runat="server">
+                    <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td align="left" class="tit-nav-paginas">
+                                MANTENIMIENTO &gt; ITEM &gt; FAMILIAS Y SUB FAMILIAS</td>
+                            <td align="right">
+                                <table width="220" border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <td>
+                                            &nbsp;</td>
+                                        <td>
+                                            <asp:LinkButton ID="lnkRegresar" runat="server" CssClass="lnk" 
+                                                OnClick="lnkRegresar_Click">Regresar</asp:LinkButton>
+                                        </td>
+                                        <td style="width: 10px">
+                                        </td>
                                     </tr>
                                 </table>
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                &nbsp;
+                            <td colspan="2" lign="center">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <td align="left" class="box-estilo01">
+                                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                <tr>
+                                        <td align="left" class="txt-box-estilo">
+                                            Familias</td>
+                                        <td align="left" class="style1">
+                                            <asp:DropDownList ID="cboFamiliaAgr" runat="server" AppendDataBoundItems="true" 
+                                                AutoPostBack="True" onselectedindexchanged="cboFamiliaAgr_SelectedIndexChanged">
+                                                <asp:ListItem Text="-- Seleccionar --" Value="-1"></asp:ListItem>
+                                            </asp:DropDownList>
+                                        </td>
+                                        <td align="left" class="style1">
+                                            Agregar Familia</td>
+                                        <td align="left" class="style1">
+                                            <asp:TextBox ID="txtNombreFamilia" runat="server" MaxLength="20"></asp:TextBox>
+                                            &nbsp;
+                                            <asp:LinkButton ID="btnAgregarFamilia" runat="server" CssClass="lnk" 
+                                                OnClick="btnAgregarFamilia_Click">Agregar</asp:LinkButton>
+                                            </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" class="style1">
+                                            </td>
+                                        <td align="left" class="style1">
+                                            </td>
+                                        <td align="left" class="style1">
+                                            </td>
+                                        <td align="left" class="style1">
+                                            </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" class="txt-box-estilo">
+                                            SubFamilia</td>
+                                        <td align="left" class="txt-box-estilo">
+                                   
+                                            <asp:DropDownList ID="cboSubFamiliaAgr" runat="server" 
+                                                AppendDataBoundItems="true">
+                                                <asp:ListItem Text="-- Seleccionar --" Value="-1"></asp:ListItem>
+                                            </asp:DropDownList>
+                                      
+                                        </td>
+                                        <td align="left" class="txt-box-estilo">
+                                            Agregar SubFamilia</td>
+                                        <td align="left" class="txt-box-estilo">
+                                  
+                                            <asp:TextBox ID="txtNombreSubFamilia" runat="server" MaxLength="20"></asp:TextBox>
+                                            &nbsp;
+                                            <asp:LinkButton ID="btnAgregarSubFamilia" runat="server" CssClass="lnk" 
+                                                OnClick="btnAgregarSubFamilia_Click">Agregar</asp:LinkButton>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" class="txt-box-estilo">
+                                            &nbsp;</td>
+                                        <td align="left" class="txt-box-estilo">
+                                            &nbsp;</td>
+                                        <td align="left" class="txt-box-estilo">
+                                            &nbsp;</td>
+                                        <td align="left" class="txt-box-estilo">
+                                            &nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" class="txt-box-estilo">
+                                            &nbsp;</td>
+                                        <td align="left" class="txt-box-estilo">
+                                            &nbsp;</td>
+                                        <td align="left" class="txt-box-estilo">
+                                            &nbsp;</td>
+                                        <td align="left" class="style2">
+                                            &nbsp;</td>
+                                   </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
                             </td>
                         </tr>
                     </table>
@@ -265,19 +425,20 @@
             </asp:MultiView>
             <asp:UpdatePanel ID="upMensaje" runat="server" UpdateMode="Conditional">
                 <ContentTemplate>
-                    <div id="divPopUpMsg" class="PopupOcultar" runat="server">
+                    <div id="divPopUpMsg" class="PopupMostrar" runat="server">
                         <table border="0" cellpadding="0" cellspacing="0" width="800px">
                             <tr>
                                 <td>
                                     <uc1:Mensaje ID="ucMensaje" Visible="false" runat="server" />
+                                    <uc2:Mensaje ID="ucMensaje2" Visible="false" runat="server" />
                                 </td>
                             </tr>
                         </table>
                     </div>
                 </ContentTemplate>
                 <Triggers>
+                    <asp:AsyncPostBackTrigger ControlID="gvListaItem" EventName="RowDeleting" />
                     <asp:AsyncPostBackTrigger ControlID="btnGuardar" EventName="Click" />    
-                    <asp:PostBackTrigger ControlID="cboFamilia" />                
                 </Triggers>
             </asp:UpdatePanel>
         </ContentTemplate>
