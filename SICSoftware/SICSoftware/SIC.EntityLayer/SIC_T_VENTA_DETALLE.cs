@@ -11,6 +11,8 @@ namespace SIC.EntityLayer
         public decimal precioReferenciaSoles { get; set; }
         public decimal precioUnitarioSoles { get; set; }
         public string codigoItem { get; set; }
-        public string descItem { get; set; } 
+        public string descItem { get; set; }
+        public decimal stockAlmacen { get; set; }
+        public string nombreAlmacen { get; set; }
     }
 }

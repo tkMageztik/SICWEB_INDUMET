@@ -921,6 +921,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                     }
                 }
             }
+            ItemsSeleccionadosPreliminar = list;
         }
 
         /// <summary>

@@ -31,6 +31,62 @@ namespace SIC.DataLayer
             }
         }
 
+        public decimal ObtenerStockItemAlmacen(int idAlmacen, int idItem)
+        {
+            try
+            {
+                using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+                {
+                    var res = (from x in contexto.SIC_T_ITEM_ALMACEN                               
+                                where x.itm_alm_c_iid_alm == idAlmacen && x.itm_alm_c_iid_item == idItem
+                                select x).ToList();
+                    if(res.Count >0)
+                    {
+                        return res.First().itm_alm_c_ecantidad;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<SIC_T_ITEM_ALMACEN> ListarItemAlmacen(string codigo, string descripcion, int? idFamilia, int? idSubFamilia, params int[] idAlmacen)
+        {
+            try
+            {
+                using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+                {
+                    contexto.SIC_T_ITEM_ALMACEN.MergeOption = System.Data.Objects.MergeOption.NoTracking;
+                    var resultado = (from x in contexto.SIC_T_ITEM_ALMACEN
+                                      .Include("SIC_T_ITEM")
+                                      .Include("SIC_T_ALMACEN")
+                                      .Include("SIC_T_ITEM.SIC_T_ITEM_SUB_FAMILIA")
+                                      .Include("SIC_T_ITEM.SIC_T_ITEM_SUB_FAMILIA.SIC_T_ITEM_FAMILIA")
+                                     where ( idAlmacen.Contains(x.itm_alm_c_iid_alm) )
+                                        && (codigo == string.Empty || x.SIC_T_ITEM.itm_c_ccodigo.Contains(codigo))
+                                        && (descripcion == string.Empty || x.SIC_T_ITEM.itm_c_vdescripcion.Contains(descripcion) )
+                                        && ( idSubFamilia.HasValue ? x.SIC_T_ITEM.itm_c_isf_iid == idSubFamilia 
+                                                         : (!idFamilia.HasValue 
+                                                            || x.SIC_T_ITEM.SIC_T_ITEM_SUB_FAMILIA.isf_c_ifm_iid == idFamilia.Value)
+                                           )
+                                      select x
+                                     ).ToList();
+                    return resultado;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
     }
 
     

@@ -183,6 +183,77 @@ namespace SIC.DataLayer
             }
         }
 
+        public void AgregarFamilia(SIC_T_ITEM_FAMILIA _pSIC_T_ITEM_FAMILIA)
+        {
+            if (_pSIC_T_ITEM_FAMILIA == null)
+            {
+                throw new ArgumentException("El objeto familia no puede ser nulo");
+            }
+            try
+            {
+                using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+                {
+                    _pSIC_T_ITEM_FAMILIA.ifm_c_des = _pSIC_T_ITEM_FAMILIA.ifm_c_des.Trim();
+                    _pSIC_T_ITEM_FAMILIA.ifm_c_bactivo = true;
+                    var result = (from x in contexto.SIC_T_ITEM_FAMILIA
+                                  where x.ifm_c_des == _pSIC_T_ITEM_FAMILIA.ifm_c_des
+                                  select x).Count();
+                    if (result > 0)
+                    {
+                        throw new ArgumentException("Nombre de Familia ya existe.");
+                    }
+                    else
+                    {
+                        contexto.AddToSIC_T_ITEM_FAMILIA(_pSIC_T_ITEM_FAMILIA);
+                        contexto.SaveChanges();
+                    }                        
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public void AgregarSubFamilia(SIC_T_ITEM_SUB_FAMILIA _pSIC_T_ITEM_SUB_FAMILIA)
+        {
+            if (_pSIC_T_ITEM_SUB_FAMILIA == null)
+            {
+                throw new ArgumentException("El objeto subfamilia no puede ser nulo");
+            }
+            try
+            {
+                using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+                {
+                    _pSIC_T_ITEM_SUB_FAMILIA.isf_c_des = _pSIC_T_ITEM_SUB_FAMILIA.isf_c_des.Trim();
+                    _pSIC_T_ITEM_SUB_FAMILIA.isf_c_bactivo = true;
+                    if (_pSIC_T_ITEM_SUB_FAMILIA.SIC_T_ITEM_FAMILIA != null)
+                    {
+                        _pSIC_T_ITEM_SUB_FAMILIA.isf_c_ifm_iid = _pSIC_T_ITEM_SUB_FAMILIA.SIC_T_ITEM_FAMILIA.ifm_c_iid;
+                        _pSIC_T_ITEM_SUB_FAMILIA.SIC_T_ITEM_FAMILIA = null;
+                    }
+
+                    var result = (from x in contexto.SIC_T_ITEM_SUB_FAMILIA
+                                  where x.isf_c_des == _pSIC_T_ITEM_SUB_FAMILIA.isf_c_des
+                                  select x).Count();
+
+                    if (result > 0)
+                    {
+                        throw new ArgumentException("Nombre de Familia ya existe.");
+                    }
+                    else
+                    {
+                        contexto.AddToSIC_T_ITEM_SUB_FAMILIA(_pSIC_T_ITEM_SUB_FAMILIA);
+                        contexto.SaveChanges();
+                    }        
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         #endregion
 
     }

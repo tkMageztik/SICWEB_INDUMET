@@ -102,9 +102,12 @@ namespace SIC.DataLayer
                     foreach (var item in _pSIC_T_VENTA.SIC_T_VENTA_DETALLE)
                     {
                         item.ven_det_c_iitemid = item.SIC_T_ITEM.itm_c_iid;
-                        item.SIC_T_ITEM = null;                        
+                        item.SIC_T_ITEM = null;
+                        item.ven_det_c_iidalmacen = item.SIC_T_ALMACEN.alm_c_iid;
+                        item.SIC_T_ALMACEN = null;
                         //contexto.Attach(item.SIC_T_ITEM);
-                    }
+                    }                    
+                    
                     _pSIC_T_VENTA.ven_c_bactivo = true;
                     contexto.AddToSIC_T_VENTA(_pSIC_T_VENTA);                    
                     contexto.SaveChanges();

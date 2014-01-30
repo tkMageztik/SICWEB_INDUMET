@@ -2,23 +2,11 @@
     EnableEventValidation="false" CodeBehind="frmRegOC.aspx.cs" Inherits="SIC.UserLayer.Interfaces.Mantenimiento.frmRegOC"
     Culture="auto" UICulture="auto" %>
 
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <%@ Register Src="~/UserControl/wucMensajeAlerta.ascx" TagName="Mensaje" TagPrefix="uc1" %>
 <%@ Register Src="~/UserControl/wucMensajeAlerta2.ascx" TagName="Mensaje" TagPrefix="uc2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
-    <style type="text/css">
-        .style1
-        {
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 11.5px;
-            color: #686168;
-            height: 20px;
-        }
-        .style2
-        {
-            height: 20px;
-        }
-    </style>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <asp:UpdatePanel ID="upGeneral" UpdateMode="Conditional" runat="server">
@@ -171,13 +159,14 @@
                                                     </asp:TemplateField>
                                                     <asp:CommandField SelectText="Ver" ShowSelectButton="True" />
                                                     <asp:CommandField ShowEditButton="True" CancelText="Cancelar" DeleteText="Eliminar"
-                                                        EditText="Modificar" />
+                                                        EditText="Modificar" />                                                        
                                                     <asp:CommandField ShowDeleteButton="True" DeleteText="Eliminar" />
                                                 </Columns>
                                                 <PagerStyle CssClass="pgr" />
                                             </asp:GridView>
                                         </ContentTemplate>
                                     </asp:UpdatePanel>
+
                                 </td>
                             </tr>
                     </table>
@@ -256,14 +245,14 @@
                                                     </td>
                                                     <td align="left" class="style4">
                                                         <asp:TextBox ID="txtFecEnIni" runat="server" Width="95px"></asp:TextBox>
-                                                        <asp:CalendarExtender ID="txtFecEnIni_CalendarExtender" runat="server" Format="dd/MM/yyyy"
+                                                        <cc1:CalendarExtender ID="txtFecEnIni_CalendarExtender" runat="server" Format="dd/MM/yyyy"
                                                             TargetControlID="txtFecEnIni" TodaysDateFormat="dd/MM/yyyy">
-                                                        </asp:CalendarExtender>
+                                                        </cc1:CalendarExtender>
                                                         &nbsp;-
                                                         <asp:TextBox ID="txtFecEntFin" runat="server" Width="95px"></asp:TextBox>
-                                                        <asp:CalendarExtender ID="txtFecEntFin_CalendarExtender" runat="server" Format="dd/MM/yyyy"
+                                                        <cc1:CalendarExtender ID="txtFecEntFin_CalendarExtender" runat="server" Format="dd/MM/yyyy"
                                                             TargetControlID="txtFecEntFin" TodaysDateFormat="dd/MM/yyyy">
-                                                        </asp:CalendarExtender>
+                                                        </cc1:CalendarExtender>
                                                     </td>
                                                     <td align="left" class="style1">
                                                         &nbsp;

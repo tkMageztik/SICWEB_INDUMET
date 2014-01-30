@@ -33,7 +33,7 @@
             function HeaderClick(CheckBox) {
                 //Get target base & child control.
                 var TargetBaseControl =
-       document.getElementById('<%= this.gvListaItem.ClientID %>');
+                    document.getElementById('<%= this.gvListaItem.ClientID %>');
                 var TargetChildControl = "chkSelect";
 
                 //Get all the control of the type INPUT in the base control.
@@ -50,6 +50,7 @@
             }
 
             function ChildClick(CheckBox, HCheckBox) {
+      
                 //get target control.
                 var HeaderCheckBox = document.getElementById(HCheckBox);
 
@@ -294,19 +295,52 @@
                                                             onrowupdating="gvItemsSeleccionados_RowUpdating">
                                                             <AlternatingRowStyle CssClass="alt" />
                                                             <Columns>
-                                                                <asp:TemplateField HeaderText="Código"><ItemTemplate></ItemTemplate></asp:TemplateField>
-                                                                <asp:TemplateField HeaderText="Descripción"><ItemTemplate></ItemTemplate></asp:TemplateField>
-                                                                <asp:TemplateField HeaderText="Cantidad"><ItemTemplate></ItemTemplate><EditItemTemplate><asp:TextBox ID="txtCantidad" runat="server"
+                                                                <asp:TemplateField HeaderText="Código">
+                                                                    <ItemTemplate>
+                                                                        <%# Eval("codigoItem")%>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                                <asp:TemplateField HeaderText="Descripción">
+                                                                    <ItemTemplate>
+                                                                        <%# Eval("descItem")%>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                                <asp:TemplateField HeaderText="Cantidad">
+                                                                    <ItemTemplate>
+                                                                        <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("ven_det_c_ecantidad") )%>
+                                                                    </ItemTemplate>
+                                                                    <EditItemTemplate>
+                                                                        <asp:TextBox ID="txtCantidad" runat="server"
                                                                             Text='<%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("ven_det_c_ecantidad") )%> '>
-                                                                        </asp:TextBox></EditItemTemplate></asp:TemplateField>
-                                                                <asp:TemplateField HeaderText="Unitario"><ItemTemplate></ItemTemplate><EditItemTemplate><asp:TextBox ID="txtPrecio" runat="server" Text='<%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("ven_det_c_epreciounit") )%> '>
-                                                                        </asp:TextBox></EditItemTemplate></asp:TemplateField>
-
-                                                                <asp:TemplateField HeaderText="Sub Total"><ItemTemplate></ItemTemplate></asp:TemplateField>
-
+                                                                        </asp:TextBox>
+                                                                    </EditItemTemplate>
+                                                                </asp:TemplateField>
+                                                                <asp:TemplateField HeaderText="Unitario">
+                                                                    <ItemTemplate>
+                                                                        <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("ven_det_c_epreciounit") )%>
+                                                                    </ItemTemplate>
+                                                                    <EditItemTemplate>
+                                                                        <asp:TextBox ID="txtPrecio" runat="server" Text='<%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("ven_det_c_epreciounit") )%> '>
+                                                                        </asp:TextBox>
+                                                                    </EditItemTemplate>
+                                                                </asp:TemplateField>
+                                                                <asp:TemplateField HeaderText="Sub Total">
+                                                                    <ItemTemplate>
+                                                                        <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}",Eval("ven_det_c_epreciototal"))%>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
                                                                 <asp:CommandField ShowEditButton="True" CancelText="Cancelar" EditText="Editar" 
                                                                     UpdateText="Actualizar" />
-                                                                <asp:TemplateField HeaderText="Unit. Ref. (Soles)"><ItemTemplate></ItemTemplate></asp:TemplateField>
+                                                                <asp:TemplateField HeaderText="Unit. Ref. (Soles)">
+                                                                    <ItemTemplate>
+                                                                        <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("precioReferenciaSoles"))%>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>                                                                
+                                                                <asp:TemplateField HeaderText="Almacén">
+                                                                    <ItemTemplate>
+                                                                        <%# Eval("SIC_T_ALMACEN.alm_c_vdes")%>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
                                                             </Columns>
                                                             <PagerStyle CssClass="pgr" />
                                                         </asp:GridView>
@@ -494,13 +528,20 @@
                                 <asp:GridView ID="gvListaItem" runat="server" BorderStyle="None" AutoGenerateColumns="False"
                                     GridLines="None" AllowPaging="True" Width="100%" CssClass="mGrid" PagerStyle-CssClass="pgr"
                                     AlternatingRowStyle-CssClass="alt" ShowHeaderWhenEmpty="True" 
-                                        EmptyDataText="No hay datos disponibles." BorderWidth="0px" ViewStateMode="Enabled" 
-                                    DataKeyNames="itm_alm_c_iid" onpageindexchanging="gvListaItem_PageIndexChanging" 
+                                        EmptyDataText="No hay datos disponibles." BorderWidth="0px" ViewStateMode="Enabled"                                     
+                                        DataKeyNames="itm_alm_c_iid" onpageindexchanging="gvListaItem_PageIndexChanging" 
                                         onrowdatabound="gvListaItem_RowDataBound" 
                                         onrowcreated="gvListaItem_RowCreated" >
                                     <AlternatingRowStyle CssClass="alt" />
                                     <Columns>
-                                        <asp:TemplateField HeaderText="SELECCIONAR"><HeaderTemplate><asp:CheckBox ID="chkAll" runat="server" onclick="javascript:HeaderClick(this);" /></HeaderTemplate><ItemTemplate><asp:CheckBox ID="chkSelect" runat="server" /></ItemTemplate></asp:TemplateField> 
+                                        <asp:TemplateField HeaderText="SELECCIONAR">
+                                            <HeaderTemplate>
+                                                <asp:CheckBox ID="chkAll" runat="server" onclick="javascript:HeaderClick(this);" />
+                                            </HeaderTemplate>
+                                            <ItemTemplate>
+                                                <asp:CheckBox ID="chkSelect" runat="server" />
+                                            </ItemTemplate>
+                                        </asp:TemplateField> 
                                         <asp:TemplateField HeaderText="CÓDIGO">
                                             <ItemTemplate>
                                                 <%#Eval("SIC_T_ITEM.itm_c_ccodigo")%>
@@ -516,12 +557,16 @@
                                                 <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("SIC_T_ITEM.itm_c_dprecio_venta"))%>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-
                                         <asp:TemplateField HeaderText="UNIDAD DE MEDIDA">
                                             <ItemTemplate>
                                                 <%#Eval("SIC_T_ITEM.itm_c_vpardes")%>
                                             </ItemTemplate>
-                                            </asp:TemplateField>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="ALMACEN">
+                                            <ItemTemplate>
+                                                <%#Eval("SIC_T_ALMACEN.alm_c_vdes")%>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
                                         <asp:TemplateField HeaderText="STOCK">
                                             <ItemTemplate>
                                                 <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("itm_alm_c_ecantidad"))%>

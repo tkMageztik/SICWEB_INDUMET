@@ -31,10 +31,16 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             set { ViewState["vsEscenarioVenta"] = value; }
         }
 
-        private List<int> ItemsSeleccionadosPreliminar
+        private List<SIC_T_ITEM_ALMACEN> ItemsAlmacenSeleccionados
         {
-            get { return ViewState["ItemsSeleccionadosPreliminar"] as List<int>; }
-            set { ViewState["ItemsSeleccionadosPreliminar"] = value; }
+            get { return ViewState["vsItemsAlmacenSeleccionados"] as List<SIC_T_ITEM_ALMACEN>; }
+            set { ViewState["vsItemsAlmacenSeleccionados"] = value; }
+        }
+
+        private List<SIC_T_ITEM_ALMACEN> ItemsAlmacenEncontrados
+        {
+            get { return ViewState["vsItemsAlmacenEncontrados"] as List<SIC_T_ITEM_ALMACEN>; }
+            set { ViewState["vsItemsAlmacenEncontrados"] = value; }
         }
 
         private decimal igv
@@ -159,12 +165,12 @@ namespace SIC.UserLayer.Interfaces.Movimientos
 
         protected void gvListaItem_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            List<int> list = ItemsSeleccionadosPreliminar;
+            List<SIC_T_ITEM_ALMACEN> list = ItemsAlmacenSeleccionados;
             if (e.Row.RowType == DataControlRowType.DataRow && list != null) 
             { 
                 var autoId = int.Parse(gvListaItem.DataKeys[e.Row.RowIndex].Value.ToString()); 
-                if (list.Contains(autoId)) 
-                { 
+                if (list.Any(x => x.itm_alm_c_iid == autoId))
+                {  
                     CheckBox chk = (CheckBox)e.Row.FindControl("chkSelect"); 
                     chk.Checked = true; 
                 } 
@@ -314,11 +320,11 @@ namespace SIC.UserLayer.Interfaces.Movimientos
 
         protected void gvListaVenta_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            this.EscenarioVenta = TipoOperacion.Eliminacion;
-            this.VentaEliminar = (int)this.gvListaVenta.DataKeys[e.RowIndex].Value;
-            this.SetearEliminar();
-            this.ucMensaje2.Show("¿Desea eliminar la Venta seleccionada?", null,
-                                MensajeIcono.Alerta, MensajeBotones.AceptarCancelar);
+            //this.EscenarioVenta = TipoOperacion.Eliminacion;
+            //this.VentaEliminar = (int)this.gvListaVenta.DataKeys[e.RowIndex].Value;
+            //this.SetearEliminar();
+            //this.ucMensaje2.Show("¿Desea eliminar la Venta seleccionada?", null,
+            //                    MensajeIcono.Alerta, MensajeBotones.AceptarCancelar);
         }
 
         private void SetearEliminar()
@@ -328,7 +334,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             {
                 if (e2.resultado == MensajeResultado.Aceptar)
                 {
-                    this.DeshabilitarOC(VentaEliminar);
+                    this.DeshabilitarVenta(VentaEliminar);
                     this.ucMensaje2.ResultadoMensaje -= handler;
                 }
 
@@ -336,7 +342,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             };
 
             this.ucMensaje2.ResultadoMensaje += handler;
-            
+
         }
 
 
@@ -400,15 +406,29 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         /// </summary>
         private void ListarItem()
         {
-            int id;
-            int? idAlmacen = null;
-
-            if (int.TryParse(cboCentroCosto.SelectedValue, out id) && id != -1)
+            int id = -1;
+            int[] idAlmacen = {-1};
+            var listaIdAlmacen = new List<int>();
+            if (int.TryParse(cboFiltroAlmacen.SelectedValue, out id) && id != -1)
             {
-                idAlmacen = id;
+                listaIdAlmacen.Add(id);
+            }
+            else
+            {
+                int idCentroCosto = -1;
+                if(int.TryParse(cboCentroCosto.SelectedValue,out idCentroCosto) && idCentroCosto !=-1)  
+                {
+                    var lista = _almacen.ListaAlmacenCentroCosto(idCentroCosto);                    
+                    foreach (var itemLista in lista)
+                    {
+                        listaIdAlmacen.Add(itemLista.alm_c_iid);
+                    }
+                }
             }
 
-            gvListaItem.DataSource = _itemAlmacen.ListarItemAlmacen(idAlmacen, txtFiltroCodigo.Text.Trim(), txtFiltroDescr.Text.Trim(), null,  null);
+
+            this.ItemsAlmacenEncontrados = _itemAlmacen.ListarItemAlmacen(txtFiltroCodigo.Text.Trim(), txtFiltroDescr.Text.Trim(), null, null, listaIdAlmacen.ToArray());
+            gvListaItem.DataSource = ItemsAlmacenEncontrados;
             gvListaItem.DataBind();
         }
 
@@ -519,7 +539,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             this.gvItemsSeleccionados.DataSource = this.VentaNuevo.SIC_T_VENTA_DETALLE;
             this.EscenarioVenta = TipoOperacion.Creacion;
             this.lblAccion.Text = "Nuevo";
-            this.ItemsSeleccionadosPreliminar = new List<int>();
+            this.ItemsAlmacenSeleccionados = new List<SIC_T_ITEM_ALMACEN>();
             this.ObtenerTasaCambio(VentaNuevo.ven_c_zfecha);
             this.RecalcularMontos(this.VentaNuevo);
             this.mvOC.ActiveViewIndex = 1;
@@ -541,10 +561,11 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             this.lblAccion.Text = "Modificar";
             this.VentaSeleccionado.ven_c_eigv = this.igv;
             this.lblFechaRegistro.Text = VentaSeleccionado.ven_c_zfecha.ToString("dd/MM/yyyy");            
-            this.ItemsSeleccionadosPreliminar = new List<int>();
+            this.ItemsAlmacenSeleccionados = new List<SIC_T_ITEM_ALMACEN>();
             foreach (var item in VentaSeleccionado.SIC_T_VENTA_DETALLE)
-            {
-                this.ItemsSeleccionadosPreliminar.Add(item.SIC_T_ITEM.itm_c_iid);
+            {                
+                //this.ItemsAlmacenSeleccionados.Add(
+                //this.ItemsSeleccionadosPreliminar.Add( item.SIC_T_ITEM.itm_c_iid);
             }
 
             txtRSProv.Text = this.VentaSeleccionado.SIC_T_CLIENTE == null ? string.Empty : 
@@ -700,35 +721,34 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         /// </summary>
         private void ActualizarListaItemsPreliminar()
         {
-            List<int> list;
-            if (ItemsSeleccionadosPreliminar != null)
+            var listaEncontrada = this.ItemsAlmacenEncontrados;
+
+            List<SIC_T_ITEM_ALMACEN> list;
+            if (ItemsAlmacenSeleccionados != null)
             {
-                list = ItemsSeleccionadosPreliminar;
+                list = ItemsAlmacenSeleccionados;
             }
             else
             {
-                list = new List<int>();
+                list = new List<SIC_T_ITEM_ALMACEN>();
             }
 
             foreach (GridViewRow row in gvListaItem.Rows)
             {
                 CheckBox chk = (CheckBox)row.FindControl("chkSelect");
-                var selectedKey =
-                int.Parse(gvListaItem.DataKeys[row.RowIndex].Value.ToString());
+                int idItemAlmacen = int.Parse(gvListaItem.DataKeys[row.RowIndex].Value.ToString());
+                var itemSeleccionado = listaEncontrada.Find(x => x.itm_alm_c_iid == idItemAlmacen);
                 if (chk.Checked)
-                {
-                    if (!list.Contains(selectedKey))
+                {   
+                    if (!list.Any(x => x.itm_alm_c_iid == idItemAlmacen ))
                     {
-                        list.Add(selectedKey);
-                    }
+                        list.Add(itemSeleccionado);
+                    }                    
                 }
                 else
                 {
-                    if (list.Contains(selectedKey))
-                    {
-                        list.Remove(selectedKey);
-                    }
-                }
+                    list.RemoveAll(x => x.itm_alm_c_iid == idItemAlmacen);                    
+                }            
             } 
         }
 
@@ -746,30 +766,43 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 venta.SIC_T_VENTA_DETALLE = new System.Data.Objects.DataClasses.EntityCollection<SIC_T_VENTA_DETALLE>();
             }
 
-            List<int> listaPrel = this.ItemsSeleccionadosPreliminar;
+            List<SIC_T_ITEM_ALMACEN> listaPrel = this.ItemsAlmacenSeleccionados;
             if(listaPrel == null)
             {
                 return;
             }
 
             // Primero eliminamos todos los que no estan seleccionados           
-            List<SIC_T_VENTA_DETALLE> remover = 
-                venta.SIC_T_VENTA_DETALLE.Where(x => !listaPrel.Contains(x.ven_det_c_iitemid)).ToList();
-            foreach (var item in remover)
+            List<SIC_T_VENTA_DETALLE> remover = new List<SIC_T_VENTA_DETALLE>();
+            foreach(var detalleVenta in venta.SIC_T_VENTA_DETALLE )
             {
-                venta.SIC_T_VENTA_DETALLE.Remove(item);
+                foreach(var itemalm in listaPrel)
+                {
+                    if (detalleVenta.ven_det_c_iidalmacen == itemalm.itm_alm_c_iid_alm && detalleVenta.ven_det_c_iitemid == itemalm.itm_alm_c_iid_item)
+                    {
+                        remover.Add(detalleVenta);
+                        break;
+                    }
+                }
+                
             }
+
+            foreach (var detalleVenta in remover)
+            {
+                venta.SIC_T_VENTA_DETALLE.Remove(detalleVenta);
+            }           
 
             decimal precioReferencia, precioReferenciaSoles;
 
             // Ahora agregamos los nuevos
-            foreach (int idItem in listaPrel)
+            foreach (var itemAlm in listaPrel)
             {
-                if (!venta.SIC_T_VENTA_DETALLE.Where(x => x.ven_det_c_iitemid == idItem).Any())
+                if (!venta.SIC_T_VENTA_DETALLE.Where(x => x.ven_det_c_iidalmacen == itemAlm.itm_alm_c_iid_alm 
+                                                  && x.ven_det_c_iitemid == itemAlm.itm_alm_c_iid_item).Any())
                 {
-                    SIC_T_ITEM itemEncontrado = _item.ObtenerItemPorIdNoContext(idItem);                    
-                    precioReferencia = (cboMoneda.SelectedIndex == 0 ? itemEncontrado.itm_c_dprecio_compra
-                                                                    : Math.Round(itemEncontrado.itm_c_dprecio_compra / this.TasaCambio));
+                    SIC_T_ITEM itemEncontrado = _item.ObtenerItemPorIdNoContext(itemAlm.itm_alm_c_iid_item);                    
+                    precioReferencia = (cboMoneda.SelectedIndex == 0 ? itemEncontrado.itm_c_dprecio_venta
+                                                                    : Math.Round(itemEncontrado.itm_c_dprecio_venta / this.TasaCambio));
                     precioReferenciaSoles = itemEncontrado.itm_c_dprecio_compra;
                     
                     SIC_T_VENTA_DETALLE nuevoDetalle = new SIC_T_VENTA_DETALLE();
@@ -777,13 +810,15 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                     nuevoDetalle.ven_det_c_iitemid = itemEncontrado.itm_c_iid;
                     nuevoDetalle.ven_det_c_epreciounit = itemEncontrado.itm_c_dprecio_venta;
                     nuevoDetalle.ven_det_c_epreciototal= itemEncontrado.itm_c_dprecio_venta;
+                    nuevoDetalle.ven_det_c_iidalmacen = itemAlm.itm_alm_c_iid_alm;
                     nuevoDetalle.SIC_T_ITEM = itemEncontrado;
+                    nuevoDetalle.SIC_T_ALMACEN = itemAlm.SIC_T_ALMACEN;
                     nuevoDetalle.precioReferencia = precioReferencia;
                     nuevoDetalle.precioReferenciaSoles = precioReferenciaSoles;
                     nuevoDetalle.precioUnitarioSoles = itemEncontrado.itm_c_dprecio_compra;
                     nuevoDetalle.codigoItem = itemEncontrado.itm_c_ccodigo;
                     nuevoDetalle.descItem = itemEncontrado.itm_c_vdescripcion;
-
+                    nuevoDetalle.stockAlmacen = itemAlm.itm_alm_c_ecantidad;
                     venta.SIC_T_VENTA_DETALLE.Add(nuevoDetalle);
                 }
             }
@@ -879,7 +914,12 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             }
             catch (Exception ex)
             {
-                Mensaje("Error al realizar el proceso.", "../Imagenes/warning.png");
+#if DEBUG
+                Mensaje("Error Fatal : \n" + ex.Message
+                    + "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty, "../Imagenes/warning.png");
+#else
+                    Mensaje("Error en el proceso.", "../Imagenes/warning.png");
+#endif
             }
         }
 
@@ -915,7 +955,12 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             }
             catch (Exception ex)
             {
-                Mensaje("Error al realizar el proceso.", "../Imagenes/warning.png");
+#if DEBUG
+                Mensaje("Error Fatal : \n" + ex.Message
+                    + "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty, "../Imagenes/warning.png");
+#else
+                    Mensaje("Error en el proceso.", "../Imagenes/warning.png");
+#endif
             }
         }
 
@@ -927,7 +972,6 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             this.VentaNuevo = null;
             this.VentaSeleccionado = null;
             this.EscenarioVenta = TipoOperacion.Ninguna;
-            this.ItemsSeleccionadosPreliminar = null;
             this.txtRSProv.Text = string.Empty;
             this.txtRucProv.Text = string.Empty;
             this.cboMoneda.SelectedIndex = -1;
@@ -972,11 +1016,11 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             }
         }
 
-        private void DeshabilitarOC(int idOC)
+        private void DeshabilitarVenta(int idVenta)
         {            
             try
             {
-                if (this._venta.DeshabilitarOrdenCompra(idOC))
+                if (this._venta.DeshabilitarOrdenCompra(idVenta))
                 {
                     Mensaje("Venta deshabilitada.", "../Imagenes/correcto.png");
                 }
