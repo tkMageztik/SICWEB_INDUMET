@@ -11,54 +11,52 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <asp:UpdatePanel ID="upGeneral" UpdateMode="Conditional" runat="server">
         <ContentTemplate>
-            <script type="text/javascript">
-                var TotalChkBx;
-                var Counter;
+            <script type = "text/javascript">
+                function Check_Click(objRef) {
+                    //Get the Row based on checkbox
+                    var row = objRef.parentNode.parentNode;
+                    
+                    //Get the reference of GridView
+                    var GridView = row.parentNode;
 
-                window.onload = function () {
-                    //Get total no. of CheckBoxes in side the GridView.
-                    TotalChkBx = parseInt('<%= this.gvListaItem.Rows.Count %>');
+                    //Get all input elements in Gridview
+                    var inputList = GridView.getElementsByTagName("input");
 
-                    //Get total no. of checked CheckBoxes in side the GridView.
-                    Counter = 0;
+                    for (var i = 0; i < inputList.length; i++) {
+                        //The First element is the Header Checkbox
+                        var headerCheckBox = inputList[0];
+
+                        //Based on all or none checkboxes
+                        //are checked check/uncheck Header Checkbox
+                        var checked = true;
+                        if (inputList[i].type == "checkbox" && inputList[i] != headerCheckBox) {
+                            if (!inputList[i].checked) {
+                                checked = false;
+                                break;
+                            }
+                        }
+                    }
+                    headerCheckBox.checked = checked;
                 }
-
-                function HeaderClick(CheckBox) {
-                    //Get target base & child control.
-                    var TargetBaseControl =
-       document.getElementById('<%= this.gvListaItem.ClientID %>');
-                    var TargetChildControl = "chkSelect";
-
-                    //Get all the control of the type INPUT in the base control.
-                    var Inputs = TargetBaseControl.getElementsByTagName("input");
-
-                    //Checked/Unchecked all the checkBoxes in side the GridView.
-                    for (var n = 0; n < Inputs.length; ++n)
-                        if (Inputs[n].type == 'checkbox' &&
-                Inputs[n].id.indexOf(TargetChildControl, 0) >= 0)
-                            Inputs[n].checked = CheckBox.checked;
-
-                    //Reset Counter
-                    Counter = CheckBox.checked ? TotalChkBx : 0;
+                
+                function checkAll(objRef) {
+                    var GridView = objRef.parentNode.parentNode.parentNode;
+                    var inputList = GridView.getElementsByTagName("input");
+                    for (var i = 0; i < inputList.length; i++) {
+                        //Get the Cell To find out ColumnIndex
+                        var row = inputList[i].parentNode.parentNode;
+                        if (inputList[i].type == "checkbox" && objRef != inputList[i]) {
+                            if (objRef.checked) {
+                                inputList[i].checked = true;
+                            }
+                            else {
+                               
+                                inputList[i].checked = false;
+                            }
+                        }
+                    }
                 }
-
-                function ChildClick(CheckBox, HCheckBox) {
-                    //get target control.
-                    var HeaderCheckBox = document.getElementById(HCheckBox);
-
-                    //Modifiy Counter; 
-                    if (CheckBox.checked && Counter < TotalChkBx)
-                        Counter++;
-                    else if (Counter > 0)
-                        Counter--;
-
-                    //Change state of the header CheckBox.
-                    if (Counter < TotalChkBx)
-                        HeaderCheckBox.checked = false;
-                    else if (Counter == TotalChkBx)
-                        HeaderCheckBox.checked = true;
-                }
-            </script>
+        </script>
             <asp:MultiView ID="mvOC" runat="server" ActiveViewIndex="0">
                 <asp:View ID="View1" runat="server">
                     <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
@@ -608,15 +606,17 @@
                                             GridLines="None" AllowPaging="True" Width="100%" CssClass="mGrid" PagerStyle-CssClass="pgr"
                                             AlternatingRowStyle-CssClass="alt" ShowHeaderWhenEmpty="True" EmptyDataText="No hay datos disponibles."
                                             BorderWidth="0px" ViewStateMode="Enabled" DataKeyNames="itm_c_iid" OnPageIndexChanging="gvListaItem_PageIndexChanging"
-                                            OnRowDataBound="gvListaItem_RowDataBound" OnRowCreated="gvListaItem_RowCreated">
+                                            OnRowDataBound="gvListaItem_RowDataBound" 
+                                            OnRowCreated="gvListaItem_RowCreated" 
+                                            PageSize="3" >
                                             <AlternatingRowStyle CssClass="alt" />
                                             <Columns>
                                                 <asp:TemplateField HeaderText="SELECCIONAR">
-                                                    <HeaderTemplate>
-                                                        <asp:CheckBox ID="chkAll" runat="server" onclick="javascript:HeaderClick(this);" />
+                                                    <HeaderTemplate>                                                     
+                                                        <asp:CheckBox ID="chkAll" runat="server" onclick="javascript:checkAll(this);" />
                                                     </HeaderTemplate>
                                                     <ItemTemplate>
-                                                        <asp:CheckBox ID="chkSelect" runat="server" />
+                                                        <asp:CheckBox ID="chkSelect" runat="server" onclick="javascript:Check_Click(this);"/>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:BoundField DataField="itm_c_ccodigo" HeaderText="CÓDIGO" />

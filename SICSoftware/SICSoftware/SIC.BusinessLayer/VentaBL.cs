@@ -48,5 +48,10 @@ namespace SIC.BusinessLayer
         {
             return new VentaDA().ListarEstadosOrdenCompra();
         }
+
+        public List<SIC_T_VEN_ESTADO> ListarEstadoVenta()
+        {
+            return new VentaDA().ListarEstadoVenta();
+        }
     }
 }

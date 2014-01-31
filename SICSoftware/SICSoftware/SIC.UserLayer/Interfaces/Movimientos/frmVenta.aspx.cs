@@ -100,6 +100,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 this.ListarComboTipoDocumento();
                 this.ListarVentas();
                 this.ListarComboCentroCosto();
+                this.ListarEstadoVenta();
                 gvItemsSeleccionados.DataSource = null;
                 gvItemsSeleccionados.DataBind();
                 this.ObtenerDatosImpuesto();
@@ -167,14 +168,17 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         {
             List<SIC_T_ITEM_ALMACEN> list = ItemsAlmacenSeleccionados;
             if (e.Row.RowType == DataControlRowType.DataRow && list != null) 
-            { 
-                var autoId = int.Parse(gvListaItem.DataKeys[e.Row.RowIndex].Value.ToString()); 
-                if (list.Any(x => x.itm_alm_c_iid == autoId))
+            {
+                int itemId = (int)gvListaItem.DataKeys[e.Row.RowIndex].Values["itm_alm_c_iid_item"];
+                int almacenID = (int)gvListaItem.DataKeys[e.Row.RowIndex].Values["itm_alm_c_iid_alm"];
+                if (list.Any(x => x.itm_alm_c_iid_item == itemId && x.itm_alm_c_iid_alm == almacenID))
                 {  
                     CheckBox chk = (CheckBox)e.Row.FindControl("chkSelect"); 
                     chk.Checked = true; 
                 } 
-            } 
+            }
+            //(item.ven_det_c_iitemid== itemId && item.ven_det_c_iidalmacen == almacenID)
+
         }
 
         protected void btnRegresarDesdeItems_Click(object sender, EventArgs e)
@@ -195,7 +199,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             }
             else if (this.EscenarioVenta == TipoOperacion.Modificacion)
             {
-                this.ActualizarOC();
+                this.ActualizarVenta();
             }
         }
 
@@ -244,16 +248,31 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             if (decimal.TryParse(txtCantidad.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out cantidadNueva) && cantidadNueva > 0
                 && decimal.TryParse(txtPrecio.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out precioNuevo) && precioNuevo > 0)
             {
-                int itemId = (int)gvItemsSeleccionados.DataKeys[e.RowIndex].Value;
+                int itemId = (int)gvItemsSeleccionados.DataKeys[e.RowIndex].Values["ven_det_c_iitemid"];
+                int almacenID = (int)gvItemsSeleccionados.DataKeys[e.RowIndex].Values["ven_det_c_iidalmacen"];
 
                 if (this.EscenarioVenta == TipoOperacion.Modificacion)
                 {
                     SIC_T_VENTA venta = this.VentaSeleccionado;
+
+                    // Buscamos y editamos la cantidad, filtramos el item q viene del mismo almacen
                     foreach (var item in venta.SIC_T_VENTA_DETALLE)
                     {
-                        if (item.ven_det_c_iitemid== itemId)
+                        if (item.ven_det_c_iitemid== itemId && item.ven_det_c_iidalmacen == almacenID)
                         {
                             item.ven_det_c_ecantidad = cantidadNueva;
+                            item.ven_det_c_epreciototal = item.ven_det_c_epreciounit * cantidadNueva;
+                            break;
+                        }
+                    }
+
+                    // Buscamos y editamos le precio, filtramos los items que tengan la misma id
+                    // ya que mas adelante se fuisionaran los items en un solo registro (detalle de boleta/factura), 
+                    // se requiere que tengan el mismo precio unitario
+                    foreach (var item in venta.SIC_T_VENTA_DETALLE)
+                    {
+                        if (item.ven_det_c_iitemid == itemId)
+                        {
                             item.ven_det_c_epreciounit = precioNuevo;
                             if (cboMoneda.SelectedIndex == 0)
                             {
@@ -262,12 +281,11 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                             else
                             {
                                 item.precioUnitarioSoles = precioNuevo * this.TasaCambio;
-                                ;
                             }
                             item.ven_det_c_epreciototal = item.ven_det_c_epreciounit * cantidadNueva;
-                            break;
                         }
                     }
+
                     this.RecalcularMontos(venta);
                     gvItemsSeleccionados.EditIndex = -1;
                     gvItemsSeleccionados.DataSource = venta.SIC_T_VENTA_DETALLE;
@@ -315,7 +333,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             e.NewEditIndex = -1;
             this.gvListaItem.EditIndex = -1;
             this.ListarVentas();
-            this.MostrarModificarVenta(ocId);            
+            this.MostrarModificarVenta(ocId);
         }
 
         protected void gvListaVenta_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -379,6 +397,14 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             cboCentroCosto.DataTextField = "emp_cst_c_vdesc";
             cboCentroCosto.DataValueField = "emp_cst_c_int";
             cboCentroCosto.DataBind();
+        }
+
+        private void ListarEstadoVenta()
+        {
+            cboEstado.DataSource = _venta.ListarEstadoVenta();
+            cboEstado.DataTextField = "ven_est_c_vdescripcion";
+            cboEstado.DataValueField = "ven_est_c_iid";
+            cboEstado.DataBind();
         }
 
         /// <summary>
@@ -538,7 +564,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             this.lblFechaRegistro.Text = VentaNuevo.ven_c_zfecha.ToString("dd/MM/yyyy");
             this.gvItemsSeleccionados.DataSource = this.VentaNuevo.SIC_T_VENTA_DETALLE;
             this.EscenarioVenta = TipoOperacion.Creacion;
-            this.lblAccion.Text = "Nuevo";
+            this.lblAccion.Text = "NUEVO";
             this.ItemsAlmacenSeleccionados = new List<SIC_T_ITEM_ALMACEN>();
             this.ObtenerTasaCambio(VentaNuevo.ven_c_zfecha);
             this.RecalcularMontos(this.VentaNuevo);
@@ -546,6 +572,8 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             this.MostrarDatosImpuestos();
             this.btnBuscarItems.Enabled = false;
             this.cboCentroCosto.Enabled = true;
+            this.cboCentroCosto.ClearSelection();
+            this.cboEstado.ClearSelection();
             this.upGeneral.Update();
         }
 
@@ -555,17 +583,29 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         private void MostrarModificarVenta(int id)
         {
             this.VentaSeleccionado = _venta.ObtenerVenta(id);
+
+            if (this.VentaSeleccionado.ven_c_iestado == (int)EstadoVenta.ANULADO || this.VentaSeleccionado.ven_c_iestado == (int)EstadoVenta.CERRADA)
+            {
+                Mensaje("Solo se puede editar Ventas de compra en estado planeado.", "../Imagenes/warning.png");
+                upGeneral.Update();
+                this.VentaSeleccionado = null;
+                return;
+            }
+
             this.gvItemsSeleccionados.DataSource = this.VentaSeleccionado.SIC_T_VENTA_DETALLE;
             this.gvItemsSeleccionados.DataBind();
             this.EscenarioVenta = TipoOperacion.Modificacion;
-            this.lblAccion.Text = "Modificar";
+            this.lblAccion.Text = "MODIFICAR";
             this.VentaSeleccionado.ven_c_eigv = this.igv;
             this.lblFechaRegistro.Text = VentaSeleccionado.ven_c_zfecha.ToString("dd/MM/yyyy");            
             this.ItemsAlmacenSeleccionados = new List<SIC_T_ITEM_ALMACEN>();
             foreach (var item in VentaSeleccionado.SIC_T_VENTA_DETALLE)
             {                
-                //this.ItemsAlmacenSeleccionados.Add(
-                //this.ItemsSeleccionadosPreliminar.Add( item.SIC_T_ITEM.itm_c_iid);
+                SIC_T_ITEM_ALMACEN itemAlmacen = new SIC_T_ITEM_ALMACEN();
+                itemAlmacen.itm_alm_c_iid_alm = item.ven_det_c_iidalmacen;
+                itemAlmacen.itm_alm_c_iid_item = item.ven_det_c_iitemid;
+                itemAlmacen.SIC_T_ALMACEN = item.SIC_T_ALMACEN;
+                this.ItemsAlmacenSeleccionados.Add(itemAlmacen);
             }
 
             txtRSProv.Text = this.VentaSeleccionado.SIC_T_CLIENTE == null ? string.Empty : 
@@ -579,8 +619,9 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 seleccion.Selected = true;
             }
 
-            cboMoneda.SelectedIndex = -1;
+            cboMoneda.ClearSelection();
             seleccion = cboMoneda.Items.FindByText(VentaSeleccionado.ven_c_vdescmoneda);
+            
             if (seleccion != null)
             {
                 seleccion.Selected = true;
@@ -615,6 +656,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             this.gvItemsSeleccionados.DataSource = this.VentaSeleccionado.SIC_T_VENTA_DETALLE;
             this.gvItemsSeleccionados.DataBind();
             this.cboCentroCosto.Enabled = false;
+            this.cboCentroCosto.ClearSelection();
             seleccion = cboCentroCosto.Items.FindByText(VentaSeleccionado.SIC_T_EMP_CENTRO_COSTO.emp_cst_c_vdesc);
             if (seleccion != null)
             {
@@ -628,7 +670,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             
             this.RecalcularMontos(this.VentaSeleccionado);
             this.MostrarDatosImpuestos();
-
+            this.cboEstado.ClearSelection();
             this.mvOC.ActiveViewIndex = 1;
             this.upGeneral.Update();
         }
@@ -776,15 +818,19 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             List<SIC_T_VENTA_DETALLE> remover = new List<SIC_T_VENTA_DETALLE>();
             foreach(var detalleVenta in venta.SIC_T_VENTA_DETALLE )
             {
+                bool rem = true;
                 foreach(var itemalm in listaPrel)
                 {
                     if (detalleVenta.ven_det_c_iidalmacen == itemalm.itm_alm_c_iid_alm && detalleVenta.ven_det_c_iitemid == itemalm.itm_alm_c_iid_item)
                     {
-                        remover.Add(detalleVenta);
+                        rem = false;
                         break;
                     }
                 }
-                
+                if (rem)
+                {
+                    remover.Add(detalleVenta);
+                }
             }
 
             foreach (var detalleVenta in remover)
@@ -825,6 +871,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
 
             gvItemsSeleccionados.DataSource = venta.SIC_T_VENTA_DETALLE;
             gvItemsSeleccionados.DataBind();
+            upGeneral.Update();
         }
 
         /// <summary>
@@ -885,7 +932,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         
         private void IngresarVenta()
         {
-            if (!VerificarDatosOC(this.VentaNuevo))
+            if (!VerificarDatosVenta(this.VentaNuevo))
             {
                 return;
             }
@@ -896,6 +943,8 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             ven.ven_c_vdescmoneda = this.cboMoneda.SelectedItem.Text.Trim();
             ven.ven_c_itipodoc= int.Parse(this.cboTipoDocumento.SelectedValue);
             ven.ven_c_vdestipodoc = this.cboTipoDocumento.SelectedItem.Text.Trim();
+            ven.ven_c_iestado = int.Parse(this.cboEstado.SelectedValue);
+            ven.ven_c_vestado = this.cboEstado.SelectedItem.Text.Trim();
 
             try
             {
@@ -923,9 +972,9 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             }
         }
 
-        private void ActualizarOC()
+        private void ActualizarVenta()
         {
-            if (!VerificarDatosOC(this.VentaSeleccionado))
+            if (!VerificarDatosVenta(this.VentaSeleccionado))
             {
                 return;
             }
@@ -936,7 +985,8 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             ven.ven_c_vdescmoneda = this.cboMoneda.SelectedItem.Text.Trim();
             ven.ven_c_itipodoc = int.Parse(this.cboTipoDocumento.SelectedValue);
             ven.ven_c_vdestipodoc = this.cboTipoDocumento.SelectedItem.Text.Trim();
-
+            ven.ven_c_iestado = int.Parse(this.cboEstado.SelectedValue);
+            ven.ven_c_vestado = this.cboEstado.SelectedItem.Text.Trim();
 
             try
             {
@@ -982,14 +1032,14 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         }
 
 
-        private bool VerificarDatosOC(SIC_T_VENTA ordenDeCompra)
+        private bool VerificarDatosVenta(SIC_T_VENTA venta)
         {
-            if (ordenDeCompra == null)
+            if (venta == null)
             {
                 Mensaje("Estado de la página no válido.", "../Imagenes/warning.png");
                 return false;
             }
-            else if (ordenDeCompra.ven_c_vdoccli_id == null || ordenDeCompra.ven_c_vdoccli_id == string.Empty)
+            else if (venta.ven_c_vdoccli_id == null || venta.ven_c_vdoccli_id == string.Empty)
             {
                 Mensaje("Debe seleccionar un cliente.", "../Imagenes/warning.png");
                 return false;
@@ -1004,8 +1054,13 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 Mensaje("Debe seleccionar un tipo de Moneda.", "../Imagenes/warning.png");
                 return false;
             }
-            else if (ordenDeCompra.SIC_T_VENTA_DETALLE == null
-                || ordenDeCompra.SIC_T_VENTA_DETALLE.Count == 0)
+            else if (cboEstado.SelectedIndex == -1)
+            {
+                Mensaje("Debe seleccionar un Estado.", "../Imagenes/warning.png");
+                return false;
+            }
+            else if (venta.SIC_T_VENTA_DETALLE == null
+                || venta.SIC_T_VENTA_DETALLE.Count == 0)
             {
                 Mensaje("Debe seleccionar al menos un item.", "../Imagenes/warning.png");
                 return false;
@@ -1128,18 +1183,18 @@ namespace SIC.UserLayer.Interfaces.Movimientos
 
         protected void gvListaItem_RowCreated(object sender, GridViewRowEventArgs e)
         {
-            if (e.Row.RowType == DataControlRowType.DataRow &&
-               (e.Row.RowState == DataControlRowState.Normal ||
-                e.Row.RowState == DataControlRowState.Alternate))
-            {
-                CheckBox chkBxSelect = (CheckBox)e.Row.Cells[1].FindControl("chkSelect");
-                CheckBox chkBxHeader = (CheckBox)this.gvListaItem.HeaderRow.FindControl("chkAll");
-                chkBxSelect.Attributes["onclick"] = string.Format
-                                                       (
-                                                          "javascript:ChildClick(this,'{0}');",
-                                                          chkBxHeader.ClientID
-                                                       );
-            }
+            //if (e.Row.RowType == DataControlRowType.DataRow &&
+            //   (e.Row.RowState == DataControlRowState.Normal ||
+            //    e.Row.RowState == DataControlRowState.Alternate))
+            //{
+            //    CheckBox chkBxSelect = (CheckBox)e.Row.Cells[1].FindControl("chkSelect");
+            //    CheckBox chkBxHeader = (CheckBox)this.gvListaItem.HeaderRow.FindControl("chkAll");
+            //    chkBxSelect.Attributes["onclick"] = string.Format
+            //                                           (
+            //                                              "javascript:ChildClick(this,'{0}');",
+            //                                              chkBxHeader.ClientID
+            //                                           );
+            //}
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)

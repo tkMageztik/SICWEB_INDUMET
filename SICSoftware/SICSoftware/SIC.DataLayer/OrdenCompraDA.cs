@@ -334,7 +334,7 @@ namespace SIC.DataLayer
                                       select x).FirstOrDefault();
                 if (varItem != null)
                 {
-                    varItem.odc_c_bactivo = false;
+                    varItem.odc_c_iestado = 5; // ANULADO
                 }
 
                 try

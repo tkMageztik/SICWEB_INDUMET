@@ -6,8 +6,7 @@ Culture="es-PE" UICulture="es-PE" %>
 <%@ Register Src="~/UserControl/wucMensajeAlerta2.ascx" TagName="Mensaje" TagPrefix="uc2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
-    
-    </asp:Content>
+</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <asp:UpdatePanel ID="upGeneral" UpdateMode="Conditional" runat="server">
         <ContentTemplate>
@@ -333,7 +332,6 @@ Culture="es-PE" UICulture="es-PE" %>
                                                     <td align="left" class="style28">
                                                         <asp:TextBox ID="txtAlmacen" runat="server" ReadOnly="True" Height="24px" 
                                                             Width="385px"></asp:TextBox>
-                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                         <asp:LinkButton ID="btnBuscarAlmacen" runat="server" CssClass="lnk" 
                                                             onclick="btnBuscarAlmacen_Click">Buscar</asp:LinkButton>
                                                         </td>

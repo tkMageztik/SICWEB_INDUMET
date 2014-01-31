@@ -104,7 +104,6 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             {
                 this.ListarComboMoneda();
                 this.ListarCombosEstado();
-                this.ListarItem();
                 this.ListarProveedores();
                 this.ListarFamilia();
                 this.ListarComboMonedaFiltro();
@@ -1387,18 +1386,20 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
         protected void gvListaItem_RowCreated(object sender, GridViewRowEventArgs e)
         {
-            if (e.Row.RowType == DataControlRowType.DataRow &&
-               (e.Row.RowState == DataControlRowState.Normal ||
-                e.Row.RowState == DataControlRowState.Alternate))
-            {
-                CheckBox chkBxSelect = (CheckBox)e.Row.Cells[1].FindControl("chkSelect");
-                CheckBox chkBxHeader = (CheckBox)this.gvListaItem.HeaderRow.FindControl("chkAll");
-                chkBxSelect.Attributes["onclick"] = string.Format
-                                                       (
-                                                          "javascript:ChildClick(this,'{0}');",
-                                                          chkBxHeader.ClientID
-                                                       );
-            }
+            //if (e.Row.RowType == DataControlRowType.DataRow &&
+            //   (e.Row.RowState == DataControlRowState.Normal ||
+            //    e.Row.RowState == DataControlRowState.Alternate))
+            //{
+            //    CheckBox chkBxSelect = (CheckBox)e.Row.Cells[1].FindControl("chkSelect");
+            //    CheckBox chkBxHeader = (CheckBox)this.gvListaItem.HeaderRow.FindControl("chkAll");
+            //    chkBxSelect.Attributes["onclick"] = string.Format
+            //                                           (
+            //                                              "javascript:ChildClick(this,'{0}');",
+            //                                              chkBxHeader.ClientID
+            //                                           );
+            //}
+            //
+            
         }
 
         protected void chkPercepcion_CheckedChanged(object sender, EventArgs e)
@@ -1469,5 +1470,8 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             mvOC.ActiveViewIndex = 4;
             upGeneral.Update();
         }
+
+
+ 
     }
 }

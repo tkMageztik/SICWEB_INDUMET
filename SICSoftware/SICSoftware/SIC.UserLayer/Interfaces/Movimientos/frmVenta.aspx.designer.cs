@@ -229,6 +229,24 @@ namespace SIC.UserLayer.Interfaces.Movimientos {
         protected global::System.Web.UI.WebControls.DropDownList cboTipoDocumento;
         
         /// <summary>
+        /// Control cboEstado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cboEstado;
+        
+        /// <summary>
+        /// Control lnkVerDocumentoVenta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkVerDocumentoVenta;
+        
+        /// <summary>
         /// Control gvItemsSeleccionados.
         /// </summary>
         /// <remarks>

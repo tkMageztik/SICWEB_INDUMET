@@ -73,10 +73,12 @@ namespace SIC.DataLayer
             {
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
+                    contexto.SIC_T_VENTA.MergeOption = System.Data.Objects.MergeOption.NoTracking;
                     return (from x in contexto.SIC_T_VENTA
                                         .Include("SIC_T_VENTA_DETALLE.SIC_T_ITEM")
+                                        .Include("SIC_T_VENTA_DETALLE.SIC_T_ALMACEN")
                                         .Include("SIC_T_CLIENTE")
-                                        .Include("SIC_T_EMP_CENTRO_COSTO")
+                                        .Include("SIC_T_EMP_CENTRO_COSTO")                                        
                             where x.ven_c_iid == id && x.ven_c_bactivo == true
                             select x).SingleOrDefault();
                 }
@@ -214,7 +216,6 @@ namespace SIC.DataLayer
             }      
         }
 
-
         public bool ModificarOrdenCompra(SIC_T_VENTA _pSIC_T_VENTA,
                      List<SIC_T_VENTA_DETALLE> _pSIC_T_VENTA_DETALLE_Add)
         {
@@ -261,6 +262,24 @@ namespace SIC.DataLayer
                 }
             }
         }
+
+        public List<SIC_T_VEN_ESTADO> ListarEstadoVenta()
+        {
+            try
+            {
+                using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+                {
+                    return (from x in contexto.SIC_T_VEN_ESTADO
+                            select x).ToList();
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+
     }
     
 }

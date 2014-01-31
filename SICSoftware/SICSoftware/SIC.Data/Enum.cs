@@ -21,12 +21,21 @@ namespace SIC.Data
         ABIERTA = 2,
         CERRADA = 3,
         VENCIDA = 4,
+        ANULADA = 5,
     }
 
     public enum EstadoMovimiento
     {
         POR_REGULARIZAR = 2,
         CERRADA = 3,
+        ANULADO = 4,
+    }
+
+    public enum EstadoVenta
+    {
+        POR_REGULARIZAR = 1,
+        CERRADA = 2,
+        ANULADO = 3,
     }
 
     public enum Calificacion

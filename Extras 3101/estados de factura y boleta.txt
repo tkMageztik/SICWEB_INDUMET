@@ -1,0 +1,10 @@
+Estados de Factura y Boleta
+			
+EMITIDO = 1,
+	        IMPRESO = 2,
+        REIMPRESO = 3,
+        DEVUELTO = 4,
+        ANULADO = 5, 
+        CON_NOTA_DE_CREDITO_ANULACION_TOTAL = 6,
+        CON_NOTA_DE_CREDITO_ANULACION_PARCIAL = 7,
+        CANCELADO = 8
