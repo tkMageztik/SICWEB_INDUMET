@@ -14,6 +14,11 @@ namespace SIC.UserLayer
             if (!IsPostBack) { 
             
             }
+
+            if (Session["USUARIO"] == null)
+            {
+                Response.Redirect("~/Default.aspx");
+            }
         }
     }
 }

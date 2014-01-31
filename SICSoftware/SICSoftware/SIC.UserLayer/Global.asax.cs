@@ -31,7 +31,7 @@ namespace SIC.UserLayer
         void Session_Start(object sender, EventArgs e)
         {
             // Código que se ejecuta cuando se inicia una nueva sesión
-
+            //Response.Write("<Script Language='javascript'> alert('Hello');</script>");
         }
 
         void Session_End(object sender, EventArgs e)
@@ -40,7 +40,7 @@ namespace SIC.UserLayer
             // Nota: el evento Session_End se desencadena sólo cuando el modo sessionstate
             // se establece como InProc en el archivo Web.config. Si el modo de sesión se establece como StateServer 
             // o SQLServer, el evento no se genera.
-
+            Session["USUARIO"] = null;
         }
 
     }

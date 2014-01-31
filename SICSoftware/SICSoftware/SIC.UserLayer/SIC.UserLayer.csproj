@@ -44,16 +44,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AjaxControlToolkit">
-      <HintPath>..\packages\AjaxControlToolkit.7.0607\lib\40\AjaxControlToolkit.dll</HintPath>
-    </Reference>
-    <Reference Include="HtmlAgilityPack">
-      <HintPath>..\packages\AjaxControlToolkit.7.0607\lib\40\SanitizerProviders\HtmlAgilityPack.dll</HintPath>
+    <Reference Include="AjaxControlToolkit, Version=4.1.60919.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="SanitizerProviders">
-      <HintPath>..\packages\AjaxControlToolkit.7.0607\lib\40\SanitizerProviders\SanitizerProviders.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -78,15 +73,12 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
-    <Content Include="bin\AjaxControlToolkit.dll" />
-    <Content Include="bin\ClassLibrary1.dll" />
-    <Content Include="bin\HtmlAgilityPack.dll" />
-    <Content Include="bin\SanitizerProviders.dll" />
-    <Content Include="bin\SIC.Data.dll" />
-    <Content Include="bin\SIC.DataLayer.dll" />
-    <Content Include="bin\SIC.EntityLayer.dll" />
-    <Content Include="bin\SIC.UIGeneral.dll" />
-    <Content Include="bin\SIC.UserLayer.dll" />
+    <Content Include="Bootstrap\bin\AjaxControlToolkit.dll" />
+    <Content Include="Bootstrap\bin\SIC.Data.dll" />
+    <Content Include="Bootstrap\bin\SIC.DataLayer.dll" />
+    <Content Include="Bootstrap\bin\SIC.EntityLayer.dll" />
+    <Content Include="Bootstrap\bin\SIC.UIGeneral.dll" />
+    <Content Include="Bootstrap\bin\SIC.UserLayer.dll" />
     <Content Include="Bootstrap\css\bootstrap-responsive.css" />
     <Content Include="Bootstrap\css\bootstrap-responsive.min.css" />
     <Content Include="Bootstrap\css\bootstrap.css" />
@@ -129,7 +121,9 @@
     <Content Include="Imagenes\check.png" />
     <Content Include="Imagenes\checkbox.jpg" />
     <Content Include="Imagenes\checked_checkbox.png" />
-    <Content Include="Imagenes\correcto.png" />
+    <Content Include="Imagenes\correcto.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Imagenes\Document.png" />
     <Content Include="Imagenes\flecha_der.png" />
     <Content Include="Imagenes\f_index.gif" />
@@ -180,7 +174,9 @@
     <Content Include="Imagenes\Principal\menu.gif" />
     <Content Include="Imagenes\shadow.png" />
     <Content Include="Imagenes\unchecked_checkbox.png" />
-    <Content Include="Imagenes\warning.png" />
+    <Content Include="Imagenes\warning.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Default.aspx" />
     <Content Include="Interfaces\Mantenimiento\frmRegCliente.aspx" />
     <Compile Include="Global.asax.cs">
@@ -299,6 +295,7 @@
     <Compile Include="Interfaces\Mantenimiento\frmRegCliente.aspx.designer.cs">
       <DependentUpon>frmRegCliente.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\Movimientos\DatosItemAlmacen.cs" />
     <Compile Include="Interfaces\Movimientos\frmMovEntrada.aspx.cs">
       <DependentUpon>frmMovEntrada.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

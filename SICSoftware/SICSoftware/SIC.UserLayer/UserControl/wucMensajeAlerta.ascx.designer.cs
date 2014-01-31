@@ -49,6 +49,15 @@ namespace SIC.UserLayer.UserControl {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
+        /// Control btnOk.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnOk;
+        
+        /// <summary>
         /// Control imgmensaje.
         /// </summary>
         /// <remarks>
@@ -67,30 +76,12 @@ namespace SIC.UserLayer.UserControl {
         protected global::System.Web.UI.WebControls.Label lblMensaje;
         
         /// <summary>
-        /// Control btnAceptar.
+        /// Control ibtnCancelar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAceptar;
-        
-        /// <summary>
-        /// Control btnAceptar0.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAceptar0;
-        
-        /// <summary>
-        /// Control btnAceptar1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAceptar1;
+        protected global::System.Web.UI.WebControls.Button ibtnCancelar;
     }
 }

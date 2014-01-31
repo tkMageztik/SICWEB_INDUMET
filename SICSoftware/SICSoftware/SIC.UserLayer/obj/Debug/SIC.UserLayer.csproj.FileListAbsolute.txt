@@ -1,127 +1,18 @@
-C:\Users\Juan y Carla\Desktop\WORKSPACE\SICSoftware\SIC.UserLayer\bin\SIC.UserLayer.dll
-C:\Users\Juan y Carla\Desktop\WORKSPACE\SICSoftware\SIC.UserLayer\bin\SIC.UserLayer.pdb
-C:\Users\Juan y Carla\Desktop\WORKSPACE\SICSoftware\SIC.UserLayer\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\Juan y Carla\Desktop\WORKSPACE\SICSoftware\SIC.UserLayer\obj\Debug\SIC.UserLayer.dll
-C:\Users\Juan y Carla\Desktop\WORKSPACE\SICSoftware\SIC.UserLayer\obj\Debug\SIC.UserLayer.pdb
-C:\Users\Juan y Carla\Desktop\WORKSPACE\SICSoftware\SIC.UserLayer\bin\AjaxControlToolkit.dll
-C:\Users\Juan y Carla\Desktop\WORKSPACE\SICSoftware\SIC.UserLayer\bin\HtmlAgilityPack.dll
-C:\Users\Juan y Carla\Desktop\WORKSPACE\SICSoftware\SIC.UserLayer\bin\SanitizerProviders.dll
-C:\Users\Juan y Carla\Desktop\WORKSPACE\SICSoftware\SIC.UserLayer\bin\ar\AjaxControlToolkit.resources.dll
-C:\Users\Juan y Carla\Desktop\WORKSPACE\SICSoftware\SIC.UserLayer\bin\cs\AjaxControlToolkit.resources.dll
-C:\Users\Juan y Carla\Desktop\WORKSPACE\SICSoftware\SIC.UserLayer\bin\de\AjaxControlToolkit.resources.dll
-C:\Users\Juan y Carla\Desktop\WORKSPACE\SICSoftware\SIC.UserLayer\bin\es\AjaxControlToolkit.resources.dll
-C:\Users\Juan y Carla\Desktop\WORKSPACE\SICSoftware\SIC.UserLayer\bin\fr\AjaxControlToolkit.resources.dll
-C:\Users\Juan y Carla\Desktop\WORKSPACE\SICSoftware\SIC.UserLayer\bin\he\AjaxControlToolkit.resources.dll
-C:\Users\Juan y Carla\Desktop\WORKSPACE\SICSoftware\SIC.UserLayer\bin\hi\AjaxControlToolkit.resources.dll
-C:\Users\Juan y Carla\Desktop\WORKSPACE\SICSoftware\SIC.UserLayer\bin\it\AjaxControlToolkit.resources.dll
-C:\Users\Juan y Carla\Desktop\WORKSPACE\SICSoftware\SIC.UserLayer\bin\ja\AjaxControlToolkit.resources.dll
-C:\Users\Juan y Carla\Desktop\WORKSPACE\SICSoftware\SIC.UserLayer\bin\ko\AjaxControlToolkit.resources.dll
-C:\Users\Juan y Carla\Desktop\WORKSPACE\SICSoftware\SIC.UserLayer\bin\nl\AjaxControlToolkit.resources.dll
-C:\Users\Juan y Carla\Desktop\WORKSPACE\SICSoftware\SIC.UserLayer\bin\pt\AjaxControlToolkit.resources.dll
-C:\Users\Juan y Carla\Desktop\WORKSPACE\SICSoftware\SIC.UserLayer\bin\ru\AjaxControlToolkit.resources.dll
-C:\Users\Juan y Carla\Desktop\WORKSPACE\SICSoftware\SIC.UserLayer\bin\tr-TR\AjaxControlToolkit.resources.dll
-C:\Users\Juan y Carla\Desktop\WORKSPACE\SICSoftware\SIC.UserLayer\bin\zh-CHS\AjaxControlToolkit.resources.dll
-C:\Users\Juan y Carla\Desktop\WORKSPACE\SICSoftware\SIC.UserLayer\bin\zh-CHT\AjaxControlToolkit.resources.dll
-C:\Users\RPEXT009\Desktop\SICSoftware\SIC.UserLayer\bin\SIC.UserLayer.dll
-C:\Users\RPEXT009\Desktop\SICSoftware\SIC.UserLayer\bin\SIC.UserLayer.pdb
-C:\Users\RPEXT009\Desktop\SICSoftware\SIC.UserLayer\bin\AjaxControlToolkit.dll
-C:\Users\RPEXT009\Desktop\SICSoftware\SIC.UserLayer\bin\HtmlAgilityPack.dll
-C:\Users\RPEXT009\Desktop\SICSoftware\SIC.UserLayer\bin\SanitizerProviders.dll
-C:\Users\RPEXT009\Desktop\SICSoftware\SIC.UserLayer\bin\ar\AjaxControlToolkit.resources.dll
-C:\Users\RPEXT009\Desktop\SICSoftware\SIC.UserLayer\bin\cs\AjaxControlToolkit.resources.dll
-C:\Users\RPEXT009\Desktop\SICSoftware\SIC.UserLayer\bin\de\AjaxControlToolkit.resources.dll
-C:\Users\RPEXT009\Desktop\SICSoftware\SIC.UserLayer\bin\es\AjaxControlToolkit.resources.dll
-C:\Users\RPEXT009\Desktop\SICSoftware\SIC.UserLayer\bin\fr\AjaxControlToolkit.resources.dll
-C:\Users\RPEXT009\Desktop\SICSoftware\SIC.UserLayer\bin\he\AjaxControlToolkit.resources.dll
-C:\Users\RPEXT009\Desktop\SICSoftware\SIC.UserLayer\bin\hi\AjaxControlToolkit.resources.dll
-C:\Users\RPEXT009\Desktop\SICSoftware\SIC.UserLayer\bin\it\AjaxControlToolkit.resources.dll
-C:\Users\RPEXT009\Desktop\SICSoftware\SIC.UserLayer\bin\ja\AjaxControlToolkit.resources.dll
-C:\Users\RPEXT009\Desktop\SICSoftware\SIC.UserLayer\bin\ko\AjaxControlToolkit.resources.dll
-C:\Users\RPEXT009\Desktop\SICSoftware\SIC.UserLayer\bin\nl\AjaxControlToolkit.resources.dll
-C:\Users\RPEXT009\Desktop\SICSoftware\SIC.UserLayer\bin\pt\AjaxControlToolkit.resources.dll
-C:\Users\RPEXT009\Desktop\SICSoftware\SIC.UserLayer\bin\ru\AjaxControlToolkit.resources.dll
-C:\Users\RPEXT009\Desktop\SICSoftware\SIC.UserLayer\bin\tr-TR\AjaxControlToolkit.resources.dll
-C:\Users\RPEXT009\Desktop\SICSoftware\SIC.UserLayer\bin\zh-CHS\AjaxControlToolkit.resources.dll
-C:\Users\RPEXT009\Desktop\SICSoftware\SIC.UserLayer\bin\zh-CHT\AjaxControlToolkit.resources.dll
-C:\Users\RPEXT009\Desktop\SICSoftware\SIC.UserLayer\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\RPEXT009\Desktop\SICSoftware\SIC.UserLayer\obj\Debug\SIC.UserLayer.dll
-C:\Users\RPEXT009\Desktop\SICSoftware\SIC.UserLayer\obj\Debug\SIC.UserLayer.pdb
-C:\Users\RPEXT009\Desktop\SICSoftware\SIC.UserLayer\bin\ClassLibrary1.dll
-C:\Users\RPEXT009\Desktop\SICSoftware\SIC.UserLayer\bin\SIC.EntityLayer.dll
-C:\Users\RPEXT009\Desktop\SICSoftware\SIC.UserLayer\bin\SIC.DataLayer.dll
-C:\Users\RPEXT009\Desktop\SICSoftware\SIC.UserLayer\bin\ClassLibrary1.pdb
-C:\Users\RPEXT009\Desktop\SICSoftware\SIC.UserLayer\bin\SIC.EntityLayer.pdb
-C:\Users\RPEXT009\Desktop\SICSoftware\SIC.UserLayer\bin\SIC.DataLayer.pdb
-C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.UserLayer.dll
-C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.UserLayer.pdb
-C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.UserLayer\bin\ClassLibrary1.dll
-C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.EntityLayer.dll
-C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.DataLayer.dll
-C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.UserLayer\bin\ClassLibrary1.pdb
-C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.EntityLayer.pdb
-C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.DataLayer.pdb
-C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.UserLayer\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.UserLayer\obj\Debug\SIC.UserLayer.dll
-C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.UserLayer\obj\Debug\SIC.UserLayer.pdb
-C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.Data.dll
-C:\Users\rpext006\Desktop\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.Data.pdb
-C:\Proyectos\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\obj\Debug\SIC.UserLayer.csprojResolveAssemblyReference.cache
-C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.UserLayer.dll
-C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.UserLayer.pdb
-C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\ClassLibrary1.dll
-C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.Data.dll
-C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.EntityLayer.dll
-C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.DataLayer.dll
-C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\ClassLibrary1.pdb
-C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.Data.pdb
-C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.EntityLayer.pdb
-C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.DataLayer.pdb
-C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\obj\Debug\SIC.UserLayer.dll
-C:\Users\vvenegas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\obj\Debug\SIC.UserLayer.pdb
-C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.UserLayer.dll
-C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.UserLayer.pdb
-C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\ClassLibrary1.dll
-C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.Data.dll
-C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.EntityLayer.dll
-C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.UIGeneral.dll
-C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.DataLayer.dll
-C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\ClassLibrary1.pdb
-C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.Data.pdb
-C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.EntityLayer.pdb
-C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.UIGeneral.pdb
-C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.DataLayer.pdb
-C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\obj\Debug\SIC.UserLayer.dll
-C:\Users\Juan\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\obj\Debug\SIC.UserLayer.pdb
-C:\Users\Alvaro\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\obj\Debug\SIC.UserLayer.csprojResolveAssemblyReference.cache
-C:\Users\Alvaro\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\obj\Debug\SIC.UserLayer.dll
-C:\Users\Alvaro\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\obj\Debug\SIC.UserLayer.pdb
-C:\Users\Alvaro\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.UserLayer.dll
-C:\Users\Alvaro\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.UserLayer.pdb
-C:\Users\Alvaro\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\ClassLibrary1.dll
-C:\Users\Alvaro\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.Data.dll
-C:\Users\Alvaro\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.EntityLayer.dll
-C:\Users\Alvaro\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.UIGeneral.dll
-C:\Users\Alvaro\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.DataLayer.dll
-C:\Users\Alvaro\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\ClassLibrary1.pdb
-C:\Users\Alvaro\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.Data.pdb
-C:\Users\Alvaro\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.EntityLayer.pdb
-C:\Users\Alvaro\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.UIGeneral.pdb
-C:\Users\Alvaro\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.DataLayer.pdb
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\Imagenes\correcto.png
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\Imagenes\warning.png
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.UserLayer.dll
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.UserLayer.pdb
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\AjaxControlToolkit.dll
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.BusinessLayer.dll
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.Data.dll
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.EntityLayer.dll
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.UIGeneral.dll
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.DataLayer.dll
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.BusinessLayer.pdb
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.Data.pdb
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.EntityLayer.pdb
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.UIGeneral.pdb
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.DataLayer.pdb
 C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\obj\Debug\ResolveAssemblyReference.cache
-D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\obj\Debug\SIC.UserLayer.csprojResolveAssemblyReference.cache
-D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.UserLayer.dll
-D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.UserLayer.pdb
-D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\ClassLibrary1.dll
-D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.Data.dll
-D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.EntityLayer.dll
-D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.UIGeneral.dll
-D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.DataLayer.dll
-D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\ClassLibrary1.pdb
-D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.Data.pdb
-D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.EntityLayer.pdb
-D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.UIGeneral.pdb
-D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.DataLayer.pdb
-D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\obj\Debug\SIC.UserLayer.dll
-D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\obj\Debug\SIC.UserLayer.pdb
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\obj\Debug\SIC.UserLayer.dll
+C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\obj\Debug\SIC.UserLayer.pdb

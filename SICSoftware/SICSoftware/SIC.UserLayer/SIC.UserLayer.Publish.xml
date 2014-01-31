@@ -3,101 +3,107 @@
   <publishProfile publishUrl="C:\sicweb" deleteExistingFiles="True" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Perfil1" publishMethod="FileSystem" replaceMatchingFiles="False" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
     <file relUrl="Imagenes/line-derecha.gif" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/Botones/bg-footer.jpg" publishTime="11/27/2013 00:14:28" />
-    <file relUrl="bin/SIC.EntityLayer.pdb" publishTime="12/01/2013 17:43:32" />
+    <file relUrl="bin/SIC.EntityLayer.pdb" publishTime="01/31/2014 04:16:37" />
     <file relUrl="Imagenes/checked_checkbox.png" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Styles/estiloPopUp.css" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/Iconos/informacion.gif" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Styles/cssRecibo.css" publishTime="09/09/2013 20:17:53" />
-    <file relUrl="Styles/estilos-botones.css" publishTime="11/27/2013 00:14:28" />
+    <file relUrl="Styles/estilos-botones.css" publishTime="01/30/2014 00:36:24" />
     <file relUrl="Styles/progress.css" publishTime="11/27/2013 00:14:28" />
-    <file relUrl="Imagenes/bg-cab-inter.jpg" publishTime="11/27/2013 00:14:28" />
+    <file relUrl="Imagenes/Botones/procesar_on.gif" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/Botones/procesar_off.gif" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Account/Register.aspx" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Styles/jquery-ui-autocomplete.css" publishTime="11/27/2013 00:14:28" />
-    <file relUrl="bin/SIC.Data.dll" publishTime="12/01/2013 17:43:32" />
+    <file relUrl="bin/SIC.Data.dll" publishTime="01/31/2014 04:16:38" />
     <file relUrl="Imagenes/img-cab-rplazas.gif" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Styles/Style.css" publishTime="11/27/2013 00:14:28" />
-    <file relUrl="bin/SIC.DataLayer.dll" publishTime="12/01/2013 17:43:32" />
+    <file relUrl="bin/SIC.DataLayer.dll" publishTime="01/31/2014 04:16:38" />
     <file relUrl="Imagenes/banner.jpg" publishTime="11/27/2013 00:14:28" />
-    <file relUrl="Site.Master" publishTime="11/30/2013 09:24:05" />
+    <file relUrl="Site.Master" publishTime="01/30/2014 00:36:24" />
     <file relUrl="Styles/slick.grid.css" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Styles/SlickGrid_Examples.css" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/bar_hor550.gif" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/interproperties.png" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/btn_renovar.png" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/Botones/btn_editar.png" publishTime="11/27/2013 00:14:28" />
-    <file relUrl="bin/SanitizerProviders.dll" publishTime="11/27/2013 00:14:29" />
     <file relUrl="Imagenes/Iconos/excel.jpg" publishTime="11/27/2013 00:14:28" />
-    <file relUrl="Imagenes/Botones/procesar_on.gif" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/milenia.png" publishTime="11/27/2013 00:14:28" />
+    <file relUrl="bin/Imagenes/correcto.png" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Account/Web.config" publishTime="11/27/2013 00:14:28" />
-    <file relUrl="bin/AjaxControlToolkit.dll" publishTime="11/27/2013 00:14:28" />
+    <file relUrl="bin/AjaxControlToolkit.dll" publishTime="09/09/2013 20:17:52" />
     <file relUrl="Imagenes/unchecked_checkbox.png" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/img-cab-color.gif" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/Iconos/cal.gif" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/banner.gif" publishTime="11/27/2013 00:14:28" />
-    <file relUrl="bin/ClassLibrary1.dll" publishTime="12/01/2013 17:43:33" />
-    <file relUrl="Imagenes/correcto.png" publishTime="11/27/2013 00:14:28" />
+    <file relUrl="Imagenes/f_index.gif" publishTime="11/27/2013 00:14:28" />
+    <file relUrl="Bootstrap/bin/SIC.EntityLayer.dll" publishTime="01/30/2014 01:14:52" />
     <file relUrl="Imagenes/img-cab-rplazas.jpg" publishTime="11/27/2013 00:14:28" />
+    <file relUrl="UserControl/wucMensajeAlerta2.ascx" publishTime="01/30/2014 11:06:22" />
+    <file relUrl="Bootstrap/bin/SIC.Data.dll" publishTime="01/30/2014 01:14:52" />
     <file relUrl="Imagenes/Menu/bg-topmenu.jpg" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Styles/jquery-ui.css" publishTime="11/27/2013 00:14:28" />
-    <file relUrl="Interfaces/Mantenimiento/frmRegItem.aspx" publishTime="11/30/2013 13:16:35" />
+    <file relUrl="Interfaces/Mantenimiento/frmRegItem.aspx" publishTime="01/29/2014 17:55:26" />
+    <file relUrl="Bootstrap/bin/SIC.UserLayer.dll" publishTime="01/30/2014 11:43:37" />
     <file relUrl="Imagenes/Iconos/ico_agregar_todos_on.gif" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/menuItem.gif" publishTime="11/27/2013 00:14:28" />
+    <file relUrl="bin/SIC.DataLayer.pdb" publishTime="01/31/2014 04:16:38" />
     <file relUrl="Styles/Site.css" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Styles/chosen-sprite@2x.png" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/logo_index.png" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/Principal/menu.gif" publishTime="11/27/2013 00:14:28" />
+    <file relUrl="Styles/css.css" publishTime="01/30/2014 00:36:24" />
     <file relUrl="Imagenes/banner.png" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Global.asax" publishTime="11/30/2013 12:58:24" />
-    <file relUrl="Imagenes/f_index.gif" publishTime="11/27/2013 00:14:28" />
-    <file relUrl="bin/SIC.UIGeneral.dll" publishTime="12/01/2013 17:43:32" />
+    <file relUrl="bin/SIC.UIGeneral.dll" publishTime="01/31/2014 04:16:38" />
     <file relUrl="Account/Login.aspx" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/btn_eliminar.png" publishTime="11/27/2013 00:14:28" />
-    <file relUrl="Web.config" publishTime="12/01/2013 17:43:40" />
-    <file relUrl="Interfaces/Mantenimiento/frmRegCliente.aspx" publishTime="12/01/2013 17:34:53" />
+    <file relUrl="Web.config" publishTime="01/31/2014 04:16:39" />
+    <file relUrl="Interfaces/Mantenimiento/frmRegCliente.aspx" publishTime="01/30/2014 00:36:25" />
     <file relUrl="Imagenes/Iconos/ico_agregar_uno_off.gif" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/logo_rp.png" publishTime="11/27/2013 00:14:28" />
+    <file relUrl="Bootstrap/bin/SIC.UIGeneral.dll" publishTime="01/30/2014 11:06:39" />
     <file relUrl="packages.config" publishTime="11/27/2013 00:14:29" />
-    <file relUrl="Bootstrap/css/bootstrap.css" publishTime="11/27/2013 00:14:28" />
-    <file relUrl="Imagenes/Botones/btn_ingresar.png" publishTime="11/27/2013 00:14:28" />
+    <file relUrl="Bootstrap/css/bootstrap.css" publishTime="12/03/2013 00:59:10" />
+    <file relUrl="Imagenes/correcto.png" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Bootstrap/img/glyphicons-halflings-white.png" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/logo_advance.png" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/menuIcon.JPG" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/check.png" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/btn_ingresar.png" publishTime="11/27/2013 00:14:28" />
+    <file relUrl="bin/SIC.BusinessLayer.dll" publishTime="01/31/2014 04:16:38" />
     <file relUrl="Imagenes/Menu/arrow_down_over.gif" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/icon-user.png" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/Iconos/ico_quitar_todos_off.gif" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/btn_editar.png" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/Menu/bg-topmenu-over.jpg" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/btn_ver.png" publishTime="11/27/2013 00:14:28" />
-    <file relUrl="Styles/css2.css" publishTime="11/28/2013 23:22:35" />
+    <file relUrl="Styles/css2.css" publishTime="01/30/2014 00:33:20" />
     <file relUrl="Imagenes/shadow.png" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/animated_favicon1.gif" publishTime="11/27/2013 00:14:28" />
-    <file relUrl="bin/SIC.EntityLayer.dll" publishTime="12/01/2013 17:43:32" />
+    <file relUrl="bin/SIC.EntityLayer.dll" publishTime="01/31/2014 04:16:37" />
     <file relUrl="Imagenes/Iconos/limpiar_off.gif" publishTime="11/27/2013 00:14:28" />
-    <file relUrl="Imagenes/Botones/dot-net-green.gif" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/Iconos/ico_quitar_uno_off.gif" publishTime="11/27/2013 00:14:28" />
-    <file relUrl="Default.aspx" publishTime="11/28/2013 22:59:27" />
+    <file relUrl="Default.aspx" publishTime="12/03/2013 00:59:10" />
     <file relUrl="Styles/ui-icons_454545_256x240.png" publishTime="11/27/2013 00:14:28" />
+    <file relUrl="Imagenes/baner2.jpg" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/Iconos/ico_quitar_todos_on.gif" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/Iconos/buscar_off.gif" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/warning.png" publishTime="11/27/2013 00:14:28" />
-    <file relUrl="bin/SIC.UserLayer.pdb" publishTime="12/01/2013 17:43:33" />
+    <file relUrl="bin/SIC.UserLayer.pdb" publishTime="01/31/2014 04:34:10" />
     <file relUrl="Imagenes/Iconos/buscar_on.gif" publishTime="11/27/2013 00:14:28" />
-    <file relUrl="bin/HtmlAgilityPack.dll" publishTime="11/27/2013 00:14:28" />
+    <file relUrl="Bootstrap/bin/AjaxControlToolkit.dll" publishTime="09/09/2013 20:17:52" />
     <file relUrl="Scripts/jquery-1.4.1.js" publishTime="11/27/2013 00:14:28" />
-    <file relUrl="UserControl/wucMensajeAlerta.ascx" publishTime="11/27/2013 00:14:28" />
+    <file relUrl="UserControl/wucMensajeAlerta.ascx" publishTime="01/30/2014 11:36:28" />
     <file relUrl="Interfaces/frmPrincipal.aspx" publishTime="11/27/2013 23:25:41" />
-    <file relUrl="Bootstrap/css/bootstrap.min.css" publishTime="11/27/2013 00:14:28" />
+    <file relUrl="Bootstrap/css/bootstrap.min.css" publishTime="01/17/2014 12:46:33" />
     <file relUrl="Imagenes/Botones/btn_eliminar.png" publishTime="11/27/2013 00:14:28" />
-    <file relUrl="Imagenes/logo-login-advance.gif" publishTime="11/27/2013 00:14:28" />
+    <file relUrl="Imagenes/f_sep_ver2.gif" publishTime="11/27/2013 00:14:28" />
+    <file relUrl="Imagenes/Botones/dot-net-green.gif" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/bg-login.gif" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/f_sep_ver.gif" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/Menu/arrow_right_over.gif" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/logo-pie-realplaza.gif" publishTime="11/27/2013 00:14:28" />
-    <file relUrl="bin/SIC.UIGeneral.pdb" publishTime="12/01/2013 17:43:32" />
+    <file relUrl="bin/SIC.UIGeneral.pdb" publishTime="01/31/2014 04:16:38" />
     <file relUrl="Imagenes/Iconos/ico_agregar_todos_off.gif" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Styles/superfish.css" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/Botones/noMain.gif" publishTime="11/27/2013 00:14:28" />
@@ -106,50 +112,53 @@
     <file relUrl="Imagenes/Botones/btn-login.gif" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Account/ChangePassword.aspx" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Scripts/jquery-1.4.1-vsdoc.js" publishTime="11/27/2013 00:14:28" />
-    <file relUrl="bin/SIC.Data.pdb" publishTime="12/01/2013 17:43:32" />
+    <file relUrl="bin/SIC.Data.pdb" publishTime="01/31/2014 04:16:38" />
     <file relUrl="Imagenes/img_index_izq.png" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Scripts/jquery-1.4.1.min.js" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Styles/chosen.css" publishTime="11/27/2013 00:14:28" />
     <file relUrl="UserControl/wucMenuDinamico.ascx" publishTime="11/28/2013 02:14:33" />
     <file relUrl="Account/ChangePasswordSuccess.aspx" publishTime="11/27/2013 00:14:28" />
-    <file relUrl="Imagenes/f_sep_ver2.gif" publishTime="11/27/2013 00:14:28" />
-    <file relUrl="bin/ClassLibrary1.pdb" publishTime="12/01/2013 17:43:33" />
-    <file relUrl="bin/SIC.DataLayer.pdb" publishTime="12/01/2013 17:43:32" />
+    <file relUrl="Interfaces/Movimientos/frmMovEntrada.aspx" publishTime="01/28/2014 14:50:58" />
+    <file relUrl="Imagenes/advance.jpg" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/Botones/bg-menu-main2.png" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Bootstrap/js/bootstrap.min.js" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/Botones/loading.gif" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Bootstrap/img/glyphicons-halflings.png" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Styles/superfish-vertical.css" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/Iconos/limpiar_on.gif" publishTime="11/27/2013 00:14:28" />
+    <file relUrl="Imagenes/logo-login-advance.gif" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/Document.png" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Styles/StyleVenta.css" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Bootstrap/css/bootstrap-responsive.min.css" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Bootstrap/js/bootstrap.js" publishTime="11/27/2013 00:14:28" />
+    <file relUrl="Bootstrap/bin/SIC.DataLayer.dll" publishTime="01/30/2014 11:06:42" />
     <file relUrl="Imagenes/line-izq.gif" publishTime="11/27/2013 00:14:28" />
-    <file relUrl="Styles/css.css" publishTime="11/27/2013 23:47:05" />
+    <file relUrl="Imagenes/Botones/btn_ingresar.png" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/interseguro.jpg" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/img_index_der.png" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Styles/superfish-navbar.css" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/arrows-ffffff.png" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/Logo-Advance-Real-Estate.gif" publishTime="11/27/2013 00:14:28" />
-    <file relUrl="Interfaces/Mantenimiento/frmRegOC.aspx" publishTime="11/30/2013 13:15:20" />
-    <file relUrl="Imagenes/advance.jpg" publishTime="11/27/2013 00:14:28" />
-    <file relUrl="bin/SIC.UserLayer.dll" publishTime="12/01/2013 17:43:33" />
+    <file relUrl="Interfaces/Mantenimiento/frmRegOC.aspx" publishTime="01/30/2014 11:17:11" />
+    <file relUrl="Interfaces/Movimientos/frmVenta.aspx" publishTime="01/30/2014 15:56:34" />
+    <file relUrl="Imagenes/bg-cab-inter.jpg" publishTime="11/27/2013 00:14:28" />
+    <file relUrl="bin/SIC.UserLayer.dll" publishTime="01/31/2014 04:34:10" />
     <file relUrl="Imagenes/Botones/grabar_off.gif" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/Botones/bg-menu-main.png" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/Iconos/file_upload.png" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/Iconos/ico_quitar_uno_on.gif" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/checkbox.jpg" publishTime="11/27/2013 00:14:28" />
-    <file relUrl="Styles/MenuMatic.css" publishTime="11/27/2013 00:14:28" />
+    <file relUrl="Styles/MenuMatic.css" publishTime="01/30/2014 00:39:38" />
     <file relUrl="Imagenes/Iconos/ico_agregar_uno_on.gif" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/flecha_der.png" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/Menu/arrow_down.gif" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Bootstrap/css/bootstrap-responsive.css" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/Botones/btn_pdf.png" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/Menu/arrow_right.gif" publishTime="11/27/2013 00:14:28" />
+    <file relUrl="bin/Imagenes/warning.png" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Styles/chosen-sprite.png" publishTime="11/27/2013 00:14:28" />
     <file relUrl="Imagenes/Botones/grabar_on.gif" publishTime="11/27/2013 00:14:28" />
     <file relUrl="About.aspx" publishTime="11/27/2013 00:14:28" />
-    <file relUrl="Imagenes/baner2.jpg" publishTime="11/27/2013 00:14:28" />
+    <file relUrl="bin/SIC.BusinessLayer.pdb" publishTime="01/31/2014 04:16:38" />
   </publishProfile>
 </publishData>
