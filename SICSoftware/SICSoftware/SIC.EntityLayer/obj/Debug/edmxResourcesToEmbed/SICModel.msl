@@ -213,28 +213,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <EntitySetMapping Name="SIC_T_CLIENTE">
-      <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_CLIENTE">
-        <MappingFragment StoreEntitySet="SIC_T_CLIENTE">
-          <ScalarProperty Name="cli_c_bcliente" ColumnName="cli_c_bcliente" />
-          <ScalarProperty Name="cli_c_bproveedor" ColumnName="cli_c_bproveedor" />
-          <ScalarProperty Name="cli_c_dfec_const" ColumnName="cli_c_dfec_const" />
-          <ScalarProperty Name="cli_c_dfechaactualiza" ColumnName="cli_c_dfechaactualiza" />
-          <ScalarProperty Name="cli_c_dfecharegistra" ColumnName="cli_c_dfecharegistra" />
-          <ScalarProperty Name="zona_rep_c_yid" ColumnName="zona_rep_c_yid" />
-          <ScalarProperty Name="cli_c_vdoc_id" ColumnName="cli_c_vdoc_id" />
-          <ScalarProperty Name="cli_c_bactivo" ColumnName="cli_c_bactivo" />
-          <ScalarProperty Name="cli_scor_c_cletra" ColumnName="cli_scor_c_cletra" />
-          <ScalarProperty Name="colab_c_cdoc_id" ColumnName="colab_c_cdoc_id" />
-          <ScalarProperty Name="cli_c_btipo_pers" ColumnName="cli_c_btipo_pers" />
-          <ScalarProperty Name="cli_c_dfec_aniv" ColumnName="cli_c_dfec_aniv" />
-          <ScalarProperty Name="cli_c_ctlf" ColumnName="cli_c_ctlf" />
-          <ScalarProperty Name="cli_c_vrubro" ColumnName="cli_c_vrubro" />
-          <ScalarProperty Name="cli_c_vpartida" ColumnName="cli_c_vpartida" />
-          <ScalarProperty Name="cli_c_vraz_soc" ColumnName="cli_c_vraz_soc" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="SIC_SP_CLIENTE_LISTAR" FunctionName="SICDBWEBModel.Store.SIC_SP_CLIENTE_LISTAR" />
     <EntitySetMapping Name="SIC_VW_CLIENTE_LISTA">
       <EntityTypeMapping TypeName="SICDBWEBModel.SIC_VW_CLIENTE_LISTA">
@@ -278,29 +256,43 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="SIC_T_ITEM">
-      <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_ITEM">
-        <MappingFragment StoreEntitySet="SIC_T_ITEM">
-          <ScalarProperty Name="itm_c_yumedida" ColumnName="itm_c_yumedida" />
-          <ScalarProperty Name="itm_c_bactivo" ColumnName="itm_c_bactivo" />
-          <ScalarProperty Name="itm_c_vpardes" ColumnName="itm_c_vpardes" />
-          <ScalarProperty Name="itm_c_dprecio" ColumnName="itm_c_dprecio" />
-          <ScalarProperty Name="itm_c_vdescripcion" ColumnName="itm_c_vdescripcion" />
-          <ScalarProperty Name="itm_c_ccodigo" ColumnName="itm_c_ccodigo" />
-          <ScalarProperty Name="itm_c_iid" ColumnName="itm_c_iid" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="SIC_SP_LISTAR_PADRES_MENU" FunctionName="SICDBWEBModel.Store.SIC_SP_LISTAR_PADRES_MENU" />
     <FunctionImportMapping FunctionImportName="SIC_SP_LISTAR_HIJOS_MENU" FunctionName="SICDBWEBModel.Store.SIC_SP_LISTAR_HIJOS_MENU" />
     <FunctionImportMapping FunctionImportName="SIC_SP_NOMBRE_COMERCIAL_LISTAR" FunctionName="SICDBWEBModel.Store.SIC_SP_NOMBRE_COMERCIAL_LISTAR" />
     <FunctionImportMapping FunctionImportName="SIC_SP_DESHABILITAR_CLIENTE" FunctionName="SICDBWEBModel.Store.SIC_SP_DESHABILITAR_CLIENTE" />
+    <EntitySetMapping Name="SIC_T_ALMACEN_CENTRO_COSTO">
+      <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_ALMACEN_CENTRO_COSTO">
+        <MappingFragment StoreEntitySet="SIC_T_ALMACEN_CENTRO_COSTO">
+          <ScalarProperty Name="alm_cst_c_iid_almacen" ColumnName="alm_cst_c_iid_almacen" />
+          <ScalarProperty Name="alm_cst_c_iid_centro_costo" ColumnName="alm_cst_c_iid_centro_costo" />
+          <ScalarProperty Name="alm_cst_c_iid" ColumnName="alm_cst_c_iid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="SIC_T_ALMACEN">
       <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_ALMACEN">
         <MappingFragment StoreEntitySet="SIC_T_ALMACEN">
           <ScalarProperty Name="alm_c_vdes" ColumnName="alm_c_vdes" />
           <ScalarProperty Name="alm_c_bactivo" ColumnName="alm_c_bactivo" />
           <ScalarProperty Name="alm_c_iid" ColumnName="alm_c_iid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SIC_T_EMP_CENTRO_COSTO">
+      <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_EMP_CENTRO_COSTO">
+        <MappingFragment StoreEntitySet="SIC_T_EMP_CENTRO_COSTO">
+          <ScalarProperty Name="emp_cst_c_bactivo" ColumnName="emp_cst_c_bactivo" />
+          <ScalarProperty Name="emp_cst_c_vdesc" ColumnName="emp_cst_c_vdesc" />
+          <ScalarProperty Name="emp_cst_c_int" ColumnName="emp_cst_c_int" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SIC_T_EMP_DIRECCION">
+      <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_EMP_DIRECCION">
+        <MappingFragment StoreEntitySet="SIC_T_EMP_DIRECCION">
+          <ScalarProperty Name="emp_dir_c_bactivo" ColumnName="emp_dir_c_bactivo" />
+          <ScalarProperty Name="emp_dir_c_vdireccion" ColumnName="emp_dir_c_vdireccion" />
+          <ScalarProperty Name="emp_dir_c_iid" ColumnName="emp_dir_c_iid" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -314,28 +306,65 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="SIC_T_MOV_ESTADO">
-      <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_MOV_ESTADO">
-        <MappingFragment StoreEntitySet="SIC_T_MOV_ESTADO">
-          <ScalarProperty Name="mov_estado_vdescrpcion" ColumnName="mov_estado_vdescrpcion" />
-          <ScalarProperty Name="mov_estado_iid" ColumnName="mov_estado_iid" />
+    <EntitySetMapping Name="SIC_T_ITEM">
+      <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_ITEM">
+        <MappingFragment StoreEntitySet="SIC_T_ITEM">
+          <ScalarProperty Name="itm_c_isf_iid" ColumnName="itm_c_isf_iid" />
+          <ScalarProperty Name="itm_c_dprecio_venta" ColumnName="itm_c_dprecio_venta" />
+          <ScalarProperty Name="itm_c_bactivo" ColumnName="itm_c_bactivo" />
+          <ScalarProperty Name="itm_c_vpardes" ColumnName="itm_c_vpardes" />
+          <ScalarProperty Name="itm_c_yumedida" ColumnName="itm_c_yumedida" />
+          <ScalarProperty Name="itm_c_dprecio_compra" ColumnName="itm_c_dprecio_compra" />
+          <ScalarProperty Name="itm_c_vdescripcion" ColumnName="itm_c_vdescripcion" />
+          <ScalarProperty Name="itm_c_ccodigo" ColumnName="itm_c_ccodigo" />
+          <ScalarProperty Name="itm_c_iid" ColumnName="itm_c_iid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SIC_T_ITEM_ALMACEN">
+      <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_ITEM_ALMACEN">
+        <MappingFragment StoreEntitySet="SIC_T_ITEM_ALMACEN">
+          <ScalarProperty Name="itm_alm_c_ecantidad" ColumnName="itm_alm_c_ecantidad" />
+          <ScalarProperty Name="itm_alm_c_iid_alm" ColumnName="itm_alm_c_iid_alm" />
+          <ScalarProperty Name="itm_alm_c_iid_item" ColumnName="itm_alm_c_iid_item" />
+          <ScalarProperty Name="itm_alm_c_iid" ColumnName="itm_alm_c_iid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SIC_T_ITEM_FAMILIA">
+      <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_ITEM_FAMILIA">
+        <MappingFragment StoreEntitySet="SIC_T_ITEM_FAMILIA">
+          <ScalarProperty Name="ifm_c_bactivo" ColumnName="ifm_c_bactivo" />
+          <ScalarProperty Name="ifm_c_des" ColumnName="ifm_c_des" />
+          <ScalarProperty Name="ifm_c_iid" ColumnName="ifm_c_iid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SIC_T_ITEM_SUB_FAMILIA">
+      <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_ITEM_SUB_FAMILIA">
+        <MappingFragment StoreEntitySet="SIC_T_ITEM_SUB_FAMILIA">
+          <ScalarProperty Name="isf_c_bactivo" ColumnName="isf_c_bactivo" />
+          <ScalarProperty Name="isf_c_ifm_iid" ColumnName="isf_c_ifm_iid" />
+          <ScalarProperty Name="isf_c_des" ColumnName="isf_c_des" />
+          <ScalarProperty Name="isf_c_iid" ColumnName="isf_c_iid" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="SIC_T_MOVIMIENTO_ENTRADA">
       <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_MOVIMIENTO_ENTRADA">
         <MappingFragment StoreEntitySet="SIC_T_MOVIMIENTO_ENTRADA">
+          <ScalarProperty Name="mve_c_bingresado" ColumnName="mve_c_bingresado" />
+          <ScalarProperty Name="mve_c_vobservacion" ColumnName="mve_c_vobservacion" />
           <ScalarProperty Name="mve_c_vdesestado" ColumnName="mve_c_vdesestado" />
           <ScalarProperty Name="mve_c_iestado" ColumnName="mve_c_iestado" />
-          <ScalarProperty Name="mve_c_dfecha" ColumnName="mve_c_dfecha" />
           <ScalarProperty Name="mve_c_bactivo" ColumnName="mve_c_bactivo" />
           <ScalarProperty Name="mve_c_vdoc_id_prov" ColumnName="mve_c_vdoc_id_prov" />
           <ScalarProperty Name="mve_c_iidalmacen" ColumnName="mve_c_iidalmacen" />
-          <ScalarProperty Name="mve_c_dguiafecha" ColumnName="mve_c_dguiafecha" />
-          <ScalarProperty Name="mve_c_vguianumero" ColumnName="mve_c_vguianumero" />
-          <ScalarProperty Name="mve_c_vfacturanumero" ColumnName="mve_c_vfacturanumero" />
-          <ScalarProperty Name="mve_c_vfacturaserie" ColumnName="mve_c_vfacturaserie" />
-          <ScalarProperty Name="mve_c_vguiaserie" ColumnName="mve_c_vguiaserie" />
+          <ScalarProperty Name="mve_c_vfacturacodigo" ColumnName="mve_c_vfacturacodigo" />
+          <ScalarProperty Name="mve_c_vguiacodigo" ColumnName="mve_c_vguiacodigo" />
+          <ScalarProperty Name="mve_c_zfacturafecha" ColumnName="mve_c_zfacturafecha" />
+          <ScalarProperty Name="mve_c_zguiafecha" ColumnName="mve_c_zguiafecha" />
+          <ScalarProperty Name="mve_c_zfecharegistro" ColumnName="mve_c_zfecharegistro" />
           <ScalarProperty Name="mve_c_ioc_id" ColumnName="mve_c_ioc_id" />
           <ScalarProperty Name="mve_c_iid" ColumnName="mve_c_iid" />
         </MappingFragment>
@@ -345,7 +374,6 @@
       <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_MOVIMIENTO_ENTRADA_DETALLE">
         <MappingFragment StoreEntitySet="SIC_T_MOVIMIENTO_ENTRADA_DETALLE">
           <ScalarProperty Name="mve_c_iocdet_id" ColumnName="mve_c_iocdet_id" />
-          <ScalarProperty Name="mve_c_iid_det" ColumnName="mve_c_iid_det" />
           <ScalarProperty Name="mve_c_vdescripcion_item" ColumnName="mve_c_vdescripcion_item" />
           <ScalarProperty Name="mve_c_ecant_recibida" ColumnName="mve_c_ecant_recibida" />
           <ScalarProperty Name="mve_c_ecant_pedida" ColumnName="mve_c_ecant_pedida" />
@@ -354,30 +382,11 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="SIC_T_MOVIMIENTO_SALIDA">
-      <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_MOVIMIENTO_SALIDA">
-        <MappingFragment StoreEntitySet="SIC_T_MOVIMIENTO_SALIDA">
-          <ScalarProperty Name="mvs_c_bactivo" ColumnName="mvs_c_bactivo" />
-          <ScalarProperty Name="msv_c_vcentrocosto_des" ColumnName="msv_c_vcentrocosto_des" />
-          <ScalarProperty Name="msv_c_icentrocosto" ColumnName="msv_c_icentrocosto" />
-          <ScalarProperty Name="mvs_c_vinmueble" ColumnName="mvs_c_vinmueble" />
-          <ScalarProperty Name="mvs_c_vtipodoc" ColumnName="mvs_c_vtipodoc" />
-          <ScalarProperty Name="mvs_c_itipodoc" ColumnName="mvs_c_itipodoc" />
-          <ScalarProperty Name="mvs_c_valmacen_des" ColumnName="mvs_c_valmacen_des" />
-          <ScalarProperty Name="mvs_c_ialmacen" ColumnName="mvs_c_ialmacen" />
-          <ScalarProperty Name="mvs_c_dfecha" ColumnName="mvs_c_dfecha" />
-          <ScalarProperty Name="mvs_c_iid" ColumnName="mvs_c_iid" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="SIC_T_MOVIMIENTO_SALIDA_DETALLE">
-      <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_MOVIMIENTO_SALIDA_DETALLE">
-        <MappingFragment StoreEntitySet="SIC_T_MOVIMIENTO_SALIDA_DETALLE">
-          <ScalarProperty Name="mvs_det_dprecio" ColumnName="mvs_det_dprecio" />
-          <ScalarProperty Name="mvs_det_ecantidad" ColumnName="mvs_det_ecantidad" />
-          <ScalarProperty Name="mvs_det_c_iitemid" ColumnName="mvs_det_c_iitemid" />
-          <ScalarProperty Name="mvs_c_iid" ColumnName="mvs_c_iid" />
-          <ScalarProperty Name="mvs_det_c_iid" ColumnName="mvs_det_c_iid" />
+    <EntitySetMapping Name="SIC_T_ODC_CLASE">
+      <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_ODC_CLASE">
+        <MappingFragment StoreEntitySet="SIC_T_ODC_CLASE">
+          <ScalarProperty Name="odc_cla_vdes" ColumnName="odc_cla_vdes" />
+          <ScalarProperty Name="odc_cla_iid" ColumnName="odc_cla_iid" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -386,6 +395,63 @@
         <MappingFragment StoreEntitySet="SIC_T_ODC_ESTADO">
           <ScalarProperty Name="odc_estado_vdescripcion" ColumnName="odc_estado_vdescripcion" />
           <ScalarProperty Name="odc_estado_iid" ColumnName="odc_estado_iid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SIC_T_ORDEN_DE_COMPRA">
+      <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_ORDEN_DE_COMPRA">
+        <MappingFragment StoreEntitySet="SIC_T_ORDEN_DE_COMPRA">
+          <ScalarProperty Name="odc_c_vdireccion" ColumnName="odc_c_vdireccion" />
+          <ScalarProperty Name="odc_c_idireccion" ColumnName="odc_c_idireccion" />
+          <ScalarProperty Name="odc_c_bpercepcion" ColumnName="odc_c_bpercepcion" />
+          <ScalarProperty Name="odc_c_clase_des" ColumnName="odc_c_clase_des" />
+          <ScalarProperty Name="odc_c_clase_iid" ColumnName="odc_c_clase_iid" />
+          <ScalarProperty Name="odc_c_vobservacion" ColumnName="odc_c_vobservacion" />
+          <ScalarProperty Name="odc_c_zfecharmod" ColumnName="odc_c_zfecharmod" />
+          <ScalarProperty Name="odc_c_iid_usuario_mod" ColumnName="odc_c_iid_usuario_mod" />
+          <ScalarProperty Name="odc_c_iid_usuario_creador" ColumnName="odc_c_iid_usuario_creador" />
+          <ScalarProperty Name="odc_c_zfechaentrega_fin" ColumnName="odc_c_zfechaentrega_fin" />
+          <ScalarProperty Name="odc_c_zfechaentrega_ini" ColumnName="odc_c_zfechaentrega_ini" />
+          <ScalarProperty Name="odc_c_vdocprov_id" ColumnName="odc_c_vdocprov_id" />
+          <ScalarProperty Name="odc_c_vdescestado" ColumnName="odc_c_vdescestado" />
+          <ScalarProperty Name="odc_c_bactivo" ColumnName="odc_c_bactivo" />
+          <ScalarProperty Name="odc_c_vdescmoneda" ColumnName="odc_c_vdescmoneda" />
+          <ScalarProperty Name="odc_c_iestado" ColumnName="odc_c_iestado" />
+          <ScalarProperty Name="odc_c_epercepcioncal" ColumnName="odc_c_epercepcioncal" />
+          <ScalarProperty Name="odc_c_epercepcion" ColumnName="odc_c_epercepcion" />
+          <ScalarProperty Name="odc_c_eigvcal" ColumnName="odc_c_eigvcal" />
+          <ScalarProperty Name="odc_c_eigv" ColumnName="odc_c_eigv" />
+          <ScalarProperty Name="odc_c_etotal" ColumnName="odc_c_etotal" />
+          <ScalarProperty Name="odc_c_esubtotal" ColumnName="odc_c_esubtotal" />
+          <ScalarProperty Name="odc_c_ymoneda" ColumnName="odc_c_ymoneda" />
+          <ScalarProperty Name="odc_c_zfecharegistro" ColumnName="odc_c_zfecharegistro" />
+          <ScalarProperty Name="odc_c_vcodigo" ColumnName="odc_c_vcodigo" />
+          <ScalarProperty Name="odc_c_iid" ColumnName="odc_c_iid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SIC_T_ORDEN_DE_COMPRA_DET">
+      <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_ORDEN_DE_COMPRA_DET">
+        <MappingFragment StoreEntitySet="SIC_T_ORDEN_DE_COMPRA_DET">
+          <ScalarProperty Name="odc_c_epreciototal" ColumnName="odc_c_epreciototal" />
+          <ScalarProperty Name="odc_c_epreciounit" ColumnName="odc_c_epreciounit" />
+          <ScalarProperty Name="odc_c_ecantidad" ColumnName="odc_c_ecantidad" />
+          <ScalarProperty Name="odc_c_iitemid" ColumnName="odc_c_iitemid" />
+          <ScalarProperty Name="odc_c_iid" ColumnName="odc_c_iid" />
+          <ScalarProperty Name="odc_det_c_iid" ColumnName="odc_det_c_iid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SIC_T_VENTA_DETALLE">
+      <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_VENTA_DETALLE">
+        <MappingFragment StoreEntitySet="SIC_T_VENTA_DETALLE">
+          <ScalarProperty Name="ven_det_c_iidalmacen" ColumnName="ven_det_c_iidalmacen" />
+          <ScalarProperty Name="ven_det_c_epreciototal" ColumnName="ven_det_c_epreciototal" />
+          <ScalarProperty Name="ven_det_c_epreciounit" ColumnName="ven_det_c_epreciounit" />
+          <ScalarProperty Name="ven_det_c_ecantidad" ColumnName="ven_det_c_ecantidad" />
+          <ScalarProperty Name="ven_det_c_iitemid" ColumnName="ven_det_c_iitemid" />
+          <ScalarProperty Name="ven_c_iid" ColumnName="ven_c_iid" />
+          <ScalarProperty Name="ven_det_c_iid" ColumnName="ven_det_c_iid" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -400,67 +466,62 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="SIC_T_CLIENTE">
+      <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_CLIENTE">
+        <MappingFragment StoreEntitySet="SIC_T_CLIENTE">
+          <ScalarProperty Name="cli_c_bcliente" ColumnName="cli_c_bcliente" />
+          <ScalarProperty Name="cli_c_bproveedor" ColumnName="cli_c_bproveedor" />
+          <ScalarProperty Name="cli_c_dfec_const" ColumnName="cli_c_dfec_const" />
+          <ScalarProperty Name="cli_c_dfechaactualiza" ColumnName="cli_c_dfechaactualiza" />
+          <ScalarProperty Name="cli_c_dfecharegistra" ColumnName="cli_c_dfecharegistra" />
+          <ScalarProperty Name="zona_rep_c_yid" ColumnName="zona_rep_c_yid" />
+          <ScalarProperty Name="cli_c_vdoc_id" ColumnName="cli_c_vdoc_id" />
+          <ScalarProperty Name="cli_c_bactivo" ColumnName="cli_c_bactivo" />
+          <ScalarProperty Name="cli_scor_c_cletra" ColumnName="cli_scor_c_cletra" />
+          <ScalarProperty Name="colab_c_cdoc_id" ColumnName="colab_c_cdoc_id" />
+          <ScalarProperty Name="cli_c_btipo_pers" ColumnName="cli_c_btipo_pers" />
+          <ScalarProperty Name="cli_c_dfec_aniv" ColumnName="cli_c_dfec_aniv" />
+          <ScalarProperty Name="cli_c_ctlf" ColumnName="cli_c_ctlf" />
+          <ScalarProperty Name="cli_c_vrubro" ColumnName="cli_c_vrubro" />
+          <ScalarProperty Name="cli_c_vpartida" ColumnName="cli_c_vpartida" />
+          <ScalarProperty Name="cli_c_vraz_soc" ColumnName="cli_c_vraz_soc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SIC_T_VEN_ESTADO">
+      <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_VEN_ESTADO">
+        <MappingFragment StoreEntitySet="SIC_T_VEN_ESTADO">
+          <ScalarProperty Name="ven_est_c_vdescripcion" ColumnName="ven_est_c_vdescripcion" />
+          <ScalarProperty Name="ven_est_c_iid" ColumnName="ven_est_c_iid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="SIC_T_VENTA">
       <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_VENTA">
         <MappingFragment StoreEntitySet="SIC_T_VENTA">
+          <ScalarProperty Name="ven_c_vestado" ColumnName="ven_c_vestado" />
+          <ScalarProperty Name="ven_c_iestado" ColumnName="ven_c_iestado" />
+          <ScalarProperty Name="ven_c_icentrocosto" ColumnName="ven_c_icentrocosto" />
           <ScalarProperty Name="ven_c_vdestipodoc" ColumnName="ven_c_vdestipodoc" />
-          <ScalarProperty Name="ven_c_itipodoc" ColumnName="ven_c_itipodoc" />
           <ScalarProperty Name="ven_c_bactivo" ColumnName="ven_c_bactivo" />
           <ScalarProperty Name="ven_c_vdescmoneda" ColumnName="ven_c_vdescmoneda" />
-          <ScalarProperty Name="ven_c_dpercepcioncal" ColumnName="ven_c_dpercepcioncal" />
-          <ScalarProperty Name="ven_c_dpercepcion" ColumnName="ven_c_dpercepcion" />
-          <ScalarProperty Name="ven_c_digvcal" ColumnName="ven_c_digvcal" />
-          <ScalarProperty Name="ven_c_digv" ColumnName="ven_c_digv" />
+          <ScalarProperty Name="ven_c_itipodoc" ColumnName="ven_c_itipodoc" />
+          <ScalarProperty Name="ven_c_eigvcal" ColumnName="ven_c_eigvcal" />
+          <ScalarProperty Name="ven_c_eigv" ColumnName="ven_c_eigv" />
           <ScalarProperty Name="ven_c_vdoccli_id" ColumnName="ven_c_vdoccli_id" />
-          <ScalarProperty Name="ven_c_dtotal" ColumnName="ven_c_dtotal" />
-          <ScalarProperty Name="ven_c_dsubtotal" ColumnName="ven_c_dsubtotal" />
-          <ScalarProperty Name="ven_c_ycondiciones" ColumnName="ven_c_ycondiciones" />
+          <ScalarProperty Name="ven_c_etotal" ColumnName="ven_c_etotal" />
+          <ScalarProperty Name="ven_c_esubtotal" ColumnName="ven_c_esubtotal" />
           <ScalarProperty Name="ven_c_ymoneda" ColumnName="ven_c_ymoneda" />
           <ScalarProperty Name="ven_c_zfecha" ColumnName="ven_c_zfecha" />
           <ScalarProperty Name="ven_c_iid" ColumnName="ven_c_iid" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="SIC_T_VENTA_DETALLE">
-      <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_VENTA_DETALLE">
-        <MappingFragment StoreEntitySet="SIC_T_VENTA_DETALLE">
-          <ScalarProperty Name="ven_det_c_eprecio" ColumnName="ven_det_c_eprecio" />
-          <ScalarProperty Name="ven_det_c_ecantidad" ColumnName="ven_det_c_ecantidad" />
-          <ScalarProperty Name="ven_det_c_iitemid" ColumnName="ven_det_c_iitemid" />
-          <ScalarProperty Name="ven_c_iid" ColumnName="ven_c_iid" />
-          <ScalarProperty Name="ven_det_c_iid" ColumnName="ven_det_c_iid" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="SIC_T_ORDEN_DE_COMPRA">
-      <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_ORDEN_DE_COMPRA">
-        <MappingFragment StoreEntitySet="SIC_T_ORDEN_DE_COMPRA">
-          <ScalarProperty Name="odc_c_vdocprov_id" ColumnName="odc_c_vdocprov_id" />
-          <ScalarProperty Name="odc_c_vdescestado" ColumnName="odc_c_vdescestado" />
-          <ScalarProperty Name="odc_c_bactivo" ColumnName="odc_c_bactivo" />
-          <ScalarProperty Name="odc_c_vdescmoneda" ColumnName="odc_c_vdescmoneda" />
-          <ScalarProperty Name="odc_c_iestado" ColumnName="odc_c_iestado" />
-          <ScalarProperty Name="odc_c_epercepcioncal" ColumnName="odc_c_epercepcioncal" />
-          <ScalarProperty Name="odc_c_epercepcion" ColumnName="odc_c_epercepcion" />
-          <ScalarProperty Name="odc_c_eigvcal" ColumnName="odc_c_eigvcal" />
-          <ScalarProperty Name="odc_c_eigv" ColumnName="odc_c_eigv" />
-          <ScalarProperty Name="odc_c_etotal" ColumnName="odc_c_etotal" />
-          <ScalarProperty Name="odc_c_esubtotal" ColumnName="odc_c_esubtotal" />
-          <ScalarProperty Name="odc_c_ycondiciones" ColumnName="odc_c_ycondiciones" />
-          <ScalarProperty Name="odc_c_ymoneda" ColumnName="odc_c_ymoneda" />
-          <ScalarProperty Name="odc_c_zfecha" ColumnName="odc_c_zfecha" />
-          <ScalarProperty Name="odc_c_iid" ColumnName="odc_c_iid" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="SIC_T_ORDEN_DE_COMPRA_DET">
-      <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_ORDEN_DE_COMPRA_DET">
-        <MappingFragment StoreEntitySet="SIC_T_ORDEN_DE_COMPRA_DET">
-          <ScalarProperty Name="odc_c_eprecio" ColumnName="odc_c_eprecio" />
-          <ScalarProperty Name="odc_c_ecantidad" ColumnName="odc_c_ecantidad" />
-          <ScalarProperty Name="odc_c_iitemid" ColumnName="odc_c_iitemid" />
-          <ScalarProperty Name="odc_c_iid" ColumnName="odc_c_iid" />
-          <ScalarProperty Name="odc_det_c_iid" ColumnName="odc_det_c_iid" />
+    <EntitySetMapping Name="SIC_T_MOV_ESTADO">
+      <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_MOV_ESTADO">
+        <MappingFragment StoreEntitySet="SIC_T_MOV_ESTADO">
+          <ScalarProperty Name="mov_estado_vdescrpcion" ColumnName="mov_estado_vdescrpcion" />
+          <ScalarProperty Name="mov_estado_iid" ColumnName="mov_estado_iid" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

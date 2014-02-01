@@ -42,13 +42,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlmacenBL.cs" />
+    <Compile Include="CentroCostoBL.cs" />
     <Compile Include="ClienteBL.cs" />
+    <Compile Include="EmpresaBL.cs" />
+    <Compile Include="IgvBL.cs" />
+    <Compile Include="ItemAlmacenBL.cs" />
     <Compile Include="ItemBL.cs" />
     <Compile Include="MovimientoEntradaBL.cs" />
+    <Compile Include="MovimientoSalidaBL.cs" />
     <Compile Include="OrdenCompraBL.cs" />
     <Compile Include="ParametroBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SeguridadBL.cs" />
+    <Compile Include="TasaCambioBL.cs" />
     <Compile Include="UbigeoBL.cs" />
     <Compile Include="VentaBL.cs" />
   </ItemGroup>

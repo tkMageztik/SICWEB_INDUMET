@@ -16,3 +16,20 @@ C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.D
 C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\obj\Debug\SIC.UserLayer.dll
 C:\Users\jsalinas\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\obj\Debug\SIC.UserLayer.pdb
+C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\Imagenes\correcto.png
+C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\Imagenes\warning.png
+C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.UserLayer.dll
+C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.UserLayer.pdb
+C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\ClassLibrary1.dll
+C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.Data.dll
+C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.EntityLayer.dll
+C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.UIGeneral.dll
+C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.DataLayer.dll
+C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\ClassLibrary1.pdb
+C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.Data.pdb
+C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.EntityLayer.pdb
+C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.UIGeneral.pdb
+C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\bin\SIC.DataLayer.pdb
+C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\obj\Debug\SIC.UserLayer.csprojResolveAssemblyReference.cache
+C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\obj\Debug\SIC.UserLayer.dll
+C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UserLayer\obj\Debug\SIC.UserLayer.pdb

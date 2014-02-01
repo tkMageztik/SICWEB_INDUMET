@@ -67,3 +67,14 @@ D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\bin\Debug\SIC.En
 D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\bin\Debug\SIC.UIGeneral.pdb
 D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\obj\Debug\SIC.DataLayer.dll
 D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\obj\Debug\SIC.DataLayer.pdb
+C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\bin\Debug\SIC.DataLayer.dll
+C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\bin\Debug\SIC.DataLayer.pdb
+C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\bin\Debug\SIC.Data.dll
+C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\bin\Debug\SIC.EntityLayer.dll
+C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\bin\Debug\SIC.UIGeneral.dll
+C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\bin\Debug\SIC.Data.pdb
+C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\bin\Debug\SIC.EntityLayer.pdb
+C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\bin\Debug\SIC.UIGeneral.pdb
+C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\obj\Debug\SIC.DataLayer.csprojResolveAssemblyReference.cache
+C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\obj\Debug\SIC.DataLayer.dll
+C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\obj\Debug\SIC.DataLayer.pdb

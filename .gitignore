@@ -1,2 +1,5 @@
 *.dll
 *.pdb
+*.dll.config
+web.config
+app.config

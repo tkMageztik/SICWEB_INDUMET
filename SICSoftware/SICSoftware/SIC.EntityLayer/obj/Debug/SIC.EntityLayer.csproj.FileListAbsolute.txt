@@ -45,3 +45,8 @@ D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.EntityLayer\bin\Debug\SIC.
 D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.EntityLayer\obj\Debug\SIC.EntityLayer.dll
 D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.EntityLayer\obj\Debug\SIC.EntityLayer.pdb
 D:\Git Rep\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.EntityLayer\obj\Debug\SIC.EntityLayer.csprojResolveAssemblyReference.cache
+C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.EntityLayer\bin\Debug\SIC.EntityLayer.dll.config
+C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.EntityLayer\bin\Debug\SIC.EntityLayer.dll
+C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.EntityLayer\bin\Debug\SIC.EntityLayer.pdb
+C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.EntityLayer\obj\Debug\SIC.EntityLayer.dll
+C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.EntityLayer\obj\Debug\SIC.EntityLayer.pdb

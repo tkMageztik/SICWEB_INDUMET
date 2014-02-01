@@ -42,8 +42,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlmacenDA.cs" />
+    <Compile Include="CentroCostoDA.cs" />
     <Compile Include="ClienteDA.cs" />
+    <Compile Include="EmpresaDA.cs" />
     <Compile Include="IgvDA.cs" />
+    <Compile Include="ItemAlmacenDA.cs" />
     <Compile Include="ItemDA.cs" />
     <Compile Include="MovimientoEntradaDA.cs" />
     <Compile Include="MovimientoSalidaDA.cs" />

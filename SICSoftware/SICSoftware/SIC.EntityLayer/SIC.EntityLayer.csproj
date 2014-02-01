@@ -50,6 +50,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SICModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="SIC_T_ORDEN_DE_COMPRA_DETALLE.cs" />
+    <Compile Include="SIC_T_VENTA_DETALLE.cs" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="SICModel.edmx">
