@@ -1,4 +1,0 @@
-C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.Data\bin\Debug\SIC.Data.dll
-C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.Data\bin\Debug\SIC.Data.pdb
-C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.Data\obj\Debug\SIC.Data.dll
-C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.Data\obj\Debug\SIC.Data.pdb

@@ -1,9 +1,0 @@
-C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UIGeneral\bin\Debug\SIC.UIGeneral.dll
-C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UIGeneral\bin\Debug\SIC.UIGeneral.pdb
-C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UIGeneral\bin\Debug\SIC.Data.dll
-C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UIGeneral\bin\Debug\SIC.EntityLayer.dll
-C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UIGeneral\bin\Debug\SIC.Data.pdb
-C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UIGeneral\bin\Debug\SIC.EntityLayer.pdb
-C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UIGeneral\obj\Debug\SIC.UIGeneral.csprojResolveAssemblyReference.cache
-C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UIGeneral\obj\Debug\SIC.UIGeneral.dll
-C:\Users\Juan y Carla\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.UIGeneral\obj\Debug\SIC.UIGeneral.pdb
