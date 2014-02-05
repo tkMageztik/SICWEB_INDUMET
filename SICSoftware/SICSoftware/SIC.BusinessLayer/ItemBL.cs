@@ -62,6 +62,11 @@ namespace SIC.BusinessLayer
             new ItemDA().AgregarSubFamilia(_pSIC_T_ITEM_SUB_FAMILIA);
         }
 
+        public void AgregarUnidadMedida(String desUnidadMedida)
+        {
+            new ItemDA().AgregarUnidadMedida(desUnidadMedida);
+        }
+
         #endregion
     }
 }

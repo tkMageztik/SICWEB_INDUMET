@@ -261,6 +261,8 @@
                                         <td align="left" class="txt-box-estilo">
                                             <asp:DropDownList ID="cboUnidad" runat="server">
                                             </asp:DropDownList>
+                                            <asp:LinkButton ID="btnMostrarAgregarFam1" runat="server" CssClass="lnk" 
+                                                OnClick="btnMostrarAgregarFam1_Click">Agregar</asp:LinkButton>
                                         </td>
                                     </tr>
                                     <tr>
@@ -421,6 +423,79 @@
                             </td>
                         </tr>
                     </table>
+                </asp:View>
+                <asp:View ID="vwUnidadMedida" runat="server">
+                 <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td align="left" class="tit-nav-paginas">
+                                MANTENIMIENTO &gt; ITEM &gt; UNIDAD DE MEDIDA</td>
+                            <td align="right">
+                                <table width="220" border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <td>
+                                            &nbsp;</td>
+                                        <td>
+                                            <asp:LinkButton ID="LinkButton1" runat="server" CssClass="lnk" 
+                                                OnClick="lnkRegresar_Click">Regresar</asp:LinkButton>
+                                        </td>
+                                        <td style="width: 10px">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" lign="center">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <td align="left" class="box-estilo01">
+                                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                <tr>
+                                        <td align="left" class="txt-box-estilo">
+                                            Unidades de Medida</td>
+                                        <td align="left" class="style1">
+                                            <asp:DropDownList ID="cboUnidadMedida" runat="server" AppendDataBoundItems="true" 
+                                                AutoPostBack="True">
+                                                <asp:ListItem Text="-- Seleccionar --" Value="-1"></asp:ListItem>
+                                            </asp:DropDownList>
+                                        </td>
+                                        <td align="left" class="style1">
+                                            Agregar Unidad de Medida</td>
+                                        <td align="left" class="style1">
+                                            <asp:TextBox ID="txtUnidadMedida" runat="server" MaxLength="20"></asp:TextBox>
+                                            &nbsp;
+                                            <asp:LinkButton ID="lnkAgregarUnidadMedida" runat="server" CssClass="lnk" 
+                                                OnClick="lnkAgregarUnidadMedida_Click">Agregar</asp:LinkButton>
+                                            </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" class="style1">
+                                            </td>
+                                        <td align="left" class="style1">
+                                            </td>
+                                        <td align="left" class="style1">
+                                            </td>
+                                        <td align="left" class="style1">
+                                            </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" class="txt-box-estilo">
+                                            &nbsp;</td>
+                                        <td align="left" class="txt-box-estilo">
+                                            &nbsp;</td>
+                                        <td align="left" class="txt-box-estilo">
+                                            &nbsp;</td>
+                                        <td align="left" class="style2">
+                                            &nbsp;</td>
+                                   </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                
                 </asp:View>
             </asp:MultiView>
             <asp:UpdatePanel ID="upMensaje" runat="server" UpdateMode="Conditional">

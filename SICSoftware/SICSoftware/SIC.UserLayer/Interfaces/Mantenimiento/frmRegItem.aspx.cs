@@ -165,11 +165,22 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         /// </summary>
         private void ListarUnidadMedida()
         {
+            cboUnidad.Items.Clear();
             cboUnidad.DataSource = _parametro.ListarParametros((int) TipoParametro.UNIDAD_DE_MEDIDA);
             cboUnidad.DataTextField = "par_det_c_vdesc";
             cboUnidad.DataValueField = "par_det_c_iid";
             cboUnidad.DataBind();
         }
+
+        private void ListarUnidadMedidaIns()
+        {
+            cboUnidadMedida.Items.Clear();
+            cboUnidadMedida.DataSource = _parametro.ListarParametros((int)TipoParametro.UNIDAD_DE_MEDIDA);
+            cboUnidadMedida.DataTextField = "par_det_c_vdesc";
+            cboUnidadMedida.DataValueField = "par_det_c_iid";
+            cboUnidadMedida.DataBind();
+        }
+
 
 
         /// <summary>
@@ -709,12 +720,54 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             ListarFiltroSubFamilia();
             ListarFamilia();
             ListarSubFamilia();
-            
+            ListarUnidadMedida();
+            ListarUnidadMedidaIns();
             mvItem.ActiveViewIndex = 1;
             upGeneral.Update();
         }
 
+        protected void lnkAgregarUnidadMedida_Click(object sender, EventArgs e)
+        {
+            if (txtUnidadMedida.Text.Trim().Length <= 0)
+            {
+                Mensaje("Ingrese una unidad de medida.", "../Imagenes/warning.png");
+                return;
+            }
 
+            try
+            {
+                _item.AgregarUnidadMedida(txtUnidadMedida.Text);
+                ListarSubFamiliaAgr();
+                txtNombreSubFamilia.Text = string.Empty;
+                Mensaje("Unidad de medida ingresada.", "../Imagenes/warning.png");
+                ListarUnidadMedida();
+                ListarUnidadMedidaIns();
+                upGeneral.Update();
+            }
+            catch (Exception ex)
+            {
+#if DEBUG
+                Mensaje("Error al realizar el proceso.\n" + ex.Message + "\n"
+                    + ex.InnerException != null ? ex.InnerException.Message : string.Empty, "../Imagenes/warning.png");
+#else
+                    Mensaje("Error al realizar el proceso.", "../Imagenes/warning.png");
+#endif
+            }
+        }
+
+        protected void btnMostrarAgregarFam1_Click(object sender, EventArgs e)
+        {
+            this.MostarVistaAgregarUnidadMedida();
+        }
+
+        private void MostarVistaAgregarUnidadMedida()
+        {
+            ListarUnidadMedidaIns();
+            cboUnidadMedida.ClearSelection();
+            mvItem.ActiveViewIndex = 3;
+            txtUnidadMedida.Text = string.Empty;
+            upGeneral.Update();
+        }
 
 
 

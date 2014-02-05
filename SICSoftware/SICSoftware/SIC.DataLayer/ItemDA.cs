@@ -254,6 +254,30 @@ namespace SIC.DataLayer
             }
         }
 
+        public void AgregarUnidadMedida(String desUnidadMedida)
+        {
+            if (desUnidadMedida == null || desUnidadMedida.Trim().Length<=0)
+            {
+                throw new ArgumentException("Se requiere una unidad de medida");
+            }
+            try
+            {
+                using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+                {
+                    SIC_T_PARAMETRO_DET parDet = new SIC_T_PARAMETRO_DET();
+                    parDet.par_c_iid = 1;
+                    parDet.par_det_c_vdesc = desUnidadMedida;
+
+                    contexto.AddToSIC_T_PARAMETRO_DET(parDet);
+                    contexto.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         #endregion
 
     }

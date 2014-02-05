@@ -263,7 +263,6 @@
     <Compile Include="Interfaces\Mantenimiento\frmRegCliente.aspx.designer.cs">
       <DependentUpon>frmRegCliente.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Interfaces\Movimientos\DatosItemAlmacen.cs" />
     <Compile Include="Interfaces\Movimientos\frmMovEntrada.aspx.cs">
       <DependentUpon>frmMovEntrada.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -312,6 +311,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Imagenes\Thumbnails\" />
     <Folder Include="Imagenes\Titulos\" />
+    <Folder Include="Interfaces\Reusable\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Site.Master" />

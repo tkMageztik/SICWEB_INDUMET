@@ -167,11 +167,23 @@
                                         onpageindexchanging="gvListaVenta_PageIndexChanging">
                                     <AlternatingRowStyle CssClass="alt" />
                                     <Columns>
-                                        <asp:TemplateField HeaderText="RUC CLIENTE"><ItemTemplate></ItemTemplate></asp:TemplateField>
-                                        <asp:TemplateField HeaderText="RAZ. SOCIAL CLIENTE"><ItemTemplate></ItemTemplate></asp:TemplateField>
+                                        <asp:TemplateField HeaderText="RUC CLIENTE">
+                                            <ItemTemplate>
+                                                <%# Eval("SIC_T_CLIENTE.cli_c_vdoc_id")%>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="RAZ. SOCIAL CLIENTE">
+                                            <ItemTemplate>
+                                                <%# Eval("SIC_T_CLIENTE.cli_c_vdoc_id")%>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
                                         <asp:BoundField HeaderText="TIPO DOCUMENTO" DataField="ven_c_vdestipodoc" />                                        
                                         <asp:BoundField HeaderText="MONEDA" DataField="ven_c_vdescmoneda" />                                        
-                                        <asp:TemplateField  HeaderText="MONTO TOTAL"><ItemTemplate></ItemTemplate></asp:TemplateField>
+                                        <asp:TemplateField  HeaderText="MONTO TOTAL">
+                                            <ItemTemplate>
+                                                <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("ven_c_etotal"))%>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
                                         <asp:BoundField HeaderText="FECHA DE REGISTRO" DataField="ven_c_zfecha" />
                                         <asp:CommandField ShowEditButton="True" CancelText="Cancelar" 
                                             DeleteText="Eliminar" EditText="Editar" />
