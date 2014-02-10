@@ -377,6 +377,7 @@ Culture="es-PE" UICulture="es-PE" %>
                                                     <td align="left" class="style38">
                                                         &nbsp;Items</td>
                                                     <td align="left" class="txt-box-estilo" colspan="4" width="40%">
+                                                        <div style="width: 100%; height: 300px; overflow: scroll">
                                                         <asp:GridView ID="gvItemsSeleccionados" runat="server" 
                                                             AlternatingRowStyle-CssClass="alt" BorderStyle="None" BorderWidth="0px" CssClass="mGrid"
                                                             EmptyDataText="No ha seleccionado ningun item." GridLines="None" 
@@ -413,6 +414,7 @@ Culture="es-PE" UICulture="es-PE" %>
                                                             </Columns>
                                                             <PagerStyle CssClass="pgr" />
                                                         </asp:GridView>
+                                                        </div>
                                                     </td>
                                                     <td>
                                                         &nbsp;</td>

@@ -31,13 +31,13 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento {
         protected global::System.Web.UI.WebControls.MultiView mvCliente;
         
         /// <summary>
-        /// Control View2.
+        /// Control vwEmpresa.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View View2;
+        protected global::System.Web.UI.WebControls.View vwEmpresa;
         
         /// <summary>
         /// Control txtRUC.
@@ -92,6 +92,24 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnEditarCentroCosto;
+        
+        /// <summary>
+        /// Control vwCentroCosto.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View vwCentroCosto;
+        
+        /// <summary>
+        /// Control vwLocal.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View vwLocal;
         
         /// <summary>
         /// Control upMensaje.

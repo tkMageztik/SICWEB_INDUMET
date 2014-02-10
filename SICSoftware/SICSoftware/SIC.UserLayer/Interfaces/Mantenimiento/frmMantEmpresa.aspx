@@ -32,7 +32,7 @@
         runat="server">
         <ContentTemplate>
             <asp:MultiView ID="mvCliente" runat="server">
-                <asp:View ID="View2" runat="server">
+                <asp:View ID="vwEmpresa" runat="server">
                     <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                             <td class="tit-nav-paginas" align="left">
@@ -208,6 +208,10 @@
                             </td>
                         </tr>
                     </table>
+                </asp:View>
+                <asp:View ID="vwCentroCosto" runat="server">
+                </asp:View>
+                <asp:View ID="vwLocal" runat="server">
                 </asp:View>
             </asp:MultiView>
             <asp:UpdatePanel ID="upMensaje" runat="server" UpdateMode="Conditional">
