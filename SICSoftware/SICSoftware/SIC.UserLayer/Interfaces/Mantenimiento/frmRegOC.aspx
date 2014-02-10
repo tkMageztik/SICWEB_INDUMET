@@ -318,7 +318,7 @@
                                                         Items
                                                     </td>
                                                     <td align="left" class="txt-box-estilo" colspan="3">
-                                                        <asp:GridView ID="gvItemsSeleccionados" runat="server" AllowPaging="True" AlternatingRowStyle-CssClass="alt"
+                                                        <asp:GridView ID="gvItemsSeleccionados" runat="server" AlternatingRowStyle-CssClass="alt"
                                                             AutoGenerateColumns="False" BorderStyle="None" BorderWidth="0px" CssClass="mGrid"
                                                             DataKeyNames="odc_c_iitemid" EmptyDataText="No ha seleccionado ningun item."
                                                             GridLines="None" Height="16px" OnRowCancelingEdit="gvItemsSeleccionados_RowCancelingEdit"

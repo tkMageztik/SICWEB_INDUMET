@@ -375,17 +375,16 @@ Culture="es-PE" UICulture="es-PE" %>
                                                
                                                 <tr>
                                                     <td align="left" class="style38">
-                                                        Items</td>
+                                                        &nbsp;Items</td>
                                                     <td align="left" class="txt-box-estilo" colspan="4" width="40%">
-                                                        <asp:GridView ID="gvItemsSeleccionados" runat="server" AllowPaging="True" 
+                                                        <asp:GridView ID="gvItemsSeleccionados" runat="server" 
                                                             AlternatingRowStyle-CssClass="alt" BorderStyle="None" BorderWidth="0px" CssClass="mGrid"
                                                             EmptyDataText="No ha seleccionado ningun item." GridLines="None" 
                                                             Height="16px" PagerStyle-CssClass="pgr" ShowHeaderWhenEmpty="True" ViewStateMode="Enabled" 
                                                             Width="100%" AutoGenerateColumns="False" DataKeyNames="mve_c_iocdet_id" 
                                                             onrowcancelingedit="gvItemsSeleccionados_RowCancelingEdit" 
                                                             onrowediting="gvItemsSeleccionados_RowEditing" 
-                                                            onrowupdating="gvItemsSeleccionados_RowUpdating" 
-                                                            onpageindexchanging="gvItemsSeleccionados_PageIndexChanging">
+                                                            onrowupdating="gvItemsSeleccionados_RowUpdating">
                                                             <AlternatingRowStyle CssClass="alt" />
                                                             <Columns>
                                                                 <asp:TemplateField HeaderText="Descripción">
@@ -420,7 +419,7 @@ Culture="es-PE" UICulture="es-PE" %>
                                                 </tr>
                                                 <tr>
                                                     <td align="left" class="style38">
-                                                        &nbsp; Observaciones</td>
+                                                        &nbsp;Observaciones</td>
                                                     <td align="left" class="style23">
                                                         &nbsp;
                                                         <asp:TextBox ID="txtObs" runat="server" Height="54px" MaxLength="350" 

@@ -705,14 +705,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             ucMensaje.EnableModelDialog(true);
             return;
         }
-
-        protected void gvItemsSeleccionados_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-
-            this.gvItemsSeleccionados.PageIndex = e.NewPageIndex;
-            this.ListarDetalleMovimiento();
-        }
-
+        
         protected void gvListaOC_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             this.gvListaOC.PageIndex = e.NewPageIndex;
