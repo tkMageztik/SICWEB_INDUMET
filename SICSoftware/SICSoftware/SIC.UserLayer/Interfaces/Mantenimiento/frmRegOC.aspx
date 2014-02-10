@@ -7,6 +7,20 @@
 <%@ Register Src="~/UserControl/wucMensajeAlerta2.ascx" TagName="Mensaje" TagPrefix="uc2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 
+    <style type="text/css">
+        .style1
+        {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 11.5px;
+            color: #686168;
+            height: 20px;
+        }
+        .style2
+        {
+            height: 20px;
+        }
+    </style>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <asp:UpdatePanel ID="upGeneral" UpdateMode="Conditional" runat="server">
@@ -285,7 +299,7 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td align="left" class="style1">
+                                                    <td align="left" class="txt-box-estilo">
                                                         Direccion de entrega
                                                     </td>
                                                     <td align="left" class="style2">
@@ -303,13 +317,13 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td align="left" class="txt-box-estilo">
+                                                    <td align="left" class="style1">
                                                         &nbsp;
                                                     </td>
-                                                    <td align="left" class="txt-box-estilo" colspan="3">
+                                                    <td align="left" class="style1" colspan="3">
                                                         &nbsp;
                                                     </td>
-                                                    <td>
+                                                    <td class="style2">
                                                         &nbsp;
                                                     </td>
                                                 </tr>
@@ -318,7 +332,8 @@
                                                         Items
                                                     </td>
                                                     <td align="left" class="txt-box-estilo" colspan="3">
-                                                        <asp:GridView ID="gvItemsSeleccionados" runat="server" AllowPaging="True" AlternatingRowStyle-CssClass="alt"
+                                                        <div style="width: 100%; height: 300px; overflow: scroll">
+                                                        <asp:GridView ID="gvItemsSeleccionados" runat="server" AlternatingRowStyle-CssClass="alt"
                                                             AutoGenerateColumns="False" BorderStyle="None" BorderWidth="0px" CssClass="mGrid"
                                                             DataKeyNames="odc_c_iitemid" EmptyDataText="No ha seleccionado ningun item."
                                                             GridLines="None" Height="16px" OnRowCancelingEdit="gvItemsSeleccionados_RowCancelingEdit"
@@ -374,6 +389,7 @@
                                                             </Columns>
                                                             <PagerStyle CssClass="pgr" />
                                                         </asp:GridView>
+                                                        </div>
                                                     </td>
                                                     <td>
                                                         <asp:LinkButton ID="btnBuscarItems" runat="server" CssClass="lnk" OnClick="btnBuscarItems_Click"

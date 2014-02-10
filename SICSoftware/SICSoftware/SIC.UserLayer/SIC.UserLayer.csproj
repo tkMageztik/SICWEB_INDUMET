@@ -174,11 +174,19 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Default.aspx" />
+    <Content Include="Interfaces\Mantenimiento\frmMantEmpresa.aspx" />
     <Content Include="Interfaces\Mantenimiento\frmRegCliente.aspx" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Content Include="Interfaces\Mantenimiento\frmRegItem.aspx" />
+    <Compile Include="Interfaces\Mantenimiento\frmMantEmpresa.aspx.cs">
+      <DependentUpon>frmMantEmpresa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Interfaces\Mantenimiento\frmMantEmpresa.aspx.designer.cs">
+      <DependentUpon>frmMantEmpresa.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Interfaces\Mantenimiento\frmRegItem.aspx.cs">
       <DependentUpon>frmRegItem.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -311,6 +311,7 @@
                                                         Items
                                                     </td>
                                                     <td align="left" class="txt-box-estilo" colspan="3">
+                                                        <div style="width: 100%; height: 300px; overflow: scroll">
                                                         <asp:GridView ID="gvItemsSeleccionados" runat="server" 
                                                             AlternatingRowStyle-CssClass="alt" BorderStyle="None" BorderWidth="0px" CssClass="mGrid"
                                                             EmptyDataText="No ha seleccionado ningun item." GridLines="None" 
@@ -370,6 +371,7 @@
                                                             </Columns>
                                                             <PagerStyle CssClass="pgr" />
                                                         </asp:GridView>
+                                                        </div>
                                                     </td>
                                                     <td>
                                                         <asp:LinkButton ID="btnBuscarItems" runat="server" Text="Buscar Items" CssClass="lnk" 
