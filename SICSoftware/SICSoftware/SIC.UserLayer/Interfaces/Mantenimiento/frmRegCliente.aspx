@@ -366,7 +366,16 @@
                                                                 <td>
                                                                 </td>
                                                                 <td>
-                                                                    &nbsp;
+                                                                    <table width="100%">
+                                                                        <tr>
+                                                                            <td class="txt-box-estilo">
+                                                                                <asp:CheckBox ID="chkCliente" Text="Cliente" Checked="true" runat="server" />
+                                                                            </td>
+                                                                            <td class="txt-box-estilo">
+                                                                                <asp:CheckBox ID="chkProveedor" Text="Proveedor" Checked="false" runat="server" />
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -768,8 +777,6 @@
                                         </td>
                                     </tr>
                                 </table>
-                            
-                            
                             </td>
                         </tr>
                     </table>

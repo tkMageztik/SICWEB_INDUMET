@@ -265,6 +265,24 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento {
         protected global::AjaxControlToolkit.FilteredTextBoxExtender txtTelefono_FilteredTextBoxExtender;
         
         /// <summary>
+        /// Control chkCliente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkCliente;
+        
+        /// <summary>
+        /// Control chkProveedor.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkProveedor;
+        
+        /// <summary>
         /// Control cboZonaReparto.
         /// </summary>
         /// <remarks>

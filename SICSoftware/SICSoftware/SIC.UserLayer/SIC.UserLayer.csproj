@@ -195,7 +195,7 @@
     </Compile>
     <Content Include="Interfaces\Mantenimiento\frmRegOC.aspx" />
     <Content Include="Interfaces\Movimientos\frmMovEntrada.aspx" />
-    <Content Include="Interfaces\Movimientos\frmVenta.aspx" />
+    <Content Include="Interfaces\Facturacion\frmVenta.aspx" />
     <Content Include="Styles\chosen-sprite%402x.png" />
     <Content Include="Styles\chosen-sprite.png" />
     <Content Include="Styles\chosen.css" />
@@ -270,11 +270,11 @@
     <Compile Include="Interfaces\Movimientos\frmMovEntrada.aspx.designer.cs">
       <DependentUpon>frmMovEntrada.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Interfaces\Movimientos\frmVenta.aspx.cs">
+    <Compile Include="Interfaces\Facturacion\frmVenta.aspx.cs">
       <DependentUpon>frmVenta.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Interfaces\Movimientos\frmVenta.aspx.designer.cs">
+    <Compile Include="Interfaces\Facturacion\frmVenta.aspx.designer.cs">
       <DependentUpon>frmVenta.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

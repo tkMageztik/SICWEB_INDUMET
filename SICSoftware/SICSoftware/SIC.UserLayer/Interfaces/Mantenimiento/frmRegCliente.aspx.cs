@@ -881,6 +881,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             }
         }
         #endregion
+
         #region EVENTOS
         public frmRegCliente()
         {
@@ -1797,6 +1798,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             ViewState.Add("vsEscenarioContacto", EscenarioContacto);
         }
         #endregion
+
         #region PROPIEDADES
         private List<SIC_T_NOMB_COM> NombresComerciales
         {

@@ -158,6 +158,12 @@ background-color:#3e761c;
 	color:#686168 !Important;
 	}
 	
+	#wucMenuDinamico2_MnDinamico a.static
+	{
+	    padding-left: 1em !important;
+	    padding-right: 2em !important;
+	}
+	
 /*NUEVA GRILLA*/
 .mGrid { width: 100%; background-color: #ffffff !important; margin: 5px 0 10px 0; border: solid 1px #e9daea; border-collapse:collapse; }
 .mGrid td { padding: 3px; border: solid 1px #e9daea; color: #717171; font-size:11px;   !important; }
