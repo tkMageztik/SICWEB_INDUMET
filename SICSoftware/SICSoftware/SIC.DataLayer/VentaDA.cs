@@ -37,6 +37,7 @@ namespace SIC.DataLayer
                     return (from x in contexto.SIC_T_VENTA
                                     .Include("SIC_T_CLIENTE")
                             where x.ven_c_bactivo == true
+                                && x.ven_c_iestado != 3
                                 && (ruc== null || ruc==string.Empty || 
                                             (x.SIC_T_CLIENTE!=null
                                             && x.SIC_T_CLIENTE.cli_c_vdoc_id.Contains(ruc)))
@@ -94,7 +95,7 @@ namespace SIC.DataLayer
         /// </summary>
         /// <param name="_pSIC_T_VENTA">Orden de compra</param>
         /// <returns><c>True</c> si se inserto correctamente</returns>
-        public bool InsertarOrdenCompra(SIC_T_VENTA _pSIC_T_VENTA)
+        public bool InsertarVenta(SIC_T_VENTA _pSIC_T_VENTA)
         {
             try
             {
@@ -112,34 +113,6 @@ namespace SIC.DataLayer
                     
                     _pSIC_T_VENTA.ven_c_bactivo = true;
                     contexto.AddToSIC_T_VENTA(_pSIC_T_VENTA);                    
-                    contexto.SaveChanges();
-                    return true;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }  
-        }
-
-        public bool InsertarOrdenCompra(SIC_T_VENTA _pSIC_T_VENTA,
-                                        List<SIC_T_VENTA_DETALLE> _pSIC_T_VENTA_DETALLE)
-        {
-            try
-            {
-
-                using (SICDBWEBEntities contexto = new SICDBWEBEntities())
-                {
-                    _pSIC_T_VENTA.SIC_T_VENTA_DETALLE =
-                        new System.Data.Objects.DataClasses.EntityCollection<SIC_T_VENTA_DETALLE>();
-                    foreach (var item in _pSIC_T_VENTA_DETALLE)
-                    {
-                        item.ven_det_c_iitemid = item.SIC_T_ITEM.itm_c_iid;
-                        item.SIC_T_ITEM = null;
-                        _pSIC_T_VENTA.SIC_T_VENTA_DETALLE.Add(item);
-                    }
-                    _pSIC_T_VENTA.ven_c_bactivo = true;
-                    contexto.AddToSIC_T_VENTA(_pSIC_T_VENTA);
                     contexto.SaveChanges();
                     return true;
                 }
@@ -248,7 +221,7 @@ namespace SIC.DataLayer
                                       select x).FirstOrDefault();
                 if (varItem != null)
                 {
-                    varItem.ven_c_bactivo = false;
+                    varItem.ven_c_iestado = 3;
                 }
 
                 try

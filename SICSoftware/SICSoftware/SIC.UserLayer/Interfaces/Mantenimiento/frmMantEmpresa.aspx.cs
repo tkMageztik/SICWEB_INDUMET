@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SIC.BusinessLayer;
+using SIC.EntityLayer;
 
 namespace SIC.UserLayer.Interfaces.Mantenimiento
 {
@@ -32,15 +33,31 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
         protected void btnAgregarCentroCosto_Click(object sender, EventArgs e)
         {
-
+            this.MostrarNuevoCentroCosto();
         }
 
         #endregion
 
+        #region Manejo de Vistas
         private void MostrarNuevoCentroCosto()
         {
             this.mvCliente.SetActiveView(vwCentroCostoNuevo);
+            this.upGeneral.Update();            
         }
+
+        protected void btnGuardarCCN_Click(object sender, EventArgs e)
+        {
+            this.GuarderNuevoCentroCosto();
+        }
+        #endregion
+
+        #region Nuevo Centro de Costo
+        private void GuarderNuevoCentroCosto()
+        {
+            SIC_T_EMP_CENTRO_COSTO centroCosto;
+        }
+        #endregion
+
 
         private void ObtenerDatosEmpresa()
         {
@@ -61,7 +78,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             this.gvLocal.DataBind();
         }
 
-
+        
 
     }
 }
