@@ -342,7 +342,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             this.VentaEliminar = (int)this.gvListaVenta.DataKeys[e.RowIndex].Value;
             var venta = _venta.ObtenerVenta(VentaEliminar);
 
-            if(venta!=null && (venta.ven_c_iestado != 1){
+            if(venta!=null && (venta.ven_c_iestado != 1)){
                 this.Mensaje("Solo se puede eliminar ordenes de compra en estado POR REGULARIZAR.", "../Imagenes/warning.png");
                 return;
             }

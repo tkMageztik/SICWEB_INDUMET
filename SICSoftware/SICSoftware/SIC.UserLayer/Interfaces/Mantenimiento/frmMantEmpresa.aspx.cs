@@ -54,7 +54,11 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         #region Nuevo Centro de Costo
         private void GuarderNuevoCentroCosto()
         {
-            SIC_T_EMP_CENTRO_COSTO centroCosto;
+            SIC_T_EMP_CENTRO_COSTO centroCosto = new SIC_T_EMP_CENTRO_COSTO();
+            centroCosto.emp_cst_c_vserieboleta = txtSerBoletaN.Text;
+            centroCosto.emp_cst_c_vseriefactura = txtSerFacturaN.Text;
+            centroCosto.emp_cst_c_vdesc = txtDescripcionCCN.Text;
+
         }
         #endregion
 
