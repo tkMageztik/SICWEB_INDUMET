@@ -52,13 +52,60 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         #endregion
 
         #region Nuevo Centro de Costo
+        private bool ValidarDatosNuevoCentroCosto()
+        {
+            if (txtDescripcionCCN.Text.Trim().Length <= 0)
+            {
+                Mensaje("Debe ingresar el nombre del centro de costo.", "../Imagenes/warning.png");
+                return false;
+            }
+            else if (txtSerBoletaN.Text.Trim().Length <= 0)
+            {
+                Mensaje("Debe ingresar la serie de boleta del centro de costo.", "../Imagenes/warning.png");
+                return false;
+            }
+            else if (txtSerFacturaN.Text.Trim().Length <= 0)
+            {
+                Mensaje("Debe ingresar el serie de factura del centro de costo.", "../Imagenes/warning.png");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
         private void GuarderNuevoCentroCosto()
         {
+            if (!this.ValidarDatosNuevoCentroCosto())
+            {
+                return;
+            }
+
             SIC_T_EMP_CENTRO_COSTO centroCosto = new SIC_T_EMP_CENTRO_COSTO();
             centroCosto.emp_cst_c_vserieboleta = txtSerBoletaN.Text;
             centroCosto.emp_cst_c_vseriefactura = txtSerFacturaN.Text;
             centroCosto.emp_cst_c_vdesc = txtDescripcionCCN.Text;
 
+            try
+            {
+                _centroCosto.IngresarCentroCosto(centroCosto);
+
+            }
+            catch (Exception ex)
+            {
+#if DEBUG
+                String mensajeError = "Error Fatal : \n" + ex.Message;
+                if (ex.InnerException != null)
+                {
+                    mensajeError += "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty;
+                }
+                
+                Mensaje(mensajeError, "../Imagenes/warning.png");
+#else
+                Mensaje("Error en el proceso.", "../Imagenes/warning.png");
+#endif
+            }
         }
         #endregion
 
@@ -82,7 +129,15 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             this.gvLocal.DataBind();
         }
 
-        
+        private void Mensaje(string mensaje, string ruta)
+        {
+            divPopUpMsg.Attributes["Class"] = "PopupMostrar";
+            ucMensaje.Visible = true;
+            ucMensaje.Mensaje = mensaje;
+            ucMensaje.Ruta = ruta;
+            ucMensaje.EnableModelDialog(true);
+            return;
+        }
 
     }
 }

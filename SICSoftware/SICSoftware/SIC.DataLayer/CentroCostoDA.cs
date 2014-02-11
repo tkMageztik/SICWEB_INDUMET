@@ -24,5 +24,23 @@ namespace SIC.DataLayer
                 throw ex;
             }
         }
+
+        public void IngresarCentroCosto(SIC_T_EMP_CENTRO_COSTO _pSIC_T_EMP_CENTRO_COSTO)
+        {
+            try
+            {
+                using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+                {
+                    _pSIC_T_EMP_CENTRO_COSTO.emp_cst_c_bactivo = true;
+                    contexto.AddToSIC_T_EMP_CENTRO_COSTO(_pSIC_T_EMP_CENTRO_COSTO);
+                    contexto.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }

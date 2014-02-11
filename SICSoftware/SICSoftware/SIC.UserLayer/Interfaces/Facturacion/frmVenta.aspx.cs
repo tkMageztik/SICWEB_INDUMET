@@ -590,7 +590,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         {
             this.VentaSeleccionado = _venta.ObtenerVenta(id);
 
-            if (this.VentaSeleccionado.ven_c_iestado == (int)EstadoVenta.ANULADO || this.VentaSeleccionado.ven_c_iestado == (int)EstadoVenta.CERRADA)
+            if (this.VentaSeleccionado.ven_c_iestado == (int)EstadoVenta.ANULADO || this.VentaSeleccionado.ven_c_iestado == (int)EstadoVenta.FACTURADO)
             {
                 Mensaje("Solo se puede editar Ventas de compra en estado planeado.", "../Imagenes/warning.png");
                 upGeneral.Update();

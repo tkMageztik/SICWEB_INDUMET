@@ -625,7 +625,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 {
                     if (this.EscenarioMovEn == TipoOperacion.Creacion)
                     {
-                        MovEntNuevo.SIC_T_ORDEN_DE_COMPRA = _ordenCompra.ObtenerOrdenCompraNoContext(id);
+                        MovEntNuevo.SIC_T_ORDEN_DE_COMPRA = _ordenCompra.ObtenerOrdenCompraNoContext(id);                       
                         txtSerieNumeroOC.Text = MovEntNuevo.SIC_T_ORDEN_DE_COMPRA != null ? MovEntNuevo.SIC_T_ORDEN_DE_COMPRA.odc_c_vcodigo.ToString() : string.Empty;
                         txtProveedorOC.Text = MovEntNuevo.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vraz_soc;
 
