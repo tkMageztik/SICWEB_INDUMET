@@ -210,7 +210,7 @@ namespace SIC.BusinessLayer
             return new ClienteDA().ModificarContacto(_pSIC_T_cli_contacto);
         }
 
-        public List<SIC_T_CLIENTE> ListarClientes(SIC_T_CLIENTE obj)
+        public List<SIC_SP_CLIENTE_LISTAR_Result> ListarClientes(SIC_T_CLIENTE obj)
         {
             return new ClienteDA().ListarClientes(obj);
         }

@@ -14,13 +14,13 @@ namespace SIC.DataLayer
     {
         #region "Métodos"
 
-        public List<SIC_T_CLIENTE> ListarClientes(SIC_T_CLIENTE obj)
+        public List<SIC_SP_CLIENTE_LISTAR_Result> ListarClientes(SIC_T_CLIENTE obj)
         {
             try
             {
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
-                    return contexto.SIC_SP_CLIENTE_LISTAR( obj.cli_c_vraz_soc, obj.cli_c_vdoc_id).ToList<SIC_T_CLIENTE>();
+                    return contexto.SIC_SP_CLIENTE_LISTAR(obj.cli_c_vraz_soc, obj.cli_c_vdoc_id).ToList<SIC_SP_CLIENTE_LISTAR_Result>();
                 }
             }
             catch (Exception)
@@ -62,7 +62,7 @@ namespace SIC.DataLayer
                 throw;
             }
         }
-        
+
 
         public SIC_T_CLIENTE BuscarCliente(string _strRazSoc)
         {
