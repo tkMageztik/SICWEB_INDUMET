@@ -148,22 +148,22 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento {
         protected global::System.Web.UI.WebControls.TextBox txtDescripcionCCN;
         
         /// <summary>
-        /// Control txtCorrBoletaN.
+        /// Control txtSerBoletaN.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCorrBoletaN;
+        protected global::System.Web.UI.WebControls.TextBox txtSerBoletaN;
         
         /// <summary>
-        /// Control txtCorrFacturaN.
+        /// Control txtSerFacturaN.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCorrFacturaN;
+        protected global::System.Web.UI.WebControls.TextBox txtSerFacturaN;
         
         /// <summary>
         /// Control vwCentroCostoEditar.
@@ -202,22 +202,22 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento {
         protected global::System.Web.UI.WebControls.TextBox txtDescripcionCCE;
         
         /// <summary>
-        /// Control txtCorrBoletaE.
+        /// Control txtSerBoletaE.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCorrBoletaE;
+        protected global::System.Web.UI.WebControls.TextBox txtSerBoletaE;
         
         /// <summary>
-        /// Control txtCorrFacturaE.
+        /// Control txtSerFacturaE.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCorrFacturaE;
+        protected global::System.Web.UI.WebControls.TextBox txtSerFacturaE;
         
         /// <summary>
         /// Control vwLocalNuevo.

@@ -338,14 +338,14 @@
                                                     <td align="left" class="style4">
                                                         Correlativo de Boleta</td>
                                                     <td align="left" class="style4">
-                                                        <asp:TextBox ID="txtCorrBoletaN" runat="server" MaxLength="3"></asp:TextBox>
+                                                        <asp:TextBox ID="txtSerBoletaN" runat="server" MaxLength="3"></asp:TextBox>
                                                     </td>
                                                     <td align="left" class="style4">
                                                         &nbsp;</td>
                                                     <td align="left" class="style4">
                                                         Correlativo de Factura</td>
                                                     <td align="left" class="style4">
-                                                        <asp:TextBox ID="txtCorrFacturaN" runat="server" MaxLength="3"></asp:TextBox>
+                                                        <asp:TextBox ID="txtSerFacturaN" runat="server" MaxLength="3"></asp:TextBox>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -469,14 +469,14 @@
                                                     <td align="left" class="style4">
                                                         Correlativo de Boleta</td>
                                                     <td align="left" class="style4">
-                                                        <asp:TextBox ID="txtCorrBoletaE" runat="server" MaxLength="3"></asp:TextBox>
+                                                        <asp:TextBox ID="txtSerBoletaE" runat="server" MaxLength="3"></asp:TextBox>
                                                     </td>
                                                     <td align="left" class="style4">
                                                         &nbsp;</td>
                                                     <td align="left" class="style4">
                                                         Correlativo de Factura</td>
                                                     <td align="left" class="style4">
-                                                        <asp:TextBox ID="txtCorrFacturaE" runat="server" MaxLength="3"></asp:TextBox>
+                                                        <asp:TextBox ID="txtSerFacturaE" runat="server" MaxLength="3"></asp:TextBox>
                                                     </td>
                                                 </tr>
                                                 <tr>
