@@ -16,7 +16,7 @@
                     <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                             <td class="tit-nav-paginas" align="left" colspan="2">
-                                MANTENIMIENTO &gt; CLIENTE
+                                MANTENIMIENTO &gt; CLIENTE / PROVEEDOR
                             </td>
                         </tr>
                         <tr>
@@ -123,7 +123,7 @@
                     <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                             <td align="left" class="tit-nav-paginas">
-                                CREDITOS Y COBRANZAS &gt; CLIENTE &gt;
+                                MANTENIMIENTO &gt; CLIENTE / PROVEEDOR &gt;
                                 <asp:Label ID="lblAccion" runat="server"></asp:Label>
                             </td>
                             <td align="right">
@@ -511,7 +511,7 @@
                                     <ContentTemplate>
                                         <asp:GridView ID="gvContactos" runat="server" BorderStyle="None" OnRowDeleting="gvContactos_RowDeleting"
                                             OnRowEditing="gvContactos_RowEditing" AutoGenerateColumns="False" Width="100%"
-                                            ShowHeaderWhenEmpty="true" EmptyDataText="No existen contactos para este Cliente."
+                                            ShowHeaderWhenEmpty="true" EmptyDataText="No existen contactos para este Cliente / Proveedor"
                                             OnRowCreated="gvContactos_RowCreated" CssClass="mGrid" PagerStyle-CssClass="pgr"
                                             AlternatingRowStyle-CssClass="alt">
                                             <Columns>
@@ -561,7 +561,7 @@
                     <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                             <td align="left" class="tit-nav-paginas">
-                                CREDITOS Y COBRANZAS &gt; CLIENTE &gt;
+                                MANTENIMIENTO &gt; CLIENTE / PROVEEDOR &gt;
                                 <asp:Label ID="lblContacto" runat="server"></asp:Label>
                             </td>
                             <td align="right">
