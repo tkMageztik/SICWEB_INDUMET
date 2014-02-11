@@ -1580,7 +1580,8 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             {
                 cboZonaReparto.SelectedValue = _tCliente.zona_rep_c_yid.ToString();
             }
-
+            chkProveedor.Checked = Convert.ToBoolean(_tCliente.cli_c_bproveedor);
+            chkCliente.Checked = Convert.ToBoolean(_tCliente.cli_c_bcliente);
             txtTelefono.Text = _tCliente.cli_c_ctlf;
 
             ListarNomComerciales();

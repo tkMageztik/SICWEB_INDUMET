@@ -194,15 +194,15 @@
     <Compile Include="Interfaces\Mantenimiento\frmRegItem.aspx.designer.cs">
       <DependentUpon>frmRegItem.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Interfaces\Mantenimiento\frmRegOC.aspx.cs">
+    <Compile Include="Interfaces\Compras\frmRegOC.aspx.cs">
       <DependentUpon>frmRegOC.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Interfaces\Mantenimiento\frmRegOC.aspx.designer.cs">
+    <Compile Include="Interfaces\Compras\frmRegOC.aspx.designer.cs">
       <DependentUpon>frmRegOC.aspx</DependentUpon>
     </Compile>
-    <Content Include="Interfaces\Mantenimiento\frmRegOC.aspx" />
-    <Content Include="Interfaces\Movimientos\frmMovEntrada.aspx" />
+    <Content Include="Interfaces\Compras\frmRegOC.aspx" />
+    <Content Include="Interfaces\Almacen\frmMovEntrada.aspx" />
     <Content Include="Interfaces\Facturacion\frmVenta.aspx" />
     <Content Include="Styles\chosen-sprite%402x.png" />
     <Content Include="Styles\chosen-sprite.png" />
@@ -271,11 +271,11 @@
     <Compile Include="Interfaces\Mantenimiento\frmRegCliente.aspx.designer.cs">
       <DependentUpon>frmRegCliente.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Interfaces\Movimientos\frmMovEntrada.aspx.cs">
+    <Compile Include="Interfaces\Almacen\frmMovEntrada.aspx.cs">
       <DependentUpon>frmMovEntrada.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Interfaces\Movimientos\frmMovEntrada.aspx.designer.cs">
+    <Compile Include="Interfaces\Almacen\frmMovEntrada.aspx.designer.cs">
       <DependentUpon>frmMovEntrada.aspx</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\Facturacion\frmVenta.aspx.cs">
