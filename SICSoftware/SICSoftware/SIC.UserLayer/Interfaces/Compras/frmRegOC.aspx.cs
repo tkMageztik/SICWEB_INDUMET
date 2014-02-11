@@ -321,7 +321,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             this.EscenarioOC = TipoOperacion.Eliminacion;
             
             this.OCEliminar = (int)this.gvListaOC.DataKeys[e.RowIndex].Value;
-            var oc = this.OCSeleccionado = _ordenCompra.ObtenerOrdenCompra(OCEliminar);
+            var oc = _ordenCompra.ObtenerOrdenCompra(OCEliminar);
             if (oc != null && (oc.odc_c_iestado == (int)EstadoOC.ABIERTA || oc.odc_c_iestado == (int)EstadoOC.VENCIDA))
             {
                 this.Mensaje("No se puede eliminar ordenes de compra en estado ABIERTA o VENCIDA.", "../Imagenes/warning.png");

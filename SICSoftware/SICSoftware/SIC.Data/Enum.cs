@@ -34,7 +34,7 @@ namespace SIC.Data
     public enum EstadoVenta
     {
         POR_REGULARIZAR = 1,
-        CERRADA = 2,
+        FACTURADO = 2,
         ANULADO = 3,
     }
 

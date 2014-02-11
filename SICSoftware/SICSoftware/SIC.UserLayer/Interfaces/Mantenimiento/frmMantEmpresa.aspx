@@ -245,7 +245,8 @@
                                 <table width="220" border="0" cellspacing="0" cellpadding="0">
                                     <tr>
                                         <td>
-                                            <asp:LinkButton ID="btnGuardarCCN" runat="server" CssClass="lnk">Guardar</asp:LinkButton>
+                                            <asp:LinkButton ID="btnGuardarCCN" runat="server" CssClass="lnk" 
+                                                onclick="btnGuardarCCN_Click">Guardar</asp:LinkButton>
                                         </td>
                                         <td>
                                             <asp:LinkButton ID="btnCancelarCCN" runat="server" CssClass="lnk">Cancelar</asp:LinkButton>
@@ -346,6 +347,18 @@
                                                     <td align="left" class="style4">
                                                         <asp:TextBox ID="txtCorrFacturaN" runat="server" MaxLength="3"></asp:TextBox>
                                                     </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="style4">
+                                                        &nbsp;</td>
+                                                    <td align="left" class="style4">
+                                                        &nbsp;</td>
+                                                    <td align="left" class="style4">
+                                                        &nbsp;</td>
+                                                    <td align="left" class="style4">
+                                                        &nbsp;</td>
+                                                    <td align="left" class="style4">
+                                                        &nbsp;</td>
                                                 </tr>
                                             </table>
                                         </td>
@@ -465,6 +478,18 @@
                                                     <td align="left" class="style4">
                                                         <asp:TextBox ID="txtCorrFacturaE" runat="server" MaxLength="3"></asp:TextBox>
                                                     </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="style4">
+                                                        &nbsp;</td>
+                                                    <td align="left" class="style4">
+                                                        &nbsp;</td>
+                                                    <td align="left" class="style4">
+                                                        &nbsp;</td>
+                                                    <td align="left" class="style4">
+                                                        &nbsp;</td>
+                                                    <td align="left" class="style4">
+                                                        &nbsp;</td>
                                                 </tr>
                                             </table>
                                         </td>

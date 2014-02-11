@@ -31,7 +31,7 @@ namespace SIC.BusinessLayer
 
         public bool InsertarOrdenCompra(SIC_T_VENTA _pSIC_T_VENTA)
         {
-            return new VentaDA().InsertarOrdenCompra(_pSIC_T_VENTA);
+            return new VentaDA().InsertarVenta(_pSIC_T_VENTA);
         }
 
         public bool ModificarOrdenCompra(SIC_T_VENTA _pSIC_T_VENTA)

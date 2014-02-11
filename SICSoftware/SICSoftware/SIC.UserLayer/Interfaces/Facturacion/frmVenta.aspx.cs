@@ -338,11 +338,17 @@ namespace SIC.UserLayer.Interfaces.Movimientos
 
         protected void gvListaVenta_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            //this.EscenarioVenta = TipoOperacion.Eliminacion;
-            //this.VentaEliminar = (int)this.gvListaVenta.DataKeys[e.RowIndex].Value;
-            //this.SetearEliminar();
-            //this.ucMensaje2.Show("¿Desea eliminar la Venta seleccionada?", null,
-            //                    MensajeIcono.Alerta, MensajeBotones.AceptarCancelar);
+            this.EscenarioVenta = TipoOperacion.Eliminacion;
+            this.VentaEliminar = (int)this.gvListaVenta.DataKeys[e.RowIndex].Value;
+            var venta = _venta.ObtenerVenta(VentaEliminar);
+
+            if(venta!=null && (venta.ven_c_iestado != 1){
+                this.Mensaje("Solo se puede eliminar ordenes de compra en estado POR REGULARIZAR.", "../Imagenes/warning.png");
+                return;
+            }
+            this.SetearEliminar();
+            this.ucMensaje2.Show("¿Desea anular la Venta seleccionada?", null,
+                                MensajeIcono.Alerta, MensajeBotones.AceptarCancelar);
         }
 
         private void SetearEliminar()
@@ -1077,7 +1083,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             {
                 if (this._venta.DeshabilitarOrdenCompra(idVenta))
                 {
-                    Mensaje("Venta deshabilitada.", "../Imagenes/correcto.png");
+                    Mensaje("Venta anulada.", "../Imagenes/correcto.png");
                 }
                 else
                 {
