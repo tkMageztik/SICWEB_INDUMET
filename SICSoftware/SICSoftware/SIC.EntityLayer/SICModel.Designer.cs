@@ -8,12 +8,13 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.ComponentModel;
+using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Data.EntityClient;
-using System.ComponentModel;
-using System.Xml.Serialization;
+using System.Linq;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 [assembly: EdmSchemaAttribute()]
 #region Metadatos de relaciones en EDM
@@ -814,6 +815,7 @@ namespace SIC.EntityLayer
         private ObjectSet<SIC_T_EMP_CENTRO_COSTO> _SIC_T_EMP_CENTRO_COSTO;
 
         #endregion
+
         #region Métodos AddTo
     
         /// <summary>
@@ -1169,6 +1171,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Importaciones de funciones
     
         /// <summary>
@@ -1547,66 +1550,6 @@ namespace SIC.EntityLayer
         /// <summary>
         /// No hay documentación de metadatos disponible.
         /// </summary>
-        /// <param name="cLI_C_VRAZ_SOC">No hay documentación de metadatos disponible.</param>
-        /// <param name="cLI_C_VDOC_ID">No hay documentación de metadatos disponible.</param>
-        public ObjectResult<SIC_T_CLIENTE> SIC_SP_CLIENTE_LISTAR(global::System.String cLI_C_VRAZ_SOC, global::System.String cLI_C_VDOC_ID)
-        {
-            ObjectParameter cLI_C_VRAZ_SOCParameter;
-            if (cLI_C_VRAZ_SOC != null)
-            {
-                cLI_C_VRAZ_SOCParameter = new ObjectParameter("CLI_C_VRAZ_SOC", cLI_C_VRAZ_SOC);
-            }
-            else
-            {
-                cLI_C_VRAZ_SOCParameter = new ObjectParameter("CLI_C_VRAZ_SOC", typeof(global::System.String));
-            }
-    
-            ObjectParameter cLI_C_VDOC_IDParameter;
-            if (cLI_C_VDOC_ID != null)
-            {
-                cLI_C_VDOC_IDParameter = new ObjectParameter("CLI_C_VDOC_ID", cLI_C_VDOC_ID);
-            }
-            else
-            {
-                cLI_C_VDOC_IDParameter = new ObjectParameter("CLI_C_VDOC_ID", typeof(global::System.String));
-            }
-    
-            return base.ExecuteFunction<SIC_T_CLIENTE>("SIC_SP_CLIENTE_LISTAR", cLI_C_VRAZ_SOCParameter, cLI_C_VDOC_IDParameter);
-        }
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        /// <param name="mergeOption"></param>
-        /// <param name="cLI_C_VRAZ_SOC">No hay documentación de metadatos disponible.</param>
-        /// <param name="cLI_C_VDOC_ID">No hay documentación de metadatos disponible.</param>
-        public ObjectResult<SIC_T_CLIENTE> SIC_SP_CLIENTE_LISTAR(global::System.String cLI_C_VRAZ_SOC, global::System.String cLI_C_VDOC_ID, MergeOption mergeOption)
-        {
-            ObjectParameter cLI_C_VRAZ_SOCParameter;
-            if (cLI_C_VRAZ_SOC != null)
-            {
-                cLI_C_VRAZ_SOCParameter = new ObjectParameter("CLI_C_VRAZ_SOC", cLI_C_VRAZ_SOC);
-            }
-            else
-            {
-                cLI_C_VRAZ_SOCParameter = new ObjectParameter("CLI_C_VRAZ_SOC", typeof(global::System.String));
-            }
-    
-            ObjectParameter cLI_C_VDOC_IDParameter;
-            if (cLI_C_VDOC_ID != null)
-            {
-                cLI_C_VDOC_IDParameter = new ObjectParameter("CLI_C_VDOC_ID", cLI_C_VDOC_ID);
-            }
-            else
-            {
-                cLI_C_VDOC_IDParameter = new ObjectParameter("CLI_C_VDOC_ID", typeof(global::System.String));
-            }
-    
-            return base.ExecuteFunction<SIC_T_CLIENTE>("SIC_SP_CLIENTE_LISTAR", mergeOption, cLI_C_VRAZ_SOCParameter, cLI_C_VDOC_IDParameter);
-        }
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
         /// <param name="pC_CODUSUARIO">No hay documentación de metadatos disponible.</param>
         public ObjectResult<SIC_T_MENU> SIC_SP_LISTAR_PADRES_MENU(global::System.String pC_CODUSUARIO)
         {
@@ -1758,13 +1701,43 @@ namespace SIC.EntityLayer
     
             return base.ExecuteFunction("SIC_SP_DESHABILITAR_CLIENTE", cli_c_vdoc_idParameter);
         }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        /// <param name="cLI_C_VRAZ_SOC">No hay documentación de metadatos disponible.</param>
+        /// <param name="cLI_C_VDOC_ID">No hay documentación de metadatos disponible.</param>
+        public ObjectResult<SIC_SP_CLIENTE_LISTAR_Result> SIC_SP_CLIENTE_LISTAR(global::System.String cLI_C_VRAZ_SOC, global::System.String cLI_C_VDOC_ID)
+        {
+            ObjectParameter cLI_C_VRAZ_SOCParameter;
+            if (cLI_C_VRAZ_SOC != null)
+            {
+                cLI_C_VRAZ_SOCParameter = new ObjectParameter("CLI_C_VRAZ_SOC", cLI_C_VRAZ_SOC);
+            }
+            else
+            {
+                cLI_C_VRAZ_SOCParameter = new ObjectParameter("CLI_C_VRAZ_SOC", typeof(global::System.String));
+            }
+    
+            ObjectParameter cLI_C_VDOC_IDParameter;
+            if (cLI_C_VDOC_ID != null)
+            {
+                cLI_C_VDOC_IDParameter = new ObjectParameter("CLI_C_VDOC_ID", cLI_C_VDOC_ID);
+            }
+            else
+            {
+                cLI_C_VDOC_IDParameter = new ObjectParameter("CLI_C_VDOC_ID", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction<SIC_SP_CLIENTE_LISTAR_Result>("SIC_SP_CLIENTE_LISTAR", cLI_C_VRAZ_SOCParameter, cLI_C_VDOC_IDParameter);
+        }
 
         #endregion
+
     }
-    
 
     #endregion
-    
+
     #region Entidades
     
     /// <summary>
@@ -1789,6 +1762,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -1867,6 +1841,7 @@ namespace SIC.EntityLayer
         partial void Onalm_c_vdesChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -1959,6 +1934,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1987,6 +1963,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -2065,6 +2042,7 @@ namespace SIC.EntityLayer
         partial void Onalm_cst_c_iid_almacenChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -2145,6 +2123,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2169,6 +2148,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -2223,6 +2203,7 @@ namespace SIC.EntityLayer
         partial void Oncli_contac_cargo_c_vnombChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -2249,6 +2230,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2277,6 +2259,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -2595,6 +2578,7 @@ namespace SIC.EntityLayer
         partial void Oncli_c_vdoc_idChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -2675,6 +2659,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2701,6 +2686,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -2878,6 +2864,7 @@ namespace SIC.EntityLayer
         partial void Oncli_direc_c_czonarepChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -2958,6 +2945,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2984,6 +2972,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -3041,6 +3030,7 @@ namespace SIC.EntityLayer
         partial void Oncli_c_vdoc_idChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -3083,6 +3073,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -3107,6 +3098,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -3209,6 +3201,7 @@ namespace SIC.EntityLayer
         partial void Oncli_rs_h_c_dfec_regChanged();
 
         #endregion
+
     
     }
     
@@ -3234,6 +3227,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -3288,6 +3282,7 @@ namespace SIC.EntityLayer
         partial void Oncli_scor_c_vobservChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -3314,6 +3309,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -3340,6 +3336,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -3730,6 +3727,7 @@ namespace SIC.EntityLayer
         partial void Oncli_c_bclienteChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -3980,6 +3978,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -4004,6 +4003,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -4058,6 +4058,7 @@ namespace SIC.EntityLayer
         partial void Oncolab_area_c_vnombChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -4084,6 +4085,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -4108,6 +4110,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -4162,6 +4165,7 @@ namespace SIC.EntityLayer
         partial void Oncolab_cargo_c_vnombChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -4188,6 +4192,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -4212,6 +4217,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -4386,6 +4392,7 @@ namespace SIC.EntityLayer
         partial void Oncolab_cargo_c_yidChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -4488,6 +4495,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -4512,6 +4520,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -4566,6 +4575,7 @@ namespace SIC.EntityLayer
         partial void Ondepa_c_vnombChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -4592,6 +4602,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -4618,6 +4629,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -4696,6 +4708,7 @@ namespace SIC.EntityLayer
         partial void Onprov_c_ccodChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -4760,6 +4773,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -4796,6 +4810,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -4970,6 +4985,7 @@ namespace SIC.EntityLayer
         partial void Onemp_cst_c_inumeroboletaChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -5040,6 +5056,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -5066,6 +5083,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -5168,6 +5186,7 @@ namespace SIC.EntityLayer
         partial void Onemp_dir_c_iid_centrocostoChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -5210,6 +5229,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -5234,6 +5254,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -5312,6 +5333,7 @@ namespace SIC.EntityLayer
         partial void Onemp_c_vrazonsocialChanged();
 
         #endregion
+
     
     }
     
@@ -5337,6 +5359,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -5439,6 +5462,7 @@ namespace SIC.EntityLayer
         partial void Onigv_c_dfinChanged();
 
         #endregion
+
     
     }
     
@@ -5480,6 +5504,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -5702,6 +5727,7 @@ namespace SIC.EntityLayer
         partial void Onitm_c_isf_iidChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -5810,6 +5836,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -5840,6 +5867,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -5942,6 +5970,7 @@ namespace SIC.EntityLayer
         partial void Onitm_alm_c_ecantidadChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -6022,6 +6051,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -6050,6 +6080,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -6128,6 +6159,7 @@ namespace SIC.EntityLayer
         partial void Onifm_c_bactivoChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -6154,6 +6186,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -6184,6 +6217,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -6286,6 +6320,7 @@ namespace SIC.EntityLayer
         partial void Onisf_c_bactivoChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -6350,6 +6385,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -6374,6 +6410,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -6500,6 +6537,7 @@ namespace SIC.EntityLayer
         partial void Onmenu_c_vpag_aspChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -6564,6 +6602,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -6590,6 +6629,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -6644,6 +6684,7 @@ namespace SIC.EntityLayer
         partial void Onmov_estado_vdescrpcionChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -6670,6 +6711,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -6716,6 +6758,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -7058,6 +7101,7 @@ namespace SIC.EntityLayer
         partial void Onmve_c_bingresadoChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -7236,6 +7280,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -7270,6 +7315,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -7420,6 +7466,7 @@ namespace SIC.EntityLayer
         partial void Onmve_c_iocdet_idChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -7500,6 +7547,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -7524,6 +7572,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -7578,6 +7627,7 @@ namespace SIC.EntityLayer
         partial void Onnomb_com_c_vnombChanged();
 
         #endregion
+
     
     }
     
@@ -7603,6 +7653,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -7657,6 +7708,7 @@ namespace SIC.EntityLayer
         partial void Onodc_cla_vdesChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -7683,6 +7735,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -7707,6 +7760,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -7761,6 +7815,7 @@ namespace SIC.EntityLayer
         partial void Onodc_estado_vdescripcionChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -7787,6 +7842,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -7857,6 +7913,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -8487,6 +8544,7 @@ namespace SIC.EntityLayer
         partial void Onodc_c_vdireccionChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -8649,6 +8707,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -8683,6 +8742,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -8833,6 +8893,7 @@ namespace SIC.EntityLayer
         partial void Onodc_c_epreciototalChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -8935,6 +8996,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -8959,6 +9021,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -9037,6 +9100,7 @@ namespace SIC.EntityLayer
         partial void Onpar_c_bactivoChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -9063,6 +9127,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -9089,6 +9154,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -9434,6 +9500,7 @@ namespace SIC.EntityLayer
         partial void Onpar_det_c_vobsChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -9476,6 +9543,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -9502,6 +9570,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -9580,6 +9649,7 @@ namespace SIC.EntityLayer
         partial void Ondepa_c_ccodChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -9644,6 +9714,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -9674,6 +9745,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -9800,6 +9872,7 @@ namespace SIC.EntityLayer
         partial void Ontsc_c_dfinChanged();
 
         #endregion
+
     
     }
     
@@ -9827,6 +9900,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -10049,6 +10123,7 @@ namespace SIC.EntityLayer
         partial void Onusua_c_bestadoChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -10075,6 +10150,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -10101,6 +10177,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -10158,6 +10235,7 @@ namespace SIC.EntityLayer
         partial void Onopc_c_iidChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -10200,6 +10278,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -10226,6 +10305,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -10307,6 +10387,7 @@ namespace SIC.EntityLayer
         partial void Onusua_perfil_c_cestadoChanged();
 
         #endregion
+
     
     }
     
@@ -10332,6 +10413,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -10386,6 +10468,7 @@ namespace SIC.EntityLayer
         partial void Onven_est_c_vdescripcionChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -10412,6 +10495,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -10464,6 +10548,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -10830,6 +10915,7 @@ namespace SIC.EntityLayer
         partial void Onven_c_vestadoChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -10970,6 +11056,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -11006,6 +11093,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -11180,6 +11268,7 @@ namespace SIC.EntityLayer
         partial void Onven_det_c_iidalmacenChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -11298,6 +11387,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -11322,6 +11412,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -11376,6 +11467,7 @@ namespace SIC.EntityLayer
         partial void Onzona_rep_c_czonaChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -11424,6 +11516,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -11448,6 +11541,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -11526,6 +11620,7 @@ namespace SIC.EntityLayer
         partial void Onzona_rep_lug_c_vdescChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -11568,6 +11663,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -11594,6 +11690,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -11699,10 +11796,12 @@ namespace SIC.EntityLayer
         partial void Oncli_c_vraz_socChanged();
 
         #endregion
+
     
     }
 
     #endregion
+
     #region ComplexTypes
     
     /// <summary>
@@ -11727,6 +11826,7 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -11922,8 +12022,449 @@ namespace SIC.EntityLayer
         partial void Oncolab_cargo_c_yidChanged();
 
         #endregion
+
+    }
+    
+    /// <summary>
+    /// No hay documentación de metadatos disponible.
+    /// </summary>
+    [EdmComplexTypeAttribute(NamespaceName="SICDBWEBModel", Name="SIC_SP_CLIENTE_LISTAR_Result")]
+    [DataContractAttribute(IsReference=true)]
+    [Serializable()]
+    public partial class SIC_SP_CLIENTE_LISTAR_Result : ComplexObject
+    {
+        #region Método de generador
+    
+        /// <summary>
+        /// Crear un nuevo objeto SIC_SP_CLIENTE_LISTAR_Result.
+        /// </summary>
+        /// <param name="cli_c_vdoc_id">Valor inicial de la propiedad cli_c_vdoc_id.</param>
+        /// <param name="cli_c_dfecharegistra">Valor inicial de la propiedad cli_c_dfecharegistra.</param>
+        public static SIC_SP_CLIENTE_LISTAR_Result CreateSIC_SP_CLIENTE_LISTAR_Result(global::System.String cli_c_vdoc_id, global::System.DateTime cli_c_dfecharegistra)
+        {
+            SIC_SP_CLIENTE_LISTAR_Result sIC_SP_CLIENTE_LISTAR_Result = new SIC_SP_CLIENTE_LISTAR_Result();
+            sIC_SP_CLIENTE_LISTAR_Result.cli_c_vdoc_id = cli_c_vdoc_id;
+            sIC_SP_CLIENTE_LISTAR_Result.cli_c_dfecharegistra = cli_c_dfecharegistra;
+            return sIC_SP_CLIENTE_LISTAR_Result;
+        }
+
+        #endregion
+
+        #region Propiedades primitivas
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String cli_c_vraz_soc
+        {
+            get
+            {
+                return _cli_c_vraz_soc;
+            }
+            set
+            {
+                Oncli_c_vraz_socChanging(value);
+                ReportPropertyChanging("cli_c_vraz_soc");
+                _cli_c_vraz_soc = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("cli_c_vraz_soc");
+                Oncli_c_vraz_socChanged();
+            }
+        }
+        private global::System.String _cli_c_vraz_soc;
+        partial void Oncli_c_vraz_socChanging(global::System.String value);
+        partial void Oncli_c_vraz_socChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String cli_c_vpartida
+        {
+            get
+            {
+                return _cli_c_vpartida;
+            }
+            set
+            {
+                Oncli_c_vpartidaChanging(value);
+                ReportPropertyChanging("cli_c_vpartida");
+                _cli_c_vpartida = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("cli_c_vpartida");
+                Oncli_c_vpartidaChanged();
+            }
+        }
+        private global::System.String _cli_c_vpartida;
+        partial void Oncli_c_vpartidaChanging(global::System.String value);
+        partial void Oncli_c_vpartidaChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String cli_c_vrubro
+        {
+            get
+            {
+                return _cli_c_vrubro;
+            }
+            set
+            {
+                Oncli_c_vrubroChanging(value);
+                ReportPropertyChanging("cli_c_vrubro");
+                _cli_c_vrubro = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("cli_c_vrubro");
+                Oncli_c_vrubroChanged();
+            }
+        }
+        private global::System.String _cli_c_vrubro;
+        partial void Oncli_c_vrubroChanging(global::System.String value);
+        partial void Oncli_c_vrubroChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String cli_c_ctlf
+        {
+            get
+            {
+                return _cli_c_ctlf;
+            }
+            set
+            {
+                Oncli_c_ctlfChanging(value);
+                ReportPropertyChanging("cli_c_ctlf");
+                _cli_c_ctlf = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("cli_c_ctlf");
+                Oncli_c_ctlfChanged();
+            }
+        }
+        private global::System.String _cli_c_ctlf;
+        partial void Oncli_c_ctlfChanging(global::System.String value);
+        partial void Oncli_c_ctlfChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> cli_c_dfec_aniv
+        {
+            get
+            {
+                return _cli_c_dfec_aniv;
+            }
+            set
+            {
+                Oncli_c_dfec_anivChanging(value);
+                ReportPropertyChanging("cli_c_dfec_aniv");
+                _cli_c_dfec_aniv = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("cli_c_dfec_aniv");
+                Oncli_c_dfec_anivChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _cli_c_dfec_aniv;
+        partial void Oncli_c_dfec_anivChanging(Nullable<global::System.DateTime> value);
+        partial void Oncli_c_dfec_anivChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> cli_c_btipo_pers
+        {
+            get
+            {
+                return _cli_c_btipo_pers;
+            }
+            set
+            {
+                Oncli_c_btipo_persChanging(value);
+                ReportPropertyChanging("cli_c_btipo_pers");
+                _cli_c_btipo_pers = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("cli_c_btipo_pers");
+                Oncli_c_btipo_persChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _cli_c_btipo_pers;
+        partial void Oncli_c_btipo_persChanging(Nullable<global::System.Boolean> value);
+        partial void Oncli_c_btipo_persChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String colab_c_cdoc_id
+        {
+            get
+            {
+                return _colab_c_cdoc_id;
+            }
+            set
+            {
+                Oncolab_c_cdoc_idChanging(value);
+                ReportPropertyChanging("colab_c_cdoc_id");
+                _colab_c_cdoc_id = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("colab_c_cdoc_id");
+                Oncolab_c_cdoc_idChanged();
+            }
+        }
+        private global::System.String _colab_c_cdoc_id;
+        partial void Oncolab_c_cdoc_idChanging(global::System.String value);
+        partial void Oncolab_c_cdoc_idChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String cli_scor_c_cletra
+        {
+            get
+            {
+                return _cli_scor_c_cletra;
+            }
+            set
+            {
+                Oncli_scor_c_cletraChanging(value);
+                ReportPropertyChanging("cli_scor_c_cletra");
+                _cli_scor_c_cletra = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("cli_scor_c_cletra");
+                Oncli_scor_c_cletraChanged();
+            }
+        }
+        private global::System.String _cli_scor_c_cletra;
+        partial void Oncli_scor_c_cletraChanging(global::System.String value);
+        partial void Oncli_scor_c_cletraChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> cli_c_bactivo
+        {
+            get
+            {
+                return _cli_c_bactivo;
+            }
+            set
+            {
+                Oncli_c_bactivoChanging(value);
+                ReportPropertyChanging("cli_c_bactivo");
+                _cli_c_bactivo = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("cli_c_bactivo");
+                Oncli_c_bactivoChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _cli_c_bactivo;
+        partial void Oncli_c_bactivoChanging(Nullable<global::System.Boolean> value);
+        partial void Oncli_c_bactivoChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String cli_c_vdoc_id
+        {
+            get
+            {
+                return _cli_c_vdoc_id;
+            }
+            set
+            {
+                Oncli_c_vdoc_idChanging(value);
+                ReportPropertyChanging("cli_c_vdoc_id");
+                _cli_c_vdoc_id = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("cli_c_vdoc_id");
+                Oncli_c_vdoc_idChanged();
+            }
+        }
+        private global::System.String _cli_c_vdoc_id;
+        partial void Oncli_c_vdoc_idChanging(global::System.String value);
+        partial void Oncli_c_vdoc_idChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Byte> zona_rep_c_yid
+        {
+            get
+            {
+                return _zona_rep_c_yid;
+            }
+            set
+            {
+                Onzona_rep_c_yidChanging(value);
+                ReportPropertyChanging("zona_rep_c_yid");
+                _zona_rep_c_yid = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("zona_rep_c_yid");
+                Onzona_rep_c_yidChanged();
+            }
+        }
+        private Nullable<global::System.Byte> _zona_rep_c_yid;
+        partial void Onzona_rep_c_yidChanging(Nullable<global::System.Byte> value);
+        partial void Onzona_rep_c_yidChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime cli_c_dfecharegistra
+        {
+            get
+            {
+                return _cli_c_dfecharegistra;
+            }
+            set
+            {
+                Oncli_c_dfecharegistraChanging(value);
+                ReportPropertyChanging("cli_c_dfecharegistra");
+                _cli_c_dfecharegistra = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("cli_c_dfecharegistra");
+                Oncli_c_dfecharegistraChanged();
+            }
+        }
+        private global::System.DateTime _cli_c_dfecharegistra;
+        partial void Oncli_c_dfecharegistraChanging(global::System.DateTime value);
+        partial void Oncli_c_dfecharegistraChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> cli_c_dfechaactualiza
+        {
+            get
+            {
+                return _cli_c_dfechaactualiza;
+            }
+            set
+            {
+                Oncli_c_dfechaactualizaChanging(value);
+                ReportPropertyChanging("cli_c_dfechaactualiza");
+                _cli_c_dfechaactualiza = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("cli_c_dfechaactualiza");
+                Oncli_c_dfechaactualizaChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _cli_c_dfechaactualiza;
+        partial void Oncli_c_dfechaactualizaChanging(Nullable<global::System.DateTime> value);
+        partial void Oncli_c_dfechaactualizaChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> cli_c_dfec_const
+        {
+            get
+            {
+                return _cli_c_dfec_const;
+            }
+            set
+            {
+                Oncli_c_dfec_constChanging(value);
+                ReportPropertyChanging("cli_c_dfec_const");
+                _cli_c_dfec_const = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("cli_c_dfec_const");
+                Oncli_c_dfec_constChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _cli_c_dfec_const;
+        partial void Oncli_c_dfec_constChanging(Nullable<global::System.DateTime> value);
+        partial void Oncli_c_dfec_constChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> cli_c_bproveedor
+        {
+            get
+            {
+                return _cli_c_bproveedor;
+            }
+            set
+            {
+                Oncli_c_bproveedorChanging(value);
+                ReportPropertyChanging("cli_c_bproveedor");
+                _cli_c_bproveedor = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("cli_c_bproveedor");
+                Oncli_c_bproveedorChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _cli_c_bproveedor;
+        partial void Oncli_c_bproveedorChanging(Nullable<global::System.Boolean> value);
+        partial void Oncli_c_bproveedorChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> cli_c_bcliente
+        {
+            get
+            {
+                return _cli_c_bcliente;
+            }
+            set
+            {
+                Oncli_c_bclienteChanging(value);
+                ReportPropertyChanging("cli_c_bcliente");
+                _cli_c_bcliente = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("cli_c_bcliente");
+                Oncli_c_bclienteChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _cli_c_bcliente;
+        partial void Oncli_c_bclienteChanging(Nullable<global::System.Boolean> value);
+        partial void Oncli_c_bclienteChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String cli_direc_c_dfiscal
+        {
+            get
+            {
+                return _cli_direc_c_dfiscal;
+            }
+            set
+            {
+                Oncli_direc_c_dfiscalChanging(value);
+                ReportPropertyChanging("cli_direc_c_dfiscal");
+                _cli_direc_c_dfiscal = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("cli_direc_c_dfiscal");
+                Oncli_direc_c_dfiscalChanged();
+            }
+        }
+        private global::System.String _cli_direc_c_dfiscal;
+        partial void Oncli_direc_c_dfiscalChanging(global::System.String value);
+        partial void Oncli_direc_c_dfiscalChanged();
+
+        #endregion
+
     }
 
     #endregion
+
     
 }

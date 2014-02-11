@@ -1335,10 +1335,6 @@
           <FunctionImport Name="SIC_SP_CLIENTE_LISTAR_COLABORADORES_POR_AREA" ReturnType="Collection(SICDBWEBModel.SIC_SP_CLIENTE_LISTAR_COLABORADORES_POR_AREA_Result)">
           <Parameter Name="INTCODIGOAREA" Mode="In" Type="Byte" />
           </FunctionImport>
-          <FunctionImport Name="SIC_SP_CLIENTE_LISTAR" EntitySet="SIC_T_CLIENTE" ReturnType="Collection(SICDBWEBModel.SIC_T_CLIENTE)">
-            <Parameter Name="CLI_C_VRAZ_SOC" Mode="In" Type="String" />
-            <Parameter Name="CLI_C_VDOC_ID" Mode="In" Type="String" />
-          </FunctionImport>
           <EntitySet Name="SIC_VW_CLIENTE_LISTA" EntityType="SICDBWEBModel.SIC_VW_CLIENTE_LISTA" />
           <EntitySet Name="SIC_T_USUARIO" EntityType="SICDBWEBModel.SIC_T_USUARIO" />
           <EntitySet Name="SIC_T_USUARIO_OPCION" EntityType="SICDBWEBModel.SIC_T_USUARIO_OPCION" />
@@ -1507,6 +1503,10 @@
             <End Role="SIC_T_EMP_CENTRO_COSTO" EntitySet="SIC_T_EMP_CENTRO_COSTO" />
             <End Role="SIC_T_VENTA" EntitySet="SIC_T_VENTA" />
           </AssociationSet>
+          <FunctionImport Name="SIC_SP_CLIENTE_LISTAR" ReturnType="Collection(SICDBWEBModel.SIC_SP_CLIENTE_LISTAR_Result)">
+            <Parameter Name="CLI_C_VRAZ_SOC" Mode="In" Type="String" />
+            <Parameter Name="CLI_C_VDOC_ID" Mode="In" Type="String" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="SIC_T_CLI_CONTAC_CARGO">
           <Key>
@@ -2547,6 +2547,25 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="SIC_SP_CLIENTE_LISTAR_Result">
+          <Property Type="String" Name="cli_c_vraz_soc" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="cli_c_vpartida" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="cli_c_vrubro" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="cli_c_ctlf" Nullable="true" MaxLength="15" />
+          <Property Type="DateTime" Name="cli_c_dfec_aniv" Nullable="true" />
+          <Property Type="Boolean" Name="cli_c_btipo_pers" Nullable="true" />
+          <Property Type="String" Name="colab_c_cdoc_id" Nullable="true" MaxLength="8" />
+          <Property Type="String" Name="cli_scor_c_cletra" Nullable="true" MaxLength="1" />
+          <Property Type="Boolean" Name="cli_c_bactivo" Nullable="true" />
+          <Property Type="String" Name="cli_c_vdoc_id" Nullable="false" MaxLength="11" />
+          <Property Type="Byte" Name="zona_rep_c_yid" Nullable="true" />
+          <Property Type="DateTime" Name="cli_c_dfecharegistra" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="cli_c_dfechaactualiza" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="cli_c_dfec_const" Nullable="true" />
+          <Property Type="Boolean" Name="cli_c_bproveedor" Nullable="true" />
+          <Property Type="Boolean" Name="cli_c_bcliente" Nullable="true" />
+          <Property Type="String" Name="cli_direc_c_dfiscal" Nullable="true" MaxLength="358" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2746,7 +2765,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SIC_SP_CLIENTE_LISTAR" FunctionName="SICDBWEBModel.Store.SIC_SP_CLIENTE_LISTAR" />
           <EntitySetMapping Name="SIC_VW_CLIENTE_LISTA">
             <EntityTypeMapping TypeName="SICDBWEBModel.SIC_VW_CLIENTE_LISTA">
               <MappingFragment StoreEntitySet="SIC_VW_CLIENTE_LISTA">
@@ -3091,6 +3109,29 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SIC_SP_CLIENTE_LISTAR" FunctionName="SICDBWEBModel.Store.SIC_SP_CLIENTE_LISTAR">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SICDBWEBModel.SIC_SP_CLIENTE_LISTAR_Result">
+                <ScalarProperty Name="cli_c_vraz_soc" ColumnName="cli_c_vraz_soc" />
+                <ScalarProperty Name="cli_c_vpartida" ColumnName="cli_c_vpartida" />
+                <ScalarProperty Name="cli_c_vrubro" ColumnName="cli_c_vrubro" />
+                <ScalarProperty Name="cli_c_ctlf" ColumnName="cli_c_ctlf" />
+                <ScalarProperty Name="cli_c_dfec_aniv" ColumnName="cli_c_dfec_aniv" />
+                <ScalarProperty Name="cli_c_btipo_pers" ColumnName="cli_c_btipo_pers" />
+                <ScalarProperty Name="colab_c_cdoc_id" ColumnName="colab_c_cdoc_id" />
+                <ScalarProperty Name="cli_scor_c_cletra" ColumnName="cli_scor_c_cletra" />
+                <ScalarProperty Name="cli_c_bactivo" ColumnName="cli_c_bactivo" />
+                <ScalarProperty Name="cli_c_vdoc_id" ColumnName="cli_c_vdoc_id" />
+                <ScalarProperty Name="zona_rep_c_yid" ColumnName="zona_rep_c_yid" />
+                <ScalarProperty Name="cli_c_dfecharegistra" ColumnName="cli_c_dfecharegistra" />
+                <ScalarProperty Name="cli_c_dfechaactualiza" ColumnName="cli_c_dfechaactualiza" />
+                <ScalarProperty Name="cli_c_dfec_const" ColumnName="cli_c_dfec_const" />
+                <ScalarProperty Name="cli_c_bproveedor" ColumnName="cli_c_bproveedor" />
+                <ScalarProperty Name="cli_c_bcliente" ColumnName="cli_c_bcliente" />
+                <ScalarProperty Name="cli_direc_c_dfiscal" ColumnName="cli_direc_c_dfiscal" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

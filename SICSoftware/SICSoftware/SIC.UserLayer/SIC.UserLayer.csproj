@@ -174,12 +174,53 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Default.aspx" />
+    <Content Include="Interfaces\Almacen\frmAlmacenes.aspx" />
+    <Content Include="Interfaces\Almacen\frmAlmKardex.aspx" />
+    <Content Include="Interfaces\Facturacion\frmFactAutomatica.aspx" />
+    <Content Include="Interfaces\Facturacion\frmFactImpresion.aspx" />
+    <Content Include="Interfaces\Facturacion\frmFactManual.aspx" />
     <Content Include="Interfaces\Mantenimiento\frmMantEmpresa.aspx" />
+    <Content Include="Interfaces\Mantenimiento\frmMantImpresoras.aspx" />
     <Content Include="Interfaces\Mantenimiento\frmRegCliente.aspx" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Content Include="Interfaces\Almacen\frmRegItem.aspx" />
+    <Compile Include="Interfaces\Almacen\frmAlmacenes.aspx.cs">
+      <DependentUpon>frmAlmacenes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Interfaces\Almacen\frmAlmacenes.aspx.designer.cs">
+      <DependentUpon>frmAlmacenes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\Almacen\frmAlmKardex.aspx.cs">
+      <DependentUpon>frmAlmKardex.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Interfaces\Almacen\frmAlmKardex.aspx.designer.cs">
+      <DependentUpon>frmAlmKardex.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\Facturacion\frmFactAutomatica.aspx.cs">
+      <DependentUpon>frmFactAutomatica.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Interfaces\Facturacion\frmFactAutomatica.aspx.designer.cs">
+      <DependentUpon>frmFactAutomatica.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\Facturacion\frmFactImpresion.aspx.cs">
+      <DependentUpon>frmFactImpresion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Interfaces\Facturacion\frmFactImpresion.aspx.designer.cs">
+      <DependentUpon>frmFactImpresion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\Facturacion\frmFactManual.aspx.cs">
+      <DependentUpon>frmFactManual.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Interfaces\Facturacion\frmFactManual.aspx.designer.cs">
+      <DependentUpon>frmFactManual.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Interfaces\Mantenimiento\frmMantEmpresa.aspx.cs">
       <DependentUpon>frmMantEmpresa.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -263,6 +304,13 @@
     </Compile>
     <Compile Include="Interfaces\frmPrincipal.aspx.designer.cs">
       <DependentUpon>frmPrincipal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\Mantenimiento\frmMantImpresoras.aspx.cs">
+      <DependentUpon>frmMantImpresoras.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Interfaces\Mantenimiento\frmMantImpresoras.aspx.designer.cs">
+      <DependentUpon>frmMantImpresoras.aspx</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\Mantenimiento\frmRegCliente.aspx.cs">
       <DependentUpon>frmRegCliente.aspx</DependentUpon>
