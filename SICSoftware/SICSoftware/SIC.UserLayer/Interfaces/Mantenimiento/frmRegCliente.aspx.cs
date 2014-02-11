@@ -206,6 +206,9 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             gvNombresComerciales.DataSource = NombresComerciales;
             gvNombresComerciales.DataBind();
 
+            chkCliente.Checked = true;
+            chkProveedor.Checked = false;
+
             gvDireccion.DataSource = Direcciones;
             gvDireccion.DataBind();
 
