@@ -371,6 +371,8 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             {
                 _clienteNod.cli_c_dfec_const = null;
             }
+            _clienteNod.cli_c_bcliente = chkCliente.Checked;
+            _clienteNod.cli_c_bproveedor = chkProveedor.Checked;
 
             /*REGISTRAMOS SOLO SI SE HA CAMBIADO DE RAZÓN SOCIAL*/
             SIC_T_CLI_RS_HISTORICO _rsHistorico = new SIC_T_CLI_RS_HISTORICO();
@@ -390,6 +392,9 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             }
 
         }
+
+
+
         private void preguardarNombresComerciales()
         {
             string _strRazSoc = txtRazonSocial.Text;
@@ -491,6 +496,9 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                     _clienteNuevo.cli_c_dfec_const = null;
                 }
 
+                _clienteNuevo.colab_c_cdoc_id = null;
+                _clienteNuevo.cli_c_bproveedor = chkProveedor.Checked;
+                _clienteNuevo.cli_c_bcliente = chkCliente.Checked;
                 /*al final*/
 
                 SIC_T_CLI_RS_HISTORICO _rsHistorico = new SIC_T_CLI_RS_HISTORICO();
@@ -498,7 +506,6 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 _rsHistorico.cli_rs_h_c_vraz_soc = _clienteNuevo.cli_c_vraz_soc;
                 _cliente.RegistrarClienteRazonSocialHistorico(Convert.ToInt16(TipoOperacion.Creacion).ToString(), _rsHistorico);
 
-                _clienteNuevo.colab_c_cdoc_id = null;
 
                 if (_cliente.InsertarCliente(_clienteNuevo))
                 {
@@ -571,6 +578,13 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             /*
              * validando nombres comerciales
              */
+
+            if (!chkCliente.Checked & !chkProveedor.Checked)
+            {
+                ShowMessage = "- Debe seleccionar por lo menos una función, si la empresa es Cliente o Proveedor";
+                _flag = false;
+            }
+
             string _strRazSoc = txtRazonSocial.Text;
             SIC_T_CLIENTE _tCliente = _cliente.BuscarCliente(_strRazSoc);
             if (_tCliente == null)
@@ -578,6 +592,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 salvarNombresComerciales();
                 salvarCamposDirecciones();
             }
+
 
             List<string> _ListaExistenteNombresComerciales = new List<string>();
             foreach (GridViewRow _fila in gvNombresComerciales.Rows)
