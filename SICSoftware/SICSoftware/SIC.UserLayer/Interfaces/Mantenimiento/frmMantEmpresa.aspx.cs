@@ -14,6 +14,12 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         private EmpresaBL _empresa = null;
         private CentroCostoBL _centroCosto = null;
 
+        private SIC_T_EMP_CENTRO_COSTO CentroCostoModificar
+        {
+            get { return ViewState["vsCentroCosto"] as SIC_T_EMP_CENTRO_COSTO; }
+            set { ViewState["vsCentroCosto"] = value; }
+        }
+
         #region Eventos
         public frmMantEmpresa()
         {
@@ -36,14 +42,24 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             this.MostrarNuevoCentroCosto();
         }
 
+        protected void btnCancelarCCN_Click(object sender, EventArgs e)
+        {
+            this.RegresarDesdeNuevoCentroCosto();
+        }
+
+        protected void gvCentroCosto_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            int ccId = (int)this.gvCentroCosto.DataKeys[e.NewEditIndex].Value;
+            e.NewEditIndex = -1;
+            this.gvCentroCosto.EditIndex = -1;
+            this.ListarCentroCosto();
+            this.MostrarModificarCentroCosto(ccId);
+        }
+
         #endregion
 
         #region Manejo de Vistas
-        private void MostrarNuevoCentroCosto()
-        {
-            this.mvCliente.SetActiveView(vwCentroCostoNuevo);
-            this.upGeneral.Update();            
-        }
+
 
         protected void btnGuardarCCN_Click(object sender, EventArgs e)
         {
@@ -52,6 +68,14 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         #endregion
 
         #region Nuevo Centro de Costo
+
+        private void MostrarNuevoCentroCosto()
+        {
+            this.LimpiarNuevoCentroCosto();
+            this.mvCliente.SetActiveView(vwCentroCostoNuevo);
+            this.upGeneral.Update();
+        }
+
         private bool ValidarDatosNuevoCentroCosto()
         {
             if (txtDescripcionCCN.Text.Trim().Length <= 0)
@@ -110,8 +134,30 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 #endif
             }
         }
+
+        private void LimpiarNuevoCentroCosto()
+        {
+            this.txtDescripcionCCN.Text = string.Empty;
+            this.txtSerBoletaN.Text = string.Empty;
+            this.txtSerFacturaN.Text = string.Empty;
+        }
+
+        private void RegresarDesdeNuevoCentroCosto()
+        {
+            this.mvCliente.SetActiveView(vwEmpresa);
+            this.upGeneral.Update();
+        }
         #endregion
 
+        #region Editar Centro de Costo
+
+
+        private void MostrarModificarCentroCosto(int idCentroCosto)
+        {
+
+        }
+
+        #endregion
 
         private void ObtenerDatosEmpresa()
         {
@@ -141,6 +187,9 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             ucMensaje.EnableModelDialog(true);
             return;
         }
+
+
+
 
     }
 }

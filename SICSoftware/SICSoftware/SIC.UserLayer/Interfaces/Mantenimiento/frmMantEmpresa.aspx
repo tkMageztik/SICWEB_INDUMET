@@ -114,7 +114,8 @@
                                                             BorderStyle="None" BorderWidth="0px" CssClass="mGrid" 
                                                             EmptyDataText="No se encontraron centro de costos." GridLines="None" Height="16px" 
                                                             PagerStyle-CssClass="pgr" ShowHeaderWhenEmpty="True" ViewStateMode="Enabled" 
-                                                            Width="100%">
+                                                            Width="100%" DataKeyNames="emp_cst_c_int" 
+                                                            onrowediting="gvCentroCosto_RowEditing">
                                                             <AlternatingRowStyle CssClass="alt" />
                                                             <Columns>                                                            
                                                                 <asp:TemplateField HeaderText="Código">
@@ -249,7 +250,8 @@
                                                 onclick="btnGuardarCCN_Click">Guardar</asp:LinkButton>
                                         </td>
                                         <td>
-                                            <asp:LinkButton ID="btnCancelarCCN" runat="server" CssClass="lnk">Cancelar</asp:LinkButton>
+                                            <asp:LinkButton ID="btnCancelarCCN" runat="server" CssClass="lnk" 
+                                                onclick="btnCancelarCCN_Click">Cancelar</asp:LinkButton>
                                         </td>
                                         <td style="width: 10px">
                                         </td>
