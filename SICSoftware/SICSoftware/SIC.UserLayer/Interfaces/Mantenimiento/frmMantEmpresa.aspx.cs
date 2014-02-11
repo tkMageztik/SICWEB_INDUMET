@@ -90,7 +90,10 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             try
             {
                 _centroCosto.IngresarCentroCosto(centroCosto);
-
+                Mensaje("Ingresado con éxito", "../Imagenes/correcto.png");
+                this.mvCliente.SetActiveView(vwEmpresa);
+                this.ListarCentroCosto();
+                this.upGeneral.Update();
             }
             catch (Exception ex)
             {

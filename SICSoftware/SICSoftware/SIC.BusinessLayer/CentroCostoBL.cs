@@ -16,7 +16,7 @@ namespace SIC.BusinessLayer
 
         public void IngresarCentroCosto(SIC_T_EMP_CENTRO_COSTO _pSIC_T_EMP_CENTRO_COSTO)
         {
-            new CentroCostoBL().IngresarCentroCosto(_pSIC_T_EMP_CENTRO_COSTO);
+            new CentroCostoDA().IngresarCentroCosto(_pSIC_T_EMP_CENTRO_COSTO);
         }
     }
 }

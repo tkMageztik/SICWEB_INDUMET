@@ -32,6 +32,8 @@ namespace SIC.DataLayer
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
                     _pSIC_T_EMP_CENTRO_COSTO.emp_cst_c_bactivo = true;
+                    _pSIC_T_EMP_CENTRO_COSTO.emp_cst_c_inumeroboleta = 1;
+                    _pSIC_T_EMP_CENTRO_COSTO.emp_cst_c_inumerofact= 1;
                     contexto.AddToSIC_T_EMP_CENTRO_COSTO(_pSIC_T_EMP_CENTRO_COSTO);
                     contexto.SaveChanges();
                 }
