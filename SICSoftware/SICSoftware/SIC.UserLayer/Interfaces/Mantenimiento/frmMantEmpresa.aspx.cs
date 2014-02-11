@@ -13,6 +13,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         private EmpresaBL _empresa = null;
         private CentroCostoBL _centroCosto = null;
 
+        #region Eventos
         public frmMantEmpresa()
         {
             _empresa = new EmpresaBL();
@@ -27,6 +28,18 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 this.ListarCentroCosto();
                 this.ListarLocal();
             }
+        }
+
+        protected void btnAgregarCentroCosto_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        #endregion
+
+        private void MostrarNuevoCentroCosto()
+        {
+            this.mvCliente.SetActiveView(vwCentroCostoNuevo);
         }
 
         private void ObtenerDatosEmpresa()
@@ -47,5 +60,8 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             this.gvLocal.DataSource = _empresa.ListarDireccionEmpresa();
             this.gvLocal.DataBind();
         }
+
+
+
     }
 }
