@@ -50,13 +50,13 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_VENTA_DETALLE_SIC_T_VENTA", "SIC_T_VENTA", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_VENTA), "SIC_T_VENTA_DETALLE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_VENTA_DETALLE), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_CLI_CONTACTO_SIC_T_CLI_CONTAC_CARGO", "SIC_T_CLI_CONTAC_CARGO", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_CLI_CONTAC_CARGO), "SIC_T_CLI_CONTACTO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_CLI_CONTACTO), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_CLI_CONTACTO_SIC_T_CLIENTE", "SIC_T_CLIENTE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_CLIENTE), "SIC_T_CLI_CONTACTO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_CLI_CONTACTO), true)]
-[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_ALMACEN_CENTRO_COSTO_SIC_T_EMP_CENTRO_COSTO", "SIC_T_EMP_CENTRO_COSTO", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_EMP_CENTRO_COSTO), "SIC_T_ALMACEN_CENTRO_COSTO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_ALMACEN_CENTRO_COSTO), true)]
-[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_EMP_DIRECCION_SIC_T_EMP_CENTRO_COSTO", "SIC_T_EMP_CENTRO_COSTO", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_EMP_CENTRO_COSTO), "SIC_T_EMP_DIRECCION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_EMP_DIRECCION), true)]
-[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_VENTA_SIC_T_EMP_CENTRO_COSTO", "SIC_T_EMP_CENTRO_COSTO", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_EMP_CENTRO_COSTO), "SIC_T_VENTA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_VENTA), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_ALMACEN", "SIC_T_ALMACEN", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_ALMACEN), "SIC_T_MOVIMIENTO_ENTRADA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_MOVIMIENTO_ENTRADA), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_MOV_ESTADO", "SIC_T_MOV_ESTADO", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_MOV_ESTADO), "SIC_T_MOVIMIENTO_ENTRADA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_MOVIMIENTO_ENTRADA), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_ENTRADA_DETALLE_SIC_T_MOVIMIENTO_ENTRADA", "SIC_T_MOVIMIENTO_ENTRADA", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_MOVIMIENTO_ENTRADA), "SIC_T_MOVIMIENTO_ENTRADA_DETALLE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_MOVIMIENTO_ENTRADA_DETALLE), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_ORDEN_DE_COMPRA", "SIC_T_ORDEN_DE_COMPRA", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_ORDEN_DE_COMPRA), "SIC_T_MOVIMIENTO_ENTRADA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_MOVIMIENTO_ENTRADA), true)]
+[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_ALMACEN_CENTRO_COSTO_SIC_T_EMP_CENTRO_COSTO", "SIC_T_EMP_CENTRO_COSTO", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_EMP_CENTRO_COSTO), "SIC_T_ALMACEN_CENTRO_COSTO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_ALMACEN_CENTRO_COSTO), true)]
+[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_EMP_DIRECCION_SIC_T_EMP_CENTRO_COSTO", "SIC_T_EMP_CENTRO_COSTO", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_EMP_CENTRO_COSTO), "SIC_T_EMP_DIRECCION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_EMP_DIRECCION), true)]
+[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_VENTA_SIC_T_EMP_CENTRO_COSTO", "SIC_T_EMP_CENTRO_COSTO", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_EMP_CENTRO_COSTO), "SIC_T_VENTA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_VENTA), true)]
 
 #endregion
 
@@ -783,22 +783,6 @@ namespace SIC.EntityLayer
         /// <summary>
         /// No hay documentación de metadatos disponible.
         /// </summary>
-        public ObjectSet<SIC_T_EMP_CENTRO_COSTO> SIC_T_EMP_CENTRO_COSTO
-        {
-            get
-            {
-                if ((_SIC_T_EMP_CENTRO_COSTO == null))
-                {
-                    _SIC_T_EMP_CENTRO_COSTO = base.CreateObjectSet<SIC_T_EMP_CENTRO_COSTO>("SIC_T_EMP_CENTRO_COSTO");
-                }
-                return _SIC_T_EMP_CENTRO_COSTO;
-            }
-        }
-        private ObjectSet<SIC_T_EMP_CENTRO_COSTO> _SIC_T_EMP_CENTRO_COSTO;
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
         public ObjectSet<SIC_T_MOVIMIENTO_ENTRADA> SIC_T_MOVIMIENTO_ENTRADA
         {
             get
@@ -811,6 +795,22 @@ namespace SIC.EntityLayer
             }
         }
         private ObjectSet<SIC_T_MOVIMIENTO_ENTRADA> _SIC_T_MOVIMIENTO_ENTRADA;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        public ObjectSet<SIC_T_EMP_CENTRO_COSTO> SIC_T_EMP_CENTRO_COSTO
+        {
+            get
+            {
+                if ((_SIC_T_EMP_CENTRO_COSTO == null))
+                {
+                    _SIC_T_EMP_CENTRO_COSTO = base.CreateObjectSet<SIC_T_EMP_CENTRO_COSTO>("SIC_T_EMP_CENTRO_COSTO");
+                }
+                return _SIC_T_EMP_CENTRO_COSTO;
+            }
+        }
+        private ObjectSet<SIC_T_EMP_CENTRO_COSTO> _SIC_T_EMP_CENTRO_COSTO;
 
         #endregion
         #region Métodos AddTo
@@ -1152,19 +1152,19 @@ namespace SIC.EntityLayer
         }
     
         /// <summary>
-        /// Método desusado para agregar un nuevo objeto al EntitySet SIC_T_EMP_CENTRO_COSTO. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
-        /// </summary>
-        public void AddToSIC_T_EMP_CENTRO_COSTO(SIC_T_EMP_CENTRO_COSTO sIC_T_EMP_CENTRO_COSTO)
-        {
-            base.AddObject("SIC_T_EMP_CENTRO_COSTO", sIC_T_EMP_CENTRO_COSTO);
-        }
-    
-        /// <summary>
         /// Método desusado para agregar un nuevo objeto al EntitySet SIC_T_MOVIMIENTO_ENTRADA. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
         /// </summary>
         public void AddToSIC_T_MOVIMIENTO_ENTRADA(SIC_T_MOVIMIENTO_ENTRADA sIC_T_MOVIMIENTO_ENTRADA)
         {
             base.AddObject("SIC_T_MOVIMIENTO_ENTRADA", sIC_T_MOVIMIENTO_ENTRADA);
+        }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet SIC_T_EMP_CENTRO_COSTO. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToSIC_T_EMP_CENTRO_COSTO(SIC_T_EMP_CENTRO_COSTO sIC_T_EMP_CENTRO_COSTO)
+        {
+            base.AddObject("SIC_T_EMP_CENTRO_COSTO", sIC_T_EMP_CENTRO_COSTO);
         }
 
         #endregion
@@ -4752,17 +4752,17 @@ namespace SIC.EntityLayer
         /// <summary>
         /// Crear un nuevo objeto SIC_T_EMP_CENTRO_COSTO.
         /// </summary>
-        /// <param name="emp_cst_c_int">Valor inicial de la propiedad emp_cst_c_int.</param>
+        /// <param name="emp_cst_c_iid">Valor inicial de la propiedad emp_cst_c_iid.</param>
         /// <param name="emp_cst_c_vdesc">Valor inicial de la propiedad emp_cst_c_vdesc.</param>
         /// <param name="emp_cst_c_bactivo">Valor inicial de la propiedad emp_cst_c_bactivo.</param>
         /// <param name="emp_cst_c_vseriefactura">Valor inicial de la propiedad emp_cst_c_vseriefactura.</param>
         /// <param name="emp_cst_c_inumerofact">Valor inicial de la propiedad emp_cst_c_inumerofact.</param>
         /// <param name="emp_cst_c_vserieboleta">Valor inicial de la propiedad emp_cst_c_vserieboleta.</param>
         /// <param name="emp_cst_c_inumeroboleta">Valor inicial de la propiedad emp_cst_c_inumeroboleta.</param>
-        public static SIC_T_EMP_CENTRO_COSTO CreateSIC_T_EMP_CENTRO_COSTO(global::System.Int32 emp_cst_c_int, global::System.String emp_cst_c_vdesc, global::System.Boolean emp_cst_c_bactivo, global::System.String emp_cst_c_vseriefactura, global::System.Int32 emp_cst_c_inumerofact, global::System.String emp_cst_c_vserieboleta, global::System.Int32 emp_cst_c_inumeroboleta)
+        public static SIC_T_EMP_CENTRO_COSTO CreateSIC_T_EMP_CENTRO_COSTO(global::System.Int32 emp_cst_c_iid, global::System.String emp_cst_c_vdesc, global::System.Boolean emp_cst_c_bactivo, global::System.String emp_cst_c_vseriefactura, global::System.Int32 emp_cst_c_inumerofact, global::System.String emp_cst_c_vserieboleta, global::System.Int32 emp_cst_c_inumeroboleta)
         {
             SIC_T_EMP_CENTRO_COSTO sIC_T_EMP_CENTRO_COSTO = new SIC_T_EMP_CENTRO_COSTO();
-            sIC_T_EMP_CENTRO_COSTO.emp_cst_c_int = emp_cst_c_int;
+            sIC_T_EMP_CENTRO_COSTO.emp_cst_c_iid = emp_cst_c_iid;
             sIC_T_EMP_CENTRO_COSTO.emp_cst_c_vdesc = emp_cst_c_vdesc;
             sIC_T_EMP_CENTRO_COSTO.emp_cst_c_bactivo = emp_cst_c_bactivo;
             sIC_T_EMP_CENTRO_COSTO.emp_cst_c_vseriefactura = emp_cst_c_vseriefactura;
@@ -4780,27 +4780,27 @@ namespace SIC.EntityLayer
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 emp_cst_c_int
+        public global::System.Int32 emp_cst_c_iid
         {
             get
             {
-                return _emp_cst_c_int;
+                return _emp_cst_c_iid;
             }
             set
             {
-                if (_emp_cst_c_int != value)
+                if (_emp_cst_c_iid != value)
                 {
-                    Onemp_cst_c_intChanging(value);
-                    ReportPropertyChanging("emp_cst_c_int");
-                    _emp_cst_c_int = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("emp_cst_c_int");
-                    Onemp_cst_c_intChanged();
+                    Onemp_cst_c_iidChanging(value);
+                    ReportPropertyChanging("emp_cst_c_iid");
+                    _emp_cst_c_iid = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("emp_cst_c_iid");
+                    Onemp_cst_c_iidChanged();
                 }
             }
         }
-        private global::System.Int32 _emp_cst_c_int;
-        partial void Onemp_cst_c_intChanging(global::System.Int32 value);
-        partial void Onemp_cst_c_intChanged();
+        private global::System.Int32 _emp_cst_c_iid;
+        partial void Onemp_cst_c_iidChanging(global::System.Int32 value);
+        partial void Onemp_cst_c_iidChanged();
     
         /// <summary>
         /// No hay documentación de metadatos disponible.

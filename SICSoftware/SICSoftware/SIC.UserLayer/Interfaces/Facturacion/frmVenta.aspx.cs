@@ -401,7 +401,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             cboCentroCosto.Items.Add(new ListItem("-- Seleccionar --", "-1"));
             cboCentroCosto.DataSource = _centroCosto.ListarCentroCosto();
             cboCentroCosto.DataTextField = "emp_cst_c_vdesc";
-            cboCentroCosto.DataValueField = "emp_cst_c_int";
+            cboCentroCosto.DataValueField = "emp_cst_c_iid";
             cboCentroCosto.DataBind();
         }
 

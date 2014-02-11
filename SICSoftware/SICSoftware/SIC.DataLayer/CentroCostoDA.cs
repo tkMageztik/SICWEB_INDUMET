@@ -27,7 +27,27 @@ namespace SIC.DataLayer
 
         public SIC_T_EMP_CENTRO_COSTO ObtenerCentroCosto(int idCentroCosto)
         {
-            return null;
+            try
+            {
+                using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+                {
+                    var result = (from x in contexto.SIC_T_EMP_CENTRO_COSTO
+                            where x.emp_cst_c_bactivo == true && x.emp_cst_c_iid == idCentroCosto
+                            select x).ToList();
+                    if (result != null && result.Count() > 0)
+                    {
+                        return result[0];
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void IngresarCentroCosto(SIC_T_EMP_CENTRO_COSTO _pSIC_T_EMP_CENTRO_COSTO)

@@ -147,14 +147,26 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             this.mvCliente.SetActiveView(vwEmpresa);
             this.upGeneral.Update();
         }
+
         #endregion
 
         #region Editar Centro de Costo
-
-
+        
         private void MostrarModificarCentroCosto(int idCentroCosto)
         {
+            var centroCosto = _centroCosto.ObtenerCentroCosto(idCentroCosto);
+            if(centroCosto== null)
+            {
+                // TODO: ERROR
+                return;
+            }
 
+            this.CentroCostoModificar = centroCosto;
+            this.txtDescripcionCCE.Text = centroCosto.emp_cst_c_vdesc;
+            this.txtSerBoletaE.Text = centroCosto.emp_cst_c_vserieboleta;
+            this.txtSerFacturaE.Text = centroCosto.emp_cst_c_vseriefactura;
+            this.mvCliente.SetActiveView(vwCentroCostoEditar);
+            this.upGeneral.Update();
         }
 
         #endregion
@@ -185,6 +197,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             ucMensaje.Mensaje = mensaje;
             ucMensaje.Ruta = ruta;
             ucMensaje.EnableModelDialog(true);
+            upMensaje.Update();
             return;
         }
 

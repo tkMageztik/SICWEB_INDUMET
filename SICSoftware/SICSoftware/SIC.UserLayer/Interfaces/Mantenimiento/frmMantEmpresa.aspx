@@ -114,13 +114,13 @@
                                                             BorderStyle="None" BorderWidth="0px" CssClass="mGrid" 
                                                             EmptyDataText="No se encontraron centro de costos." GridLines="None" Height="16px" 
                                                             PagerStyle-CssClass="pgr" ShowHeaderWhenEmpty="True" ViewStateMode="Enabled" 
-                                                            Width="100%" DataKeyNames="emp_cst_c_int" 
+                                                            Width="100%" DataKeyNames="emp_cst_c_iid" 
                                                             onrowediting="gvCentroCosto_RowEditing">
                                                             <AlternatingRowStyle CssClass="alt" />
                                                             <Columns>                                                            
                                                                 <asp:TemplateField HeaderText="Código">
                                                                     <ItemTemplate>
-                                                                        <%# Eval("emp_cst_c_int")%>
+                                                                        <%# Eval("emp_cst_c_iid")%>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
                                                                 <asp:TemplateField HeaderText="Descripción">
@@ -471,14 +471,14 @@
                                                     <td align="left" class="style4">
                                                         Correlativo de Boleta</td>
                                                     <td align="left" class="style4">
-                                                        <asp:TextBox ID="txtSerBoletaE" runat="server" MaxLength="3"></asp:TextBox>
+                                                        <asp:TextBox ID="txtSerBoletaE" runat="server" MaxLength="3" ReadOnly="True"></asp:TextBox>
                                                     </td>
                                                     <td align="left" class="style4">
                                                         &nbsp;</td>
                                                     <td align="left" class="style4">
                                                         Correlativo de Factura</td>
                                                     <td align="left" class="style4">
-                                                        <asp:TextBox ID="txtSerFacturaE" runat="server" MaxLength="3"></asp:TextBox>
+                                                        <asp:TextBox ID="txtSerFacturaE" runat="server" MaxLength="3" ReadOnly="True"></asp:TextBox>
                                                     </td>
                                                 </tr>
                                                 <tr>
