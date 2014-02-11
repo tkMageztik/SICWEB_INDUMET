@@ -1783,11 +1783,11 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             if (!Page.IsPostBack)
             {
                 ListarClientes();
-                cboTipoDoc_SelectedIndexChanged(sender, e);
                 mvCliente.ActiveViewIndex = 0;
 
                 UIPage.Fill(_cliente.Listar_DocumentosIdentidad().Where(x => x.par_det_c_iid != Convert.ToInt32(DocumentoPersona.RUC))
                     , "par_det_c_iid", "par_det_c_vdesc", cboTipoDoc, string.Empty, "0");
+                cboTipoDoc_SelectedIndexChanged(sender, e);
             }
             //cboCentroComercial.DataSource = _local.ListarInmuebles();
             //cboCentroComercial.DataValueField = "inm_c_icod";

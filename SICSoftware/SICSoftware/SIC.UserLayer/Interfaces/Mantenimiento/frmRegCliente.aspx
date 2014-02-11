@@ -580,7 +580,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td align="center" colspan="2">
+                            <td align="center" colspan="5">
                                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                     <tr>
                                         <td align="left" class="box-estilo01">
