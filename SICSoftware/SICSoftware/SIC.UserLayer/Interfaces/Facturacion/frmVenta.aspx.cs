@@ -1018,6 +1018,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                     Mensaje("Error en el proceso.", "../Imagenes/warning.png");
 #endif
             }
+            upGeneral.Update();
         }
 
         /// <summary>
@@ -1113,6 +1114,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             ucMensaje.Mensaje = mensaje;
             ucMensaje.Ruta = ruta;
             ucMensaje.EnableModelDialog(true);
+            upGeneral.Update();
             return;
         }
 

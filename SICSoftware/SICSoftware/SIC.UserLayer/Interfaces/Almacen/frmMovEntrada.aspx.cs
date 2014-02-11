@@ -279,9 +279,9 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         {
             
             this.MovEntSeleccionado = _movEntrada.ObtenerMovimientoEntradaPorId(idMovimiento);
-            if (MovEntSeleccionado.mve_c_ioc_id == (int)EstadoMovimiento.CERRADA || MovEntSeleccionado.mve_c_ioc_id == (int)EstadoMovimiento.ANULADO)
+            if (MovEntSeleccionado.mve_c_iestado == (int)EstadoMovimiento.CERRADA || MovEntSeleccionado.mve_c_iestado == (int)EstadoMovimiento.ANULADO)
             {
-                this.Mensaje("No se puede modificar movimientos en estado CERRADO o ANULADO.", "../Imagenes/warning.png");
+                this.Mensaje("No se puede modificar movimientos en estado CERRADO o ANULADO.", "../Imagenes/warning.png");                
                 return;
             }
 
@@ -703,6 +703,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             ucMensaje.Mensaje = mensaje;
             ucMensaje.Ruta = ruta;
             ucMensaje.EnableModelDialog(true);
+            upGeneral.Update();
             return;
         }
         

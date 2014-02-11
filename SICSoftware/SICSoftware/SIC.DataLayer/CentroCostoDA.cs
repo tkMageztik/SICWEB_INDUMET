@@ -25,6 +25,11 @@ namespace SIC.DataLayer
             }
         }
 
+        public SIC_T_EMP_CENTRO_COSTO ObtenerCentroCosto(int idCentroCosto)
+        {
+            return null;
+        }
+
         public void IngresarCentroCosto(SIC_T_EMP_CENTRO_COSTO _pSIC_T_EMP_CENTRO_COSTO)
         {
             try
