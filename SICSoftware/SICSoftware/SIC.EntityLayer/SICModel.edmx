@@ -274,7 +274,7 @@
             <PropertyRef Name="cli_contac_c_iid" />
           </Key>
           <Property Name="cli_contac_c_iid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="cli_contac_c_cdoc_id" Type="char" MaxLength="8" />
+          <Property Name="cli_contac_c_cdoc_id" Type="char" MaxLength="12" />
           <Property Name="cli_contac_c_vnomb" Type="varchar" MaxLength="50" />
           <Property Name="cli_contac_c_vape_pat" Type="varchar" MaxLength="50" />
           <Property Name="cli_contac_c_vape_mat" Type="varchar" MaxLength="50" />
@@ -1234,7 +1234,6 @@
       <Schema Namespace="SICDBWEBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="SICDBWEBEntities" annotation:LazyLoadingEnabled="true" >
           <EntitySet Name="SIC_T_CLI_CONTAC_CARGO" EntityType="SICDBWEBModel.SIC_T_CLI_CONTAC_CARGO" />
-          <EntitySet Name="SIC_T_CLI_CONTACTO" EntityType="SICDBWEBModel.SIC_T_CLI_CONTACTO" />
           <EntitySet Name="SIC_T_CLI_DIRECCION" EntityType="SICDBWEBModel.SIC_T_CLI_DIRECCION" />
           <EntitySet Name="SIC_T_CLI_NOMB_COM" EntityType="SICDBWEBModel.SIC_T_CLI_NOMB_COM" />
           <EntitySet Name="SIC_T_CLI_RS_HISTORICO" EntityType="SICDBWEBModel.SIC_T_CLI_RS_HISTORICO" />
@@ -1247,10 +1246,6 @@
           <EntitySet Name="SIC_T_PROVINCIA" EntityType="SICDBWEBModel.SIC_T_PROVINCIA" />
           <EntitySet Name="SIC_T_ZONA_REPARTO" EntityType="SICDBWEBModel.SIC_T_ZONA_REPARTO" />
           <EntitySet Name="SIC_T_ZONA_REPARTO_LUGAR" EntityType="SICDBWEBModel.SIC_T_ZONA_REPARTO_LUGAR" />
-          <AssociationSet Name="FK_SIC_T_CLI_CONTACTO_SIC_T_CLI_CONTAC_CARGO" Association="SICDBWEBModel.FK_SIC_T_CLI_CONTACTO_SIC_T_CLI_CONTAC_CARGO">
-            <End Role="SIC_T_CLI_CONTAC_CARGO" EntitySet="SIC_T_CLI_CONTAC_CARGO" />
-            <End Role="SIC_T_CLI_CONTACTO" EntitySet="SIC_T_CLI_CONTACTO" />
-          </AssociationSet>
           <AssociationSet Name="FK_SIC_T_CLI_DIRECCION_SIC_T_DISTRITO" Association="SICDBWEBModel.FK_SIC_T_CLI_DIRECCION_SIC_T_DISTRITO">
             <End Role="SIC_T_DISTRITO" EntitySet="SIC_T_DISTRITO" />
             <End Role="SIC_T_CLI_DIRECCION" EntitySet="SIC_T_CLI_DIRECCION" />
@@ -1443,10 +1438,6 @@
           </AssociationSet>
           <EntitySet Name="SIC_T_TASA_CAMBIO" EntityType="SICDBWEBModel.SIC_T_TASA_CAMBIO" />
           <EntitySet Name="SIC_T_CLIENTE" EntityType="SICDBWEBModel.SIC_T_CLIENTE" />
-          <AssociationSet Name="FK_SIC_T_CLI_CONTACTO_SIC_T_CLIENTE" Association="SICDBWEBModel.FK_SIC_T_CLI_CONTACTO_SIC_T_CLIENTE">
-            <End Role="SIC_T_CLIENTE" EntitySet="SIC_T_CLIENTE" />
-            <End Role="SIC_T_CLI_CONTACTO" EntitySet="SIC_T_CLI_CONTACTO" />
-          </AssociationSet>
           <AssociationSet Name="FK_SIC_T_CLI_DIRECCION_SIC_T_CLIENTE" Association="SICDBWEBModel.FK_SIC_T_CLI_DIRECCION_SIC_T_CLIENTE">
             <End Role="SIC_T_CLIENTE" EntitySet="SIC_T_CLIENTE" />
             <End Role="SIC_T_CLI_DIRECCION" EntitySet="SIC_T_CLI_DIRECCION" />
@@ -1503,6 +1494,15 @@
             <End Role="SIC_T_EMP_CENTRO_COSTO" EntitySet="SIC_T_EMP_CENTRO_COSTO" />
             <End Role="SIC_T_EMP_DIRECCION" EntitySet="SIC_T_EMP_DIRECCION" />
           </AssociationSet>
+          <EntitySet Name="SIC_T_CLI_CONTACTO" EntityType="SICDBWEBModel.SIC_T_CLI_CONTACTO" />
+          <AssociationSet Name="FK_SIC_T_CLI_CONTACTO_SIC_T_CLI_CONTAC_CARGO" Association="SICDBWEBModel.FK_SIC_T_CLI_CONTACTO_SIC_T_CLI_CONTAC_CARGO">
+            <End Role="SIC_T_CLI_CONTAC_CARGO" EntitySet="SIC_T_CLI_CONTAC_CARGO" />
+            <End Role="SIC_T_CLI_CONTACTO" EntitySet="SIC_T_CLI_CONTACTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SIC_T_CLI_CONTACTO_SIC_T_CLIENTE" Association="SICDBWEBModel.FK_SIC_T_CLI_CONTACTO_SIC_T_CLIENTE">
+            <End Role="SIC_T_CLIENTE" EntitySet="SIC_T_CLIENTE" />
+            <End Role="SIC_T_CLI_CONTACTO" EntitySet="SIC_T_CLI_CONTACTO" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="SIC_T_CLI_CONTAC_CARGO">
           <Key>
@@ -1511,26 +1511,6 @@
           <Property Type="Byte" Name="cli_contac_cargo_c_yid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="cli_contac_cargo_c_vnomb" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="SIC_T_CLI_CONTACTO" Relationship="SICDBWEBModel.FK_SIC_T_CLI_CONTACTO_SIC_T_CLI_CONTAC_CARGO" FromRole="SIC_T_CLI_CONTAC_CARGO" ToRole="SIC_T_CLI_CONTACTO" />
-        </EntityType>
-        <EntityType Name="SIC_T_CLI_CONTACTO">
-          <Key>
-            <PropertyRef Name="cli_contac_c_iid" />
-          </Key>
-          <Property Type="Int32" Name="cli_contac_c_iid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="cli_contac_c_cdoc_id" MaxLength="8" FixedLength="true" Unicode="false" />
-          <Property Type="String" Name="cli_contac_c_vnomb" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="cli_contac_c_vape_pat" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="cli_contac_c_vape_mat" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="cli_contac_c_ctlf" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="cli_contac_c_ccel" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="cli_contac_c_vcorreo" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="cli_contac_c_dfec_cump" />
-          <Property Type="Byte" Name="cli_contac_cargo_c_yid" Nullable="false" />
-          <Property Type="String" Name="cli_contac_c_vobserv" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="cli_contac_c_bactivo" />
-          <Property Type="String" Name="cli_c_vdoc_id" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="SIC_T_CLI_CONTAC_CARGO" Relationship="SICDBWEBModel.FK_SIC_T_CLI_CONTACTO_SIC_T_CLI_CONTAC_CARGO" FromRole="SIC_T_CLI_CONTACTO" ToRole="SIC_T_CLI_CONTAC_CARGO" />
-          <NavigationProperty Name="SIC_T_CLIENTE" Relationship="SICDBWEBModel.FK_SIC_T_CLI_CONTACTO_SIC_T_CLIENTE" FromRole="SIC_T_CLI_CONTACTO" ToRole="SIC_T_CLIENTE" />
         </EntityType>
         <EntityType Name="SIC_T_CLI_DIRECCION">
           <Key>
@@ -1642,18 +1622,6 @@
           <Property Type="String" Name="zona_rep_lug_c_vdesc" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="SIC_T_ZONA_REPARTO" Relationship="SICDBWEBModel.FK_SIC_T_ZONA_REPARTO_LUGAR_SIC_T_ZONA_REPARTO" FromRole="SIC_T_ZONA_REPARTO_LUGAR" ToRole="SIC_T_ZONA_REPARTO" />
         </EntityType>
-        <Association Name="FK_SIC_T_CLI_CONTACTO_SIC_T_CLI_CONTAC_CARGO">
-          <End Type="SICDBWEBModel.SIC_T_CLI_CONTAC_CARGO" Role="SIC_T_CLI_CONTAC_CARGO" Multiplicity="1" />
-          <End Type="SICDBWEBModel.SIC_T_CLI_CONTACTO" Role="SIC_T_CLI_CONTACTO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SIC_T_CLI_CONTAC_CARGO">
-              <PropertyRef Name="cli_contac_cargo_c_yid" />
-            </Principal>
-            <Dependent Role="SIC_T_CLI_CONTACTO">
-              <PropertyRef Name="cli_contac_cargo_c_yid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SIC_T_CLI_DIRECCION_SIC_T_DISTRITO">
           <End Type="SICDBWEBModel.SIC_T_DISTRITO" Role="SIC_T_DISTRITO" Multiplicity="0..1" />
           <End Type="SICDBWEBModel.SIC_T_CLI_DIRECCION" Role="SIC_T_CLI_DIRECCION" Multiplicity="*" />
@@ -2313,7 +2281,6 @@
           <Property Type="DateTime" Name="cli_c_dfec_const" />
           <Property Type="Boolean" Name="cli_c_bproveedor" />
           <Property Type="Boolean" Name="cli_c_bcliente" />
-          <NavigationProperty Name="SIC_T_CLI_CONTACTO" Relationship="SICDBWEBModel.FK_SIC_T_CLI_CONTACTO_SIC_T_CLIENTE" FromRole="SIC_T_CLIENTE" ToRole="SIC_T_CLI_CONTACTO" />
           <NavigationProperty Name="SIC_T_CLI_DIRECCION" Relationship="SICDBWEBModel.FK_SIC_T_CLI_DIRECCION_SIC_T_CLIENTE" FromRole="SIC_T_CLIENTE" ToRole="SIC_T_CLI_DIRECCION" />
           <NavigationProperty Name="SIC_T_CLI_NOMB_COM" Relationship="SICDBWEBModel.FK_SIC_T_CLI_NOMB_COM_SIC_T_CLIENTE" FromRole="SIC_T_CLIENTE" ToRole="SIC_T_CLI_NOMB_COM" />
           <NavigationProperty Name="SIC_T_CLI_SCORING" Relationship="SICDBWEBModel.FK_SIC_T_CLIENTE_SIC_T_CLI_SCORING" FromRole="SIC_T_CLIENTE" ToRole="SIC_T_CLI_SCORING" />
@@ -2322,19 +2289,8 @@
           <NavigationProperty Name="SIC_T_MOVIMIENTO_ENTRADA" Relationship="SICDBWEBModel.FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_CLIENTE" FromRole="SIC_T_CLIENTE" ToRole="SIC_T_MOVIMIENTO_ENTRADA" />
           <NavigationProperty Name="SIC_T_ORDEN_DE_COMPRA" Relationship="SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_SIC_T_CLIENTE" FromRole="SIC_T_CLIENTE" ToRole="SIC_T_ORDEN_DE_COMPRA" />
           <NavigationProperty Name="SIC_T_VENTA" Relationship="SICDBWEBModel.FK_SIC_T_VENTA_SIC_T_CLIENTE" FromRole="SIC_T_CLIENTE" ToRole="SIC_T_VENTA" />
+          <NavigationProperty Name="SIC_T_CLI_CONTACTO" Relationship="SICDBWEBModel.FK_SIC_T_CLI_CONTACTO_SIC_T_CLIENTE" FromRole="SIC_T_CLIENTE" ToRole="SIC_T_CLI_CONTACTO" />
         </EntityType>
-        <Association Name="FK_SIC_T_CLI_CONTACTO_SIC_T_CLIENTE">
-          <End Type="SICDBWEBModel.SIC_T_CLIENTE" Role="SIC_T_CLIENTE" Multiplicity="1" />
-          <End Type="SICDBWEBModel.SIC_T_CLI_CONTACTO" Role="SIC_T_CLI_CONTACTO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SIC_T_CLIENTE">
-              <PropertyRef Name="cli_c_vdoc_id" />
-            </Principal>
-            <Dependent Role="SIC_T_CLI_CONTACTO">
-              <PropertyRef Name="cli_c_vdoc_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SIC_T_CLI_DIRECCION_SIC_T_CLIENTE">
           <End Type="SICDBWEBModel.SIC_T_CLIENTE" Role="SIC_T_CLIENTE" Multiplicity="1" />
           <End Type="SICDBWEBModel.SIC_T_CLI_DIRECCION" Role="SIC_T_CLI_DIRECCION" Multiplicity="*" />
@@ -2539,6 +2495,50 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="SIC_T_CLI_CONTACTO">
+          <Key>
+            <PropertyRef Name="cli_contac_c_iid" />
+          </Key>
+          <Property Type="Int32" Name="cli_contac_c_iid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="cli_contac_c_cdoc_id" MaxLength="12" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="cli_contac_c_vnomb" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="cli_contac_c_vape_pat" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="cli_contac_c_vape_mat" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="cli_contac_c_ctlf" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="cli_contac_c_ccel" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="cli_contac_c_vcorreo" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="cli_contac_c_dfec_cump" />
+          <Property Type="Byte" Name="cli_contac_cargo_c_yid" Nullable="false" />
+          <Property Type="String" Name="cli_contac_c_vobserv" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="cli_contac_c_bactivo" />
+          <Property Type="String" Name="cli_c_vdoc_id" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SIC_T_CLI_CONTAC_CARGO" Relationship="SICDBWEBModel.FK_SIC_T_CLI_CONTACTO_SIC_T_CLI_CONTAC_CARGO" FromRole="SIC_T_CLI_CONTACTO" ToRole="SIC_T_CLI_CONTAC_CARGO" />
+          <NavigationProperty Name="SIC_T_CLIENTE" Relationship="SICDBWEBModel.FK_SIC_T_CLI_CONTACTO_SIC_T_CLIENTE" FromRole="SIC_T_CLI_CONTACTO" ToRole="SIC_T_CLIENTE" />
+        </EntityType>
+        <Association Name="FK_SIC_T_CLI_CONTACTO_SIC_T_CLI_CONTAC_CARGO">
+          <End Type="SICDBWEBModel.SIC_T_CLI_CONTAC_CARGO" Role="SIC_T_CLI_CONTAC_CARGO" Multiplicity="1" />
+          <End Type="SICDBWEBModel.SIC_T_CLI_CONTACTO" Role="SIC_T_CLI_CONTACTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SIC_T_CLI_CONTAC_CARGO">
+              <PropertyRef Name="cli_contac_cargo_c_yid" />
+            </Principal>
+            <Dependent Role="SIC_T_CLI_CONTACTO">
+              <PropertyRef Name="cli_contac_cargo_c_yid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SIC_T_CLI_CONTACTO_SIC_T_CLIENTE">
+          <End Type="SICDBWEBModel.SIC_T_CLIENTE" Role="SIC_T_CLIENTE" Multiplicity="1" />
+          <End Type="SICDBWEBModel.SIC_T_CLI_CONTACTO" Role="SIC_T_CLI_CONTACTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SIC_T_CLIENTE">
+              <PropertyRef Name="cli_c_vdoc_id" />
+            </Principal>
+            <Dependent Role="SIC_T_CLI_CONTACTO">
+              <PropertyRef Name="cli_c_vdoc_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2550,25 +2550,6 @@
               <MappingFragment StoreEntitySet="SIC_T_CLI_CONTAC_CARGO">
                 <ScalarProperty Name="cli_contac_cargo_c_vnomb" ColumnName="cli_contac_cargo_c_vnomb" />
                 <ScalarProperty Name="cli_contac_cargo_c_yid" ColumnName="cli_contac_cargo_c_yid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SIC_T_CLI_CONTACTO">
-            <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_CLI_CONTACTO">
-              <MappingFragment StoreEntitySet="SIC_T_CLI_CONTACTO">
-                <ScalarProperty Name="cli_c_vdoc_id" ColumnName="cli_c_vdoc_id" />
-                <ScalarProperty Name="cli_contac_c_bactivo" ColumnName="cli_contac_c_bactivo" />
-                <ScalarProperty Name="cli_contac_c_vobserv" ColumnName="cli_contac_c_vobserv" />
-                <ScalarProperty Name="cli_contac_cargo_c_yid" ColumnName="cli_contac_cargo_c_yid" />
-                <ScalarProperty Name="cli_contac_c_dfec_cump" ColumnName="cli_contac_c_dfec_cump" />
-                <ScalarProperty Name="cli_contac_c_vcorreo" ColumnName="cli_contac_c_vcorreo" />
-                <ScalarProperty Name="cli_contac_c_ccel" ColumnName="cli_contac_c_ccel" />
-                <ScalarProperty Name="cli_contac_c_ctlf" ColumnName="cli_contac_c_ctlf" />
-                <ScalarProperty Name="cli_contac_c_vape_mat" ColumnName="cli_contac_c_vape_mat" />
-                <ScalarProperty Name="cli_contac_c_vape_pat" ColumnName="cli_contac_c_vape_pat" />
-                <ScalarProperty Name="cli_contac_c_vnomb" ColumnName="cli_contac_c_vnomb" />
-                <ScalarProperty Name="cli_contac_c_cdoc_id" ColumnName="cli_contac_c_cdoc_id" />
-                <ScalarProperty Name="cli_contac_c_iid" ColumnName="cli_contac_c_iid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3079,6 +3060,25 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="SIC_T_CLI_CONTACTO">
+            <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_CLI_CONTACTO">
+              <MappingFragment StoreEntitySet="SIC_T_CLI_CONTACTO">
+                <ScalarProperty Name="cli_c_vdoc_id" ColumnName="cli_c_vdoc_id" />
+                <ScalarProperty Name="cli_contac_c_bactivo" ColumnName="cli_contac_c_bactivo" />
+                <ScalarProperty Name="cli_contac_c_vobserv" ColumnName="cli_contac_c_vobserv" />
+                <ScalarProperty Name="cli_contac_cargo_c_yid" ColumnName="cli_contac_cargo_c_yid" />
+                <ScalarProperty Name="cli_contac_c_dfec_cump" ColumnName="cli_contac_c_dfec_cump" />
+                <ScalarProperty Name="cli_contac_c_vcorreo" ColumnName="cli_contac_c_vcorreo" />
+                <ScalarProperty Name="cli_contac_c_ccel" ColumnName="cli_contac_c_ccel" />
+                <ScalarProperty Name="cli_contac_c_ctlf" ColumnName="cli_contac_c_ctlf" />
+                <ScalarProperty Name="cli_contac_c_vape_mat" ColumnName="cli_contac_c_vape_mat" />
+                <ScalarProperty Name="cli_contac_c_vape_pat" ColumnName="cli_contac_c_vape_pat" />
+                <ScalarProperty Name="cli_contac_c_vnomb" ColumnName="cli_contac_c_vnomb" />
+                <ScalarProperty Name="cli_contac_c_cdoc_id" ColumnName="cli_contac_c_cdoc_id" />
+                <ScalarProperty Name="cli_contac_c_iid" ColumnName="cli_contac_c_iid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -3101,7 +3101,6 @@
     <Diagrams>
       <Diagram Name="SICModel" ZoomLevel="58" >
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_CLI_CONTAC_CARGO" Width="1.5" PointX="3" PointY="1.75" Height="1.211080729166667" />
-        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_CLI_CONTACTO" Width="1.5" PointX="5.25" PointY="5.625" Height="3.9033007812499996" />
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_CLI_DIRECCION" Width="1.5" PointX="8.25" PointY="6.25" Height="2.7494921874999996" />
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_CLI_NOMB_COM" Width="1.5" PointX="5.25" PointY="15" Height="1.5956835937499996" />
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_CLI_RS_HISTORICO" Width="1.5" PointX="5.75" PointY="0.75" Height="1.7879850260416674" />
@@ -3114,16 +3113,11 @@
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_PROVINCIA" Width="1.5" PointX="3.75" PointY="20.625" Height="1.9802864583333388" />
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_ZONA_REPARTO" Width="1.5" PointX="0.75" PointY="6.75" Height="1.7879850260416674" />
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_ZONA_REPARTO_LUGAR" Width="1.5" PointX="3" PointY="12.75" Height="1.7879850260416674" />
-        <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_CLI_CONTACTO_SIC_T_CLI_CONTAC_CARGO" >
-          <ConnectorPoint PointX="4.125" PointY="3.34568359375" />
-          <ConnectorPoint PointX="4.125" PointY="6.6344962565104169" />
-          <ConnectorPoint PointX="5.25" PointY="6.6344962565104169" />
-        </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_CLI_DIRECCION_SIC_T_DISTRITO" >
-          <ConnectorPoint PointX="6.75" PointY="20.625" />
-          <ConnectorPoint PointX="6.75" PointY="16.84568359375" />
-          <ConnectorPoint PointX="7.125" PointY="16.84568359375" />
-          <ConnectorPoint PointX="7.125" PointY="7.62474609375" />
+          <ConnectorPoint PointX="7.15625" PointY="20.625" />
+          <ConnectorPoint PointX="7.15625" PointY="7.62474609375" />
+          <ConnectorPoint PointX="7.916666666666667" PointY="7.6247460937499989" />
+          <ConnectorPoint PointX="8.0833333333333339" PointY="7.62474609375" />
           <ConnectorPoint PointX="8.25" PointY="7.62474609375" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_PROVINCIA_SIC_T_DEPARTAMENTO" >
@@ -3157,16 +3151,16 @@
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_COLABORADOR" Width="1.5" PointX="7.75" PointY="16.25" Height="2.9417936197916674" />
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_COLABORADOR_SIC_T_COLAB_AREA" >
           <ConnectorPoint PointX="3" PointY="17.15818359375" />
-          <ConnectorPoint PointX="6.666666666666667" PointY="17.15818359375" />
-          <ConnectorPoint PointX="6.833333333333333" PointY="17.15818359375" />
+          <ConnectorPoint PointX="7.072916666666667" PointY="17.15818359375" />
+          <ConnectorPoint PointX="7.239583333333333" PointY="17.15818359375" />
           <ConnectorPoint PointX="7.416666666666667" PointY="17.15818359375" />
           <ConnectorPoint PointX="7.583333333333333" PointY="17.15818359375" />
           <ConnectorPoint PointX="7.75" PointY="17.15818359375" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_COLABORADOR_SIC_T_COLAB_CARGO" >
           <ConnectorPoint PointX="3" PointY="19.626933593749989" />
-          <ConnectorPoint PointX="6.666666666666667" PointY="19.626933593749989" />
-          <ConnectorPoint PointX="6.833333333333333" PointY="19.626933593749989" />
+          <ConnectorPoint PointX="7.072916666666667" PointY="19.626933593749989" />
+          <ConnectorPoint PointX="7.239583333333333" PointY="19.626933593749989" />
           <ConnectorPoint PointX="8.5" PointY="19.626933593749989" />
           <ConnectorPoint PointX="8.5" PointY="19.191793619791667" />
         </AssociationConnector>
@@ -3213,10 +3207,10 @@
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_ITEM_ALMACEN_SIC_T_ALMACEN" >
           <ConnectorPoint PointX="15.875" PointY="6.75" />
           <ConnectorPoint PointX="15.875" PointY="5.2112939453124909" />
-          <ConnectorPoint PointX="24.244789166666667" PointY="5.21129394531249" />
-          <ConnectorPoint PointX="24.411455833333331" PointY="5.2112939453124909" />
-          <ConnectorPoint PointX="24.447916666666668" PointY="5.21129394531249" />
-          <ConnectorPoint PointX="24.614583333333332" PointY="5.2112939453124909" />
+          <ConnectorPoint PointX="23.916666666666668" PointY="5.21129394531249" />
+          <ConnectorPoint PointX="24.083333333333332" PointY="5.2112939453124909" />
+          <ConnectorPoint PointX="24.744791666666668" PointY="5.21129394531249" />
+          <ConnectorPoint PointX="24.927083333333332" PointY="5.2112939453124909" />
           <ConnectorPoint PointX="25.625" PointY="5.2112939453124909" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_ALMACEN" >
@@ -3240,13 +3234,13 @@
           <ConnectorPoint PointX="23.375" PointY="3.3218489583333337" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ITEM" >
-          <ConnectorPoint PointX="24.53125" PointY="4.2686979166666674" />
-          <ConnectorPoint PointX="24.53125" PointY="12.15625" />
+          <ConnectorPoint PointX="24.84375" PointY="4.2686979166666674" />
+          <ConnectorPoint PointX="24.84375" PointY="12.15625" />
           <ConnectorPoint PointX="25.625" PointY="12.15625" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_VENTA_DETALLE_SIC_T_ITEM" >
-          <ConnectorPoint PointX="24.3281225" PointY="4.2686979166666674" />
-          <ConnectorPoint PointX="24.3281225" PointY="18.28125" />
+          <ConnectorPoint PointX="24.828125" PointY="4.2686979166666674" />
+          <ConnectorPoint PointX="24.828125" PointY="18.28125" />
           <ConnectorPoint PointX="22.552083333333332" PointY="18.28125" />
           <ConnectorPoint PointX="22.385416666666668" PointY="18.28125" />
           <ConnectorPoint PointX="21.125" PointY="18.28125" />
@@ -3276,8 +3270,8 @@
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_MOVIMIENTO_ENTRADA_DETALLE_SIC_T_ORDEN_DE_COMPRA_DET" >
           <ConnectorPoint PointX="25.625" PointY="13.528595377604162" />
-          <ConnectorPoint PointX="24.411455833333331" PointY="13.528595377604162" />
-          <ConnectorPoint PointX="24.244789166666667" PointY="13.528595377604162" />
+          <ConnectorPoint PointX="24.911458333333332" PointY="13.528595377604162" />
+          <ConnectorPoint PointX="24.744791666666668" PointY="13.528595377604162" />
           <ConnectorPoint PointX="24.125" PointY="13.528595377604162" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_SIC_T_ODC_CLASE" >
@@ -3300,23 +3294,16 @@
           <ConnectorPoint PointX="22.333333333333332" PointY="15.927308442708323" />
           <ConnectorPoint PointX="22.385416666666668" PointY="15.927308442708323" />
           <ConnectorPoint PointX="22.552083333333332" PointY="15.927308442708323" />
-          <ConnectorPoint PointX="24.244789166666667" PointY="15.927308442708323" />
-          <ConnectorPoint PointX="24.411455833333331" PointY="15.927308442708323" />
+          <ConnectorPoint PointX="24.744791666666668" PointY="15.927308442708323" />
+          <ConnectorPoint PointX="24.911458333333332" PointY="15.927308442708323" />
           <ConnectorPoint PointX="26.375" PointY="15.927308442708323" />
           <ConnectorPoint PointX="26.375" PointY="14.874492187499982" />
         </AssociationConnector>
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_TASA_CAMBIO" Width="1.5" PointX="10.375" PointY="14.75" Height="1.9802864583333246" />
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_CLIENTE" Width="1.5" PointX="14" PointY="10.375" Height="5.8263151041666674" />
-        <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_CLI_CONTACTO_SIC_T_CLIENTE" >
-          <ConnectorPoint PointX="14.719972046875" PointY="10.375" />
-          <ConnectorPoint PointX="14.719972046875" PointY="5.90625" />
-          <ConnectorPoint PointX="14.412067356770834" PointY="5.9062499999999991" />
-          <ConnectorPoint PointX="14.245400690104166" PointY="5.90625" />
-          <ConnectorPoint PointX="6.75" PointY="5.90625" />
-        </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_CLI_DIRECCION_SIC_T_CLIENTE" >
-          <ConnectorPoint PointX="14" PointY="10.374999999999996" />
-          <ConnectorPoint PointX="13.625" PointY="9.9999999999999964" />
+          <ConnectorPoint PointX="14" PointY="10.375" />
+          <ConnectorPoint PointX="13.625" PointY="10" />
           <ConnectorPoint PointX="13.625" PointY="9.3744921875" />
           <ConnectorPoint PointX="11.333330833333333" PointY="9.3744921875" />
           <ConnectorPoint PointX="11.166664166666665" PointY="9.3744921875" />
@@ -3331,8 +3318,8 @@
           <ConnectorPoint PointX="9.7916666666666661" PointY="14.153300781249996" />
           <ConnectorPoint PointX="9.125" PointY="14.153300781249996" />
           <ConnectorPoint PointX="9.125" PointY="15.59568359375001" />
-          <ConnectorPoint PointX="7.208333333333333" PointY="15.59568359375001" />
-          <ConnectorPoint PointX="7.041666666666667" PointY="15.59568359375001" />
+          <ConnectorPoint PointX="7.239583333333333" PointY="15.59568359375001" />
+          <ConnectorPoint PointX="7.072916666666667" PointY="15.59568359375001" />
           <ConnectorPoint PointX="7" PointY="15.59568359375001" />
           <ConnectorPoint PointX="7" PointY="14.75" />
           <ConnectorPoint PointX="6" PointY="14.75" />
@@ -3340,38 +3327,30 @@
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_CLIENTE_SIC_T_CLI_SCORING" >
           <ConnectorPoint PointX="2.25" PointY="4.297841796875" />
-          <ConnectorPoint PointX="4.041666666666667" PointY="4.2978417968749989" />
-          <ConnectorPoint PointX="4.208333333333333" PointY="4.297841796875" />
           <ConnectorPoint PointX="7.125" PointY="4.297841796875" />
           <ConnectorPoint PointX="7.125" PointY="5.59568359375001" />
-          <ConnectorPoint PointX="14.3287340234375" PointY="5.59568359375001" />
-          <ConnectorPoint PointX="14.3287340234375" PointY="10.375" />
+          <ConnectorPoint PointX="14.52929878125" PointY="5.59568359375001" />
+          <ConnectorPoint PointX="14.52929878125" PointY="10.375" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_CLIENTE_SIC_T_COLABORADOR" >
-          <ConnectorPoint PointX="9.25" PointY="17.302643229166662" />
-          <ConnectorPoint PointX="9.7916666666666661" PointY="17.302643229166662" />
-          <ConnectorPoint PointX="9.9583333333333339" PointY="17.302643229166662" />
-          <ConnectorPoint PointX="14.53125" PointY="17.302643229166662" />
-          <ConnectorPoint PointX="14.53125" PointY="16.201315104166667" />
+          <ConnectorPoint PointX="9.25" PointY="18.015008951822917" />
+          <ConnectorPoint PointX="9.7916666666666661" PointY="18.015008951822917" />
+          <ConnectorPoint PointX="9.9583333333333339" PointY="18.015008951822917" />
+          <ConnectorPoint PointX="14.3769540625" PointY="18.015008951822917" />
+          <ConnectorPoint PointX="14.3769540625" PointY="16.201315104166667" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_CLIENTE_SIC_T_ZONA_REPARTO" >
-          <ConnectorPoint PointX="2.25" PointY="8.1222407695312526" />
-          <ConnectorPoint PointX="3.6666666666666665" PointY="8.1222407695312526" />
-          <ConnectorPoint PointX="3.8333333333333335" PointY="8.1222407695312526" />
-          <ConnectorPoint PointX="5" PointY="8.1222407695312526" />
-          <ConnectorPoint PointX="5" PointY="9.77830078125" />
-          <ConnectorPoint PointX="7.041666666666667" PointY="9.77830078125" />
-          <ConnectorPoint PointX="7.208333333333333" PointY="9.77830078125" />
-          <ConnectorPoint PointX="11.166664166666665" PointY="9.77830078125" />
-          <ConnectorPoint PointX="11.333330833333333" PointY="9.77830078125" />
-          <ConnectorPoint PointX="13.541666666666666" PointY="9.77830078125" />
-          <ConnectorPoint PointX="13.708333333333334" PointY="9.77830078125" />
-          <ConnectorPoint PointX="14.245400690104166" PointY="9.77830078125" />
-          <ConnectorPoint PointX="14.412067356770834" PointY="9.77830078125" />
-          <ConnectorPoint PointX="14.636638713541666" PointY="9.77830078125" />
-          <ConnectorPoint PointX="14.803305380208334" PointY="9.77830078125" />
-          <ConnectorPoint PointX="15.1412380234375" PointY="9.77830078125" />
-          <ConnectorPoint PointX="15.1412380234375" PointY="10.375" />
+          <ConnectorPoint PointX="2.25" PointY="7.1873735468749995" />
+          <ConnectorPoint PointX="8" PointY="7.1873735468749995" />
+          <ConnectorPoint PointX="8" PointY="9.2494921875" />
+          <ConnectorPoint PointX="9.9166666666666661" PointY="9.2494921875" />
+          <ConnectorPoint PointX="10.083333333333334" PointY="9.2494921875" />
+          <ConnectorPoint PointX="11.166664166666665" PointY="9.2494921875" />
+          <ConnectorPoint PointX="11.333330833333333" PointY="9.2494921875" />
+          <ConnectorPoint PointX="14.445965447916667" PointY="9.2494921875" />
+          <ConnectorPoint PointX="14.612632114583334" PointY="9.2494921875" />
+          <ConnectorPoint PointX="15.045901390625001" PointY="9.2494921875" />
+          <ConnectorPoint PointX="15.045901390625001" PointY="10.375" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_CLIENTE" >
           <ConnectorPoint PointX="15.5" PointY="13.461253255208334" />
@@ -3388,9 +3367,9 @@
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_VEN_ESTADO" Width="1.5" PointX="15.125" PointY="23.625" Height="1.5956835937500102" />
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_VENTA" Width="1.5" PointX="17.375" PointY="17.125" Height="4.6725065104166674" />
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_VENTA_SIC_T_CLIENTE" >
-          <ConnectorPoint PointX="14.8281275" PointY="16.201315104166667" />
-          <ConnectorPoint PointX="14.8281275" PointY="18.870071614583331" />
-          <ConnectorPoint PointX="17.375" PointY="18.870071614583331" />
+          <ConnectorPoint PointX="14.75097953125" PointY="16.201315104166667" />
+          <ConnectorPoint PointX="14.75097953125" PointY="19.22625447591146" />
+          <ConnectorPoint PointX="17.375" PointY="19.22625447591146" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_VENTA_SIC_T_EMP_CENTRO_COSTO" >
           <ConnectorPoint PointX="16.625" PointY="21.148753255208334" />
@@ -3408,18 +3387,18 @@
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_MOV_ESTADO" Width="1.5" PointX="4.375" PointY="17.875" Height="1.5956835937499818" />
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_MOV_ESTADO" >
           <ConnectorPoint PointX="5.875" PointY="18.672841796874991" />
-          <ConnectorPoint PointX="6.666666666666667" PointY="18.672841796874991" />
-          <ConnectorPoint PointX="6.833333333333333" PointY="18.672841796874991" />
+          <ConnectorPoint PointX="7.072916666666667" PointY="18.672841796874991" />
+          <ConnectorPoint PointX="7.239583333333333" PointY="18.672841796874991" />
           <ConnectorPoint PointX="7.5" PointY="18.672841796874991" />
           <ConnectorPoint PointX="7.5" PointY="16" />
           <ConnectorPoint PointX="9.7916666666666661" PointY="16" />
           <ConnectorPoint PointX="9.9583333333333339" PointY="16" />
           <ConnectorPoint PointX="10.125" PointY="16" />
           <ConnectorPoint PointX="10.125" PointY="16.875" />
-          <ConnectorPoint PointX="14.447916666666666" PointY="16.875" />
-          <ConnectorPoint PointX="14.614583333333334" PointY="16.875" />
-          <ConnectorPoint PointX="14.744794166666667" PointY="16.875" />
-          <ConnectorPoint PointX="14.911460833333335" PointY="16.875" />
+          <ConnectorPoint PointX="14.293620729166666" PointY="16.875" />
+          <ConnectorPoint PointX="14.460287395833333" PointY="16.875" />
+          <ConnectorPoint PointX="14.667646197916666" PointY="16.875" />
+          <ConnectorPoint PointX="14.834312864583334" PointY="16.875" />
           <ConnectorPoint PointX="18.125" PointY="16.875" />
           <ConnectorPoint PointX="18.125" PointY="15.797506510416667" />
         </AssociationConnector>
@@ -3430,6 +3409,37 @@
           <ConnectorPoint PointX="9.875" PointY="13.162985026041667" />
           <ConnectorPoint PointX="11.2499975" PointY="13.162985026041667" />
           <ConnectorPoint PointX="11.2499975" PointY="8.2302864583333335" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_CLI_CONTACTO" Width="1.5" PointX="23.25" PointY="7" Height="3.9033007812499818" />
+        <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_CLI_CONTACTO_SIC_T_CLI_CONTAC_CARGO" >
+          <ConnectorPoint PointX="4.5" PointY="2.547841796875" />
+          <ConnectorPoint PointX="5.5" PointY="2.547841796875" />
+          <ConnectorPoint PointX="5.5" PointY="2.7879850260416674" />
+          <ConnectorPoint PointX="12.125" PointY="2.7879850260416674" />
+          <ConnectorPoint PointX="12.125" PointY="4.7975878906249818" />
+          <ConnectorPoint PointX="24" PointY="4.7975878906249818" />
+          <ConnectorPoint PointX="24" PointY="7" />
+        </AssociationConnector>
+        <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_CLI_CONTACTO_SIC_T_CLIENTE" >
+          <ConnectorPoint PointX="14.264649390625" PointY="10.375" />
+          <ConnectorPoint PointX="14.264649390625" PointY="9.6148893229166674" />
+          <ConnectorPoint PointX="14.445965447916667" PointY="9.6148893229166674" />
+          <ConnectorPoint PointX="14.612632114583334" PointY="9.6148893229166674" />
+          <ConnectorPoint PointX="14.962568057291668" PointY="9.6148893229166674" />
+          <ConnectorPoint PointX="15.129234723958335" PointY="9.6148893229166674" />
+          <ConnectorPoint PointX="17.635416666666668" PointY="9.6148893229166674" />
+          <ConnectorPoint PointX="17.802083333333332" PointY="9.6148893229166674" />
+          <ConnectorPoint PointX="17.875" PointY="9.6148893229166674" />
+          <ConnectorPoint PointX="17.875" PointY="8.375" />
+          <ConnectorPoint PointX="19.822916666666668" PointY="8.375" />
+          <ConnectorPoint PointX="19.989583333333332" PointY="8.375" />
+          <ConnectorPoint PointX="20.758461510416669" PointY="8.375" />
+          <ConnectorPoint PointX="20.925128177083334" PointY="8.375" />
+          <ConnectorPoint PointX="22.385416666666668" PointY="8.375" />
+          <ConnectorPoint PointX="22.552083333333332" PointY="8.375" />
+          <ConnectorPoint PointX="22.875" PointY="8.375" />
+          <ConnectorPoint PointX="22.875" PointY="8.9516503906249909" />
+          <ConnectorPoint PointX="23.25" PointY="8.9516503906249909" />
         </AssociationConnector>
         </Diagram>
     </Diagrams>

@@ -1786,7 +1786,8 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 cboTipoDoc_SelectedIndexChanged(sender, e);
                 mvCliente.ActiveViewIndex = 0;
 
-                UIPage.Fill(_cliente.Listar_DocumentosIdentidad(), "par_det_c_iid", "par_det_c_vdesc", cboTipoDoc, string.Empty, "0");
+                UIPage.Fill(_cliente.Listar_DocumentosIdentidad().Where(x => x.par_det_c_iid != Convert.ToInt32(DocumentoPersona.RUC))
+                    , "par_det_c_iid", "par_det_c_vdesc", cboTipoDoc, string.Empty, "0");
             }
             //cboCentroComercial.DataSource = _local.ListarInmuebles();
             //cboCentroComercial.DataValueField = "inm_c_icod";
@@ -2057,14 +2058,15 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
         protected void cboTipoDoc_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cboTipoDoc.SelectedValue == "1")
+            if (cboTipoDoc.SelectedValue == Convert.ToInt16(DocumentoPersona.DNI).ToString())
             {
                 lbl.Text = "(*)";
                 txtDniContacto.MaxLength = 8;
                 txtDniContacto_FilteredTextBoxExtender.ValidChars = "0123456789";
+                txtDniContacto.Text = "";
             }
 
-            if (cboTipoDoc.SelectedValue == "2")
+            if (cboTipoDoc.SelectedValue == Convert.ToInt16(DocumentoPersona.CARNE_EXTRANJERIA).ToString())
             {
                 lbl.Text = "";
                 txtDniContacto.MaxLength = 12;
