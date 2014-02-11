@@ -15,6 +15,7 @@ namespace SIC.DataLayer
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
                     return (from x in contexto.SIC_T_EMP_DIRECCION
+                                .Include("SIC_T_EMP_CENTRO_COSTO")
                             where x.emp_dir_c_bactivo == true
                             select x).ToList();
                 }
@@ -51,6 +52,30 @@ namespace SIC.DataLayer
                 throw;
             }
 
+        }
+
+        public SIC_T_EMPRESA ObtenerDatosEmpresa()
+        {
+            try
+            {
+                using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+                {
+                    var res = (from x in contexto.SIC_T_EMPRESA                               
+                               select x);
+                    if (res.Count() > 0)
+                    {
+                        return res.First();
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+            catch
+            {
+                throw;
+            }
         }
     }
 }

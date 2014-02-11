@@ -18,5 +18,10 @@ namespace SIC.BusinessLayer
         {
             return new EmpresaDA().ObtenerDireccionEmpresa(id);
         }
+
+        public SIC_T_EMPRESA ObtenerDatosEmpresa()
+        {
+            return new EmpresaDA().ObtenerDatosEmpresa();
+        }
     }
 }

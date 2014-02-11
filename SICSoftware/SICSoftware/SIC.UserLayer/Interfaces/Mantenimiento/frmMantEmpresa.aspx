@@ -31,7 +31,7 @@
     <asp:UpdatePanel ID="upGeneral" UpdateMode="Conditional" ChildrenAsTriggers="False"
         runat="server">
         <ContentTemplate>
-            <asp:MultiView ID="mvCliente" runat="server">
+            <asp:MultiView ID="mvCliente" runat="server" ActiveViewIndex="0">
                 <asp:View ID="vwEmpresa" runat="server">
                     <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
                         <tr>
@@ -100,7 +100,9 @@
                                                         Centro de Costo
                                                     </td>
                                                     <td align="left" class="txt-box-estilo" colspan="3">
-                                                        <asp:GridView ID="gvCentroCosto" runat="server" AllowPaging="True" 
+                                                    <asp:UpdatePanel ID="updCentroCosto" UpdateMode="Conditional" ChildrenAsTriggers="False" runat="server">
+                                                    <ContentTemplate> 
+                                                        <asp:GridView ID="gvCentroCosto" runat="server" 
                                                             AlternatingRowStyle-CssClass="alt" AutoGenerateColumns="False" 
                                                             BorderStyle="None" BorderWidth="0px" CssClass="mGrid" 
                                                             EmptyDataText="No se encontraron centro de costos." GridLines="None" Height="16px" 
@@ -118,13 +120,16 @@
                                                                         <%# Eval("emp_cst_c_vdesc")%>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
+                                                                <asp:CommandField ShowEditButton="True" />
                                                             </Columns>
                                                             <PagerStyle CssClass="pgr" />
                                                         </asp:GridView>
+                                                        </ContentTemplate>
+                                                        </asp:UpdatePanel>
                                                     </td>
                                                     <td>
-                                                        <asp:LinkButton ID="btnEditarLocal" runat="server" CssClass="lnk" OnClick="btnBuscarItems_Click"
-                                                            Text="Editar Locales" />
+                                                        <asp:LinkButton ID="btnAgregarCentroCosto" runat="server" CssClass="lnk"
+                                                            Text="Agregar Centro Costo" />
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -149,11 +154,13 @@
                                                         Locales
                                                     </td>
                                                     <td align="left" class="txt-box-estilo" colspan="3">
-                                                        <asp:GridView ID="gvLocal" runat="server" AllowPaging="True" 
+                                                        <asp:UpdatePanel ID="updLocal" UpdateMode="Conditional" ChildrenAsTriggers="False" runat="server">
+                                                        <ContentTemplate> 
+                                                        <asp:GridView ID="gvLocal" runat="server" 
                                                             AlternatingRowStyle-CssClass="alt" AutoGenerateColumns="False" 
                                                             BorderStyle="None" BorderWidth="0px" CssClass="mGrid" 
                                                             EmptyDataText="No se encontraron locales." GridLines="None" Height="16px" 
-                                                            PagerStyle-CssClass="pgr" ShowHeaderWhenEmpty="True" ViewStateMode="Enabled" 
+                                                            ShowHeaderWhenEmpty="True" ViewStateMode="Enabled" 
                                                             Width="100%">
                                                             <AlternatingRowStyle CssClass="alt" />
                                                             <Columns>
@@ -172,13 +179,16 @@
                                                                         <%# Eval("SIC_T_EMP_CENTRO_COSTO.emp_cst_c_vdesc")%>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
+                                                                <asp:CommandField ShowEditButton="True" />
                                                             </Columns>
-                                                            <PagerStyle CssClass="pgr" />
+                                                           
                                                         </asp:GridView>
+                                                        </ContentTemplate>
+                                                        </asp:UpdatePanel>
                                                     </td>
                                                     <td>
-                                                        <asp:LinkButton ID="btnEditarCentroCosto" runat="server" CssClass="lnk" 
-                                                            OnClick="btnBuscarItems_Click" Text="Editar Centros de Costo" />
+                                                        <asp:LinkButton ID="btnAgregarLocal" runat="server" CssClass="lnk" 
+                                                            Text="Agregar Locales" />
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -227,7 +237,7 @@
                     </div>
                 </ContentTemplate>
                 <Triggers>
-                    <asp:AsyncPostBackTrigger ControlID="btnGuardar" EventName="Click" />
+                    
                 </Triggers>
             </asp:UpdatePanel>
         </ContentTemplate>

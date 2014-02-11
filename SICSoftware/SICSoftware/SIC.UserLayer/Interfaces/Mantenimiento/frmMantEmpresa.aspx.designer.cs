@@ -58,6 +58,15 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento {
         protected global::System.Web.UI.WebControls.TextBox txtRazonSocial;
         
         /// <summary>
+        /// Control updCentroCosto.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel updCentroCosto;
+        
+        /// <summary>
         /// Control gvCentroCosto.
         /// </summary>
         /// <remarks>
@@ -67,13 +76,22 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento {
         protected global::System.Web.UI.WebControls.GridView gvCentroCosto;
         
         /// <summary>
-        /// Control btnEditarLocal.
+        /// Control btnAgregarCentroCosto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnEditarLocal;
+        protected global::System.Web.UI.WebControls.LinkButton btnAgregarCentroCosto;
+        
+        /// <summary>
+        /// Control updLocal.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel updLocal;
         
         /// <summary>
         /// Control gvLocal.
@@ -85,13 +103,13 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento {
         protected global::System.Web.UI.WebControls.GridView gvLocal;
         
         /// <summary>
-        /// Control btnEditarCentroCosto.
+        /// Control btnAgregarLocal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnEditarCentroCosto;
+        protected global::System.Web.UI.WebControls.LinkButton btnAgregarLocal;
         
         /// <summary>
         /// Control vwCentroCosto.
