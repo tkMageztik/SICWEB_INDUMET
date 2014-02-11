@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using SIC.EntityLayer;
+using System.Data;
 
 namespace SIC.DataLayer
 {
@@ -69,5 +70,24 @@ namespace SIC.DataLayer
             }
         }
 
+        public void ModificarCentroCosto(SIC_T_EMP_CENTRO_COSTO _pSIC_T_EMP_CENTRO_COSTO)
+        {
+            using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+            {
+                SIC_T_EMP_CENTRO_COSTO varItem = (from x in contexto.SIC_T_EMP_CENTRO_COSTO
+                                      where x.emp_cst_c_iid == _pSIC_T_EMP_CENTRO_COSTO.emp_cst_c_iid
+                                      select x).FirstOrDefault();
+                contexto.ApplyCurrentValues("SICDBWEBEntities.SIC_T_EMP_CENTRO_COSTO", _pSIC_T_EMP_CENTRO_COSTO);
+                
+                try
+                {
+                    contexto.SaveChanges();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+        }
     }
 }

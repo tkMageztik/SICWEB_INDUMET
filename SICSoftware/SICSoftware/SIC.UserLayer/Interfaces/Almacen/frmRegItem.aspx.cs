@@ -314,6 +314,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         /// </summary>
         private void NuevoItem()
         {
+            this.LimpiarCamposNuevoActualizar();
             EscenarioItem = TipoOperacion.Creacion;
             lblAccion.Text = "Nuevo";
             mvItem.ActiveViewIndex = 1;
@@ -328,13 +329,20 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         /// <param name="itemId">Id del item seleccionado</param>
         private void DeshabilitarItem(int itemId)
         {
-            if (_item.DeshabilitarItem(itemId))
+            try
             {
-                Mensaje("Item Deshabilitado.", "../Imagenes/correcto.png");
+                if (_item.DeshabilitarItem(itemId))
+                {
+                    Mensaje("Item eliminado.", "../Imagenes/correcto.png");
+                }
+                else
+                {
+                    Mensaje("No se puede eliminar un item en uso.", "../Imagenes/warning.png");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Mensaje("Error al realizar el proceso.", "../Imagenes/warning.png");
+                Mensaje("Error al realizar el proceso .", "../Imagenes/warning.png");
             }
 
             this.ListarItems();

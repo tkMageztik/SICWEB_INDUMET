@@ -379,10 +379,12 @@
                                 <table width="220" border="0" cellspacing="0" cellpadding="0">
                                     <tr>
                                         <td>
-                                            <asp:LinkButton ID="btnGuardarCCE" runat="server" CssClass="lnk">Guardar</asp:LinkButton>
+                                            <asp:LinkButton ID="btnGuardarCCE" runat="server" CssClass="lnk" 
+                                                onclick="btnGuardarCCE_Click">Guardar</asp:LinkButton>
                                         </td>
                                         <td>
-                                            <asp:LinkButton ID="btnCancelarCCE" runat="server" CssClass="lnk">Cancelar</asp:LinkButton>
+                                            <asp:LinkButton ID="btnCancelarCCE" runat="server" CssClass="lnk" 
+                                                onclick="btnCancelarCCE_Click">Cancelar</asp:LinkButton>
                                         </td>
                                         <td style="width: 10px">
                                         </td>

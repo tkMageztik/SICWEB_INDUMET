@@ -23,5 +23,10 @@ namespace SIC.BusinessLayer
         {
             return new CentroCostoDA().ObtenerCentroCosto(idCentroCosto);
         }
+
+        public void ModificarCentroCosto(SIC_T_EMP_CENTRO_COSTO _pSIC_T_EMP_CENTRO_COSTO)
+        {
+            new CentroCostoDA().ModificarCentroCosto(_pSIC_T_EMP_CENTRO_COSTO);
+        }
     }
 }

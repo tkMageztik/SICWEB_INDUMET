@@ -126,25 +126,38 @@ namespace SIC.DataLayer
 
         public bool DeshabilitarItem(int id)
         {
-            using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+            try
             {
-                SIC_T_ITEM varItem = (from x in contexto.SIC_T_ITEM
-                                      where x.itm_c_iid == id
-                                      select x).FirstOrDefault();
-                if (varItem != null)
+                using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
-                    varItem.itm_c_bactivo = false;
-                }
+                    SIC_T_ITEM varItem = (from x in contexto.SIC_T_ITEM
+                                          where x.itm_c_iid == id
+                                          select x).FirstOrDefault();
 
-                try
-                {
+                    if (contexto.SIC_T_ITEM_ALMACEN.Any(x => x.itm_alm_c_iid_item == id && x.itm_alm_c_ecantidad!=0))
+                    {
+                        return false;
+                        //throw new ArgumentException("No se puede eliminar un articulo que tenga stock diferente a 0");
+                    }
+                    else if (contexto.SIC_T_ORDEN_DE_COMPRA_DET.Any(x => x.odc_c_iitemid == id))
+                    {
+                        return false;
+                        //throw new ArgumentException("No se puede eliminar un articulo que se encuentre registrado en una orden de compra.");
+                    }
+
+                    if (varItem != null)
+                    {
+                        varItem.itm_c_bactivo = false;
+                    }
+               
                     contexto.SaveChanges();
-                    return true;
+                    return true;               
+                
                 }
-                catch (OptimisticConcurrencyException ex)
-                {
-                    throw;
-                }
+            }
+            catch (OptimisticConcurrencyException ex)
+            {
+                throw;
             }
         }
 
@@ -160,8 +173,9 @@ namespace SIC.DataLayer
                             select x).ToList();
                 }
             }
-            catch (Exception ex)
-            {
+            catch
+            {   
+             
                 throw;
             }
         }

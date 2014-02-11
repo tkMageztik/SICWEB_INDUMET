@@ -56,11 +56,20 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             this.MostrarModificarCentroCosto(ccId);
         }
 
+        protected void btnCancelarCCE_Click(object sender, EventArgs e)
+        {
+            this.RegresarDesdeModificarCentroCosto();
+        }
+
+        protected void btnGuardarCCE_Click(object sender, EventArgs e)
+        {
+            this.ModificarCentroCosto();
+        }
+
         #endregion
 
         #region Manejo de Vistas
-
-
+        
         protected void btnGuardarCCN_Click(object sender, EventArgs e)
         {
             this.GuarderNuevoCentroCosto();
@@ -154,6 +163,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         
         private void MostrarModificarCentroCosto(int idCentroCosto)
         {
+            this.LimpiarModificarCentroCosto();            
             var centroCosto = _centroCosto.ObtenerCentroCosto(idCentroCosto);
             if(centroCosto== null)
             {
@@ -166,6 +176,82 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             this.txtSerBoletaE.Text = centroCosto.emp_cst_c_vserieboleta;
             this.txtSerFacturaE.Text = centroCosto.emp_cst_c_vseriefactura;
             this.mvCliente.SetActiveView(vwCentroCostoEditar);
+            this.upGeneral.Update();
+        }
+
+        private void LimpiarModificarCentroCosto()
+        {
+            this.txtDescripcionCCE.Text = string.Empty;
+            this.txtSerBoletaE.Text = string.Empty;
+            this.txtSerFacturaE.Text = string.Empty;
+        }
+
+
+        private bool ValidarDatosModificarCentroCosto()
+        {
+            if (txtDescripcionCCE.Text.Trim().Length <= 0)
+            {
+                Mensaje("Debe ingresar el nombre del centro de costo.", "../Imagenes/warning.png");
+                return false;
+            }
+            else if (txtSerBoletaE.Text.Trim().Length <= 0)
+            {
+                Mensaje("Debe ingresar la serie de boleta del centro de costo.", "../Imagenes/warning.png");
+                return false;
+            }
+            else if (txtSerFacturaE.Text.Trim().Length <= 0)
+            {
+                Mensaje("Debe ingresar el serie de factura del centro de costo.", "../Imagenes/warning.png");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private void ModificarCentroCosto()
+        {
+            if (this.CentroCostoModificar == null)
+            {
+                return;
+            }
+
+            if (!ValidarDatosModificarCentroCosto())
+            {
+                return;
+            }
+
+            var centroCosto = this.CentroCostoModificar;
+            centroCosto.emp_cst_c_vdesc = txtDescripcionCCE.Text;
+
+            try
+            {
+                _centroCosto.ModificarCentroCosto(centroCosto);
+                Mensaje("Modificado con éxito", "../Imagenes/correcto.png");
+                this.mvCliente.SetActiveView(vwEmpresa);
+                this.ListarCentroCosto();
+                this.upGeneral.Update();
+            }
+            catch (Exception ex)
+            {
+#if DEBUG
+                String mensajeError = "Error Fatal : \n" + ex.Message;
+                if (ex.InnerException != null)
+                {
+                    mensajeError += "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty;
+                }
+
+                Mensaje(mensajeError, "../Imagenes/warning.png");
+#else
+                Mensaje("Error en el proceso.", "../Imagenes/warning.png");
+#endif
+            }
+        }
+
+        private void RegresarDesdeModificarCentroCosto()
+        {
+            this.mvCliente.SetActiveView(vwEmpresa);
             this.upGeneral.Update();
         }
 
@@ -201,6 +287,9 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             return;
         }
 
+
+
+ 
 
 
 

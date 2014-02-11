@@ -86,6 +86,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         #endregion
 
         #region Eventos
+
         public frmRegOC()
         {
             _parametro = new ParametroBL();
