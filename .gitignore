@@ -2,4 +2,4 @@ web.config
 app.config
 bin/
 obj/
-*.suo
+SICSoftware.suo
