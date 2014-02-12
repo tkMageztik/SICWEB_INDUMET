@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
     EnableEventValidation="false" CodeBehind="frmRegOC.aspx.cs" Inherits="SIC.UserLayer.Interfaces.Mantenimiento.frmRegOC"
-    Culture="auto" UICulture="auto" %>
+   Culture="Auto" UICulture="Auto" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <%@ Register Src="~/UserControl/wucMensajeAlerta.ascx" TagName="Mensaje" TagPrefix="uc1" %>
@@ -25,6 +25,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <asp:UpdatePanel ID="upGeneral" UpdateMode="Conditional" runat="server">
         <ContentTemplate>
+            <script type="text/javascript" src="<%= ResolveUrl ("~/Scripts/numeric_input.js") %>"></script>  
             <script type = "text/javascript">
                 function Check_Click(objRef) {
                     //Get the Row based on checkbox
@@ -358,7 +359,8 @@
                                                                     </ItemTemplate>
                                                                     <EditItemTemplate>
                                                                         <asp:TextBox ID="txtCantidad" runat="server" 
-                                                                        Text='<%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("odc_c_ecantidad") )%> '>
+                                                                        Text='<%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("odc_c_ecantidad") )%> '
+                                                                        onkeypress="return onlyDotsAndNumbers(event)">
                                                                         
                                                                         </asp:TextBox>
                                                                     </EditItemTemplate>
@@ -369,7 +371,8 @@
                                                                     </ItemTemplate>
                                                                     <EditItemTemplate>
                                                                         <asp:TextBox ID="txtPrecio" runat="server" 
-                                                                        Text='<%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("odc_c_epreciounit") )%> '>
+                                                                        Text='<%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("odc_c_epreciounit") )%> '
+                                                                        onkeypress="return onlyDotsAndNumbers(event)">
                                                                                
                                                                         </asp:TextBox>
                                                                     </EditItemTemplate>
@@ -624,7 +627,7 @@
                                             BorderWidth="0px" ViewStateMode="Enabled" DataKeyNames="itm_c_iid" OnPageIndexChanging="gvListaItem_PageIndexChanging"
                                             OnRowDataBound="gvListaItem_RowDataBound" 
                                             OnRowCreated="gvListaItem_RowCreated" 
-                                            PageSize="3" >
+                                            PageSize="15" >
                                             <AlternatingRowStyle CssClass="alt" />
                                             <Columns>
                                                 <asp:TemplateField HeaderText="SELECCIONAR">

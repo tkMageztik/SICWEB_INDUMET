@@ -380,7 +380,7 @@ Culture="es-PE" UICulture="es-PE" %>
                                                         <div style="width: 100%; height: 300px; overflow: scroll">
                                                         <asp:GridView ID="gvItemsSeleccionados" runat="server" 
                                                             AlternatingRowStyle-CssClass="alt" BorderStyle="None" BorderWidth="0px" CssClass="mGrid"
-                                                            EmptyDataText="No ha seleccionado ningun item." GridLines="None" 
+                                                            EmptyDataText="No ha seleccionado una Orden de Compra." GridLines="None" 
                                                             Height="16px" PagerStyle-CssClass="pgr" ShowHeaderWhenEmpty="True" ViewStateMode="Enabled" 
                                                             Width="100%" AutoGenerateColumns="False" DataKeyNames="mve_c_iocdet_id" 
                                                             onrowcancelingedit="gvItemsSeleccionados_RowCancelingEdit" 

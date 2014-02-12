@@ -556,18 +556,34 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             ItemSeleccionado.itm_c_vpardes = this.cboUnidad.SelectedItem.Text.Trim();
             ItemSeleccionado.itm_c_isf_iid = idSubFamilia;
 
-            if (_item.ModificarItem(ItemSeleccionado))
+           
+
+            try
             {
-                Mensaje("Item modificado con éxito", "../Imagenes/correcto.png");
+                if (_item.ModificarItem(ItemSeleccionado))
+                {
+                    Mensaje("Item modificado con éxito", "../Imagenes/correcto.png");
+                }
+                else
+                {
+                    Mensaje("Error al realizar el proceso.", "../Imagenes/warning.png");
+                }
+
+                mvItem.ActiveViewIndex = 0;
+                this.ListarItems();
+                this.LimpiarCamposNuevoActualizar();
+                upGeneral.Update();
             }
-            else
+            catch (ArgumentException aeEx)
             {
-                Mensaje("Error al realizar el proceso.", "../Imagenes/warning.png");
+                Mensaje(aeEx.Message, "../Imagenes/warning.png");
+            }
+            catch (Exception ex)
+            {
+                Mensaje("Error inesperado al realizar el proceso.", "../Imagenes/warning.png");
             }
 
-            mvItem.ActiveViewIndex = 0;
-            this.ListarItems();
-            upGeneral.Update();
+       
         }
 
         #endregion

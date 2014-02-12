@@ -20,6 +20,12 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             set { ViewState["vsCentroCosto"] = value; }
         }
 
+        private SIC_T_EMP_DIRECCION LocalModificar
+        {
+            get { return ViewState["vsLocal"] as SIC_T_EMP_DIRECCION; }
+            set { ViewState["vsLocal"] = value; }
+        }
+
         #region Eventos
         public frmMantEmpresa()
         {
@@ -66,14 +72,45 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             this.ModificarCentroCosto();
         }
 
-        #endregion
+        protected void btnAgregarLocal_Click(object sender, EventArgs e)
+        {
+            this.MostarNuevoLocal();
+        }
 
-        #region Manejo de Vistas
+        protected void lnkGuardarLCN_Click(object sender, EventArgs e)
+        {
+            this.GuardarLocalNuevo();
+        }
+
+        protected void btnCancelarLCN_Click(object sender, EventArgs e)
+        {
+            RegresarDesdeNuevoLocal();
+        }
         
         protected void btnGuardarCCN_Click(object sender, EventArgs e)
         {
             this.GuarderNuevoCentroCosto();
         }
+
+        protected void gvLocal_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            int locId = (int)this.gvLocal.DataKeys[e.NewEditIndex].Value;
+            e.NewEditIndex = -1;
+            this.gvLocal.EditIndex = -1;
+            this.ListarLocal();
+            this.MostrarModificarLocal(locId);
+        }
+
+        protected void btnCancelarLCE_Click(object sender, EventArgs e)
+        {
+            RegresarDesdeModificarLocal();
+        }
+
+        protected void lnkGuardarLCE_Click(object sender, EventArgs e)
+        {
+            ActualizarLocal();
+        }
+
         #endregion
 
         #region Nuevo Centro de Costo
@@ -276,6 +313,23 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             this.gvLocal.DataBind();
         }
 
+        private void ListarComboCentroCosto()
+        {
+            cboCentroCostoE.Items.Clear();
+            cboCentroCostoE.Items.Add(new ListItem("-- Seleccionar --", "-1"));
+            cboCentroCostoE.DataSource = _centroCosto.ListarCentroCosto();
+            cboCentroCostoE.DataTextField = "emp_cst_c_vdesc";
+            cboCentroCostoE.DataValueField = "emp_cst_c_iid";
+            cboCentroCostoE.DataBind();
+
+            cboCentroCostoN.Items.Clear();
+            cboCentroCostoN.Items.Add(new ListItem("-- Seleccionar --", "-1"));
+            cboCentroCostoN.DataSource = _centroCosto.ListarCentroCosto();
+            cboCentroCostoN.DataTextField = "emp_cst_c_vdesc";
+            cboCentroCostoN.DataValueField = "emp_cst_c_iid";
+            cboCentroCostoN.DataBind();
+        }
+
         private void Mensaje(string mensaje, string ruta)
         {
             divPopUpMsg.Attributes["Class"] = "PopupMostrar";
@@ -289,7 +343,190 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
 
 
- 
+        #region Agergar Locales
+
+        private void MostarNuevoLocal()
+        {
+            this.LimpiarNuevoLocal();
+            this.ListarComboCentroCosto();
+            this.mvCliente.SetActiveView(vwLocalNuevo);
+            this.upGeneral.Update();
+        }
+
+        private void LimpiarNuevoLocal()
+        {
+            txtDescripcionLCN.Text = string.Empty;
+            cboCentroCostoN.ClearSelection();
+        }
+
+        private void RegresarDesdeNuevoLocal()
+        {
+            this.LimpiarNuevoLocal();
+            this.mvCliente.SetActiveView(vwEmpresa);
+            this.upGeneral.Update();
+        }
+
+        private bool VerificarDatosLocalNuevo()
+        {
+            int idSeleccionado = -1;
+            if (this.txtDescripcionLCN.Text.Trim().Length <= 0)
+            {
+                Mensaje("Debe ingresar el nombre del local.", "../Imagenes/warning.png");
+                return false;
+            }
+            else if (int.TryParse(this.cboCentroCostoN.SelectedValue, out idSeleccionado) && idSeleccionado == -1)
+            {
+                Mensaje("Debe seleccionar un centro de costo.", "../Imagenes/warning.png");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private void GuardarLocalNuevo()
+        {
+            if (!this.VerificarDatosLocalNuevo())
+            {
+                return;
+            }
+             
+            SIC_T_EMP_DIRECCION local = new SIC_T_EMP_DIRECCION();
+            local.emp_dir_c_vdireccion = txtDescripcionLCN.Text.Trim();
+            local.emp_dir_c_iid_centrocosto = int.Parse(cboCentroCostoN.SelectedValue);
+
+            try
+            {
+                this._empresa.IngresarDireccion(local);
+                Mensaje("Ingresado con éxito", "../Imagenes/correcto.png");
+                this.mvCliente.SetActiveView(vwEmpresa);
+                this.ListarLocal();
+                this.upGeneral.Update();
+            }
+            catch (Exception ex)
+            {
+#if DEBUG
+                String mensajeError = "Error Fatal : \n" + ex.Message;
+                if (ex.InnerException != null)
+                {
+                    mensajeError += "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty;
+                }
+
+                Mensaje(mensajeError, "../Imagenes/warning.png");
+#else
+                Mensaje("Error en el proceso.", "../Imagenes/warning.png");
+#endif
+            }
+        }
+
+        #endregion
+
+
+        #region Modificar Local
+
+        private void MostrarModificarLocal(int locId)
+        {
+            this.LimpiarModificarLocal();
+            this.ListarComboCentroCosto();
+            var local = _empresa.ObtenerDireccionEmpresa(locId);
+            if (local == null)
+            {
+                // TODO: ERROR
+                return;
+            }
+
+            this.LocalModificar = local;
+            this.txtDescripcionLCE.Text = local.emp_dir_c_vdireccion;
+            this.cboCentroCostoE.ClearSelection();
+            var seleccion = cboCentroCostoE.Items.FindByValue(local.emp_dir_c_iid_centrocosto.ToString());
+            if (seleccion != null)
+            {
+                seleccion.Selected = true;
+            }
+
+            this.mvCliente.SetActiveView(vwLocalEditar);
+            this.upGeneral.Update();
+        }
+
+        private void LimpiarModificarLocal()
+        {
+            this.txtDescripcionLCE.Text = string.Empty;
+            this.cboCentroCostoE.ClearSelection();
+        }
+
+        private bool VerificarDatosLocalModificar()
+        {
+
+            int idSeleccionado = -1;
+            if (this.txtDescripcionLCE.Text.Trim().Length <= 0)
+            {
+                Mensaje("Debe ingresar el nombre del local.", "../Imagenes/warning.png");
+                return false;
+            }
+            else if (int.TryParse(this.cboCentroCostoE.SelectedValue, out idSeleccionado) && idSeleccionado == -1)
+            {
+                Mensaje("Debe seleccionar un centro de costo.", "../Imagenes/warning.png");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private void ActualizarLocal()
+        {
+            if (!this.VerificarDatosLocalModificar())
+            {
+                return;
+            }
+
+            this.LocalModificar.emp_dir_c_vdireccion = txtDescripcionLCE.Text.Trim();
+            this.LocalModificar.emp_dir_c_iid_centrocosto = int.Parse(cboCentroCostoE.SelectedValue);
+
+            try
+            {
+                this._empresa.ModificarDireccion(this.LocalModificar);
+                Mensaje("Modificado con éxito", "../Imagenes/correcto.png");
+                this.mvCliente.SetActiveView(vwEmpresa);
+                this.ListarLocal();
+                this.upGeneral.Update();
+            }
+            catch (Exception ex)
+            {
+#if DEBUG
+                String mensajeError = "Error Fatal : \n" + ex.Message;
+                if (ex.InnerException != null)
+                {
+                    mensajeError += "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty;
+                }
+
+                Mensaje(mensajeError, "../Imagenes/warning.png");
+#else
+                Mensaje("Error en el proceso.", "../Imagenes/warning.png");
+#endif
+            }
+        }
+
+        private void RegresarDesdeModificarLocal()
+        {
+            this.LimpiarModificarLocal();
+            this.mvCliente.SetActiveView(vwEmpresa);
+            this.upGeneral.Update();
+        }
+        
+
+        #endregion
+
+        
+
+
+
+
+
+
+
 
 
 

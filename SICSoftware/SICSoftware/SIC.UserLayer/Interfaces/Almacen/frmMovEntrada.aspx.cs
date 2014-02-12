@@ -460,6 +460,11 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 Mensaje("Seleccione un almácén.", "../Imagenes/warning.png");
                 return false;
             }
+            else if (this.MovEntNuevo.SIC_T_MOVIMIENTO_ENTRADA_DETALLE != null && !this.MovEntNuevo.SIC_T_MOVIMIENTO_ENTRADA_DETALLE.Any(x => x.mve_c_ecant_recibida > 0))
+            {
+                Mensaje("Debe ingresar al menos un item con stock.", "../Imagenes/warning.png");
+                return false;
+            }
             else
             {
                 return true;
@@ -492,6 +497,11 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             else if (this.MovEntSeleccionado.SIC_T_ALMACEN == null)
             {
                 Mensaje("Seleccione un almácén.", "../Imagenes/warning.png");
+                return false;
+            }
+            else if (this.MovEntSeleccionado.SIC_T_MOVIMIENTO_ENTRADA_DETALLE != null && !this.MovEntSeleccionado.SIC_T_MOVIMIENTO_ENTRADA_DETALLE.Any(x => x.mve_c_ecant_recibida > 0))
+            {
+                Mensaje("Debe ingresar al menos un item con stock.", "../Imagenes/warning.png");
                 return false;
             }
             else

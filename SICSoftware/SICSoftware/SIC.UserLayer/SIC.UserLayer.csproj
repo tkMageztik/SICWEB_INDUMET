@@ -245,6 +245,7 @@
     <Content Include="Interfaces\Compras\frmRegOC.aspx" />
     <Content Include="Interfaces\Almacen\frmMovEntrada.aspx" />
     <Content Include="Interfaces\Facturacion\frmVenta.aspx" />
+    <Content Include="Scripts\numeric_input.js" />
     <Content Include="Styles\chosen-sprite%402x.png" />
     <Content Include="Styles\chosen-sprite.png" />
     <Content Include="Styles\chosen.css" />
