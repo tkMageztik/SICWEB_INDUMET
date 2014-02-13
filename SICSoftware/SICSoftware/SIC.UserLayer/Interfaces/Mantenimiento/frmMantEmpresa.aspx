@@ -38,6 +38,7 @@
     <asp:UpdatePanel ID="upGeneral" UpdateMode="Conditional" ChildrenAsTriggers="False"
         runat="server">
         <ContentTemplate>
+            <script type="text/javascript" src="<%= ResolveUrl ("~/Scripts/numeric_input.js") %>"></script>  
             <asp:MultiView ID="mvCliente" runat="server" ActiveViewIndex="0">
                 <asp:View ID="vwEmpresa" runat="server">
                     <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
@@ -45,7 +46,7 @@
                             <td class="tit-nav-paginas" align="left">
                                 MANTENIMIENTO &gt;&nbsp; EMPRESA</td>
                             <td align="right">
-                                D</td>
+                                &nbsp;</td>
                         </tr>
                         </tr>
                         <tr>
@@ -179,7 +180,7 @@
                                                             BorderStyle="None" BorderWidth="0px" CssClass="mGrid" 
                                                             EmptyDataText="No se encontraron locales." GridLines="None" Height="16px" 
                                                             ShowHeaderWhenEmpty="True" ViewStateMode="Enabled" 
-                                                            Width="100%">
+                                                            Width="100%" DataKeyNames="emp_dir_c_iid" onrowediting="gvLocal_RowEditing">
                                                             <AlternatingRowStyle CssClass="alt" />
                                                             <Columns>
                                                                 <asp:TemplateField HeaderText="Código">
@@ -206,7 +207,7 @@
                                                     </td>
                                                     <td>
                                                         <asp:LinkButton ID="btnAgregarLocal" runat="server" CssClass="lnk" 
-                                                            Text="Agregar Locales" />
+                                                            Text="Agregar Locales" onclick="btnAgregarLocal_Click" />
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -340,14 +341,18 @@
                                                     <td align="left" class="style4">
                                                         Correlativo de Boleta</td>
                                                     <td align="left" class="style4">
-                                                        <asp:TextBox ID="txtSerBoletaN" runat="server" MaxLength="3"></asp:TextBox>
+                                                        <asp:TextBox ID="txtSerBoletaN" runat="server" MaxLength="3"
+                                                         onkeypress="return onlyNumbers(event)">
+                                                        </asp:TextBox>
                                                     </td>
                                                     <td align="left" class="style4">
                                                         &nbsp;</td>
                                                     <td align="left" class="style4">
                                                         Correlativo de Factura</td>
                                                     <td align="left" class="style4">
-                                                        <asp:TextBox ID="txtSerFacturaN" runat="server" MaxLength="3"></asp:TextBox>
+                                                        <asp:TextBox ID="txtSerFacturaN" runat="server" MaxLength="3"
+                                                        onkeypress="return onlyNumbers(event)">
+                                                        </asp:TextBox>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -512,10 +517,12 @@
                                 <table width="220" border="0" cellspacing="0" cellpadding="0">
                                     <tr>
                                         <td>
-                                            <asp:LinkButton ID="LinkButton1" runat="server" CssClass="lnk">Guardar</asp:LinkButton>
+                                            <asp:LinkButton ID="lnkGuardarLCN" runat="server" CssClass="lnk" 
+                                                onclick="lnkGuardarLCN_Click">Guardar</asp:LinkButton>
                                         </td>
                                         <td>
-                                            <asp:LinkButton ID="LinkButton2" runat="server" CssClass="lnk">Cancelar</asp:LinkButton>
+                                            <asp:LinkButton ID="btnCancelarLCN" runat="server" CssClass="lnk" 
+                                                onclick="btnCancelarLCN_Click">Cancelar</asp:LinkButton>
                                         </td>
                                         <td style="width: 10px">
                                         </td>
@@ -531,12 +538,8 @@
                                         <td align="left" class="box-estilo01">
                                             <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                                 <tr>
-                                                    <td align="left" class="style2" colspan="2">
-                                                        &nbsp;</td>
-                                                    <td align="left" class="style3">
-                                                    </td>
-                                                    <td align="left" class="style3">
-                                                    </td>
+                                                    <td align="left" class="style2" colspan="4">
+                                                        <strong>Datos del Local</strong></td>
                                                     <td align="left" class="style3">
                                                         </td>
                                                 </tr>
@@ -554,6 +557,19 @@
                                                 </tr>
                                                 <tr>
                                                     <td align="left" class="style4">
+                                                        Descripción</td>
+                                                    <td align="left" class="style4">
+                                                        <asp:TextBox ID="txtDescripcionLCN" runat="server" MaxLength="100"></asp:TextBox>
+                                                    </td>
+                                                    <td align="left" class="style4">
+                                                        &nbsp;</td>
+                                                    <td align="left" class="style4">
+                                                        &nbsp;</td>
+                                                    <td align="left" class="style4">
+                                                        &nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="style4">
                                                         &nbsp;</td>
                                                     <td align="left" class="style4">
                                                         &nbsp;</td>
@@ -566,19 +582,12 @@
                                                 </tr>
                                                 <tr>
                                                     <td align="left" class="style4">
-                                                        &nbsp;</td>
+                                                        Centro de Costo</td>
                                                     <td align="left" class="style4">
-                                                        &nbsp;</td>
-                                                    <td align="left" class="style4">
-                                                        &nbsp;</td>
-                                                    <td align="left" class="style4">
-                                                        &nbsp;</td>
-                                                    <td align="left" class="style4">
-                                                        &nbsp;</td>
-                                                </tr>
-                                                <tr>
-                                                    <td align="left" class="style4" colspan="2">
-                                                        &nbsp;</td>
+                                                        <asp:DropDownList ID="cboCentroCostoN" runat="server" AutoPostBack="True" 
+                                                            AppendDataBoundItems="True">
+                                                        </asp:DropDownList>
+                                                    </td>
                                                     <td align="left" class="style4">
                                                         &nbsp;</td>
                                                     <td align="left" class="style4">
@@ -627,10 +636,12 @@
                                 <table width="220" border="0" cellspacing="0" cellpadding="0">
                                     <tr>
                                         <td>
-                                            <asp:LinkButton ID="LinkButton3" runat="server" CssClass="lnk">Guardar</asp:LinkButton>
+                                            <asp:LinkButton ID="lnkGuardarLCE" runat="server" CssClass="lnk" 
+                                                onclick="lnkGuardarLCE_Click">Guardar</asp:LinkButton>
                                         </td>
                                         <td>
-                                            <asp:LinkButton ID="LinkButton4" runat="server" CssClass="lnk">Cancelar</asp:LinkButton>
+                                            <asp:LinkButton ID="btnCancelarLCE" runat="server" CssClass="lnk" 
+                                                onclick="btnCancelarLCE_Click">Cancelar</asp:LinkButton>
                                         </td>
                                         <td style="width: 10px">
                                         </td>
@@ -646,32 +657,39 @@
                                         <td align="left" class="box-estilo01">
                                             <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                                 <tr>
-                                                    <td align="left" class="style2" colspan="2">
+                                                    <td align="left" class="style2" colspan="4">
+                                                        <strong>Datos del Local</strong></td>
+                                                    <td align="left" class="style3">
                                                         &nbsp;</td>
-                                                    <td align="left" class="style3">
+                                                    <td align="left" class="txt-box-estilo">
                                                     </td>
                                                     <td align="left" class="style3">
-                                                    </td>
-                                                    <td align="left" class="style3">
+                                                        &nbsp;</td>
+                                                    <td align="left" class="txt-box-estilo">
+                                                        &nbsp;</td>
+                                                    <td align="left" class="txt-box-estilo">
+                                                        &nbsp;</td>
+                                                    <td align="left" class="txt-box-estilo">
+                                                        &nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="style4">
+                                                        &nbsp;</td>
+                                                    <td align="left" class="style4">
                                                         </td>
-                                                </tr>
-                                                <tr>
-                                                    <td align="left" class="txt-box-estilo">
-                                                        &nbsp;</td>
-                                                    <td align="left" class="style3">
-                                                        &nbsp;</td>
-                                                    <td align="left" class="txt-box-estilo">
-                                                        &nbsp;</td>
-                                                    <td align="left" class="txt-box-estilo">
-                                                        &nbsp;</td>
-                                                    <td align="left" class="txt-box-estilo">
-                                                        &nbsp;</td>
-                                                </tr>
-                                                <tr>
                                                     <td align="left" class="style4">
                                                         &nbsp;</td>
                                                     <td align="left" class="style4">
                                                         &nbsp;</td>
+                                                    <td align="left" class="style4">
+                                                        &nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="style4">
+                                                        Descripción</td>
+                                                    <td align="left" class="style4">
+                                                        &nbsp;<asp:TextBox ID="txtDescripcionLCE" runat="server" MaxLength="100"></asp:TextBox>
+                                                    </td>
                                                     <td align="left" class="style4">
                                                         &nbsp;</td>
                                                     <td align="left" class="style4">
@@ -688,22 +706,15 @@
                                                         &nbsp;</td>
                                                     <td align="left" class="style4">
                                                         &nbsp;</td>
-                                                    <td align="left" class="style4">
-                                                        &nbsp;</td>
-                                                </tr>
-                                                <tr>
-                                                    <td align="left" class="style4" colspan="2">
-                                                        &nbsp;</td>
-                                                    <td align="left" class="style4">
-                                                        &nbsp;</td>
-                                                    <td align="left" class="style4">
-                                                        &nbsp;</td>
-                                                    <td align="left" class="style4">
-                                                        &nbsp;</td>
                                                 </tr>
                                                 <tr>
                                                     <td align="left" class="style4">
-                                                        &nbsp;</td>
+                                                        Centro de Costo</td>
+                                                    <td align="left" class="style4">
+                                                        <asp:DropDownList ID="cboCentroCostoE" runat="server" 
+                                                            AppendDataBoundItems="True" AutoPostBack="True">
+                                                        </asp:DropDownList>
+                                                        </td>
                                                     <td align="left" class="style4">
                                                         &nbsp;</td>
                                                     <td align="left" class="style4">

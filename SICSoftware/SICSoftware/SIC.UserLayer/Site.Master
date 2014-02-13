@@ -92,7 +92,8 @@
 </head>
 <body>
     <form id="Form1" runat="server">
-    <asp:ToolkitScriptManager ID="ScriptManager1" runat="server" AsyncPostBackTimeout="1600">
+    <asp:ToolkitScriptManager ID="ScriptManager1" runat="server" 
+        AsyncPostBackTimeout="1600" EnableScriptGlobalization="True">
     </asp:ToolkitScriptManager>
     <%--  <script type="text/javascript" language="javascript">
 

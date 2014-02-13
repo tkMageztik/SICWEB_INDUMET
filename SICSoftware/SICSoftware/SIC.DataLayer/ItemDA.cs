@@ -54,16 +54,11 @@ namespace SIC.DataLayer
             {
                 
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
-                {
-                    int count = (from x in contexto.SIC_T_ITEM
-                                 where x.itm_c_ccodigo.Equals(_pSIC_T_ITEM.itm_c_ccodigo)
-                                 select x).ToList().Count;
-
-                    if (count > 0)
+                {                    
+                    if (contexto.SIC_T_ITEM.Any(x => x.itm_c_ccodigo == _pSIC_T_ITEM.itm_c_ccodigo))
                     {
                         throw new ArgumentException("No se puede ingresar un código duplicado.");
                     }
-
 
                     _pSIC_T_ITEM.itm_c_bactivo = true;
                     contexto.AddToSIC_T_ITEM(_pSIC_T_ITEM);                    
@@ -79,24 +74,27 @@ namespace SIC.DataLayer
 
         public bool ModificarItem(SIC_T_ITEM _pSIC_T_ITEM)
         {
-            using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+            try
             {
-                SIC_T_ITEM varItem = (from x in contexto.SIC_T_ITEM
-                                      where x.itm_c_iid == _pSIC_T_ITEM.itm_c_iid
-                                      select x).FirstOrDefault();
-                contexto.ApplyCurrentValues("SICDBWEBEntities.SIC_T_ITEM", _pSIC_T_ITEM);
-                
+                using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+                {
+                    if (contexto.SIC_T_ITEM.Any(x
+                        => x.itm_c_iid != _pSIC_T_ITEM.itm_c_iid && x.itm_c_ccodigo == _pSIC_T_ITEM.itm_c_ccodigo))
+                    {
+                        throw new ArgumentException("No se puede ingresar un código duplicado.");
+                    }
 
-                try
-                {
+                    SIC_T_ITEM varItem = (from x in contexto.SIC_T_ITEM
+                                          where x.itm_c_iid == _pSIC_T_ITEM.itm_c_iid
+                                          select x).FirstOrDefault();
+                    contexto.ApplyCurrentValues("SICDBWEBEntities.SIC_T_ITEM", _pSIC_T_ITEM);
                     contexto.SaveChanges();
-                    return true;
+                    return true; // Nunca tira falso, bool no deberia ir. 
                 }
-                catch (OptimisticConcurrencyException ex)
-                {
-                    Console.Write(ex.Message);
-                    throw;
-                }
+            }
+            catch
+            {
+                throw;
             }
         }
 

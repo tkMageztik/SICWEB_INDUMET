@@ -854,7 +854,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 {
                     SIC_T_ITEM itemEncontrado = _item.ObtenerItemPorIdNoContext(itemAlm.itm_alm_c_iid_item);
                     precioReferencia = (cboMoneda.SelectedIndex == 0 ? itemEncontrado.itm_c_dprecio_venta
-                                                                    : Math.Round(itemEncontrado.itm_c_dprecio_venta / this.TasaCambio));
+                                                                    : Math.Round(itemEncontrado.itm_c_dprecio_venta / this.TasaCambio,2));
                     precioReferenciaSoles = itemEncontrado.itm_c_dprecio_compra;
 
                     SIC_T_VENTA_DETALLE nuevoDetalle = new SIC_T_VENTA_DETALLE();

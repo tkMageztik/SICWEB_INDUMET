@@ -77,5 +77,41 @@ namespace SIC.DataLayer
                 throw;
             }
         }
+
+        public void IngresarDireccion(SIC_T_EMP_DIRECCION _pSIC_T_EMP_DIRECCION)
+        {
+            try
+            {
+                using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+                {
+                    _pSIC_T_EMP_DIRECCION.emp_dir_c_bactivo= true;
+                    contexto.AddToSIC_T_EMP_DIRECCION(_pSIC_T_EMP_DIRECCION);
+                    contexto.SaveChanges();
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public void ModificarDireccion(SIC_T_EMP_DIRECCION _pSIC_T_EMP_DIRECCION)
+        {
+            try
+            {
+                using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+                {
+                    SIC_T_EMP_DIRECCION varItem = (from x in contexto.SIC_T_EMP_DIRECCION
+                                                   where x.emp_dir_c_iid == _pSIC_T_EMP_DIRECCION.emp_dir_c_iid
+                                                    select x).FirstOrDefault();
+                    contexto.ApplyCurrentValues("SICDBWEBEntities.SIC_T_EMP_DIRECCION", _pSIC_T_EMP_DIRECCION);
+                    contexto.SaveChanges();
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
 }

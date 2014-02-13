@@ -960,7 +960,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 {
                     SIC_T_ITEM itemEncontrado = _item.ObtenerItemPorIdNoContext(idItem);
                     precioReferencia = (cboMoneda.SelectedIndex == 0 ? itemEncontrado.itm_c_dprecio_compra
-                                                                        : Math.Round(itemEncontrado.itm_c_dprecio_compra / this.TasaCambio));
+                                                                        : Math.Round(itemEncontrado.itm_c_dprecio_compra / this.TasaCambio,2));
                     precioReferenciaSoles = itemEncontrado.itm_c_dprecio_compra;
                     SIC_T_ORDEN_DE_COMPRA_DET nuevoDetalle = new SIC_T_ORDEN_DE_COMPRA_DET();
                     nuevoDetalle.odc_c_ecantidad = 1;
@@ -1034,7 +1034,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             ordenDeCompra.odc_c_eigvcal = Math.Round(subTotal * ordenDeCompra.odc_c_eigv, 2);
             ordenDeCompra.odc_c_epercepcion = this.percepcion;
 
-            if (chkPercepcion.Checked && subTotal >= this.percepcionmax)
+            if (chkPercepcion.Checked && subTotal >= (bSoles ? this.percepcionmax : Math.Round(this.percepcionmax / this.TasaCambio, 2)))
             {
                 ordenDeCompra.odc_c_epercepcioncal = Math.Round(subTotal * ordenDeCompra.odc_c_epercepcion, 2);
             }
