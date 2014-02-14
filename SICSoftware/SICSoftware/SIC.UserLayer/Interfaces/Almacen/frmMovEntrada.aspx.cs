@@ -429,8 +429,6 @@ namespace SIC.UserLayer.Interfaces.Movimientos
 
         #endregion
 
-
-
         #region Metodos de Proceso
         private bool VerificarDatosIngreso()
         {

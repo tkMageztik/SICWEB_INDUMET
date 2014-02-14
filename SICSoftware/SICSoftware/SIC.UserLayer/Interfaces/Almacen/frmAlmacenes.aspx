@@ -1,16 +1,45 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="frmAlmacenes.aspx.cs" Inherits="SIC.UserLayer.Interfaces.Almacen.frmAlmacenes" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
+    CodeBehind="frmAlmacenes.aspx.cs" Inherits="SIC.UserLayer.Interfaces.Almacen.frmAlmacenes" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div>
-    
+        <div class="tit-nav-paginas" style="text-align: left;">
+            ALMACÉN &gt; ALMACENES</div>
+        <asp:UpdatePanel ID="upGeneral" UpdateMode="Conditional" runat="server">
+            <ContentTemplate>
+                <asp:MultiView ID="mvAlmacenes" runat="server" ActiveViewIndex="0">
+                    <asp:View ID="vwListaAlmacenes" runat="server">
+                        <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td align="left" class="box-estilo01">
+                                    <table width="100%">
+                                        <tr>
+                                            <td>
+                                            </td>
+                                            <td>
+                                            </td>
+                                            <td>
+                                            </td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                    </table>
+                            </tr>
+                            <tr>
+                                <td align="left" class="tit-nav-paginas">
+                                </td>
+                            </tr>
+                        </table>
+                    </asp:View>
+                    <asp:View ID="vwTransItems" runat="server">
+                        <div>
+                        </div>
+                    </asp:View>
+                </asp:MultiView>
+            </ContentTemplate>
+        </asp:UpdatePanel>
     </div>
-    </form>
-</body>
-</html>
+</asp:Content>
