@@ -811,6 +811,22 @@ namespace SIC.EntityLayer
             }
         }
         private ObjectSet<SIC_T_EMP_CENTRO_COSTO> _SIC_T_EMP_CENTRO_COSTO;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        public ObjectSet<SIC_T_CONCEPTO> SIC_T_CONCEPTO
+        {
+            get
+            {
+                if ((_SIC_T_CONCEPTO == null))
+                {
+                    _SIC_T_CONCEPTO = base.CreateObjectSet<SIC_T_CONCEPTO>("SIC_T_CONCEPTO");
+                }
+                return _SIC_T_CONCEPTO;
+            }
+        }
+        private ObjectSet<SIC_T_CONCEPTO> _SIC_T_CONCEPTO;
 
         #endregion
         #region Métodos AddTo
@@ -1165,6 +1181,14 @@ namespace SIC.EntityLayer
         public void AddToSIC_T_EMP_CENTRO_COSTO(SIC_T_EMP_CENTRO_COSTO sIC_T_EMP_CENTRO_COSTO)
         {
             base.AddObject("SIC_T_EMP_CENTRO_COSTO", sIC_T_EMP_CENTRO_COSTO);
+        }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet SIC_T_CONCEPTO. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToSIC_T_CONCEPTO(SIC_T_CONCEPTO sIC_T_CONCEPTO)
+        {
+            base.AddObject("SIC_T_CONCEPTO", sIC_T_CONCEPTO);
         }
 
         #endregion
@@ -4465,6 +4489,85 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+    }
+    
+    /// <summary>
+    /// No hay documentación de metadatos disponible.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SICDBWEBModel", Name="SIC_T_CONCEPTO")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SIC_T_CONCEPTO : EntityObject
+    {
+        #region Método de generador
+    
+        /// <summary>
+        /// Crear un nuevo objeto SIC_T_CONCEPTO.
+        /// </summary>
+        /// <param name="con_c_iid">Valor inicial de la propiedad con_c_iid.</param>
+        public static SIC_T_CONCEPTO CreateSIC_T_CONCEPTO(global::System.Int32 con_c_iid)
+        {
+            SIC_T_CONCEPTO sIC_T_CONCEPTO = new SIC_T_CONCEPTO();
+            sIC_T_CONCEPTO.con_c_iid = con_c_iid;
+            return sIC_T_CONCEPTO;
+        }
+
+        #endregion
+        #region Propiedades primitivas
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 con_c_iid
+        {
+            get
+            {
+                return _con_c_iid;
+            }
+            set
+            {
+                if (_con_c_iid != value)
+                {
+                    Oncon_c_iidChanging(value);
+                    ReportPropertyChanging("con_c_iid");
+                    _con_c_iid = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("con_c_iid");
+                    Oncon_c_iidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _con_c_iid;
+        partial void Oncon_c_iidChanging(global::System.Int32 value);
+        partial void Oncon_c_iidChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String con_c_vdes
+        {
+            get
+            {
+                return _con_c_vdes;
+            }
+            set
+            {
+                Oncon_c_vdesChanging(value);
+                ReportPropertyChanging("con_c_vdes");
+                _con_c_vdes = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("con_c_vdes");
+                Oncon_c_vdesChanged();
+            }
+        }
+        private global::System.String _con_c_vdes;
+        partial void Oncon_c_vdesChanging(global::System.String value);
+        partial void Oncon_c_vdesChanged();
+
+        #endregion
+    
     }
     
     /// <summary>

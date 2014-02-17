@@ -8,6 +8,6 @@ namespace SIC.DataLayer
 {
     public class LocalDA
     {
-
+       
     }
 }

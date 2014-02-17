@@ -14,7 +14,11 @@ using System.Text;
 
 namespace SIC.Data
 {
-
+    public enum Concepto
+    {
+        VENTA = 1,
+    }
+    
     public enum EstadoOC
     {
         PLANEADA = 1,
@@ -292,37 +296,37 @@ namespace SIC.Data
         FACTURA =  18,
     }
 
-    public enum Concepto
-    {
-        RENTA_FIJA = 1,
-        RENTA_VARIABLE = 2,
-        GASTO_COMUN_FIJO = 3,
-        GASTO_COMUN_VARIABLE = 4,
-        GASTO_DE_PROMOCION_FIJO = 5,
-        GASTO_DE_PROMOCION_VARIABLE = 6,
-        REVISION_DE_PROYECTOS = 7,
-        DERECHO_DE_LLAVE = 8,
-        INGRESO_MARKETING_REAL_PLAZA = 9,
-        RADIO_REAL_PLAZA = 10,
-        ELECTRICIDAD = 11,
-        AGUA = 12,
-        ARBITRIOS = 13,
-        PENALIDADES = 14,
-        INGRESOS_CONTRATO_ANCRO_REAL_PLAZA = 15,
-        INGRESOS_CONTRATO_ANCRO_PROPIETARIO = 16,
-        FEE_DE_DESARROLLO_Y_CONSTRUCCION = 17,
-        GASTOS_ADMINISTRATIVOS = 18,
-        INGRESOS_PARKING = 19,
-        MANTENIMIENTO_TRAVOLATORS = 20,
-        SERVICIO_DE_HABILITACION = 21,
-        SERVICIO_DE_ADMINISTRACION = 22,
-        INGRESOS_ADMINISTRATIVOS = 23,
-        VENTA_DE_MATERIAL_RECICLADO = 24,
-        OTROS_INGRESOS = 25,
-        INGRESOS_MORATORIOS_REAL_PLAZA = 26,
-        INGRESOS_MORATORIOS_PROPIETARIO = 27,
-        CONCEPTO_POR_DEFINIR = 28,
-    }
+    //public enum Concepto
+    //{
+    //    RENTA_FIJA = 1,
+    //    RENTA_VARIABLE = 2,
+    //    GASTO_COMUN_FIJO = 3,
+    //    GASTO_COMUN_VARIABLE = 4,
+    //    GASTO_DE_PROMOCION_FIJO = 5,
+    //    GASTO_DE_PROMOCION_VARIABLE = 6,
+    //    REVISION_DE_PROYECTOS = 7,
+    //    DERECHO_DE_LLAVE = 8,
+    //    INGRESO_MARKETING_REAL_PLAZA = 9,
+    //    RADIO_REAL_PLAZA = 10,
+    //    ELECTRICIDAD = 11,
+    //    AGUA = 12,
+    //    ARBITRIOS = 13,
+    //    PENALIDADES = 14,
+    //    INGRESOS_CONTRATO_ANCRO_REAL_PLAZA = 15,
+    //    INGRESOS_CONTRATO_ANCRO_PROPIETARIO = 16,
+    //    FEE_DE_DESARROLLO_Y_CONSTRUCCION = 17,
+    //    GASTOS_ADMINISTRATIVOS = 18,
+    //    INGRESOS_PARKING = 19,
+    //    MANTENIMIENTO_TRAVOLATORS = 20,
+    //    SERVICIO_DE_HABILITACION = 21,
+    //    SERVICIO_DE_ADMINISTRACION = 22,
+    //    INGRESOS_ADMINISTRATIVOS = 23,
+    //    VENTA_DE_MATERIAL_RECICLADO = 24,
+    //    OTROS_INGRESOS = 25,
+    //    INGRESOS_MORATORIOS_REAL_PLAZA = 26,
+    //    INGRESOS_MORATORIOS_PROPIETARIO = 27,
+    //    CONCEPTO_POR_DEFINIR = 28,
+    //}
 
     public enum EstadosNotaCredito
     {

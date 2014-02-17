@@ -7,6 +7,7 @@
     <Schema Namespace="SICDBWEBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="SICDBWEBModelStoreContainer">
           <EntitySet Name="SIC_T_ALMACEN_CENTRO_COSTO" EntityType="SICDBWEBModel.Store.SIC_T_ALMACEN_CENTRO_COSTO" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SIC_T_CONCEPTO" EntityType="SICDBWEBModel.Store.SIC_T_CONCEPTO" store:Type="Tables" Schema="General" />
           <EntitySet Name="SIC_T_PARAMETRO" EntityType="SICDBWEBModel.Store.SIC_T_PARAMETRO" store:Type="Tables" Schema="General" />
           <EntitySet Name="SIC_T_PARAMETRO_DET" EntityType="SICDBWEBModel.Store.SIC_T_PARAMETRO_DET" store:Type="Tables" Schema="General" />
           <EntitySet Name="SIC_T_ALMACEN" EntityType="SICDBWEBModel.Store.SIC_T_ALMACEN" store:Type="Tables" Schema="Mantenimiento" />
@@ -221,6 +222,13 @@
           <Property Name="alm_cst_c_iid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="alm_cst_c_iid_centro_costo" Type="int" Nullable="false" />
           <Property Name="alm_cst_c_iid_almacen" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SIC_T_CONCEPTO">
+          <Key>
+            <PropertyRef Name="con_c_iid" />
+          </Key>
+          <Property Name="con_c_iid" Type="int" Nullable="false" />
+          <Property Name="con_c_vdes" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="SIC_T_PARAMETRO">
           <Key>
@@ -1486,6 +1494,7 @@
             <End Role="SIC_T_EMP_CENTRO_COSTO" EntitySet="SIC_T_EMP_CENTRO_COSTO" />
             <End Role="SIC_T_VENTA" EntitySet="SIC_T_VENTA" />
           </AssociationSet>
+          <EntitySet Name="SIC_T_CONCEPTO" EntityType="SICDBWEBModel.SIC_T_CONCEPTO" />
           </EntityContainer>
         <EntityType Name="SIC_T_CLI_CONTAC_CARGO">
           <Key>
@@ -2530,6 +2539,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="SIC_T_CONCEPTO">
+          <Key>
+            <PropertyRef Name="con_c_iid" />
+          </Key>
+          <Property Type="Int32" Name="con_c_iid" Nullable="false" />
+          <Property Type="String" Name="con_c_vdes" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3074,6 +3090,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="SIC_T_CONCEPTO">
+            <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_CONCEPTO">
+              <MappingFragment StoreEntitySet="SIC_T_CONCEPTO">
+                <ScalarProperty Name="con_c_vdes" ColumnName="con_c_vdes" />
+                <ScalarProperty Name="con_c_iid" ColumnName="con_c_iid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -3289,11 +3313,11 @@
           <ConnectorPoint PointX="6" PointY="15" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_CLIENTE_SIC_T_CLI_SCORING" >
-          <ConnectorPoint PointX="2.25" PointY="4.297841796875" />
-          <ConnectorPoint PointX="7.125" PointY="4.297841796875" />
+          <ConnectorPoint PointX="2.25" PointY="4.0937505000000005" />
+          <ConnectorPoint PointX="7.125" PointY="4.0937505000000005" />
           <ConnectorPoint PointX="7.125" PointY="5.59568359375001" />
-          <ConnectorPoint PointX="14.417968375000001" PointY="5.59568359375001" />
-          <ConnectorPoint PointX="14.417968375000001" PointY="10.375" />
+          <ConnectorPoint PointX="14.39746159375" PointY="5.59568359375001" />
+          <ConnectorPoint PointX="14.39746159375" PointY="10.375" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_CLIENTE_SIC_T_COLABORADOR" >
           <ConnectorPoint PointX="9.25" PointY="18.033396809895834" />
@@ -3308,10 +3332,10 @@
           <ConnectorPoint PointX="10.083333333333334" PointY="9.2494921875" />
           <ConnectorPoint PointX="11.072916666666666" PointY="9.2494921875" />
           <ConnectorPoint PointX="11.239583333333334" PointY="9.2494921875" />
-          <ConnectorPoint PointX="14.320963854166665" PointY="9.2494921875" />
-          <ConnectorPoint PointX="14.487630520833333" PointY="9.2494921875" />
-          <ConnectorPoint PointX="15.167967875" PointY="9.2494921875" />
-          <ConnectorPoint PointX="15.167967875" PointY="10.375" />
+          <ConnectorPoint PointX="14.314128260416666" PointY="9.2494921875" />
+          <ConnectorPoint PointX="14.480794927083334" PointY="9.2494921875" />
+          <ConnectorPoint PointX="15.1542966875" PointY="9.2494921875" />
+          <ConnectorPoint PointX="15.1542966875" PointY="10.375" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_SIC_T_CLIENTE" >
           <ConnectorPoint PointX="15.5" PointY="13.1920068359375" />
@@ -3482,6 +3506,7 @@
           <ConnectorPoint PointX="18.125" PointY="16.274638671875" />
           <ConnectorPoint PointX="18.125" PointY="17.125" />
         </AssociationConnector>
+        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_CONCEPTO" Width="1.5" PointX="3.375" PointY="4.75" Height="1.4033821614583246" />
         </Diagram>
     </Diagrams>
   </Designer>
