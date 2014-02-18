@@ -37,6 +37,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,6 +52,14 @@
     <ProjectReference Include="..\SIC.BusinessLayer\SIC.BusinessLayer.csproj">
       <Project>{2CE75AD3-7C7A-4421-94F9-89D2B5D4154F}</Project>
       <Name>SIC.BusinessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SIC.Data\SIC.Data.csproj">
+      <Project>{7255AF3B-02A4-40B9-BB04-D2B7F9C69443}</Project>
+      <Name>SIC.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SIC.EntityLayer\SIC.EntityLayer.csproj">
+      <Project>{975FB244-7E0D-47A8-8FB3-9E05C4DE911E}</Project>
+      <Name>SIC.EntityLayer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

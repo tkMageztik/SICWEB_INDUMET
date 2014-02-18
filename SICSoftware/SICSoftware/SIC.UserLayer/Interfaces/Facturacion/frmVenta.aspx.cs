@@ -796,7 +796,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 else
                 {
                     list.RemoveAll(x => x.itm_alm_c_iid == idItemAlmacen);
-                }
+                } 
             }
         }
 

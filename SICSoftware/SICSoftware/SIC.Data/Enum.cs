@@ -386,6 +386,10 @@ namespace SIC.Data
         PERCEPCION = 4,
         MONEDA = 5,
         DOCUMENTO_VENTA = 6,
+        SOLES = 12,
+        DOLARES = 15,
+        BOLETA = 17,
+        FACTURA = 18
     }
 
     public enum DESTINATARIOSCORREO

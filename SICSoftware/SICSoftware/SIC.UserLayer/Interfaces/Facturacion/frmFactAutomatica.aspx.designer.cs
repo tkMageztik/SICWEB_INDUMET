@@ -58,6 +58,15 @@ namespace SIC.UserLayer.Interfaces.Facturacion {
         protected global::System.Web.UI.WebControls.DropDownList cboPeriodo;
         
         /// <summary>
+        /// Control btnBuscar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBuscar;
+        
+        /// <summary>
         /// Control gvListaVenta.
         /// </summary>
         /// <remarks>
@@ -76,15 +85,6 @@ namespace SIC.UserLayer.Interfaces.Facturacion {
         protected global::System.Web.UI.WebControls.View vwCentroCostoEditar;
         
         /// <summary>
-        /// Control btnGuardarCCE.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnGuardarCCE;
-        
-        /// <summary>
         /// Control btnCancelarCCE.
         /// </summary>
         /// <remarks>
@@ -92,6 +92,15 @@ namespace SIC.UserLayer.Interfaces.Facturacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnCancelarCCE;
+        
+        /// <summary>
+        /// Control ucFactura1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::SIC.UserLayer.Interfaces.Facturacion.ucFactura ucFactura1;
         
         /// <summary>
         /// Control upMensaje.

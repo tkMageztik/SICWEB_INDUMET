@@ -14,5 +14,6 @@ namespace SIC.EntityLayer
         public string descItem { get; set; }
         public decimal stockAlmacen { get; set; }
         public string nombreAlmacen { get; set; }
+
     }
 }
