@@ -55,7 +55,6 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_ENTRADA_DETALLE_SIC_T_MOVIMIENTO_ENTRADA", "SIC_T_MOVIMIENTO_ENTRADA", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_MOVIMIENTO_ENTRADA), "SIC_T_MOVIMIENTO_ENTRADA_DETALLE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_MOVIMIENTO_ENTRADA_DETALLE), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_ORDEN_DE_COMPRA", "SIC_T_ORDEN_DE_COMPRA", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_ORDEN_DE_COMPRA), "SIC_T_MOVIMIENTO_ENTRADA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_MOVIMIENTO_ENTRADA), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_ALMACEN_CENTRO_COSTO_SIC_T_EMP_CENTRO_COSTO", "SIC_T_EMP_CENTRO_COSTO", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_EMP_CENTRO_COSTO), "SIC_T_ALMACEN_CENTRO_COSTO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_ALMACEN_CENTRO_COSTO), true)]
-[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_EMP_DIRECCION_SIC_T_EMP_CENTRO_COSTO", "SIC_T_EMP_CENTRO_COSTO", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_EMP_CENTRO_COSTO), "SIC_T_EMP_DIRECCION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_EMP_DIRECCION), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_VENTA_SIC_T_EMP_CENTRO_COSTO", "SIC_T_EMP_CENTRO_COSTO", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_EMP_CENTRO_COSTO), "SIC_T_VENTA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_VENTA), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_BOLETA_DETALLE_SIC_T_BOLETA", "SIC_T_BOLETA", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_BOLETA), "SIC_T_BOLETA_DETALLE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_BOLETA_DETALLE), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_BOLETA_SIC_T_VENTA", "SIC_T_VENTA", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_VENTA), "SIC_T_BOLETA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_BOLETA), true)]
@@ -63,6 +62,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_FACTURA_DETALLE_SIC_T_FACTURA", "SIC_T_FACTURA", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_FACTURA), "SIC_T_FACTURA_DETALLE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_FACTURA_DETALLE), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_FACTURA_SIC_T_VENTA", "SIC_T_VENTA", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_VENTA), "SIC_T_FACTURA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_FACTURA), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_FACTURA_DETALLE_SIC_T_ITEM", "SIC_T_ITEM", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_ITEM), "SIC_T_FACTURA_DETALLE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_FACTURA_DETALLE), true)]
+[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_EMP_DIRECCION_SIC_T_EMP_CENTRO_COSTO", "SIC_T_EMP_CENTRO_COSTO", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_EMP_CENTRO_COSTO), "SIC_T_EMP_DIRECCION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_EMP_DIRECCION), true)]
 
 #endregion
 
@@ -485,22 +485,6 @@ namespace SIC.EntityLayer
         /// <summary>
         /// No hay documentación de metadatos disponible.
         /// </summary>
-        public ObjectSet<SIC_T_EMP_DIRECCION> SIC_T_EMP_DIRECCION
-        {
-            get
-            {
-                if ((_SIC_T_EMP_DIRECCION == null))
-                {
-                    _SIC_T_EMP_DIRECCION = base.CreateObjectSet<SIC_T_EMP_DIRECCION>("SIC_T_EMP_DIRECCION");
-                }
-                return _SIC_T_EMP_DIRECCION;
-            }
-        }
-        private ObjectSet<SIC_T_EMP_DIRECCION> _SIC_T_EMP_DIRECCION;
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
         public ObjectSet<SIC_T_IGV> SIC_T_IGV
         {
             get
@@ -913,6 +897,22 @@ namespace SIC.EntityLayer
             }
         }
         private ObjectSet<SIC_T_UNIDAD_MEDIDA> _SIC_T_UNIDAD_MEDIDA;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        public ObjectSet<SIC_T_EMP_DIRECCION> SIC_T_EMP_DIRECCION
+        {
+            get
+            {
+                if ((_SIC_T_EMP_DIRECCION == null))
+                {
+                    _SIC_T_EMP_DIRECCION = base.CreateObjectSet<SIC_T_EMP_DIRECCION>("SIC_T_EMP_DIRECCION");
+                }
+                return _SIC_T_EMP_DIRECCION;
+            }
+        }
+        private ObjectSet<SIC_T_EMP_DIRECCION> _SIC_T_EMP_DIRECCION;
 
         #endregion
         #region Métodos AddTo
@@ -1099,14 +1099,6 @@ namespace SIC.EntityLayer
         public void AddToSIC_T_ALMACEN(SIC_T_ALMACEN sIC_T_ALMACEN)
         {
             base.AddObject("SIC_T_ALMACEN", sIC_T_ALMACEN);
-        }
-    
-        /// <summary>
-        /// Método desusado para agregar un nuevo objeto al EntitySet SIC_T_EMP_DIRECCION. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
-        /// </summary>
-        public void AddToSIC_T_EMP_DIRECCION(SIC_T_EMP_DIRECCION sIC_T_EMP_DIRECCION)
-        {
-            base.AddObject("SIC_T_EMP_DIRECCION", sIC_T_EMP_DIRECCION);
         }
     
         /// <summary>
@@ -1315,6 +1307,14 @@ namespace SIC.EntityLayer
         public void AddToSIC_T_UNIDAD_MEDIDA(SIC_T_UNIDAD_MEDIDA sIC_T_UNIDAD_MEDIDA)
         {
             base.AddObject("SIC_T_UNIDAD_MEDIDA", sIC_T_UNIDAD_MEDIDA);
+        }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet SIC_T_EMP_DIRECCION. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToSIC_T_EMP_DIRECCION(SIC_T_EMP_DIRECCION sIC_T_EMP_DIRECCION)
+        {
+            base.AddObject("SIC_T_EMP_DIRECCION", sIC_T_EMP_DIRECCION);
         }
 
         #endregion
@@ -5849,28 +5849,6 @@ namespace SIC.EntityLayer
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_EMP_DIRECCION_SIC_T_EMP_CENTRO_COSTO", "SIC_T_EMP_DIRECCION")]
-        public EntityCollection<SIC_T_EMP_DIRECCION> SIC_T_EMP_DIRECCION
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SIC_T_EMP_DIRECCION>("SICDBWEBModel.FK_SIC_T_EMP_DIRECCION_SIC_T_EMP_CENTRO_COSTO", "SIC_T_EMP_DIRECCION");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SIC_T_EMP_DIRECCION>("SICDBWEBModel.FK_SIC_T_EMP_DIRECCION_SIC_T_EMP_CENTRO_COSTO", "SIC_T_EMP_DIRECCION", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_VENTA_SIC_T_EMP_CENTRO_COSTO", "SIC_T_VENTA")]
         public EntityCollection<SIC_T_VENTA> SIC_T_VENTA
         {
@@ -5883,6 +5861,28 @@ namespace SIC.EntityLayer
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SIC_T_VENTA>("SICDBWEBModel.FK_SIC_T_VENTA_SIC_T_EMP_CENTRO_COSTO", "SIC_T_VENTA", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_EMP_DIRECCION_SIC_T_EMP_CENTRO_COSTO", "SIC_T_EMP_DIRECCION")]
+        public EntityCollection<SIC_T_EMP_DIRECCION> SIC_T_EMP_DIRECCION
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SIC_T_EMP_DIRECCION>("SICDBWEBModel.FK_SIC_T_EMP_DIRECCION_SIC_T_EMP_CENTRO_COSTO", "SIC_T_EMP_DIRECCION");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SIC_T_EMP_DIRECCION>("SICDBWEBModel.FK_SIC_T_EMP_DIRECCION_SIC_T_EMP_CENTRO_COSTO", "SIC_T_EMP_DIRECCION", value);
                 }
             }
         }
@@ -5904,12 +5904,22 @@ namespace SIC.EntityLayer
         /// Crear un nuevo objeto SIC_T_EMP_DIRECCION.
         /// </summary>
         /// <param name="emp_dir_c_iid">Valor inicial de la propiedad emp_dir_c_iid.</param>
+        /// <param name="emp_dir_c_vdireccion">Valor inicial de la propiedad emp_dir_c_vdireccion.</param>
+        /// <param name="emp_dir_c_bactivo">Valor inicial de la propiedad emp_dir_c_bactivo.</param>
         /// <param name="emp_dir_c_iid_centrocosto">Valor inicial de la propiedad emp_dir_c_iid_centrocosto.</param>
-        public static SIC_T_EMP_DIRECCION CreateSIC_T_EMP_DIRECCION(global::System.Int32 emp_dir_c_iid, global::System.Int32 emp_dir_c_iid_centrocosto)
+        /// <param name="emp_dir_c_itipodirec">Valor inicial de la propiedad emp_dir_c_itipodirec.</param>
+        /// <param name="emp_dir_c_ccod_ubig">Valor inicial de la propiedad emp_dir_c_ccod_ubig.</param>
+        /// <param name="emp_dir_c_vtipodirec">Valor inicial de la propiedad emp_dir_c_vtipodirec.</param>
+        public static SIC_T_EMP_DIRECCION CreateSIC_T_EMP_DIRECCION(global::System.Int32 emp_dir_c_iid, global::System.String emp_dir_c_vdireccion, global::System.Boolean emp_dir_c_bactivo, global::System.Int32 emp_dir_c_iid_centrocosto, global::System.Int32 emp_dir_c_itipodirec, global::System.String emp_dir_c_ccod_ubig, global::System.String emp_dir_c_vtipodirec)
         {
             SIC_T_EMP_DIRECCION sIC_T_EMP_DIRECCION = new SIC_T_EMP_DIRECCION();
             sIC_T_EMP_DIRECCION.emp_dir_c_iid = emp_dir_c_iid;
+            sIC_T_EMP_DIRECCION.emp_dir_c_vdireccion = emp_dir_c_vdireccion;
+            sIC_T_EMP_DIRECCION.emp_dir_c_bactivo = emp_dir_c_bactivo;
             sIC_T_EMP_DIRECCION.emp_dir_c_iid_centrocosto = emp_dir_c_iid_centrocosto;
+            sIC_T_EMP_DIRECCION.emp_dir_c_itipodirec = emp_dir_c_itipodirec;
+            sIC_T_EMP_DIRECCION.emp_dir_c_ccod_ubig = emp_dir_c_ccod_ubig;
+            sIC_T_EMP_DIRECCION.emp_dir_c_vtipodirec = emp_dir_c_vtipodirec;
             return sIC_T_EMP_DIRECCION;
         }
 
@@ -5946,7 +5956,7 @@ namespace SIC.EntityLayer
         /// <summary>
         /// No hay documentación de metadatos disponible.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String emp_dir_c_vdireccion
         {
@@ -5958,7 +5968,7 @@ namespace SIC.EntityLayer
             {
                 Onemp_dir_c_vdireccionChanging(value);
                 ReportPropertyChanging("emp_dir_c_vdireccion");
-                _emp_dir_c_vdireccion = StructuralObject.SetValidValue(value, true);
+                _emp_dir_c_vdireccion = StructuralObject.SetValidValue(value, false);
                 ReportPropertyChanged("emp_dir_c_vdireccion");
                 Onemp_dir_c_vdireccionChanged();
             }
@@ -5970,9 +5980,9 @@ namespace SIC.EntityLayer
         /// <summary>
         /// No hay documentación de metadatos disponible.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> emp_dir_c_bactivo
+        public global::System.Boolean emp_dir_c_bactivo
         {
             get
             {
@@ -5987,8 +5997,8 @@ namespace SIC.EntityLayer
                 Onemp_dir_c_bactivoChanged();
             }
         }
-        private Nullable<global::System.Boolean> _emp_dir_c_bactivo;
-        partial void Onemp_dir_c_bactivoChanging(Nullable<global::System.Boolean> value);
+        private global::System.Boolean _emp_dir_c_bactivo;
+        partial void Onemp_dir_c_bactivoChanging(global::System.Boolean value);
         partial void Onemp_dir_c_bactivoChanged();
     
         /// <summary>
@@ -6014,6 +6024,78 @@ namespace SIC.EntityLayer
         private global::System.Int32 _emp_dir_c_iid_centrocosto;
         partial void Onemp_dir_c_iid_centrocostoChanging(global::System.Int32 value);
         partial void Onemp_dir_c_iid_centrocostoChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 emp_dir_c_itipodirec
+        {
+            get
+            {
+                return _emp_dir_c_itipodirec;
+            }
+            set
+            {
+                Onemp_dir_c_itipodirecChanging(value);
+                ReportPropertyChanging("emp_dir_c_itipodirec");
+                _emp_dir_c_itipodirec = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("emp_dir_c_itipodirec");
+                Onemp_dir_c_itipodirecChanged();
+            }
+        }
+        private global::System.Int32 _emp_dir_c_itipodirec;
+        partial void Onemp_dir_c_itipodirecChanging(global::System.Int32 value);
+        partial void Onemp_dir_c_itipodirecChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String emp_dir_c_ccod_ubig
+        {
+            get
+            {
+                return _emp_dir_c_ccod_ubig;
+            }
+            set
+            {
+                Onemp_dir_c_ccod_ubigChanging(value);
+                ReportPropertyChanging("emp_dir_c_ccod_ubig");
+                _emp_dir_c_ccod_ubig = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("emp_dir_c_ccod_ubig");
+                Onemp_dir_c_ccod_ubigChanged();
+            }
+        }
+        private global::System.String _emp_dir_c_ccod_ubig;
+        partial void Onemp_dir_c_ccod_ubigChanging(global::System.String value);
+        partial void Onemp_dir_c_ccod_ubigChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String emp_dir_c_vtipodirec
+        {
+            get
+            {
+                return _emp_dir_c_vtipodirec;
+            }
+            set
+            {
+                Onemp_dir_c_vtipodirecChanging(value);
+                ReportPropertyChanging("emp_dir_c_vtipodirec");
+                _emp_dir_c_vtipodirec = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("emp_dir_c_vtipodirec");
+                Onemp_dir_c_vtipodirecChanged();
+            }
+        }
+        private global::System.String _emp_dir_c_vtipodirec;
+        partial void Onemp_dir_c_vtipodirecChanging(global::System.String value);
+        partial void Onemp_dir_c_vtipodirecChanged();
 
         #endregion
     

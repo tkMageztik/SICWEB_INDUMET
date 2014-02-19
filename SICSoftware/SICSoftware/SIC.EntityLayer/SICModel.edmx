@@ -490,9 +490,12 @@
             <PropertyRef Name="emp_dir_c_iid" />
           </Key>
           <Property Name="emp_dir_c_iid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="emp_dir_c_vdireccion" Type="varchar" MaxLength="100" />
-          <Property Name="emp_dir_c_bactivo" Type="bit" />
+          <Property Name="emp_dir_c_vdireccion" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="emp_dir_c_bactivo" Type="bit" Nullable="false" />
           <Property Name="emp_dir_c_iid_centrocosto" Type="int" Nullable="false" />
+          <Property Name="emp_dir_c_itipodirec" Type="int" Nullable="false" />
+          <Property Name="emp_dir_c_ccod_ubig" Type="char" Nullable="false" MaxLength="6" />
+          <Property Name="emp_dir_c_vtipodirec" Type="varchar" Nullable="false" MaxLength="100" />
         </EntityType>
         <EntityType Name="SIC_T_EMPRESA">
           <Key>
@@ -1512,7 +1515,6 @@
           </FunctionImport>
           <EntitySet Name="SIC_T_ALMACEN_CENTRO_COSTO" EntityType="SICDBWEBModel.SIC_T_ALMACEN_CENTRO_COSTO" />
           <EntitySet Name="SIC_T_ALMACEN" EntityType="SICDBWEBModel.SIC_T_ALMACEN" />
-          <EntitySet Name="SIC_T_EMP_DIRECCION" EntityType="SICDBWEBModel.SIC_T_EMP_DIRECCION" />
           <EntitySet Name="SIC_T_IGV" EntityType="SICDBWEBModel.SIC_T_IGV" />
           <EntitySet Name="SIC_T_ITEM" EntityType="SICDBWEBModel.SIC_T_ITEM" />
           <EntitySet Name="SIC_T_ITEM_ALMACEN" EntityType="SICDBWEBModel.SIC_T_ITEM_ALMACEN" />
@@ -1649,10 +1651,6 @@
             <End Role="SIC_T_EMP_CENTRO_COSTO" EntitySet="SIC_T_EMP_CENTRO_COSTO" />
             <End Role="SIC_T_ALMACEN_CENTRO_COSTO" EntitySet="SIC_T_ALMACEN_CENTRO_COSTO" />
           </AssociationSet>
-          <AssociationSet Name="FK_SIC_T_EMP_DIRECCION_SIC_T_EMP_CENTRO_COSTO" Association="SICDBWEBModel.FK_SIC_T_EMP_DIRECCION_SIC_T_EMP_CENTRO_COSTO">
-            <End Role="SIC_T_EMP_CENTRO_COSTO" EntitySet="SIC_T_EMP_CENTRO_COSTO" />
-            <End Role="SIC_T_EMP_DIRECCION" EntitySet="SIC_T_EMP_DIRECCION" />
-          </AssociationSet>
           <AssociationSet Name="FK_SIC_T_VENTA_SIC_T_EMP_CENTRO_COSTO" Association="SICDBWEBModel.FK_SIC_T_VENTA_SIC_T_EMP_CENTRO_COSTO">
             <End Role="SIC_T_EMP_CENTRO_COSTO" EntitySet="SIC_T_EMP_CENTRO_COSTO" />
             <End Role="SIC_T_VENTA" EntitySet="SIC_T_VENTA" />
@@ -1687,6 +1685,11 @@
             <End Role="SIC_T_FACTURA_DETALLE" EntitySet="SIC_T_FACTURA_DETALLE" />
           </AssociationSet>
           <EntitySet Name="SIC_T_UNIDAD_MEDIDA" EntityType="SICDBWEBModel.SIC_T_UNIDAD_MEDIDA" />
+          <EntitySet Name="SIC_T_EMP_DIRECCION" EntityType="SICDBWEBModel.SIC_T_EMP_DIRECCION" />
+          <AssociationSet Name="FK_SIC_T_EMP_DIRECCION_SIC_T_EMP_CENTRO_COSTO" Association="SICDBWEBModel.FK_SIC_T_EMP_DIRECCION_SIC_T_EMP_CENTRO_COSTO">
+            <End Role="SIC_T_EMP_CENTRO_COSTO" EntitySet="SIC_T_EMP_CENTRO_COSTO" />
+            <End Role="SIC_T_EMP_DIRECCION" EntitySet="SIC_T_EMP_DIRECCION" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="SIC_T_CLI_CONTAC_CARGO">
           <Key>
@@ -2045,16 +2048,6 @@
           <NavigationProperty Name="SIC_T_ITEM_ALMACEN" Relationship="SICDBWEBModel.FK_SIC_T_ITEM_ALMACEN_SIC_T_ALMACEN" FromRole="SIC_T_ALMACEN" ToRole="SIC_T_ITEM_ALMACEN" />
           <NavigationProperty Name="SIC_T_VENTA_DETALLE" Relationship="SICDBWEBModel.FK_SIC_T_VENTA_DETALLE_SIC_T_ALMACEN" FromRole="SIC_T_ALMACEN" ToRole="SIC_T_VENTA_DETALLE" />
           <NavigationProperty Name="SIC_T_MOVIMIENTO_ENTRADA" Relationship="SICDBWEBModel.FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_ALMACEN" FromRole="SIC_T_ALMACEN" ToRole="SIC_T_MOVIMIENTO_ENTRADA" />
-        </EntityType>
-        <EntityType Name="SIC_T_EMP_DIRECCION">
-          <Key>
-            <PropertyRef Name="emp_dir_c_iid" />
-          </Key>
-          <Property Type="Int32" Name="emp_dir_c_iid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="emp_dir_c_vdireccion" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="emp_dir_c_bactivo" />
-          <Property Type="Int32" Name="emp_dir_c_iid_centrocosto" Nullable="false" />
-          <NavigationProperty Name="SIC_T_EMP_CENTRO_COSTO" Relationship="SICDBWEBModel.FK_SIC_T_EMP_DIRECCION_SIC_T_EMP_CENTRO_COSTO" FromRole="SIC_T_EMP_DIRECCION" ToRole="SIC_T_EMP_CENTRO_COSTO" />
         </EntityType>
         <EntityType Name="SIC_T_IGV">
           <Key>
@@ -2696,8 +2689,8 @@
           <Property Type="String" Name="emp_cst_c_vserieboleta" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="emp_cst_c_inumeroboleta" Nullable="false" />
           <NavigationProperty Name="SIC_T_ALMACEN_CENTRO_COSTO" Relationship="SICDBWEBModel.FK_SIC_T_ALMACEN_CENTRO_COSTO_SIC_T_EMP_CENTRO_COSTO" FromRole="SIC_T_EMP_CENTRO_COSTO" ToRole="SIC_T_ALMACEN_CENTRO_COSTO" />
-          <NavigationProperty Name="SIC_T_EMP_DIRECCION" Relationship="SICDBWEBModel.FK_SIC_T_EMP_DIRECCION_SIC_T_EMP_CENTRO_COSTO" FromRole="SIC_T_EMP_CENTRO_COSTO" ToRole="SIC_T_EMP_DIRECCION" />
           <NavigationProperty Name="SIC_T_VENTA" Relationship="SICDBWEBModel.FK_SIC_T_VENTA_SIC_T_EMP_CENTRO_COSTO" FromRole="SIC_T_EMP_CENTRO_COSTO" ToRole="SIC_T_VENTA" />
+          <NavigationProperty Name="SIC_T_EMP_DIRECCION" Relationship="SICDBWEBModel.FK_SIC_T_EMP_DIRECCION_SIC_T_EMP_CENTRO_COSTO" FromRole="SIC_T_EMP_CENTRO_COSTO" ToRole="SIC_T_EMP_DIRECCION" />
         </EntityType>
         <Association Name="FK_SIC_T_ALMACEN_CENTRO_COSTO_SIC_T_EMP_CENTRO_COSTO">
           <End Type="SICDBWEBModel.SIC_T_EMP_CENTRO_COSTO" Role="SIC_T_EMP_CENTRO_COSTO" Multiplicity="1" />
@@ -2708,18 +2701,6 @@
             </Principal>
             <Dependent Role="SIC_T_ALMACEN_CENTRO_COSTO">
               <PropertyRef Name="alm_cst_c_iid_centro_costo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SIC_T_EMP_DIRECCION_SIC_T_EMP_CENTRO_COSTO">
-          <End Type="SICDBWEBModel.SIC_T_EMP_CENTRO_COSTO" Role="SIC_T_EMP_CENTRO_COSTO" Multiplicity="1" />
-          <End Type="SICDBWEBModel.SIC_T_EMP_DIRECCION" Role="SIC_T_EMP_DIRECCION" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SIC_T_EMP_CENTRO_COSTO">
-              <PropertyRef Name="emp_cst_c_iid" />
-            </Principal>
-            <Dependent Role="SIC_T_EMP_DIRECCION">
-              <PropertyRef Name="emp_dir_c_iid_centrocosto" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2884,6 +2865,31 @@
           <Property Type="String" Name="und_c_vdesc" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Type="Boolean" Name="und_c_bactivo" Nullable="false" />
         </EntityType>
+        <EntityType Name="SIC_T_EMP_DIRECCION">
+          <Key>
+            <PropertyRef Name="emp_dir_c_iid" />
+          </Key>
+          <Property Type="Int32" Name="emp_dir_c_iid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="emp_dir_c_vdireccion" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="emp_dir_c_bactivo" Nullable="false" />
+          <Property Type="Int32" Name="emp_dir_c_iid_centrocosto" Nullable="false" />
+          <Property Type="Int32" Name="emp_dir_c_itipodirec" Nullable="false" />
+          <Property Type="String" Name="emp_dir_c_ccod_ubig" Nullable="false" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="emp_dir_c_vtipodirec" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SIC_T_EMP_CENTRO_COSTO" Relationship="SICDBWEBModel.FK_SIC_T_EMP_DIRECCION_SIC_T_EMP_CENTRO_COSTO" FromRole="SIC_T_EMP_DIRECCION" ToRole="SIC_T_EMP_CENTRO_COSTO" />
+        </EntityType>
+        <Association Name="FK_SIC_T_EMP_DIRECCION_SIC_T_EMP_CENTRO_COSTO">
+          <End Type="SICDBWEBModel.SIC_T_EMP_CENTRO_COSTO" Role="SIC_T_EMP_CENTRO_COSTO" Multiplicity="1" />
+          <End Type="SICDBWEBModel.SIC_T_EMP_DIRECCION" Role="SIC_T_EMP_DIRECCION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SIC_T_EMP_CENTRO_COSTO">
+              <PropertyRef Name="emp_cst_c_iid" />
+            </Principal>
+            <Dependent Role="SIC_T_EMP_DIRECCION">
+              <PropertyRef Name="emp_dir_c_iid_centrocosto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3144,16 +3150,6 @@
                 <ScalarProperty Name="alm_c_vdes" ColumnName="alm_c_vdes" />
                 <ScalarProperty Name="alm_c_bactivo" ColumnName="alm_c_bactivo" />
                 <ScalarProperty Name="alm_c_iid" ColumnName="alm_c_iid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SIC_T_EMP_DIRECCION">
-            <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_EMP_DIRECCION">
-              <MappingFragment StoreEntitySet="SIC_T_EMP_DIRECCION">
-                <ScalarProperty Name="emp_dir_c_iid_centrocosto" ColumnName="emp_dir_c_iid_centrocosto" />
-                <ScalarProperty Name="emp_dir_c_bactivo" ColumnName="emp_dir_c_bactivo" />
-                <ScalarProperty Name="emp_dir_c_vdireccion" ColumnName="emp_dir_c_vdireccion" />
-                <ScalarProperty Name="emp_dir_c_iid" ColumnName="emp_dir_c_iid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3503,6 +3499,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="SIC_T_EMP_DIRECCION">
+            <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_EMP_DIRECCION">
+              <MappingFragment StoreEntitySet="SIC_T_EMP_DIRECCION">
+                <ScalarProperty Name="emp_dir_c_vtipodirec" ColumnName="emp_dir_c_vtipodirec" />
+                <ScalarProperty Name="emp_dir_c_ccod_ubig" ColumnName="emp_dir_c_ccod_ubig" />
+                <ScalarProperty Name="emp_dir_c_itipodirec" ColumnName="emp_dir_c_itipodirec" />
+                <ScalarProperty Name="emp_dir_c_iid_centrocosto" ColumnName="emp_dir_c_iid_centrocosto" />
+                <ScalarProperty Name="emp_dir_c_bactivo" ColumnName="emp_dir_c_bactivo" />
+                <ScalarProperty Name="emp_dir_c_vdireccion" ColumnName="emp_dir_c_vdireccion" />
+                <ScalarProperty Name="emp_dir_c_iid" ColumnName="emp_dir_c_iid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -3538,9 +3547,9 @@
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_ZONA_REPARTO" Width="1.5" PointX="0.75" PointY="6.75" Height="1.7879850260416674" />
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_ZONA_REPARTO_LUGAR" Width="1.5" PointX="3" PointY="12.75" Height="1.7879850260416674" />
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_CLI_DIRECCION_SIC_T_DISTRITO" >
-          <ConnectorPoint PointX="7.1927083333333339" PointY="20.625" />
-          <ConnectorPoint PointX="7.1927083333333339" PointY="8.6076871744791621" />
-          <ConnectorPoint PointX="8.25" PointY="8.6076871744791621" />
+          <ConnectorPoint PointX="7.125" PointY="20.625" />
+          <ConnectorPoint PointX="7.125" PointY="8.703837890625" />
+          <ConnectorPoint PointX="8.25" PointY="8.703837890625" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_PROVINCIA_SIC_T_DEPARTAMENTO" >
           <ConnectorPoint PointX="3" PointY="21.547841796875" />
@@ -3548,6 +3557,8 @@
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_DISTRITO_SIC_T_PROVINCIA" >
           <ConnectorPoint PointX="5.25" PointY="21.615143229166669" />
+          <ConnectorPoint PointX="5.416666666666667" PointY="21.615143229166669" />
+          <ConnectorPoint PointX="5.583333333333333" PointY="21.615143229166669" />
           <ConnectorPoint PointX="6" PointY="21.615143229166669" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_ZONA_REPARTO_LUGAR_SIC_T_ZONA_REPARTO" >
@@ -3573,16 +3584,20 @@
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_COLABORADOR" Width="1.5" PointX="7.75" PointY="16.25" Height="2.9417936197916674" />
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_COLABORADOR_SIC_T_COLAB_AREA" >
           <ConnectorPoint PointX="3" PointY="17.001933593749996" />
+          <ConnectorPoint PointX="4.666666666666667" PointY="17.001933593749996" />
+          <ConnectorPoint PointX="4.833333333333333" PointY="17.001933593749996" />
           <ConnectorPoint PointX="5.041666666666667" PointY="17.001933593749996" />
           <ConnectorPoint PointX="5.208333333333333" PointY="17.001933593749996" />
-          <ConnectorPoint PointX="7.1093750000000009" PointY="17.001933593749996" />
-          <ConnectorPoint PointX="7.276041666666667" PointY="17.001933593749996" />
+          <ConnectorPoint PointX="7.041666666666667" PointY="17.001933593749996" />
+          <ConnectorPoint PointX="7.208333333333333" PointY="17.001933593749996" />
           <ConnectorPoint PointX="7.75" PointY="17.001933593749996" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_COLABORADOR_SIC_T_COLAB_CARGO" >
           <ConnectorPoint PointX="3" PointY="19.530782877604167" />
-          <ConnectorPoint PointX="7.1093750000000009" PointY="19.530782877604167" />
-          <ConnectorPoint PointX="7.276041666666667" PointY="19.530782877604167" />
+          <ConnectorPoint PointX="4.041666666666667" PointY="19.530782877604167" />
+          <ConnectorPoint PointX="4.208333333333333" PointY="19.530782877604167" />
+          <ConnectorPoint PointX="7.041666666666667" PointY="19.530782877604167" />
+          <ConnectorPoint PointX="7.208333333333333" PointY="19.530782877604167" />
           <ConnectorPoint PointX="8.5" PointY="19.530782877604167" />
           <ConnectorPoint PointX="8.5" PointY="19.191793619791667" />
         </AssociationConnector>
@@ -3596,7 +3611,6 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_ALMACEN_CENTRO_COSTO" Width="1.5" PointX="22.375" PointY="18.625" Height="1.9802864583333388" />
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_ALMACEN" Width="1.5" PointX="15.125" PointY="6.75" Height="2.3648893229166674" />
-        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_EMP_DIRECCION" Width="1.5" PointX="10.375" PointY="6.25" Height="1.5956835937500102" />
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_IGV" Width="1.5" PointX="12.375" PointY="6.25" Height="1.7879850260416674" />
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_ITEM" Width="1.5" PointX="23.75" PointY="0.625" Height="3.7109993489583326" />
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_ITEM_ALMACEN" Width="1.5" PointX="25.625" PointY="3.875" Height="2.1725878906250102" />
@@ -3620,6 +3634,8 @@
           <ConnectorPoint PointX="20.933299289754228" PointY="8.3281274999999937" />
           <ConnectorPoint PointX="22.375" PointY="8.3281274999999937" />
           <ConnectorPoint PointX="22.375" PointY="18.25" />
+          <ConnectorPoint PointX="22.635414666666666" PointY="18.25" />
+          <ConnectorPoint PointX="22.80208133333333" PointY="18.25" />
           <ConnectorPoint PointX="23.125" PointY="18.25" />
           <ConnectorPoint PointX="23.125" PointY="18.625" />
         </AssociationConnector>
@@ -3651,10 +3667,12 @@
           <ConnectorPoint PointX="25.625" PointY="12.140625" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_VENTA_DETALLE_SIC_T_ITEM" >
-          <ConnectorPoint PointX="24.918942343749997" PointY="4.52830078125" />
-          <ConnectorPoint PointX="24.918942343749997" PointY="18.40625" />
+          <ConnectorPoint PointX="24.90331609375" PointY="4.52830078125" />
+          <ConnectorPoint PointX="24.90331609375" PointY="18.40625" />
           <ConnectorPoint PointX="23.208333333333332" PointY="18.40625" />
           <ConnectorPoint PointX="23.041666666666668" PointY="18.40625" />
+          <ConnectorPoint PointX="22.80208133333333" PointY="18.40625" />
+          <ConnectorPoint PointX="22.635414666666666" PointY="18.40625" />
           <ConnectorPoint PointX="21.125" PointY="18.40625" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_ITEM_SUB_FAMILIA_SIC_T_ITEM_FAMILIA" >
@@ -3697,8 +3715,6 @@
           <ConnectorPoint PointX="14" PointY="10.375" />
           <ConnectorPoint PointX="13.625" PointY="10" />
           <ConnectorPoint PointX="13.625" PointY="9.3744921875" />
-          <ConnectorPoint PointX="11.239583333333334" PointY="9.3744921875" />
-          <ConnectorPoint PointX="11.072916666666666" PointY="9.3744921875" />
           <ConnectorPoint PointX="10.125" PointY="9.3744921875" />
           <ConnectorPoint PointX="9.75" PointY="8.9994921875" />
         </AssociationConnector>
@@ -3710,10 +3726,10 @@
           <ConnectorPoint PointX="11.229166666666666" PointY="14.153300781249996" />
           <ConnectorPoint PointX="9.125" PointY="14.153300781249996" />
           <ConnectorPoint PointX="9.125" PointY="15.59568359375001" />
-          <ConnectorPoint PointX="7.276041666666667" PointY="15.595683593750009" />
-          <ConnectorPoint PointX="6.989583333333333" PointY="15.59568359375001" />
-          <ConnectorPoint PointX="6.875" PointY="15.59568359375001" />
-          <ConnectorPoint PointX="6.875" PointY="14.75" />
+          <ConnectorPoint PointX="7.333333333333333" PointY="15.595683593750009" />
+          <ConnectorPoint PointX="7.041666666666667" PointY="15.59568359375001" />
+          <ConnectorPoint PointX="7" PointY="15.59568359375001" />
+          <ConnectorPoint PointX="7" PointY="14.75" />
           <ConnectorPoint PointX="6" PointY="14.75" />
           <ConnectorPoint PointX="6" PointY="15" />
         </AssociationConnector>
@@ -3726,23 +3742,23 @@
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_CLIENTE_SIC_T_COLABORADOR" >
           <ConnectorPoint PointX="9.25" PointY="17.992290039062496" />
-          <ConnectorPoint PointX="14.520936712890626" PointY="17.992290039062496" />
-          <ConnectorPoint PointX="14.520936712890626" PointY="16.009013671875" />
+          <ConnectorPoint PointX="14.520860428222656" PointY="17.992290039062496" />
+          <ConnectorPoint PointX="14.520860428222656" PointY="16.009013671875" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_CLIENTE_SIC_T_ZONA_REPARTO" >
-          <ConnectorPoint PointX="2.25" PointY="7.1657442565104166" />
-          <ConnectorPoint PointX="5.125" PointY="7.1657442565104166" />
+          <ConnectorPoint PointX="2.25" PointY="8.0468775" />
+          <ConnectorPoint PointX="2.9479166666666665" PointY="8.0468775" />
+          <ConnectorPoint PointX="3.1145833333333335" PointY="8.0468775" />
+          <ConnectorPoint PointX="5.125" PointY="8.0468775" />
           <ConnectorPoint PointX="5.125" PointY="9.2494921875" />
-          <ConnectorPoint PointX="7.1093750000000009" PointY="9.2494921875" />
-          <ConnectorPoint PointX="7.276041666666667" PointY="9.2494921875" />
+          <ConnectorPoint PointX="7.041666666666667" PointY="9.2494921875" />
+          <ConnectorPoint PointX="7.208333333333333" PointY="9.2494921875" />
           <ConnectorPoint PointX="9.9166666666666661" PointY="9.2494921875" />
           <ConnectorPoint PointX="10.083333333333334" PointY="9.2494921875" />
-          <ConnectorPoint PointX="11.072916666666666" PointY="9.2494921875" />
-          <ConnectorPoint PointX="11.239583333333334" PointY="9.2494921875" />
-          <ConnectorPoint PointX="14.345380760416665" PointY="9.2494921875" />
-          <ConnectorPoint PointX="14.512047427083333" PointY="9.2494921875" />
-          <ConnectorPoint PointX="15.175295796875" PointY="9.2494921875" />
-          <ConnectorPoint PointX="15.175295796875" PointY="10.375" />
+          <ConnectorPoint PointX="14.341962963541667" PointY="9.2494921875" />
+          <ConnectorPoint PointX="14.508629630208334" PointY="9.2494921875" />
+          <ConnectorPoint PointX="15.1735868984375" PointY="9.2494921875" />
+          <ConnectorPoint PointX="15.1735868984375" PointY="10.375" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_SIC_T_CLIENTE" >
           <ConnectorPoint PointX="15.5" PointY="13.1920068359375" />
@@ -3755,11 +3771,11 @@
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_VEN_ESTADO" Width="1.5" PointX="15.125" PointY="23.625" Height="1.5956835937500102" />
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_VENTA" Width="1.5" PointX="17.375" PointY="17.125" Height="4.6725065104166674" />
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_VENTA_SIC_T_CLIENTE" >
-          <ConnectorPoint PointX="15.041720856445313" PointY="16.009013671875" />
-          <ConnectorPoint PointX="15.041720856445313" PointY="20.436176340199303" />
-          <ConnectorPoint PointX="15.791666666666666" PointY="20.436176340199303" />
-          <ConnectorPoint PointX="15.958333333333334" PointY="20.436176340199303" />
-          <ConnectorPoint PointX="17.375" PointY="20.436176340199303" />
+          <ConnectorPoint PointX="15.041682714111328" PointY="16.009013671875" />
+          <ConnectorPoint PointX="15.041682714111328" PointY="20.465722522549832" />
+          <ConnectorPoint PointX="15.791666666666666" PointY="20.465722522549832" />
+          <ConnectorPoint PointX="15.958333333333334" PointY="20.465722522549832" />
+          <ConnectorPoint PointX="17.375" PointY="20.465722522549832" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_VENTA_SIC_T_VEN_ESTADO" >
           <ConnectorPoint PointX="15.875" PointY="23.625" />
@@ -3824,18 +3840,16 @@
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_MOV_ESTADO" >
           <ConnectorPoint PointX="5.125" PointY="17.875" />
           <ConnectorPoint PointX="5.125" PointY="16.84568359375" />
-          <ConnectorPoint PointX="7.072916666666667" PointY="16.84568359375" />
-          <ConnectorPoint PointX="7.072916666666667" PointY="9.4898893229166674" />
-          <ConnectorPoint PointX="7.1093750000000009" PointY="9.4898893229166674" />
-          <ConnectorPoint PointX="7.276041666666667" PointY="9.4898893229166674" />
-          <ConnectorPoint PointX="11.072916666666666" PointY="9.4898893229166674" />
-          <ConnectorPoint PointX="11.239583333333334" PointY="9.4898893229166674" />
+          <ConnectorPoint PointX="7.041666666666667" PointY="16.84568359375" />
+          <ConnectorPoint PointX="7.208333333333333" PointY="16.84568359375" />
+          <ConnectorPoint PointX="7.25" PointY="16.84568359375" />
+          <ConnectorPoint PointX="7.25" PointY="9.4898893229166674" />
           <ConnectorPoint PointX="13.541666666666666" PointY="9.4898893229166674" />
           <ConnectorPoint PointX="13.708333333333334" PointY="9.4898893229166674" />
-          <ConnectorPoint PointX="14.345380760416665" PointY="9.4898893229166674" />
-          <ConnectorPoint PointX="14.512047427083333" PointY="9.4898893229166674" />
-          <ConnectorPoint PointX="15.091962463541666" PointY="9.4898893229166674" />
-          <ConnectorPoint PointX="15.258629130208334" PointY="9.4898893229166674" />
+          <ConnectorPoint PointX="14.341962963541667" PointY="9.4898893229166674" />
+          <ConnectorPoint PointX="14.508629630208334" PointY="9.4898893229166674" />
+          <ConnectorPoint PointX="15.090253565104167" PointY="9.4898893229166674" />
+          <ConnectorPoint PointX="15.256920231770835" PointY="9.4898893229166674" />
           <ConnectorPoint PointX="17.625" PointY="9.4898893229166674" />
           <ConnectorPoint PointX="17.625" PointY="7.875" />
           <ConnectorPoint PointX="19.822916666666668" PointY="7.8749999999999991" />
@@ -3845,9 +3859,9 @@
           <ConnectorPoint PointX="22.9375" PointY="7.875" />
           <ConnectorPoint PointX="22.9375" PointY="11.153300781249978" />
           <ConnectorPoint PointX="24.819982760416668" PointY="11.153300781249977" />
-          <ConnectorPoint PointX="25.119463802083327" PointY="11.153300781249978" />
-          <ConnectorPoint PointX="25.25" PointY="11.153300781249978" />
-          <ConnectorPoint PointX="25.25" PointY="9.1439518229166765" />
+          <ConnectorPoint PointX="25.283530677083331" PointY="11.153300781249978" />
+          <ConnectorPoint PointX="25.3125" PointY="11.153300781249978" />
+          <ConnectorPoint PointX="25.3125" PointY="9.1439518229166765" />
           <ConnectorPoint PointX="25.625" PointY="9.1439518229166765" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_MOVIMIENTO_ENTRADA_DETALLE_SIC_T_MOVIMIENTO_ENTRADA" >
@@ -3869,13 +3883,15 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_EMP_CENTRO_COSTO" Width="1.5" PointX="3.125" PointY="8.5" Height="2.9417936197916674" />
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_ALMACEN_CENTRO_COSTO_SIC_T_EMP_CENTRO_COSTO" >
-          <ConnectorPoint PointX="4.625" PointY="10.203000546874993" />
-          <ConnectorPoint PointX="6.9895833333333339" PointY="10.203000546874991" />
-          <ConnectorPoint PointX="7.2760416666666661" PointY="10.203000546874993" />
-          <ConnectorPoint PointX="11.375" PointY="10.203000546874993" />
+          <ConnectorPoint PointX="4.625" PointY="10.088694661458334" />
+          <ConnectorPoint PointX="7.041666666666667" PointY="10.088694661458332" />
+          <ConnectorPoint PointX="7.333333333333333" PointY="10.088694661458334" />
+          <ConnectorPoint PointX="11.375" PointY="10.088694661458334" />
           <ConnectorPoint PointX="11.375" PointY="14.403300781249996" />
-          <ConnectorPoint PointX="13.75" PointY="14.403300781249996" />
-          <ConnectorPoint PointX="13.75" PointY="16.259013671875" />
+          <ConnectorPoint PointX="13.666666666666666" PointY="14.403300781249996" />
+          <ConnectorPoint PointX="13.833333333333334" PointY="14.403300781249996" />
+          <ConnectorPoint PointX="13.875" PointY="14.403300781249996" />
+          <ConnectorPoint PointX="13.875" PointY="16.259013671875" />
           <ConnectorPoint PointX="14.437527094889322" PointY="16.259013671875" />
           <ConnectorPoint PointX="14.60419376155599" PointY="16.259013671875" />
           <ConnectorPoint PointX="14.958349380777994" PointY="16.259013671875" />
@@ -3886,24 +3902,17 @@
           <ConnectorPoint PointX="20.125" PointY="17.230123697916667" />
           <ConnectorPoint PointX="22.291666666666668" PointY="17.230123697916667" />
           <ConnectorPoint PointX="22.458333333333332" PointY="17.230123697916667" />
-          <ConnectorPoint PointX="23.125" PointY="17.230123697916667" />
-          <ConnectorPoint PointX="23.125" PointY="18.625" />
-        </AssociationConnector>
-        <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_EMP_DIRECCION_SIC_T_EMP_CENTRO_COSTO" >
-          <ConnectorPoint PointX="4.625" PointY="9.7136946614583337" />
-          <ConnectorPoint PointX="6.9895833333333339" PointY="9.7136946614583319" />
-          <ConnectorPoint PointX="7.2760416666666661" PointY="9.7136946614583337" />
-          <ConnectorPoint PointX="11.15625" PointY="9.7136946614583337" />
-          <ConnectorPoint PointX="11.15625" PointY="8.2302864583333335" />
+          <ConnectorPoint PointX="22.718747999999998" PointY="17.230123697916667" />
+          <ConnectorPoint PointX="22.718747999999998" PointY="18.625" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_VENTA_SIC_T_EMP_CENTRO_COSTO" >
-          <ConnectorPoint PointX="4.625" PointY="10.47650277343749" />
-          <ConnectorPoint PointX="6.9895833333333339" PointY="10.476502773437488" />
-          <ConnectorPoint PointX="7.2760416666666661" PointY="10.47650277343749" />
-          <ConnectorPoint PointX="11.3125" PointY="10.47650277343749" />
+          <ConnectorPoint PointX="4.625" PointY="10.419349830729161" />
+          <ConnectorPoint PointX="7.041666666666667" PointY="10.419349830729159" />
+          <ConnectorPoint PointX="7.333333333333333" PointY="10.419349830729161" />
+          <ConnectorPoint PointX="11.3125" PointY="10.419349830729161" />
           <ConnectorPoint PointX="11.3125" PointY="14.278300781249996" />
-          <ConnectorPoint PointX="13.875" PointY="14.278300781249996" />
-          <ConnectorPoint PointX="13.875" PointY="16.274638671875" />
+          <ConnectorPoint PointX="13.75" PointY="14.278300781249996" />
+          <ConnectorPoint PointX="13.75" PointY="16.274638671875" />
           <ConnectorPoint PointX="14.437527094889322" PointY="16.274638671875" />
           <ConnectorPoint PointX="14.60419376155599" PointY="16.274638671875" />
           <ConnectorPoint PointX="14.958349380777994" PointY="16.274638671875" />
@@ -3948,6 +3957,20 @@
           <ConnectorPoint PointX="26" PointY="17.057444661458334" />
         </AssociationConnector>
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_UNIDAD_MEDIDA" Width="1.5" PointX="5.375" PointY="6.75" Height="1.4033821614583246" />
+        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_EMP_DIRECCION" Width="1.5" PointX="5.375" PointY="23.75" Height="2.557190755208353" />
+        <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_EMP_DIRECCION_SIC_T_EMP_CENTRO_COSTO" >
+          <ConnectorPoint PointX="3.875" PointY="11.441793619791666" />
+          <ConnectorPoint PointX="3.875" PointY="12.5" />
+          <ConnectorPoint PointX="4.75" PointY="12.5" />
+          <ConnectorPoint PointX="4.75" PointY="17.625" />
+          <ConnectorPoint PointX="4.125" PointY="17.625" />
+          <ConnectorPoint PointX="4.125" PointY="20.375" />
+          <ConnectorPoint PointX="5.5" PointY="20.375" />
+          <ConnectorPoint PointX="5.5" PointY="23.5" />
+          <ConnectorPoint PointX="5.125" PointY="23.5" />
+          <ConnectorPoint PointX="5.125" PointY="25.028595377604177" />
+          <ConnectorPoint PointX="5.375" PointY="25.028595377604177" />
+        </AssociationConnector>
         </Diagram>
     </Diagrams>
   </Designer>

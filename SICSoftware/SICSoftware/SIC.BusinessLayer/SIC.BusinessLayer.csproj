@@ -49,7 +49,6 @@
     <Compile Include="IgvBL.cs" />
     <Compile Include="ItemAlmacenBL.cs" />
     <Compile Include="ItemBL.cs" />
-    <Compile Include="MantenimientoItemBLcs.cs" />
     <Compile Include="MovimientoEntradaBL.cs" />
     <Compile Include="MovimientoSalidaBL.cs" />
     <Compile Include="OrdenCompraBL.cs" />
@@ -58,6 +57,7 @@
     <Compile Include="SeguridadBL.cs" />
     <Compile Include="TasaCambioBL.cs" />
     <Compile Include="UbigeoBL.cs" />
+    <Compile Include="Validacion\Validacion.cs" />
     <Compile Include="VentaBL.cs" />
   </ItemGroup>
   <ItemGroup>

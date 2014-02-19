@@ -10,15 +10,15 @@ namespace SIC.BusinessLayer
 {
     public class UbigeoBL
     {
-        public SIC_T_DEPARTAMENTO[] ListarDepartamentos()
+        public List<SIC_T_DEPARTAMENTO> ListarDepartamentos()
         {
             return new UbigeoDA().ListarDepatamentos();
         }
-        public SIC_T_PROVINCIA[] ListarProvincias(string _pstrdepa_c_ccod)
+        public List<SIC_T_PROVINCIA> ListarProvincias(string _pstrdepa_c_ccod)
         {
             return new UbigeoDA().ListarProvincias(_pstrdepa_c_ccod);
         }
-        public SIC_T_DISTRITO[] ListarDistritos(string _pstrprov_c_ccod)
+        public List<SIC_T_DISTRITO> ListarDistritos(string _pstrprov_c_ccod)
         {
             return new UbigeoDA().ListarDistritos(_pstrprov_c_ccod);
         }

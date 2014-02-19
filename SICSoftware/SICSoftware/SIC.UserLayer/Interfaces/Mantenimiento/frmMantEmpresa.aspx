@@ -32,6 +32,10 @@
             color: #686168;
             height: 18px;
         }
+        .style5
+        {
+            height: 20px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -93,13 +97,13 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td align="left" class="txt-box-estilo">
+                                                    <td align="left" class="style1">
                                                         &nbsp;
                                                     </td>
-                                                    <td align="left" class="txt-box-estilo" colspan="3">
+                                                    <td align="left" class="style1" colspan="3">
                                                         &nbsp;
                                                     </td>
-                                                    <td>
+                                                    <td class="style5">
                                                         &nbsp;
                                                     </td>
                                                 </tr>
@@ -170,8 +174,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td align="left" class="txt-box-estilo">
-                                                        Locales
-                                                    </td>
+                                                        Dirección</td>
                                                     <td align="left" class="txt-box-estilo" colspan="3">
                                                         <asp:UpdatePanel ID="updLocal" UpdateMode="Conditional" ChildrenAsTriggers="False" runat="server">
                                                         <ContentTemplate> 
@@ -512,7 +515,7 @@
                 <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                             <td class="tit-nav-paginas" align="left">
-                                MANTENIMIENTO &gt;&nbsp; LOCAL &gt; NUEVO</td>
+                                MANTENIMIENTO &gt;&nbsp; DIRECCION &gt; NUEVO</td>
                             <td align="right">
                                 <table width="220" border="0" cellspacing="0" cellpadding="0">
                                     <tr>
@@ -538,7 +541,7 @@
                                         <td align="left" class="box-estilo01">
                                             <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                                 <tr>
-                                                    <td align="left" class="style2" colspan="4">
+                                                    <td align="left" class="style2" colspan="3">
                                                         <strong>Datos del Local</strong></td>
                                                     <td align="left" class="style3">
                                                         </td>
@@ -552,8 +555,6 @@
                                                         &nbsp;</td>
                                                     <td align="left" class="txt-box-estilo">
                                                         &nbsp;</td>
-                                                    <td align="left" class="txt-box-estilo">
-                                                        &nbsp;</td>
                                                 </tr>
                                                 <tr>
                                                     <td align="left" class="style4">
@@ -562,15 +563,43 @@
                                                         <asp:TextBox ID="txtDescripcionLCN" runat="server" MaxLength="100"></asp:TextBox>
                                                     </td>
                                                     <td align="left" class="style4">
-                                                        &nbsp;</td>
+                                                        Tipo</td>
                                                     <td align="left" class="style4">
-                                                        &nbsp;</td>
-                                                    <td align="left" class="style4">
-                                                        &nbsp;</td>
+                                                        <asp:DropDownList ID="cboTipoDireccionN" runat="server" 
+                                                            AppendDataBoundItems="true" CssClass="slt_150x20">
+                                                            <asp:ListItem Value="0">Tipo</asp:ListItem>
+                                                        </asp:DropDownList>
+                                                        </td>
                                                 </tr>
+                                                 <tr>
+                                                                                                                <td colspan="3" class="style4">
+                                                                                                                    &nbsp;</td>
+                                                                                                                <td>
+                                                                                                                    &nbsp;</td>
+                                                                                                            </tr>
+                                                                                                            <tr>
+                                                                                                                <td class="style4">
+                                                                                                                    Ubigeo</td>
+                                                                                                                <td>
+                                                                                                                    <asp:DropDownList ID="cboDepartamentoN" runat="server" 
+                                                                                                                        AppendDataBoundItems="true" AutoPostBack="True" CssClass="slt_150x20" 
+                                                                                                                        ViewStateMode="Enabled" 
+                                                                                                                        onselectedindexchanged="cboDepartamentoN_SelectedIndexChanged">
+                                                                                                                    </asp:DropDownList>
+                                                                                                                </td>
+                                                                                                                <td>
+                                                                                                                    <asp:DropDownList ID="cboProvinciaN" runat="server" AppendDataBoundItems="true" CssClass="slt_150x20"
+                                                                                                                        ViewStateMode="Enabled" AutoPostBack="True" 
+                                                                                                                        onselectedindexchanged="cboProvinciaN_SelectedIndexChanged">
+                                                                                                                    </asp:DropDownList>
+                                                                                                                </td>
+                                                                                                                <td>
+                                                                                                                    <asp:DropDownList ID="cboDistritoN" runat="server" AppendDataBoundItems="true" 
+                                                                                                                        CssClass="slt_150x20" ViewStateMode="Enabled">
+                                                                                                                    </asp:DropDownList>
+                                                                                                                </td>
+                                                                                                            </tr>
                                                 <tr>
-                                                    <td align="left" class="style4">
-                                                        &nbsp;</td>
                                                     <td align="left" class="style4">
                                                         &nbsp;</td>
                                                     <td align="left" class="style4">
@@ -592,8 +621,6 @@
                                                         &nbsp;</td>
                                                     <td align="left" class="style4">
                                                         &nbsp;</td>
-                                                    <td align="left" class="style4">
-                                                        &nbsp;</td>
                                                 </tr>
                                                 <tr>
                                                     <td align="left" class="style4">
@@ -604,12 +631,8 @@
                                                         &nbsp;</td>
                                                     <td align="left" class="style4">
                                                         &nbsp;</td>
-                                                    <td align="left" class="style4">
-                                                        &nbsp;</td>
                                                 </tr>
                                                 <tr>
-                                                    <td align="left" class="style4">
-                                                        &nbsp;</td>
                                                     <td align="left" class="style4">
                                                         &nbsp;</td>
                                                     <td align="left" class="style4">
@@ -631,7 +654,7 @@
                 <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                             <td class="tit-nav-paginas" align="left">
-                                MANTENIMIENTO &gt;&nbsp; LOCAL &gt; EDITAR</td>
+                                MANTENIMIENTO &gt;&nbsp; DIRECCION &gt; EDITAR</td>
                             <td align="right">
                                 <table width="220" border="0" cellspacing="0" cellpadding="0">
                                     <tr>

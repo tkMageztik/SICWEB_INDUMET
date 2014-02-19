@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="true">
   <TopNode>[0-1000]C:\Users\jsalinas\SICWEB_INDUMET\UnitTests\BL_Test.nunit</TopNode>
-  <SelectedNode>[0-1006]BL_NUnit</SelectedNode>
+  <SelectedNode>[0-1000]C:\Users\jsalinas\SICWEB_INDUMET\UnitTests\BL_Test.nunit</SelectedNode>
   <ExcludeCategories>false</ExcludeCategories>
   <Nodes>
     <Node UniqueName="[0-1000]C:\Users\jsalinas\SICWEB_INDUMET\UnitTests\BL_Test.nunit" Expanded="true" />
-    <Node UniqueName="[0-1005]C:\Users\jsalinas\SICWEB_INDUMET\UnitTests\..\SICSoftware\SICSoftware\BL_NUnit\bin\Debug\BL_NUnit.dll" Expanded="true" />
-    <Node UniqueName="[0-1006]BL_NUnit" Expanded="true" Checked="true" />
+    <Node UniqueName="[0-1008]C:\Users\jsalinas\SICWEB_INDUMET\UnitTests\..\SICSoftware\SICSoftware\BL_NUnit\bin\Debug\BL_NUnit.dll" Expanded="true" />
+    <Node UniqueName="[0-1009]BL_NUnit" Expanded="true" />
     <Node UniqueName="[0-1001]BL_NUnit.FacturacionAutomaticaBLTest" Expanded="true" Checked="true" />
     <Node UniqueName="[0-1002]BL_NUnit.FacturacionAutomaticaBLTest.ListaPeriodo" Checked="true" />
     <Node UniqueName="[0-1003]BL_NUnit.FacturacionAutomaticaBLTest.PruebaBoleta" Checked="true" />
     <Node UniqueName="[0-1004]BL_NUnit.FacturacionAutomaticaBLTest.PruebaFactura" Checked="true" />
+    <Node UniqueName="[0-1005]BL_NUnit.MantenimientoEmpresaBLTest" Expanded="true" />
+    <Node UniqueName="[0-1007]BL_NUnit.MantenimientoEmpresaBLTest.PruebaValidarDireccionEmpresa" Checked="true" />
+    <Node UniqueName="[0-1006]BL_NUnit.MantenimientoEmpresaBLTest.PruebValidarCentroCosto" Checked="true" />
   </Nodes>
 </VisualState>

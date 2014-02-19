@@ -60,6 +60,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             this.gvCentroCosto.EditIndex = -1;
             this.ListarCentroCosto();
             this.MostrarModificarCentroCosto(ccId);
+            
         }
 
         protected void btnCancelarCCE_Click(object sender, EventArgs e)
@@ -111,6 +112,16 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             ActualizarLocal();
         }
 
+        protected void cboDepartamentoN_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ListarComboProvinciaN(cboDepartamentoN.SelectedValue);
+        }
+        
+        protected void cboProvinciaN_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ListarComboDistritoN(cboProvinciaN.SelectedValue);
+        }
+
         #endregion
 
         #region Nuevo Centro de Costo
@@ -147,37 +158,41 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
         private void GuarderNuevoCentroCosto()
         {
-            if (!this.ValidarDatosNuevoCentroCosto())
-            {
-                return;
-            }
-
             SIC_T_EMP_CENTRO_COSTO centroCosto = new SIC_T_EMP_CENTRO_COSTO();
             centroCosto.emp_cst_c_vserieboleta = txtSerBoletaN.Text;
             centroCosto.emp_cst_c_vseriefactura = txtSerFacturaN.Text;
             centroCosto.emp_cst_c_vdesc = txtDescripcionCCN.Text;
 
-            try
+            var validacion = _empresa.ValidarCentroCosto(centroCosto);
+            if (!validacion.EsValido)
             {
-                _centroCosto.IngresarCentroCosto(centroCosto);
-                Mensaje("Ingresado con éxito", "../Imagenes/correcto.png");
-                this.mvCliente.SetActiveView(vwEmpresa);
-                this.ListarCentroCosto();
-                this.upGeneral.Update();
+                Mensaje(validacion.Mensaje, "../Imagenes/warning.png");
             }
-            catch (Exception ex)
+            else
             {
-#if DEBUG
-                String mensajeError = "Error Fatal : \n" + ex.Message;
-                if (ex.InnerException != null)
+
+                try
                 {
-                    mensajeError += "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty;
+                    _empresa.IngresarCentroCosto(centroCosto);
+                    Mensaje("Ingresado con éxito", "../Imagenes/correcto.png");
+                    this.mvCliente.SetActiveView(vwEmpresa);
+                    this.ListarCentroCosto();
+                    this.upGeneral.Update();
                 }
-                
-                Mensaje(mensajeError, "../Imagenes/warning.png");
+                catch (Exception ex)
+                {
+#if DEBUG
+                    String mensajeError = "Error Fatal : \n" + ex.Message;
+                    if (ex.InnerException != null)
+                    {
+                        mensajeError += "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty;
+                    }
+
+                    Mensaje(mensajeError, "../Imagenes/warning.png");
 #else
                 Mensaje("Error en el proceso.", "../Imagenes/warning.png");
 #endif
+                }
             }
         }
 
@@ -254,35 +269,43 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 return;
             }
 
-            if (!ValidarDatosModificarCentroCosto())
-            {
-                return;
-            }
+            //if (!ValidarDatosModificarCentroCosto())
+            //{
+            //    return;
+            //}
 
             var centroCosto = this.CentroCostoModificar;
             centroCosto.emp_cst_c_vdesc = txtDescripcionCCE.Text;
 
-            try
+            var validacion = _empresa.ValidarCentroCosto(centroCosto);
+            if (!validacion.EsValido)
             {
-                _centroCosto.ModificarCentroCosto(centroCosto);
-                Mensaje("Modificado con éxito", "../Imagenes/correcto.png");
-                this.mvCliente.SetActiveView(vwEmpresa);
-                this.ListarCentroCosto();
-                this.upGeneral.Update();
+                Mensaje(validacion.Mensaje, "../Imagenes/warning.png");
             }
-            catch (Exception ex)
+            else
             {
-#if DEBUG
-                String mensajeError = "Error Fatal : \n" + ex.Message;
-                if (ex.InnerException != null)
+                try
                 {
-                    mensajeError += "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty;
+                    _empresa.ModificarCentroCosto(centroCosto);
+                    Mensaje("Modificado con éxito", "../Imagenes/correcto.png");
+                    this.mvCliente.SetActiveView(vwEmpresa);
+                    this.ListarCentroCosto();
+                    this.upGeneral.Update();
                 }
+                catch (Exception ex)
+                {
+#if DEBUG
+                    String mensajeError = "Error Fatal : \n" + ex.Message;
+                    if (ex.InnerException != null)
+                    {
+                        mensajeError += "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty;
+                    }
 
-                Mensaje(mensajeError, "../Imagenes/warning.png");
+                    Mensaje(mensajeError, "../Imagenes/warning.png");
 #else
-                Mensaje("Error en el proceso.", "../Imagenes/warning.png");
+                    Mensaje("Error en el proceso.", "../Imagenes/warning.png");
 #endif
+                }
             }
         }
 
@@ -330,6 +353,58 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             cboCentroCostoN.DataBind();
         }
 
+        private void ListarComboDepartamentoN()
+        {
+            cboDepartamentoN.Items.Clear();
+            cboDepartamentoN.Items.Add(new ListItem("-- Seleccionar --", null));
+            cboDepartamentoN.DataSource = _empresa.ListarDepatamentos();
+            cboDepartamentoN.DataTextField = "depa_c_vnomb";
+            cboDepartamentoN.DataValueField = "depa_c_ccod";
+            cboDepartamentoN.DataBind();
+            upGeneral.Update();
+        }
+
+        private void ListarComboProvinciaN(string codigoDepartamento)
+        {
+            cboProvinciaN.Items.Clear();
+            cboProvinciaN.Items.Add(new ListItem("-- Seleccionar --", null));
+            if (codigoDepartamento != null) 
+            {
+                cboProvinciaN.DataSource = _empresa.ListarProvincias(codigoDepartamento);
+                cboProvinciaN.DataTextField = "prov_c_vnomb";
+                cboProvinciaN.DataValueField = "prov_c_ccod";
+                cboProvinciaN.DataBind();
+                
+            }
+            ListarComboDistritoN(null);
+        }
+
+
+        private void ListarComboDistritoN(string codigoProvincia)
+        {
+            cboDistritoN.Items.Clear();
+            cboDistritoN.Items.Add(new ListItem("-- Seleccionar --", null));
+            if (codigoProvincia != null)
+            {
+                cboDistritoN.DataSource = _empresa.ListarDistritos(codigoProvincia);
+                cboDistritoN.DataTextField = "dist_c_vnomb";
+                cboDistritoN.DataValueField = "dist_c_ccod_ubig";
+                cboDistritoN.DataBind();
+            }
+            upGeneral.Update();
+        }
+
+        private void ListarTipoDireccionN()
+        {
+            cboTipoDireccionN.Items.Clear();
+            cboTipoDireccionN.Items.Add(new ListItem("-- Seleccionar --", null));
+            cboTipoDireccionN.DataSource = _empresa.ListarTipoDireccion();
+            cboTipoDireccionN.DataTextField = "par_det_c_vdesc";
+            cboTipoDireccionN.DataValueField = "par_det_c_iid";
+            cboTipoDireccionN.DataBind();
+            upGeneral.Update();
+        }
+
         private void Mensaje(string mensaje, string ruta)
         {
             divPopUpMsg.Attributes["Class"] = "PopupMostrar";
@@ -340,15 +415,17 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             upMensaje.Update();
             return;
         }
-
-
-
+            
         #region Agergar Locales
 
         private void MostarNuevoLocal()
         {
             this.LimpiarNuevoLocal();
             this.ListarComboCentroCosto();
+            this.ListarComboDepartamentoN();
+            this.ListarComboProvinciaN(null);
+            this.ListarComboDistritoN(null);
+            this.ListarTipoDireccionN();
             this.mvCliente.SetActiveView(vwLocalNuevo);
             this.upGeneral.Update();
         }
@@ -384,6 +461,8 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 return true;
             }
         }
+
+
 
         private void GuardarLocalNuevo()
         {
@@ -519,7 +598,9 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
         #endregion
 
-        
+
+  
+
 
 
 
