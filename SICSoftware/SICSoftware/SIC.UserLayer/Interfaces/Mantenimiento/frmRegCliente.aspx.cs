@@ -584,7 +584,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
             if (!chkCliente.Checked & !chkProveedor.Checked)
             {
-                ShowMessage = "- Debe seleccionar por lo menos una función, si la empresa es Cliente o Proveedor";
+                ShowMessage = "- Debe seleccionar por lo menos una función, si la empresa es Cliente o Proveedor </br>";
                 _flag = false;
             }
 
