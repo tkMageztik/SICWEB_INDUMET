@@ -112,6 +112,10 @@ namespace SIC.UserLayer.Interfaces.Facturacion
             }
         }
 
+        /// <summary>
+        /// Muestra la vista de factura preliminar
+        /// </summary>
+        /// <param name="venta"></param>
         private void MostrarPreliminarFactura(SIC_T_VENTA venta)
         {
             var factura = this.facturacionAutomaticaBL.GenerarFacturaDesdeVenta(venta);
