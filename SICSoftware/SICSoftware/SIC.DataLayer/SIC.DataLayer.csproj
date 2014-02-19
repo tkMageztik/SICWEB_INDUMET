@@ -58,6 +58,7 @@
     <Compile Include="SeguridadDA.cs" />
     <Compile Include="TasaCambioDA.cs" />
     <Compile Include="UbigeoDA.cs" />
+    <Compile Include="UnidadMedidaDA.cs" />
     <Compile Include="VentaDA.cs" />
   </ItemGroup>
   <ItemGroup>

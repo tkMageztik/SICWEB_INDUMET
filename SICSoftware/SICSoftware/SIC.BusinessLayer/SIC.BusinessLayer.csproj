@@ -49,6 +49,7 @@
     <Compile Include="IgvBL.cs" />
     <Compile Include="ItemAlmacenBL.cs" />
     <Compile Include="ItemBL.cs" />
+    <Compile Include="MantenimientoItemBLcs.cs" />
     <Compile Include="MovimientoEntradaBL.cs" />
     <Compile Include="MovimientoSalidaBL.cs" />
     <Compile Include="OrdenCompraBL.cs" />

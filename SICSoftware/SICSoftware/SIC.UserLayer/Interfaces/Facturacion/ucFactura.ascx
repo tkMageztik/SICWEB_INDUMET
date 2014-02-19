@@ -115,15 +115,27 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Cant.">
                                     <HeaderStyle BackColor="#001E3C" ForeColor="White" Width="50px" />
+                                    <ItemTemplate>
+                                        <%# Eval("fac_det_c_ecantidad")%>
+                                    </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Descripción">
                                     <HeaderStyle BackColor="#001E3C" ForeColor="White" Width="530px" />
+                                    <ItemTemplate>
+                                        <%# Eval("SIC_T_ITEM.itm_c_vdescripcion")%>
+                                    </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="P. Unit.">
                                     <HeaderStyle BackColor="#001E3C" ForeColor="White" Width="200px" />
+                                    <ItemTemplate>
+                                        <%# Eval("fac_det_c_epreciounit")%>
+                                    </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Importe">
                                     <HeaderStyle BackColor="#001E3C" ForeColor="White" Width="200px" />
+                                    <ItemTemplate>
+                                        <%# Eval("fac_det_c_epreciotot")%>
+                                    </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
                         </asp:GridView>
@@ -139,7 +151,7 @@
                     <td colspan = "4" align= "right">
                         <asp:Label ID="Label10" runat="server" Text="Subtotal"></asp:Label>        
                     </td>
-                    <td colspan = "2">
+                    <td colspan = "2" align="right">
                         <asp:Label ID="lblSubTotal" runat="server" Text=""></asp:Label>
                     </td>
                 </tr>
@@ -147,7 +159,7 @@
                     <td colspan = "4" align= "right"> 
                         <asp:Label ID="Label11" runat="server" Text="I.G.V."></asp:Label>              
                     </td>
-                    <td colspan = "2">
+                    <td colspan = "2" align="right">
                         <asp:Label ID="lblIGV" runat="server" Text=""></asp:Label>
                     </td>
                 </tr>
@@ -155,7 +167,7 @@
                     <td colspan = "4" align = "right">   
                         <asp:Label ID="Label12" runat="server" Text="Total"></asp:Label>
                     </td>
-                    <td colspan = "2">
+                    <td colspan = "2" align="right">
                         <asp:Label ID="lblTotal" runat="server" Text=""></asp:Label>
                     </td>
                 </tr>                

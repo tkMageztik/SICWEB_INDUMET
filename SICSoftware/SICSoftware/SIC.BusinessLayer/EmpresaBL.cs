@@ -32,6 +32,6 @@ namespace SIC.BusinessLayer
         public void ModificarDireccion(SIC_T_EMP_DIRECCION _pSIC_T_EMP_DIRECCION)
         {
             new EmpresaDA().ModificarDireccion(_pSIC_T_EMP_DIRECCION);
-        }        
+        }
     }
 }

@@ -106,7 +106,7 @@ namespace SIC.UserLayer.Interfaces.Facturacion
         private void MostrarPreliminar(int idVenta)
         {
             var venta = this.facturacionAutomaticaBL.ObtenerVenta(idVenta);
-            if (venta.ven_c_itipodoc == (int)TipoParametro.FACTURA)
+            if (venta.ven_c_itipodoc == (int)TipoParametroDetalle.FACTURA)
             {
                 MostrarPreliminarFactura(venta);
             }
