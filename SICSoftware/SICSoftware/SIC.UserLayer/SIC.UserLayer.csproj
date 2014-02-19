@@ -68,12 +68,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
-    <Content Include="Bootstrap\bin\AjaxControlToolkit.dll" />
-    <Content Include="Bootstrap\bin\SIC.Data.dll" />
-    <Content Include="Bootstrap\bin\SIC.DataLayer.dll" />
-    <Content Include="Bootstrap\bin\SIC.EntityLayer.dll" />
-    <Content Include="Bootstrap\bin\SIC.UIGeneral.dll" />
-    <Content Include="Bootstrap\bin\SIC.UserLayer.dll" />
     <Content Include="Bootstrap\css\bootstrap-responsive.css" />
     <Content Include="Bootstrap\css\bootstrap-responsive.min.css" />
     <Content Include="Bootstrap\css\bootstrap.css" />
@@ -374,6 +368,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Bootstrap\bin\" />
     <Folder Include="Imagenes\Thumbnails\" />
     <Folder Include="Imagenes\Titulos\" />
     <Folder Include="Interfaces\Reusable\" />

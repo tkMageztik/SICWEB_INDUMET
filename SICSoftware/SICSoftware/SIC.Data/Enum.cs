@@ -140,9 +140,6 @@ namespace SIC.Data
         COBRANZAS = 6
     }
 
-    
-
-
     public enum ValorTabla
     {
         TipoCuentaContable = 1,
