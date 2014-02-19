@@ -19,6 +19,9 @@ namespace SIC.UserLayer.Interfaces.Facturacion
         public void MostrarFactura(SIC_T_FACTURA factura)
         {
             lblFecha.Text = DateTime.Today.ToString("dd/MM/yyyy");
+            GridView1.DataSource = factura.SIC_T_FACTURA_DETALLE.ToList();
+            GridView1.DataBind();
+            
         }
 
  

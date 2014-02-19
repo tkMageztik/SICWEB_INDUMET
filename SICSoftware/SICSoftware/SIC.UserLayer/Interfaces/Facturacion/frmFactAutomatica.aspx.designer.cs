@@ -76,13 +76,13 @@ namespace SIC.UserLayer.Interfaces.Facturacion {
         protected global::System.Web.UI.WebControls.GridView gvListaVenta;
         
         /// <summary>
-        /// Control vwCentroCostoEditar.
+        /// Control vwFacturaPreliminar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View vwCentroCostoEditar;
+        protected global::System.Web.UI.WebControls.View vwFacturaPreliminar;
         
         /// <summary>
         /// Control btnCancelarCCE.

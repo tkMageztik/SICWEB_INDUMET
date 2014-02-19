@@ -176,7 +176,7 @@
                         </tr>
                     </table>
                 </asp:View>
-                <asp:View ID="vwCentroCostoEditar" runat="server">
+                <asp:View ID="vwFacturaPreliminar" runat="server">
                 <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                             <td class="tit-nav-paginas" align="left">
@@ -187,7 +187,8 @@
                                         <td>
                                             &nbsp;</td>
                                         <td>
-                                            <asp:LinkButton ID="btnCancelarCCE" runat="server" CssClass="lnk">Cancelar</asp:LinkButton>
+                                            <asp:LinkButton ID="btnCancelarCCE" runat="server" CssClass="lnk" 
+                                                onclick="btnCancelarCCE_Click">Cancelar</asp:LinkButton>
                                         </td>
                                         <td style="width: 10px">
                                         </td>

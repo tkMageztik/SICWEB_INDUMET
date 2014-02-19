@@ -6,32 +6,6 @@
     {
         height: 18px;
     }
-    .style5
-    {
-        height: 18px;
-        width: 107px;
-    }
-    .style7
-    {
-        width: 107px;
-    }
-    .style8
-    {
-        width: 45px;
-    }
-    .style9
-    {
-        height: 18px;
-        width: 45px;
-    }
-    .style11
-    {
-        width: 204px;
-    }
-    .style14
-    {
-        width: 532px;
-    }
     </style>
    
 <asp:Button ID="btnShowPopup" runat="server" Style="display: none" />
@@ -145,40 +119,25 @@ TargetControlID="btnShowPopup" />
                 </tr>
                 <tr align="left">
                     <td class="style1" colspan="6">
-                        <asp:Repeater ID="Repeater1" runat="server">
-                            <HeaderTemplate>
-                            <table width = "515px" style="border: 1px solid #001E3C;">
-                            <tr>
-                                <td style="background-color: #001E3C ; width :100px">
-                                    <asp:Label ID="Label6" runat="server" Text="Codigo" ForeColor= "White"></asp:Label>
-                                </td>
-                                <td style="background-color: #001E3C; width : 50px">
-                                    <asp:Label ID="Label7" runat="server" Text="Cant." ForeColor= "White"></asp:Label>
-                                </td>
-                                <td style="background-color: #001E3C; width : 530px">
-                                    <asp:Label ID="Label1" runat="server" Text="Descripción" ForeColor= "White"></asp:Label>
-                                </td>
-                                <td style="background-color: #001E3C; width : 200px">
-                                    <asp:Label ID="Label13" runat="server" Text="P. Unit." ForeColor= "White"></asp:Label>
-                                </td>
-                                <td style="background-color: #001E3C; width : 200px">
-                                    <asp:Label ID="Label14" runat="server" Text="Importe" ForeColor= "White"></asp:Label>
-                                </td>
-                            </tr>
-                            </HeaderTemplate>
-                            <ItemTemplate>
-                                <tr>
-                                <td>  <%# ((SIC.EntityLayer.SIC_T_FACTURA_DETALLE)Container.DataItem).fac_det_c_ecantidad %> </td>
-                                <td>  <%# ((SIC.EntityLayer.SIC_T_FACTURA_DETALLE)Container.DataItem).fac_det_c_ecantidad %> </td>
-                                <td>  <%# ((SIC.EntityLayer.SIC_T_FACTURA_DETALLE)Container.DataItem).fac_det_c_ecantidad %> </td>
-                                <td>  <%# ((SIC.EntityLayer.SIC_T_FACTURA_DETALLE)Container.DataItem).fac_det_c_ecantidad %> </td>
-                                <td>  <%# ((SIC.EntityLayer.SIC_T_FACTURA_DETALLE)Container.DataItem).fac_det_c_ecantidad %> </td>
-                                </tr>
-                            </ItemTemplate>
-                            <FooterTemplate>
-                            </table>
-                            </FooterTemplate>
-                        </asp:Repeater>
+                        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False">
+                            <Columns>
+                                <asp:TemplateField HeaderText="Código">
+                                    <HeaderStyle BackColor="#001E3C" ForeColor="White" Width="100px" />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Cant.">
+                                    <HeaderStyle BackColor="#001E3C" ForeColor="White" Width="50px" />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Descripción">
+                                    <HeaderStyle BackColor="#001E3C" ForeColor="White" Width="530px" />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="P. Unit.">
+                                    <HeaderStyle BackColor="#001E3C" ForeColor="White" Width="200px" />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Importe">
+                                    <HeaderStyle BackColor="#001E3C" ForeColor="White" Width="200px" />
+                                </asp:TemplateField>
+                            </Columns>
+                        </asp:GridView>
                     </td>
                 </tr>
                 <tr>
@@ -220,7 +179,7 @@ TargetControlID="btnShowPopup" />
         <td align= "right">
             <asp:Button ID="btnCancelar" runat="server" Text="Aceptar" BorderColor="#001E3C" 
                     BackColor= "#003D79" Font-Size="XX-Small" ForeColor="White" 
-                onclick="ibtnCancelar_Click"/>
+                />
         </td>
     </tr>
     </table>
