@@ -63,7 +63,6 @@ namespace SIC.UserLayer.Interfaces.Facturacion
 
         #endregion
 
-
         #region Listado de Filtros
         private void ListarFiltroConcepto()
         {
