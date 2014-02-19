@@ -44,20 +44,25 @@ namespace BL_NUnit
         {
             FacturacionAutomaticaBL faBL = new FacturacionAutomaticaBL();
             SIC_T_VENTA ventaInicial = this.CrearVenta();
-            ventaInicial.ven_c_itipodoc = (int)TipoParametro.BOLETA;
+            ventaInicial.ven_c_itipodoc = (int)TipoParametroDetalle.BOLETA;
             SIC_T_BOLETA boletaResultante = faBL.GenerarBoletaDesdeVenta(ventaInicial);
             Assert.AreEqual(ventaInicial.ven_c_iid, boletaResultante.bol_c_iventa, "El codigo de venta no corresponde a la venta");
             Assert.AreEqual(ventaInicial.ven_c_eigv, boletaResultante.bol_c_eigv, "El igv no corresponde a la venta.");
             Assert.AreEqual(ventaInicial.ven_c_esubtotal, boletaResultante.bol_c_esubtotal, "El subtotal no corresponde a la venta.");
+            Assert.GreaterOrEqual(2, CantidadDecimales(boletaResultante.bol_c_esubtotal), "El subtotal tiene la cantidad de decimales incorrectos.");            
             Assert.AreEqual(ventaInicial.ven_c_eigvcal, boletaResultante.bol_c_eigvcal, "El calculo de igv no corresponde a la venta.");
+            Assert.GreaterOrEqual(2, CantidadDecimales(boletaResultante.bol_c_eigvcal), "El calculo de igv tiene la cantidad de decimales incorrectos.");
             Assert.AreEqual(ventaInicial.ven_c_etotal, boletaResultante.bol_c_etotal, "El total no corresponde a la venta.");
+            Assert.GreaterOrEqual(2, CantidadDecimales(boletaResultante.bol_c_etotal), "El total tiene la cantidad de decimales incorrectos.");
             Assert.AreEqual(ventaInicial.ven_c_ymoneda, boletaResultante.bol_c_imoneda, "La moneda no corresponde a la venta.");
             Assert.AreEqual(ventaInicial.ven_c_vdescmoneda, boletaResultante.bol_c_vdescmoneda, "La descripción de moneda no corresponde a la venta.");
-
+            
             // Comparamos los items, debe tener los items resumidos
             foreach (var item in boletaResultante.SIC_T_BOLETA_DETALLE)
             {
                 Assert.IsNotNull(item.SIC_T_ITEM, "Se requiere que el objeto item no sea nulo.");
+                Assert.GreaterOrEqual(2, CantidadDecimales(item.bol_det_c_epreciotot), "El total del item tiene la cantidad de decimales incorrectos.");
+                Assert.AreEqual(Decimal.Round(item.bol_det_c_ecantidad * item.bol_det_c_epreciounit, 2), item.bol_det_c_epreciotot, "El precio total del item no corresponde a la multiplicacion de unitario x cantidad");                    
                 if (item.bol_det_c_ecantidad != ventaInicial.SIC_T_VENTA_DETALLE
                                             .Where(v => v.ven_det_c_iitemid == item.bol_det_c_iitem)
                                             .Select(x => x.ven_det_c_ecantidad)
@@ -76,13 +81,16 @@ namespace BL_NUnit
         {
             FacturacionAutomaticaBL faBL = new FacturacionAutomaticaBL();
             SIC_T_VENTA ventaInicial = this.CrearVenta();
-            ventaInicial.ven_c_itipodoc = (int)TipoParametro.FACTURA; 
+            ventaInicial.ven_c_itipodoc = (int)TipoParametroDetalle.FACTURA;
             SIC_T_FACTURA facturaResultante = faBL.GenerarFacturaDesdeVenta(ventaInicial);
             Assert.AreEqual(ventaInicial.ven_c_iid, facturaResultante.fac_c_iventa, "El codigo de venta no corresponde a la venta");
             Assert.AreEqual(ventaInicial.ven_c_eigv, facturaResultante.fac_c_eigv, "El igv no corresponde a la venta."  );            
             Assert.AreEqual(ventaInicial.ven_c_esubtotal, facturaResultante.fac_c_esubtotal, "El subtotal no corresponde a la venta.");
+            Assert.GreaterOrEqual(2, CantidadDecimales(facturaResultante.fac_c_esubtotal), "El subtotal tiene la cantidad de decimales incorrectos.");            
             Assert.AreEqual(ventaInicial.ven_c_eigvcal, facturaResultante.fac_c_eigvcal, "El calculo de igv no corresponde a la venta.");
+            Assert.GreaterOrEqual(2, CantidadDecimales(facturaResultante.fac_c_eigvcal), "El calculo de igv tiene la cantidad de decimales incorrectos.");
             Assert.AreEqual(ventaInicial.ven_c_etotal, facturaResultante.fac_c_etotal, "El total no corresponde a la venta.");
+            Assert.GreaterOrEqual(2, CantidadDecimales(facturaResultante.fac_c_etotal), "El total tiene la cantidad de decimales incorrectos.");
             Assert.AreEqual(ventaInicial.ven_c_ymoneda, facturaResultante.fac_c_imoneda, "La moneda no corresponde a la venta.");
             Assert.AreEqual(ventaInicial.ven_c_vdescmoneda, facturaResultante.fac_c_vdescmoneda, "La descripción de moneda no corresponde a la venta.");
             
@@ -90,6 +98,8 @@ namespace BL_NUnit
             foreach (var item in facturaResultante.SIC_T_FACTURA_DETALLE)
             {
                 Assert.IsNotNull(item.SIC_T_ITEM, "Se requiere que el objeto item no sea nulo.");
+                Assert.GreaterOrEqual(2, CantidadDecimales(item.fac_det_c_epreciotot), "El total del item tiene la cantidad de decimales incorrectos.");
+                Assert.AreEqual(Decimal.Round(item.fac_det_c_ecantidad * item.fac_det_c_epreciounit,2), item.fac_det_c_epreciotot, "El precio total del item no corresponde a la multiplicacion de unitario x cantidad");                
                 if (item.fac_det_c_ecantidad != ventaInicial.SIC_T_VENTA_DETALLE
                                             .Where(v => v.ven_det_c_iitemid == item.fac_det_c_iitem)
                                             .Select(x => x.ven_det_c_ecantidad)
@@ -123,7 +133,7 @@ namespace BL_NUnit
             
             detalle.ven_det_c_ecantidad = 10;
             detalle.ven_det_c_epreciounit = 20;
-            detalle.ven_det_c_epreciototal = detalle.ven_det_c_ecantidad * detalle.ven_det_c_epreciounit;
+            detalle.ven_det_c_epreciototal = Decimal.Round(detalle.ven_det_c_ecantidad * detalle.ven_det_c_epreciounit, 2);
             detalle.ven_det_c_iidalmacen = 1;
             detalle.ven_det_c_iitemid = 1;
             detalle.SIC_T_ITEM = item1;
@@ -132,7 +142,7 @@ namespace BL_NUnit
             detalle = new SIC_T_VENTA_DETALLE();
             detalle.ven_det_c_ecantidad = 15;
             detalle.ven_det_c_epreciounit = 20;
-            detalle.ven_det_c_epreciototal = detalle.ven_det_c_ecantidad * detalle.ven_det_c_epreciounit;
+            detalle.ven_det_c_epreciototal = Decimal.Round(detalle.ven_det_c_ecantidad * detalle.ven_det_c_epreciounit, 2);
             detalle.ven_det_c_iidalmacen = 2;
             detalle.ven_det_c_iitemid = 1;
             detalle.SIC_T_ITEM = item1;
@@ -141,7 +151,7 @@ namespace BL_NUnit
             detalle = new SIC_T_VENTA_DETALLE();
             detalle.ven_det_c_ecantidad = 12.5M;
             detalle.ven_det_c_epreciounit = 13.5M;
-            detalle.ven_det_c_epreciototal = detalle.ven_det_c_ecantidad * detalle.ven_det_c_epreciounit;
+            detalle.ven_det_c_epreciototal = Decimal.Round(detalle.ven_det_c_ecantidad * detalle.ven_det_c_epreciounit, 2);
             detalle.ven_det_c_iidalmacen = 2;
             detalle.ven_det_c_iitemid = 2;
             detalle.SIC_T_ITEM = item2;
@@ -150,7 +160,7 @@ namespace BL_NUnit
             detalle = new SIC_T_VENTA_DETALLE();
             detalle.ven_det_c_ecantidad = 0.7M;
             detalle.ven_det_c_epreciounit = 12;
-            detalle.ven_det_c_epreciototal = detalle.ven_det_c_ecantidad * detalle.ven_det_c_epreciounit;
+            detalle.ven_det_c_epreciototal = Decimal.Round(detalle.ven_det_c_ecantidad * detalle.ven_det_c_epreciounit, 2);
             detalle.ven_det_c_iidalmacen = 2;
             detalle.ven_det_c_iitemid = 3;
             detalle.SIC_T_ITEM = item3;
@@ -158,12 +168,17 @@ namespace BL_NUnit
 
             venta.ven_c_eigv = 0.18M;
             venta.ven_c_esubtotal = venta.SIC_T_VENTA_DETALLE.Select(v => v.ven_det_c_epreciototal).Sum();
-            venta.ven_c_eigvcal = venta.ven_c_esubtotal * venta.ven_c_eigv;
+            venta.ven_c_eigvcal = Decimal.Round(venta.ven_c_esubtotal * venta.ven_c_eigv, 2);
             venta.ven_c_etotal = venta.ven_c_esubtotal + venta.ven_c_eigvcal;
             venta.ven_c_vdescmoneda = "SOLES";
-            venta.ven_c_ymoneda = (int) TipoParametro.SOLES;          
+            venta.ven_c_ymoneda = (int)TipoParametroDetalle.SOLES;          
             
             return venta;
+        }
+
+        private int CantidadDecimales(decimal numero)
+        {
+            return BitConverter.GetBytes(decimal.GetBits(numero)[3])[2];
         }
     }
 }

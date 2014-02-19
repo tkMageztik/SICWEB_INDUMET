@@ -13,7 +13,6 @@ namespace SIC.BusinessLayer
     /// <summary>
     /// Representa la clase que controla el proceso de negocio de la facturacion automatica
     /// </summary>
-    /// 
     public class FacturacionAutomaticaBL
     {
         /// <summary>
@@ -74,6 +73,7 @@ namespace SIC.BusinessLayer
             {
                 throw new ArgumentException("El parametro venta no puede ser nulo");
             }
+            else if (venta.ven_c_itipodoc != (int)TipoParametroDetalle.FACTURA)
             else if(venta.ven_c_itipodoc != (int)TipoParametro.FACTURA)
             {
                 throw new ArgumentException("Solo se puede generar facturas de ventas que tengan como tipo documento Factura");
@@ -96,6 +96,7 @@ namespace SIC.BusinessLayer
                     var nuevoDetalle = new SIC_T_FACTURA_DETALLE();
                     nuevoDetalle.fac_det_c_ecantidad = ventaDetalle.ven_det_c_ecantidad;
                     nuevoDetalle.fac_det_c_epreciounit = ventaDetalle.ven_det_c_epreciounit;
+                    nuevoDetalle.fac_det_c_epreciotot = Decimal.Round(nuevoDetalle.fac_det_c_ecantidad * nuevoDetalle.fac_det_c_epreciounit, 2);
                     nuevoDetalle.fac_det_c_iitem = ventaDetalle.ven_det_c_iitemid;
                     nuevoDetalle.SIC_T_ITEM = ventaDetalle.SIC_T_ITEM;
                     factura.SIC_T_FACTURA_DETALLE.Add(nuevoDetalle);
@@ -103,11 +104,12 @@ namespace SIC.BusinessLayer
                 else
                 {
                     busqueda.fac_det_c_ecantidad += ventaDetalle.ven_det_c_ecantidad;
+                    busqueda.fac_det_c_epreciotot = Decimal.Round(busqueda.fac_det_c_ecantidad * busqueda.fac_det_c_epreciounit, 2);
                 }
             }
 
-            factura.fac_c_esubtotal = factura.SIC_T_FACTURA_DETALLE.Select(x => x.fac_det_c_ecantidad * x.fac_det_c_epreciounit).Sum();
-            factura.fac_c_eigvcal = factura.fac_c_eigv * factura.fac_c_esubtotal;
+            factura.fac_c_esubtotal = factura.SIC_T_FACTURA_DETALLE.Select(x => x.fac_det_c_epreciotot).Sum();
+            factura.fac_c_eigvcal = Decimal.Round(factura.fac_c_eigv * factura.fac_c_esubtotal, 2);
             factura.fac_c_etotal = factura.fac_c_esubtotal + factura.fac_c_eigvcal;
             return factura;
         }
@@ -124,7 +126,7 @@ namespace SIC.BusinessLayer
             {
                 throw new ArgumentException("El parametro venta no puede ser nulo");
             }
-            else if(venta.ven_c_itipodoc != (int)TipoParametro.BOLETA)
+            else if(venta.ven_c_itipodoc != (int)TipoParametroDetalle.BOLETA)
             {
                 throw new ArgumentException("Solo se puede generar facturas de ventas que tengan como tipo documento Factura");
             }
@@ -148,6 +150,7 @@ namespace SIC.BusinessLayer
                     var nuevoDetalle = new SIC_T_BOLETA_DETALLE();
                     nuevoDetalle.bol_det_c_ecantidad = ventaDetalle.ven_det_c_ecantidad;
                     nuevoDetalle.bol_det_c_epreciounit = ventaDetalle.ven_det_c_epreciounit;
+                    nuevoDetalle.bol_det_c_epreciotot = Decimal.Round(nuevoDetalle.bol_det_c_ecantidad * nuevoDetalle.bol_det_c_epreciounit, 2);
                     nuevoDetalle.bol_det_c_iitem = ventaDetalle.ven_det_c_iitemid;
                     nuevoDetalle.SIC_T_ITEM = ventaDetalle.SIC_T_ITEM;
                     boleta.SIC_T_BOLETA_DETALLE.Add(nuevoDetalle);
@@ -155,11 +158,12 @@ namespace SIC.BusinessLayer
                 else
                 {
                     busqueda.bol_det_c_ecantidad += ventaDetalle.ven_det_c_ecantidad;
+                    busqueda.bol_det_c_epreciotot = Decimal.Round(busqueda.bol_det_c_ecantidad * busqueda.bol_det_c_epreciounit, 2);
                 }
             }
 
-            boleta.bol_c_esubtotal = boleta.SIC_T_BOLETA_DETALLE.Select(x => x.bol_det_c_ecantidad * x.bol_det_c_epreciounit).Sum();
-            boleta.bol_c_eigvcal = boleta.bol_c_eigv * boleta.bol_c_esubtotal;
+            boleta.bol_c_esubtotal = boleta.SIC_T_BOLETA_DETALLE.Select(x => x.bol_det_c_epreciotot).Sum();
+            boleta.bol_c_eigvcal = Decimal.Round(boleta.bol_c_eigv * boleta.bol_c_esubtotal, 2);
             boleta.bol_c_etotal = boleta.bol_c_esubtotal + boleta.bol_c_eigvcal;
             return boleta;
         }

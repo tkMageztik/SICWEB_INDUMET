@@ -383,10 +383,18 @@ namespace SIC.Data
         PERCEPCION = 4,
         MONEDA = 5,
         DOCUMENTO_VENTA = 6,
+        TIPO_DIRECCION = 7
+    }
+
+    public enum TipoParametroDetalle
+    {
         SOLES = 12,
         DOLARES = 15,
         BOLETA = 17,
-        FACTURA = 18
+        FACTURA = 18,
+        FISCAL = 24,
+        SUCURSAL = 25,
+        FACTURACION = 26,
     }
 
     public enum DESTINATARIOSCORREO

@@ -897,6 +897,22 @@ namespace SIC.EntityLayer
             }
         }
         private ObjectSet<SIC_T_FACTURA_DETALLE> _SIC_T_FACTURA_DETALLE;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        public ObjectSet<SIC_T_UNIDAD_MEDIDA> SIC_T_UNIDAD_MEDIDA
+        {
+            get
+            {
+                if ((_SIC_T_UNIDAD_MEDIDA == null))
+                {
+                    _SIC_T_UNIDAD_MEDIDA = base.CreateObjectSet<SIC_T_UNIDAD_MEDIDA>("SIC_T_UNIDAD_MEDIDA");
+                }
+                return _SIC_T_UNIDAD_MEDIDA;
+            }
+        }
+        private ObjectSet<SIC_T_UNIDAD_MEDIDA> _SIC_T_UNIDAD_MEDIDA;
 
         #endregion
         #region Métodos AddTo
@@ -1291,6 +1307,14 @@ namespace SIC.EntityLayer
         public void AddToSIC_T_FACTURA_DETALLE(SIC_T_FACTURA_DETALLE sIC_T_FACTURA_DETALLE)
         {
             base.AddObject("SIC_T_FACTURA_DETALLE", sIC_T_FACTURA_DETALLE);
+        }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet SIC_T_UNIDAD_MEDIDA. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToSIC_T_UNIDAD_MEDIDA(SIC_T_UNIDAD_MEDIDA sIC_T_UNIDAD_MEDIDA)
+        {
+            base.AddObject("SIC_T_UNIDAD_MEDIDA", sIC_T_UNIDAD_MEDIDA);
         }
 
         #endregion
@@ -2668,7 +2692,8 @@ namespace SIC.EntityLayer
         /// <param name="bol_det_c_iitem">Valor inicial de la propiedad bol_det_c_iitem.</param>
         /// <param name="bol_det_c_ecantidad">Valor inicial de la propiedad bol_det_c_ecantidad.</param>
         /// <param name="bol_det_c_epreciounit">Valor inicial de la propiedad bol_det_c_epreciounit.</param>
-        public static SIC_T_BOLETA_DETALLE CreateSIC_T_BOLETA_DETALLE(global::System.Int32 bol_det_c_iid, global::System.Int32 bol_c_iid, global::System.Int32 bol_det_c_iitem, global::System.Decimal bol_det_c_ecantidad, global::System.Decimal bol_det_c_epreciounit)
+        /// <param name="bol_det_c_epreciotot">Valor inicial de la propiedad bol_det_c_epreciotot.</param>
+        public static SIC_T_BOLETA_DETALLE CreateSIC_T_BOLETA_DETALLE(global::System.Int32 bol_det_c_iid, global::System.Int32 bol_c_iid, global::System.Int32 bol_det_c_iitem, global::System.Decimal bol_det_c_ecantidad, global::System.Decimal bol_det_c_epreciounit, global::System.Decimal bol_det_c_epreciotot)
         {
             SIC_T_BOLETA_DETALLE sIC_T_BOLETA_DETALLE = new SIC_T_BOLETA_DETALLE();
             sIC_T_BOLETA_DETALLE.bol_det_c_iid = bol_det_c_iid;
@@ -2676,6 +2701,7 @@ namespace SIC.EntityLayer
             sIC_T_BOLETA_DETALLE.bol_det_c_iitem = bol_det_c_iitem;
             sIC_T_BOLETA_DETALLE.bol_det_c_ecantidad = bol_det_c_ecantidad;
             sIC_T_BOLETA_DETALLE.bol_det_c_epreciounit = bol_det_c_epreciounit;
+            sIC_T_BOLETA_DETALLE.bol_det_c_epreciotot = bol_det_c_epreciotot;
             return sIC_T_BOLETA_DETALLE;
         }
 
@@ -2804,6 +2830,30 @@ namespace SIC.EntityLayer
         private global::System.Decimal _bol_det_c_epreciounit;
         partial void Onbol_det_c_epreciounitChanging(global::System.Decimal value);
         partial void Onbol_det_c_epreciounitChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal bol_det_c_epreciotot
+        {
+            get
+            {
+                return _bol_det_c_epreciotot;
+            }
+            set
+            {
+                Onbol_det_c_epreciototChanging(value);
+                ReportPropertyChanging("bol_det_c_epreciotot");
+                _bol_det_c_epreciotot = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("bol_det_c_epreciotot");
+                Onbol_det_c_epreciototChanged();
+            }
+        }
+        private global::System.Decimal _bol_det_c_epreciotot;
+        partial void Onbol_det_c_epreciototChanging(global::System.Decimal value);
+        partial void Onbol_det_c_epreciototChanged();
 
         #endregion
     
@@ -6509,7 +6559,8 @@ namespace SIC.EntityLayer
         /// <param name="fac_det_c_iitem">Valor inicial de la propiedad fac_det_c_iitem.</param>
         /// <param name="fac_det_c_ecantidad">Valor inicial de la propiedad fac_det_c_ecantidad.</param>
         /// <param name="fac_det_c_epreciounit">Valor inicial de la propiedad fac_det_c_epreciounit.</param>
-        public static SIC_T_FACTURA_DETALLE CreateSIC_T_FACTURA_DETALLE(global::System.Int32 fac_det_c_iid, global::System.Int32 fac_c_iid, global::System.Int32 fac_det_c_iitem, global::System.Decimal fac_det_c_ecantidad, global::System.Decimal fac_det_c_epreciounit)
+        /// <param name="fac_det_c_epreciotot">Valor inicial de la propiedad fac_det_c_epreciotot.</param>
+        public static SIC_T_FACTURA_DETALLE CreateSIC_T_FACTURA_DETALLE(global::System.Int32 fac_det_c_iid, global::System.Int32 fac_c_iid, global::System.Int32 fac_det_c_iitem, global::System.Decimal fac_det_c_ecantidad, global::System.Decimal fac_det_c_epreciounit, global::System.Decimal fac_det_c_epreciotot)
         {
             SIC_T_FACTURA_DETALLE sIC_T_FACTURA_DETALLE = new SIC_T_FACTURA_DETALLE();
             sIC_T_FACTURA_DETALLE.fac_det_c_iid = fac_det_c_iid;
@@ -6517,6 +6568,7 @@ namespace SIC.EntityLayer
             sIC_T_FACTURA_DETALLE.fac_det_c_iitem = fac_det_c_iitem;
             sIC_T_FACTURA_DETALLE.fac_det_c_ecantidad = fac_det_c_ecantidad;
             sIC_T_FACTURA_DETALLE.fac_det_c_epreciounit = fac_det_c_epreciounit;
+            sIC_T_FACTURA_DETALLE.fac_det_c_epreciotot = fac_det_c_epreciotot;
             return sIC_T_FACTURA_DETALLE;
         }
 
@@ -6645,6 +6697,30 @@ namespace SIC.EntityLayer
         private global::System.Decimal _fac_det_c_epreciounit;
         partial void Onfac_det_c_epreciounitChanging(global::System.Decimal value);
         partial void Onfac_det_c_epreciounitChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal fac_det_c_epreciotot
+        {
+            get
+            {
+                return _fac_det_c_epreciotot;
+            }
+            set
+            {
+                Onfac_det_c_epreciototChanging(value);
+                ReportPropertyChanging("fac_det_c_epreciotot");
+                _fac_det_c_epreciotot = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("fac_det_c_epreciotot");
+                Onfac_det_c_epreciototChanged();
+            }
+        }
+        private global::System.Decimal _fac_det_c_epreciotot;
+        partial void Onfac_det_c_epreciototChanging(global::System.Decimal value);
+        partial void Onfac_det_c_epreciototChanged();
 
         #endregion
     
@@ -11192,6 +11268,113 @@ namespace SIC.EntityLayer
         private Nullable<global::System.DateTime> _tsc_c_dfin;
         partial void Ontsc_c_dfinChanging(Nullable<global::System.DateTime> value);
         partial void Ontsc_c_dfinChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// No hay documentación de metadatos disponible.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SICDBWEBModel", Name="SIC_T_UNIDAD_MEDIDA")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SIC_T_UNIDAD_MEDIDA : EntityObject
+    {
+        #region Método de generador
+    
+        /// <summary>
+        /// Crear un nuevo objeto SIC_T_UNIDAD_MEDIDA.
+        /// </summary>
+        /// <param name="und_c_iid">Valor inicial de la propiedad und_c_iid.</param>
+        /// <param name="und_c_vdesc">Valor inicial de la propiedad und_c_vdesc.</param>
+        /// <param name="und_c_bactivo">Valor inicial de la propiedad und_c_bactivo.</param>
+        public static SIC_T_UNIDAD_MEDIDA CreateSIC_T_UNIDAD_MEDIDA(global::System.Int32 und_c_iid, global::System.String und_c_vdesc, global::System.Boolean und_c_bactivo)
+        {
+            SIC_T_UNIDAD_MEDIDA sIC_T_UNIDAD_MEDIDA = new SIC_T_UNIDAD_MEDIDA();
+            sIC_T_UNIDAD_MEDIDA.und_c_iid = und_c_iid;
+            sIC_T_UNIDAD_MEDIDA.und_c_vdesc = und_c_vdesc;
+            sIC_T_UNIDAD_MEDIDA.und_c_bactivo = und_c_bactivo;
+            return sIC_T_UNIDAD_MEDIDA;
+        }
+
+        #endregion
+        #region Propiedades primitivas
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 und_c_iid
+        {
+            get
+            {
+                return _und_c_iid;
+            }
+            set
+            {
+                if (_und_c_iid != value)
+                {
+                    Onund_c_iidChanging(value);
+                    ReportPropertyChanging("und_c_iid");
+                    _und_c_iid = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("und_c_iid");
+                    Onund_c_iidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _und_c_iid;
+        partial void Onund_c_iidChanging(global::System.Int32 value);
+        partial void Onund_c_iidChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String und_c_vdesc
+        {
+            get
+            {
+                return _und_c_vdesc;
+            }
+            set
+            {
+                Onund_c_vdescChanging(value);
+                ReportPropertyChanging("und_c_vdesc");
+                _und_c_vdesc = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("und_c_vdesc");
+                Onund_c_vdescChanged();
+            }
+        }
+        private global::System.String _und_c_vdesc;
+        partial void Onund_c_vdescChanging(global::System.String value);
+        partial void Onund_c_vdescChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean und_c_bactivo
+        {
+            get
+            {
+                return _und_c_bactivo;
+            }
+            set
+            {
+                Onund_c_bactivoChanging(value);
+                ReportPropertyChanging("und_c_bactivo");
+                _und_c_bactivo = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("und_c_bactivo");
+                Onund_c_bactivoChanged();
+            }
+        }
+        private global::System.Boolean _und_c_bactivo;
+        partial void Onund_c_bactivoChanging(global::System.Boolean value);
+        partial void Onund_c_bactivoChanged();
 
         #endregion
     

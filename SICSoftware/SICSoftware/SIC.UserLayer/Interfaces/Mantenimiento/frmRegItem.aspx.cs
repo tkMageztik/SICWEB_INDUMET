@@ -166,18 +166,18 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         private void ListarUnidadMedida()
         {
             cboUnidad.Items.Clear();
-            cboUnidad.DataSource = _parametro.ListarParametros((int) TipoParametro.UNIDAD_DE_MEDIDA);
-            cboUnidad.DataTextField = "par_det_c_vdesc";
-            cboUnidad.DataValueField = "par_det_c_iid";
+            cboUnidad.DataSource = _item.ListarUnidadMedida();
+            cboUnidad.DataTextField = "und_c_vdesc";
+            cboUnidad.DataValueField = "und_c_iid";
             cboUnidad.DataBind();
         }
 
         private void ListarUnidadMedidaIns()
         {
             cboUnidadMedida.Items.Clear();
-            cboUnidadMedida.DataSource = _parametro.ListarParametros((int)TipoParametro.UNIDAD_DE_MEDIDA);
-            cboUnidadMedida.DataTextField = "par_det_c_vdesc";
-            cboUnidadMedida.DataValueField = "par_det_c_iid";
+            cboUnidadMedida.DataSource = _item.ListarUnidadMedida();
+            cboUnidadMedida.DataTextField = "und_c_vdesc";
+            cboUnidadMedida.DataValueField = "und_c_iid";
             cboUnidadMedida.DataBind();
         }
 
@@ -760,7 +760,11 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
             try
             {
-                _item.AgregarUnidadMedida(txtUnidadMedida.Text);
+                SIC_T_UNIDAD_MEDIDA unidadMedida = new SIC_T_UNIDAD_MEDIDA()
+                {
+                    und_c_vdesc = txtUnidadMedida.Text,
+                };
+                _item.AgregarUnidadMedida(unidadMedida);
                 ListarSubFamiliaAgr();
                 txtNombreSubFamilia.Text = string.Empty;
                 Mensaje("Unidad de medida ingresada.", "../Imagenes/warning.png");
@@ -792,6 +796,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             txtUnidadMedida.Text = string.Empty;
             upGeneral.Update();
         }
+
 
 
 

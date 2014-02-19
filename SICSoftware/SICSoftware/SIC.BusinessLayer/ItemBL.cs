@@ -11,7 +11,6 @@ namespace SIC.BusinessLayer
     {
         #region "METODOS"
 
-       
         public List<SIC_T_ITEM> ListarItems(string codigo, string descripcion, int? idFamilia, int? idSubFamilia)
         {
             return new ItemDA().ListarItems(codigo,descripcion, idFamilia, idSubFamilia);
@@ -62,9 +61,22 @@ namespace SIC.BusinessLayer
             new ItemDA().AgregarSubFamilia(_pSIC_T_ITEM_SUB_FAMILIA);
         }
 
-        public void AgregarUnidadMedida(String desUnidadMedida)
+        /// <summary>
+        /// Ingresa la unidad de medida al sistema.
+        /// </summary>
+        /// <param name="unidadMedida">Unidad de medida.</param>
+        public void AgregarUnidadMedida(SIC_T_UNIDAD_MEDIDA unidadMedida)
         {
-            new ItemDA().AgregarUnidadMedida(desUnidadMedida);
+            new UnidadMedidaDA().AgregarUnidadMedida(unidadMedida);
+        }
+
+        /// <summary>
+        /// Obtiene una lista de Unidad de Medida.
+        /// </summary>
+        /// <returns>Listado de unidad de medida.</returns>
+        public List<SIC_T_UNIDAD_MEDIDA> ListarUnidadMedida()
+        {
+            return new UnidadMedidaDA().ListarUnidadMedida();
         }
 
         #endregion
