@@ -59,10 +59,10 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_VENTA_SIC_T_EMP_CENTRO_COSTO", "SIC_T_EMP_CENTRO_COSTO", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_EMP_CENTRO_COSTO), "SIC_T_VENTA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_VENTA), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_BOLETA_DETALLE_SIC_T_BOLETA", "SIC_T_BOLETA", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_BOLETA), "SIC_T_BOLETA_DETALLE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_BOLETA_DETALLE), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_BOLETA_SIC_T_VENTA", "SIC_T_VENTA", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_VENTA), "SIC_T_BOLETA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_BOLETA), true)]
-[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_BOLETA_DETALLE_SIC_T_FACTURA_DETALLE", "SIC_T_FACTURA_DETALLE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_FACTURA_DETALLE), "SIC_T_BOLETA_DETALLE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_BOLETA_DETALLE), true)]
-[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_BOLETA_DETALLE_SIC_T_ITEM", "SIC_T_ITEM", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_ITEM), "SIC_T_BOLETA_DETALLE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_BOLETA_DETALLE), true)]
+[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_BOLETA_DETALLE_SIC_T_ITEM1", "SIC_T_ITEM", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_ITEM), "SIC_T_BOLETA_DETALLE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_BOLETA_DETALLE), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_FACTURA_DETALLE_SIC_T_FACTURA", "SIC_T_FACTURA", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_FACTURA), "SIC_T_FACTURA_DETALLE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_FACTURA_DETALLE), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_FACTURA_SIC_T_VENTA", "SIC_T_VENTA", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_VENTA), "SIC_T_FACTURA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_FACTURA), true)]
+[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_FACTURA_DETALLE_SIC_T_ITEM", "SIC_T_ITEM", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_ITEM), "SIC_T_FACTURA_DETALLE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_FACTURA_DETALLE), true)]
 
 #endregion
 
@@ -2853,54 +2853,16 @@ namespace SIC.EntityLayer
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_BOLETA_DETALLE_SIC_T_FACTURA_DETALLE", "SIC_T_FACTURA_DETALLE")]
-        public SIC_T_FACTURA_DETALLE SIC_T_FACTURA_DETALLE
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_FACTURA_DETALLE>("SICDBWEBModel.FK_SIC_T_BOLETA_DETALLE_SIC_T_FACTURA_DETALLE", "SIC_T_FACTURA_DETALLE").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_FACTURA_DETALLE>("SICDBWEBModel.FK_SIC_T_BOLETA_DETALLE_SIC_T_FACTURA_DETALLE", "SIC_T_FACTURA_DETALLE").Value = value;
-            }
-        }
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<SIC_T_FACTURA_DETALLE> SIC_T_FACTURA_DETALLEReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_FACTURA_DETALLE>("SICDBWEBModel.FK_SIC_T_BOLETA_DETALLE_SIC_T_FACTURA_DETALLE", "SIC_T_FACTURA_DETALLE");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SIC_T_FACTURA_DETALLE>("SICDBWEBModel.FK_SIC_T_BOLETA_DETALLE_SIC_T_FACTURA_DETALLE", "SIC_T_FACTURA_DETALLE", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_BOLETA_DETALLE_SIC_T_ITEM", "SIC_T_ITEM")]
+        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_BOLETA_DETALLE_SIC_T_ITEM1", "SIC_T_ITEM")]
         public SIC_T_ITEM SIC_T_ITEM
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_ITEM>("SICDBWEBModel.FK_SIC_T_BOLETA_DETALLE_SIC_T_ITEM", "SIC_T_ITEM").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_ITEM>("SICDBWEBModel.FK_SIC_T_BOLETA_DETALLE_SIC_T_ITEM1", "SIC_T_ITEM").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_ITEM>("SICDBWEBModel.FK_SIC_T_BOLETA_DETALLE_SIC_T_ITEM", "SIC_T_ITEM").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_ITEM>("SICDBWEBModel.FK_SIC_T_BOLETA_DETALLE_SIC_T_ITEM1", "SIC_T_ITEM").Value = value;
             }
         }
         /// <summary>
@@ -2912,13 +2874,13 @@ namespace SIC.EntityLayer
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_ITEM>("SICDBWEBModel.FK_SIC_T_BOLETA_DETALLE_SIC_T_ITEM", "SIC_T_ITEM");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_ITEM>("SICDBWEBModel.FK_SIC_T_BOLETA_DETALLE_SIC_T_ITEM1", "SIC_T_ITEM");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SIC_T_ITEM>("SICDBWEBModel.FK_SIC_T_BOLETA_DETALLE_SIC_T_ITEM", "SIC_T_ITEM", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SIC_T_ITEM>("SICDBWEBModel.FK_SIC_T_BOLETA_DETALLE_SIC_T_ITEM1", "SIC_T_ITEM", value);
                 }
             }
         }
@@ -6694,28 +6656,6 @@ namespace SIC.EntityLayer
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_BOLETA_DETALLE_SIC_T_FACTURA_DETALLE", "SIC_T_BOLETA_DETALLE")]
-        public EntityCollection<SIC_T_BOLETA_DETALLE> SIC_T_BOLETA_DETALLE
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SIC_T_BOLETA_DETALLE>("SICDBWEBModel.FK_SIC_T_BOLETA_DETALLE_SIC_T_FACTURA_DETALLE", "SIC_T_BOLETA_DETALLE");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SIC_T_BOLETA_DETALLE>("SICDBWEBModel.FK_SIC_T_BOLETA_DETALLE_SIC_T_FACTURA_DETALLE", "SIC_T_BOLETA_DETALLE", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_FACTURA_DETALLE_SIC_T_FACTURA", "SIC_T_FACTURA")]
         public SIC_T_FACTURA SIC_T_FACTURA
         {
@@ -6744,6 +6684,44 @@ namespace SIC.EntityLayer
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SIC_T_FACTURA>("SICDBWEBModel.FK_SIC_T_FACTURA_DETALLE_SIC_T_FACTURA", "SIC_T_FACTURA", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_FACTURA_DETALLE_SIC_T_ITEM", "SIC_T_ITEM")]
+        public SIC_T_ITEM SIC_T_ITEM
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_ITEM>("SICDBWEBModel.FK_SIC_T_FACTURA_DETALLE_SIC_T_ITEM", "SIC_T_ITEM").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_ITEM>("SICDBWEBModel.FK_SIC_T_FACTURA_DETALLE_SIC_T_ITEM", "SIC_T_ITEM").Value = value;
+            }
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SIC_T_ITEM> SIC_T_ITEMReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_ITEM>("SICDBWEBModel.FK_SIC_T_FACTURA_DETALLE_SIC_T_ITEM", "SIC_T_ITEM");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SIC_T_ITEM>("SICDBWEBModel.FK_SIC_T_FACTURA_DETALLE_SIC_T_ITEM", "SIC_T_ITEM", value);
                 }
             }
         }
@@ -7251,18 +7229,40 @@ namespace SIC.EntityLayer
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_BOLETA_DETALLE_SIC_T_ITEM", "SIC_T_BOLETA_DETALLE")]
+        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_BOLETA_DETALLE_SIC_T_ITEM1", "SIC_T_BOLETA_DETALLE")]
         public EntityCollection<SIC_T_BOLETA_DETALLE> SIC_T_BOLETA_DETALLE
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SIC_T_BOLETA_DETALLE>("SICDBWEBModel.FK_SIC_T_BOLETA_DETALLE_SIC_T_ITEM", "SIC_T_BOLETA_DETALLE");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SIC_T_BOLETA_DETALLE>("SICDBWEBModel.FK_SIC_T_BOLETA_DETALLE_SIC_T_ITEM1", "SIC_T_BOLETA_DETALLE");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SIC_T_BOLETA_DETALLE>("SICDBWEBModel.FK_SIC_T_BOLETA_DETALLE_SIC_T_ITEM", "SIC_T_BOLETA_DETALLE", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SIC_T_BOLETA_DETALLE>("SICDBWEBModel.FK_SIC_T_BOLETA_DETALLE_SIC_T_ITEM1", "SIC_T_BOLETA_DETALLE", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_FACTURA_DETALLE_SIC_T_ITEM", "SIC_T_FACTURA_DETALLE")]
+        public EntityCollection<SIC_T_FACTURA_DETALLE> SIC_T_FACTURA_DETALLE
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SIC_T_FACTURA_DETALLE>("SICDBWEBModel.FK_SIC_T_FACTURA_DETALLE_SIC_T_ITEM", "SIC_T_FACTURA_DETALLE");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SIC_T_FACTURA_DETALLE>("SICDBWEBModel.FK_SIC_T_FACTURA_DETALLE_SIC_T_ITEM", "SIC_T_FACTURA_DETALLE", value);
                 }
             }
         }

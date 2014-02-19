@@ -549,8 +549,13 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             catch(Exception ex)
             {
                 #if DEBUG
-                    Mensaje("Error Fatal : \n" + ex.Message 
-                        + "\n" + ex.InnerException!=null?ex.InnerException.Message:string.Empty , "../Imagenes/warning.png");
+                String mensajeError = "Error Fatal : \n" + ex.Message;
+                if (ex.InnerException != null)
+                {
+                    mensajeError += "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty;
+                }
+
+                Mensaje(mensajeError, "../Imagenes/warning.png");
                 #else
                     Mensaje("Error en el proceso.", "../Imagenes/warning.png");
                 #endif
@@ -600,8 +605,13 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             catch (Exception ex)
             {
             #if DEBUG
-                Mensaje("Error Fatal : \n" + ex.Message
-                    + "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty, "../Imagenes/warning.png");
+                String mensajeError = "Error Fatal : \n" + ex.Message;
+                if (ex.InnerException != null)
+                {
+                    mensajeError += "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty;
+                }
+
+                Mensaje(mensajeError, "../Imagenes/warning.png");
             #else
                     Mensaje("Error en el proceso.", "../Imagenes/warning.png");
             #endif

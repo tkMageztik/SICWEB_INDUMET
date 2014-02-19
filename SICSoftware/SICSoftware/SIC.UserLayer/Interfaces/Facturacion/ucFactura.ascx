@@ -1,28 +1,14 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ucFactura.ascx.cs" Inherits="SIC.UserLayer.Interfaces.Facturacion.ucFactura" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxtoolkit" %>
    
-<style type="text/css">
-    .style1
-    {
-        height: 18px;
-    }
-    </style>
-   
 <asp:Button ID="btnShowPopup" runat="server" Style="display: none" />
 
-<ajaxtoolkit:ModalPopupExtender BackgroundCssClass="modalBackground"
-CancelControlID="ibtnCancelar" runat="server" PopupControlID="Mipanel1" 
-ID="ModalPopupExtender1"
-TargetControlID="btnShowPopup" />
+<asp:Panel ID="Mipanel1" runat="server"  Width="531px">
 
-<asp:Panel ID="Mipanel1" runat="server" CssClass="modalPopup" 
-    DefaultButton="btnOk" Width="531px">
-    <link href="../../../Styles/css.css" rel="Stylesheet" type="text/css" />
-<div id = "Cabecera" style="width: 531px">    
     <table style="width: 522px; border-color: #003162; border-style: solid;">
         <tr>
                 
-        <td align = "left" colspan= "2">                  
+        <td align = "left">                  
             <asp:Button ID="btnOk" runat="server" Text="ok" Visible="false" />
         </td>
 
@@ -123,6 +109,9 @@ TargetControlID="btnShowPopup" />
                             <Columns>
                                 <asp:TemplateField HeaderText="Código">
                                     <HeaderStyle BackColor="#001E3C" ForeColor="White" Width="100px" />
+                                    <ItemTemplate>
+                                        <%# Eval("SIC_T_ITEM.itm_c_ccodigo")%>
+                                    </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Cant.">
                                     <HeaderStyle BackColor="#001E3C" ForeColor="White" Width="50px" />
@@ -183,9 +172,5 @@ TargetControlID="btnShowPopup" />
         </td>
     </tr>
     </table>
-</div>
-
-
-    
 </asp:Panel>
 

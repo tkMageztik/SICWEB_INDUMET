@@ -127,6 +127,7 @@ namespace SIC.UserLayer.Interfaces.Facturacion
         private void RegresarDesdePreliminarFactura()
         {
             mvFacturacionAutomatica.SetActiveView(vwMain);
+            upGeneral.Update();
         }
 
   

@@ -22,15 +22,6 @@ namespace SIC.UserLayer.Interfaces.Facturacion {
         protected global::System.Web.UI.WebControls.Button btnShowPopup;
         
         /// <summary>
-        /// Control ModalPopupExtender1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::AjaxControlToolkit.ModalPopupExtender ModalPopupExtender1;
-        
-        /// <summary>
         /// Control Mipanel1.
         /// </summary>
         /// <remarks>

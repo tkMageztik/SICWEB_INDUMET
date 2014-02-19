@@ -303,8 +303,7 @@
                                                     <td align="left" class="style1">
                                                         &nbsp;</td>
                                                     <td align="left" class="style1">
-                                                        <asp:LinkButton ID="lnkVerDocumentoVenta" runat="server" Visible="False">Ver Documento de Venta</asp:LinkButton>
-                                                    </td>
+                                                        &nbsp;</td>
                                                 </tr>
                                                
                                                 <tr>

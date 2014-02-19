@@ -44,7 +44,7 @@ namespace BL_NUnit
         {
             FacturacionAutomaticaBL faBL = new FacturacionAutomaticaBL();
             SIC_T_VENTA ventaInicial = this.CrearVenta();
-            ventaInicial.ven_c_itipodoc = 17; // 17 Boleta
+            ventaInicial.ven_c_itipodoc = (int)TipoParametro.BOLETA;
             SIC_T_BOLETA boletaResultante = faBL.GenerarBoletaDesdeVenta(ventaInicial);
             Assert.AreEqual(ventaInicial.ven_c_iid, boletaResultante.bol_c_iventa, "El codigo de venta no corresponde a la venta");
             Assert.AreEqual(ventaInicial.ven_c_eigv, boletaResultante.bol_c_eigv, "El igv no corresponde a la venta.");
@@ -57,12 +57,12 @@ namespace BL_NUnit
             // Comparamos los items, debe tener los items resumidos
             foreach (var item in boletaResultante.SIC_T_BOLETA_DETALLE)
             {
+                Assert.IsNotNull(item.SIC_T_ITEM, "Se requiere que el objeto item no sea nulo.");
                 if (item.bol_det_c_ecantidad != ventaInicial.SIC_T_VENTA_DETALLE
                                             .Where(v => v.ven_det_c_iitemid == item.bol_det_c_iitem)
                                             .Select(x => x.ven_det_c_ecantidad)
                                             .Sum())
                 {
-
                     Assert.Fail(String.Format("Fallo comparacion de item, item {0} tiene distinta cantidad en ambos.", item.bol_det_c_iitem));
                 }
             }
@@ -76,7 +76,7 @@ namespace BL_NUnit
         {
             FacturacionAutomaticaBL faBL = new FacturacionAutomaticaBL();
             SIC_T_VENTA ventaInicial = this.CrearVenta();
-            ventaInicial.ven_c_itipodoc = 18; // 18 Factura
+            ventaInicial.ven_c_itipodoc = (int)TipoParametro.FACTURA; 
             SIC_T_FACTURA facturaResultante = faBL.GenerarFacturaDesdeVenta(ventaInicial);
             Assert.AreEqual(ventaInicial.ven_c_iid, facturaResultante.fac_c_iventa, "El codigo de venta no corresponde a la venta");
             Assert.AreEqual(ventaInicial.ven_c_eigv, facturaResultante.fac_c_eigv, "El igv no corresponde a la venta."  );            
@@ -85,17 +85,16 @@ namespace BL_NUnit
             Assert.AreEqual(ventaInicial.ven_c_etotal, facturaResultante.fac_c_etotal, "El total no corresponde a la venta.");
             Assert.AreEqual(ventaInicial.ven_c_ymoneda, facturaResultante.fac_c_imoneda, "La moneda no corresponde a la venta.");
             Assert.AreEqual(ventaInicial.ven_c_vdescmoneda, facturaResultante.fac_c_vdescmoneda, "La descripción de moneda no corresponde a la venta.");
-
-
+            
             // Comparamos los items, debe tener los items resumidos
             foreach (var item in facturaResultante.SIC_T_FACTURA_DETALLE)
             {
+                Assert.IsNotNull(item.SIC_T_ITEM, "Se requiere que el objeto item no sea nulo.");
                 if (item.fac_det_c_ecantidad != ventaInicial.SIC_T_VENTA_DETALLE
                                             .Where(v => v.ven_det_c_iitemid == item.fac_det_c_iitem)
                                             .Select(x => x.ven_det_c_ecantidad)
                                             .Sum())
                 {
-
                     Assert.Fail(String.Format("Fallo comparacion de item, item {0} tiene distinta cantidad en ambos.", item.fac_det_c_iitem));
                 }
             }
@@ -109,7 +108,16 @@ namespace BL_NUnit
             SIC_T_VENTA venta = new SIC_T_VENTA();
             
             SIC_T_VENTA_DETALLE detalle;
-            
+
+            SIC_T_ITEM item1 = new SIC_T_ITEM();
+            item1.itm_c_ccodigo = "Codigo1";
+            item1.itm_c_vdescripcion = "Des1";
+            SIC_T_ITEM item2 = new SIC_T_ITEM();
+            item2.itm_c_ccodigo = "Codigo1";
+            item2.itm_c_vdescripcion = "Des1";
+            SIC_T_ITEM item3 = new SIC_T_ITEM();
+            item3.itm_c_ccodigo = "Codigo1";
+            item3.itm_c_vdescripcion = "Des1";
             
             detalle = new SIC_T_VENTA_DETALLE();
             
@@ -118,6 +126,7 @@ namespace BL_NUnit
             detalle.ven_det_c_epreciototal = detalle.ven_det_c_ecantidad * detalle.ven_det_c_epreciounit;
             detalle.ven_det_c_iidalmacen = 1;
             detalle.ven_det_c_iitemid = 1;
+            detalle.SIC_T_ITEM = item1;
             venta.SIC_T_VENTA_DETALLE.Add(detalle);
 
             detalle = new SIC_T_VENTA_DETALLE();
@@ -126,6 +135,7 @@ namespace BL_NUnit
             detalle.ven_det_c_epreciototal = detalle.ven_det_c_ecantidad * detalle.ven_det_c_epreciounit;
             detalle.ven_det_c_iidalmacen = 2;
             detalle.ven_det_c_iitemid = 1;
+            detalle.SIC_T_ITEM = item1;
             venta.SIC_T_VENTA_DETALLE.Add(detalle);
 
             detalle = new SIC_T_VENTA_DETALLE();
@@ -134,6 +144,7 @@ namespace BL_NUnit
             detalle.ven_det_c_epreciototal = detalle.ven_det_c_ecantidad * detalle.ven_det_c_epreciounit;
             detalle.ven_det_c_iidalmacen = 2;
             detalle.ven_det_c_iitemid = 2;
+            detalle.SIC_T_ITEM = item2;
             venta.SIC_T_VENTA_DETALLE.Add(detalle);
 
             detalle = new SIC_T_VENTA_DETALLE();
@@ -142,6 +153,7 @@ namespace BL_NUnit
             detalle.ven_det_c_epreciototal = detalle.ven_det_c_ecantidad * detalle.ven_det_c_epreciounit;
             detalle.ven_det_c_iidalmacen = 2;
             detalle.ven_det_c_iitemid = 3;
+            detalle.SIC_T_ITEM = item3;
             venta.SIC_T_VENTA_DETALLE.Add(detalle);
 
             venta.ven_c_eigv = 0.18M;

@@ -144,7 +144,7 @@ namespace SIC.DataLayer
             }  
         }
 
-        public bool ModificarOrdenCompra(SIC_T_VENTA _pSIC_T_VENTA)
+        public bool ModificarVenta(SIC_T_VENTA _pSIC_T_VENTA)
         {
             try
             {
@@ -189,16 +189,22 @@ namespace SIC.DataLayer
                     {
                         contexto.SIC_T_VENTA_DETALLE.Attach(detalle);
                         contexto.SIC_T_VENTA_DETALLE.DeleteObject(detalle);
-                    }                   
-
-                    contexto.ApplyCurrentValues("SICDBWEBEntities.SIC_T_VENTA", _pSIC_T_VENTA);
+                    }
 
                     foreach (var detalle in agregar)
                     {
                         detalle.ven_det_c_iitemid = detalle.SIC_T_ITEM.itm_c_iid;
-                        detalle.SIC_T_ITEM = null;      
-                        ven.SIC_T_VENTA_DETALLE.Add(detalle);                         
+                        detalle.SIC_T_ITEM = null;
+                        detalle.ven_c_iid  = detalle.SIC_T_VENTA.ven_c_iid;
+                        detalle.SIC_T_VENTA = null;
+                        detalle.ven_det_c_iidalmacen = detalle.SIC_T_ALMACEN.alm_c_iid;
+                        detalle.SIC_T_ALMACEN = null;
+                        ven.SIC_T_VENTA_DETALLE.Add(detalle);
                     }
+
+                    contexto.ApplyCurrentValues("SICDBWEBEntities.SIC_T_VENTA", _pSIC_T_VENTA);
+
+
 
                     contexto.SaveChanges();
                     return true;

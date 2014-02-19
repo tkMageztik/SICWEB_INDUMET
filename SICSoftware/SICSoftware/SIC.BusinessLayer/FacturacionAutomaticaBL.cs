@@ -96,6 +96,7 @@ namespace SIC.BusinessLayer
                     nuevoDetalle.fac_det_c_ecantidad = ventaDetalle.ven_det_c_ecantidad;
                     nuevoDetalle.fac_det_c_epreciounit = ventaDetalle.ven_det_c_epreciounit;
                     nuevoDetalle.fac_det_c_iitem = ventaDetalle.ven_det_c_iitemid;
+                    nuevoDetalle.SIC_T_ITEM = ventaDetalle.SIC_T_ITEM;
                     factura.SIC_T_FACTURA_DETALLE.Add(nuevoDetalle);
                 }
                 else
@@ -147,6 +148,7 @@ namespace SIC.BusinessLayer
                     nuevoDetalle.bol_det_c_ecantidad = ventaDetalle.ven_det_c_ecantidad;
                     nuevoDetalle.bol_det_c_epreciounit = ventaDetalle.ven_det_c_epreciounit;
                     nuevoDetalle.bol_det_c_iitem = ventaDetalle.ven_det_c_iitemid;
+                    nuevoDetalle.SIC_T_ITEM = ventaDetalle.SIC_T_ITEM;
                     boleta.SIC_T_BOLETA_DETALLE.Add(nuevoDetalle);
                 }
                 else
