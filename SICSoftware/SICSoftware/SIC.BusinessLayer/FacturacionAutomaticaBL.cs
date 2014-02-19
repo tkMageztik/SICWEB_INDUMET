@@ -13,7 +13,6 @@ namespace SIC.BusinessLayer
     /// <summary>
     /// Representa la clase que controla el proceso de negocio de la facturacion automatica
     /// </summary>
-    [Serializable]
     public class FacturacionAutomaticaBL
     {
         /// <summary>

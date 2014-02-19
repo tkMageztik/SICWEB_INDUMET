@@ -15,18 +15,20 @@ namespace SIC.UserLayer.Interfaces.Facturacion
     {
 
         #region DECLARACION DE VARIABLES
+        private FacturacionAutomaticaBL _facturacionAutomaticaBL;
+
         private FacturacionAutomaticaBL facturacionAutomaticaBL
         {
             get 
             {                 
                 // Usando Lazy. Podria usarse el evento load enves?
-                if (ViewState["vsFacturacionAutomaticaBL"]  == null)
+                if (_facturacionAutomaticaBL == null)
                 {
-                    ViewState["vsFacturacionAutomaticaBL"] = new FacturacionAutomaticaBL();
+                    _facturacionAutomaticaBL = new FacturacionAutomaticaBL();
                 }
-                return ViewState["vsFacturacionAutomaticaBL"] as FacturacionAutomaticaBL;
+                return _facturacionAutomaticaBL;
             }
-            set { ViewState["vsFacturacionAutomaticaBL"] = value; }
+            set { _facturacionAutomaticaBL = value; }
         }
 
        
