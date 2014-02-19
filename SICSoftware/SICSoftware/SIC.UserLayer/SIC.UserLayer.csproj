@@ -237,14 +237,14 @@
     <Compile Include="Interfaces\Mantenimiento\frmRegItem.aspx.designer.cs">
       <DependentUpon>frmRegItem.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Interfaces\Facturacion\Compras\frmRegOC.aspx.cs">
+    <Compile Include="Interfaces\Compras\frmRegOC.aspx.cs">
       <DependentUpon>frmRegOC.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Interfaces\Facturacion\Compras\frmRegOC.aspx.designer.cs">
+    <Compile Include="Interfaces\Compras\frmRegOC.aspx.designer.cs">
       <DependentUpon>frmRegOC.aspx</DependentUpon>
     </Compile>
-    <Content Include="Interfaces\Facturacion\Compras\frmRegOC.aspx" />
+    <Content Include="Interfaces\Compras\frmRegOC.aspx" />
     <Content Include="Interfaces\Almacen\frmMovEntrada.aspx" />
     <Content Include="Interfaces\Facturacion\frmVenta.aspx" />
     <Content Include="Scripts\numeric_input.js" />
