@@ -29,17 +29,17 @@ namespace SIC.BusinessLayer
             return new VentaDA().ObtenerVenta(id);
         }
 
-        public bool InsertarOrdenCompra(SIC_T_VENTA _pSIC_T_VENTA)
+        public bool InsertarVenta(SIC_T_VENTA _pSIC_T_VENTA)
         {
             return new VentaDA().InsertarVenta(_pSIC_T_VENTA);
         }
 
-        public bool ModificarOrdenCompra(SIC_T_VENTA _pSIC_T_VENTA)
+        public bool ModificarVenta(SIC_T_VENTA _pSIC_T_VENTA)
         {
-            return new VentaDA().ModificarOrdenCompra(_pSIC_T_VENTA);
+            return new VentaDA().ModificarVenta(_pSIC_T_VENTA);
         }
 
-        public bool DeshabilitarOrdenCompra(int id)
+        public bool DeshabilitarVenta(int id)
         {
             return new VentaDA().DeshabilitarOrdenCompra(id);
         }

@@ -954,7 +954,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
 
             try
             {
-                if (_venta.InsertarOrdenCompra(this.VentaNuevo))
+                if (_venta.InsertarVenta(this.VentaNuevo))
                 {
                     Mensaje("Venta registrada con éxito", "../Imagenes/correcto.png");
                     this.Limpiar();
@@ -970,8 +970,13 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             catch (Exception ex)
             {
 #if DEBUG
-                Mensaje("Error Fatal : \n" + ex.Message
-                    + "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty, "../Imagenes/warning.png");
+                String mensajeError = "Error Fatal : \n" + ex.Message;
+                if (ex.InnerException != null)
+                {
+                    mensajeError += "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty;
+                }
+
+                Mensaje(mensajeError, "../Imagenes/warning.png");
 #else
                     Mensaje("Error en el proceso.", "../Imagenes/warning.png");
 #endif
@@ -996,7 +1001,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
 
             try
             {
-                if (_venta.ModificarOrdenCompra(this.VentaSeleccionado))
+                if (_venta.ModificarVenta(this.VentaSeleccionado))
                 {
                     Mensaje("Venta modificada con éxito", "../Imagenes/correcto.png");
                     this.Limpiar();
@@ -1012,8 +1017,13 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             catch (Exception ex)
             {
 #if DEBUG
-                Mensaje("Error Fatal : \n" + ex.Message
-                    + "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty, "../Imagenes/warning.png");
+                String mensajeError = "Error Fatal : \n" + ex.Message;
+                if (ex.InnerException != null)
+                {
+                    mensajeError += "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty;
+                }
+
+                Mensaje(mensajeError, "../Imagenes/warning.png");
 #else
                     Mensaje("Error en el proceso.", "../Imagenes/warning.png");
 #endif
@@ -1082,7 +1092,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         {
             try
             {
-                if (this._venta.DeshabilitarOrdenCompra(idVenta))
+                if (this._venta.DeshabilitarVenta(idVenta))
                 {
                     Mensaje("Venta anulada.", "../Imagenes/correcto.png");
                 }
@@ -1094,8 +1104,13 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             catch (Exception ex)
             {
 #if DEBUG
-                Mensaje("Error Fatal : \n" + ex.Message
-                    + "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty, "../Imagenes/warning.png");
+                String mensajeError = "Error Fatal : \n" + ex.Message;
+                if (ex.InnerException != null)
+                {
+                    mensajeError += "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty;
+                }
+
+                Mensaje(mensajeError, "../Imagenes/warning.png");
 #else
                     Mensaje("Error en el proceso.", "../Imagenes/warning.png");
 #endif
