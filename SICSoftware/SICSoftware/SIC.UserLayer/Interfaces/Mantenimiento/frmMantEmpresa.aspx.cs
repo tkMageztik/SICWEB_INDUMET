@@ -11,7 +11,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 {
     public partial class frmMantEmpresa : System.Web.UI.Page
     {
-        private EmpresaBL _empresa = null;
+        private MantenimientoEmpresaBL _empresa = null;
         private CentroCostoBL _centroCosto = null;
 
         private SIC_T_EMP_CENTRO_COSTO CentroCostoModificar
@@ -29,7 +29,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         #region Eventos
         public frmMantEmpresa()
         {
-            _empresa = new EmpresaBL();
+            _empresa = new MantenimientoEmpresaBL();
             _centroCosto = new CentroCostoBL();
         }
 

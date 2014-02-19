@@ -73,8 +73,7 @@ namespace SIC.BusinessLayer
             {
                 throw new ArgumentException("El parametro venta no puede ser nulo");
             }
-            else if (venta.ven_c_itipodoc != (int)TipoParametroDetalle.FACTURA)
-            else if(venta.ven_c_itipodoc != (int)TipoParametro.FACTURA)
+            else if(venta.ven_c_itipodoc != (int)TipoParametroDetalle.FACTURA)
             {
                 throw new ArgumentException("Solo se puede generar facturas de ventas que tengan como tipo documento Factura");
             }

@@ -14,7 +14,7 @@ namespace BL_NUnit
         [Test]
         public void PruebValidarCentroCosto()
         {
-            EmpresaBL _emp = new EmpresaBL();
+            MantenimientoEmpresaBL _emp = new MantenimientoEmpresaBL();
             SIC_T_EMP_CENTRO_COSTO ccosto = new SIC_T_EMP_CENTRO_COSTO();
 
             ccosto.emp_cst_c_vdesc = "";
@@ -47,7 +47,7 @@ namespace BL_NUnit
         [Test]
         public void PruebaValidarDireccionEmpresa()
         {
-            EmpresaBL _emp = new EmpresaBL();
+            MantenimientoEmpresaBL _emp = new MantenimientoEmpresaBL();
             SIC_T_EMP_DIRECCION dir = new SIC_T_EMP_DIRECCION();
 
             dir.emp_dir_c_iid_centrocosto = -1;
