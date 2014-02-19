@@ -47,6 +47,13 @@
     <Reference Include="AjaxControlToolkit">
       <HintPath>dlls\AjaxControlToolkit.dll</HintPath>
     </Reference>
+    <Reference Include="EPPlus">
+      <HintPath>dlls\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dlls\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -77,6 +84,7 @@
     <Content Include="Bootstrap\js\bootstrap.js" />
     <Content Include="Bootstrap\js\bootstrap.min.js" />
     <Content Include="dlls\AjaxControlToolkit.dll" />
+    <Content Include="dlls\itextsharp.dll" />
     <Content Include="Global.asax" />
     <Content Include="Imagenes\advance.jpg" />
     <Content Include="Imagenes\animated_favicon1.gif" />
@@ -195,6 +203,7 @@
     <Compile Include="Interfaces\Almacen\frmAlmKardex.aspx.designer.cs">
       <DependentUpon>frmAlmKardex.aspx</DependentUpon>
     </Compile>
+    <Compile Include="pdfs\pdf.cs" />
     <Compile Include="Interfaces\Facturacion\frmFactAutomatica.aspx.cs">
       <DependentUpon>frmFactAutomatica.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

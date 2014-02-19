@@ -1,36 +1,21 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
     EnableEventValidation="false" CodeBehind="frmRegOC.aspx.cs" Inherits="SIC.UserLayer.Interfaces.Mantenimiento.frmRegOC"
-   Culture="Auto" UICulture="Auto" %>
+    Culture="Auto" UICulture="Auto" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <%@ Register Src="~/UserControl/wucMensajeAlerta.ascx" TagName="Mensaje" TagPrefix="uc1" %>
 <%@ Register Src="~/UserControl/wucMensajeAlerta2.ascx" TagName="Mensaje" TagPrefix="uc2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
-
-    <style type="text/css">
-        .style1
-        {
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 11.5px;
-            color: #686168;
-            height: 20px;
-        }
-        .style2
-        {
-            height: 20px;
-        }
-    </style>
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <asp:UpdatePanel ID="upGeneral" UpdateMode="Conditional" runat="server">
         <ContentTemplate>
-            <script type="text/javascript" src="<%= ResolveUrl ("~/Scripts/numeric_input.js") %>"></script>  
-            <script type = "text/javascript">
+            <script type="text/javascript" src="<%= ResolveUrl ("~/Scripts/numeric_input.js") %>"></script>
+            <script type="text/javascript">
                 function Check_Click(objRef) {
                     //Get the Row based on checkbox
                     var row = objRef.parentNode.parentNode;
-                    
+
                     //Get the reference of GridView
                     var GridView = row.parentNode;
 
@@ -53,7 +38,7 @@
                     }
                     headerCheckBox.checked = checked;
                 }
-                
+
                 function checkAll(objRef) {
                     var GridView = objRef.parentNode.parentNode.parentNode;
                     var inputList = GridView.getElementsByTagName("input");
@@ -65,13 +50,13 @@
                                 inputList[i].checked = true;
                             }
                             else {
-                               
+
                                 inputList[i].checked = false;
                             }
                         }
                     }
                 }
-        </script>
+            </script>
             <asp:MultiView ID="mvOC" runat="server" ActiveViewIndex="0">
                 <asp:View ID="View1" runat="server">
                     <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
@@ -149,7 +134,8 @@
                                                 AlternatingRowStyle-CssClass="alt" ShowHeaderWhenEmpty="True" EmptyDataText="No hay datos disponibles."
                                                 PageSize="15" BorderWidth="0px" DataKeyNames="odc_c_iid" OnRowEditing="gvListaOC_RowEditing"
                                                 OnRowDeleting="gvListaOC_RowDeleting" OnPageIndexChanging="gvListaOC_PageIndexChanging"
-                                                OnSelectedIndexChanged="gvListaOC_SelectedIndexChanged">
+                                                OnSelectedIndexChanged="gvListaOC_SelectedIndexChanged" 
+                                                OnRowDataBound="gvListaOC_RowDataBound">
                                                 <AlternatingRowStyle CssClass="alt" />
                                                 <Columns>
                                                     <asp:BoundField HeaderText="CODIGO DE OC" DataField="odc_c_vcodigo" />
@@ -162,24 +148,28 @@
                                                         <ItemTemplate>
                                                             <%# Eval("SIC_T_CLIENTE.cli_c_vraz_soc")%>
                                                         </ItemTemplate>
-                                                    </asp:TemplateField>                                                    
+                                                    </asp:TemplateField>
                                                     <asp:BoundField HeaderText="ESTADO" DataField="odc_c_vdescestado" />
                                                     <asp:BoundField HeaderText="MONEDA" DataField="odc_c_vdescmoneda" />
-                                                    <asp:TemplateField  HeaderText="MONTO TOTAL">
+                                                    <asp:TemplateField HeaderText="MONTO TOTAL">
                                                         <ItemTemplate>
                                                             <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("odc_c_etotal"))%>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:CommandField SelectText="Ver" ShowSelectButton="True" />
                                                     <asp:CommandField ShowEditButton="True" CancelText="Cancelar" DeleteText="Eliminar"
-                                                        EditText="Modificar" />                                                        
+                                                        EditText="Modificar" />
                                                     <asp:CommandField ShowDeleteButton="True" DeleteText="Eliminar" />
+                                                    <asp:TemplateField>
+                                                        <ItemTemplate>
+                                                            <asp:LinkButton ID="lnkDescargar" runat="server" OnClick="lnkDescargar_Click">Descargar</asp:LinkButton>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
                                                 </Columns>
                                                 <PagerStyle CssClass="pgr" />
                                             </asp:GridView>
                                         </ContentTemplate>
                                     </asp:UpdatePanel>
-
                                 </td>
                             </tr>
                     </table>
@@ -206,7 +196,6 @@
                                 </table>
                             </td>
                         </tr>
-                        </tr>
                         <tr>
                             <td colspan="2" lign="center">
                                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -217,7 +206,7 @@
                                                     <td align="left" class="txt-box-estilo">
                                                         Código
                                                     </td>
-                                                    <td align="left" class="style3">
+                                                    <td align="left" class="txt-box-estilo">
                                                         <asp:TextBox ID="txtSerie" runat="server" Height="26px" MaxLength="3" Width="54px"></asp:TextBox>
                                                         &nbsp;-
                                                         <asp:TextBox ID="txtNumero" runat="server" MaxLength="6"></asp:TextBox>
@@ -240,11 +229,11 @@
                                                         <asp:TextBox ID="txtRSProv" runat="server" BackColor="#CCCCCC" BorderColor="Black"
                                                             BorderStyle="None" BorderWidth="1px" ReadOnly="True" Width="282px"></asp:TextBox>
                                                         &nbsp;
-                                                        <asp:LinkButton ID="btnBuscarProveedor" runat="server" CssClass="lnk" 
-                                                            OnClick="btnBuscarProveedor_Click">Buscar</asp:LinkButton>
+                                                        <asp:LinkButton ID="btnBuscarProveedor" runat="server" CssClass="lnk" OnClick="btnBuscarProveedor_Click">Buscar</asp:LinkButton>
                                                     </td>
                                                     <td align="left" class="txt-box-estilo">
-                                                        &nbsp;</td>
+                                                        &nbsp;
+                                                    </td>
                                                     <td align="left" class="txt-box-estilo">
                                                         &nbsp;
                                                     </td>
@@ -267,13 +256,13 @@
                                                             TargetControlID="txtFecEntFin" TodaysDateFormat="dd/MM/yyyy">
                                                         </cc1:CalendarExtender>
                                                     </td>
-                                                    <td align="left" class="style1">
+                                                    <td align="left">
                                                         &nbsp;
                                                     </td>
-                                                    <td align="left" class="style1">
+                                                    <td align="left">
                                                         Estado
                                                     </td>
-                                                    <td align="left" class="style1">
+                                                    <td align="left">
                                                         <asp:DropDownList ID="cboEstado" runat="server" Width="201px" AutoPostBack="True"
                                                             OnSelectedIndexChanged="cboEstado_SelectedIndexChanged">
                                                         </asp:DropDownList>
@@ -287,13 +276,13 @@
                                                         <asp:DropDownList ID="cboClaseOC" runat="server" AutoPostBack="True" Width="201px">
                                                         </asp:DropDownList>
                                                     </td>
-                                                    <td align="left" class="style1">
+                                                    <td align="left">
                                                         &nbsp;
                                                     </td>
-                                                    <td align="left" class="style1">
+                                                    <td align="left">
                                                         Moneda
                                                     </td>
-                                                    <td align="left" class="style1">
+                                                    <td align="left">
                                                         <asp:DropDownList ID="cboMoneda" runat="server" Width="201px" AutoPostBack="True"
                                                             OnSelectedIndexChanged="cboMoneda_SelectedIndexChanged">
                                                         </asp:DropDownList>
@@ -303,28 +292,28 @@
                                                     <td align="left" class="txt-box-estilo">
                                                         Direccion de entrega
                                                     </td>
-                                                    <td align="left" class="style2">
+                                                    <td align="left">
                                                         <asp:TextBox ID="txtDirecEntrega" runat="server" BackColor="#CCCCCC" BorderColor="Black"
                                                             BorderStyle="None" BorderWidth="1px" ReadOnly="True" Width="282px"></asp:TextBox>
                                                         &nbsp;
-                                                        <asp:LinkButton ID="btnBuscarDireccion" runat="server" CssClass="lnk" 
-                                                            OnClick="btnBuscarDireccion_Click">Buscar</asp:LinkButton>
+                                                        <asp:LinkButton ID="btnBuscarDireccion" runat="server" CssClass="lnk" OnClick="btnBuscarDireccion_Click">Buscar</asp:LinkButton>
                                                     </td>
-                                                    <td align="left" class="style1">
-                                                        &nbsp;</td>
-                                                    <td align="left" class="style1">
+                                                    <td align="left">
+                                                        &nbsp;
                                                     </td>
-                                                    <td align="left" class="style1">
+                                                    <td align="left">
+                                                    </td>
+                                                    <td align="left">
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td align="left" class="style1">
+                                                    <td align="left">
                                                         &nbsp;
                                                     </td>
-                                                    <td align="left" class="style1" colspan="3">
+                                                    <td align="left" colspan="3">
                                                         &nbsp;
                                                     </td>
-                                                    <td class="style2">
+                                                    <td>
                                                         &nbsp;
                                                     </td>
                                                 </tr>
@@ -334,64 +323,62 @@
                                                     </td>
                                                     <td align="left" class="txt-box-estilo" colspan="3">
                                                         <div style="width: 100%; height: 300px; overflow: scroll">
-                                                        <asp:GridView ID="gvItemsSeleccionados" runat="server" AlternatingRowStyle-CssClass="alt"
-                                                            AutoGenerateColumns="False" BorderStyle="None" BorderWidth="0px" CssClass="mGrid"
-                                                            DataKeyNames="odc_c_iitemid" EmptyDataText="No ha seleccionado ningun item."
-                                                            GridLines="None" Height="16px" OnRowCancelingEdit="gvItemsSeleccionados_RowCancelingEdit"
-                                                            OnRowEditing="gvItemsSeleccionados_RowEditing" OnRowUpdating="gvItemsSeleccionados_RowUpdating"
-                                                            OnSelectedIndexChanged="gvItemsSeleccionados_SelectedIndexChanged" PagerStyle-CssClass="pgr"
-                                                            ShowHeaderWhenEmpty="True" ViewStateMode="Enabled" Width="100%">
-                                                            <AlternatingRowStyle CssClass="alt" />
-                                                            <Columns>
-                                                                <asp:TemplateField HeaderText="Código">
-                                                                    <ItemTemplate>
-                                                                        <%# Eval("codigoItem")%>
-                                                                    </ItemTemplate>
-                                                                </asp:TemplateField>
-                                                                <asp:TemplateField HeaderText="Descripción">
-                                                                    <ItemTemplate>
-                                                                        <%# Eval("descItem")%>
-                                                                    </ItemTemplate>
-                                                                </asp:TemplateField>
-                                                                <asp:TemplateField HeaderText="Cantidad">
-                                                                    <ItemTemplate>
-                                                                        <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}",Eval("odc_c_ecantidad"))%>
-                                                                    </ItemTemplate>
-                                                                    <EditItemTemplate>
-                                                                        <asp:TextBox ID="txtCantidad" runat="server" 
-                                                                        Text='<%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("odc_c_ecantidad") )%> '
-                                                                        onkeypress="return onlyDotsAndNumbers(event)">
+                                                            <asp:GridView ID="gvItemsSeleccionados" runat="server" AlternatingRowStyle-CssClass="alt"
+                                                                AutoGenerateColumns="False" BorderStyle="None" BorderWidth="0px" CssClass="mGrid"
+                                                                DataKeyNames="odc_c_iitemid" EmptyDataText="No ha seleccionado ningun item."
+                                                                GridLines="None" Height="16px" OnRowCancelingEdit="gvItemsSeleccionados_RowCancelingEdit"
+                                                                OnRowEditing="gvItemsSeleccionados_RowEditing" OnRowUpdating="gvItemsSeleccionados_RowUpdating"
+                                                                OnSelectedIndexChanged="gvItemsSeleccionados_SelectedIndexChanged" PagerStyle-CssClass="pgr"
+                                                                ShowHeaderWhenEmpty="True" ViewStateMode="Enabled" Width="100%">
+                                                                <AlternatingRowStyle CssClass="alt" />
+                                                                <Columns>
+                                                                    <asp:TemplateField HeaderText="Código">
+                                                                        <ItemTemplate>
+                                                                            <%# Eval("codigoItem")%>
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="Descripción">
+                                                                        <ItemTemplate>
+                                                                            <%# Eval("descItem")%>
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="Cantidad">
+                                                                        <ItemTemplate>
+                                                                            <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}",Eval("odc_c_ecantidad"))%>
+                                                                        </ItemTemplate>
+                                                                        <EditItemTemplate>
+                                                                            <asp:TextBox ID="txtCantidad" runat="server" Text='<%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("odc_c_ecantidad") )%> '
+                                                                                onkeypress="return onlyDotsAndNumbers(event)">
                                                                         
-                                                                        </asp:TextBox>
-                                                                    </EditItemTemplate>
-                                                                </asp:TemplateField>
-                                                                <asp:TemplateField HeaderText="Unitario">
-                                                                    <ItemTemplate>
-                                                                        <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("odc_c_epreciounit") )%>
-                                                                    </ItemTemplate>
-                                                                    <EditItemTemplate>
-                                                                        <asp:TextBox ID="txtPrecio" runat="server" 
-                                                                        Text='<%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("odc_c_epreciounit") )%> '
-                                                                        onkeypress="return onlyDotsAndNumbers(event)">
+                                                                            </asp:TextBox>
+                                                                        </EditItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="Unitario">
+                                                                        <ItemTemplate>
+                                                                            <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("odc_c_epreciounit") )%>
+                                                                        </ItemTemplate>
+                                                                        <EditItemTemplate>
+                                                                            <asp:TextBox ID="txtPrecio" runat="server" Text='<%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("odc_c_epreciounit") )%> '
+                                                                                onkeypress="return onlyDotsAndNumbers(event)">
                                                                                
-                                                                        </asp:TextBox>
-                                                                    </EditItemTemplate>
-                                                                </asp:TemplateField>
-                                                                <asp:TemplateField HeaderText="Sub Total">
-                                                                    <ItemTemplate>
-                                                                        <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}",Eval("odc_c_epreciototal"))%>
-                                                                    </ItemTemplate>
-                                                                </asp:TemplateField>
-                                                                <asp:CommandField  ShowEditButton="True" CancelText="Cancelar" DeleteText="Eliminar"
-                                                                    EditText="Editar" UpdateText="Actualizar" />
-                                                                <asp:TemplateField HeaderText="Unit. Ref. (Soles)">
-                                                                    <ItemTemplate>
-                                                                        <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}",Eval("precioReferenciaSoles"))%>
-                                                                    </ItemTemplate>
-                                                                </asp:TemplateField>
-                                                            </Columns>
-                                                            <PagerStyle CssClass="pgr" />
-                                                        </asp:GridView>
+                                                                            </asp:TextBox>
+                                                                        </EditItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="Sub Total">
+                                                                        <ItemTemplate>
+                                                                            <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}",Eval("odc_c_epreciototal"))%>
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <asp:CommandField ShowEditButton="True" CancelText="Cancelar" DeleteText="Eliminar"
+                                                                        EditText="Editar" UpdateText="Actualizar" />
+                                                                    <asp:TemplateField HeaderText="Unit. Ref. (Soles)">
+                                                                        <ItemTemplate>
+                                                                            <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}",Eval("precioReferenciaSoles"))%>
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                </Columns>
+                                                                <PagerStyle CssClass="pgr" />
+                                                            </asp:GridView>
                                                         </div>
                                                     </td>
                                                     <td>
@@ -625,17 +612,16 @@
                                             GridLines="None" AllowPaging="True" Width="100%" CssClass="mGrid" PagerStyle-CssClass="pgr"
                                             AlternatingRowStyle-CssClass="alt" ShowHeaderWhenEmpty="True" EmptyDataText="No hay datos disponibles."
                                             BorderWidth="0px" ViewStateMode="Enabled" DataKeyNames="itm_c_iid" OnPageIndexChanging="gvListaItem_PageIndexChanging"
-                                            OnRowDataBound="gvListaItem_RowDataBound" 
-                                            OnRowCreated="gvListaItem_RowCreated" 
-                                            PageSize="15" >
+                                            OnRowDataBound="gvListaItem_RowDataBound" OnRowCreated="gvListaItem_RowCreated"
+                                            PageSize="15">
                                             <AlternatingRowStyle CssClass="alt" />
                                             <Columns>
                                                 <asp:TemplateField HeaderText="SELECCIONAR">
-                                                    <HeaderTemplate>                                                     
+                                                    <HeaderTemplate>
                                                         <asp:CheckBox ID="chkAll" runat="server" onclick="javascript:checkAll(this);" />
                                                     </HeaderTemplate>
                                                     <ItemTemplate>
-                                                        <asp:CheckBox ID="chkSelect" runat="server" onclick="javascript:Check_Click(this);"/>
+                                                        <asp:CheckBox ID="chkSelect" runat="server" onclick="javascript:Check_Click(this);" />
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:BoundField DataField="itm_c_ccodigo" HeaderText="CÓDIGO" />
@@ -834,5 +820,8 @@
                 </Triggers>
             </asp:UpdatePanel>
         </ContentTemplate>
+        <%-- <Triggers>
+            <asp:PostBackTrigger ControlID="gvListaOC" />
+        </Triggers>--%>
     </asp:UpdatePanel>
 </asp:Content>

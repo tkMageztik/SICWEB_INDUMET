@@ -240,7 +240,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             TextBox txtPrecio = (TextBox)gvItemsSeleccionados.Rows[e.RowIndex].FindControl("txtPrecio");
 
             decimal cantidadNueva, precioNuevo;
-            if (decimal.TryParse(txtCantidad.Text, NumberStyles.Any,CultureInfo.InvariantCulture, out cantidadNueva) && cantidadNueva > 0
+            if (decimal.TryParse(txtCantidad.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out cantidadNueva) && cantidadNueva > 0
                 && decimal.TryParse(txtPrecio.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out precioNuevo) && precioNuevo > 0)
             {
                 int itemId = (int)gvItemsSeleccionados.DataKeys[e.RowIndex].Value;
@@ -320,18 +320,22 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         protected void gvListaOC_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             this.EscenarioOC = TipoOperacion.Eliminacion;
-            
+
             this.OCEliminar = (int)this.gvListaOC.DataKeys[e.RowIndex].Value;
             var oc = _ordenCompra.ObtenerOrdenCompra(OCEliminar);
             if (oc != null && (oc.odc_c_iestado == (int)EstadoOC.ABIERTA || oc.odc_c_iestado == (int)EstadoOC.VENCIDA))
             {
                 this.Mensaje("No se puede eliminar ordenes de compra en estado ABIERTA o VENCIDA.", "../Imagenes/warning.png");
-                return;
+                //return;
+            }
+            else
+            {
+                this.SetearEliminar();
+                this.ucMensaje2.Show("¿Desea eliminar la Orden de Compra seleccionada?", null,
+                                    MensajeIcono.Alerta, MensajeBotones.AceptarCancelar);
             }
 
-            this.SetearEliminar();
-            this.ucMensaje2.Show("¿Desea eliminar la Orden de Compra seleccionada?", null,
-                                MensajeIcono.Alerta, MensajeBotones.AceptarCancelar);
+            ListarOrdenCompra();
         }
 
         private void SetearEliminar()
@@ -601,7 +605,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             this.Limpiar();
             this.OCSeleccionado = _ordenCompra.ObtenerOrdenCompra(id);
 
-            if (this.OCSeleccionado.odc_c_iestado != (int) EstadoOC.PLANEADA)
+            if (this.OCSeleccionado.odc_c_iestado != (int)EstadoOC.PLANEADA)
             {
                 Mensaje("Solo se puede editar ordenes de compra en estado planeada.", "../Imagenes/warning.png");
                 upGeneral.Update();
@@ -624,15 +628,15 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             }
 
             this.lblFecha.Text = this.OCSeleccionado.odc_c_zfecharegistro.ToString("dd/MM/yyyy");
-            
+
 
             this.EscenarioOC = TipoOperacion.Modificacion;
             this.txtObs.Text = this.OCSeleccionado.odc_c_vobservacion;
             this.txtDirecEntrega.Text = this.OCSeleccionado.odc_c_vdireccion;
             this.chkPercepcion.Checked = OCSeleccionado.odc_c_bactivo;
-            this.txtFecEnIni.Text = OCSeleccionado.odc_c_zfechaentrega_ini.ToString("dd/MM/yyyy");            
+            this.txtFecEnIni.Text = OCSeleccionado.odc_c_zfechaentrega_ini.ToString("dd/MM/yyyy");
             this.txtFecEntFin.Text = OCSeleccionado.odc_c_zfechaentrega_fin.ToString("dd/MM/yyyy");
-        
+
 
             this.OCSeleccionado.odc_c_eigv = this.igv;
             this.OCSeleccionado.odc_c_epercepcion = this.percepcion;
@@ -717,13 +721,13 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 this.txtSerie.Text = res[0];
                 this.txtNumero.Text = res[1];
             }
-          
+
             this.lblFecha.Text = this.OCSeleccionado.odc_c_zfecharegistro.ToString("dd/MM/yyyy");
             this.EscenarioOC = TipoOperacion.Modificacion;
             this.txtObs.Text = this.OCSeleccionado.odc_c_vobservacion;
             this.txtDirecEntrega.Text = this.OCSeleccionado.odc_c_vdireccion;
             this.chkPercepcion.Checked = OCSeleccionado.odc_c_bactivo;
-            this.txtFecEnIni.Text = OCSeleccionado.odc_c_zfechaentrega_ini.ToString("dd/MM/yyyy");            
+            this.txtFecEnIni.Text = OCSeleccionado.odc_c_zfechaentrega_ini.ToString("dd/MM/yyyy");
             this.txtFecEntFin.Text = OCSeleccionado.odc_c_zfechaentrega_fin.ToString("dd/MM/yyyy");
             this.OCSeleccionado.odc_c_eigv = this.igv;
             this.OCSeleccionado.odc_c_epercepcion = this.percepcion;
@@ -960,7 +964,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 {
                     SIC_T_ITEM itemEncontrado = _item.ObtenerItemPorIdNoContext(idItem);
                     precioReferencia = (cboMoneda.SelectedIndex == 0 ? itemEncontrado.itm_c_dprecio_compra
-                                                                        : Math.Round(itemEncontrado.itm_c_dprecio_compra / this.TasaCambio,2));
+                                                                        : Math.Round(itemEncontrado.itm_c_dprecio_compra / this.TasaCambio, 2));
                     precioReferenciaSoles = itemEncontrado.itm_c_dprecio_compra;
                     SIC_T_ORDEN_DE_COMPRA_DET nuevoDetalle = new SIC_T_ORDEN_DE_COMPRA_DET();
                     nuevoDetalle.odc_c_ecantidad = 1;
@@ -969,7 +973,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                     nuevoDetalle.odc_c_epreciototal = precioReferencia;
                     nuevoDetalle.precioReferencia = precioReferencia;
                     nuevoDetalle.precioReferenciaSoles = precioReferenciaSoles;
-                    nuevoDetalle.precioUnitarioSoles =  itemEncontrado.itm_c_dprecio_compra;
+                    nuevoDetalle.precioUnitarioSoles = itemEncontrado.itm_c_dprecio_compra;
                     nuevoDetalle.codigoItem = itemEncontrado.itm_c_ccodigo;
                     nuevoDetalle.descItem = itemEncontrado.itm_c_vdescripcion;
 
@@ -1025,8 +1029,8 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             }
 
             foreach (var item in ordenDeCompra.SIC_T_ORDEN_DE_COMPRA_DET)
-            {                
-                subTotal += item.odc_c_epreciototal;                
+            {
+                subTotal += item.odc_c_epreciototal;
             }
 
             ordenDeCompra.odc_c_esubtotal = subTotal;
@@ -1367,11 +1371,11 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         {
             var value = this._tasaCambio.ObtenerTasaCambio(fechaTC);
 
-            if (value != null )
+            if (value != null)
             {
                 this.TasaCambio = value.tsc_c_ecompra;
                 lblTC.Text = "S/. " + value.tsc_c_ecompra.ToString("F4", CultureInfo.InvariantCulture);
-            }            
+            }
         }
 
         protected void cboMoneda_SelectedIndexChanged(object sender, EventArgs e)
@@ -1405,7 +1409,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             //                                           );
             //}
             //
-            
+
         }
 
         protected void chkPercepcion_CheckedChanged(object sender, EventArgs e)
@@ -1477,7 +1481,41 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             upGeneral.Update();
         }
 
+        private void DescargarODC()
+        {
+            pdf.init();
+        }
 
- 
+        protected void gvListaOC_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkButton lnkDescargar = e.Row.FindControl("lnkDescargar") as LinkButton;
+                ScriptManager.GetCurrent(this).RegisterPostBackControl(lnkDescargar);
+            }
+        }
+
+        protected void lnkDescargar_Click(object sender, EventArgs e)
+        {
+            DescargarODC();
+        }
+
+        //protected void PostBackBind_DataBinding(object sender, EventArgs e)
+        //{
+        //    LinkButton lb = (LinkButton)sender;
+        //    ScriptManager sm = (ScriptManager)Page.Master.FindControl("SM_ID");
+        //    sm.RegisterPostBackControl(lb);
+
+        //}
+
+        //protected void gvListaOC_DataBinding(object sender, EventArgs e)
+        //{
+        //    if (((GridView)sender).SelectedIndex != -1)
+        //    {
+        //        LinkButton lnkDescargar = ((GridView)sender).FindControl("lnkDescargar") as LinkButton;
+        //        ScriptManager.GetCurrent(this).RegisterPostBackControl(lnkDescargar);
+        //    }
+        //}
+
     }
 }
