@@ -179,6 +179,7 @@
     <Content Include="Interfaces\Facturacion\frmFactAutomatica.aspx" />
     <Content Include="Interfaces\Facturacion\frmFactImpresion.aspx" />
     <Content Include="Interfaces\Facturacion\frmFactManual.aspx" />
+    <Content Include="Interfaces\Facturacion\ucFactura.ascx" />
     <Content Include="Interfaces\Mantenimiento\frmMantEmpresa.aspx" />
     <Content Include="Interfaces\Mantenimiento\frmMantImpresoras.aspx" />
     <Content Include="Interfaces\Mantenimiento\frmRegCliente.aspx" />
@@ -221,6 +222,13 @@
     <Compile Include="Interfaces\Facturacion\frmFactManual.aspx.designer.cs">
       <DependentUpon>frmFactManual.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\Facturacion\ucFactura.ascx.cs">
+      <DependentUpon>ucFactura.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Interfaces\Facturacion\ucFactura.ascx.designer.cs">
+      <DependentUpon>ucFactura.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Interfaces\Mantenimiento\frmMantEmpresa.aspx.cs">
       <DependentUpon>frmMantEmpresa.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -235,14 +243,14 @@
     <Compile Include="Interfaces\Mantenimiento\frmRegItem.aspx.designer.cs">
       <DependentUpon>frmRegItem.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Interfaces\Compras\frmRegOC.aspx.cs">
+    <Compile Include="Interfaces\Facturacion\Compras\frmRegOC.aspx.cs">
       <DependentUpon>frmRegOC.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Interfaces\Compras\frmRegOC.aspx.designer.cs">
+    <Compile Include="Interfaces\Facturacion\Compras\frmRegOC.aspx.designer.cs">
       <DependentUpon>frmRegOC.aspx</DependentUpon>
     </Compile>
-    <Content Include="Interfaces\Compras\frmRegOC.aspx" />
+    <Content Include="Interfaces\Facturacion\Compras\frmRegOC.aspx" />
     <Content Include="Interfaces\Almacen\frmMovEntrada.aspx" />
     <Content Include="Interfaces\Facturacion\frmVenta.aspx" />
     <Content Include="Scripts\numeric_input.js" />

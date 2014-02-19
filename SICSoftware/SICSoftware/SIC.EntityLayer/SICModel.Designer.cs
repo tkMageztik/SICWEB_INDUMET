@@ -57,6 +57,10 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_ALMACEN_CENTRO_COSTO_SIC_T_EMP_CENTRO_COSTO", "SIC_T_EMP_CENTRO_COSTO", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_EMP_CENTRO_COSTO), "SIC_T_ALMACEN_CENTRO_COSTO", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_ALMACEN_CENTRO_COSTO), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_EMP_DIRECCION_SIC_T_EMP_CENTRO_COSTO", "SIC_T_EMP_CENTRO_COSTO", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_EMP_CENTRO_COSTO), "SIC_T_EMP_DIRECCION", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_EMP_DIRECCION), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_VENTA_SIC_T_EMP_CENTRO_COSTO", "SIC_T_EMP_CENTRO_COSTO", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_EMP_CENTRO_COSTO), "SIC_T_VENTA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_VENTA), true)]
+[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_FACTURA_SIC_T_VENTA", "SIC_T_VENTA", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_VENTA), "SIC_T_FACTURA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_FACTURA), true)]
+[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_FACTURA_DETALLE_SIC_T_FACTURA", "SIC_T_FACTURA", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_FACTURA), "SIC_T_FACTURA_DETALLE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_FACTURA_DETALLE), true)]
+[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_BOLETA_SIC_T_VENTA", "SIC_T_VENTA", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_VENTA), "SIC_T_BOLETA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_BOLETA), true)]
+[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_BOLETA_DETALLE_SIC_T_BOLETA", "SIC_T_BOLETA", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_BOLETA), "SIC_T_BOLETA_DETALLE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_BOLETA_DETALLE), true)]
 
 #endregion
 
@@ -811,6 +815,86 @@ namespace SIC.EntityLayer
             }
         }
         private ObjectSet<SIC_T_EMP_CENTRO_COSTO> _SIC_T_EMP_CENTRO_COSTO;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        public ObjectSet<SIC_T_CONCEPTO> SIC_T_CONCEPTO
+        {
+            get
+            {
+                if ((_SIC_T_CONCEPTO == null))
+                {
+                    _SIC_T_CONCEPTO = base.CreateObjectSet<SIC_T_CONCEPTO>("SIC_T_CONCEPTO");
+                }
+                return _SIC_T_CONCEPTO;
+            }
+        }
+        private ObjectSet<SIC_T_CONCEPTO> _SIC_T_CONCEPTO;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        public ObjectSet<SIC_T_FACTURA> SIC_T_FACTURA
+        {
+            get
+            {
+                if ((_SIC_T_FACTURA == null))
+                {
+                    _SIC_T_FACTURA = base.CreateObjectSet<SIC_T_FACTURA>("SIC_T_FACTURA");
+                }
+                return _SIC_T_FACTURA;
+            }
+        }
+        private ObjectSet<SIC_T_FACTURA> _SIC_T_FACTURA;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        public ObjectSet<SIC_T_FACTURA_DETALLE> SIC_T_FACTURA_DETALLE
+        {
+            get
+            {
+                if ((_SIC_T_FACTURA_DETALLE == null))
+                {
+                    _SIC_T_FACTURA_DETALLE = base.CreateObjectSet<SIC_T_FACTURA_DETALLE>("SIC_T_FACTURA_DETALLE");
+                }
+                return _SIC_T_FACTURA_DETALLE;
+            }
+        }
+        private ObjectSet<SIC_T_FACTURA_DETALLE> _SIC_T_FACTURA_DETALLE;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        public ObjectSet<SIC_T_BOLETA> SIC_T_BOLETA
+        {
+            get
+            {
+                if ((_SIC_T_BOLETA == null))
+                {
+                    _SIC_T_BOLETA = base.CreateObjectSet<SIC_T_BOLETA>("SIC_T_BOLETA");
+                }
+                return _SIC_T_BOLETA;
+            }
+        }
+        private ObjectSet<SIC_T_BOLETA> _SIC_T_BOLETA;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        public ObjectSet<SIC_T_BOLETA_DETALLE> SIC_T_BOLETA_DETALLE
+        {
+            get
+            {
+                if ((_SIC_T_BOLETA_DETALLE == null))
+                {
+                    _SIC_T_BOLETA_DETALLE = base.CreateObjectSet<SIC_T_BOLETA_DETALLE>("SIC_T_BOLETA_DETALLE");
+                }
+                return _SIC_T_BOLETA_DETALLE;
+            }
+        }
+        private ObjectSet<SIC_T_BOLETA_DETALLE> _SIC_T_BOLETA_DETALLE;
 
         #endregion
         #region Métodos AddTo
@@ -1165,6 +1249,46 @@ namespace SIC.EntityLayer
         public void AddToSIC_T_EMP_CENTRO_COSTO(SIC_T_EMP_CENTRO_COSTO sIC_T_EMP_CENTRO_COSTO)
         {
             base.AddObject("SIC_T_EMP_CENTRO_COSTO", sIC_T_EMP_CENTRO_COSTO);
+        }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet SIC_T_CONCEPTO. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToSIC_T_CONCEPTO(SIC_T_CONCEPTO sIC_T_CONCEPTO)
+        {
+            base.AddObject("SIC_T_CONCEPTO", sIC_T_CONCEPTO);
+        }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet SIC_T_FACTURA. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToSIC_T_FACTURA(SIC_T_FACTURA sIC_T_FACTURA)
+        {
+            base.AddObject("SIC_T_FACTURA", sIC_T_FACTURA);
+        }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet SIC_T_FACTURA_DETALLE. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToSIC_T_FACTURA_DETALLE(SIC_T_FACTURA_DETALLE sIC_T_FACTURA_DETALLE)
+        {
+            base.AddObject("SIC_T_FACTURA_DETALLE", sIC_T_FACTURA_DETALLE);
+        }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet SIC_T_BOLETA. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToSIC_T_BOLETA(SIC_T_BOLETA sIC_T_BOLETA)
+        {
+            base.AddObject("SIC_T_BOLETA", sIC_T_BOLETA);
+        }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet SIC_T_BOLETA_DETALLE. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToSIC_T_BOLETA_DETALLE(SIC_T_BOLETA_DETALLE sIC_T_BOLETA_DETALLE)
+        {
+            base.AddObject("SIC_T_BOLETA_DETALLE", sIC_T_BOLETA_DETALLE);
         }
 
         #endregion
@@ -2139,6 +2263,584 @@ namespace SIC.EntityLayer
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SIC_T_EMP_CENTRO_COSTO>("SICDBWEBModel.FK_SIC_T_ALMACEN_CENTRO_COSTO_SIC_T_EMP_CENTRO_COSTO", "SIC_T_EMP_CENTRO_COSTO", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No hay documentación de metadatos disponible.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SICDBWEBModel", Name="SIC_T_BOLETA")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SIC_T_BOLETA : EntityObject
+    {
+        #region Método de generador
+    
+        /// <summary>
+        /// Crear un nuevo objeto SIC_T_BOLETA.
+        /// </summary>
+        /// <param name="bol_c_iid">Valor inicial de la propiedad bol_c_iid.</param>
+        /// <param name="bol_c_zfecharegistro">Valor inicial de la propiedad bol_c_zfecharegistro.</param>
+        /// <param name="bol_c_serie">Valor inicial de la propiedad bol_c_serie.</param>
+        /// <param name="bol_c_numero">Valor inicial de la propiedad bol_c_numero.</param>
+        /// <param name="bol_c_iventa">Valor inicial de la propiedad bol_c_iventa.</param>
+        /// <param name="bol_c_eigv">Valor inicial de la propiedad bol_c_eigv.</param>
+        /// <param name="bol_c_eigvcal">Valor inicial de la propiedad bol_c_eigvcal.</param>
+        /// <param name="bol_c_esubtotal">Valor inicial de la propiedad bol_c_esubtotal.</param>
+        /// <param name="bol_c_etotal">Valor inicial de la propiedad bol_c_etotal.</param>
+        /// <param name="bol_c_imoneda">Valor inicial de la propiedad bol_c_imoneda.</param>
+        /// <param name="bol_c_vdescmoneda">Valor inicial de la propiedad bol_c_vdescmoneda.</param>
+        public static SIC_T_BOLETA CreateSIC_T_BOLETA(global::System.Int32 bol_c_iid, global::System.DateTime bol_c_zfecharegistro, global::System.String bol_c_serie, global::System.Int32 bol_c_numero, global::System.Int32 bol_c_iventa, global::System.Decimal bol_c_eigv, global::System.Decimal bol_c_eigvcal, global::System.Decimal bol_c_esubtotal, global::System.Decimal bol_c_etotal, global::System.Int32 bol_c_imoneda, global::System.String bol_c_vdescmoneda)
+        {
+            SIC_T_BOLETA sIC_T_BOLETA = new SIC_T_BOLETA();
+            sIC_T_BOLETA.bol_c_iid = bol_c_iid;
+            sIC_T_BOLETA.bol_c_zfecharegistro = bol_c_zfecharegistro;
+            sIC_T_BOLETA.bol_c_serie = bol_c_serie;
+            sIC_T_BOLETA.bol_c_numero = bol_c_numero;
+            sIC_T_BOLETA.bol_c_iventa = bol_c_iventa;
+            sIC_T_BOLETA.bol_c_eigv = bol_c_eigv;
+            sIC_T_BOLETA.bol_c_eigvcal = bol_c_eigvcal;
+            sIC_T_BOLETA.bol_c_esubtotal = bol_c_esubtotal;
+            sIC_T_BOLETA.bol_c_etotal = bol_c_etotal;
+            sIC_T_BOLETA.bol_c_imoneda = bol_c_imoneda;
+            sIC_T_BOLETA.bol_c_vdescmoneda = bol_c_vdescmoneda;
+            return sIC_T_BOLETA;
+        }
+
+        #endregion
+        #region Propiedades primitivas
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 bol_c_iid
+        {
+            get
+            {
+                return _bol_c_iid;
+            }
+            set
+            {
+                if (_bol_c_iid != value)
+                {
+                    Onbol_c_iidChanging(value);
+                    ReportPropertyChanging("bol_c_iid");
+                    _bol_c_iid = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("bol_c_iid");
+                    Onbol_c_iidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _bol_c_iid;
+        partial void Onbol_c_iidChanging(global::System.Int32 value);
+        partial void Onbol_c_iidChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime bol_c_zfecharegistro
+        {
+            get
+            {
+                return _bol_c_zfecharegistro;
+            }
+            set
+            {
+                Onbol_c_zfecharegistroChanging(value);
+                ReportPropertyChanging("bol_c_zfecharegistro");
+                _bol_c_zfecharegistro = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("bol_c_zfecharegistro");
+                Onbol_c_zfecharegistroChanged();
+            }
+        }
+        private global::System.DateTime _bol_c_zfecharegistro;
+        partial void Onbol_c_zfecharegistroChanging(global::System.DateTime value);
+        partial void Onbol_c_zfecharegistroChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String bol_c_serie
+        {
+            get
+            {
+                return _bol_c_serie;
+            }
+            set
+            {
+                Onbol_c_serieChanging(value);
+                ReportPropertyChanging("bol_c_serie");
+                _bol_c_serie = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("bol_c_serie");
+                Onbol_c_serieChanged();
+            }
+        }
+        private global::System.String _bol_c_serie;
+        partial void Onbol_c_serieChanging(global::System.String value);
+        partial void Onbol_c_serieChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 bol_c_numero
+        {
+            get
+            {
+                return _bol_c_numero;
+            }
+            set
+            {
+                Onbol_c_numeroChanging(value);
+                ReportPropertyChanging("bol_c_numero");
+                _bol_c_numero = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("bol_c_numero");
+                Onbol_c_numeroChanged();
+            }
+        }
+        private global::System.Int32 _bol_c_numero;
+        partial void Onbol_c_numeroChanging(global::System.Int32 value);
+        partial void Onbol_c_numeroChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 bol_c_iventa
+        {
+            get
+            {
+                return _bol_c_iventa;
+            }
+            set
+            {
+                Onbol_c_iventaChanging(value);
+                ReportPropertyChanging("bol_c_iventa");
+                _bol_c_iventa = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("bol_c_iventa");
+                Onbol_c_iventaChanged();
+            }
+        }
+        private global::System.Int32 _bol_c_iventa;
+        partial void Onbol_c_iventaChanging(global::System.Int32 value);
+        partial void Onbol_c_iventaChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal bol_c_eigv
+        {
+            get
+            {
+                return _bol_c_eigv;
+            }
+            set
+            {
+                Onbol_c_eigvChanging(value);
+                ReportPropertyChanging("bol_c_eigv");
+                _bol_c_eigv = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("bol_c_eigv");
+                Onbol_c_eigvChanged();
+            }
+        }
+        private global::System.Decimal _bol_c_eigv;
+        partial void Onbol_c_eigvChanging(global::System.Decimal value);
+        partial void Onbol_c_eigvChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal bol_c_eigvcal
+        {
+            get
+            {
+                return _bol_c_eigvcal;
+            }
+            set
+            {
+                Onbol_c_eigvcalChanging(value);
+                ReportPropertyChanging("bol_c_eigvcal");
+                _bol_c_eigvcal = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("bol_c_eigvcal");
+                Onbol_c_eigvcalChanged();
+            }
+        }
+        private global::System.Decimal _bol_c_eigvcal;
+        partial void Onbol_c_eigvcalChanging(global::System.Decimal value);
+        partial void Onbol_c_eigvcalChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal bol_c_esubtotal
+        {
+            get
+            {
+                return _bol_c_esubtotal;
+            }
+            set
+            {
+                Onbol_c_esubtotalChanging(value);
+                ReportPropertyChanging("bol_c_esubtotal");
+                _bol_c_esubtotal = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("bol_c_esubtotal");
+                Onbol_c_esubtotalChanged();
+            }
+        }
+        private global::System.Decimal _bol_c_esubtotal;
+        partial void Onbol_c_esubtotalChanging(global::System.Decimal value);
+        partial void Onbol_c_esubtotalChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal bol_c_etotal
+        {
+            get
+            {
+                return _bol_c_etotal;
+            }
+            set
+            {
+                Onbol_c_etotalChanging(value);
+                ReportPropertyChanging("bol_c_etotal");
+                _bol_c_etotal = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("bol_c_etotal");
+                Onbol_c_etotalChanged();
+            }
+        }
+        private global::System.Decimal _bol_c_etotal;
+        partial void Onbol_c_etotalChanging(global::System.Decimal value);
+        partial void Onbol_c_etotalChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 bol_c_imoneda
+        {
+            get
+            {
+                return _bol_c_imoneda;
+            }
+            set
+            {
+                Onbol_c_imonedaChanging(value);
+                ReportPropertyChanging("bol_c_imoneda");
+                _bol_c_imoneda = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("bol_c_imoneda");
+                Onbol_c_imonedaChanged();
+            }
+        }
+        private global::System.Int32 _bol_c_imoneda;
+        partial void Onbol_c_imonedaChanging(global::System.Int32 value);
+        partial void Onbol_c_imonedaChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String bol_c_vdescmoneda
+        {
+            get
+            {
+                return _bol_c_vdescmoneda;
+            }
+            set
+            {
+                Onbol_c_vdescmonedaChanging(value);
+                ReportPropertyChanging("bol_c_vdescmoneda");
+                _bol_c_vdescmoneda = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("bol_c_vdescmoneda");
+                Onbol_c_vdescmonedaChanged();
+            }
+        }
+        private global::System.String _bol_c_vdescmoneda;
+        partial void Onbol_c_vdescmonedaChanging(global::System.String value);
+        partial void Onbol_c_vdescmonedaChanged();
+
+        #endregion
+    
+        #region Propiedades de navegación
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_BOLETA_SIC_T_VENTA", "SIC_T_VENTA")]
+        public SIC_T_VENTA SIC_T_VENTA
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_VENTA>("SICDBWEBModel.FK_SIC_T_BOLETA_SIC_T_VENTA", "SIC_T_VENTA").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_VENTA>("SICDBWEBModel.FK_SIC_T_BOLETA_SIC_T_VENTA", "SIC_T_VENTA").Value = value;
+            }
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SIC_T_VENTA> SIC_T_VENTAReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_VENTA>("SICDBWEBModel.FK_SIC_T_BOLETA_SIC_T_VENTA", "SIC_T_VENTA");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SIC_T_VENTA>("SICDBWEBModel.FK_SIC_T_BOLETA_SIC_T_VENTA", "SIC_T_VENTA", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_BOLETA_DETALLE_SIC_T_BOLETA", "SIC_T_BOLETA_DETALLE")]
+        public EntityCollection<SIC_T_BOLETA_DETALLE> SIC_T_BOLETA_DETALLE
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SIC_T_BOLETA_DETALLE>("SICDBWEBModel.FK_SIC_T_BOLETA_DETALLE_SIC_T_BOLETA", "SIC_T_BOLETA_DETALLE");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SIC_T_BOLETA_DETALLE>("SICDBWEBModel.FK_SIC_T_BOLETA_DETALLE_SIC_T_BOLETA", "SIC_T_BOLETA_DETALLE", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No hay documentación de metadatos disponible.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SICDBWEBModel", Name="SIC_T_BOLETA_DETALLE")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SIC_T_BOLETA_DETALLE : EntityObject
+    {
+        #region Método de generador
+    
+        /// <summary>
+        /// Crear un nuevo objeto SIC_T_BOLETA_DETALLE.
+        /// </summary>
+        /// <param name="bol_det_c_iid">Valor inicial de la propiedad bol_det_c_iid.</param>
+        /// <param name="bol_c_iid">Valor inicial de la propiedad bol_c_iid.</param>
+        /// <param name="bol_det_c_iitem">Valor inicial de la propiedad bol_det_c_iitem.</param>
+        /// <param name="bol_det_c_ecantidad">Valor inicial de la propiedad bol_det_c_ecantidad.</param>
+        /// <param name="bol_det_c_epreciounit">Valor inicial de la propiedad bol_det_c_epreciounit.</param>
+        public static SIC_T_BOLETA_DETALLE CreateSIC_T_BOLETA_DETALLE(global::System.Int32 bol_det_c_iid, global::System.Int32 bol_c_iid, global::System.Int32 bol_det_c_iitem, global::System.Decimal bol_det_c_ecantidad, global::System.Decimal bol_det_c_epreciounit)
+        {
+            SIC_T_BOLETA_DETALLE sIC_T_BOLETA_DETALLE = new SIC_T_BOLETA_DETALLE();
+            sIC_T_BOLETA_DETALLE.bol_det_c_iid = bol_det_c_iid;
+            sIC_T_BOLETA_DETALLE.bol_c_iid = bol_c_iid;
+            sIC_T_BOLETA_DETALLE.bol_det_c_iitem = bol_det_c_iitem;
+            sIC_T_BOLETA_DETALLE.bol_det_c_ecantidad = bol_det_c_ecantidad;
+            sIC_T_BOLETA_DETALLE.bol_det_c_epreciounit = bol_det_c_epreciounit;
+            return sIC_T_BOLETA_DETALLE;
+        }
+
+        #endregion
+        #region Propiedades primitivas
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 bol_det_c_iid
+        {
+            get
+            {
+                return _bol_det_c_iid;
+            }
+            set
+            {
+                if (_bol_det_c_iid != value)
+                {
+                    Onbol_det_c_iidChanging(value);
+                    ReportPropertyChanging("bol_det_c_iid");
+                    _bol_det_c_iid = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("bol_det_c_iid");
+                    Onbol_det_c_iidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _bol_det_c_iid;
+        partial void Onbol_det_c_iidChanging(global::System.Int32 value);
+        partial void Onbol_det_c_iidChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 bol_c_iid
+        {
+            get
+            {
+                return _bol_c_iid;
+            }
+            set
+            {
+                Onbol_c_iidChanging(value);
+                ReportPropertyChanging("bol_c_iid");
+                _bol_c_iid = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("bol_c_iid");
+                Onbol_c_iidChanged();
+            }
+        }
+        private global::System.Int32 _bol_c_iid;
+        partial void Onbol_c_iidChanging(global::System.Int32 value);
+        partial void Onbol_c_iidChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 bol_det_c_iitem
+        {
+            get
+            {
+                return _bol_det_c_iitem;
+            }
+            set
+            {
+                Onbol_det_c_iitemChanging(value);
+                ReportPropertyChanging("bol_det_c_iitem");
+                _bol_det_c_iitem = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("bol_det_c_iitem");
+                Onbol_det_c_iitemChanged();
+            }
+        }
+        private global::System.Int32 _bol_det_c_iitem;
+        partial void Onbol_det_c_iitemChanging(global::System.Int32 value);
+        partial void Onbol_det_c_iitemChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal bol_det_c_ecantidad
+        {
+            get
+            {
+                return _bol_det_c_ecantidad;
+            }
+            set
+            {
+                Onbol_det_c_ecantidadChanging(value);
+                ReportPropertyChanging("bol_det_c_ecantidad");
+                _bol_det_c_ecantidad = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("bol_det_c_ecantidad");
+                Onbol_det_c_ecantidadChanged();
+            }
+        }
+        private global::System.Decimal _bol_det_c_ecantidad;
+        partial void Onbol_det_c_ecantidadChanging(global::System.Decimal value);
+        partial void Onbol_det_c_ecantidadChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal bol_det_c_epreciounit
+        {
+            get
+            {
+                return _bol_det_c_epreciounit;
+            }
+            set
+            {
+                Onbol_det_c_epreciounitChanging(value);
+                ReportPropertyChanging("bol_det_c_epreciounit");
+                _bol_det_c_epreciounit = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("bol_det_c_epreciounit");
+                Onbol_det_c_epreciounitChanged();
+            }
+        }
+        private global::System.Decimal _bol_det_c_epreciounit;
+        partial void Onbol_det_c_epreciounitChanging(global::System.Decimal value);
+        partial void Onbol_det_c_epreciounitChanged();
+
+        #endregion
+    
+        #region Propiedades de navegación
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_BOLETA_DETALLE_SIC_T_BOLETA", "SIC_T_BOLETA")]
+        public SIC_T_BOLETA SIC_T_BOLETA
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_BOLETA>("SICDBWEBModel.FK_SIC_T_BOLETA_DETALLE_SIC_T_BOLETA", "SIC_T_BOLETA").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_BOLETA>("SICDBWEBModel.FK_SIC_T_BOLETA_DETALLE_SIC_T_BOLETA", "SIC_T_BOLETA").Value = value;
+            }
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SIC_T_BOLETA> SIC_T_BOLETAReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_BOLETA>("SICDBWEBModel.FK_SIC_T_BOLETA_DETALLE_SIC_T_BOLETA", "SIC_T_BOLETA");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SIC_T_BOLETA>("SICDBWEBModel.FK_SIC_T_BOLETA_DETALLE_SIC_T_BOLETA", "SIC_T_BOLETA", value);
                 }
             }
         }
@@ -4470,6 +5172,85 @@ namespace SIC.EntityLayer
     /// <summary>
     /// No hay documentación de metadatos disponible.
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SICDBWEBModel", Name="SIC_T_CONCEPTO")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SIC_T_CONCEPTO : EntityObject
+    {
+        #region Método de generador
+    
+        /// <summary>
+        /// Crear un nuevo objeto SIC_T_CONCEPTO.
+        /// </summary>
+        /// <param name="con_c_iid">Valor inicial de la propiedad con_c_iid.</param>
+        public static SIC_T_CONCEPTO CreateSIC_T_CONCEPTO(global::System.Int32 con_c_iid)
+        {
+            SIC_T_CONCEPTO sIC_T_CONCEPTO = new SIC_T_CONCEPTO();
+            sIC_T_CONCEPTO.con_c_iid = con_c_iid;
+            return sIC_T_CONCEPTO;
+        }
+
+        #endregion
+        #region Propiedades primitivas
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 con_c_iid
+        {
+            get
+            {
+                return _con_c_iid;
+            }
+            set
+            {
+                if (_con_c_iid != value)
+                {
+                    Oncon_c_iidChanging(value);
+                    ReportPropertyChanging("con_c_iid");
+                    _con_c_iid = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("con_c_iid");
+                    Oncon_c_iidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _con_c_iid;
+        partial void Oncon_c_iidChanging(global::System.Int32 value);
+        partial void Oncon_c_iidChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String con_c_vdes
+        {
+            get
+            {
+                return _con_c_vdes;
+            }
+            set
+            {
+                Oncon_c_vdesChanging(value);
+                ReportPropertyChanging("con_c_vdes");
+                _con_c_vdes = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("con_c_vdes");
+                Oncon_c_vdesChanged();
+            }
+        }
+        private global::System.String _con_c_vdes;
+        partial void Oncon_c_vdesChanging(global::System.String value);
+        partial void Oncon_c_vdesChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// No hay documentación de metadatos disponible.
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="SICDBWEBModel", Name="SIC_T_DEPARTAMENTO")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -5290,6 +6071,584 @@ namespace SIC.EntityLayer
 
         #endregion
     
+    }
+    
+    /// <summary>
+    /// No hay documentación de metadatos disponible.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SICDBWEBModel", Name="SIC_T_FACTURA")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SIC_T_FACTURA : EntityObject
+    {
+        #region Método de generador
+    
+        /// <summary>
+        /// Crear un nuevo objeto SIC_T_FACTURA.
+        /// </summary>
+        /// <param name="fac_c_iid">Valor inicial de la propiedad fac_c_iid.</param>
+        /// <param name="fac_c_zfecharegistro">Valor inicial de la propiedad fac_c_zfecharegistro.</param>
+        /// <param name="fac_c_serie">Valor inicial de la propiedad fac_c_serie.</param>
+        /// <param name="fac_c_numero">Valor inicial de la propiedad fac_c_numero.</param>
+        /// <param name="fac_c_iventa">Valor inicial de la propiedad fac_c_iventa.</param>
+        /// <param name="fac_c_eigv">Valor inicial de la propiedad fac_c_eigv.</param>
+        /// <param name="fac_c_eigvcal">Valor inicial de la propiedad fac_c_eigvcal.</param>
+        /// <param name="fac_c_esubtotal">Valor inicial de la propiedad fac_c_esubtotal.</param>
+        /// <param name="fac_c_etotal">Valor inicial de la propiedad fac_c_etotal.</param>
+        /// <param name="fac_c_imoneda">Valor inicial de la propiedad fac_c_imoneda.</param>
+        /// <param name="fac_c_vdescmoneda">Valor inicial de la propiedad fac_c_vdescmoneda.</param>
+        public static SIC_T_FACTURA CreateSIC_T_FACTURA(global::System.Int32 fac_c_iid, global::System.DateTime fac_c_zfecharegistro, global::System.String fac_c_serie, global::System.Int32 fac_c_numero, global::System.Int32 fac_c_iventa, global::System.Decimal fac_c_eigv, global::System.Decimal fac_c_eigvcal, global::System.Decimal fac_c_esubtotal, global::System.Decimal fac_c_etotal, global::System.Int32 fac_c_imoneda, global::System.String fac_c_vdescmoneda)
+        {
+            SIC_T_FACTURA sIC_T_FACTURA = new SIC_T_FACTURA();
+            sIC_T_FACTURA.fac_c_iid = fac_c_iid;
+            sIC_T_FACTURA.fac_c_zfecharegistro = fac_c_zfecharegistro;
+            sIC_T_FACTURA.fac_c_serie = fac_c_serie;
+            sIC_T_FACTURA.fac_c_numero = fac_c_numero;
+            sIC_T_FACTURA.fac_c_iventa = fac_c_iventa;
+            sIC_T_FACTURA.fac_c_eigv = fac_c_eigv;
+            sIC_T_FACTURA.fac_c_eigvcal = fac_c_eigvcal;
+            sIC_T_FACTURA.fac_c_esubtotal = fac_c_esubtotal;
+            sIC_T_FACTURA.fac_c_etotal = fac_c_etotal;
+            sIC_T_FACTURA.fac_c_imoneda = fac_c_imoneda;
+            sIC_T_FACTURA.fac_c_vdescmoneda = fac_c_vdescmoneda;
+            return sIC_T_FACTURA;
+        }
+
+        #endregion
+        #region Propiedades primitivas
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 fac_c_iid
+        {
+            get
+            {
+                return _fac_c_iid;
+            }
+            set
+            {
+                if (_fac_c_iid != value)
+                {
+                    Onfac_c_iidChanging(value);
+                    ReportPropertyChanging("fac_c_iid");
+                    _fac_c_iid = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("fac_c_iid");
+                    Onfac_c_iidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _fac_c_iid;
+        partial void Onfac_c_iidChanging(global::System.Int32 value);
+        partial void Onfac_c_iidChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime fac_c_zfecharegistro
+        {
+            get
+            {
+                return _fac_c_zfecharegistro;
+            }
+            set
+            {
+                Onfac_c_zfecharegistroChanging(value);
+                ReportPropertyChanging("fac_c_zfecharegistro");
+                _fac_c_zfecharegistro = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("fac_c_zfecharegistro");
+                Onfac_c_zfecharegistroChanged();
+            }
+        }
+        private global::System.DateTime _fac_c_zfecharegistro;
+        partial void Onfac_c_zfecharegistroChanging(global::System.DateTime value);
+        partial void Onfac_c_zfecharegistroChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String fac_c_serie
+        {
+            get
+            {
+                return _fac_c_serie;
+            }
+            set
+            {
+                Onfac_c_serieChanging(value);
+                ReportPropertyChanging("fac_c_serie");
+                _fac_c_serie = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("fac_c_serie");
+                Onfac_c_serieChanged();
+            }
+        }
+        private global::System.String _fac_c_serie;
+        partial void Onfac_c_serieChanging(global::System.String value);
+        partial void Onfac_c_serieChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 fac_c_numero
+        {
+            get
+            {
+                return _fac_c_numero;
+            }
+            set
+            {
+                Onfac_c_numeroChanging(value);
+                ReportPropertyChanging("fac_c_numero");
+                _fac_c_numero = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("fac_c_numero");
+                Onfac_c_numeroChanged();
+            }
+        }
+        private global::System.Int32 _fac_c_numero;
+        partial void Onfac_c_numeroChanging(global::System.Int32 value);
+        partial void Onfac_c_numeroChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 fac_c_iventa
+        {
+            get
+            {
+                return _fac_c_iventa;
+            }
+            set
+            {
+                Onfac_c_iventaChanging(value);
+                ReportPropertyChanging("fac_c_iventa");
+                _fac_c_iventa = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("fac_c_iventa");
+                Onfac_c_iventaChanged();
+            }
+        }
+        private global::System.Int32 _fac_c_iventa;
+        partial void Onfac_c_iventaChanging(global::System.Int32 value);
+        partial void Onfac_c_iventaChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal fac_c_eigv
+        {
+            get
+            {
+                return _fac_c_eigv;
+            }
+            set
+            {
+                Onfac_c_eigvChanging(value);
+                ReportPropertyChanging("fac_c_eigv");
+                _fac_c_eigv = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("fac_c_eigv");
+                Onfac_c_eigvChanged();
+            }
+        }
+        private global::System.Decimal _fac_c_eigv;
+        partial void Onfac_c_eigvChanging(global::System.Decimal value);
+        partial void Onfac_c_eigvChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal fac_c_eigvcal
+        {
+            get
+            {
+                return _fac_c_eigvcal;
+            }
+            set
+            {
+                Onfac_c_eigvcalChanging(value);
+                ReportPropertyChanging("fac_c_eigvcal");
+                _fac_c_eigvcal = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("fac_c_eigvcal");
+                Onfac_c_eigvcalChanged();
+            }
+        }
+        private global::System.Decimal _fac_c_eigvcal;
+        partial void Onfac_c_eigvcalChanging(global::System.Decimal value);
+        partial void Onfac_c_eigvcalChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal fac_c_esubtotal
+        {
+            get
+            {
+                return _fac_c_esubtotal;
+            }
+            set
+            {
+                Onfac_c_esubtotalChanging(value);
+                ReportPropertyChanging("fac_c_esubtotal");
+                _fac_c_esubtotal = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("fac_c_esubtotal");
+                Onfac_c_esubtotalChanged();
+            }
+        }
+        private global::System.Decimal _fac_c_esubtotal;
+        partial void Onfac_c_esubtotalChanging(global::System.Decimal value);
+        partial void Onfac_c_esubtotalChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal fac_c_etotal
+        {
+            get
+            {
+                return _fac_c_etotal;
+            }
+            set
+            {
+                Onfac_c_etotalChanging(value);
+                ReportPropertyChanging("fac_c_etotal");
+                _fac_c_etotal = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("fac_c_etotal");
+                Onfac_c_etotalChanged();
+            }
+        }
+        private global::System.Decimal _fac_c_etotal;
+        partial void Onfac_c_etotalChanging(global::System.Decimal value);
+        partial void Onfac_c_etotalChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 fac_c_imoneda
+        {
+            get
+            {
+                return _fac_c_imoneda;
+            }
+            set
+            {
+                Onfac_c_imonedaChanging(value);
+                ReportPropertyChanging("fac_c_imoneda");
+                _fac_c_imoneda = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("fac_c_imoneda");
+                Onfac_c_imonedaChanged();
+            }
+        }
+        private global::System.Int32 _fac_c_imoneda;
+        partial void Onfac_c_imonedaChanging(global::System.Int32 value);
+        partial void Onfac_c_imonedaChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String fac_c_vdescmoneda
+        {
+            get
+            {
+                return _fac_c_vdescmoneda;
+            }
+            set
+            {
+                Onfac_c_vdescmonedaChanging(value);
+                ReportPropertyChanging("fac_c_vdescmoneda");
+                _fac_c_vdescmoneda = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("fac_c_vdescmoneda");
+                Onfac_c_vdescmonedaChanged();
+            }
+        }
+        private global::System.String _fac_c_vdescmoneda;
+        partial void Onfac_c_vdescmonedaChanging(global::System.String value);
+        partial void Onfac_c_vdescmonedaChanged();
+
+        #endregion
+    
+        #region Propiedades de navegación
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_FACTURA_SIC_T_VENTA", "SIC_T_VENTA")]
+        public SIC_T_VENTA SIC_T_VENTA
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_VENTA>("SICDBWEBModel.FK_SIC_T_FACTURA_SIC_T_VENTA", "SIC_T_VENTA").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_VENTA>("SICDBWEBModel.FK_SIC_T_FACTURA_SIC_T_VENTA", "SIC_T_VENTA").Value = value;
+            }
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SIC_T_VENTA> SIC_T_VENTAReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_VENTA>("SICDBWEBModel.FK_SIC_T_FACTURA_SIC_T_VENTA", "SIC_T_VENTA");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SIC_T_VENTA>("SICDBWEBModel.FK_SIC_T_FACTURA_SIC_T_VENTA", "SIC_T_VENTA", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_FACTURA_DETALLE_SIC_T_FACTURA", "SIC_T_FACTURA_DETALLE")]
+        public EntityCollection<SIC_T_FACTURA_DETALLE> SIC_T_FACTURA_DETALLE
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SIC_T_FACTURA_DETALLE>("SICDBWEBModel.FK_SIC_T_FACTURA_DETALLE_SIC_T_FACTURA", "SIC_T_FACTURA_DETALLE");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SIC_T_FACTURA_DETALLE>("SICDBWEBModel.FK_SIC_T_FACTURA_DETALLE_SIC_T_FACTURA", "SIC_T_FACTURA_DETALLE", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No hay documentación de metadatos disponible.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SICDBWEBModel", Name="SIC_T_FACTURA_DETALLE")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SIC_T_FACTURA_DETALLE : EntityObject
+    {
+        #region Método de generador
+    
+        /// <summary>
+        /// Crear un nuevo objeto SIC_T_FACTURA_DETALLE.
+        /// </summary>
+        /// <param name="fac_det_c_iid">Valor inicial de la propiedad fac_det_c_iid.</param>
+        /// <param name="fac_c_iid">Valor inicial de la propiedad fac_c_iid.</param>
+        /// <param name="fac_det_c_iitem">Valor inicial de la propiedad fac_det_c_iitem.</param>
+        /// <param name="fac_det_c_ecantidad">Valor inicial de la propiedad fac_det_c_ecantidad.</param>
+        /// <param name="fac_det_c_epreciounit">Valor inicial de la propiedad fac_det_c_epreciounit.</param>
+        public static SIC_T_FACTURA_DETALLE CreateSIC_T_FACTURA_DETALLE(global::System.Int32 fac_det_c_iid, global::System.Int32 fac_c_iid, global::System.Int32 fac_det_c_iitem, global::System.Decimal fac_det_c_ecantidad, global::System.Decimal fac_det_c_epreciounit)
+        {
+            SIC_T_FACTURA_DETALLE sIC_T_FACTURA_DETALLE = new SIC_T_FACTURA_DETALLE();
+            sIC_T_FACTURA_DETALLE.fac_det_c_iid = fac_det_c_iid;
+            sIC_T_FACTURA_DETALLE.fac_c_iid = fac_c_iid;
+            sIC_T_FACTURA_DETALLE.fac_det_c_iitem = fac_det_c_iitem;
+            sIC_T_FACTURA_DETALLE.fac_det_c_ecantidad = fac_det_c_ecantidad;
+            sIC_T_FACTURA_DETALLE.fac_det_c_epreciounit = fac_det_c_epreciounit;
+            return sIC_T_FACTURA_DETALLE;
+        }
+
+        #endregion
+        #region Propiedades primitivas
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 fac_det_c_iid
+        {
+            get
+            {
+                return _fac_det_c_iid;
+            }
+            set
+            {
+                if (_fac_det_c_iid != value)
+                {
+                    Onfac_det_c_iidChanging(value);
+                    ReportPropertyChanging("fac_det_c_iid");
+                    _fac_det_c_iid = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("fac_det_c_iid");
+                    Onfac_det_c_iidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _fac_det_c_iid;
+        partial void Onfac_det_c_iidChanging(global::System.Int32 value);
+        partial void Onfac_det_c_iidChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 fac_c_iid
+        {
+            get
+            {
+                return _fac_c_iid;
+            }
+            set
+            {
+                Onfac_c_iidChanging(value);
+                ReportPropertyChanging("fac_c_iid");
+                _fac_c_iid = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("fac_c_iid");
+                Onfac_c_iidChanged();
+            }
+        }
+        private global::System.Int32 _fac_c_iid;
+        partial void Onfac_c_iidChanging(global::System.Int32 value);
+        partial void Onfac_c_iidChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 fac_det_c_iitem
+        {
+            get
+            {
+                return _fac_det_c_iitem;
+            }
+            set
+            {
+                Onfac_det_c_iitemChanging(value);
+                ReportPropertyChanging("fac_det_c_iitem");
+                _fac_det_c_iitem = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("fac_det_c_iitem");
+                Onfac_det_c_iitemChanged();
+            }
+        }
+        private global::System.Int32 _fac_det_c_iitem;
+        partial void Onfac_det_c_iitemChanging(global::System.Int32 value);
+        partial void Onfac_det_c_iitemChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal fac_det_c_ecantidad
+        {
+            get
+            {
+                return _fac_det_c_ecantidad;
+            }
+            set
+            {
+                Onfac_det_c_ecantidadChanging(value);
+                ReportPropertyChanging("fac_det_c_ecantidad");
+                _fac_det_c_ecantidad = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("fac_det_c_ecantidad");
+                Onfac_det_c_ecantidadChanged();
+            }
+        }
+        private global::System.Decimal _fac_det_c_ecantidad;
+        partial void Onfac_det_c_ecantidadChanging(global::System.Decimal value);
+        partial void Onfac_det_c_ecantidadChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal fac_det_c_epreciounit
+        {
+            get
+            {
+                return _fac_det_c_epreciounit;
+            }
+            set
+            {
+                Onfac_det_c_epreciounitChanging(value);
+                ReportPropertyChanging("fac_det_c_epreciounit");
+                _fac_det_c_epreciounit = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("fac_det_c_epreciounit");
+                Onfac_det_c_epreciounitChanged();
+            }
+        }
+        private global::System.Decimal _fac_det_c_epreciounit;
+        partial void Onfac_det_c_epreciounitChanging(global::System.Decimal value);
+        partial void Onfac_det_c_epreciounitChanged();
+
+        #endregion
+    
+        #region Propiedades de navegación
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_FACTURA_DETALLE_SIC_T_FACTURA", "SIC_T_FACTURA")]
+        public SIC_T_FACTURA SIC_T_FACTURA
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_FACTURA>("SICDBWEBModel.FK_SIC_T_FACTURA_DETALLE_SIC_T_FACTURA", "SIC_T_FACTURA").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_FACTURA>("SICDBWEBModel.FK_SIC_T_FACTURA_DETALLE_SIC_T_FACTURA", "SIC_T_FACTURA").Value = value;
+            }
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SIC_T_FACTURA> SIC_T_FACTURAReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_FACTURA>("SICDBWEBModel.FK_SIC_T_FACTURA_DETALLE_SIC_T_FACTURA", "SIC_T_FACTURA");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SIC_T_FACTURA>("SICDBWEBModel.FK_SIC_T_FACTURA_DETALLE_SIC_T_FACTURA", "SIC_T_FACTURA", value);
+                }
+            }
+        }
+
+        #endregion
     }
     
     /// <summary>
@@ -10878,6 +12237,50 @@ namespace SIC.EntityLayer
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SIC_T_EMP_CENTRO_COSTO>("SICDBWEBModel.FK_SIC_T_VENTA_SIC_T_EMP_CENTRO_COSTO", "SIC_T_EMP_CENTRO_COSTO", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_FACTURA_SIC_T_VENTA", "SIC_T_FACTURA")]
+        public EntityCollection<SIC_T_FACTURA> SIC_T_FACTURA
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SIC_T_FACTURA>("SICDBWEBModel.FK_SIC_T_FACTURA_SIC_T_VENTA", "SIC_T_FACTURA");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SIC_T_FACTURA>("SICDBWEBModel.FK_SIC_T_FACTURA_SIC_T_VENTA", "SIC_T_FACTURA", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_BOLETA_SIC_T_VENTA", "SIC_T_BOLETA")]
+        public EntityCollection<SIC_T_BOLETA> SIC_T_BOLETA
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SIC_T_BOLETA>("SICDBWEBModel.FK_SIC_T_BOLETA_SIC_T_VENTA", "SIC_T_BOLETA");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SIC_T_BOLETA>("SICDBWEBModel.FK_SIC_T_BOLETA_SIC_T_VENTA", "SIC_T_BOLETA", value);
                 }
             }
         }

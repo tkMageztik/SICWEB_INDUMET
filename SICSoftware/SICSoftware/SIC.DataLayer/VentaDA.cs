@@ -57,6 +57,27 @@ namespace SIC.DataLayer
             }   
         }
 
+        /// <summary>
+        /// Lista las ventas registradas en el sistema que correspondan 
+        /// a un año, mes y tengan un estado especifico.
+        /// </summary>
+        /// <param name="year">El año de la venta.</param>
+        /// <param name="month">El mes de la venta.</param>
+        /// <param name="estado">El estado de la venta.</param>
+        /// <returns>Listado de ventas filtrado de acuerdo a los parámetros.</returns>
+        public List<SIC_T_VENTA> ListarVentas(int year, int month, int estado)
+        {
+            using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+            {
+                return (from x in contexto.SIC_T_VENTA
+                                    .Include("SIC_T_CLIENTE")
+                        where x.ven_c_bactivo == true
+                            && x.ven_c_iestado == estado
+                            && x.ven_c_zfecha.Year == year
+                            && x.ven_c_zfecha.Month == month
+                        select x).ToList();
+            }
+        }
 
         public List<SIC_T_VENTA> ListarOrdenDeCompraEstado(int estado)
         {
@@ -187,13 +208,7 @@ namespace SIC.DataLayer
             {
                 throw;
             }      
-        }
-
-        public bool ModificarOrdenCompra(SIC_T_VENTA _pSIC_T_VENTA,
-                     List<SIC_T_VENTA_DETALLE> _pSIC_T_VENTA_DETALLE_Add)
-        {
-            throw new NotImplementedException();
-        }
+        }        
 
         public List<SIC_T_ODC_ESTADO> ListarEstadosOrdenCompra()
         {
@@ -210,8 +225,7 @@ namespace SIC.DataLayer
                 throw;
             }
         }
-
-
+        
         public bool DeshabilitarOrdenCompra(int id)
         {
             using (SICDBWEBEntities contexto = new SICDBWEBEntities())

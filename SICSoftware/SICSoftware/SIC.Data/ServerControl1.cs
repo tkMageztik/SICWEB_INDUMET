@@ -20,7 +20,7 @@ namespace SIC.Data
         public string Text
         {
             get
-            {
+            {                
                 String s = (String)ViewState["Text"];
                 return ((s == null) ? "[" + this.ID + "]" : s);
             }
