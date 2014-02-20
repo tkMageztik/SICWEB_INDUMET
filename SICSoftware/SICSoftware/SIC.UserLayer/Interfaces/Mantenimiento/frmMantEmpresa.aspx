@@ -36,6 +36,20 @@
         {
             height: 20px;
         }
+        .style6
+        {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 11.5px;
+            color: #686168;
+            height: 15px;
+        }
+        .style7
+        {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 11.5px;
+            color: #686168;
+            height: 19px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -210,7 +224,7 @@
                                                     </td>
                                                     <td>
                                                         <asp:LinkButton ID="btnAgregarLocal" runat="server" CssClass="lnk" 
-                                                            Text="Agregar Locales" onclick="btnAgregarLocal_Click" />
+                                                            Text="Agregar Dirección" onclick="btnAgregarLocal_Click" />
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -714,9 +728,13 @@
                                                         &nbsp;<asp:TextBox ID="txtDescripcionLCE" runat="server" MaxLength="100"></asp:TextBox>
                                                     </td>
                                                     <td align="left" class="style4">
-                                                        &nbsp;</td>
+                                                        Tipo</td>
                                                     <td align="left" class="style4">
-                                                        &nbsp;</td>
+                                                        <asp:DropDownList ID="cboTipoDireccionE" runat="server" 
+                                                            AppendDataBoundItems="true" CssClass="slt_150x20">
+                                                            <asp:ListItem Value="0">Tipo</asp:ListItem>
+                                                        </asp:DropDownList>
+                                                    </td>
                                                     <td align="left" class="style4">
                                                         &nbsp;</td>
                                                 </tr>
@@ -729,6 +747,51 @@
                                                         &nbsp;</td>
                                                     <td align="left" class="style4">
                                                         &nbsp;</td>
+                                                    <td align="left" class="style4">
+                                                        &nbsp;</td>
+                                                    <td align="left" class="style4">
+                                                        &nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="style6">
+                                                        Ubigeo</td>
+                                                    <td align="left" class="style6">
+                                                        <asp:DropDownList ID="cboDepartamentoE" runat="server" 
+                                                            AppendDataBoundItems="true" AutoPostBack="True" CssClass="slt_150x20" 
+                                                            onselectedindexchanged="cboDepartamentoE_SelectedIndexChanged" 
+                                                            ViewStateMode="Enabled">
+                                                        </asp:DropDownList>
+                                                    </td>
+                                                    <td align="left" class="style6">
+                                                        <asp:DropDownList ID="cboProvinciaE" runat="server" AppendDataBoundItems="true" 
+                                                            AutoPostBack="True" CssClass="slt_150x20" 
+                                                            onselectedindexchanged="cboProvinciaE_SelectedIndexChanged" 
+                                                            ViewStateMode="Enabled">
+                                                        </asp:DropDownList>
+                                                    </td>
+                                                    <td align="left" class="style6">
+                                                        <asp:DropDownList ID="cboDistritoE" runat="server" AppendDataBoundItems="true" 
+                                                            CssClass="slt_150x20" ViewStateMode="Enabled">
+                                                        </asp:DropDownList>
+                                                    </td>
+                                                    <td align="left" class="style6">
+                                                    </td>
+                                                    <td align="left" class="style6">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="style7">
+                                                    </td>
+                                                    <td align="left" class="style7">
+                                                    </td>
+                                                    <td align="left" class="style7">
+                                                    </td>
+                                                    <td align="left" class="style7">
+                                                    </td>
+                                                    <td align="left" class="style7">
+                                                    </td>
+                                                    <td align="left" class="style7">
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td align="left" class="style4">
@@ -737,7 +800,7 @@
                                                         <asp:DropDownList ID="cboCentroCostoE" runat="server" 
                                                             AppendDataBoundItems="True" AutoPostBack="True">
                                                         </asp:DropDownList>
-                                                        </td>
+                                                    </td>
                                                     <td align="left" class="style4">
                                                         &nbsp;</td>
                                                     <td align="left" class="style4">

@@ -115,6 +115,10 @@ namespace SIC.BusinessLayer
             }
         }
 
+        /// <summary>
+        /// Ingresa la dirección a la base de datos.
+        /// </summary>
+        /// <param name="direccion">Objeto dirección a ingresar</param>
         public void IngresarDireccion(SIC_T_EMP_DIRECCION direccion)
         {
             if (!ValidarDireccionEmpresa(direccion).EsValido)
@@ -124,6 +128,10 @@ namespace SIC.BusinessLayer
             new EmpresaDA().IngresarDireccion(direccion);
         }
 
+        /// <summary>
+        /// Modifica los datos de la dirección en la base de datos.
+        /// </summary>
+        /// <param name="direccion">Objeto dirección a modificar.</param>
         public void ModificarDireccion(SIC_T_EMP_DIRECCION direccion)
         {
             if (!ValidarDireccionEmpresa(direccion).EsValido)
@@ -133,6 +141,10 @@ namespace SIC.BusinessLayer
             new EmpresaDA().ModificarDireccion(direccion);
         }
 
+        /// <summary>
+        /// Ingresa centro de costo en la base de datos.
+        /// </summary>
+        /// <param name="centroCosto">Objeto centro de costo a verificar.</param>
         public void IngresarCentroCosto(SIC_T_EMP_CENTRO_COSTO centroCosto)
         {
             if (!ValidarCentroCosto(centroCosto).EsValido)
@@ -142,6 +154,10 @@ namespace SIC.BusinessLayer
             new CentroCostoDA().IngresarCentroCosto(centroCosto);
         }
 
+        /// <summary>
+        /// Modifica centor de costo en la base de datos.
+        /// </summary>
+        /// <param name="centroCosto">Objeto centro de costo a modificar.</param>
         public void ModificarCentroCosto(SIC_T_EMP_CENTRO_COSTO centroCosto)
         {
             if (!ValidarCentroCosto(centroCosto).EsValido)
@@ -180,6 +196,10 @@ namespace SIC.BusinessLayer
             return new UbigeoDA().ListarDistritos(_pstrprov_c_ccod);
         }
 
+        /// <summary>
+        /// Obtiene una lista de los tipos de direcciones.
+        /// </summary>
+        /// <returns>Lista de tipos de dirección.</returns>
         public List<SIC_T_PARAMETRO_DET> ListarTipoDireccion()
         {
             return new ParametroDA().ListarParametros((int)TipoParametro.TIPO_DIRECCION);
