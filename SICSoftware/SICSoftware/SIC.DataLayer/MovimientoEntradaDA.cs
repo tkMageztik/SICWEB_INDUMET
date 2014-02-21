@@ -29,7 +29,7 @@ namespace SIC.DataLayer
         }
 
         public List<SIC_T_MOVIMIENTO_ENTRADA> ObtenerMovimientoEntrada(String ruc, String razonSocial,
-                                                DateTime? inicio, DateTime? fin,string test)
+                                               DateTime? inicio, DateTime? fin, int estado)
         {
             try
             {
@@ -40,47 +40,17 @@ namespace SIC.DataLayer
                              .Include("SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE")
                              .Include("SIC_T_MOVIMIENTO_ENTRADA_DETALLE")
                             where x.mve_c_bactivo == true
-                                && (ruc == null || ruc == string.Empty ||
+                                & (ruc == null || ruc == string.Empty ||
                                             (x.SIC_T_ORDEN_DE_COMPRA != null && x.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE != null
                                             && x.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vdoc_id.Contains(ruc)))
-                                && (razonSocial == null || razonSocial == string.Empty ||
+                                & (razonSocial == null || razonSocial == string.Empty ||
                                             (x.SIC_T_ORDEN_DE_COMPRA != null && x.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE != null
                                             && x.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vraz_soc.Contains(razonSocial)))
-                                && (inicio == null || x.mve_c_zfecharegistro >= inicio)
-                                && (fin == null || (x.mve_c_zfecharegistro.Year <= fin.Value.Year
+                                & (inicio == null || x.mve_c_zfecharegistro >= inicio)
+                                & (fin == null || (x.mve_c_zfecharegistro.Year <= fin.Value.Year
                                                  && x.mve_c_zfecharegistro.Month <= fin.Value.Month
                                                  && x.mve_c_zfecharegistro.Day <= fin.Value.Day))
-                            select x).ToList();
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        public List<SIC_T_MOVIMIENTO_ENTRADA> ObtenerMovimientoEntrada(String ruc, String razonSocial,
-                                               DateTime? inicio, DateTime? fin)
-        {
-            try
-            {
-                using (SICDBWEBEntities contexto = new SICDBWEBEntities())
-                {
-                    return (from x in contexto.SIC_T_MOVIMIENTO_ENTRADA
-                             .Include("SIC_T_ORDEN_DE_COMPRA")
-                             .Include("SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE")
-                             .Include("SIC_T_MOVIMIENTO_ENTRADA_DETALLE")
-                            where x.mve_c_bactivo == true
-                                && (ruc == null || ruc == string.Empty ||
-                                            (x.SIC_T_ORDEN_DE_COMPRA != null && x.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE != null
-                                            && x.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vdoc_id.Contains(ruc)))
-                                && (razonSocial == null || razonSocial == string.Empty ||
-                                            (x.SIC_T_ORDEN_DE_COMPRA != null && x.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE != null
-                                            && x.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vraz_soc.Contains(razonSocial)))
-                                && (inicio == null || x.mve_c_zfecharegistro >= inicio)
-                                && (fin == null || (x.mve_c_zfecharegistro.Year <= fin.Value.Year
-                                                 && x.mve_c_zfecharegistro.Month <= fin.Value.Month
-                                                 && x.mve_c_zfecharegistro.Day <= fin.Value.Day))
+                                & x.mve_c_iestado == estado
                             select x).ToList();
                 }
             }
@@ -153,7 +123,7 @@ namespace SIC.DataLayer
                     }
 
                     _pSIC_T_MOVIMIENTO_ENTRADA.mve_c_bactivo = true;
-                    _pSIC_T_MOVIMIENTO_ENTRADA.mve_c_ioc_id = _pSIC_T_MOVIMIENTO_ENTRADA.SIC_T_ORDEN_DE_COMPRA.odc_c_iid;
+                    _pSIC_T_MOVIMIENTO_ENTRADA.odc_c_iid = _pSIC_T_MOVIMIENTO_ENTRADA.SIC_T_ORDEN_DE_COMPRA.odc_c_iid;
                     _pSIC_T_MOVIMIENTO_ENTRADA.SIC_T_ORDEN_DE_COMPRA = null;
                     _pSIC_T_MOVIMIENTO_ENTRADA.mve_c_bingresado = false;
 
@@ -204,7 +174,7 @@ namespace SIC.DataLayer
 
                     foreach (var itemEl in _pSIC_T_MOVIMIENTO_ENTRADA.SIC_T_MOVIMIENTO_ENTRADA_DETALLE)
                     {
-                        if (_pSIC_T_MOVIMIENTO_ENTRADA.mve_c_ioc_id != original.mve_c_ioc_id)
+                        if (_pSIC_T_MOVIMIENTO_ENTRADA.odc_c_iid != original.odc_c_iid)
                         {
                             contexto.SIC_T_MOVIMIENTO_ENTRADA_DETALLE.Attach(itemEl);
                             contexto.SIC_T_MOVIMIENTO_ENTRADA_DETALLE.DeleteObject(itemEl);
@@ -215,7 +185,7 @@ namespace SIC.DataLayer
                         }
                     }
 
-                    _pSIC_T_MOVIMIENTO_ENTRADA.mve_c_ioc_id = _pSIC_T_MOVIMIENTO_ENTRADA.SIC_T_ORDEN_DE_COMPRA.odc_c_iid;
+                    _pSIC_T_MOVIMIENTO_ENTRADA.odc_c_iid = _pSIC_T_MOVIMIENTO_ENTRADA.SIC_T_ORDEN_DE_COMPRA.odc_c_iid;
                     _pSIC_T_MOVIMIENTO_ENTRADA.SIC_T_ORDEN_DE_COMPRA = null;
 
 
@@ -237,9 +207,9 @@ namespace SIC.DataLayer
             {
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
-                    obj =  (from x in contexto.SIC_T_MOVIMIENTO_ENTRADA
-                            where x.mve_c_bactivo == true && x.mve_c_iid == obj.mve_c_iid
-                            select x).FirstOrDefault();
+                    obj = (from x in contexto.SIC_T_MOVIMIENTO_ENTRADA
+                           where x.mve_c_bactivo == true && x.mve_c_iid == obj.mve_c_iid
+                           select x).FirstOrDefault();
 
                     obj.mve_c_iestado = estado;
                     obj.mve_c_vdesestado = desEstado;

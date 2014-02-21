@@ -120,7 +120,7 @@
                                                         <%# Eval("SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vdoc_id")%>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="RAZON SOCIAL PROVEEDOR">
+                                                <asp:TemplateField HeaderText="RAZÓN SOCIAL PROVEEDOR">
                                                     <ItemTemplate>
                                                         <%# Eval("SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vraz_soc")%>
                                                     </ItemTemplate>

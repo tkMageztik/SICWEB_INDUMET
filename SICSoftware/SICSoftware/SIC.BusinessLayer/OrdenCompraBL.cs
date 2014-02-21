@@ -45,10 +45,10 @@ namespace SIC.BusinessLayer
             return new OrdenCompraDA().ModificarOrdenCompra(_pSIC_T_ORDEN_DE_COMPRA);
         }
 
-        public bool DeshabilitarOrdenCompra(int id)
-        {
-            return new OrdenCompraDA().DeshabilitarOrdenCompra(id);
-        }
+        //public bool DeshabilitarOrdenCompra(int id)
+        //{
+        //    return new OrdenCompraDA().DeshabilitarOrdenCompra(id);
+        //}
 
         public List<SIC_T_ODC_ESTADO> ListarEstadosOrdenCompra()
         {

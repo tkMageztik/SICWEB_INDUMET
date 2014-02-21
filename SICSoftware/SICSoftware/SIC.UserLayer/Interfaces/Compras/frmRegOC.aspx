@@ -2,7 +2,7 @@
     EnableEventValidation="false" CodeBehind="frmRegOC.aspx.cs" Inherits="SIC.UserLayer.Interfaces.Mantenimiento.frmRegOC"
     Culture="Auto" UICulture="Auto" %>
 
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <%@ Register Src="~/UserControl/wucMensajeAlerta.ascx" TagName="Mensaje" TagPrefix="uc1" %>
 <%@ Register Src="~/UserControl/wucMensajeAlerta2.ascx" TagName="Mensaje" TagPrefix="uc2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
@@ -134,8 +134,8 @@
                                                 AlternatingRowStyle-CssClass="alt" ShowHeaderWhenEmpty="True" EmptyDataText="No hay datos disponibles."
                                                 PageSize="15" BorderWidth="0px" DataKeyNames="odc_c_iid" OnRowEditing="gvListaOC_RowEditing"
                                                 OnRowDeleting="gvListaOC_RowDeleting" OnPageIndexChanging="gvListaOC_PageIndexChanging"
-                                                OnSelectedIndexChanged="gvListaOC_SelectedIndexChanged" 
-                                                OnRowDataBound="gvListaOC_RowDataBound">
+                                                OnSelectedIndexChanged="gvListaOC_SelectedIndexChanged" OnRowDataBound="gvListaOC_RowDataBound"
+                                                OnRowCommand="gvListaOC_RowCommand">
                                                 <AlternatingRowStyle CssClass="alt" />
                                                 <Columns>
                                                     <asp:BoundField HeaderText="CODIGO DE OC" DataField="odc_c_vcodigo" />
@@ -159,7 +159,8 @@
                                                     <asp:CommandField SelectText="Ver" ShowSelectButton="True" />
                                                     <asp:CommandField ShowEditButton="True" CancelText="Cancelar" DeleteText="Eliminar"
                                                         EditText="Modificar" />
-                                                    <asp:CommandField ShowDeleteButton="True" DeleteText="Eliminar" />
+                                                    <asp:CommandField ShowDeleteButton="True" DeleteText="Anular" />
+                                                    <asp:ButtonField CommandName="Cerrar" Text="Cerrar" ButtonType="Link" />
                                                     <asp:TemplateField>
                                                         <ItemTemplate>
                                                             <asp:LinkButton ID="lnkDescargar" runat="server" OnClick="lnkDescargar_Click">Descargar</asp:LinkButton>
@@ -207,7 +208,7 @@
                                                         Código
                                                     </td>
                                                     <td align="left" class="txt-box-estilo">
-                                                        <asp:TextBox ID="txtSerie" runat="server" Height="26px" MaxLength="3" Width="54px"></asp:TextBox>
+                                                        <asp:TextBox ID="txtSerie" runat="server" MaxLength="3" Width="35"></asp:TextBox>
                                                         &nbsp;-
                                                         <asp:TextBox ID="txtNumero" runat="server" MaxLength="6"></asp:TextBox>
                                                     </td>
@@ -247,14 +248,14 @@
                                                     </td>
                                                     <td align="left" class="style4">
                                                         <asp:TextBox ID="txtFecEnIni" runat="server" Width="95px"></asp:TextBox>
-                                                        <cc1:CalendarExtender ID="txtFecEnIni_CalendarExtender" runat="server" Format="dd/MM/yyyy"
+                                                        <asp:CalendarExtender ID="txtFecEnIni_CalendarExtender" runat="server" Format="dd/MM/yyyy"
                                                             TargetControlID="txtFecEnIni" TodaysDateFormat="dd/MM/yyyy">
-                                                        </cc1:CalendarExtender>
+                                                        </asp:CalendarExtender>
                                                         &nbsp;-
                                                         <asp:TextBox ID="txtFecEntFin" runat="server" Width="95px"></asp:TextBox>
-                                                        <cc1:CalendarExtender ID="txtFecEntFin_CalendarExtender" runat="server" Format="dd/MM/yyyy"
+                                                        <asp:CalendarExtender ID="txtFecEntFin_CalendarExtender" runat="server" Format="dd/MM/yyyy"
                                                             TargetControlID="txtFecEntFin" TodaysDateFormat="dd/MM/yyyy">
-                                                        </cc1:CalendarExtender>
+                                                        </asp:CalendarExtender>
                                                     </td>
                                                     <td align="left">
                                                         &nbsp;
@@ -449,8 +450,9 @@
                                                         &nbsp;
                                                     </td>
                                                     <td align="left" class="txt-box-estilo">
-                                                        <asp:CheckBox ID="chkPercepcion" runat="server" AutoPostBack="True" OnCheckedChanged="chkPercepcion_CheckedChanged" />Percepción
-                                                        (<asp:Label ID="lblPercepcion" runat="server" Text="2%"></asp:Label>
+                                                        <asp:CheckBox ID="chkPercepcion" CssClass="chk" runat="server" AutoPostBack="True"
+                                                            OnCheckedChanged="chkPercepcion_CheckedChanged" />Percepción (<asp:Label ID="lblPercepcion"
+                                                                runat="server" Text="2%"></asp:Label>
                                                         )
                                                     </td>
                                                     <td align="left" class="txt-box-estilo">
@@ -817,6 +819,7 @@
                 <Triggers>
                     <asp:AsyncPostBackTrigger ControlID="btnGuardar" EventName="Click" />
                     <asp:AsyncPostBackTrigger ControlID="gvListaOC" EventName="RowDeleting" />
+                    <asp:AsyncPostBackTrigger ControlID="gvListaOC" EventName="RowCommand" />
                 </Triggers>
             </asp:UpdatePanel>
         </ContentTemplate>

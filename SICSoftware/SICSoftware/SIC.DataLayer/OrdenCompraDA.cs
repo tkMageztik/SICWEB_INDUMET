@@ -47,7 +47,7 @@ namespace SIC.DataLayer
                                     .Include("SIC_T_CLIENTE")
                             where x.odc_c_bactivo == true &&
                                 (!idMoneda.HasValue || x.odc_c_ymoneda == idMoneda.Value) &&
-                                (idProveedor == null || x.odc_c_vdocprov_id.Contains(idProveedor)) &&
+                                (idProveedor == null || x.prov_c_vdoc_id.Contains(idProveedor)) &&
                                 (!idEstado.HasValue || x.odc_c_iestado == idEstado.Value)
                             select x).ToList();
                 }
@@ -325,29 +325,29 @@ namespace SIC.DataLayer
             }
         }
 
-        public bool DeshabilitarOrdenCompra(int id)
-        {
-            using (SICDBWEBEntities contexto = new SICDBWEBEntities())
-            {
-                SIC_T_ORDEN_DE_COMPRA varItem = (from x in contexto.SIC_T_ORDEN_DE_COMPRA
-                                                 where x.odc_c_iid == id
-                                                 select x).FirstOrDefault();
-                if (varItem != null)
-                {
-                    varItem.odc_c_iestado = 5; // ANULADO
-                }
+        //public bool DeshabilitarOrdenCompra(int id)
+        //{
+        //    using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+        //    {
+        //        SIC_T_ORDEN_DE_COMPRA varItem = (from x in contexto.SIC_T_ORDEN_DE_COMPRA
+        //                                         where x.odc_c_iid == id
+        //                                         select x).FirstOrDefault();
+        //        if (varItem != null)
+        //        {
+        //            varItem.odc_c_iestado = 5; // ANULADO
+        //        }
 
-                try
-                {
-                    contexto.SaveChanges();
-                    return true;
-                }
-                catch (OptimisticConcurrencyException ex)
-                {
-                    throw;
-                }
-            }
-        }
+        //        try
+        //        {
+        //            contexto.SaveChanges();
+        //            return true;
+        //        }
+        //        catch (OptimisticConcurrencyException ex)
+        //        {
+        //            throw;
+        //        }
+        //    }
+        //}
 
         public int CambiarEstadoOrdenCompra(int id, int estado, string desEstado)
         {

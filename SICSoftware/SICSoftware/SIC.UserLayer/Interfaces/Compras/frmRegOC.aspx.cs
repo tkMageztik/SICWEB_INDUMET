@@ -65,10 +65,10 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             set { ViewState["vsOCNuevo"] = value; }
         }
 
-        private int OCEliminar
+        private int idOC
         {
-            get { return (int)(ViewState["vsOCEliminar"] == null ? -1 : ViewState["vsOCEliminar"]); }
-            set { ViewState["vsOCEliminar"] = value; }
+            get { return Convert.ToInt32(ViewState["vsIdOC"]); }
+            set { ViewState["vsIdOC"] = value; }
         }
 
         private decimal TasaCambio
@@ -118,7 +118,11 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             }
             if (EscenarioOC == TipoOperacion.Eliminacion)
             {
-                SetearEliminar();
+                SetearCambiarEstado(EstadoOC.ANULADA);
+            }
+            else if (EscenarioOC == TipoOperacion.Cierre)
+            {
+                SetearCambiarEstado(EstadoOC.CERRADA);
             }
         }
 
@@ -321,8 +325,8 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         {
             this.EscenarioOC = TipoOperacion.Eliminacion;
 
-            this.OCEliminar = (int)this.gvListaOC.DataKeys[e.RowIndex].Value;
-            var oc = _ordenCompra.ObtenerOrdenCompra(OCEliminar);
+            this.idOC = (int)this.gvListaOC.DataKeys[e.RowIndex].Value;
+            var oc = _ordenCompra.ObtenerOrdenCompra(idOC);
             if (oc != null && (oc.odc_c_iestado == (int)EstadoOC.ABIERTA || oc.odc_c_iestado == (int)EstadoOC.VENCIDA))
             {
                 this.Mensaje("No se puede eliminar ordenes de compra en estado ABIERTA o VENCIDA.", "~/Imagenes/warning.png");
@@ -330,22 +334,28 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             }
             else
             {
-                this.SetearEliminar();
-                this.ucMensaje2.Show("¿Desea eliminar la Orden de Compra seleccionada?", null,
+                if (oc != null && (oc.odc_c_iestado == (int)EstadoOC.ANULADA))
+                {
+                    this.Mensaje("La orden de compra ya se encuentra ANULADA.", "~/Imagenes/warning.png");
+                    return;
+                }
+
+                this.SetearCambiarEstado(EstadoOC.ANULADA);
+                this.ucMensaje2.Show("¿Desea Anular la Orden de Compra seleccionada?", null,
                                     MensajeIcono.Alerta, MensajeBotones.AceptarCancelar);
             }
 
             ListarOrdenCompra();
         }
 
-        private void SetearEliminar()
+        private void SetearCambiarEstado(EstadoOC estadoOC)
         {
             ResultadoMensajeHandler handler = null;
             handler = delegate(object s, ResMsjArgs e2)
             {
                 if (e2.resultado == MensajeResultado.Aceptar)
                 {
-                    this.DeshabilitarOC(OCEliminar);
+                    this.CambiarEstado(idOC, estadoOC);
                     this.ucMensaje2.ResultadoMensaje -= handler;
                 }
 
@@ -355,7 +365,6 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             this.ucMensaje2.ResultadoMensaje += handler;
 
         }
-
 
         #endregion
 
@@ -386,7 +395,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         /// </summary>
         private void ListarCombosEstado()
         {
-            cboEstado.DataSource = _ordenCompra.ListarEstadosOrdenCompra();
+            cboEstado.DataSource = _ordenCompra.ListarEstadosOrdenCompra().Where(x=> x.odc_estado_iid != (int)(EstadoOC.PLANEADA));
             cboEstado.DataTextField = "odc_estado_vdescripcion";
             cboEstado.DataValueField = "odc_estado_iid";
             cboEstado.DataBind();
@@ -1073,11 +1082,11 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             String RUC = this.gvProveedores.DataKeys[gvProveedores.SelectedIndex].Value.ToString();
             if (EscenarioOC == TipoOperacion.Modificacion)
             {
-                this.OCSeleccionado.odc_c_vdocprov_id = RUC;
+                this.OCSeleccionado.prov_c_vdoc_id = RUC;
             }
             else if (EscenarioOC == TipoOperacion.Creacion)
             {
-                this.OCNuevo.odc_c_vdocprov_id = RUC;
+                this.OCNuevo.prov_c_vdoc_id = RUC;
             }
 
             if (gvProveedores.Rows[gvProveedores.SelectedIndex].Cells[1].Text != null)
@@ -1237,7 +1246,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 Mensaje("Estado de la página no válido.", "~/Imagenes/warning.png");
                 return false;
             }
-            else if (ordenDeCompra.odc_c_vdocprov_id == null || ordenDeCompra.odc_c_vdocprov_id == string.Empty)
+            else if (ordenDeCompra.prov_c_vdoc_id == null || ordenDeCompra.prov_c_vdoc_id == string.Empty)
             {
                 Mensaje("Debe seleccionar un proveedor.", "~/Imagenes/warning.png");
                 return false;
@@ -1303,14 +1312,13 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
         }
 
-        private void DeshabilitarOC(int idOC)
+        private void CambiarEstado(int idOC, EstadoOC estadoOC)
         {
-
             try
             {
-                if (this._ordenCompra.DeshabilitarOrdenCompra(idOC))
+                if (this._ordenCompra.CambiarEstadoOrdenCompra(idOC, estadoOC) >= 1)
                 {
-                    Mensaje("Orden de Compra deshabilitada.", "~/Imagenes/correcto.png");
+                    Mensaje("Orden de Compra " + Enum.GetName(typeof(EstadoOC), estadoOC), "~/Imagenes/correcto.png");
                 }
                 else
                 {
@@ -1498,6 +1506,37 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         protected void lnkDescargar_Click(object sender, EventArgs e)
         {
             DescargarODC();
+        }
+
+        protected void gvListaOC_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Cerrar")
+            {
+                this.EscenarioOC = TipoOperacion.Eliminacion;
+
+                this.idOC = (int)this.gvListaOC.DataKeys[Convert.ToInt32(e.CommandArgument)].Values["odc_c_iid"];
+                var oc = _ordenCompra.ObtenerOrdenCompra(idOC);
+
+                if (oc != null && (oc.odc_c_iestado == (int)EstadoOC.ANULADA | oc.odc_c_iestado == (int)EstadoOC.PLANEADA))
+                {
+                    this.Mensaje("No se puede CERRAR una ordene de compra en estado PLANEADA ó ANULADA", "~/Imagenes/warning.png");
+                    //return;
+                }
+                else
+                {
+                    if (oc != null && (oc.odc_c_iestado == (int)EstadoOC.CERRADA))
+                    {
+                        this.Mensaje("La orden de compra ya se encuentra CERRADA.", "~/Imagenes/warning.png");
+                        return;
+                    }
+
+                    this.SetearCambiarEstado(EstadoOC.CERRADA);
+                    this.ucMensaje2.Show("¿Desea Cerrar la Orden de Compra seleccionada?", null,
+                                        MensajeIcono.Alerta, MensajeBotones.AceptarCancelar);
+                }
+
+                ListarOrdenCompra();
+            }
         }
 
         //protected void PostBackBind_DataBinding(object sender, EventArgs e)

@@ -69,9 +69,9 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         {
             if (!Page.IsPostBack)
             {
+                this.ListarEstados();
                 this.ListarMovimientoEntrada();
                 this.ListarOrdenCompra();
-                this.ListarEstados();
             }
             if (EscenarioMovEn == TipoOperacion.Cierre)
             {
@@ -283,7 +283,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             {
                 ff = fin;
             }
-            this.gvListaMovEn.DataSource = _movEntrada.ObtenerMovimientosEntrada(this.txtFiltroRuc.Text, this.txtFiltroRS.Text, fi, ff);
+            this.gvListaMovEn.DataSource = _movEntrada.ObtenerMovimientosEntrada(this.txtFiltroRuc.Text, this.txtFiltroRS.Text, fi, ff, Convert.ToInt32(cboEstado.SelectedValue));
             //this.gvListaMovEn.DataSource = _movEntrada.ObtenerMovimientosEntrada();
             this.gvListaMovEn.DataBind();
         }
@@ -601,7 +601,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 {
                     if (estadoMovimiento == EstadoMovimiento.CERRADO)
                     {
-                        _ordenCompra.CambiarEstadoOrdenCompra(movEntrada.mve_c_ioc_id, EstadoOC.CERRADA);
+                        _ordenCompra.CambiarEstadoOrdenCompra(movEntrada.odc_c_iid, EstadoOC.CERRADA);
                     }
 
                     Mensaje("Insertado con éxito. <br/>" + ObtMsjEstadoMovimiento() + " <br/> Además, la orden de compra relacionada, ha sido CERRADA"
@@ -663,7 +663,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 {
                     if (estadoMovimiento == EstadoMovimiento.CERRADO)
                     {
-                        _ordenCompra.CambiarEstadoOrdenCompra(movEntrada.mve_c_ioc_id, EstadoOC.CERRADA);
+                        _ordenCompra.CambiarEstadoOrdenCompra(movEntrada.odc_c_iid, EstadoOC.CERRADA);
                     }
                     Mensaje("Modificado con éxito. <br/>" + ObtMsjEstadoMovimiento() + " <br/> Además, la orden de compra relacionada, ha sido CERRADA"
                         , "~/Imagenes/correcto.png");

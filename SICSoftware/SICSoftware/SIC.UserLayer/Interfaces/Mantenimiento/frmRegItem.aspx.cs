@@ -588,8 +588,6 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
         #endregion
 
-
-
         private void Mensaje(string mensaje, string ruta)
         {
             divPopUpMsg.Attributes["Class"] = "PopupMostrar";

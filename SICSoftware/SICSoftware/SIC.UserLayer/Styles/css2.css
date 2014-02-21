@@ -20,6 +20,11 @@
    font-weight:bold;
 }
 
+input#MainContent_chkPercepcion
+{
+   vertical-align:top !important;    
+} 
+
 BODY 
 {
     /*test*/
