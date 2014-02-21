@@ -80,7 +80,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
         protected void lnkGuardarLCN_Click(object sender, EventArgs e)
         {
-            this.GuardarLocalNuevo();
+            this.GuardarDireccionNueva();
         }
 
         protected void btnCancelarLCN_Click(object sender, EventArgs e)
@@ -405,6 +405,58 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             upGeneral.Update();
         }
 
+        private void ListarComboDepartamentoE()
+        {
+            cboDepartamentoE.Items.Clear();
+            cboDepartamentoE.Items.Add(new ListItem("-- Seleccionar --", null));
+            cboDepartamentoE.DataSource = _empresa.ListarDepatamentos();
+            cboDepartamentoE.DataTextField = "depa_c_vnomb";
+            cboDepartamentoE.DataValueField = "depa_c_ccod";
+            cboDepartamentoE.DataBind();
+            upGeneral.Update();
+        }
+
+        private void ListarComboProvinciaE(string codigoDepartamento)
+        {
+            cboProvinciaE.Items.Clear();
+            cboProvinciaE.Items.Add(new ListItem("-- Seleccionar --", null));
+            if (codigoDepartamento != null)
+            {
+                cboProvinciaE.DataSource = _empresa.ListarProvincias(codigoDepartamento);
+                cboProvinciaE.DataTextField = "prov_c_vnomb";
+                cboProvinciaE.DataValueField = "prov_c_ccod";
+                cboProvinciaE.DataBind();
+
+            }
+            ListarComboDistritoE(null);
+        }
+
+
+        private void ListarComboDistritoE(string codigoProvincia)
+        {
+            cboDistritoE.Items.Clear();
+            cboDistritoE.Items.Add(new ListItem("-- Seleccionar --", null));
+            if (codigoProvincia != null)
+            {
+                cboDistritoE.DataSource = _empresa.ListarDistritos(codigoProvincia);
+                cboDistritoE.DataTextField = "dist_c_vnomb";
+                cboDistritoE.DataValueField = "dist_c_ccod_ubig";
+                cboDistritoE.DataBind();
+            }
+            upGeneral.Update();
+        }
+
+        private void ListarTipoDireccionE()
+        {
+            cboTipoDireccionE.Items.Clear();
+            cboTipoDireccionE.Items.Add(new ListItem("-- Seleccionar --", null));
+            cboTipoDireccionE.DataSource = _empresa.ListarTipoDireccion();
+            cboTipoDireccionE.DataTextField = "par_det_c_vdesc";
+            cboTipoDireccionE.DataValueField = "par_det_c_iid";
+            cboTipoDireccionE.DataBind();
+            upGeneral.Update();
+        }
+
         private void Mensaje(string mensaje, string ruta)
         {
             divPopUpMsg.Attributes["Class"] = "PopupMostrar";
@@ -443,64 +495,57 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             this.upGeneral.Update();
         }
 
-        private bool VerificarDatosLocalNuevo()
+        /// <summary>
+        /// Consolida los datos de la dirección en un objeto <c>SIC_T_EMP_DIRECCION</c> 
+        /// e inicia el proceso de guardado.
+        /// </summary>
+        private void GuardarDireccionNueva()
         {
-            int idSeleccionado = -1;
-            if (this.txtDescripcionLCN.Text.Trim().Length <= 0)
-            {
-                Mensaje("Debe ingresar el nombre del local.", "../Imagenes/warning.png");
-                return false;
-            }
-            else if (int.TryParse(this.cboCentroCostoN.SelectedValue, out idSeleccionado) && idSeleccionado == -1)
-            {
-                Mensaje("Debe seleccionar un centro de costo.", "../Imagenes/warning.png");
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-
-
-
-        private void GuardarLocalNuevo()
-        {
-            if (!this.VerificarDatosLocalNuevo())
-            {
-                return;
-            }
-             
             SIC_T_EMP_DIRECCION local = new SIC_T_EMP_DIRECCION();
             local.emp_dir_c_vdireccion = txtDescripcionLCN.Text.Trim();
             local.emp_dir_c_iid_centrocosto = int.Parse(cboCentroCostoN.SelectedValue);
-
-            try
+            local.emp_dir_c_ccod_ubig = cboDistritoN.SelectedValue;
+            int tipoDireccion;
+            if (!int.TryParse(cboTipoDireccionN.SelectedValue, out tipoDireccion))
             {
-                this._empresa.IngresarDireccion(local);
-                Mensaje("Ingresado con éxito", "../Imagenes/correcto.png");
-                this.mvCliente.SetActiveView(vwEmpresa);
-                this.ListarLocal();
-                this.upGeneral.Update();
+                tipoDireccion = -1;
             }
-            catch (Exception ex)
-            {
-#if DEBUG
-                String mensajeError = "Error Fatal : \n" + ex.Message;
-                if (ex.InnerException != null)
-                {
-                    mensajeError += "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty;
-                }
 
-                Mensaje(mensajeError, "../Imagenes/warning.png");
-#else
-                Mensaje("Error en el proceso.", "../Imagenes/warning.png");
-#endif
+            local.emp_dir_c_itipodirec = tipoDireccion;            
+            local.emp_dir_c_vtipodirec = cboTipoDireccionN.SelectedItem.Text;
+            var resultado = _empresa.ValidarDireccionEmpresa(local);
+            if (!resultado.EsValido)
+            {
+                Mensaje(resultado.Mensaje, "../Imagenes/correcto.png");
+            }
+            else
+            {
+                try
+                {
+                    this._empresa.IngresarDireccion(local);
+                    Mensaje("Ingresado con éxito", "../Imagenes/correcto.png");
+                    this.mvCliente.SetActiveView(vwEmpresa);
+                    this.ListarLocal();
+                    this.upGeneral.Update();
+                }
+                catch (Exception ex)
+                {
+    #if DEBUG
+                    String mensajeError = "Error Fatal : \n" + ex.Message;
+                    if (ex.InnerException != null)
+                    {
+                        mensajeError += "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty;
+                    }
+
+                    Mensaje(mensajeError, "../Imagenes/warning.png");
+    #else
+                    Mensaje("Error en el proceso.", "../Imagenes/warning.png");
+    #endif
+                }
             }
         }
 
         #endregion
-
 
         #region Modificar Local
 
@@ -515,10 +560,38 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 return;
             }
 
+            this.ListarComboDepartamentoE();
+            var seleccion = cboDepartamentoE.Items.FindByValue(local.emp_dir_c_ccod_ubig.Substring(0, 2));
+            if (seleccion != null)
+            {
+                seleccion.Selected = true;
+            }
+
+            this.ListarComboProvinciaE(cboDepartamentoE.SelectedValue);
+            seleccion = cboProvinciaE.Items.FindByValue(local.emp_dir_c_ccod_ubig.Substring(0, 4));
+            if (seleccion != null)
+            {
+                seleccion.Selected = true;
+            }
+
+            this.ListarComboDistritoE(cboProvinciaE.SelectedValue);
+            seleccion = cboDistritoE.Items.FindByValue(local.emp_dir_c_ccod_ubig);
+            if (seleccion != null)
+            {
+                seleccion.Selected = true;
+            }
+
+            this.ListarTipoDireccionE();
+            seleccion = cboTipoDireccionE.Items.FindByText(local.emp_dir_c_vtipodirec);
+            if(seleccion != null)
+            {
+                seleccion.Selected = true;
+            }
+
             this.LocalModificar = local;
             this.txtDescripcionLCE.Text = local.emp_dir_c_vdireccion;
             this.cboCentroCostoE.ClearSelection();
-            var seleccion = cboCentroCostoE.Items.FindByValue(local.emp_dir_c_iid_centrocosto.ToString());
+             seleccion = cboCentroCostoE.Items.FindByValue(local.emp_dir_c_iid_centrocosto.ToString());
             if (seleccion != null)
             {
                 seleccion.Selected = true;
@@ -556,35 +629,51 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
         private void ActualizarLocal()
         {
-            if (!this.VerificarDatosLocalModificar())
-            {
-                return;
-            }
+            //if (!this.VerificarDatosLocalModificar())
+            //{
+            //    return;
+            //}
 
             this.LocalModificar.emp_dir_c_vdireccion = txtDescripcionLCE.Text.Trim();
             this.LocalModificar.emp_dir_c_iid_centrocosto = int.Parse(cboCentroCostoE.SelectedValue);
-
-            try
+            this.LocalModificar.emp_dir_c_ccod_ubig = cboDistritoE.SelectedValue;
+            int tipoDireccion;
+            if (!int.TryParse(cboTipoDireccionE.SelectedValue, out tipoDireccion))
             {
-                this._empresa.ModificarDireccion(this.LocalModificar);
-                Mensaje("Modificado con éxito", "../Imagenes/correcto.png");
-                this.mvCliente.SetActiveView(vwEmpresa);
-                this.ListarLocal();
-                this.upGeneral.Update();
+                tipoDireccion = -1;
             }
-            catch (Exception ex)
-            {
-#if DEBUG
-                String mensajeError = "Error Fatal : \n" + ex.Message;
-                if (ex.InnerException != null)
-                {
-                    mensajeError += "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty;
-                }
 
-                Mensaje(mensajeError, "../Imagenes/warning.png");
+            this.LocalModificar.emp_dir_c_itipodirec = tipoDireccion;
+            this.LocalModificar.emp_dir_c_vtipodirec = cboTipoDireccionE.SelectedItem.Text;
+            var resultado = _empresa.ValidarDireccionEmpresa(this.LocalModificar);
+            if (!resultado.EsValido)
+            {
+                Mensaje(resultado.Mensaje, "../Imagenes/correcto.png");
+            }
+            else
+            {
+                try
+                {
+                    this._empresa.ModificarDireccion(this.LocalModificar);
+                    Mensaje("Modificado con éxito", "../Imagenes/correcto.png");
+                    this.mvCliente.SetActiveView(vwEmpresa);
+                    this.ListarLocal();
+                    this.upGeneral.Update();
+                }
+                catch (Exception ex)
+                {
+#if DEBUG
+                    String mensajeError = "Error Fatal : \n" + ex.Message;
+                    if (ex.InnerException != null)
+                    {
+                        mensajeError += "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty;
+                    }
+
+                    Mensaje(mensajeError, "../Imagenes/warning.png");
 #else
-                Mensaje("Error en el proceso.", "../Imagenes/warning.png");
+                    Mensaje("Error en el proceso.", "../Imagenes/warning.png");
 #endif
+                }
             }
         }
 
@@ -598,18 +687,15 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
         #endregion
 
+        protected void cboDepartamentoE_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ListarComboProvinciaE(cboDepartamentoE.SelectedValue);
+        }
 
-  
-
-
-
-
-
-
-
-
-
-
-
+        protected void cboProvinciaE_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ListarComboDistritoE(cboProvinciaE.SelectedValue);
+        }
+        
     }
 }
