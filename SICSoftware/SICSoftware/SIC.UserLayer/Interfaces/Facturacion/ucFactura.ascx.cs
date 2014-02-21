@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SIC.EntityLayer;
+using SIC.BusinessLayer;
 
 namespace SIC.UserLayer.Interfaces.Facturacion
 {
@@ -13,7 +14,10 @@ namespace SIC.UserLayer.Interfaces.Facturacion
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            EmpresaBL empresaBL = new EmpresaBL();
+            SIC_T_EMPRESA empresa = empresaBL.ObtenerDatosEmpresa();
+            lblRucProp.Text = empresa.emp_c_vruc;
+            lblFactura.Text = "???-????????";
         }
 
         public void MostrarFactura(SIC_T_FACTURA factura)
@@ -22,6 +26,9 @@ namespace SIC.UserLayer.Interfaces.Facturacion
             lblSubTotal.Text = factura.fac_c_esubtotal.ToString();
             lblIGV.Text = factura.fac_c_eigvcal.ToString();
             lblTotal.Text = factura.fac_c_etotal.ToString();
+            lblCliente.Text = factura.SIC_T_VENTA.SIC_T_CLIENTE.cli_c_vraz_soc;
+            lblRuc.Text = factura.SIC_T_VENTA.SIC_T_CLIENTE.cli_c_vdoc_id;
+            //lblDireccion.Text = factura.SIC_T_VENTA.SIC_T_CLIENTE.cli_c_vraz_soc;
             GridView1.DataSource = factura.SIC_T_FACTURA_DETALLE.ToList();
             GridView1.DataBind();            
         }
