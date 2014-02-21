@@ -1,6 +1,17 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ucFactura.ascx.cs" Inherits="SIC.UserLayer.Interfaces.Facturacion.ucFactura" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxtoolkit" %>
    
+<style type="text/css">
+    .style1
+    {
+        width: 10px;
+    }
+    .style2
+    {
+        width: 32px;
+    }
+</style>
+   
 <asp:Button ID="btnShowPopup" runat="server" Style="display: none" />
 
 <asp:Panel ID="Mipanel1" runat="server"  Width="531px">
@@ -21,23 +32,23 @@
                         <asp:Image ID="imgLogo" runat="server" Height="47px" Width="136px" CssClass="imagen" />
                     </td>
                   
-                    <td></td>                    
-                    <td style= "width:32px"></td>
-                    <td colspan = "2" style= "width: 61px">
+                    <td class="style1"></td>                    
+                    <td class="style2"></td>
+                    <td colspan = "2" style= "width: 61px" align="right">
                         <table style="border: 2px solid #001E3C; width:150px">
                             <tr>
-                                <td>
-                                    <asp:Label ID="lblRucProp" runat="server" Text=""></asp:Label>
+                                <td align="center">
+                                    <asp:Label ID="lblRucProp" runat="server" Text="test"></asp:Label>
                                 </td>
                             </tr>
                             <tr bgcolor="#001E3C">
-                                <td>
-                                    <asp:Label ID="lblTipoDoc" runat="server" Font-Bold="True" ForeColor="White"></asp:Label>
+                                <td align="center">
+                                    <asp:Label ID="lblTipoDoc" runat="server" Font-Bold="True" ForeColor="White">FACTURA</asp:Label>
                                 </td>
                             </tr>
                             <tr>
-                                <td>
-                                    <asp:Label ID="lblFactura" runat="server" Text=""></asp:Label>
+                                <td align="center">
+                                    <asp:Label ID="lblFactura" runat="server" Text="0022"></asp:Label>
                                 </td>
                             </tr>
                         </table>
@@ -54,54 +65,44 @@
                     <td style= "width: 229px">
                         <asp:Label ID="lblFecha" runat="server" Text=""></asp:Label>
                     </td>
-                    <td ></td>                    
-                    <td></td>
+                    <td class="style1" ></td>                    
+                    <td class="style2"></td>
                     <td></td>
                     <td></td>
                 </tr>
                 <tr align= "left">
                     <td>
-                        <asp:Label ID="Label3" runat="server" Text="Cliente"></asp:Label>
+                        <asp:Label ID="Label3" runat="server" Text="Señor(es)"></asp:Label>
                     </td>
-                    <td>
+                    <td colspan="3">
                         <asp:Label ID="lblCliente" runat="server" Text=""></asp:Label>
                     </td>
-                    <td ></td>                    
-                    <td ></td>
                     <td></td>
                     <td></td>
                 </tr>
                 <tr align= "left">
                     <td>
-                        <asp:Label ID="Label4" runat="server" Text="R.U.C / D.N.I"></asp:Label>
+                        <asp:Label ID="Label4" runat="server" Text="R.U.C."></asp:Label>
                     </td>
-                    <td>
+                    <td colspan="3">
                         <asp:Label ID="lblRuc" runat="server" Text=""></asp:Label>
                     </td>
-                    <td ></td>                    
-                    <td ></td>
                     <td>
-                        <asp:Label ID="Label9" runat="server" Text="Inmueble"></asp:Label>
-                    </td>
+                        &nbsp;</td>
                     <td>
-                        <asp:Label ID="lblInmueble" runat="server" Text=""></asp:Label>
-                    </td>
+                        &nbsp;</td>
                 </tr>
                 <tr align= "left">
                     <td>
-                        <asp:Label ID="Label5" runat="server" Text="Domicilio"></asp:Label>
+                        <asp:Label ID="Label5" runat="server" Text="Dirección"></asp:Label>
+                    </td>
+                    <td colspan="3">
+                        <asp:Label ID="lblDireccion" runat="server"></asp:Label>
                     </td>
                     <td>
-                        <asp:Label ID="lblDomicilio" runat="server" Text=""></asp:Label>
-                    </td>
-                    <td style= "width:28px"></td>                    
-                    <td ></td>
+                        &nbsp;</td>
                     <td>
-                        <asp:Label ID="Label8" runat="server" Text="Local"></asp:Label>
-                    </td>
-                    <td>
-                        <asp:Label ID="lblLocal" runat="server" Text=""></asp:Label>
-                    </td>
+                        &nbsp;</td>
                 </tr>
                 <tr align="left">
                     <td class="style1" colspan="6">
@@ -174,13 +175,6 @@
             
             </table>              
 
-        </td>
-    </tr>
-    <tr>
-        <td align= "right">
-            <asp:Button ID="btnCancelar" runat="server" Text="Aceptar" BorderColor="#001E3C" 
-                    BackColor= "#003D79" Font-Size="XX-Small" ForeColor="White" 
-                />
         </td>
     </tr>
     </table>

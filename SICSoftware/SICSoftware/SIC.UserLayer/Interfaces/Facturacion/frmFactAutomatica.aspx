@@ -26,7 +26,53 @@
     <asp:UpdatePanel ID="upGeneral" UpdateMode="Conditional" ChildrenAsTriggers="False"
         runat="server">
         <ContentTemplate>
-            <script type="text/javascript" src="<%= ResolveUrl ("~/Scripts/numeric_input.js") %>"></script>  
+
+            <script type = "text/javascript">
+                function Check_Click(objRef) {
+                    //Get the Row based on checkbox
+                    var row = objRef.parentNode.parentNode;
+
+                    //Get the reference of GridView
+                    var GridView = row.parentNode;
+
+                    //Get all input elements in Gridview
+                    var inputList = GridView.getElementsByTagName("input");
+
+                    for (var i = 0; i < inputList.length; i++) {
+                        //The First element is the Header Checkbox
+                        var headerCheckBox = inputList[0];
+
+                        //Based on all or none checkboxes
+                        //are checked check/uncheck Header Checkbox
+                        var checked = true;
+                        if (inputList[i].type == "checkbox" && inputList[i] != headerCheckBox) {
+                            if (!inputList[i].checked) {
+                                checked = false;
+                                break;
+                            }
+                        }
+                    }
+                    headerCheckBox.checked = checked;
+                }
+
+                function checkAll(objRef) {
+                    var GridView = objRef.parentNode.parentNode.parentNode;
+                    var inputList = GridView.getElementsByTagName("input");
+                    for (var i = 0; i < inputList.length; i++) {
+                        //Get the Cell To find out ColumnIndex
+                        var row = inputList[i].parentNode.parentNode;
+                        if (inputList[i].type == "checkbox" && objRef != inputList[i]) {
+                            if (objRef.checked) {
+                                inputList[i].checked = true;
+                            }
+                            else {
+
+                                inputList[i].checked = false;
+                            }
+                        }
+                    }
+                }
+        </script>
             <asp:MultiView ID="mvFacturacionAutomatica" runat="server" ActiveViewIndex="0">
                 <asp:View ID="vwMain" runat="server">
                     <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
@@ -84,6 +130,8 @@
                                                                                         <td align="center">
                                                                                             <asp:Button ID="btnBuscar" runat="server" CssClass="button small gris" 
                                                                                                 onclick="btnBuscar_Click" Style="width: 100px" Text="Buscar" />
+                                                                                            <asp:Button ID="btnRegistrar" runat="server" CssClass="button small gris" 
+                                                                                                onclick="btnRegistrar_Click" Style="width: 100px" Text="Registrar" />
                                                                                         </td>
                                                                                         <td align="center">
                                                                                             &nbsp;</td>
@@ -108,6 +156,14 @@
                                                             onselectedindexchanged="gvListaVenta_SelectedIndexChanged">
                                                             <AlternatingRowStyle CssClass="alt" />
                                                             <Columns>
+                                                                <asp:TemplateField HeaderText="SELECCIONAR">
+                                                                    <HeaderTemplate>
+                                                                        <asp:CheckBox ID="chkAll" runat="server" onclick="javascript:checkAll(this);"/>
+                                                                    </HeaderTemplate>
+                                                                    <ItemTemplate>
+                                                                        <asp:CheckBox ID="chkSelect" runat="server" onclick="javascript:Check_Click(this);"/>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
                                                                 <asp:TemplateField HeaderText="RUC CLIENTE">
                                                                     <ItemTemplate>
                                                                         <%# Eval("SIC_T_CLIENTE.cli_c_vdoc_id")%>

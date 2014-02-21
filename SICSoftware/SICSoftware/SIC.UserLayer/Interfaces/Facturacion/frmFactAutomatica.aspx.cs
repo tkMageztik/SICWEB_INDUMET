@@ -58,8 +58,14 @@ namespace SIC.UserLayer.Interfaces.Facturacion
 
         protected void btnCancelarCCE_Click(object sender, EventArgs e)
         {
-            RegresarDesdePreliminarFactura();
+            this.RegresarDesdePreliminarFactura();
         }
+
+        protected void btnRegistrar_Click(object sender, EventArgs e)
+        {
+            this.RegistrarVentasSeleccionadas();
+        }
+
 
         #endregion
 
@@ -131,6 +137,20 @@ namespace SIC.UserLayer.Interfaces.Facturacion
             upGeneral.Update();
         }
 
-  
+        private void RegistrarVentasSeleccionadas()
+        {
+            List<int> listaIdVenta = new List<int>();
+            foreach (GridViewRow row in gvListaVenta.Rows)
+            {
+                CheckBox chk = (CheckBox)row.FindControl("chkSelect");
+                if (chk.Checked)
+                {
+                    int idVenta = int.Parse(gvListaVenta.DataKeys[row.RowIndex].Value.ToString());
+                    listaIdVenta.Add(idVenta);
+                }
+            }
+
+            this.facturacionAutomaticaBL.GenerarDocumentosVenta(listaIdVenta);
+        }
     }
 }

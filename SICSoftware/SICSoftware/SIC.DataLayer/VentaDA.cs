@@ -109,7 +109,7 @@ namespace SIC.DataLayer
             {
                 throw;
             }
-        }
+        }       
 
         /// <summary>
         /// Inserta la orden de compra.
