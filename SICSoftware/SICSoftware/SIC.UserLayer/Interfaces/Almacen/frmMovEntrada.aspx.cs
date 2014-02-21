@@ -605,7 +605,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                     }
 
                     Mensaje("Insertado con éxito. <br/>" + ObtMsjEstadoMovimiento() + " <br/> Además, la orden de compra relacionada, ha sido CERRADA"
-                        , "../Imagenes/correcto.png");
+                        , "~/Imagenes/correcto.png");
                     RegresarDesdeNuevoModificar();
                 }
                 else
@@ -666,7 +666,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                         _ordenCompra.CambiarEstadoOrdenCompra(movEntrada.mve_c_ioc_id, EstadoOC.CERRADA);
                     }
                     Mensaje("Modificado con éxito. <br/>" + ObtMsjEstadoMovimiento() + " <br/> Además, la orden de compra relacionada, ha sido CERRADA"
-                        , "../Imagenes/correcto.png");
+                        , "~/Imagenes/correcto.png");
                     RegresarDesdeNuevoModificar();
                 }
                 else
@@ -899,7 +899,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         {
             _movEntrada.CambiarEstadoMovimientoEntrada(Convert.ToInt32(gvListaMovEn.DataKeys[MovSeleccionado]
                 .Values["mve_c_iid"]), EstadoMovimiento.CERRADO);
-            Mensaje("Movimiento Cerrado.", "../Imagenes/correcto.png");
+            Mensaje("Movimiento Cerrado.", "~/Imagenes/correcto.png");
 
             this.ListarMovimientoEntrada();
             upGeneral.Update();
@@ -909,7 +909,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         {
             _movEntrada.CambiarEstadoMovimientoEntrada(Convert.ToInt32(gvListaMovEn.DataKeys[MovSeleccionado]
                 .Values["mve_c_iid"]), EstadoMovimiento.ANULADO);
-            Mensaje("Movimiento Anulado.", "../Imagenes/correcto.png");
+            Mensaje("Movimiento Anulado.", "~/Imagenes/correcto.png");
 
             this.ListarMovimientoEntrada();
             upGeneral.Update();

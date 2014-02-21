@@ -143,7 +143,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                         SIC_T_NOMB_COM _nomCom = _cliente.BuscarNombreComercial(((TextBox)gvNombresComerciales.Rows[i].FindControl("txtNombreComercial")).Text.Trim().ToUpper());
                         if (!_cliente.CrearRelacion(txtNroRuc.Text.Trim().ToUpper(), _nomCom.nomb_com_c_iid))
                         {
-                            Mensaje("No se pudo registrar la relación de Nombres Comerciales", "../Imagenes/warning.png");
+                            Mensaje("No se pudo registrar la relación de Nombres Comerciales", "~/Imagenes/warning.png");
                         }
                     }
                 }
@@ -185,7 +185,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                     _fila.cli_c_vdoc_id = txtNroRuc.Text.Trim();
                     if (!_cliente.RegistrarContacto(_fila))
                     {
-                        Mensaje("No se pudieron registrar los contactos", "../Imagenes/warning.png");
+                        Mensaje("No se pudieron registrar los contactos", "~/Imagenes/warning.png");
                     }
                 }
             }
@@ -385,13 +385,13 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
             if (_cliente.ModificarCliente(_clienteNod))
             {
-                Mensaje("Cliente modificado con éxito", "../Imagenes/correcto.png");
+                Mensaje("Cliente modificado con éxito", "~/Imagenes/correcto.png");
             }
             else
             {
                 /*ELIMINAMOS SI AL MODIFICAR CLIENTE SE GENERÓ UN ERROR.*/
                 _cliente.RegistrarClienteRazonSocialHistorico(Convert.ToInt16(TipoOperacion.Eliminacion).ToString(), _rsHistorico);
-                Mensaje("El cliente no se pudo modificar", "../Imagenes/warning.png");
+                Mensaje("El cliente no se pudo modificar", "~/Imagenes/warning.png");
             }
 
         }
@@ -512,18 +512,18 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
                 if (_cliente.InsertarCliente(_clienteNuevo))
                 {
-                    Mensaje("Cliente registrado con éxito", "../Imagenes/correcto.png");
+                    Mensaje("Cliente registrado con éxito", "~/Imagenes/correcto.png");
                 }
                 else
                 {
                     _cliente.RegistrarClienteRazonSocialHistorico(Convert.ToInt16(TipoOperacion.Eliminacion).ToString(), _rsHistorico);
-                    Mensaje("No se pudo registrar el cliente", "../Imagenes/warning.png");
+                    Mensaje("No se pudo registrar el cliente", "~/Imagenes/warning.png");
                 }
             }
             else
             {
                 //mostramos un mensaje de que existe
-                Mensaje("El RUC ya existe", "../Imagenes/warning.png");
+                Mensaje("El RUC ya existe", "~/Imagenes/warning.png");
                 mvCliente.ActiveViewIndex = 1;
             }
         }
@@ -542,7 +542,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 _cliDireccion.cli_direc_c_bactivo = true;
                 if (!_cliente.RegistrarDireccion(_cliDireccion))
                 {
-                    Mensaje("No se pudo modificar la dirección", "../Imagenes/warning.png");
+                    Mensaje("No se pudo modificar la dirección", "~/Imagenes/warning.png");
                 }
             }
         }
@@ -1021,7 +1021,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 if (cont01 < 1 && cont02 < 1)
                 {
                     ShowMessage = "Debe Registrar un Contacto con Cargo Representante legal o Gerente General";
-                    Mensaje(ShowMessage, "../Imagenes/warning.png");
+                    Mensaje(ShowMessage, "~/Imagenes/warning.png");
                     upMensaje.Update();
                     _flag = false;
                 }
@@ -1035,14 +1035,14 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                         if (cont01 == 1 && cont02 == 0)
                         {
                             ShowMessage = "Debe Tener Registrado un Contacto con Cargo Representante legal o Gerente General";
-                            Mensaje(ShowMessage, "../Imagenes/warning.png");
+                            Mensaje(ShowMessage, "~/Imagenes/warning.png");
                             upMensaje.Update();
                             _flag = false;
                         }
                         if (cont01 == 0 && cont02 == 1)
                         {
                             ShowMessage = "Debe Tener Registrado un Contacto con Cargo Representante legal o Gerente General";
-                            Mensaje(ShowMessage, "../Imagenes/warning.png");
+                            Mensaje(ShowMessage, "~/Imagenes/warning.png");
                             upMensaje.Update();
                             _flag = false;
                         }
@@ -1108,7 +1108,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             }
             else
             {
-                Mensaje(ShowMessage, "../Imagenes/warning.png");
+                Mensaje(ShowMessage, "~/Imagenes/warning.png");
                 mvCliente.ActiveViewIndex = 1;
             }
         }
@@ -1149,7 +1149,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                     _cliDireccion.cli_direc_c_bactivo = true;
                     if (!_cliente.RegistrarDireccion(_cliDireccion))
                     {
-                        Mensaje("No se pudo modificar la dirección", "../Imagenes/warning.png");
+                        Mensaje("No se pudo modificar la dirección", "~/Imagenes/warning.png");
                     }
                 }
 
@@ -1182,7 +1182,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
             //        if (!_cliente.RegistrarDireccion(_fila))
             //        {
-            //            Mensaje("No se pudo registrar la dirección", "../Imagenes/warning.png");
+            //            Mensaje("No se pudo registrar la dirección", "~/Imagenes/warning.png");
             //        }
             //    }
             //else
@@ -1190,7 +1190,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             //    //_fila.zona_rep_c_yid = Convert.ToByte(cboZonaReparto.SelectedValue);
             //    if (!_cliente.ModificarDireccion(_fila))
             //    {
-            //        Mensaje("No se pudo modificar la dirección", "../Imagenes/warning.png");
+            //        Mensaje("No se pudo modificar la dirección", "~/Imagenes/warning.png");
             //    }
             //}
 
@@ -1200,7 +1200,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             //    _fila.cli_direc_c_bactivo = false;
             //    if (!_cliente.ModificarDireccion(_fila))
             //    {
-            //        Mensaje("No se pudo eliminar la dirección", "../Imagenes/warning.png");
+            //        Mensaje("No se pudo eliminar la dirección", "~/Imagenes/warning.png");
             //    }
             //}
 
@@ -1213,7 +1213,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 {
                     if (!_cliente.ModificarContacto(_fila))
                     {
-                        Mensaje("No se pudo modificar los contactos", "../Imagenes/warning.png");
+                        Mensaje("No se pudo modificar los contactos", "~/Imagenes/warning.png");
                     }
                 }
 
@@ -1688,13 +1688,13 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 SIC_T_CLIENTE _tCliente = _cliente.BuscarCliente(Server.HtmlDecode(gvLista.Rows[e.RowIndex].Cells[1].Text));
                 _tCliente.cli_c_bactivo = false;
                 _cliente.DeshabilitarCliente(_tCliente);
-                Mensaje("Cliente Eliminado con éxito", "../Imagenes/correcto.png");
+                Mensaje("Cliente Eliminado con éxito", "~/Imagenes/correcto.png");
                 ListarClientes();
             }
 
             catch (Exception exc)
             {
-                Mensaje(exc.InnerException.Message, "../Imagenes/warning.png");
+                Mensaje(exc.InnerException.Message, "~/Imagenes/warning.png");
             }
 
         }
@@ -1977,7 +1977,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 case "remover":
                     if (verificarExistenciaArchivos(oNomComer))
                     {
-                        Mensaje("El directorio no está vació, por favor eliminar todo su contenido", "../Imagenes/warning.png");
+                        Mensaje("El directorio no está vació, por favor eliminar todo su contenido", "~/Imagenes/warning.png");
                         upMensaje.Update();
                     }
                     else

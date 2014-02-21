@@ -321,7 +321,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             }
             else
             {
-                Mensaje("Debe ingresar un número entero válido mayor a 0.", "../Imagenes/warning.png");
+                Mensaje("Debe ingresar un número entero válido mayor a 0.", "~/Imagenes/warning.png");
                 return;
             }
         }
@@ -343,7 +343,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             var venta = _venta.ObtenerVenta(VentaEliminar);
 
             if(venta!=null && (venta.ven_c_iestado != 1)){
-                this.Mensaje("Solo se puede eliminar ordenes de compra en estado POR REGULARIZAR.", "../Imagenes/warning.png");
+                this.Mensaje("Solo se puede eliminar ordenes de compra en estado POR REGULARIZAR.", "~/Imagenes/warning.png");
                 return;
             }
             this.SetearEliminar();
@@ -592,7 +592,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
 
             if (this.VentaSeleccionado.ven_c_iestado == (int)EstadoVenta.ANULADO || this.VentaSeleccionado.ven_c_iestado == (int)EstadoVenta.FACTURADO)
             {
-                Mensaje("Solo se puede editar Ventas de compra en estado planeado.", "../Imagenes/warning.png");
+                Mensaje("Solo se puede editar Ventas de compra en estado planeado.", "~/Imagenes/warning.png");
                 upGeneral.Update();
                 this.VentaSeleccionado = null;
                 return;
@@ -716,7 +716,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             }
             else
             {
-                Mensaje("Operación no permitida.", "../Imagenes/warning.png");
+                Mensaje("Operación no permitida.", "~/Imagenes/warning.png");
             }
         }
 
@@ -956,7 +956,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             {
                 if (_venta.InsertarVenta(this.VentaNuevo))
                 {
-                    Mensaje("Venta registrada con éxito", "../Imagenes/correcto.png");
+                    Mensaje("Venta registrada con éxito", "~/Imagenes/correcto.png");
                     this.Limpiar();
                     this.ListarVentas();
                     mvOC.ActiveViewIndex = 0;
@@ -964,7 +964,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 }
                 else
                 {
-                    Mensaje("Error al realizar el proceso.", "../Imagenes/warning.png");
+                    Mensaje("Error al realizar el proceso.", "~/Imagenes/warning.png");
                 }
             }
             catch (Exception ex)
@@ -976,9 +976,9 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                     mensajeError += "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty;
                 }
 
-                Mensaje(mensajeError, "../Imagenes/warning.png");
+                Mensaje(mensajeError, "~/Imagenes/warning.png");
 #else
-                    Mensaje("Error en el proceso.", "../Imagenes/warning.png");
+                    Mensaje("Error en el proceso.", "~/Imagenes/warning.png");
 #endif
             }
         }
@@ -1003,7 +1003,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             {
                 if (_venta.ModificarVenta(this.VentaSeleccionado))
                 {
-                    Mensaje("Venta modificada con éxito", "../Imagenes/correcto.png");
+                    Mensaje("Venta modificada con éxito", "~/Imagenes/correcto.png");
                     this.Limpiar();
                     this.ListarVentas();
                     mvOC.ActiveViewIndex = 0;
@@ -1011,7 +1011,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 }
                 else
                 {
-                    Mensaje("Error al realizar el proceso.", "../Imagenes/warning.png");
+                    Mensaje("Error al realizar el proceso.", "~/Imagenes/warning.png");
                 }
             }
             catch (Exception ex)
@@ -1023,9 +1023,9 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                     mensajeError += "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty;
                 }
 
-                Mensaje(mensajeError, "../Imagenes/warning.png");
+                Mensaje(mensajeError, "~/Imagenes/warning.png");
 #else
-                    Mensaje("Error en el proceso.", "../Imagenes/warning.png");
+                    Mensaje("Error en el proceso.", "~/Imagenes/warning.png");
 #endif
             }
             upGeneral.Update();
@@ -1053,33 +1053,33 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         {
             if (venta == null)
             {
-                Mensaje("Estado de la página no válido.", "../Imagenes/warning.png");
+                Mensaje("Estado de la página no válido.", "~/Imagenes/warning.png");
                 return false;
             }
             else if (venta.ven_c_vdoccli_id == null || venta.ven_c_vdoccli_id == string.Empty)
             {
-                Mensaje("Debe seleccionar un cliente.", "../Imagenes/warning.png");
+                Mensaje("Debe seleccionar un cliente.", "~/Imagenes/warning.png");
                 return false;
             }
             else if (cboTipoDocumento.SelectedIndex == -1)
             {
-                Mensaje("Debe seleccionar un tipo documento.", "../Imagenes/warning.png");
+                Mensaje("Debe seleccionar un tipo documento.", "~/Imagenes/warning.png");
                 return false;
             }
             else if (cboMoneda.SelectedIndex == -1)
             {
-                Mensaje("Debe seleccionar un tipo de Moneda.", "../Imagenes/warning.png");
+                Mensaje("Debe seleccionar un tipo de Moneda.", "~/Imagenes/warning.png");
                 return false;
             }
             else if (cboEstado.SelectedIndex == -1)
             {
-                Mensaje("Debe seleccionar un Estado.", "../Imagenes/warning.png");
+                Mensaje("Debe seleccionar un Estado.", "~/Imagenes/warning.png");
                 return false;
             }
             else if (venta.SIC_T_VENTA_DETALLE == null
                 || venta.SIC_T_VENTA_DETALLE.Count == 0)
             {
-                Mensaje("Debe seleccionar al menos un item.", "../Imagenes/warning.png");
+                Mensaje("Debe seleccionar al menos un item.", "~/Imagenes/warning.png");
                 return false;
             }
             else
@@ -1094,11 +1094,11 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             {
                 if (this._venta.DeshabilitarVenta(idVenta))
                 {
-                    Mensaje("Venta anulada.", "../Imagenes/correcto.png");
+                    Mensaje("Venta anulada.", "~/Imagenes/correcto.png");
                 }
                 else
                 {
-                    Mensaje("Error al realizar el proceso.", "../Imagenes/warning.png");
+                    Mensaje("Error al realizar el proceso.", "~/Imagenes/warning.png");
                 }
             }
             catch (Exception ex)
@@ -1110,9 +1110,9 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                     mensajeError += "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty;
                 }
 
-                Mensaje(mensajeError, "../Imagenes/warning.png");
+                Mensaje(mensajeError, "~/Imagenes/warning.png");
 #else
-                    Mensaje("Error en el proceso.", "../Imagenes/warning.png");
+                    Mensaje("Error en el proceso.", "~/Imagenes/warning.png");
 #endif
             }
 

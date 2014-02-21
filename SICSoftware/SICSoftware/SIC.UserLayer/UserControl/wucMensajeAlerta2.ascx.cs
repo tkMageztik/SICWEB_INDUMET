@@ -12,9 +12,9 @@ namespace SIC.UserLayer.UserControl
 
     public partial class wucMensajeAlerta2 : System.Web.UI.UserControl
     {
-        //private const String RUTA_WARNING = "../Imagenes/warning.png";
+        //private const String RUTA_WARNING = "~/Imagenes/warning.png";
         private const String RUTA_WARNING = "~/Imagenes/warning.png";
-        //private const String RUTA_CORRECTO = "../Imagenes/correcto.png";
+        //private const String RUTA_CORRECTO = "~/Imagenes/correcto.png";
         private const String RUTA_CORRECTO = "~/Imagenes/correcto.png";
 
         private const String BOTON_ACEPTAR = "Aceptar";

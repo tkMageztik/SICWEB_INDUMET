@@ -49,7 +49,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         }
 
         protected void Page_Load(object sender, EventArgs e)
-        {            
+        {
             if (!IsPostBack)
             {
                 this.ListarItems();
@@ -75,7 +75,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             }
             catch (InvalidCastException icEx)
             {
-                Mensaje("Error de proceso.", "../Imagenes/warning.png");
+                Mensaje("Error de proceso.", "~/Imagenes/warning.png");
                 Console.Write(icEx.Message);
             }
         }
@@ -101,7 +101,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         {
             this.NuevoItem();
         }
-        
+
         protected void gvListaItem_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             this.EscenarioItem = TipoOperacion.Eliminacion;
@@ -126,13 +126,13 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             };
 
             this.ucMensaje2.ResultadoMensaje += handler;
-            
+
         }
 
         protected void gvListaItem_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvListaItem.PageIndex = e.NewPageIndex;
-            this.ListarItems();            
+            this.ListarItems();
         }
 
         #endregion
@@ -154,7 +154,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             {
                 idFamilia = id;
             }
-            
+
             gvListaItem.DataSource = _item.ListarItems(txtFiltroCodigo.Text.Trim(), txtFiltroDescr.Text.Trim(), idFamilia, idSubFamilia);
             gvListaItem.DataBind();
             upGeneral.Update();
@@ -333,16 +333,16 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             {
                 if (_item.DeshabilitarItem(itemId))
                 {
-                    Mensaje("Item eliminado.", "../Imagenes/correcto.png");
+                    Mensaje("Item eliminado.", "~/Imagenes/correcto.png");
                 }
                 else
                 {
-                    Mensaje("No se puede eliminar un item en uso.", "../Imagenes/warning.png");
+                    Mensaje("No se puede eliminar un item en uso.", "~/Imagenes/warning.png");
                 }
             }
             catch (Exception ex)
             {
-                Mensaje("Error al realizar el proceso .", "../Imagenes/warning.png");
+                Mensaje("Error al realizar el proceso .", "~/Imagenes/warning.png");
             }
 
             this.ListarItems();
@@ -360,7 +360,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             // Comprobamos que el item exista (debido a que pudo ser deshabilitado por otra persona)
             if (this.ItemSeleccionado == null)
             {
-                Mensaje("Item no encontrado.", "../Imagenes/warning.png");
+                Mensaje("Item no encontrado.", "~/Imagenes/warning.png");
             }
             else
             {
@@ -371,7 +371,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 this.txtCodigo.Text = ItemSeleccionado.itm_c_ccodigo;
                 this.txtDescripcion.Text = ItemSeleccionado.itm_c_vdescripcion;
                 this.txtPrecioCompra.Text = ItemSeleccionado.itm_c_dprecio_compra.ToString("F2", CultureInfo.InvariantCulture);
-                this.txtPrecioVenta.Text = ItemSeleccionado.itm_c_dprecio_venta.ToString("F2", CultureInfo.InvariantCulture);                
+                this.txtPrecioVenta.Text = ItemSeleccionado.itm_c_dprecio_venta.ToString("F2", CultureInfo.InvariantCulture);
                 this.cboUnidad.SelectedIndex = -1;
 
                 var seleccion = cboUnidad.Items.FindByText(ItemSeleccionado.itm_c_vpardes);
@@ -449,11 +449,11 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             {
                 if (_item.InsertarItem(nuevoItem))
                 {
-                    Mensaje("Item registrado con éxito", "../Imagenes/correcto.png");
+                    Mensaje("Item registrado con éxito", "~/Imagenes/correcto.png");
                 }
                 else
                 {
-                    Mensaje("Error al realizar el proceso.", "../Imagenes/warning.png");
+                    Mensaje("Error al realizar el proceso.", "~/Imagenes/warning.png");
                 }
 
                 mvItem.ActiveViewIndex = 0;
@@ -463,11 +463,11 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             }
             catch (ArgumentException aeEx)
             {
-                Mensaje(aeEx.Message, "../Imagenes/warning.png");
+                Mensaje(aeEx.Message, "~/Imagenes/warning.png");
             }
             catch (Exception ex)
             {
-                Mensaje("Error inesperado al realizar el proceso.", "../Imagenes/warning.png");
+                Mensaje("Error inesperado al realizar el proceso.", "~/Imagenes/warning.png");
             }
         }
 
@@ -479,7 +479,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             LimpiarCamposNuevoActualizar();
             this.ListarItems();
 
-            mvItem.ActiveViewIndex = 0;            
+            mvItem.ActiveViewIndex = 0;
             upGeneral.Update();
         }
 
@@ -494,37 +494,37 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
             if (this.txtCodigo.Text.Trim() == string.Empty)
             {
-                Mensaje("Debe ingresar un Código de Item.", "../Imagenes/warning.png");
+                Mensaje("Debe ingresar un Código de Item.", "~/Imagenes/warning.png");
                 return false;
             }
             else if (this.txtCodigo.Text.Trim().Length > 100)
             {
-                Mensaje("El código acepta 100 caracteres como máxcimo.", "../Imagenes/warning.png");
+                Mensaje("El código acepta 100 caracteres como máxcimo.", "~/Imagenes/warning.png");
                 return false;
             }
             else if (this.txtDescripcion.Text.Trim() == string.Empty)
             {
-                Mensaje("Debe ingresar una descripción del Item.", "../Imagenes/warning.png");
+                Mensaje("Debe ingresar una descripción del Item.", "~/Imagenes/warning.png");
                 return false;
             }
             else if (this.txtDescripcion.Text.Trim().Length > 250)
             {
-                Mensaje("La descripción acepta 250 caracteres como máxcimo.", "../Imagenes/warning.png");
+                Mensaje("La descripción acepta 250 caracteres como máxcimo.", "~/Imagenes/warning.png");
                 return false;
             }
             else if (!decimal.TryParse(this.txtPrecioCompra.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out precio) && precio <= 0)
             {
-                Mensaje("Debe ingresar un precio de compra válido mayor a 0.", "../Imagenes/warning.png");
+                Mensaje("Debe ingresar un precio de compra válido mayor a 0.", "~/Imagenes/warning.png");
                 return false;
             }
             else if (!decimal.TryParse(this.txtPrecioVenta.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out precio) && precio <= 0)
             {
-                Mensaje("Debe ingresar un precio de venta válido mayor a 0.", "../Imagenes/warning.png");
+                Mensaje("Debe ingresar un precio de venta válido mayor a 0.", "~/Imagenes/warning.png");
                 return false;
             }
             else if (cboFamilia.SelectedIndex == 0 || cboSubFamilia.SelectedIndex == 0)
             {
-                Mensaje("Debe seleccionar la familia y subfamilia.", "../Imagenes/warning.png");
+                Mensaje("Debe seleccionar la familia y subfamilia.", "~/Imagenes/warning.png");
                 return false;
             }
             else
@@ -540,7 +540,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         {
             if (!VerificarDatosItem())
             {
-                return;   
+                return;
             }
 
             ItemSeleccionado.itm_c_ccodigo = txtCodigo.Text.Trim();
@@ -551,22 +551,22 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             decimal.TryParse(txtPrecioVenta.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out precioVenta);
             int.TryParse(cboSubFamilia.SelectedValue, out idSubFamilia);
             ItemSeleccionado.itm_c_dprecio_compra = precioCompra;
-            ItemSeleccionado.itm_c_dprecio_venta = precioVenta;            
+            ItemSeleccionado.itm_c_dprecio_venta = precioVenta;
             ItemSeleccionado.itm_c_yumedida = byte.Parse(this.cboUnidad.SelectedValue);
             ItemSeleccionado.itm_c_vpardes = this.cboUnidad.SelectedItem.Text.Trim();
             ItemSeleccionado.itm_c_isf_iid = idSubFamilia;
 
-           
+
 
             try
             {
                 if (_item.ModificarItem(ItemSeleccionado))
                 {
-                    Mensaje("Item modificado con éxito", "../Imagenes/correcto.png");
+                    Mensaje("Item modificado con éxito", "~/Imagenes/correcto.png");
                 }
                 else
                 {
-                    Mensaje("Error al realizar el proceso.", "../Imagenes/warning.png");
+                    Mensaje("Error al realizar el proceso.", "~/Imagenes/warning.png");
                 }
 
                 mvItem.ActiveViewIndex = 0;
@@ -576,19 +576,19 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             }
             catch (ArgumentException aeEx)
             {
-                Mensaje(aeEx.Message, "../Imagenes/warning.png");
+                Mensaje(aeEx.Message, "~/Imagenes/warning.png");
             }
             catch (Exception ex)
             {
-                Mensaje("Error inesperado al realizar el proceso.", "../Imagenes/warning.png");
+                Mensaje("Error inesperado al realizar el proceso.", "~/Imagenes/warning.png");
             }
 
-       
+
         }
 
         #endregion
 
-      
+
 
         private void Mensaje(string mensaje, string ruta)
         {
@@ -612,7 +612,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
         protected void View2_Activate(object sender, EventArgs e)
         {
-            
+
         }
 
         protected void cboFiltroFamilia_SelectedIndexChanged(object sender, EventArgs e)
@@ -648,7 +648,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         {
             if (txtNombreFamilia.Text.Trim() == string.Empty)
             {
-                Mensaje("Ingrese un nombre de Familia.", "../Imagenes/warning.png");
+                Mensaje("Ingrese un nombre de Familia.", "~/Imagenes/warning.png");
                 upGeneral.Update();
             }
             else
@@ -660,16 +660,16 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                     _item.AgregarFamilia(fam);
                     ListarFiltroFamiliaAgr();
                     txtNombreFamilia.Text = string.Empty;
-                    Mensaje("Familia ingresada.", "../Imagenes/warning.png");
+                    Mensaje("Familia ingresada.", "~/Imagenes/warning.png");
                     upGeneral.Update();
                 }
                 catch (Exception ex)
                 {
 #if DEBUG
                     Mensaje("Error al realizar el proceso.\n" + ex.Message + "\n"
-                        + ex.InnerException != null ? ex.InnerException.Message : string.Empty, "../Imagenes/warning.png");
+                        + ex.InnerException != null ? ex.InnerException.Message : string.Empty, "~/Imagenes/warning.png");
 #else
-                    Mensaje("Error al realizar el proceso.", "../Imagenes/warning.png");
+                    Mensaje("Error al realizar el proceso.", "~/Imagenes/warning.png");
 #endif
                     upGeneral.Update();
                 }
@@ -703,14 +703,14 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         private void InsertarSubFamilia()
         {
             int idFamilia = -1;
-            if (!int.TryParse(cboFamiliaAgr.SelectedValue,out idFamilia) || idFamilia == -1 )
+            if (!int.TryParse(cboFamiliaAgr.SelectedValue, out idFamilia) || idFamilia == -1)
             {
-                Mensaje("Seleccione una familia.", "../Imagenes/warning.png");
+                Mensaje("Seleccione una familia.", "~/Imagenes/warning.png");
                 upGeneral.Update();
             }
             else if (txtNombreSubFamilia.Text.Trim() == string.Empty)
             {
-                Mensaje("Ingrese un nombre de SubFamilia.", "../Imagenes/warning.png");
+                Mensaje("Ingrese un nombre de SubFamilia.", "~/Imagenes/warning.png");
                 upGeneral.Update();
             }
             else
@@ -723,16 +723,16 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                     _item.AgregarSubFamilia(sub);
                     ListarSubFamiliaAgr();
                     txtNombreSubFamilia.Text = string.Empty;
-                    Mensaje("SubFamilia ingresada.", "../Imagenes/warning.png");
+                    Mensaje("SubFamilia ingresada.", "~/Imagenes/warning.png");
                     upGeneral.Update();
                 }
                 catch (Exception ex)
                 {
 #if DEBUG
                     Mensaje("Error al realizar el proceso.\n" + ex.Message + "\n"
-                        + ex.InnerException != null ? ex.InnerException.Message : string.Empty, "../Imagenes/warning.png");
+                        + ex.InnerException != null ? ex.InnerException.Message : string.Empty, "~/Imagenes/warning.png");
 #else
-                    Mensaje("Error al realizar el proceso.", "../Imagenes/warning.png");
+                    Mensaje("Error al realizar el proceso.", "~/Imagenes/warning.png");
 #endif
                 }
             }
@@ -754,7 +754,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         {
             if (txtUnidadMedida.Text.Trim().Length <= 0)
             {
-                Mensaje("Ingrese una unidad de medida.", "../Imagenes/warning.png");
+                Mensaje("Ingrese una unidad de medida.", "~/Imagenes/warning.png");
                 return;
             }
 
@@ -767,7 +767,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 _item.AgregarUnidadMedida(unidadMedida);
                 ListarSubFamiliaAgr();
                 txtNombreSubFamilia.Text = string.Empty;
-                Mensaje("Unidad de medida ingresada.", "../Imagenes/warning.png");
+                Mensaje("Unidad de medida ingresada.", "~/Imagenes/warning.png");
                 ListarUnidadMedida();
                 ListarUnidadMedidaIns();
                 upGeneral.Update();
@@ -776,9 +776,9 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             {
 #if DEBUG
                 Mensaje("Error al realizar el proceso.\n" + ex.Message + "\n"
-                    + ex.InnerException != null ? ex.InnerException.Message : string.Empty, "../Imagenes/warning.png");
+                    + ex.InnerException != null ? ex.InnerException.Message : string.Empty, "~/Imagenes/warning.png");
 #else
-                    Mensaje("Error al realizar el proceso.", "../Imagenes/warning.png");
+                    Mensaje("Error al realizar el proceso.", "~/Imagenes/warning.png");
 #endif
             }
         }
