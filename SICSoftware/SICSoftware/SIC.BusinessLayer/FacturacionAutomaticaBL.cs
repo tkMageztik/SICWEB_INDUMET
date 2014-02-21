@@ -77,6 +77,10 @@ namespace SIC.BusinessLayer
             {
                 throw new ArgumentException("Solo se puede generar facturas de ventas que tengan como tipo documento Factura");
             }
+            else if (venta.SIC_T_EMP_CENTRO_COSTO == null)
+            {
+                throw new ArgumentException("La venta proporcionada debe tener la propiedad SIC_T_EMP_CENTRO_COSTO diferente a nulo.");
+            }
 
             SIC_T_FACTURA factura = new SIC_T_FACTURA();
             factura.fac_c_zfecharegistro = DateTime.Today;
@@ -87,6 +91,7 @@ namespace SIC.BusinessLayer
             factura.fac_c_imoneda = venta.ven_c_ymoneda;
             factura.fac_c_vdescmoneda = venta.ven_c_vdescmoneda;
             factura.SIC_T_VENTA = venta;
+            factura.fac_c_serie = venta.SIC_T_EMP_CENTRO_COSTO.emp_cst_c_vseriefactura;
 
             foreach (var ventaDetalle in venta.SIC_T_VENTA_DETALLE)
             {
@@ -140,6 +145,7 @@ namespace SIC.BusinessLayer
             boleta.bol_c_imoneda = venta.ven_c_ymoneda;
             boleta.bol_c_vdescmoneda = venta.ven_c_vdescmoneda;
             boleta.SIC_T_VENTA = venta;
+            boleta.bol_c_serie = venta.SIC_T_EMP_CENTRO_COSTO.emp_cst_c_vserieboleta;
 
             int contador = 0;
             foreach (var ventaDetalle in venta.SIC_T_VENTA_DETALLE)
@@ -167,6 +173,39 @@ namespace SIC.BusinessLayer
             boleta.bol_c_eigvcal = Decimal.Round(boleta.bol_c_eigv * boleta.bol_c_esubtotal, 2);
             boleta.bol_c_etotal = boleta.bol_c_esubtotal + boleta.bol_c_eigvcal;
             return boleta;
+        }
+
+        public void GenerarDocumentosVenta(List<int> listaId)
+        {
+            List<SIC_T_VENTA> listaVenta = new List<SIC_T_VENTA>();
+            VentaDA ventaDA = new VentaDA();
+            foreach (int id in listaId)
+            {
+                SIC_T_VENTA venta = ventaDA.ObtenerVenta(id);
+                if (venta != null)
+                {
+                    listaVenta.Add(venta);
+                }
+            }
+
+            List<SIC_T_BOLETA> listaBoleta = new List<SIC_T_BOLETA>();
+            List<SIC_T_FACTURA> listaFactura = new List<SIC_T_FACTURA>();
+            foreach (SIC_T_VENTA venta in listaVenta)
+            {
+                if (venta.ven_c_itipodoc == (int)TipoParametroDetalle.BOLETA)
+                {
+                    listaBoleta.Add(this.GenerarBoletaDesdeVenta(venta));
+                }
+                else if (venta.ven_c_itipodoc == (int)TipoParametroDetalle.FACTURA)
+                {
+                    listaFactura.Add(this.GenerarFacturaDesdeVenta(venta));
+                }
+                venta.ven_c_iestado = (int)EstadoVenta.FACTURADO;
+                venta.ven_c_vestado = "FACTURADO";
+            }
+            
+            BoletaFacturaDA boletaFacturaDA = new BoletaFacturaDA();
+            boletaFacturaDA.InsertarDocumentos(listaBoleta, listaFactura);
         }
     }    
 }

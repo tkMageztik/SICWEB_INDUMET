@@ -46,6 +46,7 @@ namespace BL_NUnit
             SIC_T_VENTA ventaInicial = this.CrearVenta();
             ventaInicial.ven_c_itipodoc = (int)TipoParametroDetalle.BOLETA;
             SIC_T_BOLETA boletaResultante = faBL.GenerarBoletaDesdeVenta(ventaInicial);
+            Assert.AreEqual(ventaInicial.SIC_T_EMP_CENTRO_COSTO.emp_cst_c_vseriefactura, boletaResultante.bol_c_serie, "La serie no corresponde a la del centro de costo");
             Assert.AreEqual(ventaInicial.ven_c_iid, boletaResultante.bol_c_iventa, "El codigo de venta no corresponde a la venta");
             Assert.AreEqual(ventaInicial.ven_c_eigv, boletaResultante.bol_c_eigv, "El igv no corresponde a la venta.");
             Assert.AreEqual(ventaInicial.ven_c_esubtotal, boletaResultante.bol_c_esubtotal, "El subtotal no corresponde a la venta.");
@@ -84,6 +85,7 @@ namespace BL_NUnit
             SIC_T_VENTA ventaInicial = this.CrearVenta();
             ventaInicial.ven_c_itipodoc = (int)TipoParametroDetalle.FACTURA;
             SIC_T_FACTURA facturaResultante = faBL.GenerarFacturaDesdeVenta(ventaInicial);
+            Assert.AreEqual(ventaInicial.SIC_T_EMP_CENTRO_COSTO.emp_cst_c_vseriefactura, facturaResultante.fac_c_serie, "La serie no corresponde a la del centro de costo");
             Assert.AreEqual(ventaInicial.ven_c_iid, facturaResultante.fac_c_iventa, "El codigo de venta no corresponde a la venta");
             Assert.AreEqual(ventaInicial.ven_c_eigv, facturaResultante.fac_c_eigv, "El igv no corresponde a la venta."  );            
             Assert.AreEqual(ventaInicial.ven_c_esubtotal, facturaResultante.fac_c_esubtotal, "El subtotal no corresponde a la venta.");
@@ -130,6 +132,13 @@ namespace BL_NUnit
             SIC_T_ITEM item3 = new SIC_T_ITEM();
             item3.itm_c_ccodigo = "Codigo1";
             item3.itm_c_vdescripcion = "Des1";
+
+            SIC_T_EMP_CENTRO_COSTO centroCosto = new SIC_T_EMP_CENTRO_COSTO();
+            centroCosto.emp_cst_c_vserieboleta = "001";
+            centroCosto.emp_cst_c_vseriefactura = "001";
+            centroCosto.emp_cst_c_inumerofact = 1;
+            centroCosto.emp_cst_c_inumeroboleta = 1;
+            centroCosto.emp_cst_c_vdesc = "Centro Costo!!";
             
             detalle = new SIC_T_VENTA_DETALLE();
             
@@ -173,7 +182,8 @@ namespace BL_NUnit
             venta.ven_c_eigvcal = Decimal.Round(venta.ven_c_esubtotal * venta.ven_c_eigv, 2);
             venta.ven_c_etotal = venta.ven_c_esubtotal + venta.ven_c_eigvcal;
             venta.ven_c_vdescmoneda = "SOLES";
-            venta.ven_c_ymoneda = (int)TipoParametroDetalle.SOLES;          
+            venta.ven_c_ymoneda = (int)TipoParametroDetalle.SOLES;
+            venta.SIC_T_EMP_CENTRO_COSTO = centroCosto;
             
             return venta;
         }

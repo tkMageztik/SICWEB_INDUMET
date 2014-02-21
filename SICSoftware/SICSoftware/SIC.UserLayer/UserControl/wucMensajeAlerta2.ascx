@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="wucMensajeAlerta2.ascx.cs" Inherits="SIC.UserLayer.UserControl.wucMensajeAlerta2" %>
+﻿.0<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="wucMensajeAlerta2.ascx.cs" Inherits="SIC.UserLayer.UserControl.wucMensajeAlerta2" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxtoolkit" %>
 <asp:Button ID="btnShowPopup" runat="server" Style="display: none" />
 <ajaxtoolkit:ModalPopupExtender BackgroundCssClass="modalBackground" CancelControlID="btnSecond"
