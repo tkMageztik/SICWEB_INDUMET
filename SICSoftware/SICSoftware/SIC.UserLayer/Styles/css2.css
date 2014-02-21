@@ -14,6 +14,12 @@
         height: 25px;
 }
 
+.requerido 
+{
+   color:Red;
+   font-weight:bold;
+}
+
 BODY 
 {
     /*test*/

@@ -12,7 +12,7 @@
     <link href="Bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
     <link href="Styles/MenuMatic.css" rel="stylesheet" type="text/css" />
     <link href="Styles/cssRecibo.css" rel="stylesheet" type="text/css" />
-    <script src="http://localhost:56928/Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
     <%--<script type="text/javascript" src="../../Scripts/hoverIntent.js"></script>
     <script type="text/javascript" src="../../Scripts/superfish.js"></script>--%>
     <script type="text/javascript">
@@ -177,8 +177,8 @@
         <asp:UpdateProgress ID="UpdateProgress1" runat="server">
             <ProgressTemplate>
                 <div class="capa1">
-                    <asp:Panel ID="pnlCargando" runat="server" BorderColor="RoyalBlue" Height="80px"
-                        Width="280px" BackColor="WhiteSmoke" Font-Size="14px">
+                    <asp:Panel ID="pnlCargando" runat="server" BorderColor="#3e761c" BorderWidth="4px"
+                        BorderStyle="Solid" Height="80px" Width="280px" BackColor="WhiteSmoke" Font-Size="14px">
                         <table align="center">
                             <tr>
                                 <td align="center" class="tit_morado" width="280px">

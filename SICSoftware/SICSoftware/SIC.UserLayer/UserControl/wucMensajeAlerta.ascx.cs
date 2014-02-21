@@ -29,7 +29,7 @@ namespace SIC.UserLayer.UserControl
             if (visibility)
             {
                 lblMensaje.Text = Mensaje;
-                //imgmensaje.ImageUrl = Ruta;
+                imgmensaje.ImageUrl = Ruta;
                 ModalPopupExtender1.Show();
             }
             else

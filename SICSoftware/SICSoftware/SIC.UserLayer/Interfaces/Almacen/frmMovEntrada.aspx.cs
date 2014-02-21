@@ -222,7 +222,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             }
             else
             {
-                Mensaje("Debe ingresar un número entero válido mayor a 0.", "../Imagenes/warning.png");
+                Mensaje("Debe ingresar un número entero válido mayor a 0.", "~/Imagenes/warning.png");
                 return;
             }
         }
@@ -232,7 +232,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         #region Metodos de Listado
         private void ListarEstados()
         {
-            this.cboEstado.DataSource = _movEntrada.ObtenerMovimientoEstados().Where(x => x.mov_estado_iid != Convert.ToInt32(EstadoMovimiento.ANULADO));
+            this.cboEstado.DataSource = _movEntrada.ObtenerMovimientoEstados();
             cboEstado.DataTextField = "mov_estado_vdescrpcion";
             cboEstado.DataValueField = "mov_estado_iid";
             cboEstado.DataBind();
@@ -342,7 +342,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             this.MovEntSeleccionado = _movEntrada.ObtenerMovimientoEntradaPorId(idMovimiento);
             if (MovEntSeleccionado.mve_c_iestado == (int)EstadoMovimiento.CERRADO || MovEntSeleccionado.mve_c_iestado == (int)EstadoMovimiento.ANULADO)
             {
-                this.Mensaje("No se puede modificar movimientos en estado CERRADO o ANULADO.", "../Imagenes/warning.png");
+                this.Mensaje("No se puede modificar movimientos en estado CERRADO o ANULADO.", "~/Imagenes/warning.png");
                 return;
             }
 
@@ -410,7 +410,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             }
             else
             {
-                Mensaje("Error.", "../Imagenes/warning.png");
+                Mensaje("Error.", "~/Imagenes/warning.png");
             }
         }
 
@@ -496,32 +496,32 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             DateTime time;
             if (!DateTime.TryParseExact(txtFechaFact.Text, "dd/MM/yyyy", new CultureInfo("en-US"), DateTimeStyles.None, out time))
             {
-                Mensaje("Ingrese una fecha de factura correcta.", "../Imagenes/warning.png");
+                Mensaje("Ingrese una fecha de factura correcta.", "~/Imagenes/warning.png");
                 return false;
             }
             else if (txtNumeroFact.Text.Trim().Length == 0 || txtSerieFact.Text.Trim().Length == 0)
             {
-                Mensaje("Ingrese la serie y número de la Factura.", "../Imagenes/warning.png");
+                Mensaje("Ingrese la serie y número de la Factura.", "~/Imagenes/warning.png");
                 return false;
             }
             else if (txtFechaFact.Text.Trim() != string.Empty && !DateTime.TryParseExact(txtFechaFact.Text, "dd/MM/yyyy", new CultureInfo("en-US"), DateTimeStyles.None, out time))
             {
-                Mensaje("Ingrese una fecha de guia correcta, o borre la fecha.", "../Imagenes/warning.png");
+                Mensaje("Ingrese una fecha de guia correcta, o borre la fecha.", "~/Imagenes/warning.png");
                 return false;
             }
             else if (this.MovEntNuevo.SIC_T_ORDEN_DE_COMPRA == null)
             {
-                Mensaje("Seleccione una orden de compra.", "../Imagenes/warning.png");
+                Mensaje("Seleccione una orden de compra.", "~/Imagenes/warning.png");
                 return false;
             }
             else if (this.MovEntNuevo.SIC_T_ALMACEN == null)
             {
-                Mensaje("Seleccione un almácén.", "../Imagenes/warning.png");
+                Mensaje("Seleccione un almácén.", "~/Imagenes/warning.png");
                 return false;
             }
             else if (this.MovEntNuevo.SIC_T_MOVIMIENTO_ENTRADA_DETALLE != null && !this.MovEntNuevo.SIC_T_MOVIMIENTO_ENTRADA_DETALLE.Any(x => x.mve_c_ecant_recibida > 0))
             {
-                Mensaje("Debe ingresar al menos un item con stock.", "../Imagenes/warning.png");
+                Mensaje("Debe ingresar al menos un item con stock.", "~/Imagenes/warning.png");
                 return false;
             }
             else
@@ -535,32 +535,32 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             DateTime time;
             if (!DateTime.TryParseExact(txtFechaFact.Text, "dd/MM/yyyy", new CultureInfo("en-US"), DateTimeStyles.None, out time))
             {
-                Mensaje("Ingrese una fecha de factura correcta.", "../Imagenes/warning.png");
+                Mensaje("Ingrese una fecha de factura correcta.", "~/Imagenes/warning.png");
                 return false;
             }
             else if (txtNumeroFact.Text.Trim().Length == 0 || txtSerieFact.Text.Trim().Length == 0)
             {
-                Mensaje("Ingrese la serie y número de la Factura.", "../Imagenes/warning.png");
+                Mensaje("Ingrese la serie y número de la Factura.", "~/Imagenes/warning.png");
                 return false;
             }
             else if (txtFechaFact.Text.Trim() != string.Empty && !DateTime.TryParseExact(txtFechaFact.Text, "dd/MM/yyyy", new CultureInfo("en-US"), DateTimeStyles.None, out time))
             {
-                Mensaje("Ingrese una fecha de guia correcta, o borre la fecha.", "../Imagenes/warning.png");
+                Mensaje("Ingrese una fecha de guia correcta, o borre la fecha.", "~/Imagenes/warning.png");
                 return false;
             }
             else if (this.MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA == null)
             {
-                Mensaje("Seleccione una orden de compra.", "../Imagenes/warning.png");
+                Mensaje("Seleccione una orden de compra.", "~/Imagenes/warning.png");
                 return false;
             }
             else if (this.MovEntSeleccionado.SIC_T_ALMACEN == null)
             {
-                Mensaje("Seleccione un almácén.", "../Imagenes/warning.png");
+                Mensaje("Seleccione un almácén.", "~/Imagenes/warning.png");
                 return false;
             }
             else if (this.MovEntSeleccionado.SIC_T_MOVIMIENTO_ENTRADA_DETALLE != null && !this.MovEntSeleccionado.SIC_T_MOVIMIENTO_ENTRADA_DETALLE.Any(x => x.mve_c_ecant_recibida > 0))
             {
-                Mensaje("Debe ingresar al menos un item con stock.", "../Imagenes/warning.png");
+                Mensaje("Debe ingresar al menos un item con stock.", "~/Imagenes/warning.png");
                 return false;
             }
             else
@@ -610,7 +610,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 }
                 else
                 {
-                    Mensaje("Error en el proceso.", "../Imagenes/warning.png");
+                    Mensaje("Error en el proceso.", "~/Imagenes/warning.png");
                 }
             }
             catch (Exception ex)
@@ -622,9 +622,9 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                     mensajeError += "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty;
                 }
 
-                Mensaje(mensajeError, "../Imagenes/warning.png");
+                Mensaje(mensajeError, "~/Imagenes/warning.png");
 #else
-                Mensaje("Error en el proceso.", "../Imagenes/warning.png");
+                Mensaje("Error en el proceso.", "~/Imagenes/warning.png");
 #endif
             }
 
@@ -671,7 +671,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 }
                 else
                 {
-                    Mensaje("Error en el proceso.", "../Imagenes/warning.png");
+                    Mensaje("Error en el proceso.", "~/Imagenes/warning.png");
                 }
             }
             catch (Exception ex)
@@ -683,9 +683,9 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                     mensajeError += "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty;
                 }
 
-                Mensaje(mensajeError, "../Imagenes/warning.png");
+                Mensaje(mensajeError, "~/Imagenes/warning.png");
 #else
-                Mensaje("Error en el proceso.", "../Imagenes/warning.png");
+                Mensaje("Error en el proceso.", "~/Imagenes/warning.png");
 #endif
             }
         }
@@ -824,12 +824,12 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             {
                 if (MovEntSeleccionado.mve_c_iestado == (int)EstadoMovimiento.ANULADO)
                 {
-                    this.Mensaje("No se puede CERRAR movimientos en estado ANULADO.", "../Imagenes/warning.png");
+                    this.Mensaje("No se puede CERRAR movimientos en estado ANULADO.", "~/Imagenes/warning.png");
                     return;
                 }
                 else if (MovEntSeleccionado.mve_c_iestado == (int)EstadoMovimiento.CERRADO)
                 {
-                    this.Mensaje("El Movimiento ya se encuentra en estado CERRADO.", "../Imagenes/warning.png");
+                    this.Mensaje("El Movimiento ya se encuentra en estado CERRADO.", "~/Imagenes/warning.png");
                     return;
                 }
 
@@ -843,12 +843,12 @@ namespace SIC.UserLayer.Interfaces.Movimientos
 
                 if (MovEntSeleccionado.mve_c_iestado == (int)EstadoMovimiento.CERRADO)
                 {
-                    this.Mensaje("No se puede CERRAR movimientos en estado ANULADO.", "../Imagenes/warning.png");
+                    this.Mensaje("No se puede CERRAR movimientos en estado ANULADO.", "~/Imagenes/warning.png");
                     return;
                 }
                 else if (MovEntSeleccionado.mve_c_iestado == (int)EstadoMovimiento.ANULADO)
                 {
-                    this.Mensaje("El Movimiento ya se encuentra en estado ANULADO.", "../Imagenes/warning.png");
+                    this.Mensaje("El Movimiento ya se encuentra en estado ANULADO.", "~/Imagenes/warning.png");
                     return;
                 }
                 this.EscenarioMovEn = TipoOperacion.Eliminacion;

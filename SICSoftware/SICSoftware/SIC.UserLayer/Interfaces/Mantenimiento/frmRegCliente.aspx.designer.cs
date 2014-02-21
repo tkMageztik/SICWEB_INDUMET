@@ -481,24 +481,6 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento {
         protected global::AjaxControlToolkit.FilteredTextBoxExtender txtApellidoPaternoContacto_FilteredTextBoxExtender;
         
         /// <summary>
-        /// Control upMen.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upMen;
-        
-        /// <summary>
-        /// Control lbl.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl;
-        
-        /// <summary>
         /// Control txtApellidoMaternoContacto.
         /// </summary>
         /// <remarks>

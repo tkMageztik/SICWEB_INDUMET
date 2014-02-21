@@ -1275,19 +1275,19 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 lblValidarApellido.Text = "";
             }
 
-            if (cboTipoDoc.SelectedValue == "1")
-            {
-                if (!ValidarApellido(txtApellidoMaternoContacto.Text.Trim()))
-                {
-                    lblValidarApellidoMaterno.Text = "Ingrese apellido correcto";
-                    _validator = true;
-                }
-                else
-                {
-                    lblValidarApellidoMaterno.Text = "";
-                }
+            //if (cboTipoDoc.SelectedValue == "1")
+            //{
+            //    if (!ValidarApellido(txtApellidoMaternoContacto.Text.Trim()))
+            //    {
+            //        lblValidarApellidoMaterno.Text = "Ingrese apellido correcto";
+            //        _validator = true;
+            //    }
+            //    else
+            //    {
+            //        lblValidarApellidoMaterno.Text = "";
+            //    }
 
-            }
+            //}
 
             if (cboTipoDoc.SelectedValue == "2")
             {
@@ -1405,18 +1405,18 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             gvContactos.EditIndex = -1;
             ListarContactos();
 
-            bool estado = Validar_Contacto_RepLegal_GerenteGeneral("Guardar", gvContactos.Rows.Count - 1);
-            if (!estado)
-            {
-                lblContacto.Text = "NUEVO CONTACTO";
-                EscenarioContacto = TipoOperacion.Creacion;
-                mvCliente.ActiveViewIndex = 2;
-            }
-            else
-            {
-                mvCliente.ActiveViewIndex = 1;
-            }
-
+            //bool estado = Validar_Contacto_RepLegal_GerenteGeneral("Guardar", gvContactos.Rows.Count - 1);
+            //if (!estado)
+            //{
+            //    lblContacto.Text = "NUEVO CONTACTO";
+            //    EscenarioContacto = TipoOperacion.Creacion;
+            //    mvCliente.ActiveViewIndex = 2;
+            //}
+            //else
+            //{
+            //    mvCliente.ActiveViewIndex = 1;
+            //}
+            mvCliente.ActiveViewIndex = 1;
 
         }
         protected void cboDepartamento_SelectedIndexChanged(object sender, EventArgs e)
@@ -2060,7 +2060,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         {
             if (cboTipoDoc.SelectedValue == Convert.ToInt16(DocumentoPersona.DNI).ToString())
             {
-                lbl.Text = "(*)";
+                //lbl.Text = "(*)";
                 txtDniContacto.MaxLength = 8;
                 txtDniContacto_FilteredTextBoxExtender.ValidChars = "0123456789";
                 txtDniContacto.Text = "";
@@ -2068,11 +2068,11 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
             if (cboTipoDoc.SelectedValue == Convert.ToInt16(DocumentoPersona.CARNE_EXTRANJERIA).ToString())
             {
-                lbl.Text = "";
+                //lbl.Text = "";
                 txtDniContacto.MaxLength = 12;
                 txtDniContacto_FilteredTextBoxExtender.ValidChars = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789";
             }
-            upMen.Update();
+            //upMen.Update();
             up.Update();
         }
 

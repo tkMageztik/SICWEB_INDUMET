@@ -12,8 +12,10 @@ namespace SIC.UserLayer.UserControl
 
     public partial class wucMensajeAlerta2 : System.Web.UI.UserControl
     {
-        private const String RUTA_WARNING = "../Imagenes/warning.png";
-        private const String RUTA_CORRECTO = "../Imagenes/correcto.png";
+        //private const String RUTA_WARNING = "../Imagenes/warning.png";
+        private const String RUTA_WARNING = "~/Imagenes/warning.png";
+        //private const String RUTA_CORRECTO = "../Imagenes/correcto.png";
+        private const String RUTA_CORRECTO = "~/Imagenes/correcto.png";
 
         private const String BOTON_ACEPTAR = "Aceptar";
         private const String BOTON_CANCELAR = "Cancelar";
@@ -22,7 +24,7 @@ namespace SIC.UserLayer.UserControl
         private const String TITULO_DEFAULT = "SICWEB - INDUMET";
 
         public int Codigo { get; set; }
-        
+
 
 
         private MensajeBotones mensajeBotones
@@ -39,12 +41,12 @@ namespace SIC.UserLayer.UserControl
             {
                 ResultadoMensaje(this, e);
             }
-            
+
             this.ModalPopupExtender1.Hide();
         }
 
 
-        
+
 
         bool status;
 
@@ -145,24 +147,24 @@ namespace SIC.UserLayer.UserControl
 
         protected void btnThird_Click(object sender, EventArgs e)
         {
-            
+
         }
 
-        
+
 
     }
 
     public enum MensajeIcono
     {
         Ninguno,
-        Correcto, 
+        Correcto,
         Alerta,
     }
 
     public enum MensajeBotones
     {
         Ok,
-        AceptarCancelar,        
+        AceptarCancelar,
     }
 
     public enum MensajeResultado
@@ -176,7 +178,7 @@ namespace SIC.UserLayer.UserControl
     {
         public MensajeResultado resultado { get; set; }
 
-        private ResMsjArgs() {}
+        private ResMsjArgs() { }
 
         public ResMsjArgs(MensajeResultado resultado, bool removerDelegate)
         {

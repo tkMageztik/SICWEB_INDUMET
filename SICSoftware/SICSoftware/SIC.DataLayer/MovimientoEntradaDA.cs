@@ -29,7 +29,38 @@ namespace SIC.DataLayer
         }
 
         public List<SIC_T_MOVIMIENTO_ENTRADA> ObtenerMovimientoEntrada(String ruc, String razonSocial,
-                                                DateTime? inicio, DateTime? fin)
+                                                DateTime? inicio, DateTime? fin,string test)
+        {
+            try
+            {
+                using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+                {
+                    return (from x in contexto.SIC_T_MOVIMIENTO_ENTRADA
+                             .Include("SIC_T_ORDEN_DE_COMPRA")
+                             .Include("SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE")
+                             .Include("SIC_T_MOVIMIENTO_ENTRADA_DETALLE")
+                            where x.mve_c_bactivo == true
+                                && (ruc == null || ruc == string.Empty ||
+                                            (x.SIC_T_ORDEN_DE_COMPRA != null && x.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE != null
+                                            && x.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vdoc_id.Contains(ruc)))
+                                && (razonSocial == null || razonSocial == string.Empty ||
+                                            (x.SIC_T_ORDEN_DE_COMPRA != null && x.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE != null
+                                            && x.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vraz_soc.Contains(razonSocial)))
+                                && (inicio == null || x.mve_c_zfecharegistro >= inicio)
+                                && (fin == null || (x.mve_c_zfecharegistro.Year <= fin.Value.Year
+                                                 && x.mve_c_zfecharegistro.Month <= fin.Value.Month
+                                                 && x.mve_c_zfecharegistro.Day <= fin.Value.Day))
+                            select x).ToList();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public List<SIC_T_MOVIMIENTO_ENTRADA> ObtenerMovimientoEntrada(String ruc, String razonSocial,
+                                               DateTime? inicio, DateTime? fin)
         {
             try
             {
