@@ -1512,6 +1512,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         {
             if (e.CommandName == "Cerrar")
             {
+
                 this.EscenarioOC = TipoOperacion.Eliminacion;
 
                 this.idOC = (int)this.gvListaOC.DataKeys[Convert.ToInt32(e.CommandArgument)].Values["odc_c_iid"];
