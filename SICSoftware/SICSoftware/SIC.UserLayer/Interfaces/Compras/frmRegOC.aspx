@@ -210,7 +210,7 @@
                                                     <td align="left" class="txt-box-estilo">
                                                         <asp:TextBox ID="txtSerie" runat="server" MaxLength="3" Width="35"></asp:TextBox>
                                                         &nbsp;-
-                                                        <asp:TextBox ID="txtNumero" runat="server" MaxLength="6"></asp:TextBox>
+                                                        <asp:TextBox ID="txtNumero" runat="server" MaxLength="8"></asp:TextBox>
                                                     </td>
                                                     <td align="left" class="txt-box-estilo">
                                                         &nbsp;

@@ -9455,7 +9455,6 @@ namespace SIC.EntityLayer
         /// Crear un nuevo objeto SIC_T_ORDEN_DE_COMPRA.
         /// </summary>
         /// <param name="odc_c_iid">Valor inicial de la propiedad odc_c_iid.</param>
-        /// <param name="odc_c_vcodigo">Valor inicial de la propiedad odc_c_vcodigo.</param>
         /// <param name="odc_c_zfecharegistro">Valor inicial de la propiedad odc_c_zfecharegistro.</param>
         /// <param name="odc_c_ymoneda">Valor inicial de la propiedad odc_c_ymoneda.</param>
         /// <param name="odc_c_esubtotal">Valor inicial de la propiedad odc_c_esubtotal.</param>
@@ -9478,11 +9477,10 @@ namespace SIC.EntityLayer
         /// <param name="odc_c_bpercepcion">Valor inicial de la propiedad odc_c_bpercepcion.</param>
         /// <param name="odc_c_idireccion">Valor inicial de la propiedad odc_c_idireccion.</param>
         /// <param name="odc_c_vdireccion">Valor inicial de la propiedad odc_c_vdireccion.</param>
-        public static SIC_T_ORDEN_DE_COMPRA CreateSIC_T_ORDEN_DE_COMPRA(global::System.Int32 odc_c_iid, global::System.String odc_c_vcodigo, global::System.DateTime odc_c_zfecharegistro, global::System.Byte odc_c_ymoneda, global::System.Decimal odc_c_esubtotal, global::System.Decimal odc_c_etotal, global::System.Decimal odc_c_eigv, global::System.Decimal odc_c_eigvcal, global::System.Decimal odc_c_epercepcion, global::System.Decimal odc_c_epercepcioncal, global::System.Int32 odc_c_iestado, global::System.String odc_c_vdescmoneda, global::System.Boolean odc_c_bactivo, global::System.String odc_c_vdescestado, global::System.String prov_c_vdoc_id, global::System.DateTime odc_c_zfechaentrega_ini, global::System.DateTime odc_c_zfechaentrega_fin, global::System.String odc_c_iid_usuario_creador, global::System.String odc_c_vobservacion, global::System.Int32 odc_c_clase_iid, global::System.String odc_c_clase_des, global::System.Boolean odc_c_bpercepcion, global::System.Int32 odc_c_idireccion, global::System.String odc_c_vdireccion)
+        public static SIC_T_ORDEN_DE_COMPRA CreateSIC_T_ORDEN_DE_COMPRA(global::System.Int32 odc_c_iid, global::System.DateTime odc_c_zfecharegistro, global::System.Byte odc_c_ymoneda, global::System.Decimal odc_c_esubtotal, global::System.Decimal odc_c_etotal, global::System.Decimal odc_c_eigv, global::System.Decimal odc_c_eigvcal, global::System.Decimal odc_c_epercepcion, global::System.Decimal odc_c_epercepcioncal, global::System.Int32 odc_c_iestado, global::System.String odc_c_vdescmoneda, global::System.Boolean odc_c_bactivo, global::System.String odc_c_vdescestado, global::System.String prov_c_vdoc_id, global::System.DateTime odc_c_zfechaentrega_ini, global::System.DateTime odc_c_zfechaentrega_fin, global::System.String odc_c_iid_usuario_creador, global::System.String odc_c_vobservacion, global::System.Int32 odc_c_clase_iid, global::System.String odc_c_clase_des, global::System.Boolean odc_c_bpercepcion, global::System.Int32 odc_c_idireccion, global::System.String odc_c_vdireccion)
         {
             SIC_T_ORDEN_DE_COMPRA sIC_T_ORDEN_DE_COMPRA = new SIC_T_ORDEN_DE_COMPRA();
             sIC_T_ORDEN_DE_COMPRA.odc_c_iid = odc_c_iid;
-            sIC_T_ORDEN_DE_COMPRA.odc_c_vcodigo = odc_c_vcodigo;
             sIC_T_ORDEN_DE_COMPRA.odc_c_zfecharegistro = odc_c_zfecharegistro;
             sIC_T_ORDEN_DE_COMPRA.odc_c_ymoneda = odc_c_ymoneda;
             sIC_T_ORDEN_DE_COMPRA.odc_c_esubtotal = odc_c_esubtotal;
@@ -9542,7 +9540,7 @@ namespace SIC.EntityLayer
         /// <summary>
         /// No hay documentación de metadatos disponible.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String odc_c_vcodigo
         {
@@ -9554,7 +9552,7 @@ namespace SIC.EntityLayer
             {
                 Onodc_c_vcodigoChanging(value);
                 ReportPropertyChanging("odc_c_vcodigo");
-                _odc_c_vcodigo = StructuralObject.SetValidValue(value, false);
+                _odc_c_vcodigo = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("odc_c_vcodigo");
                 Onodc_c_vcodigoChanged();
             }
@@ -10138,6 +10136,30 @@ namespace SIC.EntityLayer
         private global::System.String _odc_c_vdireccion;
         partial void Onodc_c_vdireccionChanging(global::System.String value);
         partial void Onodc_c_vdireccionChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String odc_c_cserie
+        {
+            get
+            {
+                return _odc_c_cserie;
+            }
+            set
+            {
+                Onodc_c_cserieChanging(value);
+                ReportPropertyChanging("odc_c_cserie");
+                _odc_c_cserie = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("odc_c_cserie");
+                Onodc_c_cserieChanged();
+            }
+        }
+        private global::System.String _odc_c_cserie;
+        partial void Onodc_c_cserieChanging(global::System.String value);
+        partial void Onodc_c_cserieChanged();
 
         #endregion
 

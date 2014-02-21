@@ -1082,6 +1082,9 @@ pruebas lenny
 {
     background-color:#FFFFFF !important;
     text-align:left;
+    border-style:solid;
+    border-color:#3E761C;
+    border-width:4px;
 
 /*	width:550px !important;*/
 	
