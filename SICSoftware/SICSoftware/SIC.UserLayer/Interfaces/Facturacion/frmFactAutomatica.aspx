@@ -38,7 +38,7 @@
                         </tr>
                         </tr>
                         <tr>
-                            <td colspan="2" lign="center">
+                            <td colspan="2" align="center">
                                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                     <tr>
                                         <td align="left" class="box-estilo01">
@@ -198,7 +198,7 @@
                         </tr>
                         </tr>
                         <tr>
-                            <td colspan="2" lign="center">
+                            <td colspan="2" align="center">
                                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                     <tr>
                                         <td align="left" class="box-estilo01">

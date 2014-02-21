@@ -92,8 +92,8 @@
 </head>
 <body>
     <form id="Form1" runat="server">
-    <asp:ToolkitScriptManager ID="ScriptManager1" runat="server" 
-        AsyncPostBackTimeout="1600" EnableScriptGlobalization="True">
+    <asp:ToolkitScriptManager ID="ScriptManager1" runat="server" AsyncPostBackTimeout="1600"
+        EnableScriptGlobalization="True">
     </asp:ToolkitScriptManager>
     <%--  <script type="text/javascript" language="javascript">
 
@@ -139,7 +139,7 @@
                                 <span id="liveclock"></span>
                             </td>
                             <td>
-                                &nbsp;
+                                &nbsp; &nbsp;
                             </td>
                         </tr>
                     </table>
@@ -165,26 +165,7 @@
         </table>
     </div>
     <!--FIN CABECERA-->
-    <!---INI PIE--->
-    <div id="Div1" class="footer" style="clear: both; display: none">
-        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="height: 35px;
-            margin-bottom: 0px">
-            <tr>
-                <td align="left" style="padding-left: 6px;">
-                    Copyright ®
-                </td>
-                <td width="70">
-                    <%--<asp:Image ID="Image5" ImageUrl="~/Imagenes/logo-pie-realplaza.gif" 
-                        runat="server" Height="38px" />--%>
-                </td>
-                <td width="217" align="left" style="padding-left: 6px;">
-                    ...
-                </td>
-            </tr>
-        </table>
-    </div>
-    <!----FIN PIE---->
-    <div id="CuerpoMaestro" class="Body">
+    <div id="CuerpoMaestro" class="Body" style="background-color: Red;">
         <table width="100%" cellpadding="0" cellspacing="0" border="0">
             <tr>
                 <td>
@@ -220,6 +201,27 @@
             </ProgressTemplate>
         </asp:UpdateProgress>
     </div>
+    <!---INI PIE--->
+    <div id="Div1" class="footer">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="height: 35px;
+            margin-bottom: 0px">
+            <tr>
+                <td height="49" align="left" style="padding-left: 6px;">
+                    Copyright ®
+                    <%= string.Format("{0}", DateTime.Today.Year)%>
+                    Natcom Systems S.A.C.
+                </td>
+                <td width="70">
+                    <%--   <asp:Image ID="Image5" ImageUrl="~/Imagenes/logo-pie-realplaza.gif" 
+                        runat="server" Height="38px" />--%>
+                </td>
+                <td width="217" align="left" style="padding-left: 6px;">
+                    TECNOLOGÍA DE LA INFORMACIÓN
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!----FIN PIE---->
     </form>
 </body>
 </html>

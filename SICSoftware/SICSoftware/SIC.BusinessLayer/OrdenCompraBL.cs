@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using SIC.EntityLayer;
 using SIC.DataLayer;
+using SIC.Data;
 
 namespace SIC.BusinessLayer
 {
@@ -32,7 +33,7 @@ namespace SIC.BusinessLayer
         {
             return new OrdenCompraDA().ObtenerOrdenCompraNoContext(id);
         }
-        
+
 
         public bool InsertarOrdenCompra(SIC_T_ORDEN_DE_COMPRA _pSIC_T_ORDEN_DE_COMPRA)
         {
@@ -49,7 +50,7 @@ namespace SIC.BusinessLayer
             return new OrdenCompraDA().DeshabilitarOrdenCompra(id);
         }
 
-        public List<SIC_T_ODC_ESTADO> ListarEstadosOrdenCompra() 
+        public List<SIC_T_ODC_ESTADO> ListarEstadosOrdenCompra()
         {
             return new OrdenCompraDA().ListarEstadosOrdenCompra();
         }
@@ -62,6 +63,11 @@ namespace SIC.BusinessLayer
         public List<SIC_T_ODC_CLASE> ListarClasesOrdenCompra()
         {
             return new OrdenCompraDA().ListarClasesOrdenCompra();
+        }
+
+        public int CambiarEstadoOrdenCompra(int id, EstadoOC estado)
+        {
+            return new OrdenCompraDA().CambiarEstadoOrdenCompra(id, Convert.ToInt32(estado),Enum.GetName(typeof(EstadoOC),estado));
         }
     }
 }

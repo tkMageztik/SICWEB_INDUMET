@@ -29,7 +29,7 @@ namespace SIC.DataLayer
             catch (Exception)
             {
                 throw;
-            }   
+            }
         }
 
         /// <summary>
@@ -46,9 +46,9 @@ namespace SIC.DataLayer
                     return (from x in contexto.SIC_T_ORDEN_DE_COMPRA
                                     .Include("SIC_T_CLIENTE")
                             where x.odc_c_bactivo == true &&
-                                ( !idMoneda.HasValue || x.odc_c_ymoneda == idMoneda.Value) &&
-                                ( idProveedor==null || x.odc_c_vdocprov_id.Contains(idProveedor)) &&
-                                ( !idEstado.HasValue || x.odc_c_iestado == idEstado.Value)
+                                (!idMoneda.HasValue || x.odc_c_ymoneda == idMoneda.Value) &&
+                                (idProveedor == null || x.odc_c_vdocprov_id.Contains(idProveedor)) &&
+                                (!idEstado.HasValue || x.odc_c_iestado == idEstado.Value)
                             select x).ToList();
                 }
             }
@@ -65,8 +65,8 @@ namespace SIC.DataLayer
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
                     var result = (from x in contexto.SIC_T_ORDEN_DE_COMPRA
-                            where x.odc_c_bactivo == true && x.odc_c_vcodigo==codigo
-                            select x);
+                                  where x.odc_c_bactivo == true && x.odc_c_vcodigo == codigo
+                                  select x);
                     if (result.Count() > 0)
                     {
                         return result.First();
@@ -117,8 +117,8 @@ namespace SIC.DataLayer
                     var result = (from x in contexto.SIC_T_ORDEN_DE_COMPRA
                                         .Include("SIC_T_ORDEN_DE_COMPRA_DET.SIC_T_ITEM")
                                         .Include("SIC_T_CLIENTE")
-                            where x.odc_c_iid == id && x.odc_c_bactivo == true
-                            select x).SingleOrDefault();
+                                  where x.odc_c_iid == id && x.odc_c_bactivo == true
+                                  select x).SingleOrDefault();
 
                     return result;
                 }
@@ -143,7 +143,7 @@ namespace SIC.DataLayer
                     contexto.SIC_T_ORDEN_DE_COMPRA.MergeOption = System.Data.Objects.MergeOption.NoTracking;
                     var result = (from x in contexto.SIC_T_ORDEN_DE_COMPRA
                                         .Include("SIC_T_CLIENTE")
-                                        .Include("SIC_T_ORDEN_DE_COMPRA_DET.SIC_T_ITEM")                                        
+                                        .Include("SIC_T_ORDEN_DE_COMPRA_DET.SIC_T_ITEM")
                                   where x.odc_c_iid == id && x.odc_c_bactivo == true
                                   select x).SingleOrDefault();
                     SIC_T_CLIENTE cli = result.SIC_T_CLIENTE;
@@ -173,11 +173,11 @@ namespace SIC.DataLayer
                         if (item.SIC_T_ITEM != null)
                         {
                             item.odc_c_iitemid = item.SIC_T_ITEM.itm_c_iid;
-                            item.SIC_T_ITEM = null;         
+                            item.SIC_T_ITEM = null;
                         }
                     }
                     _pSIC_T_ORDEN_DE_COMPRA.odc_c_bactivo = true;
-                    contexto.AddToSIC_T_ORDEN_DE_COMPRA(_pSIC_T_ORDEN_DE_COMPRA);                    
+                    contexto.AddToSIC_T_ORDEN_DE_COMPRA(_pSIC_T_ORDEN_DE_COMPRA);
                     contexto.SaveChanges();
                     return true;
                 }
@@ -185,7 +185,7 @@ namespace SIC.DataLayer
             catch (Exception ex)
             {
                 throw;
-            }  
+            }
         }
 
         public bool InsertarOrdenCompra(SIC_T_ORDEN_DE_COMPRA _pSIC_T_ORDEN_DE_COMPRA,
@@ -213,7 +213,7 @@ namespace SIC.DataLayer
             catch (Exception ex)
             {
                 throw;
-            }  
+            }
         }
 
         public bool ModificarOrdenCompra(SIC_T_ORDEN_DE_COMPRA _pSIC_T_ORDEN_DE_COMPRA)
@@ -225,7 +225,7 @@ namespace SIC.DataLayer
                 {
                     SIC_T_ORDEN_DE_COMPRA oc = (from x in contexto.SIC_T_ORDEN_DE_COMPRA
                                                         .Include("SIC_T_ORDEN_DE_COMPRA_DET")
-                                                where x.odc_c_iid == _pSIC_T_ORDEN_DE_COMPRA.odc_c_iid                                                    
+                                                where x.odc_c_iid == _pSIC_T_ORDEN_DE_COMPRA.odc_c_iid
                                                 select x).FirstOrDefault();
 
                     // Necesitamos comprarar y eliminar
@@ -235,7 +235,7 @@ namespace SIC.DataLayer
                     {
                         // Si no existe, lo borro de al bd
                         var encontrado = _pSIC_T_ORDEN_DE_COMPRA.SIC_T_ORDEN_DE_COMPRA_DET.FirstOrDefault(x => x.odc_det_c_iid == detalle.odc_det_c_iid);
-                        if (encontrado ==null)
+                        if (encontrado == null)
                         {
                             eliminar.Add(detalle);
                         }
@@ -261,19 +261,19 @@ namespace SIC.DataLayer
                     {
                         contexto.SIC_T_ORDEN_DE_COMPRA_DET.Attach(detalle);
                         contexto.SIC_T_ORDEN_DE_COMPRA_DET.DeleteObject(detalle);
-                    }                   
+                    }
 
                     contexto.ApplyCurrentValues("SICDBWEBEntities.SIC_T_ORDEN_DE_COMPRA", _pSIC_T_ORDEN_DE_COMPRA);
 
                     foreach (var detalle in agregar)
                     {
-                        if(detalle.SIC_T_ITEM != null)
+                        if (detalle.SIC_T_ITEM != null)
                         {
                             detalle.odc_c_iitemid = detalle.SIC_T_ITEM.itm_c_iid;
-                            detalle.SIC_T_ITEM = null;    
+                            detalle.SIC_T_ITEM = null;
                         }
 
-                        oc.SIC_T_ORDEN_DE_COMPRA_DET.Add(detalle);                         
+                        oc.SIC_T_ORDEN_DE_COMPRA_DET.Add(detalle);
                     }
 
                     contexto.SaveChanges();
@@ -283,7 +283,7 @@ namespace SIC.DataLayer
             catch (Exception ex)
             {
                 throw;
-            }      
+            }
         }
 
 
@@ -330,8 +330,8 @@ namespace SIC.DataLayer
             using (SICDBWEBEntities contexto = new SICDBWEBEntities())
             {
                 SIC_T_ORDEN_DE_COMPRA varItem = (from x in contexto.SIC_T_ORDEN_DE_COMPRA
-                                      where x.odc_c_iid == id
-                                      select x).FirstOrDefault();
+                                                 where x.odc_c_iid == id
+                                                 select x).FirstOrDefault();
                 if (varItem != null)
                 {
                     varItem.odc_c_iestado = 5; // ANULADO
@@ -343,6 +343,31 @@ namespace SIC.DataLayer
                     return true;
                 }
                 catch (OptimisticConcurrencyException ex)
+                {
+                    throw;
+                }
+            }
+        }
+
+        public int CambiarEstadoOrdenCompra(int id, int estado, string desEstado)
+        {
+            using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+            {
+                SIC_T_ORDEN_DE_COMPRA varItem = (from x in contexto.SIC_T_ORDEN_DE_COMPRA
+                                                 where x.odc_c_iid == id
+                                                 select x).FirstOrDefault();
+                if (varItem != null)
+                {
+                    varItem.odc_c_iestado = estado;
+                    varItem.odc_c_vdescestado = desEstado;
+                }
+
+                try
+                {
+                    contexto.ApplyCurrentValues("SIC_T_ORDEN_DE_COMPRA", varItem);
+                    return contexto.SaveChanges();
+                }
+                catch
                 {
                     throw;
                 }

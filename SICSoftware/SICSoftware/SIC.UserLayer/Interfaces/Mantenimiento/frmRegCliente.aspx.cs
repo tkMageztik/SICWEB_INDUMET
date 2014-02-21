@@ -1229,32 +1229,32 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         {
             bool _validator = false;
 
-            if (cboTipoDoc.SelectedValue == "1")
-            {
-                if (!ValidarDni(txtDniContacto.Text.Trim()))
-                {
-                    lblValidarDni.Text = "Formato de Dni incorrecto";
-                    _validator = true;
-                }
-                else
-                {
-                    lblValidarDni.Text = "";
-                }
+            //if (cboTipoDoc.SelectedValue == "1")
+            //{
+            //    if (!ValidarDni(txtDniContacto.Text.Trim()))
+            //    {
+            //        lblValidarDni.Text = "Formato de Dni incorrecto";
+            //        _validator = true;
+            //    }
+            //    else
+            //    {
+            //        lblValidarDni.Text = "";
+            //    }
 
-            }
+            //}
 
-            if (cboTipoDoc.SelectedValue == "2")
-            {
-                if (!ValidarCarnetExtranjeria(txtDniContacto.Text.Trim().ToUpper()))
-                {
-                    lblValidarDni.Text = "Formato de Carnet de Extranjeria incorrecto";
-                    _validator = true;
-                }
-                else
-                {
-                    lblValidarDni.Text = "";
-                }
-            }
+            //if (cboTipoDoc.SelectedValue == "2")
+            //{
+            //    if (!ValidarCarnetExtranjeria(txtDniContacto.Text.Trim().ToUpper()))
+            //    {
+            //        lblValidarDni.Text = "Formato de Carnet de Extranjeria incorrecto";
+            //        _validator = true;
+            //    }
+            //    else
+            //    {
+            //        lblValidarDni.Text = "";
+            //    }
+            //}
 
             if (!ValidarNombre(txtNombreContacto.Text.Trim()))
             {

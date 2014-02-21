@@ -31,7 +31,7 @@ namespace SIC.Data
     public enum EstadoMovimiento
     {
         POR_REGULARIZAR = 2,
-        CERRADA = 3,
+        CERRADO = 3,
         ANULADO = 4,
     }
 
@@ -159,7 +159,8 @@ namespace SIC.Data
         Modificacion,
         Eliminacion,
         Listar,
-        Exportacion
+        Exportacion,
+        Cierre
     }
 
     public enum TipoBusqueda
@@ -273,12 +274,12 @@ namespace SIC.Data
         VENCIDA = 4
     }
 
-    public enum EstadosMovimiento
-    {
-        REGISTRADO = 1 ,
-        POR_REGULARIZAR = 2,
-        CERRADO = 3,
-    }
+    //public enum EstadosMovimiento
+    //{
+    //    REGISTRADO = 1 ,
+    //    POR_REGULARIZAR = 2,
+    //    CERRADO = 3,
+    //}
 
     public enum TipoDocumentoPago
     {
