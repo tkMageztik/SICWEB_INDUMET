@@ -56,6 +56,7 @@ namespace BL_NUnit
             Assert.GreaterOrEqual(2, CantidadDecimales(boletaResultante.bol_c_etotal), "El total tiene la cantidad de decimales incorrectos.");
             Assert.AreEqual(ventaInicial.ven_c_ymoneda, boletaResultante.bol_c_imoneda, "La moneda no corresponde a la venta.");
             Assert.AreEqual(ventaInicial.ven_c_vdescmoneda, boletaResultante.bol_c_vdescmoneda, "La descripción de moneda no corresponde a la venta.");
+            Assert.IsNotNull(boletaResultante.SIC_T_VENTA, "La venta no esta instanciada.");
             
             // Comparamos los items, debe tener los items resumidos
             foreach (var item in boletaResultante.SIC_T_BOLETA_DETALLE)
@@ -93,7 +94,8 @@ namespace BL_NUnit
             Assert.GreaterOrEqual(2, CantidadDecimales(facturaResultante.fac_c_etotal), "El total tiene la cantidad de decimales incorrectos.");
             Assert.AreEqual(ventaInicial.ven_c_ymoneda, facturaResultante.fac_c_imoneda, "La moneda no corresponde a la venta.");
             Assert.AreEqual(ventaInicial.ven_c_vdescmoneda, facturaResultante.fac_c_vdescmoneda, "La descripción de moneda no corresponde a la venta.");
-            
+            Assert.IsNotNull(facturaResultante.SIC_T_VENTA, "La venta no esta instanciada.");
+
             // Comparamos los items, debe tener los items resumidos
             foreach (var item in facturaResultante.SIC_T_FACTURA_DETALLE)
             {

@@ -86,6 +86,7 @@ namespace SIC.BusinessLayer
             factura.fac_c_eigv = venta.ven_c_eigv;
             factura.fac_c_imoneda = venta.ven_c_ymoneda;
             factura.fac_c_vdescmoneda = venta.ven_c_vdescmoneda;
+            factura.SIC_T_VENTA = venta;
 
             foreach (var ventaDetalle in venta.SIC_T_VENTA_DETALLE)
             {
@@ -138,6 +139,7 @@ namespace SIC.BusinessLayer
             boleta.bol_c_eigv = venta.ven_c_eigv;
             boleta.bol_c_imoneda = venta.ven_c_ymoneda;
             boleta.bol_c_vdescmoneda = venta.ven_c_vdescmoneda;
+            boleta.SIC_T_VENTA = venta;
 
             int contador = 0;
             foreach (var ventaDetalle in venta.SIC_T_VENTA_DETALLE)
