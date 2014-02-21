@@ -613,7 +613,8 @@
                                                 </tr>
                                                 <tr>
                                                     <td class="txt-box-estilo">
-                                                        Documento de Identidad <span class="requerido">(*)</span>
+                                                        Documento de Identidad
+                                                        <%-- <span class="requerido">(*)</span>--%>
                                                     </td>
                                                     <td>
                                                         <asp:UpdatePanel ID="up" runat="server" UpdateMode="Conditional">
@@ -660,11 +661,11 @@
                                                     </td>
                                                     <td class="txt-box-estilo">
                                                         Apellido Materno
-                                                        <asp:UpdatePanel ID="upMen" runat="server" UpdateMode="Conditional">
+                                                       <%-- <asp:UpdatePanel ID="upMen" runat="server" UpdateMode="Conditional">
                                                             <ContentTemplate>
                                                                 <asp:Label ID="lbl" runat="server" CssClass="requerido"></asp:Label>
                                                             </ContentTemplate>
-                                                        </asp:UpdatePanel>
+                                                        </asp:UpdatePanel>--%>
                                                     </td>
                                                     <td>
                                                         <asp:TextBox ID="txtApellidoMaternoContacto" runat="server" CssClass="ipt_150x20"

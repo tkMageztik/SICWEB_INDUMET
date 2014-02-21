@@ -137,17 +137,17 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         {
             if (txtDescripcionCCN.Text.Trim().Length <= 0)
             {
-                Mensaje("Debe ingresar el nombre del centro de costo.", "../Imagenes/warning.png");
+                Mensaje("Debe ingresar el nombre del centro de costo.", "~/Imagenes/warning.png");
                 return false;
             }
             else if (txtSerBoletaN.Text.Trim().Length <= 0)
             {
-                Mensaje("Debe ingresar la serie de boleta del centro de costo.", "../Imagenes/warning.png");
+                Mensaje("Debe ingresar la serie de boleta del centro de costo.", "~/Imagenes/warning.png");
                 return false;
             }
             else if (txtSerFacturaN.Text.Trim().Length <= 0)
             {
-                Mensaje("Debe ingresar el serie de factura del centro de costo.", "../Imagenes/warning.png");
+                Mensaje("Debe ingresar el serie de factura del centro de costo.", "~/Imagenes/warning.png");
                 return false;
             }
             else
@@ -166,7 +166,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             var validacion = _empresa.ValidarCentroCosto(centroCosto);
             if (!validacion.EsValido)
             {
-                Mensaje(validacion.Mensaje, "../Imagenes/warning.png");
+                Mensaje(validacion.Mensaje, "~/Imagenes/warning.png");
             }
             else
             {
@@ -174,7 +174,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 try
                 {
                     _empresa.IngresarCentroCosto(centroCosto);
-                    Mensaje("Ingresado con éxito", "../Imagenes/correcto.png");
+                    Mensaje("Ingresado con éxito", "~/Imagenes/correcto.png");
                     this.mvCliente.SetActiveView(vwEmpresa);
                     this.ListarCentroCosto();
                     this.upGeneral.Update();
@@ -188,9 +188,9 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                         mensajeError += "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty;
                     }
 
-                    Mensaje(mensajeError, "../Imagenes/warning.png");
+                    Mensaje(mensajeError, "~/Imagenes/warning.png");
 #else
-                Mensaje("Error en el proceso.", "../Imagenes/warning.png");
+                Mensaje("Error en el proceso.", "~/Imagenes/warning.png");
 #endif
                 }
             }
@@ -243,17 +243,17 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         {
             if (txtDescripcionCCE.Text.Trim().Length <= 0)
             {
-                Mensaje("Debe ingresar el nombre del centro de costo.", "../Imagenes/warning.png");
+                Mensaje("Debe ingresar el nombre del centro de costo.", "~/Imagenes/warning.png");
                 return false;
             }
             else if (txtSerBoletaE.Text.Trim().Length <= 0)
             {
-                Mensaje("Debe ingresar la serie de boleta del centro de costo.", "../Imagenes/warning.png");
+                Mensaje("Debe ingresar la serie de boleta del centro de costo.", "~/Imagenes/warning.png");
                 return false;
             }
             else if (txtSerFacturaE.Text.Trim().Length <= 0)
             {
-                Mensaje("Debe ingresar el serie de factura del centro de costo.", "../Imagenes/warning.png");
+                Mensaje("Debe ingresar el serie de factura del centro de costo.", "~/Imagenes/warning.png");
                 return false;
             }
             else
@@ -280,14 +280,14 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             var validacion = _empresa.ValidarCentroCosto(centroCosto);
             if (!validacion.EsValido)
             {
-                Mensaje(validacion.Mensaje, "../Imagenes/warning.png");
+                Mensaje(validacion.Mensaje, "~/Imagenes/warning.png");
             }
             else
             {
                 try
                 {
                     _empresa.ModificarCentroCosto(centroCosto);
-                    Mensaje("Modificado con éxito", "../Imagenes/correcto.png");
+                    Mensaje("Modificado con éxito", "~/Imagenes/correcto.png");
                     this.mvCliente.SetActiveView(vwEmpresa);
                     this.ListarCentroCosto();
                     this.upGeneral.Update();
@@ -301,9 +301,9 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                         mensajeError += "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty;
                     }
 
-                    Mensaje(mensajeError, "../Imagenes/warning.png");
+                    Mensaje(mensajeError, "~/Imagenes/warning.png");
 #else
-                    Mensaje("Error en el proceso.", "../Imagenes/warning.png");
+                    Mensaje("Error en el proceso.", "~/Imagenes/warning.png");
 #endif
                 }
             }
@@ -516,14 +516,14 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             var resultado = _empresa.ValidarDireccionEmpresa(local);
             if (!resultado.EsValido)
             {
-                Mensaje(resultado.Mensaje, "../Imagenes/correcto.png");
+                Mensaje(resultado.Mensaje, "~/Imagenes/correcto.png");
             }
             else
             {
                 try
                 {
                     this._empresa.IngresarDireccion(local);
-                    Mensaje("Ingresado con éxito", "../Imagenes/correcto.png");
+                    Mensaje("Ingresado con éxito", "~/Imagenes/correcto.png");
                     this.mvCliente.SetActiveView(vwEmpresa);
                     this.ListarLocal();
                     this.upGeneral.Update();
@@ -537,9 +537,9 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                         mensajeError += "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty;
                     }
 
-                    Mensaje(mensajeError, "../Imagenes/warning.png");
+                    Mensaje(mensajeError, "~/Imagenes/warning.png");
     #else
-                    Mensaje("Error en el proceso.", "../Imagenes/warning.png");
+                    Mensaje("Error en el proceso.", "~/Imagenes/warning.png");
     #endif
                 }
             }
@@ -613,12 +613,12 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             int idSeleccionado = -1;
             if (this.txtDescripcionLCE.Text.Trim().Length <= 0)
             {
-                Mensaje("Debe ingresar el nombre del local.", "../Imagenes/warning.png");
+                Mensaje("Debe ingresar el nombre del local.", "~/Imagenes/warning.png");
                 return false;
             }
             else if (int.TryParse(this.cboCentroCostoE.SelectedValue, out idSeleccionado) && idSeleccionado == -1)
             {
-                Mensaje("Debe seleccionar un centro de costo.", "../Imagenes/warning.png");
+                Mensaje("Debe seleccionar un centro de costo.", "~/Imagenes/warning.png");
                 return false;
             }
             else
@@ -648,14 +648,14 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             var resultado = _empresa.ValidarDireccionEmpresa(this.LocalModificar);
             if (!resultado.EsValido)
             {
-                Mensaje(resultado.Mensaje, "../Imagenes/correcto.png");
+                Mensaje(resultado.Mensaje, "~/Imagenes/correcto.png");
             }
             else
             {
                 try
                 {
                     this._empresa.ModificarDireccion(this.LocalModificar);
-                    Mensaje("Modificado con éxito", "../Imagenes/correcto.png");
+                    Mensaje("Modificado con éxito", "~/Imagenes/correcto.png");
                     this.mvCliente.SetActiveView(vwEmpresa);
                     this.ListarLocal();
                     this.upGeneral.Update();
@@ -669,9 +669,9 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                         mensajeError += "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty;
                     }
 
-                    Mensaje(mensajeError, "../Imagenes/warning.png");
+                    Mensaje(mensajeError, "~/Imagenes/warning.png");
 #else
-                    Mensaje("Error en el proceso.", "../Imagenes/warning.png");
+                    Mensaje("Error en el proceso.", "~/Imagenes/warning.png");
 #endif
                 }
             }

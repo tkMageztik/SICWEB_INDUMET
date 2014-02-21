@@ -7,7 +7,7 @@
     Width="320px">
     <div id="Cabecera" style="width: 320px">
         <table style="width: 320px">
-            <tr style="background-image: url('http://localhost:56961/Imagenes/f_index.gif');
+            <tr style="background-image: url('/Imagenes/f_index.gif');
                 background-color: #6C217C">
                 <td align="left" class="style1">
                     <asp:Label ID="Label1" runat="server" Text="SICWEB - INDUMET" ForeColor="White"
@@ -24,7 +24,8 @@
         <table class="TabBodyMensaje">
             <tr>
                 <td style="width: 50px;" align="center">
-                    <asp:Image ID="imgmensaje" runat="server" Height="32px" Width="32px" CssClass="imagen" />
+                    <asp:Image ID="imgmensaje" runat="server" Height="32px" Width="32px" 
+                        CssClass="imagen"/>
                 </td>
                 <td align="left" class="style8">
                     <div style="margin-right: 15px;">

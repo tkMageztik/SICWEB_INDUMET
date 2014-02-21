@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using SIC.EntityLayer;
 using SIC.DataLayer;
+using SIC.Data;
 
 namespace SIC.BusinessLayer
 {
@@ -14,9 +15,9 @@ namespace SIC.BusinessLayer
             return new MovimientoEntradaDA().ObtenerMovimientoEntrada();
         }
 
-        public List<SIC_T_MOVIMIENTO_ENTRADA> ObtenerMovimientosEntrada(String ruc, String razonSocial,                                                 DateTime? inicio, DateTime? fin)
+        public List<SIC_T_MOVIMIENTO_ENTRADA> ObtenerMovimientosEntrada(String ruc, String razonSocial, DateTime? inicio, DateTime? fin)
         {
-            return new MovimientoEntradaDA().ObtenerMovimientoEntrada(ruc,razonSocial,inicio,fin);
+            return new MovimientoEntradaDA().ObtenerMovimientoEntrada(ruc, razonSocial, inicio, fin);
         }
 
         public List<SIC_T_MOV_ESTADO> ObtenerMovimientoEstados()
@@ -37,6 +38,14 @@ namespace SIC.BusinessLayer
         public bool ModificarMovimientoEntrada(SIC_T_MOVIMIENTO_ENTRADA _pSIC_T_MOVIMIENTO_ENTRADA)
         {
             return new MovimientoEntradaDA().ModificarMovimientoEntrada(_pSIC_T_MOVIMIENTO_ENTRADA);
+        }
+
+        public int CambiarEstadoMovimientoEntrada(int id, EstadoMovimiento estado)
+        {
+            MovimientoEntradaDA movDA = new MovimientoEntradaDA();
+
+            return movDA.CambiarEstadoMovimientoEntrada(movDA.ObtenerMovimientoEntradaPorId(id),
+                Convert.ToInt32(estado), Enum.GetName(typeof(EstadoMovimiento), estado));
         }
     }
 }

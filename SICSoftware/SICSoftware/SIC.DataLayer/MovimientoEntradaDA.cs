@@ -28,8 +28,8 @@ namespace SIC.DataLayer
             }
         }
 
-        public List<SIC_T_MOVIMIENTO_ENTRADA> ObtenerMovimientoEntrada(String ruc, String razonSocial, 
-                                                DateTime? inicio, DateTime? fin)
+        public List<SIC_T_MOVIMIENTO_ENTRADA> ObtenerMovimientoEntrada(String ruc, String razonSocial,
+                                                DateTime? inicio, DateTime? fin,string test)
         {
             try
             {
@@ -39,17 +39,48 @@ namespace SIC.DataLayer
                              .Include("SIC_T_ORDEN_DE_COMPRA")
                              .Include("SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE")
                              .Include("SIC_T_MOVIMIENTO_ENTRADA_DETALLE")
-                            where x.mve_c_bactivo == true 
-                                && (ruc== null || ruc==string.Empty || 
-                                            (x.SIC_T_ORDEN_DE_COMPRA != null && x.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE!=null
+                            where x.mve_c_bactivo == true
+                                && (ruc == null || ruc == string.Empty ||
+                                            (x.SIC_T_ORDEN_DE_COMPRA != null && x.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE != null
                                             && x.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vdoc_id.Contains(ruc)))
                                 && (razonSocial == null || razonSocial == string.Empty ||
-                                            (x.SIC_T_ORDEN_DE_COMPRA != null && x.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE!=null
+                                            (x.SIC_T_ORDEN_DE_COMPRA != null && x.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE != null
                                             && x.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vraz_soc.Contains(razonSocial)))
-                                && (inicio==null || x.mve_c_zfecharegistro >= inicio)
+                                && (inicio == null || x.mve_c_zfecharegistro >= inicio)
                                 && (fin == null || (x.mve_c_zfecharegistro.Year <= fin.Value.Year
                                                  && x.mve_c_zfecharegistro.Month <= fin.Value.Month
-                                                 && x.mve_c_zfecharegistro.Day <= fin.Value.Day)) 
+                                                 && x.mve_c_zfecharegistro.Day <= fin.Value.Day))
+                            select x).ToList();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public List<SIC_T_MOVIMIENTO_ENTRADA> ObtenerMovimientoEntrada(String ruc, String razonSocial,
+                                               DateTime? inicio, DateTime? fin)
+        {
+            try
+            {
+                using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+                {
+                    return (from x in contexto.SIC_T_MOVIMIENTO_ENTRADA
+                             .Include("SIC_T_ORDEN_DE_COMPRA")
+                             .Include("SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE")
+                             .Include("SIC_T_MOVIMIENTO_ENTRADA_DETALLE")
+                            where x.mve_c_bactivo == true
+                                && (ruc == null || ruc == string.Empty ||
+                                            (x.SIC_T_ORDEN_DE_COMPRA != null && x.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE != null
+                                            && x.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vdoc_id.Contains(ruc)))
+                                && (razonSocial == null || razonSocial == string.Empty ||
+                                            (x.SIC_T_ORDEN_DE_COMPRA != null && x.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE != null
+                                            && x.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vraz_soc.Contains(razonSocial)))
+                                && (inicio == null || x.mve_c_zfecharegistro >= inicio)
+                                && (fin == null || (x.mve_c_zfecharegistro.Year <= fin.Value.Year
+                                                 && x.mve_c_zfecharegistro.Month <= fin.Value.Month
+                                                 && x.mve_c_zfecharegistro.Day <= fin.Value.Day))
                             select x).ToList();
                 }
             }
@@ -126,11 +157,11 @@ namespace SIC.DataLayer
                     _pSIC_T_MOVIMIENTO_ENTRADA.SIC_T_ORDEN_DE_COMPRA = null;
                     _pSIC_T_MOVIMIENTO_ENTRADA.mve_c_bingresado = false;
 
-                   
-                    contexto.AddToSIC_T_MOVIMIENTO_ENTRADA(_pSIC_T_MOVIMIENTO_ENTRADA);                    
+
+                    contexto.AddToSIC_T_MOVIMIENTO_ENTRADA(_pSIC_T_MOVIMIENTO_ENTRADA);
 
                     contexto.SaveChanges();
-                    return true;                        
+                    return true;
                 }
             }
             catch (Exception ex)
@@ -148,7 +179,7 @@ namespace SIC.DataLayer
                     var original = (from x in contexto.SIC_T_MOVIMIENTO_ENTRADA
                              .Include("SIC_T_MOVIMIENTO_ENTRADA_DETALLE")
                                     where x.mve_c_bactivo == true && x.mve_c_iid == _pSIC_T_MOVIMIENTO_ENTRADA.mve_c_iid
-                            select x).FirstOrDefault();
+                                    select x).FirstOrDefault();
 
                     // Si el estado es cerrado (3), se debe guardar  el itemalmacen
                     if (!_pSIC_T_MOVIMIENTO_ENTRADA.mve_c_bingresado && _pSIC_T_MOVIMIENTO_ENTRADA.mve_c_iestado == 3) // Cerrado, esto es proceso de negocio como hacerlo dedse afuera?
@@ -192,6 +223,29 @@ namespace SIC.DataLayer
                     contexto.SaveChanges();
 
                     return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public int CambiarEstadoMovimientoEntrada(SIC_T_MOVIMIENTO_ENTRADA obj, int estado, string desEstado)
+        {
+            try
+            {
+                using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+                {
+                    obj =  (from x in contexto.SIC_T_MOVIMIENTO_ENTRADA
+                            where x.mve_c_bactivo == true && x.mve_c_iid == obj.mve_c_iid
+                            select x).FirstOrDefault();
+
+                    obj.mve_c_iestado = estado;
+                    obj.mve_c_vdesestado = desEstado;
+                    contexto.ApplyCurrentValues("SIC_T_MOVIMIENTO_ENTRADA", obj);
+                    return contexto.SaveChanges();
+
                 }
             }
             catch (Exception ex)

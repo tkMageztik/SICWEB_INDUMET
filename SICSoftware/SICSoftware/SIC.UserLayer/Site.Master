@@ -12,7 +12,7 @@
     <link href="Bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
     <link href="Styles/MenuMatic.css" rel="stylesheet" type="text/css" />
     <link href="Styles/cssRecibo.css" rel="stylesheet" type="text/css" />
-    <script src="http://localhost:56928/Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
     <%--<script type="text/javascript" src="../../Scripts/hoverIntent.js"></script>
     <script type="text/javascript" src="../../Scripts/superfish.js"></script>--%>
     <script type="text/javascript">
@@ -92,8 +92,8 @@
 </head>
 <body>
     <form id="Form1" runat="server">
-    <asp:ToolkitScriptManager ID="ScriptManager1" runat="server" 
-        AsyncPostBackTimeout="1600" EnableScriptGlobalization="True">
+    <asp:ToolkitScriptManager ID="ScriptManager1" runat="server" AsyncPostBackTimeout="1600"
+        EnableScriptGlobalization="True">
     </asp:ToolkitScriptManager>
     <%--  <script type="text/javascript" language="javascript">
 
@@ -110,7 +110,7 @@
     <div id="Cabecera" style="border-style: solid; border-color: #ff0000; border-width: 0px;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
-                <td class="cab-bg-inter" aslign="left">
+                <td class="cab-bg-inter" align="left">
                     <h4>
                         SIC</h4>
                 </td>
@@ -139,7 +139,7 @@
                                 <span id="liveclock"></span>
                             </td>
                             <td>
-                                &nbsp;
+                                &nbsp; &nbsp;
                             </td>
                         </tr>
                     </table>
@@ -165,25 +165,6 @@
         </table>
     </div>
     <!--FIN CABECERA-->
-    <!---INI PIE--->
-    <div id="Div1" class="footer" style="clear: both; display: none">
-        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="height: 35px;
-            margin-bottom: 0px">
-            <tr>
-                <td align="left" style="padding-left: 6px;">
-                    Copyright ®
-                </td>
-                <td width="70">
-                    <%--<asp:Image ID="Image5" ImageUrl="~/Imagenes/logo-pie-realplaza.gif" 
-                        runat="server" Height="38px" />--%>
-                </td>
-                <td width="217" align="left" style="padding-left: 6px;">
-                    ...
-                </td>
-            </tr>
-        </table>
-    </div>
-    <!----FIN PIE---->
     <div id="CuerpoMaestro" class="Body">
         <table width="100%" cellpadding="0" cellspacing="0" border="0">
             <tr>
@@ -196,8 +177,8 @@
         <asp:UpdateProgress ID="UpdateProgress1" runat="server">
             <ProgressTemplate>
                 <div class="capa1">
-                    <asp:Panel ID="pnlCargando" runat="server" BorderColor="RoyalBlue" Height="80px"
-                        Width="280px" BackColor="WhiteSmoke" Font-Size="14px">
+                    <asp:Panel ID="pnlCargando" runat="server" BorderColor="#3e761c" BorderWidth="4px"
+                        BorderStyle="Solid" Height="80px" Width="280px" BackColor="WhiteSmoke" Font-Size="14px">
                         <table align="center">
                             <tr>
                                 <td align="center" class="tit_morado" width="280px">
@@ -220,6 +201,27 @@
             </ProgressTemplate>
         </asp:UpdateProgress>
     </div>
+    <!---INI PIE--->
+    <div id="Div1" class="footer">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="height: 35px;
+            margin-bottom: 0px">
+            <tr>
+                <td height="49" align="left" style="padding-left: 6px;">
+                    Copyright ®
+                    <%= string.Format("{0}", DateTime.Today.Year)%>
+                    Natcom Systems S.A.C.
+                </td>
+                <td width="70">
+                    <%--   <asp:Image ID="Image5" ImageUrl="~/Imagenes/logo-pie-realplaza.gif" 
+                        runat="server" Height="38px" />--%>
+                </td>
+                <td width="217" align="left" style="padding-left: 6px;">
+                    TECNOLOGÍA DE LA INFORMACIÓN
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!----FIN PIE---->
     </form>
 </body>
 </html>

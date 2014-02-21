@@ -147,6 +147,7 @@
     <Content Include="Imagenes\img-cab-color.gif" />
     <Content Include="Imagenes\img-cab-rplazas.gif" />
     <Content Include="Imagenes\img-cab-rplazas.jpg" />
+    <Content Include="Imagenes\img-cab.jpg" />
     <Content Include="Imagenes\img_index_der.png" />
     <Content Include="Imagenes\img_index_izq.png" />
     <Content Include="Imagenes\interproperties.png" />

@@ -94,6 +94,15 @@ namespace SIC.UserLayer.Interfaces.Movimientos {
         protected global::AjaxControlToolkit.CalendarExtender txtFiltroFecFin_CalendarExtender;
         
         /// <summary>
+        /// Control cboEstado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cboEstado;
+        
+        /// <summary>
         /// Control btnBuscar.
         /// </summary>
         /// <remarks>
@@ -281,15 +290,6 @@ namespace SIC.UserLayer.Interfaces.Movimientos {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnBuscarAlmacen;
-        
-        /// <summary>
-        /// Control cboEstado.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cboEstado;
         
         /// <summary>
         /// Control gvItemsSeleccionados.

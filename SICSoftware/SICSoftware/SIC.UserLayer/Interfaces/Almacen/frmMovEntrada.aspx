@@ -73,11 +73,12 @@
                                                                 <td style="width: 20px">
                                                                     &nbsp;
                                                                 </td>
-                                                                <td>
-                                                                    &nbsp;
+                                                                <td class="txt-box-estilo">
+                                                                    Estado
                                                                 </td>
                                                                 <td>
-                                                                    &nbsp;
+                                                                    <asp:DropDownList ID="cboEstado" runat="server">
+                                                                    </asp:DropDownList>
                                                                 </td>
                                                             </tr>
                                                         </table>
@@ -110,7 +111,8 @@
                                         <asp:GridView ID="gvListaMovEn" runat="server" BorderStyle="None" AutoGenerateColumns="False"
                                             GridLines="None" AllowPaging="True" Width="100%" CssClass="mGrid" PagerStyle-CssClass="pgr"
                                             AlternatingRowStyle-CssClass="alt" ShowHeaderWhenEmpty="True" EmptyDataText="No hay datos disponibles."
-                                            PageSize="15" BorderWidth="0px" DataKeyNames="mve_c_iid" OnSelectedIndexChanged="gvListaMovEn_SelectedIndexChanged">
+                                            PageSize="15" BorderWidth="0px" DataKeyNames="mve_c_iid" OnSelectedIndexChanged="gvListaMovEn_SelectedIndexChanged"
+                                            OnRowCommand="gvListaMovEn_RowCommand">
                                             <AlternatingRowStyle CssClass="alt" />
                                             <Columns>
                                                 <asp:TemplateField HeaderText="RUC PROVEEDOR">
@@ -126,6 +128,8 @@
                                                 <asp:BoundField HeaderText="Fecha" DataField="mve_c_zfecharegistro" />
                                                 <asp:BoundField DataField="mve_c_vdesestado" HeaderText="Estado" />
                                                 <asp:CommandField ShowSelectButton="True" SelectText="Modificar" />
+                                                <asp:ButtonField CommandName="Cerrar" Text="Cerrar" ButtonType="Link" />
+                                                <asp:ButtonField CommandName="Anular" Text="Anular" ButtonType="Link" />
                                             </Columns>
                                             <PagerStyle CssClass="pgr" />
                                         </asp:GridView>
@@ -372,12 +376,12 @@
                                                     <td align="left" class="style33">
                                                         &nbsp;
                                                     </td>
-                                                    <td align="left" class="style29">
+                                                    <%--<td align="left" class="style29">
                                                         Estado
-                                                    </td>
+                                                    </td>--%>
                                                     <td align="left" class="style29">
-                                                        <asp:DropDownList ID="cboEstado" runat="server">
-                                                        </asp:DropDownList>
+                                                        <%--<asp:DropDownList ID="cboEstado" runat="server">
+                                                        </asp:DropDownList>--%>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -826,6 +830,7 @@
                 <Triggers>
                     <asp:AsyncPostBackTrigger ControlID="btnGuardar" EventName="Click" />
                     <asp:AsyncPostBackTrigger ControlID="gvListaOC" EventName="RowDeleting" />
+                    <asp:AsyncPostBackTrigger ControlID="gvListaMovEn" EventName="RowCommand" />
                 </Triggers>
             </asp:UpdatePanel>
         </ContentTemplate>

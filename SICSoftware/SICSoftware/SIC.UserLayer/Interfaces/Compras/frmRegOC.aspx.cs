@@ -303,7 +303,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             }
             else
             {
-                Mensaje("Debe ingresar números entero válido mayor a 0.", "../Imagenes/warning.png");
+                Mensaje("Debe ingresar números entero válido mayor a 0.", "~/Imagenes/warning.png");
                 return;
             }
         }
@@ -325,7 +325,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             var oc = _ordenCompra.ObtenerOrdenCompra(OCEliminar);
             if (oc != null && (oc.odc_c_iestado == (int)EstadoOC.ABIERTA || oc.odc_c_iestado == (int)EstadoOC.VENCIDA))
             {
-                this.Mensaje("No se puede eliminar ordenes de compra en estado ABIERTA o VENCIDA.", "../Imagenes/warning.png");
+                this.Mensaje("No se puede eliminar ordenes de compra en estado ABIERTA o VENCIDA.", "~/Imagenes/warning.png");
                 //return;
             }
             else
@@ -607,7 +607,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
             if (this.OCSeleccionado.odc_c_iestado != (int)EstadoOC.PLANEADA)
             {
-                Mensaje("Solo se puede editar ordenes de compra en estado planeada.", "../Imagenes/warning.png");
+                Mensaje("Solo se puede editar ordenes de compra en estado planeada.", "~/Imagenes/warning.png");
                 upGeneral.Update();
                 this.OCSeleccionado = null;
                 return;
@@ -847,7 +847,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             }
             else
             {
-                Mensaje("Operación no permitida.", "../Imagenes/warning.png");
+                Mensaje("Operación no permitida.", "~/Imagenes/warning.png");
             }
         }
 
@@ -1126,7 +1126,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             {
                 if (_ordenCompra.InsertarOrdenCompra(this.OCNuevo))
                 {
-                    Mensaje("Orden de Compra registrada con éxito", "../Imagenes/correcto.png");
+                    Mensaje("Orden de Compra registrada con éxito", "~/Imagenes/correcto.png");
                     this.Limpiar();
                     this.ListarOrdenCompra();
                     mvOC.ActiveViewIndex = 0;
@@ -1134,7 +1134,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 }
                 else
                 {
-                    Mensaje("Error al realizar el proceso.", "../Imagenes/warning.png");
+                    Mensaje("Error al realizar el proceso.", "~/Imagenes/warning.png");
                 }
             }
             catch (Exception ex)
@@ -1147,9 +1147,9 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                     mensajeError += "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty;
                 }
 
-                Mensaje(mensajeError, "../Imagenes/warning.png");
+                Mensaje(mensajeError, "~/Imagenes/warning.png");
 #else
-                Mensaje("Error al realizar el proceso.", "../Imagenes/warning.png");
+                Mensaje("Error al realizar el proceso.", "~/Imagenes/warning.png");
 #endif
             }
         }
@@ -1187,7 +1187,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             {
                 if (_ordenCompra.ModificarOrdenCompra(this.OCSeleccionado))
                 {
-                    Mensaje("Orden de Compra modificada con éxito", "../Imagenes/correcto.png");
+                    Mensaje("Orden de Compra modificada con éxito", "~/Imagenes/correcto.png");
                     this.Limpiar();
                     this.ListarOrdenCompra();
                     mvOC.ActiveViewIndex = 0;
@@ -1195,12 +1195,12 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 }
                 else
                 {
-                    Mensaje("Error al realizar el proceso.", "../Imagenes/warning.png");
+                    Mensaje("Error al realizar el proceso.", "~/Imagenes/warning.png");
                 }
             }
             catch (Exception ex)
             {
-                Mensaje("Error al realizar el proceso.", "../Imagenes/warning.png");
+                Mensaje("Error al realizar el proceso.", "~/Imagenes/warning.png");
             }
         }
 
@@ -1234,66 +1234,66 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
             if (ordenDeCompra == null)
             {
-                Mensaje("Estado de la página no válido.", "../Imagenes/warning.png");
+                Mensaje("Estado de la página no válido.", "~/Imagenes/warning.png");
                 return false;
             }
             else if (ordenDeCompra.odc_c_vdocprov_id == null || ordenDeCompra.odc_c_vdocprov_id == string.Empty)
             {
-                Mensaje("Debe seleccionar un proveedor.", "../Imagenes/warning.png");
+                Mensaje("Debe seleccionar un proveedor.", "~/Imagenes/warning.png");
                 return false;
             }
             else if (ordenDeCompra.odc_c_idireccion <= 0)
             {
-                Mensaje("Debe seleccionar una dirección.", "../Imagenes/warning.png");
+                Mensaje("Debe seleccionar una dirección.", "~/Imagenes/warning.png");
                 return false;
             }
             //else if (DateTime.Compare(calFechaEntrega.SelectedDate, DateTime.Today) < 0)
             //{
-            //    Mensaje("Debe ingresar una fecha válida.", "../Imagenes/warning.png");
+            //    Mensaje("Debe ingresar una fecha válida.", "~/Imagenes/warning.png");
             //    return false;
             //}
             else if (cboEstado.SelectedIndex == -1)
             {
-                Mensaje("Debe seleccionar un estado.", "../Imagenes/warning.png");
+                Mensaje("Debe seleccionar un estado.", "~/Imagenes/warning.png");
                 return false;
             }
             else if (cboMoneda.SelectedIndex == -1)
             {
-                Mensaje("Debe seleccionar un tipo de Moneda.", "../Imagenes/warning.png");
+                Mensaje("Debe seleccionar un tipo de Moneda.", "~/Imagenes/warning.png");
                 return false;
             }
             else if (cboClaseOC.SelectedIndex == -1)
             {
-                Mensaje("Debe seleccionar la clase de la orden de compra.", "../Imagenes/warning.png");
+                Mensaje("Debe seleccionar la clase de la orden de compra.", "~/Imagenes/warning.png");
                 return false;
             }
             else if (ordenDeCompra.SIC_T_ORDEN_DE_COMPRA_DET == null
                 || ordenDeCompra.SIC_T_ORDEN_DE_COMPRA_DET.Count == 0)
             {
-                Mensaje("Debe seleccionar al menos un item.", "../Imagenes/warning.png");
+                Mensaje("Debe seleccionar al menos un item.", "~/Imagenes/warning.png");
                 return false;
             }
             else if (!DateTime.TryParseExact(txtFecEnIni.Text, "dd/MM/yyyy", new CultureInfo("en-US"), DateTimeStyles.None, out fechaInicio)
                 || !DateTime.TryParseExact(txtFecEntFin.Text, "dd/MM/yyyy", new CultureInfo("en-US"), DateTimeStyles.None, out fechaFin))
             {
-                Mensaje("Se requiere fechas válidas con formato dd/MM/yyyy.", "../Imagenes/warning.png");
+                Mensaje("Se requiere fechas válidas con formato dd/MM/yyyy.", "~/Imagenes/warning.png");
                 return false;
             }
             else if (fechaInicio >= fechaFin)
             {
-                Mensaje("La fecha de entrega final debe ser posterior a la fecha de entrega inicial.", "../Imagenes/warning.png");
+                Mensaje("La fecha de entrega final debe ser posterior a la fecha de entrega inicial.", "~/Imagenes/warning.png");
                 return false;
             }
             else if (fechaInicio.Date < ordenDeCompra.odc_c_zfecharegistro.Date)
             {
-                Mensaje("La fecha de entrega inicial debe ser el mismo dia o despues de la fecha de registro.", "../Imagenes/warning.png");
+                Mensaje("La fecha de entrega inicial debe ser el mismo dia o despues de la fecha de registro.", "~/Imagenes/warning.png");
                 return false;
 
             }
             else if (this.EscenarioOC == TipoOperacion.Creacion
                 && (null != _ordenCompra.ObtenerORdenCompraPorCodigo(this.txtSerie.Text + "-" + this.txtNumero.Text)))
             {
-                Mensaje("El codigo ya existe.", "../Imagenes/warning.png");
+                Mensaje("El codigo ya existe.", "~/Imagenes/warning.png");
                 return false;
             }
             else
@@ -1310,16 +1310,16 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             {
                 if (this._ordenCompra.DeshabilitarOrdenCompra(idOC))
                 {
-                    Mensaje("Orden de Compra deshabilitada.", "../Imagenes/correcto.png");
+                    Mensaje("Orden de Compra deshabilitada.", "~/Imagenes/correcto.png");
                 }
                 else
                 {
-                    Mensaje("Error al realizar el proceso.", "../Imagenes/warning.png");
+                    Mensaje("Error al realizar el proceso.", "~/Imagenes/warning.png");
                 }
             }
             catch (Exception)
             {
-                Mensaje("Error al realizar el proceso.", "../Imagenes/warning.png");
+                Mensaje("Error al realizar el proceso.", "~/Imagenes/warning.png");
             }
 
 
