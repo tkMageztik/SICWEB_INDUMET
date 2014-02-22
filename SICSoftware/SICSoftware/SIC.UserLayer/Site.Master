@@ -177,7 +177,7 @@
         <asp:UpdateProgress ID="UpdateProgress1" runat="server">
             <ProgressTemplate>
                 <div class="capa1">
-                    <asp:Panel ID="pnlCargando" runat="server" BorderColor="#3e761c" BorderWidth="4px"
+                    <asp:Panel ID="pnlCargando" runat="server" BorderColor="#3E761C" BorderWidth="4px"
                         BorderStyle="Solid" Height="80px" Width="280px" BackColor="WhiteSmoke" Font-Size="14px">
                         <table align="center">
                             <tr>

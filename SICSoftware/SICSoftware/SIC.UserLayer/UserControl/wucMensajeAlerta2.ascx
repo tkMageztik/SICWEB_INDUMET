@@ -8,7 +8,7 @@
     Width="320px">
     <div id="Cabecera" style="width: 320px">
         <table style="width: 320px">
-            <tr style="background-image: url('/Imagenes/f_index.gif'); background-color: #6C217C">
+            <tr style="background-color: #3E761C">
                 <td align="left" class="style1">
                     <asp:Label ID="lblTitulo" runat="server" Text="SICWEB - INDUMET" ForeColor="White"
                         Font-Bold="True"></asp:Label>
@@ -38,15 +38,15 @@
         <table width="320">
             <tr style="background-color: White">
                 <td align="center">
-                    <asp:Button ID="btnFirst" runat="server" Text="First" BorderColor="#6C217C" BackColor="#6C217C"
+                    <asp:Button ID="btnFirst" runat="server" Text="First" BorderColor="#3E761C" BackColor="#3E761C"
                         Font-Size="XX-Small" ForeColor="White" OnClick="btnFirst_Click" Style="height: 21px" />
                 </td>
                 <td align="center">
-                    <asp:Button ID="btnSecond" runat="server" BackColor="#6C217C" BorderColor="#6C217C"
+                    <asp:Button ID="btnSecond" runat="server" BackColor="#3E761C" BorderColor="#3E761C"
                         Font-Size="XX-Small" ForeColor="White" OnClick="btnSecond_Click" Text="Second" />
                 </td>
                 <td align="center">
-                    <asp:Button ID="btnThird" runat="server" BackColor="#6C217C" BorderColor="#6C217C"
+                    <asp:Button ID="btnThird" runat="server" BackColor="#3E761C" BorderColor="#3E761C"
                         Font-Size="XX-Small" ForeColor="White" OnClick="btnThird_Click" Text="Third" />
                 </td>
             </tr>

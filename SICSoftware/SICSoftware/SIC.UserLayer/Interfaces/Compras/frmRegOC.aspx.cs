@@ -9,6 +9,7 @@ using SIC.Data;
 using SIC.EntityLayer;
 using SIC.UserLayer.UserControl;
 using System.Globalization;
+using SIC.UIGeneral;
 
 namespace SIC.UserLayer.Interfaces.Mantenimiento
 {
@@ -395,7 +396,9 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         /// </summary>
         private void ListarCombosEstado()
         {
-            cboEstado.DataSource = _ordenCompra.ListarEstadosOrdenCompra().Where(x=> x.odc_estado_iid != (int)(EstadoOC.PLANEADA));
+            cboEstado.DataSource = _ordenCompra.ListarEstadosOrdenCompra().
+                Where(x => x.odc_estado_iid == (int)EstadoOC.ABIERTA | x.odc_estado_iid == (int)EstadoOC.PLANEADA);
+
             cboEstado.DataTextField = "odc_estado_vdescripcion";
             cboEstado.DataValueField = "odc_estado_iid";
             cboEstado.DataBind();
@@ -1520,7 +1523,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
                 if (oc != null && (oc.odc_c_iestado == (int)EstadoOC.ANULADA | oc.odc_c_iestado == (int)EstadoOC.PLANEADA))
                 {
-                    this.Mensaje("No se puede CERRAR una ordene de compra en estado PLANEADA ó ANULADA", "~/Imagenes/warning.png");
+                    this.Mensaje("No se puede CERRAR una orden de compra en estado PLANEADA ó ANULADA, en su defecto ANULARLA", "~/Imagenes/warning.png");
                     //return;
                 }
                 else
