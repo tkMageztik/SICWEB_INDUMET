@@ -766,8 +766,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        &nbsp;
-                                                    </td>
+                                                        &nbsp;</td>
                                                     <td>
                                                         &nbsp;
                                                         <asp:HiddenField ID="hdfCantRepLeg" runat="server" />

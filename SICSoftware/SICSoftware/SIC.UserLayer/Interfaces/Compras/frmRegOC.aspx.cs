@@ -578,8 +578,8 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
             this.txtSerie.Enabled = true;
             this.txtNumero.Enabled = true;
-            this.txtSerie.Text = string.Empty;
-            this.txtNumero.Text = string.Empty;
+            this.txtSerie.Text = obtNroSerie();
+            this.txtNumero.Text = obtCorrePorSerieOC();
             this.OCNuevo = new SIC_T_ORDEN_DE_COMPRA();
             this.OCNuevo.SIC_T_ORDEN_DE_COMPRA_DET = new System.Data.Objects.DataClasses.EntityCollection<SIC_T_ORDEN_DE_COMPRA_DET>();
             this.OCNuevo.odc_c_eigv = this.igv;
@@ -608,6 +608,16 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             this.upGeneral.Update();
         }
 
+        private string obtCorrePorSerieOC()
+        {
+            int corre = (_ordenCompra.ObtCorrelativoPorSerieOrdenCompra(txtSerie.Text) + 1);
+            int length = corre.ToString().Length - 1;
+
+            //8-1 es la longitud del tipo de dato código de la BD.
+            return String.Concat(Enumerable.Repeat("0", 7 - length))
+                + corre.ToString();
+        }
+
         /// <summary>
         /// Inicializa y muestra la vista de Modificar OC.
         /// </summary>
@@ -630,14 +640,12 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
             this.lblAccion.Text = "Modificar";
 
-
-
-            String[] res = OCSeleccionado.odc_c_vcodigo.Split('-');
-            if (res.Length == 2)
-            {
-                this.txtSerie.Text = res[0];
-                this.txtNumero.Text = res[1];
-            }
+            //String[] res = OCSeleccionado.odc_c_vcodigo.Split('-');
+            //if (res.Length == 2)
+            //{
+            this.txtSerie.Text = this.OCSeleccionado.odc_c_cserie;
+            this.txtNumero.Text = this.OCSeleccionado.odc_c_vcodigo;
+            //}
 
             this.lblFecha.Text = this.OCSeleccionado.odc_c_zfecharegistro.ToString("dd/MM/yyyy");
 
@@ -727,18 +735,18 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             this.txtSerie.Enabled = false;
             this.txtNumero.Enabled = false;
 
-            String[] res = OCSeleccionado.odc_c_vcodigo.Split('-');
-            if (res.Length == 2)
-            {
-                this.txtSerie.Text = res[0];
-                this.txtNumero.Text = res[1];
-            }
+            //String[] res = OCSeleccionado.odc_c_vcodigo.Split('-');
+            //if (res.Length == 2)
+            //{
+            this.txtSerie.Text = this.OCSeleccionado.odc_c_cserie;
+            this.txtNumero.Text = this.OCSeleccionado.odc_c_vcodigo;
+            //}
 
             this.lblFecha.Text = this.OCSeleccionado.odc_c_zfecharegistro.ToString("dd/MM/yyyy");
             this.EscenarioOC = TipoOperacion.Modificacion;
             this.txtObs.Text = this.OCSeleccionado.odc_c_vobservacion;
             this.txtDirecEntrega.Text = this.OCSeleccionado.odc_c_vdireccion;
-            this.chkPercepcion.Checked = OCSeleccionado.odc_c_bactivo;
+            this.chkPercepcion.Checked = OCSeleccionado.odc_c_bpercepcion;
             this.txtFecEnIni.Text = OCSeleccionado.odc_c_zfechaentrega_ini.ToString("dd/MM/yyyy");
             this.txtFecEntFin.Text = OCSeleccionado.odc_c_zfechaentrega_fin.ToString("dd/MM/yyyy");
             this.OCSeleccionado.odc_c_eigv = this.igv;
@@ -1101,9 +1109,17 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             upGeneral.Update();
         }
 
+        private string obtNroSerie()
+        {
+            int length = Convert.ToInt32(DateTime.Now.Year.ToString().Substring(1)).ToString().Length - 1;
+            return String.Concat(Enumerable.Repeat("0", length))
+                + Convert.ToInt32(DateTime.Now.Year.ToString().Substring(1)).ToString();
+        }
+
         /// <summary>
         /// Ingresa la Orden de Compra en la bd y termina el proceso
         /// </summary>
+        ///      
         private void IngresarOC()
         {
             if (!VerificarDatosOC(this.OCNuevo))
@@ -1114,7 +1130,8 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             string[] formats = { "dd/MM/yyyy" };
 
             var oc = this.OCNuevo;
-            oc.odc_c_vcodigo = this.txtSerie.Text + "-" + this.txtNumero.Text;
+            oc.odc_c_cserie = obtNroSerie();
+            oc.odc_c_vcodigo = obtCorrePorSerieOC();
             oc.odc_c_zfechaentrega_ini = DateTime.ParseExact(txtFecEnIni.Text, "dd/MM/yyyy",
                                 new CultureInfo("en-US"), DateTimeStyles.None);
             oc.odc_c_zfechaentrega_fin = DateTime.ParseExact(txtFecEntFin.Text, "dd/MM/yyyy",
@@ -1291,7 +1308,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 Mensaje("Se requiere fechas válidas con formato dd/MM/yyyy.", "~/Imagenes/warning.png");
                 return false;
             }
-            else if (fechaInicio >= fechaFin)
+            else if (fechaInicio > fechaFin)
             {
                 Mensaje("La fecha de entrega final debe ser posterior a la fecha de entrega inicial.", "~/Imagenes/warning.png");
                 return false;

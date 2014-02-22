@@ -138,7 +138,8 @@
                                                 OnRowCommand="gvListaOC_RowCommand">
                                                 <AlternatingRowStyle CssClass="alt" />
                                                 <Columns>
-                                                    <asp:BoundField HeaderText="CODIGO DE OC" DataField="odc_c_vcodigo" />
+                                                    <asp:BoundField HeaderText="SERIE" DataField="odc_c_cserie" />
+                                                    <asp:BoundField HeaderText="CÓDIGO" DataField="odc_c_vcodigo" />
                                                     <asp:TemplateField HeaderText="RUC PROVEEDOR">
                                                         <ItemTemplate>
                                                             <%# Eval("SIC_T_CLIENTE.cli_c_vdoc_id")%>
@@ -208,9 +209,9 @@
                                                         Código
                                                     </td>
                                                     <td align="left" class="txt-box-estilo">
-                                                        <asp:TextBox ID="txtSerie" runat="server" MaxLength="3" Width="35"></asp:TextBox>
+                                                        <asp:TextBox ID="txtSerie" runat="server" MaxLength="3" Width="35" ReadOnly="true"></asp:TextBox>
                                                         &nbsp;-
-                                                        <asp:TextBox ID="txtNumero" runat="server" MaxLength="8"></asp:TextBox>
+                                                        <asp:TextBox ID="txtNumero" runat="server" MaxLength="8" ReadOnly="true"></asp:TextBox>
                                                     </td>
                                                     <td align="left" class="txt-box-estilo">
                                                         &nbsp;

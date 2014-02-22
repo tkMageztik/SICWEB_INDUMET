@@ -373,5 +373,23 @@ namespace SIC.DataLayer
                 }
             }
         }
+
+        public int ObtCorrelativoPorSerieOrdenCompra(String serie)
+        {
+            using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+            {
+                try
+                {
+                    return Convert.ToInt32((contexto.SIC_T_ORDEN_DE_COMPRA.Where(x => x.odc_c_cserie == serie)
+                        .Max(x => x.odc_c_vcodigo)));
+                }
+                catch
+                {
+                    throw;
+                }
+            }
+
+        }
+
     }
 }

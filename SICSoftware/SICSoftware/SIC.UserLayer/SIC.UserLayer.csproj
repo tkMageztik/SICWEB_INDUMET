@@ -55,6 +55,9 @@
       <HintPath>dlls\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -182,6 +185,7 @@
     <Content Include="Interfaces\Facturacion\frmFactAutomatica.aspx" />
     <Content Include="Interfaces\Facturacion\frmFactImpresion.aspx" />
     <Content Include="Interfaces\Facturacion\frmFactManual.aspx" />
+    <Content Include="Interfaces\Facturacion\test.aspx" />
     <Content Include="Interfaces\Facturacion\ucFactura.ascx" />
     <Content Include="Interfaces\Mantenimiento\frmMantEmpresa.aspx" />
     <Content Include="Interfaces\Mantenimiento\frmMantImpresoras.aspx" />
@@ -203,6 +207,13 @@
     </Compile>
     <Compile Include="Interfaces\Almacen\frmAlmKardex.aspx.designer.cs">
       <DependentUpon>frmAlmKardex.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\Facturacion\test.aspx.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Interfaces\Facturacion\test.aspx.designer.cs">
+      <DependentUpon>test.aspx</DependentUpon>
     </Compile>
     <Compile Include="pdfs\pdf.cs" />
     <Compile Include="Interfaces\Facturacion\frmFactAutomatica.aspx.cs">
@@ -409,6 +420,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Interfaces\frmPrincipal.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Interfaces\Facturacion\Report1.rdlc" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

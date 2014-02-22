@@ -67,7 +67,12 @@ namespace SIC.BusinessLayer
 
         public int CambiarEstadoOrdenCompra(int id, EstadoOC estado)
         {
-            return new OrdenCompraDA().CambiarEstadoOrdenCompra(id, Convert.ToInt32(estado),Enum.GetName(typeof(EstadoOC),estado));
+            return new OrdenCompraDA().CambiarEstadoOrdenCompra(id, Convert.ToInt32(estado), Enum.GetName(typeof(EstadoOC), estado));
+        }
+
+        public int ObtCorrelativoPorSerieOrdenCompra(String serie)
+        {
+            return new OrdenCompraDA().ObtCorrelativoPorSerieOrdenCompra(serie);
         }
     }
 }
