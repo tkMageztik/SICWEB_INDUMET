@@ -30,9 +30,6 @@ namespace SIC.UserLayer.Interfaces.Facturacion
             }
             set { _facturacionAutomaticaBL = value; }
         }
-
-       
-
         #endregion
 
         #region Eventos
@@ -149,8 +146,38 @@ namespace SIC.UserLayer.Interfaces.Facturacion
                     listaIdVenta.Add(idVenta);
                 }
             }
+            try
+            {
+                this.facturacionAutomaticaBL.GenerarDocumentosVenta(listaIdVenta);
+                this.BuscarVentas();
+                Mensaje("Documentos de Venta generados con éxito.", "~/Imagenes/warning.png");
+                this.upGeneral.Update();
+            }
+            catch(Exception ex)
+            {
+#if DEBUG
+                String mensajeError = "Error Fatal : \n" + ex.Message;
+                if (ex.InnerException != null)
+                {
+                    mensajeError += "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty;
+                }
 
-            this.facturacionAutomaticaBL.GenerarDocumentosVenta(listaIdVenta);
+                Mensaje(mensajeError, "~/Imagenes/warning.png");
+#else
+                Mensaje("Error en el proceso.", "~/Imagenes/warning.png");
+#endif
+            }
+        }
+
+        private void Mensaje(string mensaje, string ruta)
+        {
+            divPopUpMsg.Attributes["Class"] = "PopupMostrar";
+            ucMensaje.Visible = true;
+            ucMensaje.Mensaje = mensaje;
+            ucMensaje.Ruta = ruta;
+            ucMensaje.EnableModelDialog(true);
+            upGeneral.Update();
+            return;
         }
     }
 }

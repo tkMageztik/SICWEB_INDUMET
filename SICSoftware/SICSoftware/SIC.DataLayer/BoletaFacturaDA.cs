@@ -13,9 +13,9 @@ namespace SIC.DataLayer
         /// Inserta la lista de documentos de boleta y factura en la base de datos y actualiza la lista de ventas.
         /// A su vez, obtiene la serie que se usarán en los documentos.
         /// </summary>
-        /// <param name="listaBoleta">Lista de Boletas</param>
-        /// <param name="listaFactura">Lista de Facturas</param>
-        /// <param name="listaVenta">Lista de Ventas</param>
+        /// <param name="listaBoleta">Lista de Boletas.</param>
+        /// <param name="listaFactura">Lista de Facturas.</param>
+        /// <param name="listaVenta">Lista de Ventas.</param>
         public void InsertarDocumentos(List<SIC_T_BOLETA> listaBoleta, List<SIC_T_FACTURA> listaFactura)
         {
             List<SIC_T_VENTA> listaVenta = new List<SIC_T_VENTA>();

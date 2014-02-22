@@ -13,5 +13,10 @@ namespace SIC.UserLayer.Interfaces.Facturacion
         {
 
         }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            pdf.init();
+        }
     }
 }
