@@ -23,9 +23,9 @@ namespace SIC.DataLayer
                             .Include("SIC_T_ITEM_SUB_FAMILIA.SIC_T_ITEM_FAMILIA")
                             where x.itm_c_bactivo == true
                               && (codigo == string.Empty || x.itm_c_ccodigo.Contains(codigo))
-                              && (descripcion == string.Empty || x.itm_c_vdescripcion.Contains(descripcion) )
-                              && ( idSubFamilia.HasValue ? x.itm_c_isf_iid == idSubFamilia 
-                                                         : (!idFamilia.HasValue 
+                              && (descripcion == string.Empty || x.itm_c_vdescripcion.Contains(descripcion))
+                              && (idSubFamilia.HasValue ? x.isf_c_iid == idSubFamilia
+                                                         : (!idFamilia.HasValue
                                                             || x.SIC_T_ITEM_SUB_FAMILIA.isf_c_ifm_iid == idFamilia.Value)
                                  )
                             select x).ToList();
@@ -37,8 +37,8 @@ namespace SIC.DataLayer
             }
         }
 
-       
-       
+
+
 
         /// <summary>
         /// Inserta el item en la base de datos.
@@ -52,16 +52,16 @@ namespace SIC.DataLayer
         {
             try
             {
-                
+
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
-                {                    
+                {
                     if (contexto.SIC_T_ITEM.Any(x => x.itm_c_ccodigo == _pSIC_T_ITEM.itm_c_ccodigo))
                     {
                         throw new ArgumentException("No se puede ingresar un código duplicado.");
                     }
 
                     _pSIC_T_ITEM.itm_c_bactivo = true;
-                    contexto.AddToSIC_T_ITEM(_pSIC_T_ITEM);                    
+                    contexto.AddToSIC_T_ITEM(_pSIC_T_ITEM);
                     contexto.SaveChanges();
                     return true;
                 }
@@ -105,19 +105,19 @@ namespace SIC.DataLayer
                 return (from x in contexto.SIC_T_ITEM
                             .Include("SIC_T_ITEM_SUB_FAMILIA")
                             .Include("SIC_T_ITEM_SUB_FAMILIA.SIC_T_ITEM_FAMILIA")
-                        where x.itm_c_iid == id && x.itm_c_bactivo 
+                        where x.itm_c_iid == id && x.itm_c_bactivo
                         select x).FirstOrDefault();
             }
         }
 
         public SIC_T_ITEM ObtenerItemPorIdNoContext(int id)
-        {            
+        {
             using (SICDBWEBEntities contexto = new SICDBWEBEntities())
             {
                 contexto.SIC_T_ITEM.MergeOption = System.Data.Objects.MergeOption.NoTracking;
                 var item = (from x in contexto.SIC_T_ITEM
-                        where x.itm_c_iid == id && x.itm_c_bactivo == true
-                        select x).FirstOrDefault();
+                            where x.itm_c_iid == id && x.itm_c_bactivo == true
+                            select x).FirstOrDefault();
                 return item;
             }
         }
@@ -132,7 +132,7 @@ namespace SIC.DataLayer
                                           where x.itm_c_iid == id
                                           select x).FirstOrDefault();
 
-                    if (contexto.SIC_T_ITEM_ALMACEN.Any(x => x.itm_alm_c_iid_item == id && x.itm_alm_c_ecantidad!=0))
+                    if (contexto.SIC_T_ITEM_ALMACEN.Any(x => x.itm_c_iid == id && x.itm_alm_c_ecantidad != 0))
                     {
                         return false;
                         //throw new ArgumentException("No se puede eliminar un articulo que tenga stock diferente a 0");
@@ -147,10 +147,10 @@ namespace SIC.DataLayer
                     {
                         varItem.itm_c_bactivo = false;
                     }
-               
+
                     contexto.SaveChanges();
-                    return true;               
-                
+                    return true;
+
                 }
             }
             catch (OptimisticConcurrencyException ex)
@@ -172,8 +172,8 @@ namespace SIC.DataLayer
                 }
             }
             catch
-            {   
-             
+            {
+
                 throw;
             }
         }
@@ -218,7 +218,7 @@ namespace SIC.DataLayer
                     {
                         contexto.AddToSIC_T_ITEM_FAMILIA(_pSIC_T_ITEM_FAMILIA);
                         contexto.SaveChanges();
-                    }                        
+                    }
                 }
             }
             catch (Exception ex)
@@ -237,7 +237,7 @@ namespace SIC.DataLayer
             {
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
-                    _pSIC_T_ITEM_SUB_FAMILIA.isf_c_des = _pSIC_T_ITEM_SUB_FAMILIA.isf_c_des.Trim();
+                    _pSIC_T_ITEM_SUB_FAMILIA.isf_c_vdesc = _pSIC_T_ITEM_SUB_FAMILIA.isf_c_vdesc.Trim();
                     _pSIC_T_ITEM_SUB_FAMILIA.isf_c_bactivo = true;
                     if (_pSIC_T_ITEM_SUB_FAMILIA.SIC_T_ITEM_FAMILIA != null)
                     {
@@ -246,7 +246,7 @@ namespace SIC.DataLayer
                     }
 
                     var result = (from x in contexto.SIC_T_ITEM_SUB_FAMILIA
-                                  where x.isf_c_des == _pSIC_T_ITEM_SUB_FAMILIA.isf_c_des
+                                  where x.isf_c_vdesc == _pSIC_T_ITEM_SUB_FAMILIA.isf_c_vdesc
                                   select x).Count();
 
                     if (result > 0)
@@ -257,7 +257,7 @@ namespace SIC.DataLayer
                     {
                         contexto.AddToSIC_T_ITEM_SUB_FAMILIA(_pSIC_T_ITEM_SUB_FAMILIA);
                         contexto.SaveChanges();
-                    }        
+                    }
                 }
             }
             catch (Exception ex)

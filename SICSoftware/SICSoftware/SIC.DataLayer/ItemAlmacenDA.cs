@@ -13,14 +13,14 @@ namespace SIC.DataLayer
             // El proceso buscara si existe un item_almacen con los datos de item y almacen ingresados.
             // si lo encuentra actualizará la data, en caso contrario creará una nueva.            
             var resultado = (from x in contexto.SIC_T_ITEM_ALMACEN
-                                where x.itm_alm_c_iid_alm == idAlmacen
-                                    && x.itm_alm_c_iid_item == idItem
+                                where x.alm_c_iid == idAlmacen
+                                    && x.itm_c_iid == idItem
                                 select x).FirstOrDefault();
             if (resultado == null)
             {
                 var itemAlm = new SIC_T_ITEM_ALMACEN();
-                itemAlm.itm_alm_c_iid_alm = idAlmacen;
-                itemAlm.itm_alm_c_iid_item = idItem;
+                itemAlm.alm_c_iid = idAlmacen;
+                itemAlm.itm_c_iid = idItem;
                 itemAlm.itm_alm_c_ecantidad = cantidad;
                 contexto.AddToSIC_T_ITEM_ALMACEN(itemAlm);
             }
@@ -38,7 +38,7 @@ namespace SIC.DataLayer
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
                     var res = (from x in contexto.SIC_T_ITEM_ALMACEN                               
-                                where x.itm_alm_c_iid_alm == idAlmacen && x.itm_alm_c_iid_item == idItem
+                                where x.alm_c_iid == idAlmacen && x.itm_c_iid == idItem
                                 select x).ToList();
                     if(res.Count >0)
                     {
@@ -68,10 +68,10 @@ namespace SIC.DataLayer
                                       .Include("SIC_T_ALMACEN")
                                       .Include("SIC_T_ITEM.SIC_T_ITEM_SUB_FAMILIA")
                                       .Include("SIC_T_ITEM.SIC_T_ITEM_SUB_FAMILIA.SIC_T_ITEM_FAMILIA")
-                                     where ( idAlmacen.Contains(x.itm_alm_c_iid_alm) )
+                                     where ( idAlmacen.Contains(x.alm_c_iid) )
                                         && (codigo == string.Empty || x.SIC_T_ITEM.itm_c_ccodigo.Contains(codigo))
                                         && (descripcion == string.Empty || x.SIC_T_ITEM.itm_c_vdescripcion.Contains(descripcion) )
-                                        && ( idSubFamilia.HasValue ? x.SIC_T_ITEM.itm_c_isf_iid == idSubFamilia 
+                                        && ( idSubFamilia.HasValue ? x.SIC_T_ITEM.isf_c_iid == idSubFamilia 
                                                          : (!idFamilia.HasValue 
                                                             || x.SIC_T_ITEM.SIC_T_ITEM_SUB_FAMILIA.isf_c_ifm_iid == idFamilia.Value)
                                            )

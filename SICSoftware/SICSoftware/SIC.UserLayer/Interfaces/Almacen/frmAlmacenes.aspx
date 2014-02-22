@@ -8,7 +8,8 @@
     <div>
         <div class="tit-nav-paginas" style="text-align: left;">
             ALMACÉN &gt; ALMACENES</div>
-        <asp:UpdatePanel ID="upGeneral" UpdateMode="Conditional" runat="server">
+        <asp:UpdatePanel ID="upGeneral" UpdateMode="Conditional" ChildrenAsTriggers="false"
+            runat="server">
             <ContentTemplate>
                 <asp:MultiView ID="mvAlmacenes" runat="server" ActiveViewIndex="0">
                     <asp:View ID="vwListaAlmacenes" runat="server">
@@ -18,18 +19,20 @@
                                     <table width="100%">
                                         <tr>
                                             <td class="txt-box-estilo">
-                                                RUC
+                                                Almacén
+                                            </td>
+                                            <td class="txt-box-estilo">
+                                                <asp:DropDownList ID="cboAlmacen" runat="server">
+                                                </asp:DropDownList>
                                             </td>
                                             <td style="margin-left: 80px">
-                                                <asp:TextBox ID="txtFiltroRuc" runat="server"></asp:TextBox>
                                             </td>
                                             <td style="width: 20px">
                                             </td>
                                             <td class="txt-box-estilo">
-                                                Razón Social
                                             </td>
                                             <td>
-                                                <asp:TextBox ID="txtFiltroRS" runat="server"></asp:TextBox>
+                                                &nbsp;
                                             </td>
                                             <td style="width: 20px">
                                             </td>
@@ -40,33 +43,87 @@
                                             </td>
                                         </tr>
                                         <tr>
+                                            <td style="margin-left: 80px" colspan="2">
+                                                <table width="100%">
+                                                    <tr>
+                                                        <td class="txt-box-estilo" style="font-weight: bold;">
+                                                            Cantidad:
+                                                        </td>
+                                                        <td class="txt-box-estilo">
+                                                            &nbsp; Desde &nbsp;
+                                                        </td>
+                                                        <td>
+                                                            <asp:TextBox ID="txtCantidadDesde" runat="server" MaxLength="17"></asp:TextBox>
+                                                            <ajaxToolkit:FilteredTextBoxExtender ID="txtCantidadDesde_FilteredTextBoxExtender"
+                                                                runat="server" Enabled="True" TargetControlID="txtCantidadDesde" ValidChars="0123456789.">
+                                                            </ajaxToolkit:FilteredTextBoxExtender>
+                                                        </td>
+                                                        <td class="txt-box-estilo">
+                                                            &nbsp; Hasta &nbsp;
+                                                        </td>
+                                                        <td>
+                                                            <asp:TextBox ID="txtCantidadHasta" runat="server"></asp:TextBox>
+                                                            <ajaxToolkit:FilteredTextBoxExtender ID="txtCantidadHasta_FilteredTextBoxExtender"
+                                                                runat="server" Enabled="True" TargetControlID="txtCantidadHasta" ValidChars="0123456789.">
+                                                            </ajaxToolkit:FilteredTextBoxExtender>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                            <td style="margin-left: 80px" class="txt-box-estilo">
+                                                Cod. Item
+                                            </td>
+                                            <td>
+                                                <asp:TextBox ID="txtCodItem" runat="server"></asp:TextBox>
+                                            </td>
                                             <td class="txt-box-estilo">
-                                                Desde
+                                                Desc. Item
+                                            </td>
+                                            <td style="width: 20px">
+                                                <asp:TextBox ID="txtDescItem" runat="server"></asp:TextBox>
+                                            </td>
+                                            <td>
+                                                &nbsp;
+                                            </td>
+                                            <td>
+                                                &nbsp;
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="margin-left: 80px" class="txt-box-estilo">
+                                                Familia
                                             </td>
                                             <td style="margin-left: 80px">
-                                                <asp:TextBox ID="txtFiltroFecIni" runat="server"></asp:TextBox>
-                                                &nbsp;<asp:CalendarExtender ID="txtFiltroFecIni_CalendarExtender" runat="server"
-                                                    TargetControlID="txtFiltroFecIni" Format="dd/MM/yyyy" TodaysDateFormat="dd/MM/yyyy" />
+                                                <asp:DropDownList ID="cboFamilia" runat="server" AutoPostBack="true" OnSelectedIndexChanged="cboFamilia_SelectedIndexChanged">
+                                                </asp:DropDownList>
                                             </td>
-                                            <td style="width: 20px">
-                                                &nbsp;
+                                            <td class="txt-box-estilo" style="margin-left: 80px">
+                                                Subfamilia
+                                            </td>
+                                            <td>
+                                                <asp:UpdatePanel ID="upCboSubFamilia" UpdateMode="Conditional" runat="server">
+                                                    <ContentTemplate>
+                                                        <asp:DropDownList ID="cboSubFamilia" runat="server">
+                                                        </asp:DropDownList>
+                                                    </ContentTemplate>
+                                                    <Triggers>
+                                                        <asp:AsyncPostBackTrigger ControlID="cboFamilia" EventName="SelectedIndexChanged" />
+                                                    </Triggers>
+                                                </asp:UpdatePanel>
                                             </td>
                                             <td class="txt-box-estilo">
-                                                Hasta
-                                            </td>
-                                            <td>
-                                                <asp:TextBox ID="txtFiltroFecFin" runat="server"></asp:TextBox>
-                                                <asp:CalendarExtender ID="txtFiltroFecFin_CalendarExtender" runat="server" TargetControlID="txtFiltroFecFin"
-                                                    Format="dd/MM/yyyy" TodaysDateFormat="dd/MM/yyyy" />
+                                                &nbsp;
                                             </td>
                                             <td style="width: 20px">
                                                 &nbsp;
                                             </td>
                                             <td>
-                                                &nbsp;
+                                                <asp:Button ID="btnBuscar" runat="server" CssClass="button small gris" OnClick="btnBuscar_Click"
+                                                    Style="width: 100px" Text="Buscar" />
                                             </td>
                                             <td>
-                                                &nbsp;
+                                                <asp:Button ID="btExportar" runat="server" CssClass="button small gris" Style="width: 100px"
+                                                    Text="Exportar" OnClick="btExportar_Click" />
                                             </td>
                                         </tr>
                                     </table>
@@ -78,13 +135,25 @@
                                             <asp:GridView ID="gvItemsAlmacen" runat="server" BorderStyle="None" AutoGenerateColumns="False"
                                                 GridLines="None" AllowPaging="True" Width="100%" CssClass="mGrid" PagerStyle-CssClass="pgr"
                                                 AlternatingRowStyle-CssClass="alt" ShowHeaderWhenEmpty="True" EmptyDataText="No hay datos disponibles."
-                                                PageSize="15" BorderWidth="0px" DataKeyNames="mve_c_iid">
+                                                PageSize="15" BorderWidth="0px">
                                                 <AlternatingRowStyle CssClass="alt" />
                                                 <Columns>
+                                                    <asp:BoundField HeaderText="COD. ITEM" DataField="SIC_T_ITEM.itm_c_ccodigo" />
+                                                    <asp:BoundField HeaderText="DESC. ITEM" DataField="SIC_T_ITEM.itm_c_vdescripcion" />
+                                                    <asp:BoundField HeaderText="FAMILIA" DataField="SIC_T_ITEM.SIC_T_ITEM_SUB_FAMILIA.SIC_T_ITEM_FAMILIA.ifm_c_des" />
+                                                    <asp:BoundField HeaderText="SUBFAMILIA" DataField="SIC_T_ITEM.SIC_T_ITEM_SUB_FAMILIA.isf_c_vdesc" />
+                                                    <asp:BoundField HeaderText="COD. ALMACEN" DataField="alm_c_iid" />
+                                                    <asp:BoundField HeaderText="DESC. ALMACEN" DataField="SIC_T_ALMACEN.alm_c_vdesc" />
+                                                    <asp:BoundField HeaderText="STOCK" DataField="itm_alm_c_ecantidad" />
+                                                    <asp:BoundField HeaderText="PRE. COMPRA" DataField="SIC_T_ITEM.itm_c_dprecio_compra" />
+                                                    <asp:BoundField HeaderText="PRE. VENTA" DataField="SIC_T_ITEM.itm_c_dprecio_venta" />
                                                 </Columns>
                                                 <PagerStyle CssClass="pgr" />
                                             </asp:GridView>
                                         </ContentTemplate>
+                                        <Triggers>
+                                            <asp:AsyncPostBackTrigger ControlID="btnBuscar" EventName="Click" />
+                                        </Triggers>
                                     </asp:UpdatePanel>
                                 </td>
                             </tr>
