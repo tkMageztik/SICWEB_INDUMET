@@ -175,6 +175,10 @@ namespace SIC.BusinessLayer
             return boleta;
         }
 
+        /// <summary>
+        /// Genera los documentos de ventas (Boleta/Factura) de las ventas ingresadas.
+        /// </summary>
+        /// <param name="listaId">Listado de IDs de SIC_T_VENTA que se procesarán.</param>
         public void GenerarDocumentosVenta(List<int> listaId)
         {
             List<SIC_T_VENTA> listaVenta = new List<SIC_T_VENTA>();
