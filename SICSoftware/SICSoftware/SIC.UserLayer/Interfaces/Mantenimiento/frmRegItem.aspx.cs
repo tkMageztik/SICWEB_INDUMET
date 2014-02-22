@@ -235,7 +235,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 cboSubFamilia.Items.Clear();
                 cboSubFamilia.Items.Add(new ListItem("-- Seleccionar --", "-1"));
                 cboSubFamilia.DataSource = _item.ListarSubFamiliaItem(idFamilia);
-                cboSubFamilia.DataTextField = "isf_c_des";
+                cboSubFamilia.DataTextField = "isf_c_vdesc";
                 cboSubFamilia.DataValueField = "isf_c_iid";
                 cboSubFamilia.DataBind();
             }
@@ -262,7 +262,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 cboSubFamiliaAgr.Enabled = true;
                 cboSubFamiliaAgr.Items.Clear();
                 cboSubFamiliaAgr.DataSource = _item.ListarSubFamiliaItem(idFamilia);
-                cboSubFamiliaAgr.DataTextField = "isf_c_des";
+                cboSubFamiliaAgr.DataTextField = "isf_c_vdesc";
                 cboSubFamiliaAgr.DataValueField = "isf_c_iid";
                 cboSubFamiliaAgr.DataBind();
                 btnAgregarSubFamilia.Enabled = true;
@@ -294,7 +294,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 cboFiltroSubFamilia.Items.Clear();
                 cboFiltroSubFamilia.Items.Add(new ListItem("-- Seleccionar --", "-1"));
                 cboFiltroSubFamilia.DataSource = _item.ListarSubFamiliaItem(idFamilia);
-                cboFiltroSubFamilia.DataTextField = "isf_c_des";
+                cboFiltroSubFamilia.DataTextField = "isf_c_vdesc";
                 cboFiltroSubFamilia.DataValueField = "isf_c_iid";
                 cboFiltroSubFamilia.DataBind();
             }
@@ -393,7 +393,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
                     this.ListarSubFamilia();
 
-                    seleccion = cboSubFamilia.Items.FindByText(ItemSeleccionado.SIC_T_ITEM_SUB_FAMILIA.isf_c_des);
+                    seleccion = cboSubFamilia.Items.FindByText(ItemSeleccionado.SIC_T_ITEM_SUB_FAMILIA.isf_c_vdesc);
                     if (seleccion != null)
                     {
                         seleccion.Selected = true;
@@ -442,7 +442,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             nuevoItem.itm_c_vdescripcion = this.txtDescripcion.Text.Trim();
             nuevoItem.itm_c_yumedida = byte.Parse(this.cboUnidad.SelectedValue);
             nuevoItem.itm_c_vpardes = this.cboUnidad.SelectedItem.ToString();
-            nuevoItem.itm_c_isf_iid = idSubFamilia;
+            nuevoItem.isf_c_iid = idSubFamilia;
 
             // Ahora insertamos.
             try
@@ -554,7 +554,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             ItemSeleccionado.itm_c_dprecio_venta = precioVenta;
             ItemSeleccionado.itm_c_yumedida = byte.Parse(this.cboUnidad.SelectedValue);
             ItemSeleccionado.itm_c_vpardes = this.cboUnidad.SelectedItem.Text.Trim();
-            ItemSeleccionado.itm_c_isf_iid = idSubFamilia;
+            ItemSeleccionado.isf_c_iid = idSubFamilia;
 
 
 
@@ -714,7 +714,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             else
             {
                 SIC_T_ITEM_SUB_FAMILIA sub = new SIC_T_ITEM_SUB_FAMILIA();
-                sub.isf_c_des = txtNombreSubFamilia.Text.Trim();
+                sub.isf_c_vdesc = txtNombreSubFamilia.Text.Trim();
                 sub.isf_c_ifm_iid = idFamilia;
                 try
                 {

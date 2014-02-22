@@ -417,7 +417,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 cboSubFamilia.Items.Clear();
                 cboSubFamilia.Items.Add(new ListItem("-- Seleccionar --", "-1"));
                 cboSubFamilia.DataSource = _item.ListarSubFamiliaItem(idFamilia);
-                cboSubFamilia.DataTextField = "isf_c_des";
+                cboSubFamilia.DataTextField = "isf_c_vdesc";
                 cboSubFamilia.DataValueField = "isf_c_iid";
                 cboSubFamilia.DataBind();
             }

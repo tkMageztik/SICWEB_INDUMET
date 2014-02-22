@@ -40,58 +40,112 @@ namespace SIC.UserLayer.Interfaces.Almacen {
         protected global::System.Web.UI.WebControls.View vwListaAlmacenes;
         
         /// <summary>
-        /// Control txtFiltroRuc.
+        /// Control cboAlmacen.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFiltroRuc;
+        protected global::System.Web.UI.WebControls.DropDownList cboAlmacen;
         
         /// <summary>
-        /// Control txtFiltroRS.
+        /// Control txtCantidadDesde.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFiltroRS;
+        protected global::System.Web.UI.WebControls.TextBox txtCantidadDesde;
         
         /// <summary>
-        /// Control txtFiltroFecIni.
+        /// Control txtCantidadDesde_FilteredTextBoxExtender.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFiltroFecIni;
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender txtCantidadDesde_FilteredTextBoxExtender;
         
         /// <summary>
-        /// Control txtFiltroFecIni_CalendarExtender.
+        /// Control txtCantidadHasta.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender txtFiltroFecIni_CalendarExtender;
+        protected global::System.Web.UI.WebControls.TextBox txtCantidadHasta;
         
         /// <summary>
-        /// Control txtFiltroFecFin.
+        /// Control txtCantidadHasta_FilteredTextBoxExtender.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFiltroFecFin;
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender txtCantidadHasta_FilteredTextBoxExtender;
         
         /// <summary>
-        /// Control txtFiltroFecFin_CalendarExtender.
+        /// Control txtCodItem.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender txtFiltroFecFin_CalendarExtender;
+        protected global::System.Web.UI.WebControls.TextBox txtCodItem;
+        
+        /// <summary>
+        /// Control txtDescItem.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDescItem;
+        
+        /// <summary>
+        /// Control cboFamilia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cboFamilia;
+        
+        /// <summary>
+        /// Control upCboSubFamilia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upCboSubFamilia;
+        
+        /// <summary>
+        /// Control cboSubFamilia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cboSubFamilia;
+        
+        /// <summary>
+        /// Control btnBuscar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBuscar;
+        
+        /// <summary>
+        /// Control btExportar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btExportar;
         
         /// <summary>
         /// Control upGvLista.

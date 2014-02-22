@@ -683,7 +683,7 @@
                                             OnSelectedIndexChanged="gvListaAlmacen_SelectedIndexChanged" OnPageIndexChanging="gvListaAlmacen_PageIndexChanging">
                                             <AlternatingRowStyle CssClass="alt" />
                                             <Columns>
-                                                <asp:BoundField DataField="alm_c_vdes" HeaderText="Almacén" />
+                                                <asp:BoundField DataField="alm_c_vdesc" HeaderText="Almacén" />
                                                 <asp:CommandField ShowSelectButton="True" SelectText="Seleccionar" />
                                             </Columns>
                                             <PagerStyle CssClass="pgr" />

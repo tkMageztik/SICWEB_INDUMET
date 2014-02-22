@@ -192,7 +192,7 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="SUBFAMILIA">
                                                     <ItemTemplate>
-                                                        <%# Eval("SIC_T_ITEM_SUB_FAMILIA.isf_c_des")%>
+                                                        <%# Eval("SIC_T_ITEM_SUB_FAMILIA.isf_c_vdesc")%>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:CommandField ShowEditButton="True" CancelText="Cancelar" DeleteText="Eliminar"

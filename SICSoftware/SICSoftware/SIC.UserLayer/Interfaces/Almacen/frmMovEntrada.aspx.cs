@@ -351,7 +351,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             {
                 this.mvMovimientoEntrada.ActiveViewIndex = 1;
                 this.ListarDetalleMovimiento();
-                txtAlmacen.Text = MovEntSeleccionado.SIC_T_ALMACEN != null ? MovEntSeleccionado.SIC_T_ALMACEN.alm_c_vdes : string.Empty;
+                txtAlmacen.Text = MovEntSeleccionado.SIC_T_ALMACEN != null ? MovEntSeleccionado.SIC_T_ALMACEN.alm_c_vdesc : string.Empty;
                 txtSerieNumeroOC.Text = MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA != null ? MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA.odc_c_vcodigo.ToString() : string.Empty;
                 txtProveedorOC.Text = MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA != null && MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE != null ?
                                     MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vraz_soc : string.Empty;
@@ -778,14 +778,14 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                         var almacen = _almacen.ObtenerPorIdNoContext(id);
                         MovEntNuevo.SIC_T_ALMACEN = almacen;
                         MovEntNuevo.mve_c_iidalmacen = almacen.alm_c_iid;
-                        txtAlmacen.Text = almacen.alm_c_vdes;
+                        txtAlmacen.Text = almacen.alm_c_vdesc;
                     }
                     else if (this.EscenarioMovEn == TipoOperacion.Modificacion)
                     {
                         var almacen = _almacen.ObtenerPorIdNoContext(id);
                         MovEntSeleccionado.SIC_T_ALMACEN = almacen;
                         MovEntSeleccionado.mve_c_iidalmacen = almacen.alm_c_iid;
-                        txtAlmacen.Text = almacen.alm_c_vdes;
+                        txtAlmacen.Text = almacen.alm_c_vdesc;
                     }
                 }
             }

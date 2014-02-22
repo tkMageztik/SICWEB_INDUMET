@@ -170,8 +170,8 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             if (e.Row.RowType == DataControlRowType.DataRow && list != null)
             {
                 int itemId = (int)gvListaItem.DataKeys[e.Row.RowIndex].Values["itm_alm_c_iid_item"];
-                int almacenID = (int)gvListaItem.DataKeys[e.Row.RowIndex].Values["itm_alm_c_iid_alm"];
-                if (list.Any(x => x.itm_alm_c_iid_item == itemId && x.itm_alm_c_iid_alm == almacenID))
+                int almacenID = (int)gvListaItem.DataKeys[e.Row.RowIndex].Values["alm_c_iid"];
+                if (list.Any(x => x.itm_c_iid == itemId && x.alm_c_iid == almacenID))
                 {
                     CheckBox chk = (CheckBox)e.Row.FindControl("chkSelect");
                     chk.Checked = true;
@@ -342,7 +342,8 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             this.VentaEliminar = (int)this.gvListaVenta.DataKeys[e.RowIndex].Value;
             var venta = _venta.ObtenerVenta(VentaEliminar);
 
-            if(venta!=null && (venta.ven_c_iestado != 1)){
+            if (venta != null && (venta.ven_c_iestado != 1))
+            {
                 this.Mensaje("Solo se puede eliminar ordenes de compra en estado POR REGULARIZAR.", "~/Imagenes/warning.png");
                 return;
             }
@@ -487,7 +488,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 cboFiltroSubFamilia.Items.Clear();
                 cboFiltroSubFamilia.Items.Add(new ListItem("-- Seleccionar --", "-1"));
                 cboFiltroSubFamilia.DataSource = _item.ListarSubFamiliaItem(idFamilia);
-                cboFiltroSubFamilia.DataTextField = "isf_c_des";
+                cboFiltroSubFamilia.DataTextField = "isf_c_vdesc";
                 cboFiltroSubFamilia.DataValueField = "isf_c_iid";
                 cboFiltroSubFamilia.DataBind();
             }
@@ -510,7 +511,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 cboFiltroAlmacen.Items.Clear();
                 cboFiltroAlmacen.Items.Add(new ListItem("-- Seleccionar --", "-1"));
                 cboFiltroAlmacen.DataSource = _almacen.ListaAlmacenCentroCosto(idCentroCosto);
-                cboFiltroAlmacen.DataTextField = "alm_c_vdes";
+                cboFiltroAlmacen.DataTextField = "alm_c_vdesc";
                 cboFiltroAlmacen.DataValueField = "alm_c_iid";
                 cboFiltroAlmacen.DataBind();
             }
@@ -608,8 +609,8 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             foreach (var item in VentaSeleccionado.SIC_T_VENTA_DETALLE)
             {
                 SIC_T_ITEM_ALMACEN itemAlmacen = new SIC_T_ITEM_ALMACEN();
-                itemAlmacen.itm_alm_c_iid_alm = item.ven_det_c_iidalmacen;
-                itemAlmacen.itm_alm_c_iid_item = item.ven_det_c_iitemid;
+                itemAlmacen.alm_c_iid = item.ven_det_c_iidalmacen;
+                itemAlmacen.itm_c_iid = item.ven_det_c_iitemid;
                 itemAlmacen.SIC_T_ALMACEN = item.SIC_T_ALMACEN;
                 this.ItemsAlmacenSeleccionados.Add(itemAlmacen);
             }
@@ -796,7 +797,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 else
                 {
                     list.RemoveAll(x => x.itm_alm_c_iid == idItemAlmacen);
-                } 
+                }
             }
         }
 
@@ -827,7 +828,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 bool rem = true;
                 foreach (var itemalm in listaPrel)
                 {
-                    if (detalleVenta.ven_det_c_iidalmacen == itemalm.itm_alm_c_iid_alm && detalleVenta.ven_det_c_iitemid == itemalm.itm_alm_c_iid_item)
+                    if (detalleVenta.ven_det_c_iidalmacen == itemalm.alm_c_iid && detalleVenta.ven_det_c_iitemid == itemalm.itm_c_iid)
                     {
                         rem = false;
                         break;
@@ -849,12 +850,12 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             // Ahora agregamos los nuevos
             foreach (var itemAlm in listaPrel)
             {
-                if (!venta.SIC_T_VENTA_DETALLE.Where(x => x.ven_det_c_iidalmacen == itemAlm.itm_alm_c_iid_alm
-                                                  && x.ven_det_c_iitemid == itemAlm.itm_alm_c_iid_item).Any())
+                if (!venta.SIC_T_VENTA_DETALLE.Where(x => x.ven_det_c_iidalmacen == itemAlm.alm_c_iid
+                                                  && x.ven_det_c_iitemid == itemAlm.itm_c_iid).Any())
                 {
-                    SIC_T_ITEM itemEncontrado = _item.ObtenerItemPorIdNoContext(itemAlm.itm_alm_c_iid_item);
+                    SIC_T_ITEM itemEncontrado = _item.ObtenerItemPorIdNoContext(itemAlm.itm_c_iid);
                     precioReferencia = (cboMoneda.SelectedIndex == 0 ? itemEncontrado.itm_c_dprecio_venta
-                                                                    : Math.Round(itemEncontrado.itm_c_dprecio_venta / this.TasaCambio,2));
+                                                                    : Math.Round(itemEncontrado.itm_c_dprecio_venta / this.TasaCambio, 2));
                     precioReferenciaSoles = itemEncontrado.itm_c_dprecio_compra;
 
                     SIC_T_VENTA_DETALLE nuevoDetalle = new SIC_T_VENTA_DETALLE();
@@ -862,7 +863,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                     nuevoDetalle.ven_det_c_iitemid = itemEncontrado.itm_c_iid;
                     nuevoDetalle.ven_det_c_epreciounit = itemEncontrado.itm_c_dprecio_venta;
                     nuevoDetalle.ven_det_c_epreciototal = itemEncontrado.itm_c_dprecio_venta;
-                    nuevoDetalle.ven_det_c_iidalmacen = itemAlm.itm_alm_c_iid_alm;
+                    nuevoDetalle.ven_det_c_iidalmacen = itemAlm.alm_c_iid;
                     nuevoDetalle.SIC_T_ITEM = itemEncontrado;
                     nuevoDetalle.SIC_T_ALMACEN = itemAlm.SIC_T_ALMACEN;
                     nuevoDetalle.precioReferencia = precioReferencia;
