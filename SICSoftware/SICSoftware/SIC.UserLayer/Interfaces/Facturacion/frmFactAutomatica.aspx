@@ -332,9 +332,6 @@
                 </Triggers>
             </asp:UpdatePanel>
         </ContentTemplate>
-        <Triggers>
-            
-        </Triggers>
     </asp:UpdatePanel>
                 
 </asp:Content>

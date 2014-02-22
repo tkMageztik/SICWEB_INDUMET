@@ -215,6 +215,11 @@ namespace SIC.BusinessLayer
             return new ClienteDA().ListarClientes(obj);
         }
 
+        public List<SIC_T_CLIENTE> ListarClientes(string razonSocial, string ruc)
+        {
+            return new ClienteDA().ListarClientes(razonSocial, ruc);
+        }
+       
         public SIC_T_CLI_DIRECCION DireccionPorRuc(string _strcli_c_cdoc_id)
         {
             return new ClienteDA().DireccionPorRuc(_strcli_c_cdoc_id);

@@ -9,6 +9,9 @@ using SIC.Data;
 
 namespace BL_NUnit
 {
+    /// <summary>
+    /// Prueba la clase FacturacionAutomaticaBL
+    /// </summary>
     [TestFixture]
     public class FacturacionAutomaticaBLTest
     {

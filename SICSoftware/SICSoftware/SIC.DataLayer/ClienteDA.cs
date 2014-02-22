@@ -883,6 +883,21 @@ namespace SIC.DataLayer
 
 
         #endregion
+
+        public List<SIC_T_CLIENTE> ListarClientes(string razonSocial, string ruc)
+        {
+            
+            using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+            {
+                contexto.ContextOptions.LazyLoadingEnabled = false;
+                var lista = (from x in contexto.SIC_T_CLIENTE
+                                .Include("SIC_T_CLI_SCORING")
+                             where (razonSocial == null || razonSocial.Length == 0 || x.cli_c_vraz_soc == razonSocial)
+                                && (ruc == null || ruc.Length == 0 || x.cli_c_vdoc_id == ruc)
+                             select x).ToList();
+                return lista;
+            }
+        }
     }
 
 
