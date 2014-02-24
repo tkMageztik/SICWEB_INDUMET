@@ -7,6 +7,10 @@
     <Schema Namespace="SICDBWEBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="SICDBWEBModelStoreContainer">
           <EntitySet Name="SIC_T_ALMACEN_CENTRO_COSTO" EntityType="SICDBWEBModel.Store.SIC_T_ALMACEN_CENTRO_COSTO" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SIC_T_BOLETA" EntityType="SICDBWEBModel.Store.SIC_T_BOLETA" store:Type="Tables" Schema="Facturacion" />
+          <EntitySet Name="SIC_T_BOLETA_DETALLE" EntityType="SICDBWEBModel.Store.SIC_T_BOLETA_DETALLE" store:Type="Tables" Schema="Facturacion" />
+          <EntitySet Name="SIC_T_FACTURA" EntityType="SICDBWEBModel.Store.SIC_T_FACTURA" store:Type="Tables" Schema="Facturacion" />
+          <EntitySet Name="SIC_T_FACTURA_DETALLE" EntityType="SICDBWEBModel.Store.SIC_T_FACTURA_DETALLE" store:Type="Tables" Schema="Facturacion" />
           <EntitySet Name="SIC_T_CONCEPTO" EntityType="SICDBWEBModel.Store.SIC_T_CONCEPTO" store:Type="Tables" Schema="General" />
           <EntitySet Name="SIC_T_PARAMETRO" EntityType="SICDBWEBModel.Store.SIC_T_PARAMETRO" store:Type="Tables" Schema="General" />
           <EntitySet Name="SIC_T_PARAMETRO_DET" EntityType="SICDBWEBModel.Store.SIC_T_PARAMETRO_DET" store:Type="Tables" Schema="General" />
@@ -41,20 +45,16 @@
           <EntitySet Name="SIC_T_ORDEN_DE_COMPRA_DET" EntityType="SICDBWEBModel.Store.SIC_T_ORDEN_DE_COMPRA_DET" store:Type="Tables" Schema="Mantenimiento" />
           <EntitySet Name="SIC_T_PROVINCIA" EntityType="SICDBWEBModel.Store.SIC_T_PROVINCIA" store:Type="Tables" Schema="Mantenimiento" />
           <EntitySet Name="SIC_T_TASA_CAMBIO" EntityType="SICDBWEBModel.Store.SIC_T_TASA_CAMBIO" store:Type="Tables" Schema="Mantenimiento" />
+          <EntitySet Name="SIC_T_UNIDAD_MEDIDA" EntityType="SICDBWEBModel.Store.SIC_T_UNIDAD_MEDIDA" store:Type="Tables" Schema="Mantenimiento" />
           <EntitySet Name="SIC_T_VEN_ESTADO" EntityType="SICDBWEBModel.Store.SIC_T_VEN_ESTADO" store:Type="Tables" Schema="Mantenimiento" />
           <EntitySet Name="SIC_T_VENTA" EntityType="SICDBWEBModel.Store.SIC_T_VENTA" store:Type="Tables" Schema="Mantenimiento" />
           <EntitySet Name="SIC_T_VENTA_DETALLE" EntityType="SICDBWEBModel.Store.SIC_T_VENTA_DETALLE" store:Type="Tables" Schema="Mantenimiento" />
           <EntitySet Name="SIC_T_ZONA_REPARTO" EntityType="SICDBWEBModel.Store.SIC_T_ZONA_REPARTO" store:Type="Tables" Schema="Mantenimiento" />
           <EntitySet Name="SIC_T_ZONA_REPARTO_LUGAR" EntityType="SICDBWEBModel.Store.SIC_T_ZONA_REPARTO_LUGAR" store:Type="Tables" Schema="Mantenimiento" />
           <EntitySet Name="SIC_T_MENU" EntityType="SICDBWEBModel.Store.SIC_T_MENU" store:Type="Tables" Schema="Seguridad" />
-          <EntitySet Name="SIC_T_OPCION" EntityType="SICDBWEBModel.Store.SIC_T_OPCION" store:Type="Tables" Schema="Seguridad" />
           <EntitySet Name="SIC_T_USUARIO" EntityType="SICDBWEBModel.Store.SIC_T_USUARIO" store:Type="Tables" Schema="Seguridad" />
           <EntitySet Name="SIC_T_USUARIO_OPCION" EntityType="SICDBWEBModel.Store.SIC_T_USUARIO_OPCION" store:Type="Tables" Schema="Seguridad" />
           <EntitySet Name="SIC_T_USUARIO_PERFIL" EntityType="SICDBWEBModel.Store.SIC_T_USUARIO_PERFIL" store:Type="Tables" Schema="Seguridad" />
-          <EntitySet Name="SIC_T_BOLETA" EntityType="SICDBWEBModel.Store.SIC_T_BOLETA" store:Type="Tables" Schema="Venta" />
-          <EntitySet Name="SIC_T_BOLETA_DETALLE" EntityType="SICDBWEBModel.Store.SIC_T_BOLETA_DETALLE" store:Type="Tables" Schema="Venta" />
-          <EntitySet Name="SIC_T_FACTURA" EntityType="SICDBWEBModel.Store.SIC_T_FACTURA" store:Type="Tables" Schema="Venta" />
-          <EntitySet Name="SIC_T_FACTURA_DETALLE" EntityType="SICDBWEBModel.Store.SIC_T_FACTURA_DETALLE" store:Type="Tables" Schema="Venta" />
           <EntitySet Name="SIC_VW_CLIENTE_LISTA" EntityType="SICDBWEBModel.Store.SIC_VW_CLIENTE_LISTA" store:Type="Views" store:Schema="Mantenimiento" store:Name="SIC_VW_CLIENTE_LISTA">
             <DefiningQuery>SELECT 
       [SIC_VW_CLIENTE_LISTA].[nomb_com_c_iid] AS [nomb_com_c_iid], 
@@ -73,6 +73,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_SIC_T_BOLETA_DETALLE_SIC_T_BOLETA" Association="SICDBWEBModel.Store.FK_SIC_T_BOLETA_DETALLE_SIC_T_BOLETA">
             <End Role="SIC_T_BOLETA" EntitySet="SIC_T_BOLETA" />
+            <End Role="SIC_T_BOLETA_DETALLE" EntitySet="SIC_T_BOLETA_DETALLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SIC_T_BOLETA_DETALLE_SIC_T_ITEM1" Association="SICDBWEBModel.Store.FK_SIC_T_BOLETA_DETALLE_SIC_T_ITEM1">
+            <End Role="SIC_T_ITEM" EntitySet="SIC_T_ITEM" />
             <End Role="SIC_T_BOLETA_DETALLE" EntitySet="SIC_T_BOLETA_DETALLE" />
           </AssociationSet>
           <AssociationSet Name="FK_SIC_T_BOLETA_SIC_T_VENTA" Association="SICDBWEBModel.Store.FK_SIC_T_BOLETA_SIC_T_VENTA">
@@ -131,6 +135,10 @@
             <End Role="SIC_T_FACTURA" EntitySet="SIC_T_FACTURA" />
             <End Role="SIC_T_FACTURA_DETALLE" EntitySet="SIC_T_FACTURA_DETALLE" />
           </AssociationSet>
+          <AssociationSet Name="FK_SIC_T_FACTURA_DETALLE_SIC_T_ITEM" Association="SICDBWEBModel.Store.FK_SIC_T_FACTURA_DETALLE_SIC_T_ITEM">
+            <End Role="SIC_T_ITEM" EntitySet="SIC_T_ITEM" />
+            <End Role="SIC_T_FACTURA_DETALLE" EntitySet="SIC_T_FACTURA_DETALLE" />
+          </AssociationSet>
           <AssociationSet Name="FK_SIC_T_FACTURA_SIC_T_VENTA" Association="SICDBWEBModel.Store.FK_SIC_T_FACTURA_SIC_T_VENTA">
             <End Role="SIC_T_VENTA" EntitySet="SIC_T_VENTA" />
             <End Role="SIC_T_FACTURA" EntitySet="SIC_T_FACTURA" />
@@ -143,7 +151,7 @@
             <End Role="SIC_T_ITEM" EntitySet="SIC_T_ITEM" />
             <End Role="SIC_T_ITEM_ALMACEN" EntitySet="SIC_T_ITEM_ALMACEN" />
           </AssociationSet>
-          <AssociationSet Name="FK_SIC_T_ITEM_SIC_T_ITEM_SUB_FAMILIA1" Association="SICDBWEBModel.Store.FK_SIC_T_ITEM_SIC_T_ITEM_SUB_FAMILIA1">
+          <AssociationSet Name="FK_SIC_T_ITEM_SIC_T_ITEM_SUB_FAMILIA" Association="SICDBWEBModel.Store.FK_SIC_T_ITEM_SIC_T_ITEM_SUB_FAMILIA">
             <End Role="SIC_T_ITEM_SUB_FAMILIA" EntitySet="SIC_T_ITEM_SUB_FAMILIA" />
             <End Role="SIC_T_ITEM" EntitySet="SIC_T_ITEM" />
           </AssociationSet>
@@ -203,10 +211,6 @@
             <End Role="SIC_T_DEPARTAMENTO" EntitySet="SIC_T_DEPARTAMENTO" />
             <End Role="SIC_T_PROVINCIA" EntitySet="SIC_T_PROVINCIA" />
           </AssociationSet>
-          <AssociationSet Name="FK_SIC_T_USUARIO_OPCION_SIC_T_OPCION" Association="SICDBWEBModel.Store.FK_SIC_T_USUARIO_OPCION_SIC_T_OPCION">
-            <End Role="SIC_T_OPCION" EntitySet="SIC_T_OPCION" />
-            <End Role="SIC_T_USUARIO_OPCION" EntitySet="SIC_T_USUARIO_OPCION" />
-          </AssociationSet>
           <AssociationSet Name="FK_SIC_T_USUARIO_OPCION_SIC_T_USUARIO" Association="SICDBWEBModel.Store.FK_SIC_T_USUARIO_OPCION_SIC_T_USUARIO">
             <End Role="SIC_T_USUARIO" EntitySet="SIC_T_USUARIO" />
             <End Role="SIC_T_USUARIO_OPCION" EntitySet="SIC_T_USUARIO_OPCION" />
@@ -247,6 +251,60 @@
           <Property Name="alm_cst_c_iid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="alm_cst_c_iid_centro_costo" Type="int" Nullable="false" />
           <Property Name="alm_cst_c_iid_almacen" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SIC_T_BOLETA">
+          <Key>
+            <PropertyRef Name="bol_c_iid" />
+          </Key>
+          <Property Name="bol_c_iid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="bol_c_zfecharegistro" Type="datetime" Nullable="false" />
+          <Property Name="bol_c_serie" Type="varchar" Nullable="false" MaxLength="3" />
+          <Property Name="bol_c_numero" Type="int" Nullable="false" />
+          <Property Name="bol_c_iventa" Type="int" Nullable="false" />
+          <Property Name="bol_c_eigv" Type="decimal" Nullable="false" Precision="19" Scale="2" />
+          <Property Name="bol_c_eigvcal" Type="decimal" Nullable="false" Precision="19" Scale="2" />
+          <Property Name="bol_c_esubtotal" Type="decimal" Nullable="false" Precision="19" Scale="2" />
+          <Property Name="bol_c_etotal" Type="decimal" Nullable="false" Precision="19" Scale="2" />
+          <Property Name="bol_c_imoneda" Type="int" Nullable="false" />
+          <Property Name="bol_c_vdescmoneda" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="SIC_T_BOLETA_DETALLE">
+          <Key>
+            <PropertyRef Name="bol_det_c_iid" />
+          </Key>
+          <Property Name="bol_det_c_iid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="bol_c_iid" Type="int" Nullable="false" />
+          <Property Name="bol_det_c_iitem" Type="int" Nullable="false" />
+          <Property Name="bol_det_c_ecantidad" Type="decimal" Nullable="false" Precision="19" Scale="2" />
+          <Property Name="bol_det_c_epreciounit" Type="decimal" Nullable="false" Precision="19" Scale="2" />
+          <Property Name="bol_det_c_epreciotot" Type="decimal" Nullable="false" Precision="19" Scale="2" />
+        </EntityType>
+        <EntityType Name="SIC_T_FACTURA">
+          <Key>
+            <PropertyRef Name="fac_c_iid" />
+          </Key>
+          <Property Name="fac_c_iid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="fac_c_zfecharegistro" Type="datetime" Nullable="false" />
+          <Property Name="fac_c_serie" Type="varchar" Nullable="false" MaxLength="3" />
+          <Property Name="fac_c_numero" Type="int" Nullable="false" />
+          <Property Name="fac_c_iventa" Type="int" Nullable="false" />
+          <Property Name="fac_c_eigv" Type="decimal" Nullable="false" Precision="19" Scale="2" />
+          <Property Name="fac_c_eigvcal" Type="decimal" Nullable="false" Precision="19" Scale="2" />
+          <Property Name="fac_c_esubtotal" Type="decimal" Nullable="false" Precision="19" Scale="2" />
+          <Property Name="fac_c_etotal" Type="decimal" Nullable="false" Precision="19" Scale="2" />
+          <Property Name="fac_c_imoneda" Type="int" Nullable="false" />
+          <Property Name="fac_c_vdescmoneda" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="SIC_T_FACTURA_DETALLE">
+          <Key>
+            <PropertyRef Name="fac_det_c_iid" />
+          </Key>
+          <Property Name="fac_det_c_iid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="fac_c_iid" Type="int" Nullable="false" />
+          <Property Name="fac_det_c_iitem" Type="int" Nullable="false" />
+          <Property Name="fac_det_c_ecantidad" Type="decimal" Nullable="false" Precision="19" Scale="2" />
+          <Property Name="fac_det_c_epreciounit" Type="decimal" Nullable="false" Precision="19" Scale="2" />
+          <Property Name="fac_det_c_epreciotot" Type="decimal" Nullable="false" Precision="19" Scale="2" />
         </EntityType>
         <EntityType Name="SIC_T_CONCEPTO">
           <Key>
@@ -289,7 +347,7 @@
           </Key>
           <Property Name="alm_c_iid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="alm_c_bactivo" Type="bit" />
-          <Property Name="alm_c_vdes" Type="varchar" MaxLength="50" />
+          <Property Name="alm_c_vdesc" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="SIC_T_CLI_CONTAC_CARGO">
           <Key>
@@ -432,9 +490,12 @@
             <PropertyRef Name="emp_dir_c_iid" />
           </Key>
           <Property Name="emp_dir_c_iid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="emp_dir_c_vdireccion" Type="varchar" MaxLength="100" />
-          <Property Name="emp_dir_c_bactivo" Type="bit" />
+          <Property Name="emp_dir_c_vdireccion" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="emp_dir_c_bactivo" Type="bit" Nullable="false" />
           <Property Name="emp_dir_c_iid_centrocosto" Type="int" Nullable="false" />
+          <Property Name="emp_dir_c_itipodirec" Type="int" Nullable="false" />
+          <Property Name="emp_dir_c_ccod_ubig" Type="char" Nullable="false" MaxLength="6" />
+          <Property Name="emp_dir_c_vtipodirec" Type="varchar" Nullable="false" MaxLength="100" />
         </EntityType>
         <EntityType Name="SIC_T_EMPRESA">
           <Key>
@@ -465,16 +526,16 @@
           <Property Name="itm_c_vpardes" Type="nvarchar" Nullable="false" MaxLength="100" />
           <Property Name="itm_c_bactivo" Type="bit" Nullable="false" />
           <Property Name="itm_c_dprecio_venta" Type="decimal" Nullable="false" Precision="19" Scale="2" />
-          <Property Name="itm_c_isf_iid" Type="int" Nullable="false" />
+          <Property Name="isf_c_iid" Type="int" />
         </EntityType>
         <EntityType Name="SIC_T_ITEM_ALMACEN">
           <Key>
             <PropertyRef Name="itm_alm_c_iid" />
           </Key>
           <Property Name="itm_alm_c_iid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="itm_alm_c_iid_item" Type="int" Nullable="false" />
-          <Property Name="itm_alm_c_iid_alm" Type="int" Nullable="false" />
+          <Property Name="alm_c_iid" Type="int" Nullable="false" />
           <Property Name="itm_alm_c_ecantidad" Type="decimal" Nullable="false" Precision="19" Scale="2" />
+          <Property Name="itm_c_iid" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="SIC_T_ITEM_FAMILIA">
           <Key>
@@ -489,7 +550,7 @@
             <PropertyRef Name="isf_c_iid" />
           </Key>
           <Property Name="isf_c_iid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="isf_c_des" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="isf_c_vdesc" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="isf_c_ifm_iid" Type="int" Nullable="false" />
           <Property Name="isf_c_bactivo" Type="bit" Nullable="false" />
         </EntityType>
@@ -505,7 +566,7 @@
             <PropertyRef Name="mve_c_iid" />
           </Key>
           <Property Name="mve_c_iid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="mve_c_ioc_id" Type="int" Nullable="false" />
+          <Property Name="odc_c_iid" Type="int" Nullable="false" />
           <Property Name="mve_c_zfecharegistro" Type="datetime" Nullable="false" />
           <Property Name="mve_c_zguiafecha" Type="datetime" />
           <Property Name="mve_c_zfacturafecha" Type="datetime" Nullable="false" />
@@ -555,7 +616,7 @@
             <PropertyRef Name="odc_c_iid" />
           </Key>
           <Property Name="odc_c_iid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="odc_c_vcodigo" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="odc_c_vcodigo" Type="varchar" MaxLength="8" />
           <Property Name="odc_c_zfecharegistro" Type="datetime" Nullable="false" />
           <Property Name="odc_c_ymoneda" Type="tinyint" Nullable="false" />
           <Property Name="odc_c_esubtotal" Type="decimal" Nullable="false" Scale="2" />
@@ -568,7 +629,7 @@
           <Property Name="odc_c_vdescmoneda" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="odc_c_bactivo" Type="bit" Nullable="false" />
           <Property Name="odc_c_vdescestado" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="odc_c_vdocprov_id" Type="varchar" Nullable="false" MaxLength="11" />
+          <Property Name="prov_c_vdoc_id" Type="varchar" Nullable="false" MaxLength="11" />
           <Property Name="odc_c_zfechaentrega_ini" Type="datetime" Nullable="false" />
           <Property Name="odc_c_zfechaentrega_fin" Type="datetime" Nullable="false" />
           <Property Name="odc_c_iid_usuario_creador" Type="varchar" Nullable="false" MaxLength="10" />
@@ -580,6 +641,7 @@
           <Property Name="odc_c_bpercepcion" Type="bit" Nullable="false" />
           <Property Name="odc_c_idireccion" Type="int" Nullable="false" />
           <Property Name="odc_c_vdireccion" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="odc_c_cserie" Type="char" MaxLength="3" />
         </EntityType>
         <EntityType Name="SIC_T_ORDEN_DE_COMPRA_DET">
           <Key>
@@ -609,6 +671,14 @@
           <Property Name="tsc_c_eventa" Type="decimal" Nullable="false" Precision="17" Scale="4" />
           <Property Name="tsc_c_dinicio" Type="datetime" Nullable="false" />
           <Property Name="tsc_c_dfin" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SIC_T_UNIDAD_MEDIDA">
+          <Key>
+            <PropertyRef Name="und_c_iid" />
+          </Key>
+          <Property Name="und_c_iid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="und_c_vdesc" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="und_c_bactivo" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="SIC_T_VEN_ESTADO">
           <Key>
@@ -674,14 +744,6 @@
           <Property Name="menu_c_ynivel" Type="tinyint" />
           <Property Name="menu_c_vpag_asp" Type="varchar" MaxLength="100" />
         </EntityType>
-        <EntityType Name="SIC_T_OPCION">
-          <Key>
-            <PropertyRef Name="opc_c_iid" />
-          </Key>
-          <Property Name="opc_c_iid" Type="int" Nullable="false" />
-          <Property Name="opc_c_vdesc" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="opc_c_bestado" Type="bit" Nullable="false" />
-        </EntityType>
         <EntityType Name="SIC_T_USUARIO">
           <Key>
             <PropertyRef Name="usua_c_cdoc_id" />
@@ -713,60 +775,8 @@
           <Property Name="usua_c_cdoc_id" Type="varchar" Nullable="false" MaxLength="10" />
           <Property Name="usua_perfil_c_cestado" Type="char" MaxLength="1" />
         </EntityType>
-        <EntityType Name="SIC_T_BOLETA">
-          <Key>
-            <PropertyRef Name="bol_c_iid" />
-          </Key>
-          <Property Name="bol_c_iid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="bol_c_zfecharegistro" Type="datetime" Nullable="false" />
-          <Property Name="bol_c_serie" Type="varchar" Nullable="false" MaxLength="3" />
-          <Property Name="bol_c_numero" Type="int" Nullable="false" />
-          <Property Name="bol_c_iventa" Type="int" Nullable="false" />
-          <Property Name="bol_c_eigv" Type="decimal" Nullable="false" Precision="19" Scale="2" />
-          <Property Name="bol_c_eigvcal" Type="decimal" Nullable="false" Precision="19" Scale="2" />
-          <Property Name="bol_c_esubtotal" Type="decimal" Nullable="false" Precision="19" Scale="2" />
-          <Property Name="bol_c_etotal" Type="decimal" Nullable="false" Precision="19" Scale="2" />
-          <Property Name="bol_c_imoneda" Type="int" Nullable="false" />
-          <Property Name="bol_c_vdescmoneda" Type="varchar" Nullable="false" MaxLength="100" />
-        </EntityType>
-        <EntityType Name="SIC_T_BOLETA_DETALLE">
-          <Key>
-            <PropertyRef Name="bol_det_c_iid" />
-          </Key>
-          <Property Name="bol_det_c_iid" Type="int" Nullable="false" />
-          <Property Name="bol_c_iid" Type="int" Nullable="false" />
-          <Property Name="bol_det_c_iitem" Type="int" Nullable="false" />
-          <Property Name="bol_det_c_ecantidad" Type="decimal" Nullable="false" Precision="19" Scale="2" />
-          <Property Name="bol_det_c_epreciounit" Type="decimal" Nullable="false" Precision="19" Scale="2" />
-        </EntityType>
-        <EntityType Name="SIC_T_FACTURA">
-          <Key>
-            <PropertyRef Name="fac_c_iid" />
-          </Key>
-          <Property Name="fac_c_iid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="fac_c_zfecharegistro" Type="datetime" Nullable="false" />
-          <Property Name="fac_c_serie" Type="varchar" Nullable="false" MaxLength="3" />
-          <Property Name="fac_c_numero" Type="int" Nullable="false" />
-          <Property Name="fac_c_iventa" Type="int" Nullable="false" />
-          <Property Name="fac_c_eigv" Type="decimal" Nullable="false" Precision="19" Scale="2" />
-          <Property Name="fac_c_eigvcal" Type="decimal" Nullable="false" Precision="19" Scale="2" />
-          <Property Name="fac_c_esubtotal" Type="decimal" Nullable="false" Precision="19" Scale="2" />
-          <Property Name="fac_c_etotal" Type="decimal" Nullable="false" Precision="19" Scale="2" />
-          <Property Name="fac_c_imoneda" Type="int" Nullable="false" />
-          <Property Name="fac_c_vdescmoneda" Type="varchar" Nullable="false" MaxLength="100" />
-        </EntityType>
-        <EntityType Name="SIC_T_FACTURA_DETALLE">
-          <Key>
-            <PropertyRef Name="fac_det_c_iid" />
-          </Key>
-          <Property Name="fac_det_c_iid" Type="int" Nullable="false" />
-          <Property Name="fac_c_iid" Type="int" Nullable="false" />
-          <Property Name="fac_det_c_iitem" Type="int" Nullable="false" />
-          <Property Name="fac_det_c_ecantidad" Type="decimal" Nullable="false" Precision="19" Scale="2" />
-          <Property Name="fac_det_c_epreciounit" Type="decimal" Nullable="false" Precision="19" Scale="2" />
-        </EntityType>
         <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'SICDBWEB_DES.Mantenimiento.SIC_VW_CLIENTE_LISTA' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      advertencia 6002: La tabla o vista 'SICDBWEB_DES2.Mantenimiento.SIC_VW_CLIENTE_LISTA' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="SIC_VW_CLIENTE_LISTA">
           <Key>
@@ -811,6 +821,18 @@
             </Principal>
             <Dependent Role="SIC_T_BOLETA_DETALLE">
               <PropertyRef Name="bol_c_iid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SIC_T_BOLETA_DETALLE_SIC_T_ITEM1">
+          <End Role="SIC_T_ITEM" Type="SICDBWEBModel.Store.SIC_T_ITEM" Multiplicity="1" />
+          <End Role="SIC_T_BOLETA_DETALLE" Type="SICDBWEBModel.Store.SIC_T_BOLETA_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SIC_T_ITEM">
+              <PropertyRef Name="itm_c_iid" />
+            </Principal>
+            <Dependent Role="SIC_T_BOLETA_DETALLE">
+              <PropertyRef Name="bol_det_c_iitem" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -982,6 +1004,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SIC_T_FACTURA_DETALLE_SIC_T_ITEM">
+          <End Role="SIC_T_ITEM" Type="SICDBWEBModel.Store.SIC_T_ITEM" Multiplicity="1" />
+          <End Role="SIC_T_FACTURA_DETALLE" Type="SICDBWEBModel.Store.SIC_T_FACTURA_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SIC_T_ITEM">
+              <PropertyRef Name="itm_c_iid" />
+            </Principal>
+            <Dependent Role="SIC_T_FACTURA_DETALLE">
+              <PropertyRef Name="fac_det_c_iitem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SIC_T_FACTURA_SIC_T_VENTA">
           <End Role="SIC_T_VENTA" Type="SICDBWEBModel.Store.SIC_T_VENTA" Multiplicity="1" />
           <End Role="SIC_T_FACTURA" Type="SICDBWEBModel.Store.SIC_T_FACTURA" Multiplicity="*" />
@@ -1002,7 +1036,7 @@
               <PropertyRef Name="alm_c_iid" />
             </Principal>
             <Dependent Role="SIC_T_ITEM_ALMACEN">
-              <PropertyRef Name="itm_alm_c_iid_alm" />
+              <PropertyRef Name="alm_c_iid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1014,19 +1048,19 @@
               <PropertyRef Name="itm_c_iid" />
             </Principal>
             <Dependent Role="SIC_T_ITEM_ALMACEN">
-              <PropertyRef Name="itm_alm_c_iid_item" />
+              <PropertyRef Name="itm_c_iid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SIC_T_ITEM_SIC_T_ITEM_SUB_FAMILIA1">
-          <End Role="SIC_T_ITEM_SUB_FAMILIA" Type="SICDBWEBModel.Store.SIC_T_ITEM_SUB_FAMILIA" Multiplicity="1" />
+        <Association Name="FK_SIC_T_ITEM_SIC_T_ITEM_SUB_FAMILIA">
+          <End Role="SIC_T_ITEM_SUB_FAMILIA" Type="SICDBWEBModel.Store.SIC_T_ITEM_SUB_FAMILIA" Multiplicity="0..1" />
           <End Role="SIC_T_ITEM" Type="SICDBWEBModel.Store.SIC_T_ITEM" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SIC_T_ITEM_SUB_FAMILIA">
               <PropertyRef Name="isf_c_iid" />
             </Principal>
             <Dependent Role="SIC_T_ITEM">
-              <PropertyRef Name="itm_c_isf_iid" />
+              <PropertyRef Name="isf_c_iid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1110,7 +1144,7 @@
               <PropertyRef Name="odc_c_iid" />
             </Principal>
             <Dependent Role="SIC_T_MOVIMIENTO_ENTRADA">
-              <PropertyRef Name="mve_c_ioc_id" />
+              <PropertyRef Name="odc_c_iid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1146,7 +1180,7 @@
               <PropertyRef Name="cli_c_vdoc_id" />
             </Principal>
             <Dependent Role="SIC_T_ORDEN_DE_COMPRA">
-              <PropertyRef Name="odc_c_vdocprov_id" />
+              <PropertyRef Name="prov_c_vdoc_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1195,18 +1229,6 @@
             </Principal>
             <Dependent Role="SIC_T_PROVINCIA">
               <PropertyRef Name="depa_c_ccod" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SIC_T_USUARIO_OPCION_SIC_T_OPCION">
-          <End Role="SIC_T_OPCION" Type="SICDBWEBModel.Store.SIC_T_OPCION" Multiplicity="1" />
-          <End Role="SIC_T_USUARIO_OPCION" Type="SICDBWEBModel.Store.SIC_T_USUARIO_OPCION" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SIC_T_OPCION">
-              <PropertyRef Name="opc_c_iid" />
-            </Principal>
-            <Dependent Role="SIC_T_USUARIO_OPCION">
-              <PropertyRef Name="opc_c_iid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1494,8 +1516,9 @@
           </FunctionImport>
           <EntitySet Name="SIC_T_ALMACEN_CENTRO_COSTO" EntityType="SICDBWEBModel.SIC_T_ALMACEN_CENTRO_COSTO" />
           <EntitySet Name="SIC_T_IGV" EntityType="SICDBWEBModel.SIC_T_IGV" />
-          <EntitySet Name="SIC_T_ITEM_FAMILIA" EntityType="SICDBWEBModel.SIC_T_ITEM_FAMILIA" />
           <EntitySet Name="SIC_T_MOVIMIENTO_ENTRADA_DETALLE" EntityType="SICDBWEBModel.SIC_T_MOVIMIENTO_ENTRADA_DETALLE" />
+          <EntitySet Name="SIC_T_ODC_CLASE" EntityType="SICDBWEBModel.SIC_T_ODC_CLASE" />
+          <EntitySet Name="SIC_T_ODC_ESTADO" EntityType="SICDBWEBModel.SIC_T_ODC_ESTADO" />
           <EntitySet Name="SIC_T_ORDEN_DE_COMPRA_DET" EntityType="SICDBWEBModel.SIC_T_ORDEN_DE_COMPRA_DET" />
           <EntitySet Name="SIC_T_VENTA_DETALLE" EntityType="SICDBWEBModel.SIC_T_VENTA_DETALLE" />
           <AssociationSet Name="FK_SIC_T_MOVIMIENTO_ENTRADA_DETALLE_SIC_T_ORDEN_DE_COMPRA_DET" Association="SICDBWEBModel.FK_SIC_T_MOVIMIENTO_ENTRADA_DETALLE_SIC_T_ORDEN_DE_COMPRA_DET">
@@ -1563,30 +1586,8 @@
             <End Role="SIC_T_VENTA" EntitySet="SIC_T_VENTA" />
           </AssociationSet>
           <EntitySet Name="SIC_T_CONCEPTO" EntityType="SICDBWEBModel.SIC_T_CONCEPTO" />
-          <EntitySet Name="SIC_T_UNIDAD_MEDIDA" EntityType="SICDBWEBModel.SIC_T_UNIDAD_MEDIDA" />
-          <EntitySet Name="SIC_T_EMP_DIRECCION" EntityType="SICDBWEBModel.SIC_T_EMP_DIRECCION" />
-          <AssociationSet Name="FK_SIC_T_EMP_DIRECCION_SIC_T_EMP_CENTRO_COSTO" Association="SICDBWEBModel.FK_SIC_T_EMP_DIRECCION_SIC_T_EMP_CENTRO_COSTO">
-            <End Role="SIC_T_EMP_CENTRO_COSTO" EntitySet="SIC_T_EMP_CENTRO_COSTO" />
-            <End Role="SIC_T_EMP_DIRECCION" EntitySet="SIC_T_EMP_DIRECCION" />
-          </AssociationSet>
-          <EntitySet Name="SIC_T_ALMACEN" EntityType="SICDBWEBModel.SIC_T_ALMACEN" />
-          <EntitySet Name="SIC_T_ITEM_SUB_FAMILIA" EntityType="SICDBWEBModel.SIC_T_ITEM_SUB_FAMILIA" />
-          <AssociationSet Name="FK_SIC_T_ALMACEN_CENTRO_COSTO_SIC_T_ALMACEN" Association="SICDBWEBModel.FK_SIC_T_ALMACEN_CENTRO_COSTO_SIC_T_ALMACEN">
-            <End Role="SIC_T_ALMACEN" EntitySet="SIC_T_ALMACEN" />
-            <End Role="SIC_T_ALMACEN_CENTRO_COSTO" EntitySet="SIC_T_ALMACEN_CENTRO_COSTO" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SIC_T_VENTA_DETALLE_SIC_T_ALMACEN" Association="SICDBWEBModel.FK_SIC_T_VENTA_DETALLE_SIC_T_ALMACEN">
-            <End Role="SIC_T_ALMACEN" EntitySet="SIC_T_ALMACEN" />
-            <End Role="SIC_T_VENTA_DETALLE" EntitySet="SIC_T_VENTA_DETALLE" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SIC_T_ITEM_SUB_FAMILIA_SIC_T_ITEM_FAMILIA" Association="SICDBWEBModel.FK_SIC_T_ITEM_SUB_FAMILIA_SIC_T_ITEM_FAMILIA">
-            <End Role="SIC_T_ITEM_FAMILIA" EntitySet="SIC_T_ITEM_FAMILIA" />
-            <End Role="SIC_T_ITEM_SUB_FAMILIA" EntitySet="SIC_T_ITEM_SUB_FAMILIA" />
-          </AssociationSet>
           <EntitySet Name="SIC_T_BOLETA" EntityType="SICDBWEBModel.SIC_T_BOLETA" />
-          <EntitySet Name="SIC_T_BOLETA_DETALLE" EntityType="SICDBWEBModel.SIC_T_BOLETA_DETALLE" />
           <EntitySet Name="SIC_T_FACTURA" EntityType="SICDBWEBModel.SIC_T_FACTURA" />
-          <EntitySet Name="SIC_T_FACTURA_DETALLE" EntityType="SICDBWEBModel.SIC_T_FACTURA_DETALLE" />
           <AssociationSet Name="FK_SIC_T_BOLETA_SIC_T_VENTA" Association="SICDBWEBModel.FK_SIC_T_BOLETA_SIC_T_VENTA">
             <End Role="SIC_T_VENTA" EntitySet="SIC_T_VENTA" />
             <End Role="SIC_T_BOLETA" EntitySet="SIC_T_BOLETA" />
@@ -1595,32 +1596,13 @@
             <End Role="SIC_T_VENTA" EntitySet="SIC_T_VENTA" />
             <End Role="SIC_T_FACTURA" EntitySet="SIC_T_FACTURA" />
           </AssociationSet>
-          <AssociationSet Name="FK_SIC_T_BOLETA_DETALLE_SIC_T_BOLETA" Association="SICDBWEBModel.FK_SIC_T_BOLETA_DETALLE_SIC_T_BOLETA">
-            <End Role="SIC_T_BOLETA" EntitySet="SIC_T_BOLETA" />
-            <End Role="SIC_T_BOLETA_DETALLE" EntitySet="SIC_T_BOLETA_DETALLE" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SIC_T_FACTURA_DETALLE_SIC_T_FACTURA" Association="SICDBWEBModel.FK_SIC_T_FACTURA_DETALLE_SIC_T_FACTURA">
-            <End Role="SIC_T_FACTURA" EntitySet="SIC_T_FACTURA" />
-            <End Role="SIC_T_FACTURA_DETALLE" EntitySet="SIC_T_FACTURA_DETALLE" />
-          </AssociationSet>
-          <EntitySet Name="SIC_T_ITEM" EntityType="SICDBWEBModel.SIC_T_ITEM" />
-          <AssociationSet Name="FK_SIC_T_ITEM_SIC_T_ITEM_SUB_FAMILIA1" Association="SICDBWEBModel.FK_SIC_T_ITEM_SIC_T_ITEM_SUB_FAMILIA1">
-            <End Role="SIC_T_ITEM_SUB_FAMILIA" EntitySet="SIC_T_ITEM_SUB_FAMILIA" />
-            <End Role="SIC_T_ITEM" EntitySet="SIC_T_ITEM" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ITEM" Association="SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ITEM">
-            <End Role="SIC_T_ITEM" EntitySet="SIC_T_ITEM" />
-            <End Role="SIC_T_ORDEN_DE_COMPRA_DET" EntitySet="SIC_T_ORDEN_DE_COMPRA_DET" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SIC_T_VENTA_DETALLE_SIC_T_ITEM" Association="SICDBWEBModel.FK_SIC_T_VENTA_DETALLE_SIC_T_ITEM">
-            <End Role="SIC_T_ITEM" EntitySet="SIC_T_ITEM" />
-            <End Role="SIC_T_VENTA_DETALLE" EntitySet="SIC_T_VENTA_DETALLE" />
+          <EntitySet Name="SIC_T_UNIDAD_MEDIDA" EntityType="SICDBWEBModel.SIC_T_UNIDAD_MEDIDA" />
+          <EntitySet Name="SIC_T_EMP_DIRECCION" EntityType="SICDBWEBModel.SIC_T_EMP_DIRECCION" />
+          <AssociationSet Name="FK_SIC_T_EMP_DIRECCION_SIC_T_EMP_CENTRO_COSTO" Association="SICDBWEBModel.FK_SIC_T_EMP_DIRECCION_SIC_T_EMP_CENTRO_COSTO">
+            <End Role="SIC_T_EMP_CENTRO_COSTO" EntitySet="SIC_T_EMP_CENTRO_COSTO" />
+            <End Role="SIC_T_EMP_DIRECCION" EntitySet="SIC_T_EMP_DIRECCION" />
           </AssociationSet>
           <EntitySet Name="SIC_T_MOVIMIENTO_ENTRADA" EntityType="SICDBWEBModel.SIC_T_MOVIMIENTO_ENTRADA" />
-          <AssociationSet Name="FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_ALMACEN" Association="SICDBWEBModel.FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_ALMACEN">
-            <End Role="SIC_T_ALMACEN" EntitySet="SIC_T_ALMACEN" />
-            <End Role="SIC_T_MOVIMIENTO_ENTRADA" EntitySet="SIC_T_MOVIMIENTO_ENTRADA" />
-          </AssociationSet>
           <AssociationSet Name="FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_MOV_ESTADO" Association="SICDBWEBModel.FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_MOV_ESTADO">
             <End Role="SIC_T_MOV_ESTADO" EntitySet="SIC_T_MOV_ESTADO" />
             <End Role="SIC_T_MOVIMIENTO_ENTRADA" EntitySet="SIC_T_MOVIMIENTO_ENTRADA" />
@@ -1629,10 +1611,17 @@
             <End Role="SIC_T_MOVIMIENTO_ENTRADA" EntitySet="SIC_T_MOVIMIENTO_ENTRADA" />
             <End Role="SIC_T_MOVIMIENTO_ENTRADA_DETALLE" EntitySet="SIC_T_MOVIMIENTO_ENTRADA_DETALLE" />
           </AssociationSet>
-          <EntitySet Name="SIC_T_ODC_CLASE" EntityType="SICDBWEBModel.SIC_T_ODC_CLASE" />
-          <EntitySet Name="SIC_T_ODC_ESTADO" EntityType="SICDBWEBModel.SIC_T_ODC_ESTADO" />
+          <EntitySet Name="SIC_T_BOLETA_DETALLE" EntityType="SICDBWEBModel.SIC_T_BOLETA_DETALLE" />
+          <EntitySet Name="SIC_T_FACTURA_DETALLE" EntityType="SICDBWEBModel.SIC_T_FACTURA_DETALLE" />
+          <AssociationSet Name="FK_SIC_T_BOLETA_DETALLE_SIC_T_BOLETA" Association="SICDBWEBModel.FK_SIC_T_BOLETA_DETALLE_SIC_T_BOLETA">
+            <End Role="SIC_T_BOLETA" EntitySet="SIC_T_BOLETA" />
+            <End Role="SIC_T_BOLETA_DETALLE" EntitySet="SIC_T_BOLETA_DETALLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SIC_T_FACTURA_DETALLE_SIC_T_FACTURA" Association="SICDBWEBModel.FK_SIC_T_FACTURA_DETALLE_SIC_T_FACTURA">
+            <End Role="SIC_T_FACTURA" EntitySet="SIC_T_FACTURA" />
+            <End Role="SIC_T_FACTURA_DETALLE" EntitySet="SIC_T_FACTURA_DETALLE" />
+          </AssociationSet>
           <EntitySet Name="SIC_T_ORDEN_DE_COMPRA" EntityType="SICDBWEBModel.SIC_T_ORDEN_DE_COMPRA" />
-          <EntitySet Name="SIC_T_OPCION" EntityType="SICDBWEBModel.SIC_T_OPCION" />
           <AssociationSet Name="FK_SIC_T_ORDEN_DE_COMPRA_SIC_T_CLIENTE" Association="SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_SIC_T_CLIENTE">
             <End Role="SIC_T_CLIENTE" EntitySet="SIC_T_CLIENTE" />
             <End Role="SIC_T_ORDEN_DE_COMPRA" EntitySet="SIC_T_ORDEN_DE_COMPRA" />
@@ -1653,14 +1642,50 @@
             <End Role="SIC_T_ORDEN_DE_COMPRA" EntitySet="SIC_T_ORDEN_DE_COMPRA" />
             <End Role="SIC_T_ORDEN_DE_COMPRA_DET" EntitySet="SIC_T_ORDEN_DE_COMPRA_DET" />
           </AssociationSet>
-          <AssociationSet Name="SIC_T_USUARIO_OPCION1" Association="SICDBWEBModel.SIC_T_USUARIO_OPCION1">
-            <End Role="SIC_T_OPCION" EntitySet="SIC_T_OPCION" />
-            <End Role="SIC_T_USUARIO" EntitySet="SIC_T_USUARIO" />
+          <EntitySet Name="SIC_T_ITEM" EntityType="SICDBWEBModel.SIC_T_ITEM" />
+          <EntitySet Name="SIC_T_ITEM_FAMILIA" EntityType="SICDBWEBModel.SIC_T_ITEM_FAMILIA" />
+          <EntitySet Name="SIC_T_ITEM_SUB_FAMILIA" EntityType="SICDBWEBModel.SIC_T_ITEM_SUB_FAMILIA" />
+          <AssociationSet Name="FK_SIC_T_BOLETA_DETALLE_SIC_T_ITEM1" Association="SICDBWEBModel.FK_SIC_T_BOLETA_DETALLE_SIC_T_ITEM1">
+            <End Role="SIC_T_ITEM" EntitySet="SIC_T_ITEM" />
+            <End Role="SIC_T_BOLETA_DETALLE" EntitySet="SIC_T_BOLETA_DETALLE" />
           </AssociationSet>
+          <AssociationSet Name="FK_SIC_T_FACTURA_DETALLE_SIC_T_ITEM" Association="SICDBWEBModel.FK_SIC_T_FACTURA_DETALLE_SIC_T_ITEM">
+            <End Role="SIC_T_ITEM" EntitySet="SIC_T_ITEM" />
+            <End Role="SIC_T_FACTURA_DETALLE" EntitySet="SIC_T_FACTURA_DETALLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SIC_T_ITEM_SIC_T_ITEM_SUB_FAMILIA" Association="SICDBWEBModel.FK_SIC_T_ITEM_SIC_T_ITEM_SUB_FAMILIA">
+            <End Role="SIC_T_ITEM_SUB_FAMILIA" EntitySet="SIC_T_ITEM_SUB_FAMILIA" />
+            <End Role="SIC_T_ITEM" EntitySet="SIC_T_ITEM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ITEM" Association="SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ITEM">
+            <End Role="SIC_T_ITEM" EntitySet="SIC_T_ITEM" />
+            <End Role="SIC_T_ORDEN_DE_COMPRA_DET" EntitySet="SIC_T_ORDEN_DE_COMPRA_DET" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SIC_T_VENTA_DETALLE_SIC_T_ITEM" Association="SICDBWEBModel.FK_SIC_T_VENTA_DETALLE_SIC_T_ITEM">
+            <End Role="SIC_T_ITEM" EntitySet="SIC_T_ITEM" />
+            <End Role="SIC_T_VENTA_DETALLE" EntitySet="SIC_T_VENTA_DETALLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SIC_T_ITEM_SUB_FAMILIA_SIC_T_ITEM_FAMILIA" Association="SICDBWEBModel.FK_SIC_T_ITEM_SUB_FAMILIA_SIC_T_ITEM_FAMILIA">
+            <End Role="SIC_T_ITEM_FAMILIA" EntitySet="SIC_T_ITEM_FAMILIA" />
+            <End Role="SIC_T_ITEM_SUB_FAMILIA" EntitySet="SIC_T_ITEM_SUB_FAMILIA" />
+          </AssociationSet>
+          <EntitySet Name="SIC_T_ALMACEN" EntityType="SICDBWEBModel.SIC_T_ALMACEN" />
           <EntitySet Name="SIC_T_ITEM_ALMACEN" EntityType="SICDBWEBModel.SIC_T_ITEM_ALMACEN" />
+          <AssociationSet Name="FK_SIC_T_ALMACEN_CENTRO_COSTO_SIC_T_ALMACEN" Association="SICDBWEBModel.FK_SIC_T_ALMACEN_CENTRO_COSTO_SIC_T_ALMACEN">
+            <End Role="SIC_T_ALMACEN" EntitySet="SIC_T_ALMACEN" />
+            <End Role="SIC_T_ALMACEN_CENTRO_COSTO" EntitySet="SIC_T_ALMACEN_CENTRO_COSTO" />
+          </AssociationSet>
           <AssociationSet Name="FK_SIC_T_ITEM_ALMACEN_SIC_T_ALMACEN" Association="SICDBWEBModel.FK_SIC_T_ITEM_ALMACEN_SIC_T_ALMACEN">
             <End Role="SIC_T_ALMACEN" EntitySet="SIC_T_ALMACEN" />
             <End Role="SIC_T_ITEM_ALMACEN" EntitySet="SIC_T_ITEM_ALMACEN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_ALMACEN" Association="SICDBWEBModel.FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_ALMACEN">
+            <End Role="SIC_T_ALMACEN" EntitySet="SIC_T_ALMACEN" />
+            <End Role="SIC_T_MOVIMIENTO_ENTRADA" EntitySet="SIC_T_MOVIMIENTO_ENTRADA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SIC_T_VENTA_DETALLE_SIC_T_ALMACEN" Association="SICDBWEBModel.FK_SIC_T_VENTA_DETALLE_SIC_T_ALMACEN">
+            <End Role="SIC_T_ALMACEN" EntitySet="SIC_T_ALMACEN" />
+            <End Role="SIC_T_VENTA_DETALLE" EntitySet="SIC_T_VENTA_DETALLE" />
           </AssociationSet>
           <AssociationSet Name="FK_SIC_T_ITEM_ALMACEN_SIC_T_ITEM" Association="SICDBWEBModel.FK_SIC_T_ITEM_ALMACEN_SIC_T_ITEM">
             <End Role="SIC_T_ITEM" EntitySet="SIC_T_ITEM" />
@@ -1972,7 +1997,6 @@
           <Property Type="String" Name="usua_c_vpass" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Type="Boolean" Name="usua_c_bestado" Nullable="false" />
           <NavigationProperty Name="SIC_T_USUARIO_OPCION" Relationship="SICDBWEBModel.FK_SIC_T_USUARIO_OPCION_SIC_T_USUARIO" FromRole="SIC_T_USUARIO" ToRole="SIC_T_USUARIO_OPCION" />
-          <NavigationProperty Name="SIC_T_OPCION" Relationship="SICDBWEBModel.SIC_T_USUARIO_OPCION1" FromRole="SIC_T_USUARIO" ToRole="SIC_T_OPCION" />
         </EntityType>
         <EntityType Name="SIC_T_USUARIO_OPCION">
           <Key>
@@ -2023,15 +2047,6 @@
           <Property Type="DateTime" Name="igv_c_dinicio" />
           <Property Type="DateTime" Name="igv_c_dfin" />
         </EntityType>
-        <EntityType Name="SIC_T_ITEM_FAMILIA">
-          <Key>
-            <PropertyRef Name="ifm_c_iid" />
-          </Key>
-          <Property Type="Int32" Name="ifm_c_iid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="ifm_c_des" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="ifm_c_bactivo" Nullable="false" />
-          <NavigationProperty Name="SIC_T_ITEM_SUB_FAMILIA" Relationship="SICDBWEBModel.FK_SIC_T_ITEM_SUB_FAMILIA_SIC_T_ITEM_FAMILIA" FromRole="SIC_T_ITEM_FAMILIA" ToRole="SIC_T_ITEM_SUB_FAMILIA" />
-        </EntityType>
         <EntityType Name="SIC_T_MOVIMIENTO_ENTRADA_DETALLE">
           <Key>
             <PropertyRef Name="mve_det_c_iid" />
@@ -2045,6 +2060,22 @@
           <NavigationProperty Name="SIC_T_ORDEN_DE_COMPRA_DET" Relationship="SICDBWEBModel.FK_SIC_T_MOVIMIENTO_ENTRADA_DETALLE_SIC_T_ORDEN_DE_COMPRA_DET" FromRole="SIC_T_MOVIMIENTO_ENTRADA_DETALLE" ToRole="SIC_T_ORDEN_DE_COMPRA_DET" />
           <NavigationProperty Name="SIC_T_MOVIMIENTO_ENTRADA" Relationship="SICDBWEBModel.FK_SIC_T_MOVIMIENTO_ENTRADA_DETALLE_SIC_T_MOVIMIENTO_ENTRADA" FromRole="SIC_T_MOVIMIENTO_ENTRADA_DETALLE" ToRole="SIC_T_MOVIMIENTO_ENTRADA" />
         </EntityType>
+        <EntityType Name="SIC_T_ODC_CLASE">
+          <Key>
+            <PropertyRef Name="odc_cla_iid" />
+          </Key>
+          <Property Type="Int32" Name="odc_cla_iid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="odc_cla_vdes" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SIC_T_ORDEN_DE_COMPRA" Relationship="SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_SIC_T_ODC_CLASE" FromRole="SIC_T_ODC_CLASE" ToRole="SIC_T_ORDEN_DE_COMPRA" />
+        </EntityType>
+        <EntityType Name="SIC_T_ODC_ESTADO">
+          <Key>
+            <PropertyRef Name="odc_estado_iid" />
+          </Key>
+          <Property Type="Int32" Name="odc_estado_iid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="odc_estado_vdescripcion" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SIC_T_ORDEN_DE_COMPRA" Relationship="SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_SIC_T_ODC_ESTADO" FromRole="SIC_T_ODC_ESTADO" ToRole="SIC_T_ORDEN_DE_COMPRA" />
+        </EntityType>
         <EntityType Name="SIC_T_ORDEN_DE_COMPRA_DET">
           <Key>
             <PropertyRef Name="odc_det_c_iid" />
@@ -2056,8 +2087,8 @@
           <Property Type="Decimal" Name="odc_c_epreciounit" Nullable="false" Precision="19" Scale="2" />
           <Property Type="Decimal" Name="odc_c_epreciototal" Nullable="false" Precision="19" Scale="2" />
           <NavigationProperty Name="SIC_T_MOVIMIENTO_ENTRADA_DETALLE" Relationship="SICDBWEBModel.FK_SIC_T_MOVIMIENTO_ENTRADA_DETALLE_SIC_T_ORDEN_DE_COMPRA_DET" FromRole="SIC_T_ORDEN_DE_COMPRA_DET" ToRole="SIC_T_MOVIMIENTO_ENTRADA_DETALLE" />
-          <NavigationProperty Name="SIC_T_ITEM" Relationship="SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ITEM" FromRole="SIC_T_ORDEN_DE_COMPRA_DET" ToRole="SIC_T_ITEM" />
           <NavigationProperty Name="SIC_T_ORDEN_DE_COMPRA" Relationship="SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ORDEN_DE_COMPRA" FromRole="SIC_T_ORDEN_DE_COMPRA_DET" ToRole="SIC_T_ORDEN_DE_COMPRA" />
+          <NavigationProperty Name="SIC_T_ITEM" Relationship="SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ITEM" FromRole="SIC_T_ORDEN_DE_COMPRA_DET" ToRole="SIC_T_ITEM" />
         </EntityType>
         <EntityType Name="SIC_T_VENTA_DETALLE">
           <Key>
@@ -2071,8 +2102,8 @@
           <Property Type="Decimal" Name="ven_det_c_epreciototal" Nullable="false" Precision="19" Scale="2" />
           <Property Type="Int32" Name="ven_det_c_iidalmacen" Nullable="false" />
           <NavigationProperty Name="SIC_T_VENTA" Relationship="SICDBWEBModel.FK_SIC_T_VENTA_DETALLE_SIC_T_VENTA" FromRole="SIC_T_VENTA_DETALLE" ToRole="SIC_T_VENTA" />
-          <NavigationProperty Name="SIC_T_ALMACEN" Relationship="SICDBWEBModel.FK_SIC_T_VENTA_DETALLE_SIC_T_ALMACEN" FromRole="SIC_T_VENTA_DETALLE" ToRole="SIC_T_ALMACEN" />
           <NavigationProperty Name="SIC_T_ITEM" Relationship="SICDBWEBModel.FK_SIC_T_VENTA_DETALLE_SIC_T_ITEM" FromRole="SIC_T_VENTA_DETALLE" ToRole="SIC_T_ITEM" />
+          <NavigationProperty Name="SIC_T_ALMACEN" Relationship="SICDBWEBModel.FK_SIC_T_VENTA_DETALLE_SIC_T_ALMACEN" FromRole="SIC_T_VENTA_DETALLE" ToRole="SIC_T_ALMACEN" />
         </EntityType>
         <Association Name="FK_SIC_T_MOVIMIENTO_ENTRADA_DETALLE_SIC_T_ORDEN_DE_COMPRA_DET">
           <End Type="SICDBWEBModel.SIC_T_ORDEN_DE_COMPRA_DET" Role="SIC_T_ORDEN_DE_COMPRA_DET" Multiplicity="1" />
@@ -2124,7 +2155,7 @@
           <NavigationProperty Name="SIC_T_VENTA" Relationship="SICDBWEBModel.FK_SIC_T_VENTA_SIC_T_CLIENTE" FromRole="SIC_T_CLIENTE" ToRole="SIC_T_VENTA" />
           <NavigationProperty Name="SIC_T_CLI_CONTACTO" Relationship="SICDBWEBModel.FK_SIC_T_CLI_CONTACTO_SIC_T_CLIENTE" FromRole="SIC_T_CLIENTE" ToRole="SIC_T_CLI_CONTACTO" />
           <NavigationProperty Name="SIC_T_ORDEN_DE_COMPRA" Relationship="SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_SIC_T_CLIENTE" FromRole="SIC_T_CLIENTE" ToRole="SIC_T_ORDEN_DE_COMPRA" />
-          </EntityType>
+        </EntityType>
         <Association Name="FK_SIC_T_CLI_DIRECCION_SIC_T_CLIENTE">
           <End Type="SICDBWEBModel.SIC_T_CLIENTE" Role="SIC_T_CLIENTE" Multiplicity="1" />
           <End Type="SICDBWEBModel.SIC_T_CLI_DIRECCION" Role="SIC_T_CLI_DIRECCION" Multiplicity="*" />
@@ -2380,6 +2411,66 @@
           <Property Type="Int32" Name="con_c_iid" Nullable="false" />
           <Property Type="String" Name="con_c_vdes" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="SIC_T_BOLETA">
+          <Key>
+            <PropertyRef Name="bol_c_iid" />
+          </Key>
+          <Property Type="Int32" Name="bol_c_iid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="bol_c_zfecharegistro" Nullable="false" />
+          <Property Type="String" Name="bol_c_serie" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="bol_c_numero" Nullable="false" />
+          <Property Type="Int32" Name="bol_c_iventa" Nullable="false" />
+          <Property Type="Decimal" Name="bol_c_eigv" Nullable="false" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="bol_c_eigvcal" Nullable="false" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="bol_c_esubtotal" Nullable="false" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="bol_c_etotal" Nullable="false" Precision="19" Scale="2" />
+          <Property Type="Int32" Name="bol_c_imoneda" Nullable="false" />
+          <Property Type="String" Name="bol_c_vdescmoneda" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SIC_T_VENTA" Relationship="SICDBWEBModel.FK_SIC_T_BOLETA_SIC_T_VENTA" FromRole="SIC_T_BOLETA" ToRole="SIC_T_VENTA" />
+          <NavigationProperty Name="SIC_T_BOLETA_DETALLE" Relationship="SICDBWEBModel.FK_SIC_T_BOLETA_DETALLE_SIC_T_BOLETA" FromRole="SIC_T_BOLETA" ToRole="SIC_T_BOLETA_DETALLE" />
+        </EntityType>
+        <EntityType Name="SIC_T_FACTURA">
+          <Key>
+            <PropertyRef Name="fac_c_iid" />
+          </Key>
+          <Property Type="Int32" Name="fac_c_iid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="fac_c_zfecharegistro" Nullable="false" />
+          <Property Type="String" Name="fac_c_serie" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="fac_c_numero" Nullable="false" />
+          <Property Type="Int32" Name="fac_c_iventa" Nullable="false" />
+          <Property Type="Decimal" Name="fac_c_eigv" Nullable="false" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="fac_c_eigvcal" Nullable="false" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="fac_c_esubtotal" Nullable="false" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="fac_c_etotal" Nullable="false" Precision="19" Scale="2" />
+          <Property Type="Int32" Name="fac_c_imoneda" Nullable="false" />
+          <Property Type="String" Name="fac_c_vdescmoneda" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SIC_T_VENTA" Relationship="SICDBWEBModel.FK_SIC_T_FACTURA_SIC_T_VENTA" FromRole="SIC_T_FACTURA" ToRole="SIC_T_VENTA" />
+          <NavigationProperty Name="SIC_T_FACTURA_DETALLE" Relationship="SICDBWEBModel.FK_SIC_T_FACTURA_DETALLE_SIC_T_FACTURA" FromRole="SIC_T_FACTURA" ToRole="SIC_T_FACTURA_DETALLE" />
+        </EntityType>
+        <Association Name="FK_SIC_T_BOLETA_SIC_T_VENTA">
+          <End Type="SICDBWEBModel.SIC_T_VENTA" Role="SIC_T_VENTA" Multiplicity="1" />
+          <End Type="SICDBWEBModel.SIC_T_BOLETA" Role="SIC_T_BOLETA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SIC_T_VENTA">
+              <PropertyRef Name="ven_c_iid" />
+            </Principal>
+            <Dependent Role="SIC_T_BOLETA">
+              <PropertyRef Name="bol_c_iventa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SIC_T_FACTURA_SIC_T_VENTA">
+          <End Type="SICDBWEBModel.SIC_T_VENTA" Role="SIC_T_VENTA" Multiplicity="1" />
+          <End Type="SICDBWEBModel.SIC_T_FACTURA" Role="SIC_T_FACTURA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SIC_T_VENTA">
+              <PropertyRef Name="ven_c_iid" />
+            </Principal>
+            <Dependent Role="SIC_T_FACTURA">
+              <PropertyRef Name="fac_c_iventa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="SIC_T_UNIDAD_MEDIDA">
           <Key>
             <PropertyRef Name="und_c_iid" />
@@ -2413,231 +2504,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="SIC_T_ALMACEN">
-          <Key>
-            <PropertyRef Name="alm_c_iid" />
-          </Key>
-          <Property Type="Int32" Name="alm_c_iid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Boolean" Name="alm_c_bactivo" />
-          <Property Type="String" Name="alm_c_vdes" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="SIC_T_ALMACEN_CENTRO_COSTO" Relationship="SICDBWEBModel.FK_SIC_T_ALMACEN_CENTRO_COSTO_SIC_T_ALMACEN" FromRole="SIC_T_ALMACEN" ToRole="SIC_T_ALMACEN_CENTRO_COSTO" />
-          <NavigationProperty Name="SIC_T_VENTA_DETALLE" Relationship="SICDBWEBModel.FK_SIC_T_VENTA_DETALLE_SIC_T_ALMACEN" FromRole="SIC_T_ALMACEN" ToRole="SIC_T_VENTA_DETALLE" />
-          <NavigationProperty Name="SIC_T_MOVIMIENTO_ENTRADA" Relationship="SICDBWEBModel.FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_ALMACEN" FromRole="SIC_T_ALMACEN" ToRole="SIC_T_MOVIMIENTO_ENTRADA" />
-          <NavigationProperty Name="SIC_T_ITEM_ALMACEN" Relationship="SICDBWEBModel.FK_SIC_T_ITEM_ALMACEN_SIC_T_ALMACEN" FromRole="SIC_T_ALMACEN" ToRole="SIC_T_ITEM_ALMACEN" />
-        </EntityType>
-        <EntityType Name="SIC_T_ITEM_SUB_FAMILIA">
-          <Key>
-            <PropertyRef Name="isf_c_iid" />
-          </Key>
-          <Property Type="Int32" Name="isf_c_iid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="isf_c_des" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="isf_c_ifm_iid" Nullable="false" />
-          <Property Type="Boolean" Name="isf_c_bactivo" Nullable="false" />
-          <NavigationProperty Name="SIC_T_ITEM_FAMILIA" Relationship="SICDBWEBModel.FK_SIC_T_ITEM_SUB_FAMILIA_SIC_T_ITEM_FAMILIA" FromRole="SIC_T_ITEM_SUB_FAMILIA" ToRole="SIC_T_ITEM_FAMILIA" />
-          <NavigationProperty Name="SIC_T_ITEM" Relationship="SICDBWEBModel.FK_SIC_T_ITEM_SIC_T_ITEM_SUB_FAMILIA1" FromRole="SIC_T_ITEM_SUB_FAMILIA" ToRole="SIC_T_ITEM" />
-        </EntityType>
-        <Association Name="FK_SIC_T_ALMACEN_CENTRO_COSTO_SIC_T_ALMACEN">
-          <End Type="SICDBWEBModel.SIC_T_ALMACEN" Role="SIC_T_ALMACEN" Multiplicity="1" />
-          <End Type="SICDBWEBModel.SIC_T_ALMACEN_CENTRO_COSTO" Role="SIC_T_ALMACEN_CENTRO_COSTO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SIC_T_ALMACEN">
-              <PropertyRef Name="alm_c_iid" />
-            </Principal>
-            <Dependent Role="SIC_T_ALMACEN_CENTRO_COSTO">
-              <PropertyRef Name="alm_cst_c_iid_almacen" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SIC_T_VENTA_DETALLE_SIC_T_ALMACEN">
-          <End Type="SICDBWEBModel.SIC_T_ALMACEN" Role="SIC_T_ALMACEN" Multiplicity="1" />
-          <End Type="SICDBWEBModel.SIC_T_VENTA_DETALLE" Role="SIC_T_VENTA_DETALLE" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SIC_T_ALMACEN">
-              <PropertyRef Name="alm_c_iid" />
-            </Principal>
-            <Dependent Role="SIC_T_VENTA_DETALLE">
-              <PropertyRef Name="ven_det_c_iidalmacen" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SIC_T_ITEM_SUB_FAMILIA_SIC_T_ITEM_FAMILIA">
-          <End Type="SICDBWEBModel.SIC_T_ITEM_FAMILIA" Role="SIC_T_ITEM_FAMILIA" Multiplicity="1" />
-          <End Type="SICDBWEBModel.SIC_T_ITEM_SUB_FAMILIA" Role="SIC_T_ITEM_SUB_FAMILIA" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SIC_T_ITEM_FAMILIA">
-              <PropertyRef Name="ifm_c_iid" />
-            </Principal>
-            <Dependent Role="SIC_T_ITEM_SUB_FAMILIA">
-              <PropertyRef Name="isf_c_ifm_iid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="SIC_T_BOLETA">
-          <Key>
-            <PropertyRef Name="bol_c_iid" />
-          </Key>
-          <Property Type="Int32" Name="bol_c_iid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="DateTime" Name="bol_c_zfecharegistro" Nullable="false" />
-          <Property Type="String" Name="bol_c_serie" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="bol_c_numero" Nullable="false" />
-          <Property Type="Int32" Name="bol_c_iventa" Nullable="false" />
-          <Property Type="Decimal" Name="bol_c_eigv" Nullable="false" Precision="19" Scale="2" />
-          <Property Type="Decimal" Name="bol_c_eigvcal" Nullable="false" Precision="19" Scale="2" />
-          <Property Type="Decimal" Name="bol_c_esubtotal" Nullable="false" Precision="19" Scale="2" />
-          <Property Type="Decimal" Name="bol_c_etotal" Nullable="false" Precision="19" Scale="2" />
-          <Property Type="Int32" Name="bol_c_imoneda" Nullable="false" />
-          <Property Type="String" Name="bol_c_vdescmoneda" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="SIC_T_VENTA" Relationship="SICDBWEBModel.FK_SIC_T_BOLETA_SIC_T_VENTA" FromRole="SIC_T_BOLETA" ToRole="SIC_T_VENTA" />
-          <NavigationProperty Name="SIC_T_BOLETA_DETALLE" Relationship="SICDBWEBModel.FK_SIC_T_BOLETA_DETALLE_SIC_T_BOLETA" FromRole="SIC_T_BOLETA" ToRole="SIC_T_BOLETA_DETALLE" />
-        </EntityType>
-        <EntityType Name="SIC_T_BOLETA_DETALLE">
-          <Key>
-            <PropertyRef Name="bol_det_c_iid" />
-          </Key>
-          <Property Type="Int32" Name="bol_det_c_iid" Nullable="false" />
-          <Property Type="Int32" Name="bol_c_iid" Nullable="false" />
-          <Property Type="Int32" Name="bol_det_c_iitem" Nullable="false" />
-          <Property Type="Decimal" Name="bol_det_c_ecantidad" Nullable="false" Precision="19" Scale="2" />
-          <Property Type="Decimal" Name="bol_det_c_epreciounit" Nullable="false" Precision="19" Scale="2" />
-          <NavigationProperty Name="SIC_T_BOLETA" Relationship="SICDBWEBModel.FK_SIC_T_BOLETA_DETALLE_SIC_T_BOLETA" FromRole="SIC_T_BOLETA_DETALLE" ToRole="SIC_T_BOLETA" />
-        </EntityType>
-        <EntityType Name="SIC_T_FACTURA">
-          <Key>
-            <PropertyRef Name="fac_c_iid" />
-          </Key>
-          <Property Type="Int32" Name="fac_c_iid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="DateTime" Name="fac_c_zfecharegistro" Nullable="false" />
-          <Property Type="String" Name="fac_c_serie" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="fac_c_numero" Nullable="false" />
-          <Property Type="Int32" Name="fac_c_iventa" Nullable="false" />
-          <Property Type="Decimal" Name="fac_c_eigv" Nullable="false" Precision="19" Scale="2" />
-          <Property Type="Decimal" Name="fac_c_eigvcal" Nullable="false" Precision="19" Scale="2" />
-          <Property Type="Decimal" Name="fac_c_esubtotal" Nullable="false" Precision="19" Scale="2" />
-          <Property Type="Decimal" Name="fac_c_etotal" Nullable="false" Precision="19" Scale="2" />
-          <Property Type="Int32" Name="fac_c_imoneda" Nullable="false" />
-          <Property Type="String" Name="fac_c_vdescmoneda" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="SIC_T_VENTA" Relationship="SICDBWEBModel.FK_SIC_T_FACTURA_SIC_T_VENTA" FromRole="SIC_T_FACTURA" ToRole="SIC_T_VENTA" />
-          <NavigationProperty Name="SIC_T_FACTURA_DETALLE" Relationship="SICDBWEBModel.FK_SIC_T_FACTURA_DETALLE_SIC_T_FACTURA" FromRole="SIC_T_FACTURA" ToRole="SIC_T_FACTURA_DETALLE" />
-        </EntityType>
-        <EntityType Name="SIC_T_FACTURA_DETALLE">
-          <Key>
-            <PropertyRef Name="fac_det_c_iid" />
-          </Key>
-          <Property Type="Int32" Name="fac_det_c_iid" Nullable="false" />
-          <Property Type="Int32" Name="fac_c_iid" Nullable="false" />
-          <Property Type="Int32" Name="fac_det_c_iitem" Nullable="false" />
-          <Property Type="Decimal" Name="fac_det_c_ecantidad" Nullable="false" Precision="19" Scale="2" />
-          <Property Type="Decimal" Name="fac_det_c_epreciounit" Nullable="false" Precision="19" Scale="2" />
-          <NavigationProperty Name="SIC_T_FACTURA" Relationship="SICDBWEBModel.FK_SIC_T_FACTURA_DETALLE_SIC_T_FACTURA" FromRole="SIC_T_FACTURA_DETALLE" ToRole="SIC_T_FACTURA" />
-        </EntityType>
-        <Association Name="FK_SIC_T_BOLETA_SIC_T_VENTA">
-          <End Type="SICDBWEBModel.SIC_T_VENTA" Role="SIC_T_VENTA" Multiplicity="1" />
-          <End Type="SICDBWEBModel.SIC_T_BOLETA" Role="SIC_T_BOLETA" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SIC_T_VENTA">
-              <PropertyRef Name="ven_c_iid" />
-            </Principal>
-            <Dependent Role="SIC_T_BOLETA">
-              <PropertyRef Name="bol_c_iventa" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SIC_T_FACTURA_SIC_T_VENTA">
-          <End Type="SICDBWEBModel.SIC_T_VENTA" Role="SIC_T_VENTA" Multiplicity="1" />
-          <End Type="SICDBWEBModel.SIC_T_FACTURA" Role="SIC_T_FACTURA" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SIC_T_VENTA">
-              <PropertyRef Name="ven_c_iid" />
-            </Principal>
-            <Dependent Role="SIC_T_FACTURA">
-              <PropertyRef Name="fac_c_iventa" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SIC_T_BOLETA_DETALLE_SIC_T_BOLETA">
-          <End Type="SICDBWEBModel.SIC_T_BOLETA" Role="SIC_T_BOLETA" Multiplicity="1" />
-          <End Type="SICDBWEBModel.SIC_T_BOLETA_DETALLE" Role="SIC_T_BOLETA_DETALLE" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SIC_T_BOLETA">
-              <PropertyRef Name="bol_c_iid" />
-            </Principal>
-            <Dependent Role="SIC_T_BOLETA_DETALLE">
-              <PropertyRef Name="bol_c_iid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SIC_T_FACTURA_DETALLE_SIC_T_FACTURA">
-          <End Type="SICDBWEBModel.SIC_T_FACTURA" Role="SIC_T_FACTURA" Multiplicity="1" />
-          <End Type="SICDBWEBModel.SIC_T_FACTURA_DETALLE" Role="SIC_T_FACTURA_DETALLE" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SIC_T_FACTURA">
-              <PropertyRef Name="fac_c_iid" />
-            </Principal>
-            <Dependent Role="SIC_T_FACTURA_DETALLE">
-              <PropertyRef Name="fac_c_iid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="SIC_T_ITEM">
-          <Key>
-            <PropertyRef Name="itm_c_iid" />
-          </Key>
-          <Property Type="Int32" Name="itm_c_iid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="itm_c_ccodigo" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="itm_c_vdescripcion" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="Decimal" Name="itm_c_dprecio_compra" Nullable="false" Precision="19" Scale="2" />
-          <Property Type="Byte" Name="itm_c_yumedida" Nullable="false" />
-          <Property Type="String" Name="itm_c_vpardes" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="Boolean" Name="itm_c_bactivo" Nullable="false" />
-          <Property Type="Decimal" Name="itm_c_dprecio_venta" Nullable="false" Precision="19" Scale="2" />
-          <Property Type="Int32" Name="itm_c_isf_iid" Nullable="false" />
-          <NavigationProperty Name="SIC_T_ITEM_SUB_FAMILIA" Relationship="SICDBWEBModel.FK_SIC_T_ITEM_SIC_T_ITEM_SUB_FAMILIA1" FromRole="SIC_T_ITEM" ToRole="SIC_T_ITEM_SUB_FAMILIA" />
-          <NavigationProperty Name="SIC_T_ORDEN_DE_COMPRA_DET" Relationship="SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ITEM" FromRole="SIC_T_ITEM" ToRole="SIC_T_ORDEN_DE_COMPRA_DET" />
-          <NavigationProperty Name="SIC_T_VENTA_DETALLE" Relationship="SICDBWEBModel.FK_SIC_T_VENTA_DETALLE_SIC_T_ITEM" FromRole="SIC_T_ITEM" ToRole="SIC_T_VENTA_DETALLE" />
-          <NavigationProperty Name="SIC_T_ITEM_ALMACEN" Relationship="SICDBWEBModel.FK_SIC_T_ITEM_ALMACEN_SIC_T_ITEM" FromRole="SIC_T_ITEM" ToRole="SIC_T_ITEM_ALMACEN" />
-        </EntityType>
-        <Association Name="FK_SIC_T_ITEM_SIC_T_ITEM_SUB_FAMILIA1">
-          <End Type="SICDBWEBModel.SIC_T_ITEM_SUB_FAMILIA" Role="SIC_T_ITEM_SUB_FAMILIA" Multiplicity="1" />
-          <End Type="SICDBWEBModel.SIC_T_ITEM" Role="SIC_T_ITEM" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SIC_T_ITEM_SUB_FAMILIA">
-              <PropertyRef Name="isf_c_iid" />
-            </Principal>
-            <Dependent Role="SIC_T_ITEM">
-              <PropertyRef Name="itm_c_isf_iid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ITEM">
-          <End Type="SICDBWEBModel.SIC_T_ITEM" Role="SIC_T_ITEM" Multiplicity="1" />
-          <End Type="SICDBWEBModel.SIC_T_ORDEN_DE_COMPRA_DET" Role="SIC_T_ORDEN_DE_COMPRA_DET" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SIC_T_ITEM">
-              <PropertyRef Name="itm_c_iid" />
-            </Principal>
-            <Dependent Role="SIC_T_ORDEN_DE_COMPRA_DET">
-              <PropertyRef Name="odc_c_iitemid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SIC_T_VENTA_DETALLE_SIC_T_ITEM">
-          <End Type="SICDBWEBModel.SIC_T_ITEM" Role="SIC_T_ITEM" Multiplicity="1" />
-          <End Type="SICDBWEBModel.SIC_T_VENTA_DETALLE" Role="SIC_T_VENTA_DETALLE" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SIC_T_ITEM">
-              <PropertyRef Name="itm_c_iid" />
-            </Principal>
-            <Dependent Role="SIC_T_VENTA_DETALLE">
-              <PropertyRef Name="ven_det_c_iitemid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="SIC_T_MOVIMIENTO_ENTRADA">
           <Key>
             <PropertyRef Name="mve_c_iid" />
           </Key>
           <Property Type="Int32" Name="mve_c_iid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="mve_c_ioc_id" Nullable="false" />
+          <Property Type="Int32" Name="odc_c_iid" Nullable="false" />
           <Property Type="DateTime" Name="mve_c_zfecharegistro" Nullable="false" />
           <Property Type="DateTime" Name="mve_c_zguiafecha" />
           <Property Type="DateTime" Name="mve_c_zfacturafecha" Nullable="false" />
@@ -2649,23 +2521,11 @@
           <Property Type="String" Name="mve_c_vdesestado" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="mve_c_vobservacion" Nullable="false" MaxLength="350" FixedLength="false" Unicode="true" />
           <Property Type="Boolean" Name="mve_c_bingresado" Nullable="false" />
-          <NavigationProperty Name="SIC_T_ALMACEN" Relationship="SICDBWEBModel.FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_ALMACEN" FromRole="SIC_T_MOVIMIENTO_ENTRADA" ToRole="SIC_T_ALMACEN" />
           <NavigationProperty Name="SIC_T_MOV_ESTADO" Relationship="SICDBWEBModel.FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_MOV_ESTADO" FromRole="SIC_T_MOVIMIENTO_ENTRADA" ToRole="SIC_T_MOV_ESTADO" />
           <NavigationProperty Name="SIC_T_MOVIMIENTO_ENTRADA_DETALLE" Relationship="SICDBWEBModel.FK_SIC_T_MOVIMIENTO_ENTRADA_DETALLE_SIC_T_MOVIMIENTO_ENTRADA" FromRole="SIC_T_MOVIMIENTO_ENTRADA" ToRole="SIC_T_MOVIMIENTO_ENTRADA_DETALLE" />
           <NavigationProperty Name="SIC_T_ORDEN_DE_COMPRA" Relationship="SICDBWEBModel.FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_ORDEN_DE_COMPRA" FromRole="SIC_T_MOVIMIENTO_ENTRADA" ToRole="SIC_T_ORDEN_DE_COMPRA" />
+          <NavigationProperty Name="SIC_T_ALMACEN" Relationship="SICDBWEBModel.FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_ALMACEN" FromRole="SIC_T_MOVIMIENTO_ENTRADA" ToRole="SIC_T_ALMACEN" />
         </EntityType>
-        <Association Name="FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_ALMACEN">
-          <End Type="SICDBWEBModel.SIC_T_ALMACEN" Role="SIC_T_ALMACEN" Multiplicity="1" />
-          <End Type="SICDBWEBModel.SIC_T_MOVIMIENTO_ENTRADA" Role="SIC_T_MOVIMIENTO_ENTRADA" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SIC_T_ALMACEN">
-              <PropertyRef Name="alm_c_iid" />
-            </Principal>
-            <Dependent Role="SIC_T_MOVIMIENTO_ENTRADA">
-              <PropertyRef Name="mve_c_iidalmacen" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_MOV_ESTADO">
           <End Type="SICDBWEBModel.SIC_T_MOV_ESTADO" Role="SIC_T_MOV_ESTADO" Multiplicity="1" />
           <End Type="SICDBWEBModel.SIC_T_MOVIMIENTO_ENTRADA" Role="SIC_T_MOVIMIENTO_ENTRADA" Multiplicity="*" />
@@ -2690,28 +2550,62 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="SIC_T_ODC_CLASE">
+        <EntityType Name="SIC_T_BOLETA_DETALLE">
           <Key>
-            <PropertyRef Name="odc_cla_iid" />
+            <PropertyRef Name="bol_det_c_iid" />
           </Key>
-          <Property Type="Int32" Name="odc_cla_iid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="odc_cla_vdes" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="SIC_T_ORDEN_DE_COMPRA" Relationship="SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_SIC_T_ODC_CLASE" FromRole="SIC_T_ODC_CLASE" ToRole="SIC_T_ORDEN_DE_COMPRA" />
+          <Property Type="Int32" Name="bol_det_c_iid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="bol_c_iid" Nullable="false" />
+          <Property Type="Int32" Name="bol_det_c_iitem" Nullable="false" />
+          <Property Type="Decimal" Name="bol_det_c_ecantidad" Nullable="false" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="bol_det_c_epreciounit" Nullable="false" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="bol_det_c_epreciotot" Nullable="false" Precision="19" Scale="2" />
+          <NavigationProperty Name="SIC_T_BOLETA" Relationship="SICDBWEBModel.FK_SIC_T_BOLETA_DETALLE_SIC_T_BOLETA" FromRole="SIC_T_BOLETA_DETALLE" ToRole="SIC_T_BOLETA" />
+          <NavigationProperty Name="SIC_T_ITEM" Relationship="SICDBWEBModel.FK_SIC_T_BOLETA_DETALLE_SIC_T_ITEM1" FromRole="SIC_T_BOLETA_DETALLE" ToRole="SIC_T_ITEM" />
         </EntityType>
-        <EntityType Name="SIC_T_ODC_ESTADO">
+        <EntityType Name="SIC_T_FACTURA_DETALLE">
           <Key>
-            <PropertyRef Name="odc_estado_iid" />
+            <PropertyRef Name="fac_det_c_iid" />
           </Key>
-          <Property Type="Int32" Name="odc_estado_iid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="odc_estado_vdescripcion" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="SIC_T_ORDEN_DE_COMPRA" Relationship="SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_SIC_T_ODC_ESTADO" FromRole="SIC_T_ODC_ESTADO" ToRole="SIC_T_ORDEN_DE_COMPRA" />
+          <Property Type="Int32" Name="fac_det_c_iid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="fac_c_iid" Nullable="false" />
+          <Property Type="Int32" Name="fac_det_c_iitem" Nullable="false" />
+          <Property Type="Decimal" Name="fac_det_c_ecantidad" Nullable="false" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="fac_det_c_epreciounit" Nullable="false" Precision="19" Scale="2" />
+          <Property Type="Decimal" Name="fac_det_c_epreciotot" Nullable="false" Precision="19" Scale="2" />
+          <NavigationProperty Name="SIC_T_FACTURA" Relationship="SICDBWEBModel.FK_SIC_T_FACTURA_DETALLE_SIC_T_FACTURA" FromRole="SIC_T_FACTURA_DETALLE" ToRole="SIC_T_FACTURA" />
+          <NavigationProperty Name="SIC_T_ITEM" Relationship="SICDBWEBModel.FK_SIC_T_FACTURA_DETALLE_SIC_T_ITEM" FromRole="SIC_T_FACTURA_DETALLE" ToRole="SIC_T_ITEM" />
         </EntityType>
+        <Association Name="FK_SIC_T_BOLETA_DETALLE_SIC_T_BOLETA">
+          <End Type="SICDBWEBModel.SIC_T_BOLETA" Role="SIC_T_BOLETA" Multiplicity="1" />
+          <End Type="SICDBWEBModel.SIC_T_BOLETA_DETALLE" Role="SIC_T_BOLETA_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SIC_T_BOLETA">
+              <PropertyRef Name="bol_c_iid" />
+            </Principal>
+            <Dependent Role="SIC_T_BOLETA_DETALLE">
+              <PropertyRef Name="bol_c_iid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SIC_T_FACTURA_DETALLE_SIC_T_FACTURA">
+          <End Type="SICDBWEBModel.SIC_T_FACTURA" Role="SIC_T_FACTURA" Multiplicity="1" />
+          <End Type="SICDBWEBModel.SIC_T_FACTURA_DETALLE" Role="SIC_T_FACTURA_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SIC_T_FACTURA">
+              <PropertyRef Name="fac_c_iid" />
+            </Principal>
+            <Dependent Role="SIC_T_FACTURA_DETALLE">
+              <PropertyRef Name="fac_c_iid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="SIC_T_ORDEN_DE_COMPRA">
           <Key>
             <PropertyRef Name="odc_c_iid" />
           </Key>
           <Property Type="Int32" Name="odc_c_iid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="odc_c_vcodigo" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="odc_c_vcodigo" MaxLength="8" FixedLength="false" Unicode="false" />
           <Property Type="DateTime" Name="odc_c_zfecharegistro" Nullable="false" />
           <Property Type="Byte" Name="odc_c_ymoneda" Nullable="false" />
           <Property Type="Decimal" Name="odc_c_esubtotal" Nullable="false" Precision="18" Scale="2" />
@@ -2724,7 +2618,7 @@
           <Property Type="String" Name="odc_c_vdescmoneda" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Type="Boolean" Name="odc_c_bactivo" Nullable="false" />
           <Property Type="String" Name="odc_c_vdescestado" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="odc_c_vdocprov_id" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="prov_c_vdoc_id" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
           <Property Type="DateTime" Name="odc_c_zfechaentrega_ini" Nullable="false" />
           <Property Type="DateTime" Name="odc_c_zfechaentrega_fin" Nullable="false" />
           <Property Type="String" Name="odc_c_iid_usuario_creador" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
@@ -2736,20 +2630,12 @@
           <Property Type="Boolean" Name="odc_c_bpercepcion" Nullable="false" />
           <Property Type="Int32" Name="odc_c_idireccion" Nullable="false" />
           <Property Type="String" Name="odc_c_vdireccion" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="odc_c_cserie" MaxLength="3" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="SIC_T_CLIENTE" Relationship="SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_SIC_T_CLIENTE" FromRole="SIC_T_ORDEN_DE_COMPRA" ToRole="SIC_T_CLIENTE" />
           <NavigationProperty Name="SIC_T_MOVIMIENTO_ENTRADA" Relationship="SICDBWEBModel.FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_ORDEN_DE_COMPRA" FromRole="SIC_T_ORDEN_DE_COMPRA" ToRole="SIC_T_MOVIMIENTO_ENTRADA" />
           <NavigationProperty Name="SIC_T_ODC_CLASE" Relationship="SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_SIC_T_ODC_CLASE" FromRole="SIC_T_ORDEN_DE_COMPRA" ToRole="SIC_T_ODC_CLASE" />
           <NavigationProperty Name="SIC_T_ODC_ESTADO" Relationship="SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_SIC_T_ODC_ESTADO" FromRole="SIC_T_ORDEN_DE_COMPRA" ToRole="SIC_T_ODC_ESTADO" />
           <NavigationProperty Name="SIC_T_ORDEN_DE_COMPRA_DET" Relationship="SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ORDEN_DE_COMPRA" FromRole="SIC_T_ORDEN_DE_COMPRA" ToRole="SIC_T_ORDEN_DE_COMPRA_DET" />
-        </EntityType>
-        <EntityType Name="SIC_T_OPCION">
-          <Key>
-            <PropertyRef Name="opc_c_iid" />
-          </Key>
-          <Property Type="Int32" Name="opc_c_iid" Nullable="false" />
-          <Property Type="String" Name="opc_c_vdesc" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="opc_c_bestado" Nullable="false" />
-          <NavigationProperty Name="SIC_T_USUARIO" Relationship="SICDBWEBModel.SIC_T_USUARIO_OPCION1" FromRole="SIC_T_OPCION" ToRole="SIC_T_USUARIO" />
         </EntityType>
         <Association Name="FK_SIC_T_ORDEN_DE_COMPRA_SIC_T_CLIENTE">
           <End Type="SICDBWEBModel.SIC_T_CLIENTE" Role="SIC_T_CLIENTE" Multiplicity="1" />
@@ -2759,7 +2645,7 @@
               <PropertyRef Name="cli_c_vdoc_id" />
             </Principal>
             <Dependent Role="SIC_T_ORDEN_DE_COMPRA">
-              <PropertyRef Name="odc_c_vdocprov_id" />
+              <PropertyRef Name="prov_c_vdoc_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2771,7 +2657,7 @@
               <PropertyRef Name="odc_c_iid" />
             </Principal>
             <Dependent Role="SIC_T_MOVIMIENTO_ENTRADA">
-              <PropertyRef Name="mve_c_ioc_id" />
+              <PropertyRef Name="odc_c_iid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2811,21 +2697,153 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="SIC_T_USUARIO_OPCION1">
-          <End Type="SICDBWEBModel.SIC_T_OPCION" Role="SIC_T_OPCION" Multiplicity="*" />
-          <End Type="SICDBWEBModel.SIC_T_USUARIO" Role="SIC_T_USUARIO" Multiplicity="*" />
+        <EntityType Name="SIC_T_ITEM">
+          <Key>
+            <PropertyRef Name="itm_c_iid" />
+          </Key>
+          <Property Type="Int32" Name="itm_c_iid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="itm_c_ccodigo" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="itm_c_vdescripcion" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="itm_c_dprecio_compra" Nullable="false" Precision="19" Scale="2" />
+          <Property Type="Byte" Name="itm_c_yumedida" Nullable="false" />
+          <Property Type="String" Name="itm_c_vpardes" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="itm_c_bactivo" Nullable="false" />
+          <Property Type="Decimal" Name="itm_c_dprecio_venta" Nullable="false" Precision="19" Scale="2" />
+          <Property Type="Int32" Name="isf_c_iid" />
+          <NavigationProperty Name="SIC_T_BOLETA_DETALLE" Relationship="SICDBWEBModel.FK_SIC_T_BOLETA_DETALLE_SIC_T_ITEM1" FromRole="SIC_T_ITEM" ToRole="SIC_T_BOLETA_DETALLE" />
+          <NavigationProperty Name="SIC_T_FACTURA_DETALLE" Relationship="SICDBWEBModel.FK_SIC_T_FACTURA_DETALLE_SIC_T_ITEM" FromRole="SIC_T_ITEM" ToRole="SIC_T_FACTURA_DETALLE" />
+          <NavigationProperty Name="SIC_T_ITEM_SUB_FAMILIA" Relationship="SICDBWEBModel.FK_SIC_T_ITEM_SIC_T_ITEM_SUB_FAMILIA" FromRole="SIC_T_ITEM" ToRole="SIC_T_ITEM_SUB_FAMILIA" />
+          <NavigationProperty Name="SIC_T_ORDEN_DE_COMPRA_DET" Relationship="SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ITEM" FromRole="SIC_T_ITEM" ToRole="SIC_T_ORDEN_DE_COMPRA_DET" />
+          <NavigationProperty Name="SIC_T_VENTA_DETALLE" Relationship="SICDBWEBModel.FK_SIC_T_VENTA_DETALLE_SIC_T_ITEM" FromRole="SIC_T_ITEM" ToRole="SIC_T_VENTA_DETALLE" />
+          <NavigationProperty Name="SIC_T_ITEM_ALMACEN" Relationship="SICDBWEBModel.FK_SIC_T_ITEM_ALMACEN_SIC_T_ITEM" FromRole="SIC_T_ITEM" ToRole="SIC_T_ITEM_ALMACEN" />
+        </EntityType>
+        <EntityType Name="SIC_T_ITEM_FAMILIA">
+          <Key>
+            <PropertyRef Name="ifm_c_iid" />
+          </Key>
+          <Property Type="Int32" Name="ifm_c_iid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ifm_c_des" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="ifm_c_bactivo" Nullable="false" />
+          <NavigationProperty Name="SIC_T_ITEM_SUB_FAMILIA" Relationship="SICDBWEBModel.FK_SIC_T_ITEM_SUB_FAMILIA_SIC_T_ITEM_FAMILIA" FromRole="SIC_T_ITEM_FAMILIA" ToRole="SIC_T_ITEM_SUB_FAMILIA" />
+        </EntityType>
+        <EntityType Name="SIC_T_ITEM_SUB_FAMILIA">
+          <Key>
+            <PropertyRef Name="isf_c_iid" />
+          </Key>
+          <Property Type="Int32" Name="isf_c_iid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="isf_c_vdesc" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="isf_c_ifm_iid" Nullable="false" />
+          <Property Type="Boolean" Name="isf_c_bactivo" Nullable="false" />
+          <NavigationProperty Name="SIC_T_ITEM" Relationship="SICDBWEBModel.FK_SIC_T_ITEM_SIC_T_ITEM_SUB_FAMILIA" FromRole="SIC_T_ITEM_SUB_FAMILIA" ToRole="SIC_T_ITEM" />
+          <NavigationProperty Name="SIC_T_ITEM_FAMILIA" Relationship="SICDBWEBModel.FK_SIC_T_ITEM_SUB_FAMILIA_SIC_T_ITEM_FAMILIA" FromRole="SIC_T_ITEM_SUB_FAMILIA" ToRole="SIC_T_ITEM_FAMILIA" />
+        </EntityType>
+        <Association Name="FK_SIC_T_BOLETA_DETALLE_SIC_T_ITEM1">
+          <End Type="SICDBWEBModel.SIC_T_ITEM" Role="SIC_T_ITEM" Multiplicity="1" />
+          <End Type="SICDBWEBModel.SIC_T_BOLETA_DETALLE" Role="SIC_T_BOLETA_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SIC_T_ITEM">
+              <PropertyRef Name="itm_c_iid" />
+            </Principal>
+            <Dependent Role="SIC_T_BOLETA_DETALLE">
+              <PropertyRef Name="bol_det_c_iitem" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SIC_T_FACTURA_DETALLE_SIC_T_ITEM">
+          <End Type="SICDBWEBModel.SIC_T_ITEM" Role="SIC_T_ITEM" Multiplicity="1" />
+          <End Type="SICDBWEBModel.SIC_T_FACTURA_DETALLE" Role="SIC_T_FACTURA_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SIC_T_ITEM">
+              <PropertyRef Name="itm_c_iid" />
+            </Principal>
+            <Dependent Role="SIC_T_FACTURA_DETALLE">
+              <PropertyRef Name="fac_det_c_iitem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SIC_T_ITEM_SIC_T_ITEM_SUB_FAMILIA">
+          <End Type="SICDBWEBModel.SIC_T_ITEM_SUB_FAMILIA" Role="SIC_T_ITEM_SUB_FAMILIA" Multiplicity="0..1" />
+          <End Type="SICDBWEBModel.SIC_T_ITEM" Role="SIC_T_ITEM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SIC_T_ITEM_SUB_FAMILIA">
+              <PropertyRef Name="isf_c_iid" />
+            </Principal>
+            <Dependent Role="SIC_T_ITEM">
+              <PropertyRef Name="isf_c_iid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ITEM">
+          <End Type="SICDBWEBModel.SIC_T_ITEM" Role="SIC_T_ITEM" Multiplicity="1" />
+          <End Type="SICDBWEBModel.SIC_T_ORDEN_DE_COMPRA_DET" Role="SIC_T_ORDEN_DE_COMPRA_DET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SIC_T_ITEM">
+              <PropertyRef Name="itm_c_iid" />
+            </Principal>
+            <Dependent Role="SIC_T_ORDEN_DE_COMPRA_DET">
+              <PropertyRef Name="odc_c_iitemid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SIC_T_VENTA_DETALLE_SIC_T_ITEM">
+          <End Type="SICDBWEBModel.SIC_T_ITEM" Role="SIC_T_ITEM" Multiplicity="1" />
+          <End Type="SICDBWEBModel.SIC_T_VENTA_DETALLE" Role="SIC_T_VENTA_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SIC_T_ITEM">
+              <PropertyRef Name="itm_c_iid" />
+            </Principal>
+            <Dependent Role="SIC_T_VENTA_DETALLE">
+              <PropertyRef Name="ven_det_c_iitemid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SIC_T_ITEM_SUB_FAMILIA_SIC_T_ITEM_FAMILIA">
+          <End Type="SICDBWEBModel.SIC_T_ITEM_FAMILIA" Role="SIC_T_ITEM_FAMILIA" Multiplicity="1" />
+          <End Type="SICDBWEBModel.SIC_T_ITEM_SUB_FAMILIA" Role="SIC_T_ITEM_SUB_FAMILIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SIC_T_ITEM_FAMILIA">
+              <PropertyRef Name="ifm_c_iid" />
+            </Principal>
+            <Dependent Role="SIC_T_ITEM_SUB_FAMILIA">
+              <PropertyRef Name="isf_c_ifm_iid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SIC_T_ALMACEN">
+          <Key>
+            <PropertyRef Name="alm_c_iid" />
+          </Key>
+          <Property Type="Int32" Name="alm_c_iid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Boolean" Name="alm_c_bactivo" />
+          <Property Type="String" Name="alm_c_vdesc" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SIC_T_ALMACEN_CENTRO_COSTO" Relationship="SICDBWEBModel.FK_SIC_T_ALMACEN_CENTRO_COSTO_SIC_T_ALMACEN" FromRole="SIC_T_ALMACEN" ToRole="SIC_T_ALMACEN_CENTRO_COSTO" />
+          <NavigationProperty Name="SIC_T_ITEM_ALMACEN" Relationship="SICDBWEBModel.FK_SIC_T_ITEM_ALMACEN_SIC_T_ALMACEN" FromRole="SIC_T_ALMACEN" ToRole="SIC_T_ITEM_ALMACEN" />
+          <NavigationProperty Name="SIC_T_MOVIMIENTO_ENTRADA" Relationship="SICDBWEBModel.FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_ALMACEN" FromRole="SIC_T_ALMACEN" ToRole="SIC_T_MOVIMIENTO_ENTRADA" />
+          <NavigationProperty Name="SIC_T_VENTA_DETALLE" Relationship="SICDBWEBModel.FK_SIC_T_VENTA_DETALLE_SIC_T_ALMACEN" FromRole="SIC_T_ALMACEN" ToRole="SIC_T_VENTA_DETALLE" />
+        </EntityType>
         <EntityType Name="SIC_T_ITEM_ALMACEN">
           <Key>
             <PropertyRef Name="itm_alm_c_iid" />
           </Key>
           <Property Type="Int32" Name="itm_alm_c_iid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="itm_alm_c_iid_item" Nullable="false" />
-          <Property Type="Int32" Name="itm_alm_c_iid_alm" Nullable="false" />
+          <Property Type="Int32" Name="alm_c_iid" Nullable="false" />
           <Property Type="Decimal" Name="itm_alm_c_ecantidad" Nullable="false" Precision="19" Scale="2" />
+          <Property Type="Int32" Name="itm_c_iid" Nullable="false" />
           <NavigationProperty Name="SIC_T_ALMACEN" Relationship="SICDBWEBModel.FK_SIC_T_ITEM_ALMACEN_SIC_T_ALMACEN" FromRole="SIC_T_ITEM_ALMACEN" ToRole="SIC_T_ALMACEN" />
           <NavigationProperty Name="SIC_T_ITEM" Relationship="SICDBWEBModel.FK_SIC_T_ITEM_ALMACEN_SIC_T_ITEM" FromRole="SIC_T_ITEM_ALMACEN" ToRole="SIC_T_ITEM" />
         </EntityType>
+        <Association Name="FK_SIC_T_ALMACEN_CENTRO_COSTO_SIC_T_ALMACEN">
+          <End Type="SICDBWEBModel.SIC_T_ALMACEN" Role="SIC_T_ALMACEN" Multiplicity="1" />
+          <End Type="SICDBWEBModel.SIC_T_ALMACEN_CENTRO_COSTO" Role="SIC_T_ALMACEN_CENTRO_COSTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SIC_T_ALMACEN">
+              <PropertyRef Name="alm_c_iid" />
+            </Principal>
+            <Dependent Role="SIC_T_ALMACEN_CENTRO_COSTO">
+              <PropertyRef Name="alm_cst_c_iid_almacen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SIC_T_ITEM_ALMACEN_SIC_T_ALMACEN">
           <End Type="SICDBWEBModel.SIC_T_ALMACEN" Role="SIC_T_ALMACEN" Multiplicity="1" />
           <End Type="SICDBWEBModel.SIC_T_ITEM_ALMACEN" Role="SIC_T_ITEM_ALMACEN" Multiplicity="*" />
@@ -2834,7 +2852,31 @@
               <PropertyRef Name="alm_c_iid" />
             </Principal>
             <Dependent Role="SIC_T_ITEM_ALMACEN">
-              <PropertyRef Name="itm_alm_c_iid_alm" />
+              <PropertyRef Name="alm_c_iid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_ALMACEN">
+          <End Type="SICDBWEBModel.SIC_T_ALMACEN" Role="SIC_T_ALMACEN" Multiplicity="1" />
+          <End Type="SICDBWEBModel.SIC_T_MOVIMIENTO_ENTRADA" Role="SIC_T_MOVIMIENTO_ENTRADA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SIC_T_ALMACEN">
+              <PropertyRef Name="alm_c_iid" />
+            </Principal>
+            <Dependent Role="SIC_T_MOVIMIENTO_ENTRADA">
+              <PropertyRef Name="mve_c_iidalmacen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SIC_T_VENTA_DETALLE_SIC_T_ALMACEN">
+          <End Type="SICDBWEBModel.SIC_T_ALMACEN" Role="SIC_T_ALMACEN" Multiplicity="1" />
+          <End Type="SICDBWEBModel.SIC_T_VENTA_DETALLE" Role="SIC_T_VENTA_DETALLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SIC_T_ALMACEN">
+              <PropertyRef Name="alm_c_iid" />
+            </Principal>
+            <Dependent Role="SIC_T_VENTA_DETALLE">
+              <PropertyRef Name="ven_det_c_iidalmacen" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2846,7 +2888,7 @@
               <PropertyRef Name="itm_c_iid" />
             </Principal>
             <Dependent Role="SIC_T_ITEM_ALMACEN">
-              <PropertyRef Name="itm_alm_c_iid_item" />
+              <PropertyRef Name="itm_c_iid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3114,15 +3156,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SIC_T_ITEM_FAMILIA">
-            <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_ITEM_FAMILIA">
-              <MappingFragment StoreEntitySet="SIC_T_ITEM_FAMILIA">
-                <ScalarProperty Name="ifm_c_bactivo" ColumnName="ifm_c_bactivo" />
-                <ScalarProperty Name="ifm_c_des" ColumnName="ifm_c_des" />
-                <ScalarProperty Name="ifm_c_iid" ColumnName="ifm_c_iid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="SIC_T_MOVIMIENTO_ENTRADA_DETALLE">
             <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_MOVIMIENTO_ENTRADA_DETALLE">
               <MappingFragment StoreEntitySet="SIC_T_MOVIMIENTO_ENTRADA_DETALLE">
@@ -3132,6 +3165,22 @@
                 <ScalarProperty Name="mve_c_ecant_pedida" ColumnName="mve_c_ecant_pedida" />
                 <ScalarProperty Name="mve_c_iid" ColumnName="mve_c_iid" />
                 <ScalarProperty Name="mve_det_c_iid" ColumnName="mve_det_c_iid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SIC_T_ODC_CLASE">
+            <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_ODC_CLASE">
+              <MappingFragment StoreEntitySet="SIC_T_ODC_CLASE">
+                <ScalarProperty Name="odc_cla_vdes" ColumnName="odc_cla_vdes" />
+                <ScalarProperty Name="odc_cla_iid" ColumnName="odc_cla_iid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SIC_T_ODC_ESTADO">
+            <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_ODC_ESTADO">
+              <MappingFragment StoreEntitySet="SIC_T_ODC_ESTADO">
+                <ScalarProperty Name="odc_estado_vdescripcion" ColumnName="odc_estado_vdescripcion" />
+                <ScalarProperty Name="odc_estado_iid" ColumnName="odc_estado_iid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3281,35 +3330,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SIC_T_EMP_DIRECCION">
-            <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_EMP_DIRECCION">
-              <MappingFragment StoreEntitySet="SIC_T_EMP_DIRECCION">
-                <ScalarProperty Name="emp_dir_c_iid_centrocosto" ColumnName="emp_dir_c_iid_centrocosto" />
-                <ScalarProperty Name="emp_dir_c_bactivo" ColumnName="emp_dir_c_bactivo" />
-                <ScalarProperty Name="emp_dir_c_vdireccion" ColumnName="emp_dir_c_vdireccion" />
-                <ScalarProperty Name="emp_dir_c_iid" ColumnName="emp_dir_c_iid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SIC_T_ALMACEN">
-            <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_ALMACEN">
-              <MappingFragment StoreEntitySet="SIC_T_ALMACEN">
-                <ScalarProperty Name="alm_c_vdes" ColumnName="alm_c_vdes" />
-                <ScalarProperty Name="alm_c_bactivo" ColumnName="alm_c_bactivo" />
-                <ScalarProperty Name="alm_c_iid" ColumnName="alm_c_iid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SIC_T_ITEM_SUB_FAMILIA">
-            <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_ITEM_SUB_FAMILIA">
-              <MappingFragment StoreEntitySet="SIC_T_ITEM_SUB_FAMILIA">
-                <ScalarProperty Name="isf_c_bactivo" ColumnName="isf_c_bactivo" />
-                <ScalarProperty Name="isf_c_ifm_iid" ColumnName="isf_c_ifm_iid" />
-                <ScalarProperty Name="isf_c_des" ColumnName="isf_c_des" />
-                <ScalarProperty Name="isf_c_iid" ColumnName="isf_c_iid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="SIC_T_BOLETA">
             <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_BOLETA">
               <MappingFragment StoreEntitySet="SIC_T_BOLETA">
@@ -3324,17 +3344,6 @@
                 <ScalarProperty Name="bol_c_serie" ColumnName="bol_c_serie" />
                 <ScalarProperty Name="bol_c_zfecharegistro" ColumnName="bol_c_zfecharegistro" />
                 <ScalarProperty Name="bol_c_iid" ColumnName="bol_c_iid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SIC_T_BOLETA_DETALLE">
-            <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_BOLETA_DETALLE">
-              <MappingFragment StoreEntitySet="SIC_T_BOLETA_DETALLE">
-                <ScalarProperty Name="bol_det_c_epreciounit" ColumnName="bol_det_c_epreciounit" />
-                <ScalarProperty Name="bol_det_c_ecantidad" ColumnName="bol_det_c_ecantidad" />
-                <ScalarProperty Name="bol_det_c_iitem" ColumnName="bol_det_c_iitem" />
-                <ScalarProperty Name="bol_c_iid" ColumnName="bol_c_iid" />
-                <ScalarProperty Name="bol_det_c_iid" ColumnName="bol_det_c_iid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3355,29 +3364,25 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SIC_T_FACTURA_DETALLE">
-            <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_FACTURA_DETALLE">
-              <MappingFragment StoreEntitySet="SIC_T_FACTURA_DETALLE">
-                <ScalarProperty Name="fac_det_c_epreciounit" ColumnName="fac_det_c_epreciounit" />
-                <ScalarProperty Name="fac_det_c_ecantidad" ColumnName="fac_det_c_ecantidad" />
-                <ScalarProperty Name="fac_det_c_iitem" ColumnName="fac_det_c_iitem" />
-                <ScalarProperty Name="fac_c_iid" ColumnName="fac_c_iid" />
-                <ScalarProperty Name="fac_det_c_iid" ColumnName="fac_det_c_iid" />
+          <EntitySetMapping Name="SIC_T_UNIDAD_MEDIDA">
+            <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_UNIDAD_MEDIDA">
+              <MappingFragment StoreEntitySet="SIC_T_UNIDAD_MEDIDA">
+                <ScalarProperty Name="und_c_bactivo" ColumnName="und_c_bactivo" />
+                <ScalarProperty Name="und_c_vdesc" ColumnName="und_c_vdesc" />
+                <ScalarProperty Name="und_c_iid" ColumnName="und_c_iid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SIC_T_ITEM">
-            <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_ITEM">
-              <MappingFragment StoreEntitySet="SIC_T_ITEM">
-                <ScalarProperty Name="itm_c_isf_iid" ColumnName="itm_c_isf_iid" />
-                <ScalarProperty Name="itm_c_dprecio_venta" ColumnName="itm_c_dprecio_venta" />
-                <ScalarProperty Name="itm_c_bactivo" ColumnName="itm_c_bactivo" />
-                <ScalarProperty Name="itm_c_vpardes" ColumnName="itm_c_vpardes" />
-                <ScalarProperty Name="itm_c_yumedida" ColumnName="itm_c_yumedida" />
-                <ScalarProperty Name="itm_c_dprecio_compra" ColumnName="itm_c_dprecio_compra" />
-                <ScalarProperty Name="itm_c_vdescripcion" ColumnName="itm_c_vdescripcion" />
-                <ScalarProperty Name="itm_c_ccodigo" ColumnName="itm_c_ccodigo" />
-                <ScalarProperty Name="itm_c_iid" ColumnName="itm_c_iid" />
+          <EntitySetMapping Name="SIC_T_EMP_DIRECCION">
+            <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_EMP_DIRECCION">
+              <MappingFragment StoreEntitySet="SIC_T_EMP_DIRECCION">
+                <ScalarProperty Name="emp_dir_c_vtipodirec" ColumnName="emp_dir_c_vtipodirec" />
+                <ScalarProperty Name="emp_dir_c_ccod_ubig" ColumnName="emp_dir_c_ccod_ubig" />
+                <ScalarProperty Name="emp_dir_c_itipodirec" ColumnName="emp_dir_c_itipodirec" />
+                <ScalarProperty Name="emp_dir_c_iid_centrocosto" ColumnName="emp_dir_c_iid_centrocosto" />
+                <ScalarProperty Name="emp_dir_c_bactivo" ColumnName="emp_dir_c_bactivo" />
+                <ScalarProperty Name="emp_dir_c_vdireccion" ColumnName="emp_dir_c_vdireccion" />
+                <ScalarProperty Name="emp_dir_c_iid" ColumnName="emp_dir_c_iid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3395,30 +3400,39 @@
                 <ScalarProperty Name="mve_c_zfacturafecha" ColumnName="mve_c_zfacturafecha" />
                 <ScalarProperty Name="mve_c_zguiafecha" ColumnName="mve_c_zguiafecha" />
                 <ScalarProperty Name="mve_c_zfecharegistro" ColumnName="mve_c_zfecharegistro" />
-                <ScalarProperty Name="mve_c_ioc_id" ColumnName="mve_c_ioc_id" />
+                <ScalarProperty Name="odc_c_iid" ColumnName="odc_c_iid" />
                 <ScalarProperty Name="mve_c_iid" ColumnName="mve_c_iid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SIC_T_ODC_CLASE">
-            <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_ODC_CLASE">
-              <MappingFragment StoreEntitySet="SIC_T_ODC_CLASE">
-                <ScalarProperty Name="odc_cla_vdes" ColumnName="odc_cla_vdes" />
-                <ScalarProperty Name="odc_cla_iid" ColumnName="odc_cla_iid" />
+          <EntitySetMapping Name="SIC_T_BOLETA_DETALLE">
+            <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_BOLETA_DETALLE">
+              <MappingFragment StoreEntitySet="SIC_T_BOLETA_DETALLE">
+                <ScalarProperty Name="bol_det_c_epreciotot" ColumnName="bol_det_c_epreciotot" />
+                <ScalarProperty Name="bol_det_c_epreciounit" ColumnName="bol_det_c_epreciounit" />
+                <ScalarProperty Name="bol_det_c_ecantidad" ColumnName="bol_det_c_ecantidad" />
+                <ScalarProperty Name="bol_det_c_iitem" ColumnName="bol_det_c_iitem" />
+                <ScalarProperty Name="bol_c_iid" ColumnName="bol_c_iid" />
+                <ScalarProperty Name="bol_det_c_iid" ColumnName="bol_det_c_iid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SIC_T_ODC_ESTADO">
-            <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_ODC_ESTADO">
-              <MappingFragment StoreEntitySet="SIC_T_ODC_ESTADO">
-                <ScalarProperty Name="odc_estado_vdescripcion" ColumnName="odc_estado_vdescripcion" />
-                <ScalarProperty Name="odc_estado_iid" ColumnName="odc_estado_iid" />
+          <EntitySetMapping Name="SIC_T_FACTURA_DETALLE">
+            <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_FACTURA_DETALLE">
+              <MappingFragment StoreEntitySet="SIC_T_FACTURA_DETALLE">
+                <ScalarProperty Name="fac_det_c_epreciotot" ColumnName="fac_det_c_epreciotot" />
+                <ScalarProperty Name="fac_det_c_epreciounit" ColumnName="fac_det_c_epreciounit" />
+                <ScalarProperty Name="fac_det_c_ecantidad" ColumnName="fac_det_c_ecantidad" />
+                <ScalarProperty Name="fac_det_c_iitem" ColumnName="fac_det_c_iitem" />
+                <ScalarProperty Name="fac_c_iid" ColumnName="fac_c_iid" />
+                <ScalarProperty Name="fac_det_c_iid" ColumnName="fac_det_c_iid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SIC_T_ORDEN_DE_COMPRA">
             <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_ORDEN_DE_COMPRA">
               <MappingFragment StoreEntitySet="SIC_T_ORDEN_DE_COMPRA">
+                <ScalarProperty Name="odc_c_cserie" ColumnName="odc_c_cserie" />
                 <ScalarProperty Name="odc_c_vdireccion" ColumnName="odc_c_vdireccion" />
                 <ScalarProperty Name="odc_c_idireccion" ColumnName="odc_c_idireccion" />
                 <ScalarProperty Name="odc_c_bpercepcion" ColumnName="odc_c_bpercepcion" />
@@ -3430,7 +3444,7 @@
                 <ScalarProperty Name="odc_c_iid_usuario_creador" ColumnName="odc_c_iid_usuario_creador" />
                 <ScalarProperty Name="odc_c_zfechaentrega_fin" ColumnName="odc_c_zfechaentrega_fin" />
                 <ScalarProperty Name="odc_c_zfechaentrega_ini" ColumnName="odc_c_zfechaentrega_ini" />
-                <ScalarProperty Name="odc_c_vdocprov_id" ColumnName="odc_c_vdocprov_id" />
+                <ScalarProperty Name="prov_c_vdoc_id" ColumnName="prov_c_vdoc_id" />
                 <ScalarProperty Name="odc_c_vdescestado" ColumnName="odc_c_vdescestado" />
                 <ScalarProperty Name="odc_c_bactivo" ColumnName="odc_c_bactivo" />
                 <ScalarProperty Name="odc_c_vdescmoneda" ColumnName="odc_c_vdescmoneda" />
@@ -3448,29 +3462,55 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SIC_T_OPCION">
-            <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_OPCION">
-              <MappingFragment StoreEntitySet="SIC_T_OPCION">
-                <ScalarProperty Name="opc_c_bestado" ColumnName="opc_c_bestado" />
-                <ScalarProperty Name="opc_c_vdesc" ColumnName="opc_c_vdesc" />
-                <ScalarProperty Name="opc_c_iid" ColumnName="opc_c_iid" />
+          <EntitySetMapping Name="SIC_T_ITEM">
+            <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_ITEM">
+              <MappingFragment StoreEntitySet="SIC_T_ITEM">
+                <ScalarProperty Name="isf_c_iid" ColumnName="isf_c_iid" />
+                <ScalarProperty Name="itm_c_dprecio_venta" ColumnName="itm_c_dprecio_venta" />
+                <ScalarProperty Name="itm_c_bactivo" ColumnName="itm_c_bactivo" />
+                <ScalarProperty Name="itm_c_vpardes" ColumnName="itm_c_vpardes" />
+                <ScalarProperty Name="itm_c_yumedida" ColumnName="itm_c_yumedida" />
+                <ScalarProperty Name="itm_c_dprecio_compra" ColumnName="itm_c_dprecio_compra" />
+                <ScalarProperty Name="itm_c_vdescripcion" ColumnName="itm_c_vdescripcion" />
+                <ScalarProperty Name="itm_c_ccodigo" ColumnName="itm_c_ccodigo" />
+                <ScalarProperty Name="itm_c_iid" ColumnName="itm_c_iid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="SIC_T_USUARIO_OPCION1" TypeName="SICDBWEBModel.SIC_T_USUARIO_OPCION1" StoreEntitySet="SIC_T_USUARIO_OPCION">
-            <EndProperty Name="SIC_T_USUARIO">
-              <ScalarProperty Name="usua_c_cdoc_id" ColumnName="usua_c_cdoc_id" />
-            </EndProperty>
-            <EndProperty Name="SIC_T_OPCION">
-              <ScalarProperty Name="opc_c_iid" ColumnName="opc_c_iid" />
-            </EndProperty>
-          </AssociationSetMapping>
+          <EntitySetMapping Name="SIC_T_ITEM_FAMILIA">
+            <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_ITEM_FAMILIA">
+              <MappingFragment StoreEntitySet="SIC_T_ITEM_FAMILIA">
+                <ScalarProperty Name="ifm_c_bactivo" ColumnName="ifm_c_bactivo" />
+                <ScalarProperty Name="ifm_c_des" ColumnName="ifm_c_des" />
+                <ScalarProperty Name="ifm_c_iid" ColumnName="ifm_c_iid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SIC_T_ITEM_SUB_FAMILIA">
+            <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_ITEM_SUB_FAMILIA">
+              <MappingFragment StoreEntitySet="SIC_T_ITEM_SUB_FAMILIA">
+                <ScalarProperty Name="isf_c_bactivo" ColumnName="isf_c_bactivo" />
+                <ScalarProperty Name="isf_c_ifm_iid" ColumnName="isf_c_ifm_iid" />
+                <ScalarProperty Name="isf_c_vdesc" ColumnName="isf_c_vdesc" />
+                <ScalarProperty Name="isf_c_iid" ColumnName="isf_c_iid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SIC_T_ALMACEN">
+            <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_ALMACEN">
+              <MappingFragment StoreEntitySet="SIC_T_ALMACEN">
+                <ScalarProperty Name="alm_c_vdesc" ColumnName="alm_c_vdesc" />
+                <ScalarProperty Name="alm_c_bactivo" ColumnName="alm_c_bactivo" />
+                <ScalarProperty Name="alm_c_iid" ColumnName="alm_c_iid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="SIC_T_ITEM_ALMACEN">
             <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_ITEM_ALMACEN">
               <MappingFragment StoreEntitySet="SIC_T_ITEM_ALMACEN">
+                <ScalarProperty Name="itm_c_iid" ColumnName="itm_c_iid" />
                 <ScalarProperty Name="itm_alm_c_ecantidad" ColumnName="itm_alm_c_ecantidad" />
-                <ScalarProperty Name="itm_alm_c_iid_alm" ColumnName="itm_alm_c_iid_alm" />
-                <ScalarProperty Name="itm_alm_c_iid_item" ColumnName="itm_alm_c_iid_item" />
+                <ScalarProperty Name="alm_c_iid" ColumnName="alm_c_iid" />
                 <ScalarProperty Name="itm_alm_c_iid" ColumnName="itm_alm_c_iid" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -3495,7 +3535,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="SICModel" ZoomLevel="76" >
+      <Diagram Name="SICModel" ZoomLevel="73" >
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_CLI_CONTAC_CARGO" Width="1.5" PointX="3" PointY="1.75" Height="1.211080729166667" />
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_CLI_DIRECCION" Width="1.5" PointX="8.25" PointY="6.25" Height="2.7494921874999996" />
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_CLI_NOMB_COM" Width="1.5" PointX="5.25" PointY="15" Height="1.5956835937499996" />
@@ -3511,8 +3551,8 @@
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_ZONA_REPARTO_LUGAR" Width="1.5" PointX="3" PointY="12.75" Height="1.7879850260416674" />
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_CLI_DIRECCION_SIC_T_DISTRITO" >
           <ConnectorPoint PointX="7.15625" PointY="20.625" />
-          <ConnectorPoint PointX="7.15625" PointY="8.7807828776041674" />
-          <ConnectorPoint PointX="8.25" PointY="8.7807828776041674" />
+          <ConnectorPoint PointX="7.15625" PointY="8.703837890625" />
+          <ConnectorPoint PointX="8.25" PointY="8.703837890625" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_PROVINCIA_SIC_T_DEPARTAMENTO" >
           <ConnectorPoint PointX="3" PointY="21.547841796875" />
@@ -3551,6 +3591,8 @@
           <ConnectorPoint PointX="4.833333333333333" PointY="17.001933593749996" />
           <ConnectorPoint PointX="7.072916666666667" PointY="17.001933593749996" />
           <ConnectorPoint PointX="7.239583333333333" PointY="17.001933593749996" />
+          <ConnectorPoint PointX="7.416666666666667" PointY="17.001933593749996" />
+          <ConnectorPoint PointX="7.583333333333333" PointY="17.001933593749996" />
           <ConnectorPoint PointX="7.75" PointY="17.001933593749996" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_COLABORADOR_SIC_T_COLAB_CARGO" >
@@ -3572,28 +3614,29 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_ALMACEN_CENTRO_COSTO" Width="1.5" PointX="22.375" PointY="18.625" Height="1.9802864583333388" />
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_IGV" Width="1.5" PointX="12.375" PointY="6.25" Height="1.7879850260416674" />
-        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_ITEM_FAMILIA" Width="1.5" PointX="18.875" PointY="2.625" Height="1.7879850260416674" />
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_MOVIMIENTO_ENTRADA_DETALLE" Width="2.125" PointX="22.625" PointY="12.25" Height="2.5571907552083246" />
+        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_ODC_CLASE" Width="1.5" PointX="18.125" PointY="8.5" Height="1.5956835937499818" />
+        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_ODC_ESTADO" Width="1.5" PointX="18.125" PointY="5.875" Height="1.5956835937499818" />
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_ORDEN_DE_COMPRA_DET" Width="1.5" PointX="25.625" PointY="12.125" Height="2.7494921874999818" />
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_VENTA_DETALLE" Width="1.5" PointX="19.625" PointY="18" Height="2.9417936197916674" />
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_MOVIMIENTO_ENTRADA_DETALLE_SIC_T_ORDEN_DE_COMPRA_DET" >
-          <ConnectorPoint PointX="25.625" PointY="13.450470377604166" />
-          <ConnectorPoint PointX="24.75" PointY="13.450470377604166" />
+          <ConnectorPoint PointX="25.625" PointY="13.528595377604162" />
+          <ConnectorPoint PointX="25.458333333333332" PointY="13.528595377604162" />
+          <ConnectorPoint PointX="25.291666666666668" PointY="13.528595377604162" />
+          <ConnectorPoint PointX="24.75" PointY="13.528595377604162" />
         </AssociationConnector>
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_TASA_CAMBIO" Width="1.5" PointX="10.375" PointY="14.75" Height="1.9802864583333246" />
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_CLIENTE" Width="1.5" PointX="14" PointY="10.375" Height="5.8263151041666674" />
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_CLI_DIRECCION_SIC_T_CLIENTE" >
-          <ConnectorPoint PointX="14.808595125" PointY="10.375" />
-          <ConnectorPoint PointX="14.808595125" PointY="8.5499886067708335" />
-          <ConnectorPoint PointX="14.674153677083334" PointY="8.5499886067708335" />
-          <ConnectorPoint PointX="14.507487010416666" PointY="8.5499886067708335" />
-          <ConnectorPoint PointX="14.456378895833334" PointY="8.5499886067708335" />
-          <ConnectorPoint PointX="14.289712229166666" PointY="8.5499886067708335" />
-          <ConnectorPoint PointX="9.75" PointY="8.5499886067708335" />
+          <ConnectorPoint PointX="14" PointY="10.375" />
+          <ConnectorPoint PointX="13.625" PointY="10" />
+          <ConnectorPoint PointX="13.625" PointY="9.3744921875" />
+          <ConnectorPoint PointX="10.125" PointY="9.3744921875" />
+          <ConnectorPoint PointX="9.75" PointY="8.9994921875" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_CLI_NOMB_COM_SIC_T_CLIENTE" >
-          <ConnectorPoint PointX="14" PointY="12.326650890624997" />
-          <ConnectorPoint PointX="13.375" PointY="12.326650890624997" />
+          <ConnectorPoint PointX="14" PointY="13.223258835937493" />
+          <ConnectorPoint PointX="13.375" PointY="13.223258835937493" />
           <ConnectorPoint PointX="13.375" PointY="14.153300781249996" />
           <ConnectorPoint PointX="11.395833333333334" PointY="14.153300781249996" />
           <ConnectorPoint PointX="11.229166666666666" PointY="14.153300781249996" />
@@ -3608,17 +3651,15 @@
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_CLIENTE_SIC_T_CLI_SCORING" >
           <ConnectorPoint PointX="2.25" PointY="4.0937505000000005" />
-          <ConnectorPoint PointX="5.416666666666667" PointY="4.0937505" />
-          <ConnectorPoint PointX="5.583333333333333" PointY="4.0937505000000005" />
           <ConnectorPoint PointX="7.125" PointY="4.0937505000000005" />
           <ConnectorPoint PointX="7.125" PointY="5.59568359375001" />
-          <ConnectorPoint PointX="14.3730455625" PointY="5.59568359375001" />
-          <ConnectorPoint PointX="14.3730455625" PointY="10.375" />
+          <ConnectorPoint PointX="14.656251812499999" PointY="5.59568359375001" />
+          <ConnectorPoint PointX="14.656251812499999" PointY="10.375" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_CLIENTE_SIC_T_COLABORADOR" >
           <ConnectorPoint PointX="9.25" PointY="17.992290039062496" />
-          <ConnectorPoint PointX="14.512991228310561" PointY="17.992290039062496" />
-          <ConnectorPoint PointX="14.512991228310561" PointY="16.009013671875" />
+          <ConnectorPoint PointX="14.518873611875875" PointY="17.992290039062496" />
+          <ConnectorPoint PointX="14.518873611875875" PointY="16.009013671875" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_CLIENTE_SIC_T_ZONA_REPARTO" >
           <ConnectorPoint PointX="2.25" PointY="7.1657442565104166" />
@@ -3626,34 +3667,32 @@
           <ConnectorPoint PointX="5.125" PointY="9.2494921875" />
           <ConnectorPoint PointX="7.072916666666667" PointY="9.2494921875" />
           <ConnectorPoint PointX="7.239583333333333" PointY="9.2494921875" />
-          <ConnectorPoint PointX="14.289712229166666" PointY="9.2494921875" />
-          <ConnectorPoint PointX="14.456378895833334" PointY="9.2494921875" />
-          <ConnectorPoint PointX="14.507487010416666" PointY="9.2494921875" />
-          <ConnectorPoint PointX="14.674153677083334" PointY="9.2494921875" />
-          <ConnectorPoint PointX="14.725261791666666" PointY="9.2494921875" />
-          <ConnectorPoint PointX="14.891928458333334" PointY="9.2494921875" />
-          <ConnectorPoint PointX="15.1855495625" PointY="9.2494921875" />
-          <ConnectorPoint PointX="15.1855495625" PointY="10.375" />
+          <ConnectorPoint PointX="9.9166666666666661" PointY="9.2494921875" />
+          <ConnectorPoint PointX="10.083333333333334" PointY="9.2494921875" />
+          <ConnectorPoint PointX="14.244792572916666" PointY="9.2494921875" />
+          <ConnectorPoint PointX="14.411459239583333" PointY="9.2494921875" />
+          <ConnectorPoint PointX="14.572918479166665" PointY="9.2494921875" />
+          <ConnectorPoint PointX="14.739585145833333" PointY="9.2494921875" />
+          <ConnectorPoint PointX="15.10937790625" PointY="9.2494921875" />
+          <ConnectorPoint PointX="15.10937790625" PointY="10.375" />
         </AssociationConnector>
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_VEN_ESTADO" Width="1.5" PointX="15.125" PointY="23.625" Height="1.5956835937500102" />
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_VENTA" Width="1.5" PointX="17.375" PointY="17.125" Height="4.6725065104166674" />
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_VENTA_SIC_T_CLIENTE" >
-          <ConnectorPoint PointX="15.037748114155281" PointY="16.009013671875" />
-          <ConnectorPoint PointX="15.037748114155281" PointY="20.951396484375003" />
-          <ConnectorPoint PointX="15.791666666666666" PointY="20.951396484375003" />
-          <ConnectorPoint PointX="15.958333333333334" PointY="20.951396484375003" />
-          <ConnectorPoint PointX="17.375" PointY="20.951396484375003" />
+          <ConnectorPoint PointX="15.040689305937939" PointY="16.009013671875" />
+          <ConnectorPoint PointX="15.040689305937939" PointY="20.47495570453437" />
+          <ConnectorPoint PointX="15.791666666666666" PointY="20.47495570453437" />
+          <ConnectorPoint PointX="15.958333333333334" PointY="20.47495570453437" />
+          <ConnectorPoint PointX="17.375" PointY="20.47495570453437" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_VENTA_SIC_T_VEN_ESTADO" >
           <ConnectorPoint PointX="15.875" PointY="23.625" />
-          <ConnectorPoint PointX="15.875" PointY="18.750096975665198" />
-          <ConnectorPoint PointX="17.041666666666668" PointY="18.750096975665198" />
-          <ConnectorPoint PointX="17.208333333333332" PointY="18.750096975665198" />
-          <ConnectorPoint PointX="17.375" PointY="18.750096975665198" />
+          <ConnectorPoint PointX="15.875" PointY="18.767802034068737" />
+          <ConnectorPoint PointX="17.375" PointY="18.767802034068737" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_VENTA_DETALLE_SIC_T_VENTA" >
-          <ConnectorPoint PointX="18.875" PointY="19.965106883951826" />
-          <ConnectorPoint PointX="19.625" PointY="19.965106883951826" />
+          <ConnectorPoint PointX="18.875" PointY="19.470896809895834" />
+          <ConnectorPoint PointX="19.625" PointY="19.470896809895834" />
         </AssociationConnector>
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_MOV_ESTADO" Width="1.5" PointX="4.375" PointY="17.875" Height="1.5956835937499818" />
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_EMPRESA" Width="1.5" PointX="7.375" PointY="13.75" Height="1.5956835937500102" />
@@ -3661,65 +3700,76 @@
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_CLI_CONTACTO_SIC_T_CLI_CONTAC_CARGO" >
           <ConnectorPoint PointX="4.5" PointY="2.547841796875" />
           <ConnectorPoint PointX="5.5" PointY="2.547841796875" />
-          <ConnectorPoint PointX="5.5" PointY="5.826396484375" />
-          <ConnectorPoint PointX="14.289712229166666" PointY="5.8263964843749987" />
-          <ConnectorPoint PointX="14.456378895833334" PointY="5.826396484375" />
-          <ConnectorPoint PointX="23.820311750000002" PointY="5.826396484375" />
-          <ConnectorPoint PointX="23.820311750000002" PointY="7" />
+          <ConnectorPoint PointX="5.5" PointY="2.7879850260416674" />
+          <ConnectorPoint PointX="12.125" PointY="2.7879850260416674" />
+          <ConnectorPoint PointX="12.125" PointY="4.1917936197916674" />
+          <ConnectorPoint PointX="24" PointY="4.1917936197916674" />
+          <ConnectorPoint PointX="24" PointY="7" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_CLI_CONTACTO_SIC_T_CLIENTE" >
-          <ConnectorPoint PointX="14.59082034375" PointY="10.375" />
-          <ConnectorPoint PointX="14.59082034375" PointY="7.28125" />
-          <ConnectorPoint PointX="19.666666666666668" PointY="7.2812499999999991" />
-          <ConnectorPoint PointX="19.833333333333332" PointY="7.28125" />
-          <ConnectorPoint PointX="22.041666666666668" PointY="7.2812499999999991" />
-          <ConnectorPoint PointX="22.208333333333332" PointY="7.28125" />
-          <ConnectorPoint PointX="23.25" PointY="7.28125" />
+          <ConnectorPoint PointX="14.32812590625" PointY="10.375" />
+          <ConnectorPoint PointX="14.32812590625" PointY="8.25" />
+          <ConnectorPoint PointX="14.572918479166665" PointY="8.25" />
+          <ConnectorPoint PointX="14.739585145833333" PointY="8.25" />
+          <ConnectorPoint PointX="20.125" PointY="8.25" />
+          <ConnectorPoint PointX="20.125" PointY="7.125" />
+          <ConnectorPoint PointX="21.041666666666668" PointY="7.1249999999999991" />
+          <ConnectorPoint PointX="21.208333333333332" PointY="7.125" />
+          <ConnectorPoint PointX="22.875" PointY="7.125" />
+          <ConnectorPoint PointX="22.875" PointY="8.9516503906249909" />
+          <ConnectorPoint PointX="23.25" PointY="8.9516503906249909" />
         </AssociationConnector>
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_EMP_CENTRO_COSTO" Width="1.5" PointX="3.125" PointY="8.5" Height="2.9417936197916674" />
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_ALMACEN_CENTRO_COSTO_SIC_T_EMP_CENTRO_COSTO" >
-          <ConnectorPoint PointX="4.625" PointY="9.7731188671875024" />
-          <ConnectorPoint PointX="7.072916666666667" PointY="9.7731188671875024" />
-          <ConnectorPoint PointX="7.239583333333333" PointY="9.7731188671875024" />
-          <ConnectorPoint PointX="11.375" PointY="9.7731188671875024" />
+          <ConnectorPoint PointX="4.625" PointY="9.8512438671875024" />
+          <ConnectorPoint PointX="7.072916666666667" PointY="9.8512438671875024" />
+          <ConnectorPoint PointX="7.239583333333333" PointY="9.8512438671875024" />
+          <ConnectorPoint PointX="11.375" PointY="9.8512438671875024" />
           <ConnectorPoint PointX="11.375" PointY="14.028300781249996" />
           <ConnectorPoint PointX="13.291666666666666" PointY="14.028300781249996" />
           <ConnectorPoint PointX="13.458333333333334" PointY="14.028300781249996" />
           <ConnectorPoint PointX="13.75" PointY="14.028300781249996" />
-          <ConnectorPoint PointX="13.75" PointY="16.980123697916667" />
-          <ConnectorPoint PointX="14.429657894977227" PointY="16.980123697916667" />
-          <ConnectorPoint PointX="14.596324561643895" PointY="16.980123697916667" />
-          <ConnectorPoint PointX="14.954414780821947" PointY="16.980123697916667" />
-          <ConnectorPoint PointX="15.121081447488615" PointY="16.980123697916667" />
-          <ConnectorPoint PointX="17.041666666666668" PointY="16.980123697916667" />
-          <ConnectorPoint PointX="17.208333333333332" PointY="16.980123697916667" />
-          <ConnectorPoint PointX="18.041666666666668" PointY="16.980123697916667" />
-          <ConnectorPoint PointX="18.208333333333332" PointY="16.980123697916667" />
-          <ConnectorPoint PointX="19.166666666666668" PointY="16.980123697916667" />
-          <ConnectorPoint PointX="19.333333333333332" PointY="16.980123697916667" />
-          <ConnectorPoint PointX="19.854166666666668" PointY="16.980123697916667" />
-          <ConnectorPoint PointX="20.083333333333332" PointY="16.980123697916667" />
-          <ConnectorPoint PointX="22.041666666666668" PointY="16.980123697916667" />
-          <ConnectorPoint PointX="22.208333333333332" PointY="16.980123697916667" />
-          <ConnectorPoint PointX="22.291666666666668" PointY="16.980123697916667" />
-          <ConnectorPoint PointX="22.458333333333332" PointY="16.980123697916667" />
-          <ConnectorPoint PointX="23.125" PointY="16.980123697916667" />
+          <ConnectorPoint PointX="13.75" PointY="16.259013671875" />
+          <ConnectorPoint PointX="14.435540278542542" PointY="16.259013671875" />
+          <ConnectorPoint PointX="14.602206945209209" PointY="16.259013671875" />
+          <ConnectorPoint PointX="14.957355972604605" PointY="16.259013671875" />
+          <ConnectorPoint PointX="15.124022639271272" PointY="16.259013671875" />
+          <ConnectorPoint PointX="19.791666666666668" PointY="16.259013671875" />
+          <ConnectorPoint PointX="19.958333333333332" PointY="16.259013671875" />
+          <ConnectorPoint PointX="22.385416666666668" PointY="16.259013671875" />
+          <ConnectorPoint PointX="22.552083333333332" PointY="16.259013671875" />
+          <ConnectorPoint PointX="23.125" PointY="16.259013671875" />
           <ConnectorPoint PointX="23.125" PointY="18.625" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_VENTA_SIC_T_EMP_CENTRO_COSTO" >
-          <ConnectorPoint PointX="4.625" PointY="10.359250546874993" />
-          <ConnectorPoint PointX="7.072916666666667" PointY="10.359250546874993" />
-          <ConnectorPoint PointX="7.239583333333333" PointY="10.359250546874993" />
-          <ConnectorPoint PointX="11.3125" PointY="10.359250546874993" />
+          <ConnectorPoint PointX="4.625" PointY="10.390500546874993" />
+          <ConnectorPoint PointX="7.072916666666667" PointY="10.390500546874993" />
+          <ConnectorPoint PointX="7.239583333333333" PointY="10.390500546874993" />
+          <ConnectorPoint PointX="11.3125" PointY="10.390500546874993" />
           <ConnectorPoint PointX="11.3125" PointY="14.278300781249996" />
           <ConnectorPoint PointX="13.666666666666666" PointY="14.278300781249996" />
           <ConnectorPoint PointX="13.833333333333334" PointY="14.278300781249996" />
           <ConnectorPoint PointX="13.875" PointY="14.278300781249996" />
-          <ConnectorPoint PointX="13.875" PointY="15.941712239583332" />
-          <ConnectorPoint PointX="18.125" PointY="15.941712239583332" />
+          <ConnectorPoint PointX="13.875" PointY="16.274638671875" />
+          <ConnectorPoint PointX="14.435540278542542" PointY="16.274638671875" />
+          <ConnectorPoint PointX="14.602206945209209" PointY="16.274638671875" />
+          <ConnectorPoint PointX="14.957355972604605" PointY="16.274638671875" />
+          <ConnectorPoint PointX="15.124022639271272" PointY="16.274638671875" />
+          <ConnectorPoint PointX="18.125" PointY="16.274638671875" />
           <ConnectorPoint PointX="18.125" PointY="17.125" />
         </AssociationConnector>
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_CONCEPTO" Width="1.5" PointX="3.375" PointY="4.75" Height="1.4033821614583246" />
+        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_BOLETA" Width="1.5" PointX="19.625" PointY="21.75" Height="3.5186979166666674" />
+        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_FACTURA" Width="1.5" PointX="19.625" PointY="26" Height="3.5186979166666674" />
+        <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_BOLETA_SIC_T_VENTA" >
+          <ConnectorPoint PointX="18.875" PointY="21.9660546875" />
+          <ConnectorPoint PointX="19.625" PointY="21.9660546875" />
+        </AssociationConnector>
+        <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_FACTURA_SIC_T_VENTA" >
+          <ConnectorPoint PointX="18.125" PointY="22.182109375000003" />
+          <ConnectorPoint PointX="18.125" PointY="27.759348958333334" />
+          <ConnectorPoint PointX="19.625" PointY="27.759348958333334" />
+        </AssociationConnector>
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_UNIDAD_MEDIDA" Width="1.5" PointX="5.375" PointY="6.75" Height="1.4033821614583246" />
         <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_EMP_DIRECCION" Width="1.5" PointX="5.375" PointY="23.75" Height="2.557190755208353" />
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_EMP_DIRECCION_SIC_T_EMP_CENTRO_COSTO" >
@@ -3735,185 +3785,180 @@
           <ConnectorPoint PointX="5.125" PointY="25.028595377604177" />
           <ConnectorPoint PointX="5.375" PointY="25.028595377604177" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_ALMACEN" Width="1.5" PointX="17.375" PointY="12.75" Height="2.3648893229166674" />
-        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_ITEM_SUB_FAMILIA" Width="1.5" PointX="21.125" PointY="2.625" Height="2.1725878906249818" />
-        <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_ALMACEN_CENTRO_COSTO_SIC_T_ALMACEN" >
-          <ConnectorPoint PointX="18.875" PointY="13.497927772970634" />
-          <ConnectorPoint PointX="20" PointY="13.497927772970634" />
-          <ConnectorPoint PointX="20" PointY="17.230123697916667" />
-          <ConnectorPoint PointX="22.041666666666668" PointY="17.230123697916667" />
-          <ConnectorPoint PointX="22.208333333333332" PointY="17.230123697916667" />
-          <ConnectorPoint PointX="22.718747999999998" PointY="17.230123697916667" />
-          <ConnectorPoint PointX="22.718747999999998" PointY="18.625" />
-        </AssociationConnector>
-        <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_VENTA_DETALLE_SIC_T_ALMACEN" >
-          <ConnectorPoint PointX="18.875" PointY="15.114889322916666" />
-          <ConnectorPoint PointX="19.25" PointY="15.489889322916667" />
-          <ConnectorPoint PointX="19.25" PointY="18.951301441975922" />
-          <ConnectorPoint PointX="19.625" PointY="18.951301441975922" />
-        </AssociationConnector>
-        <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_ITEM_SUB_FAMILIA_SIC_T_ITEM_FAMILIA" >
-          <ConnectorPoint PointX="20.375" PointY="3.5189925130208333" />
-          <ConnectorPoint PointX="21.125" PointY="3.5189925130208333" />
-        </AssociationConnector>
-        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_BOLETA" Width="1.5" PointX="19.625" PointY="21.75" Height="3.5186979166666674" />
-        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_BOLETA_DETALLE" Width="1.5" PointX="21.875" PointY="22.375" Height="2.1725878906249818" />
-        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_FACTURA" Width="1.5" PointX="19.625" PointY="26" Height="3.5186979166666674" />
-        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_FACTURA_DETALLE" Width="1.5" PointX="21.875" PointY="26.75" Height="2.1725878906249818" />
-        <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_BOLETA_SIC_T_VENTA" >
-          <ConnectorPoint PointX="18.875" PointY="21.9660546875" />
-          <ConnectorPoint PointX="19.625" PointY="21.9660546875" />
-        </AssociationConnector>
-        <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_FACTURA_SIC_T_VENTA" >
-          <ConnectorPoint PointX="18.125" PointY="22.182109375000003" />
-          <ConnectorPoint PointX="18.125" PointY="27.759348958333334" />
-          <ConnectorPoint PointX="19.625" PointY="27.759348958333334" />
-        </AssociationConnector>
-        <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_BOLETA_DETALLE_SIC_T_BOLETA" >
-          <ConnectorPoint PointX="21.125" PointY="23.461293945312491" />
-          <ConnectorPoint PointX="21.875" PointY="23.461293945312491" />
-        </AssociationConnector>
-        <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_FACTURA_DETALLE_SIC_T_FACTURA" >
-          <ConnectorPoint PointX="21.125" PointY="27.836293945312491" />
-          <ConnectorPoint PointX="21.875" PointY="27.836293945312491" />
-        </AssociationConnector>
-        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_ITEM" Width="1.5" PointX="23.375" PointY="2" Height="3.5186979166666674" />
-        <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_ITEM_SIC_T_ITEM_SUB_FAMILIA1" >
-          <ConnectorPoint PointX="22.625" PointY="3.7112939453125" />
-          <ConnectorPoint PointX="23.375" PointY="3.7112939453125" />
-        </AssociationConnector>
-        <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ITEM" >
-          <ConnectorPoint PointX="24.84375" PointY="5.5186979166666656" />
-          <ConnectorPoint PointX="24.84375" PointY="12.15625" />
-          <ConnectorPoint PointX="25.625" PointY="12.15625" />
-        </AssociationConnector>
-        <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_VENTA_DETALLE_SIC_T_ITEM" >
-          <ConnectorPoint PointX="24.300778375" PointY="5.5186979166666656" />
-          <ConnectorPoint PointX="24.300778375" PointY="6.75" />
-          <ConnectorPoint PointX="23.903645083333334" PointY="6.7499999999999991" />
-          <ConnectorPoint PointX="23.73697841666667" PointY="6.75" />
-          <ConnectorPoint PointX="22.125" PointY="6.75" />
-          <ConnectorPoint PointX="22.125" PointY="19.470896809895834" />
-          <ConnectorPoint PointX="21.125" PointY="19.470896809895834" />
-        </AssociationConnector>
-        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_MOVIMIENTO_ENTRADA" Width="1.5" PointX="24.625" PointY="16.25" Height="4.287903645833353" />
-        <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_ALMACEN" >
-          <ConnectorPoint PointX="18.875" PointY="14.306408547943651" />
-          <ConnectorPoint PointX="19.9375" PointY="14.306408547943651" />
-          <ConnectorPoint PointX="19.9375" PointY="17.105123697916667" />
-          <ConnectorPoint PointX="22.041666666666668" PointY="17.105123697916667" />
-          <ConnectorPoint PointX="22.208333333333332" PointY="17.105123697916667" />
-          <ConnectorPoint PointX="22.375" PointY="17.105123697916667" />
-          <ConnectorPoint PointX="22.375" PointY="15.057190755208332" />
-          <ConnectorPoint PointX="24.010416666666668" PointY="15.057190755208332" />
-          <ConnectorPoint PointX="24.177083333333332" PointY="15.057190755208332" />
-          <ConnectorPoint PointX="25.375" PointY="15.057190755208332" />
-          <ConnectorPoint PointX="25.375" PointY="16.25" />
-        </AssociationConnector>
+        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_MOVIMIENTO_ENTRADA" Width="1.5" PointX="25.625" PointY="7" Height="4.287903645833353" />
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_MOV_ESTADO" >
-          <ConnectorPoint PointX="5.125" PointY="19.470683593750003" />
-          <ConnectorPoint PointX="5.125" PointY="19.720683593750003" />
-          <ConnectorPoint PointX="7.072916666666667" PointY="19.720683593750003" />
-          <ConnectorPoint PointX="7.239583333333333" PointY="19.720683593750003" />
-          <ConnectorPoint PointX="14.954414780821947" PointY="19.720683593750003" />
-          <ConnectorPoint PointX="15.121081447488615" PointY="19.720683593750003" />
-          <ConnectorPoint PointX="15.791666666666666" PointY="19.720683593750003" />
-          <ConnectorPoint PointX="15.958333333333334" PointY="19.720683593750003" />
-          <ConnectorPoint PointX="17.125" PointY="19.720683593750003" />
-          <ConnectorPoint PointX="17.125" PointY="16.875" />
+          <ConnectorPoint PointX="5.875" PointY="18.672841796874991" />
+          <ConnectorPoint PointX="7.072916666666667" PointY="18.672841796874991" />
+          <ConnectorPoint PointX="7.239583333333333" PointY="18.672841796874991" />
+          <ConnectorPoint PointX="7.5" PointY="18.672841796874991" />
+          <ConnectorPoint PointX="7.5" PointY="16" />
+          <ConnectorPoint PointX="10.125" PointY="16" />
+          <ConnectorPoint PointX="10.125" PointY="16.875" />
+          <ConnectorPoint PointX="14.435540278542542" PointY="16.875" />
+          <ConnectorPoint PointX="14.602206945209209" PointY="16.875" />
+          <ConnectorPoint PointX="14.957355972604605" PointY="16.875" />
+          <ConnectorPoint PointX="15.124022639271272" PointY="16.875" />
           <ConnectorPoint PointX="18.041666666666668" PointY="16.875" />
           <ConnectorPoint PointX="18.208333333333332" PointY="16.875" />
-          <ConnectorPoint PointX="19.166666666666668" PointY="16.875" />
-          <ConnectorPoint PointX="19.333333333333332" PointY="16.875" />
-          <ConnectorPoint PointX="19.854166666666668" PointY="16.875" />
-          <ConnectorPoint PointX="20.083333333333332" PointY="16.875" />
-          <ConnectorPoint PointX="22.041666666666668" PointY="16.875" />
-          <ConnectorPoint PointX="22.208333333333332" PointY="16.875" />
-          <ConnectorPoint PointX="22.291666666666668" PointY="16.875" />
-          <ConnectorPoint PointX="22.458333333333332" PointY="16.875" />
-          <ConnectorPoint PointX="24.010416666666668" PointY="16.875" />
-          <ConnectorPoint PointX="24.177083333333332" PointY="16.875" />
-          <ConnectorPoint PointX="24.25" PointY="16.875" />
-          <ConnectorPoint PointX="24.25" PointY="18.393951822916669" />
-          <ConnectorPoint PointX="24.625" PointY="18.393951822916669" />
+          <ConnectorPoint PointX="19.791666666666668" PointY="16.875" />
+          <ConnectorPoint PointX="19.958333333333332" PointY="16.875" />
+          <ConnectorPoint PointX="22.385416666666668" PointY="16.875" />
+          <ConnectorPoint PointX="22.552083333333332" PointY="16.875" />
+          <ConnectorPoint PointX="23.041666666666668" PointY="16.875" />
+          <ConnectorPoint PointX="23.208333333333332" PointY="16.875" />
+          <ConnectorPoint PointX="25.375" PointY="16.875" />
+          <ConnectorPoint PointX="25.375" PointY="11.662903645833332" />
+          <ConnectorPoint PointX="25.885414666666666" PointY="11.662903645833332" />
+          <ConnectorPoint PointX="26.05208133333333" PointY="11.662903645833332" />
+          <ConnectorPoint PointX="26.375" PointY="11.662903645833332" />
+          <ConnectorPoint PointX="26.375" PointY="11.287903645833332" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_MOVIMIENTO_ENTRADA_DETALLE_SIC_T_MOVIMIENTO_ENTRADA" >
-          <ConnectorPoint PointX="24.625" PointY="17.780785260416675" />
-          <ConnectorPoint PointX="24.333333333333332" PointY="17.780785260416675" />
-          <ConnectorPoint PointX="24.166666666666668" PointY="17.780785260416675" />
-          <ConnectorPoint PointX="24.09375" PointY="17.780785260416675" />
-          <ConnectorPoint PointX="24.09375" PointY="14.807190755208334" />
+          <ConnectorPoint PointX="25.625" PointY="11.047524355468747" />
+          <ConnectorPoint PointX="23.03125" PointY="11.047524355468747" />
+          <ConnectorPoint PointX="23.03125" PointY="12.25" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_ODC_CLASE" Width="1.5" PointX="18" PointY="10.25" Height="1.5956835937499818" />
-        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_ODC_ESTADO" Width="1.5" PointX="18" PointY="7.625" Height="1.5956835937499818" />
-        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_ORDEN_DE_COMPRA" Width="1.5" PointX="20.25" PointY="9.75" Height="6.9801236979166656" />
-        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_OPCION" Width="1.5" PointX="10.125" PointY="0.75" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_BOLETA_DETALLE" Width="1.5" PointX="28" PointY="11.625" Height="2.5571907552083246" />
+        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_FACTURA_DETALLE" Width="1.5" PointX="26" PointY="15.75" Height="2.5571907552083246" />
+        <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_BOLETA_DETALLE_SIC_T_BOLETA" >
+          <ConnectorPoint PointX="21.125" PointY="21.889422141927092" />
+          <ConnectorPoint PointX="26.416666666666668" PointY="21.889422141927092" />
+          <ConnectorPoint PointX="26.583333333333332" PointY="21.889422141927092" />
+          <ConnectorPoint PointX="27.104166666666668" PointY="21.889422141927092" />
+          <ConnectorPoint PointX="27.270833333333332" PointY="21.889422141927092" />
+          <ConnectorPoint PointX="27.541664166666667" PointY="21.889422141927092" />
+          <ConnectorPoint PointX="27.833333333333332" PointY="21.889422141927092" />
+          <ConnectorPoint PointX="27.916666705729167" PointY="21.889422141927092" />
+          <ConnectorPoint PointX="28.083333372395831" PointY="21.889422141927092" />
+          <ConnectorPoint PointX="28.166666744791666" PointY="21.889422141927092" />
+          <ConnectorPoint PointX="28.33333341145833" PointY="21.889422141927092" />
+          <ConnectorPoint PointX="28.75" PointY="21.889422141927092" />
+          <ConnectorPoint PointX="28.75" PointY="14.182190755208334" />
+        </AssociationConnector>
+        <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_FACTURA_DETALLE_SIC_T_FACTURA" >
+          <ConnectorPoint PointX="21.125" PointY="27.759348958333334" />
+          <ConnectorPoint PointX="26.5" PointY="27.759348958333334" />
+          <ConnectorPoint PointX="26.5" PointY="18.307190755208335" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_ORDEN_DE_COMPRA" Width="1.5" PointX="20.375" PointY="7.375" Height="7.1724251302083246" />
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_SIC_T_CLIENTE" >
-          <ConnectorPoint PointX="15.5" PointY="15.400900065104166" />
-          <ConnectorPoint PointX="19.077677408854168" PointY="15.400900065104166" />
-          <ConnectorPoint PointX="19.244344075520832" PointY="15.400900065104166" />
-          <ConnectorPoint PointX="19.854166666666668" PointY="15.400900065104166" />
-          <ConnectorPoint PointX="20.083333333333332" PointY="15.400900065104166" />
-          <ConnectorPoint PointX="20.25" PointY="15.400900065104166" />
+          <ConnectorPoint PointX="15.5" PointY="11.53125" />
+          <ConnectorPoint PointX="20.375" PointY="11.53125" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_ORDEN_DE_COMPRA" >
-          <ConnectorPoint PointX="21.75" PointY="16.490061848958334" />
-          <ConnectorPoint PointX="22.041666666666668" PointY="16.490061848958334" />
-          <ConnectorPoint PointX="22.208333333333332" PointY="16.490061848958334" />
-          <ConnectorPoint PointX="22.291666666666668" PointY="16.490061848958334" />
-          <ConnectorPoint PointX="22.458333333333332" PointY="16.490061848958334" />
-          <ConnectorPoint PointX="24.010416666666668" PointY="16.490061848958334" />
-          <ConnectorPoint PointX="24.177083333333332" PointY="16.490061848958334" />
-          <ConnectorPoint PointX="24.625" PointY="16.490061848958334" />
+          <ConnectorPoint PointX="21.875" PointY="11.230214000651039" />
+          <ConnectorPoint PointX="22.947916666666668" PointY="11.230214000651039" />
+          <ConnectorPoint PointX="23.114583333333332" PointY="11.230214000651039" />
+          <ConnectorPoint PointX="25.625" PointY="11.230214000651039" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_SIC_T_ODC_CLASE" >
-          <ConnectorPoint PointX="19.5" PointY="11.047841796874991" />
-          <ConnectorPoint PointX="19.666666666666668" PointY="11.047841796874991" />
-          <ConnectorPoint PointX="19.833333333333332" PointY="11.047841796874991" />
-          <ConnectorPoint PointX="20.25" PointY="11.047841796874991" />
+          <ConnectorPoint PointX="19.625" PointY="9.297841796875" />
+          <ConnectorPoint PointX="20.375" PointY="9.297841796875" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_SIC_T_ODC_ESTADO" >
-          <ConnectorPoint PointX="19.5" PointY="8.4228417968749909" />
-          <ConnectorPoint PointX="19.666666666666668" PointY="8.4228417968749909" />
-          <ConnectorPoint PointX="19.833333333333332" PointY="8.4228417968749909" />
-          <ConnectorPoint PointX="21" PointY="8.4228417968749909" />
-          <ConnectorPoint PointX="21" PointY="9.75" />
+          <ConnectorPoint PointX="19.625" PointY="6.3125" />
+          <ConnectorPoint PointX="21.125" PointY="6.3125" />
+          <ConnectorPoint PointX="21.125" PointY="7.375" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ORDEN_DE_COMPRA" >
-          <ConnectorPoint PointX="21.75" PointY="15.622345377604166" />
-          <ConnectorPoint PointX="22.041666666666668" PointY="15.622345377604166" />
-          <ConnectorPoint PointX="22.208333333333332" PointY="15.622345377604166" />
-          <ConnectorPoint PointX="22.291666666666668" PointY="15.622345377604166" />
-          <ConnectorPoint PointX="22.458333333333332" PointY="15.622345377604166" />
-          <ConnectorPoint PointX="24.010416666666668" PointY="15.622345377604166" />
-          <ConnectorPoint PointX="24.177083333333332" PointY="15.622345377604166" />
-          <ConnectorPoint PointX="25.291666666666668" PointY="15.622345377604166" />
-          <ConnectorPoint PointX="25.458333333333332" PointY="15.622345377604166" />
-          <ConnectorPoint PointX="26.65625" PointY="15.622345377604166" />
-          <ConnectorPoint PointX="26.65625" PointY="14.8744921875" />
+          <ConnectorPoint PointX="21.875" PointY="12.15625" />
+          <ConnectorPoint PointX="22.166666666666668" PointY="12.15625" />
+          <ConnectorPoint PointX="22.333333333333332" PointY="12.15625" />
+          <ConnectorPoint PointX="22.947916666666668" PointY="12.15625" />
+          <ConnectorPoint PointX="23.114583333333332" PointY="12.15625" />
+          <ConnectorPoint PointX="25.291666666666668" PointY="12.15625" />
+          <ConnectorPoint PointX="25.458333333333332" PointY="12.15625" />
+          <ConnectorPoint PointX="25.625" PointY="12.15625" />
         </AssociationConnector>
-        <AssociationConnector Association="SICDBWEBModel.SIC_T_USUARIO_OPCION1" >
-          <ConnectorPoint PointX="11.625" PointY="1.7689925130208337" />
-          <ConnectorPoint PointX="12.375" PointY="1.7689925130208337" />
+        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_ITEM" Width="1.5" PointX="26.875" PointY="22" Height="3.9033007812499818" />
+        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_ITEM_FAMILIA" Width="1.5" PointX="22.375" PointY="23.125" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_ITEM_SUB_FAMILIA" Width="1.5" PointX="24.625" PointY="22.875" Height="2.1725878906249818" />
+        <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_BOLETA_DETALLE_SIC_T_ITEM1" >
+          <ConnectorPoint PointX="28.250000078124998" PointY="22" />
+          <ConnectorPoint PointX="28.250000078124998" PointY="14.182190755208334" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_ITEM_ALMACEN" Width="1.5" PointX="25.625" PointY="7.5" Height="2.1725878906249818" />
+        <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_FACTURA_DETALLE_SIC_T_ITEM" >
+          <ConnectorPoint PointX="27.1875" PointY="22" />
+          <ConnectorPoint PointX="27.1875" PointY="18.307190755208335" />
+        </AssociationConnector>
+        <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_ITEM_SIC_T_ITEM_SUB_FAMILIA" >
+          <ConnectorPoint PointX="26.125" PointY="23.961293945312491" />
+          <ConnectorPoint PointX="26.416666666666668" PointY="23.961293945312491" />
+          <ConnectorPoint PointX="26.583333333333332" PointY="23.961293945312491" />
+          <ConnectorPoint PointX="26.875" PointY="23.961293945312491" />
+        </AssociationConnector>
+        <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_ORDEN_DE_COMPRA_DET_SIC_T_ITEM" >
+          <ConnectorPoint PointX="27.75" PointY="22" />
+          <ConnectorPoint PointX="27.75" PointY="14.559591471354166" />
+          <ConnectorPoint PointX="27.125" PointY="14.559591471354166" />
+        </AssociationConnector>
+        <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_VENTA_DETALLE_SIC_T_ITEM" >
+          <ConnectorPoint PointX="28.0000000390625" PointY="22" />
+          <ConnectorPoint PointX="28.0000000390625" PointY="20.804790039062503" />
+          <ConnectorPoint PointX="27.833333333333332" PointY="20.804790039062503" />
+          <ConnectorPoint PointX="27.541664166666667" PointY="20.804790039062503" />
+          <ConnectorPoint PointX="27.270833333333332" PointY="20.804790039062503" />
+          <ConnectorPoint PointX="27.104166666666668" PointY="20.804790039062503" />
+          <ConnectorPoint PointX="26.583333333333332" PointY="20.804790039062503" />
+          <ConnectorPoint PointX="26.416666666666668" PointY="20.804790039062503" />
+          <ConnectorPoint PointX="21.125" PointY="20.804790039062503" />
+        </AssociationConnector>
+        <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_ITEM_SUB_FAMILIA_SIC_T_ITEM_FAMILIA" >
+          <ConnectorPoint PointX="23.875" PointY="24.018992513020834" />
+          <ConnectorPoint PointX="24.625" PointY="24.018992513020834" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_ALMACEN" Width="1.5" PointX="17.375" PointY="12.75" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="SICDBWEBModel.SIC_T_ITEM_ALMACEN" Width="1.5" PointX="29.125" PointY="18.25" Height="2.1725878906249818" />
+        <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_ALMACEN_CENTRO_COSTO_SIC_T_ALMACEN" >
+          <ConnectorPoint PointX="18.875" PointY="14.992290039062496" />
+          <ConnectorPoint PointX="19.791666666666668" PointY="14.992290039062496" />
+          <ConnectorPoint PointX="19.958333333333332" PointY="14.992290039062496" />
+          <ConnectorPoint PointX="22.46875" PointY="14.992290039062496" />
+          <ConnectorPoint PointX="22.46875" PointY="18.625" />
+        </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_ITEM_ALMACEN_SIC_T_ALMACEN" >
-          <ConnectorPoint PointX="18.125" PointY="12.75" />
-          <ConnectorPoint PointX="18.125" PointY="12.095683593749982" />
-          <ConnectorPoint PointX="19.75" PointY="12.095683593749982" />
-          <ConnectorPoint PointX="19.75" PointY="6.734375" />
-          <ConnectorPoint PointX="23.73697841666667" PointY="6.7343749999999991" />
-          <ConnectorPoint PointX="23.903645083333334" PointY="6.734375" />
-          <ConnectorPoint PointX="24.760416666666668" PointY="6.7343749999999991" />
-          <ConnectorPoint PointX="24.927083333333332" PointY="6.734375" />
-          <ConnectorPoint PointX="25.25" PointY="6.734375" />
-          <ConnectorPoint PointX="25.25" PointY="8.5862939453124909" />
-          <ConnectorPoint PointX="25.625" PointY="8.5862939453124909" />
+          <ConnectorPoint PointX="18.875" PointY="15.02354253906249" />
+          <ConnectorPoint PointX="19.791666666666668" PointY="15.02354253906249" />
+          <ConnectorPoint PointX="19.958333333333332" PointY="15.02354253906249" />
+          <ConnectorPoint PointX="25.291666666666668" PointY="15.02354253906249" />
+          <ConnectorPoint PointX="25.458333333333332" PointY="15.02354253906249" />
+          <ConnectorPoint PointX="27.666666666666668" PointY="15.02354253906249" />
+          <ConnectorPoint PointX="27.833333333333332" PointY="15.02354253906249" />
+          <ConnectorPoint PointX="28.166666744791666" PointY="15.02354253906249" />
+          <ConnectorPoint PointX="28.33333341145833" PointY="15.02354253906249" />
+          <ConnectorPoint PointX="28.666666666666668" PointY="15.02354253906249" />
+          <ConnectorPoint PointX="28.833333333333332" PointY="15.02354253906249" />
+          <ConnectorPoint PointX="30.09375" PointY="15.02354253906249" />
+          <ConnectorPoint PointX="30.09375" PointY="18.25" />
+        </AssociationConnector>
+        <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_ALMACEN" >
+          <ConnectorPoint PointX="18.875" PointY="13.839893019531253" />
+          <ConnectorPoint PointX="20.125" PointY="13.839893019531253" />
+          <ConnectorPoint PointX="20.125" PointY="14.797425130208325" />
+          <ConnectorPoint PointX="22.25" PointY="14.797425130208325" />
+          <ConnectorPoint PointX="22.25" PointY="11.875" />
+          <ConnectorPoint PointX="22.947916666666668" PointY="11.875" />
+          <ConnectorPoint PointX="23.114583333333332" PointY="11.875" />
+          <ConnectorPoint PointX="25.291666666666668" PointY="11.875" />
+          <ConnectorPoint PointX="25.458333333333332" PointY="11.875" />
+          <ConnectorPoint PointX="25.968747999999998" PointY="11.875" />
+          <ConnectorPoint PointX="25.968747999999998" PointY="11.287903645833332" />
+        </AssociationConnector>
+        <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_VENTA_DETALLE_SIC_T_ALMACEN" >
+          <ConnectorPoint PointX="18.875" PointY="14.703675130208325" />
+          <ConnectorPoint PointX="19.875" PointY="14.703675130208325" />
+          <ConnectorPoint PointX="19.875" PointY="18" />
         </AssociationConnector>
         <AssociationConnector Association="SICDBWEBModel.FK_SIC_T_ITEM_ALMACEN_SIC_T_ITEM" >
-          <ConnectorPoint PointX="24.875" PointY="3.7593489583333328" />
-          <ConnectorPoint PointX="26.375" PointY="3.7593489583333328" />
-          <ConnectorPoint PointX="26.375" PointY="7.5" />
+          <ConnectorPoint PointX="27.6249975" PointY="22" />
+          <ConnectorPoint PointX="27.6249975" PointY="19.39613932291666" />
+          <ConnectorPoint PointX="27.666666666666668" PointY="19.39613932291666" />
+          <ConnectorPoint PointX="27.833333333333332" PointY="19.39613932291666" />
+          <ConnectorPoint PointX="28.166666744791666" PointY="19.39613932291666" />
+          <ConnectorPoint PointX="28.33333341145833" PointY="19.39613932291666" />
+          <ConnectorPoint PointX="28.666666666666668" PointY="19.39613932291666" />
+          <ConnectorPoint PointX="28.833333333333332" PointY="19.39613932291666" />
+          <ConnectorPoint PointX="29.125" PointY="19.39613932291666" />
         </AssociationConnector>
         </Diagram>
     </Diagrams>
