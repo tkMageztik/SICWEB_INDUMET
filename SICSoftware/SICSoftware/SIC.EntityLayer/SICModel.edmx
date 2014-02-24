@@ -267,6 +267,7 @@
           <Property Name="bol_c_etotal" Type="decimal" Nullable="false" Precision="19" Scale="2" />
           <Property Name="bol_c_imoneda" Type="int" Nullable="false" />
           <Property Name="bol_c_vdescmoneda" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="bol_c_bimpreso" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="SIC_T_BOLETA_DETALLE">
           <Key>
@@ -294,6 +295,7 @@
           <Property Name="fac_c_etotal" Type="decimal" Nullable="false" Precision="19" Scale="2" />
           <Property Name="fac_c_imoneda" Type="int" Nullable="false" />
           <Property Name="fac_c_vdescmoneda" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="fac_c_bimpreso" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="SIC_T_FACTURA_DETALLE">
           <Key>
@@ -2428,6 +2430,7 @@
           <Property Type="String" Name="bol_c_vdescmoneda" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="SIC_T_VENTA" Relationship="SICDBWEBModel.FK_SIC_T_BOLETA_SIC_T_VENTA" FromRole="SIC_T_BOLETA" ToRole="SIC_T_VENTA" />
           <NavigationProperty Name="SIC_T_BOLETA_DETALLE" Relationship="SICDBWEBModel.FK_SIC_T_BOLETA_DETALLE_SIC_T_BOLETA" FromRole="SIC_T_BOLETA" ToRole="SIC_T_BOLETA_DETALLE" />
+          <Property Type="Boolean" Name="bol_c_bimpreso" Nullable="false" />
         </EntityType>
         <EntityType Name="SIC_T_FACTURA">
           <Key>
@@ -2446,6 +2449,7 @@
           <Property Type="String" Name="fac_c_vdescmoneda" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="SIC_T_VENTA" Relationship="SICDBWEBModel.FK_SIC_T_FACTURA_SIC_T_VENTA" FromRole="SIC_T_FACTURA" ToRole="SIC_T_VENTA" />
           <NavigationProperty Name="SIC_T_FACTURA_DETALLE" Relationship="SICDBWEBModel.FK_SIC_T_FACTURA_DETALLE_SIC_T_FACTURA" FromRole="SIC_T_FACTURA" ToRole="SIC_T_FACTURA_DETALLE" />
+          <Property Type="Boolean" Name="fac_c_bimpreso" Nullable="false" />
         </EntityType>
         <Association Name="FK_SIC_T_BOLETA_SIC_T_VENTA">
           <End Type="SICDBWEBModel.SIC_T_VENTA" Role="SIC_T_VENTA" Multiplicity="1" />
@@ -3333,6 +3337,7 @@
           <EntitySetMapping Name="SIC_T_BOLETA">
             <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_BOLETA">
               <MappingFragment StoreEntitySet="SIC_T_BOLETA">
+                <ScalarProperty Name="bol_c_bimpreso" ColumnName="bol_c_bimpreso" />
                 <ScalarProperty Name="bol_c_vdescmoneda" ColumnName="bol_c_vdescmoneda" />
                 <ScalarProperty Name="bol_c_imoneda" ColumnName="bol_c_imoneda" />
                 <ScalarProperty Name="bol_c_etotal" ColumnName="bol_c_etotal" />
@@ -3350,6 +3355,7 @@
           <EntitySetMapping Name="SIC_T_FACTURA">
             <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_FACTURA">
               <MappingFragment StoreEntitySet="SIC_T_FACTURA">
+                <ScalarProperty Name="fac_c_bimpreso" ColumnName="fac_c_bimpreso" />
                 <ScalarProperty Name="fac_c_vdescmoneda" ColumnName="fac_c_vdescmoneda" />
                 <ScalarProperty Name="fac_c_imoneda" ColumnName="fac_c_imoneda" />
                 <ScalarProperty Name="fac_c_etotal" ColumnName="fac_c_etotal" />

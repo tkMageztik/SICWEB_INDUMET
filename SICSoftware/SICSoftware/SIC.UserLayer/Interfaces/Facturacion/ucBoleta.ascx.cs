@@ -19,7 +19,7 @@ namespace SIC.UserLayer.Interfaces.Facturacion
             lblFactura.Text = "???-????????";
         }
 
-        public void Mostrarboleta(SIC_T_BOLETA boleta)
+        public void MostrarBoleta(SIC_T_BOLETA boleta)
         {
             lblFecha.Text = DateTime.Today.ToString("dd/MM/yyyy");
             lblSubTotal.Text = boleta.bol_c_esubtotal.ToString();

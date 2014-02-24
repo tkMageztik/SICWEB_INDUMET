@@ -79,5 +79,31 @@ namespace SIC.DataLayer
                 contexto.SaveChanges();
             }
         }
+
+        /// <summary>
+        /// Obtiene una lista de Facturas desde la base de datos.
+        /// </summary>
+        /// <returns>List de SIC_T_FACTURA</returns>
+        public List<SIC_T_FACTURA> ListarFactura()
+        {
+            using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+            {
+                return (from x in contexto.SIC_T_FACTURA
+                        select x).ToList();
+            }
+        }
+
+        /// <summary>
+        /// Obtiene una lista de Boletas desde la base de datos.
+        /// </summary>
+        /// <returns>Lista de SIC_T_BOLETA</returns>
+        public List<SIC_T_BOLETA> ListarBoleta()
+        {
+            using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+            {
+                return (from x in contexto.SIC_T_BOLETA
+                        select x).ToList();
+            }
+        }        
     }
 }

@@ -205,6 +205,7 @@
     <Content Include="Interfaces\Facturacion\frmFactImpresion.aspx" />
     <Content Include="Interfaces\Facturacion\frmFactManual.aspx" />
     <Content Include="Interfaces\Facturacion\test.aspx" />
+    <Content Include="Interfaces\Facturacion\ucBoleta.ascx" />
     <Content Include="Interfaces\Facturacion\ucFactura.ascx" />
     <Content Include="Interfaces\Mantenimiento\frmMantEmpresa.aspx" />
     <Content Include="Interfaces\Mantenimiento\frmMantImpresoras.aspx" />
@@ -233,6 +234,13 @@
     </Compile>
     <Compile Include="Interfaces\Facturacion\test.aspx.designer.cs">
       <DependentUpon>test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\Facturacion\ucBoleta.ascx.cs">
+      <DependentUpon>ucBoleta.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Interfaces\Facturacion\ucBoleta.ascx.designer.cs">
+      <DependentUpon>ucBoleta.ascx</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\Reporte\FrmReporteCliente.aspx.cs">
       <DependentUpon>FrmReporteCliente.aspx</DependentUpon>

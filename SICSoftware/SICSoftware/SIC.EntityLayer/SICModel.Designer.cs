@@ -2320,7 +2320,8 @@ namespace SIC.EntityLayer
         /// <param name="bol_c_etotal">Valor inicial de la propiedad bol_c_etotal.</param>
         /// <param name="bol_c_imoneda">Valor inicial de la propiedad bol_c_imoneda.</param>
         /// <param name="bol_c_vdescmoneda">Valor inicial de la propiedad bol_c_vdescmoneda.</param>
-        public static SIC_T_BOLETA CreateSIC_T_BOLETA(global::System.Int32 bol_c_iid, global::System.DateTime bol_c_zfecharegistro, global::System.String bol_c_serie, global::System.Int32 bol_c_numero, global::System.Int32 bol_c_iventa, global::System.Decimal bol_c_eigv, global::System.Decimal bol_c_eigvcal, global::System.Decimal bol_c_esubtotal, global::System.Decimal bol_c_etotal, global::System.Int32 bol_c_imoneda, global::System.String bol_c_vdescmoneda)
+        /// <param name="bol_c_bimpreso">Valor inicial de la propiedad bol_c_bimpreso.</param>
+        public static SIC_T_BOLETA CreateSIC_T_BOLETA(global::System.Int32 bol_c_iid, global::System.DateTime bol_c_zfecharegistro, global::System.String bol_c_serie, global::System.Int32 bol_c_numero, global::System.Int32 bol_c_iventa, global::System.Decimal bol_c_eigv, global::System.Decimal bol_c_eigvcal, global::System.Decimal bol_c_esubtotal, global::System.Decimal bol_c_etotal, global::System.Int32 bol_c_imoneda, global::System.String bol_c_vdescmoneda, global::System.Boolean bol_c_bimpreso)
         {
             SIC_T_BOLETA sIC_T_BOLETA = new SIC_T_BOLETA();
             sIC_T_BOLETA.bol_c_iid = bol_c_iid;
@@ -2334,6 +2335,7 @@ namespace SIC.EntityLayer
             sIC_T_BOLETA.bol_c_etotal = bol_c_etotal;
             sIC_T_BOLETA.bol_c_imoneda = bol_c_imoneda;
             sIC_T_BOLETA.bol_c_vdescmoneda = bol_c_vdescmoneda;
+            sIC_T_BOLETA.bol_c_bimpreso = bol_c_bimpreso;
             return sIC_T_BOLETA;
         }
 
@@ -2606,6 +2608,30 @@ namespace SIC.EntityLayer
         private global::System.String _bol_c_vdescmoneda;
         partial void Onbol_c_vdescmonedaChanging(global::System.String value);
         partial void Onbol_c_vdescmonedaChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean bol_c_bimpreso
+        {
+            get
+            {
+                return _bol_c_bimpreso;
+            }
+            set
+            {
+                Onbol_c_bimpresoChanging(value);
+                ReportPropertyChanging("bol_c_bimpreso");
+                _bol_c_bimpreso = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("bol_c_bimpreso");
+                Onbol_c_bimpresoChanged();
+            }
+        }
+        private global::System.Boolean _bol_c_bimpreso;
+        partial void Onbol_c_bimpresoChanging(global::System.Boolean value);
+        partial void Onbol_c_bimpresoChanged();
 
         #endregion
     
@@ -6269,7 +6295,8 @@ namespace SIC.EntityLayer
         /// <param name="fac_c_etotal">Valor inicial de la propiedad fac_c_etotal.</param>
         /// <param name="fac_c_imoneda">Valor inicial de la propiedad fac_c_imoneda.</param>
         /// <param name="fac_c_vdescmoneda">Valor inicial de la propiedad fac_c_vdescmoneda.</param>
-        public static SIC_T_FACTURA CreateSIC_T_FACTURA(global::System.Int32 fac_c_iid, global::System.DateTime fac_c_zfecharegistro, global::System.String fac_c_serie, global::System.Int32 fac_c_numero, global::System.Int32 fac_c_iventa, global::System.Decimal fac_c_eigv, global::System.Decimal fac_c_eigvcal, global::System.Decimal fac_c_esubtotal, global::System.Decimal fac_c_etotal, global::System.Int32 fac_c_imoneda, global::System.String fac_c_vdescmoneda)
+        /// <param name="fac_c_bimpreso">Valor inicial de la propiedad fac_c_bimpreso.</param>
+        public static SIC_T_FACTURA CreateSIC_T_FACTURA(global::System.Int32 fac_c_iid, global::System.DateTime fac_c_zfecharegistro, global::System.String fac_c_serie, global::System.Int32 fac_c_numero, global::System.Int32 fac_c_iventa, global::System.Decimal fac_c_eigv, global::System.Decimal fac_c_eigvcal, global::System.Decimal fac_c_esubtotal, global::System.Decimal fac_c_etotal, global::System.Int32 fac_c_imoneda, global::System.String fac_c_vdescmoneda, global::System.Boolean fac_c_bimpreso)
         {
             SIC_T_FACTURA sIC_T_FACTURA = new SIC_T_FACTURA();
             sIC_T_FACTURA.fac_c_iid = fac_c_iid;
@@ -6283,6 +6310,7 @@ namespace SIC.EntityLayer
             sIC_T_FACTURA.fac_c_etotal = fac_c_etotal;
             sIC_T_FACTURA.fac_c_imoneda = fac_c_imoneda;
             sIC_T_FACTURA.fac_c_vdescmoneda = fac_c_vdescmoneda;
+            sIC_T_FACTURA.fac_c_bimpreso = fac_c_bimpreso;
             return sIC_T_FACTURA;
         }
 
@@ -6555,6 +6583,30 @@ namespace SIC.EntityLayer
         private global::System.String _fac_c_vdescmoneda;
         partial void Onfac_c_vdescmonedaChanging(global::System.String value);
         partial void Onfac_c_vdescmonedaChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean fac_c_bimpreso
+        {
+            get
+            {
+                return _fac_c_bimpreso;
+            }
+            set
+            {
+                Onfac_c_bimpresoChanging(value);
+                ReportPropertyChanging("fac_c_bimpreso");
+                _fac_c_bimpreso = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("fac_c_bimpreso");
+                Onfac_c_bimpresoChanged();
+            }
+        }
+        private global::System.Boolean _fac_c_bimpreso;
+        partial void Onfac_c_bimpresoChanging(global::System.Boolean value);
+        partial void Onfac_c_bimpresoChanged();
 
         #endregion
     
