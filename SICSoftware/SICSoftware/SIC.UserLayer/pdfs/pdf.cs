@@ -176,8 +176,7 @@ namespace SIC.UserLayer
             t.AddCell(Celdas(t));
             t.AddCell(Celdas(t));
 
-            t.AddCell(Celdas(t, "SUMIT SAC - RUC:20431991960 / Direccion:Calle A Mz.B Lote 8-D Zona Industrial Bocanegra-Callao / Tlf:574-7272 / Fax:484-5589"));
-
+            //t.AddCell(Celdas(t, "SUMIT SAC - RUC:20431991960 / Direccion:Calle A Mz.B Lote 8-D Zona Industrial Bocanegra-Callao / Tlf:574-7272 / Fax:484-5589"));            
 
             doc.Add(t);
 
@@ -203,7 +202,7 @@ namespace SIC.UserLayer
             if (memStream != null)
             {
                 HttpContext.Current.Response.Clear();
-                HttpContext.Current.Response.AppendHeader("Content-Disposition", "Attachment; filename=Contrato_Local_Comercial.pdf");
+                HttpContext.Current.Response.AppendHeader("Content-Disposition", "Attachment; filename=ORDEN_DE_COMPRA.pdf");
                 HttpContext.Current.Response.ContentType = "application/pdf";
                 HttpContext.Current.Response.OutputStream.Write(memStream.GetBuffer(), 0, memStream.GetBuffer().Length);
                 HttpContext.Current.Response.OutputStream.Flush();
