@@ -169,7 +169,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             List<SIC_T_ITEM_ALMACEN> list = ItemsAlmacenSeleccionados;
             if (e.Row.RowType == DataControlRowType.DataRow && list != null)
             {
-                int itemId = (int)gvListaItem.DataKeys[e.Row.RowIndex].Values["itm_alm_c_iid_item"];
+                int itemId = (int)gvListaItem.DataKeys[e.Row.RowIndex].Values["itm_c_iid"];
                 int almacenID = (int)gvListaItem.DataKeys[e.Row.RowIndex].Values["alm_c_iid"];
                 if (list.Any(x => x.itm_c_iid == itemId && x.alm_c_iid == almacenID))
                 {

@@ -3,6 +3,8 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <%@ Register Src="~/UserControl/wucMensajeAlerta.ascx" TagName="Mensaje" TagPrefix="uc1" %>
 <%@ Register src="ucFactura.ascx" tagname="ucFactura" tagprefix="uc2" %>
+<%@ Register src="ucBoleta.ascx" tagname="ucBoleta" tagprefix="uc3" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <style type="text/css">
         .style1
@@ -313,7 +315,89 @@
                             </td>
                         </tr>
                     </table>
-                </asp:View>                
+                </asp:View> 
+                <asp:View ID="vwBoletaPreliminar" runat="server">
+                <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td class="tit-nav-paginas" align="left">
+                                FACTURACION &gt; VISTA PREVIA FACTURA</td>
+                            <td align="right">
+                                <table width="220" border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <td>
+                                            &nbsp;</td>
+                                        <td>
+                                            <asp:LinkButton ID="LinkButton1" runat="server" CssClass="lnk" 
+                                                onclick="btnCancelarCCE_Click">Cancelar</asp:LinkButton>
+                                        </td>
+                                        <td style="width: 10px">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="center">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <td align="left" class="box-estilo01">
+                                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                <tr>
+                                                    <td align="left" class="style3">
+                                                        &nbsp;</td>
+                                                    <td align="left" class="style3">
+                                                    </td>
+                                                    <td align="left" class="style3">
+                                                    </td>
+                                                    <td align="left" class="style3">
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="style3">
+                                                        &nbsp;</td>
+                                                    <td align="left" class="style3">
+                                                        &nbsp;</td>
+                                                    <td align="left" class="style3">
+                                                        &nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="justify" class="style3" colspan="4">
+                                                        <uc3:ucBoleta ID="ucBoleta1" runat="server" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="style3">
+                                                        &nbsp;</td>
+                                                    <td align="left" class="style3">
+                                                        &nbsp;</td>
+                                                    <td align="left" class="style3">
+                                                        &nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="style3">
+                                                        &nbsp;</td>
+                                                    <td align="left" class="style3">
+                                                        &nbsp;</td>
+                                                    <td align="left" class="style3">
+                                                        &nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="style3">
+                                                        &nbsp;</td>
+                                                    <td align="left" class="style3">
+                                                        &nbsp;</td>
+                                                    <td align="left" class="style3">
+                                                        &nbsp;</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </asp:View>               
             </asp:MultiView>
             <asp:UpdatePanel ID="upMensaje" runat="server" UpdateMode="Conditional">
                 <ContentTemplate>

@@ -114,6 +114,10 @@ namespace SIC.UserLayer.Interfaces.Facturacion
             {
                 MostrarPreliminarFactura(venta);
             }
+            else if (venta.ven_c_itipodoc == (int)TipoParametroDetalle.FACTURA)
+            {
+                MostrarPreliminarBoleta(venta);
+            }
         }
 
         /// <summary>
@@ -124,6 +128,14 @@ namespace SIC.UserLayer.Interfaces.Facturacion
         {
             var factura = this.facturacionAutomaticaBL.GenerarFacturaDesdeVenta(venta);
             ucFactura1.MostrarFactura(factura);
+            mvFacturacionAutomatica.SetActiveView(vwFacturaPreliminar);
+            upGeneral.Update();
+        }
+
+        private void MostrarPreliminarBoleta(SIC_T_VENTA venta)
+        {
+            var boleta = this.facturacionAutomaticaBL.GenerarBoletaDesdeVenta(venta);
+            ucBoleta1.MostrarBoleta(boleta);
             mvFacturacionAutomatica.SetActiveView(vwFacturaPreliminar);
             upGeneral.Update();
         }
