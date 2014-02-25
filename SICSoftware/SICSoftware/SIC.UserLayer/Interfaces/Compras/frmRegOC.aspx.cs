@@ -1509,9 +1509,10 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             upGeneral.Update();
         }
 
-        private void DescargarODC()
+        private void DescargarODC(int id)
         {
-            pdf.init();
+            SIC_T_ORDEN_DE_COMPRA odc = _ordenCompra.ObtenerOrdenCompra(id);
+            PdfOrdenCompra.init(odc);
         }
 
         protected void gvListaOC_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -1525,7 +1526,11 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
         protected void lnkDescargar_Click(object sender, EventArgs e)
         {
-            DescargarODC();
+            LinkButton btnDescargar = sender as LinkButton;
+            GridViewRow row = btnDescargar.NamingContainer as GridViewRow;
+
+            int id = (int) gvListaOC.DataKeys[row.RowIndex].Value;
+            DescargarODC(id);
         }
 
         protected void gvListaOC_RowCommand(object sender, GridViewCommandEventArgs e)
