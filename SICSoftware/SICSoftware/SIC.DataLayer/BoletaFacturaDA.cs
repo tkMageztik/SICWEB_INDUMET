@@ -104,6 +104,53 @@ namespace SIC.DataLayer
                 return (from x in contexto.SIC_T_BOLETA
                         select x).ToList();
             }
-        }        
+        }
+
+        /// <summary>
+        /// Obtiene la Boleta por id.
+        /// </summary>
+        /// <returns>Objecto SIC_T_BOLETA</returns>
+        public SIC_T_BOLETA ObtenerBoleta(int id)
+        {
+            using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+            {
+                return (from x in contexto.SIC_T_BOLETA
+                        where x.bol_c_iid == id
+                        select x).FirstOrDefault();
+            }
+        }
+
+        /// <summary>
+        /// Obtiene la Factura por id.
+        /// </summary>
+        /// <returns>Objecto SIC_T_FACTURA</returns>
+        public SIC_T_FACTURA ObtenerFactura(int id)
+        {
+            using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+            {
+                contexto.SIC_T_ITEM.MergeOption = System.Data.Objects.MergeOption.NoTracking;
+                return (from x in contexto.SIC_T_FACTURA
+                        where x.fac_c_iid == id
+                        select x).FirstOrDefault();
+            }
+        }
+
+        public void ModificarFactura(SIC_T_FACTURA factura)
+        {
+            using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+            {
+                contexto.ApplyCurrentValues("SICDBWEBEntities.SIC_T_FACTURA", factura);
+                contexto.SaveChanges();
+            }
+        }
+
+        public void ModificarBoleta(SIC_T_BOLETA boleta)
+        {
+            using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+            {
+                contexto.ApplyCurrentValues("SICDBWEBEntities.SIC_T_BOLETA", boleta);
+                contexto.SaveChanges();
+            }
+        }
     }
 }
