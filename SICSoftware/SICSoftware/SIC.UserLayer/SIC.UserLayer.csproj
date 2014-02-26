@@ -392,6 +392,7 @@
     <Compile Include="Interfaces\Facturacion\frmVenta.aspx.designer.cs">
       <DependentUpon>frmVenta.aspx</DependentUpon>
     </Compile>
+    <Compile Include="pdfs\PdfOrdenCompra.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Report\ReporteClientePDF.cs" />
     <Compile Include="Site.Master.cs">
