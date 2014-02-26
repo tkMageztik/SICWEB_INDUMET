@@ -138,15 +138,43 @@
                                                 PageSize="15" BorderWidth="0px">
                                                 <AlternatingRowStyle CssClass="alt" />
                                                 <Columns>
-                                                    <asp:BoundField HeaderText="COD. ITEM" DataField="SIC_T_ITEM.itm_c_ccodigo" />
-                                                    <asp:BoundField HeaderText="DESC. ITEM" DataField="SIC_T_ITEM.itm_c_vdescripcion" />
-                                                    <asp:BoundField HeaderText="FAMILIA" DataField="SIC_T_ITEM.SIC_T_ITEM_SUB_FAMILIA.SIC_T_ITEM_FAMILIA.ifm_c_des" />
-                                                    <asp:BoundField HeaderText="SUBFAMILIA" DataField="SIC_T_ITEM.SIC_T_ITEM_SUB_FAMILIA.isf_c_vdesc" />
+                                                    <asp:TemplateField HeaderText="COD. ITEM">
+                                                        <ItemTemplate>
+                                                            <%# Eval("SIC_T_ITEM.itm_c_ccodigo")%>
+                                                        </ItemTemplate> 
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="DESC. ITEM">
+                                                        <ItemTemplate>
+                                                            <%# Eval("SIC_T_ITEM.itm_c_vdescripcion")%>
+                                                        </ItemTemplate> 
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="FAMILIA">
+                                                        <ItemTemplate>
+                                                            <%# Eval("SIC_T_ITEM.SIC_T_ITEM_SUB_FAMILIA.SIC_T_ITEM_FAMILIA.ifm_c_des")%>
+                                                        </ItemTemplate> 
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="SUBFAMILIA">
+                                                        <ItemTemplate>
+                                                            <%# Eval("SIC_T_ITEM.SIC_T_ITEM_SUB_FAMILIA.isf_c_vdesc")%>
+                                                        </ItemTemplate> 
+                                                    </asp:TemplateField>
                                                     <asp:BoundField HeaderText="COD. ALMACEN" DataField="alm_c_iid" />
-                                                    <asp:BoundField HeaderText="DESC. ALMACEN" DataField="SIC_T_ALMACEN.alm_c_vdesc" />
+                                                    <asp:TemplateField HeaderText="DESC. ALMACEN">
+                                                        <ItemTemplate>
+                                                            <%# Eval("SIC_T_ALMACEN.alm_c_vdesc")%>
+                                                        </ItemTemplate> 
+                                                    </asp:TemplateField>
                                                     <asp:BoundField HeaderText="STOCK" DataField="itm_alm_c_ecantidad" />
-                                                    <asp:BoundField HeaderText="PRE. COMPRA" DataField="SIC_T_ITEM.itm_c_dprecio_compra" />
-                                                    <asp:BoundField HeaderText="PRE. VENTA" DataField="SIC_T_ITEM.itm_c_dprecio_venta" />
+                                                    <asp:TemplateField HeaderText="PRE. COMPRA">
+                                                        <ItemTemplate>
+                                                            <%# Eval("SIC_T_ITEM.itm_c_dprecio_compra")%>
+                                                        </ItemTemplate> 
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="PRE. VENTA">
+                                                        <ItemTemplate>
+                                                            <%# Eval("SIC_T_ITEM.itm_c_dprecio_venta")%>
+                                                        </ItemTemplate> 
+                                                    </asp:TemplateField>
                                                 </Columns>
                                                 <PagerStyle CssClass="pgr" />
                                             </asp:GridView>

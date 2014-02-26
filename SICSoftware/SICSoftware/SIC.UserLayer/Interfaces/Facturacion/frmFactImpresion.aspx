@@ -18,7 +18,6 @@
     <asp:UpdatePanel ID="upGeneral" UpdateMode="Conditional" ChildrenAsTriggers="False"
         runat="server">
         <ContentTemplate>
-
             <script type = "text/javascript">
                 function Check_Click(objRef) {
                     //Get the Row based on checkbox
@@ -117,7 +116,7 @@
                                                                                     <tr>
                                                                                         <td align="center">
                                                                                             <asp:Button ID="btnBuscarFactura" runat="server" CssClass="button small gris" 
-                                                                                                onclick="btnBuscar_Click" Style="width: 100px" Text="Buscar" />
+                                                                                                 Style="width: 100px" Text="Buscar" />
                                                                                         </td>
                                                                                         <td align="center">
                                                                                             &nbsp;</td>
@@ -138,14 +137,15 @@
                                                     <ContentTemplate>
                                                         <asp:GridView ID="gvListaFactura" runat="server" 
                                                             AlternatingRowStyle-CssClass="alt" AutoGenerateColumns="False" 
-                                                            BorderStyle="None" BorderWidth="0px" CssClass="mGrid" DataKeyNames="ven_c_iid" 
+                                                            BorderStyle="None" BorderWidth="0px" CssClass="mGrid" 
                                                             EmptyDataText="No hay datos disponibles." GridLines="None" 
-                                                            PagerStyle-CssClass="pgr" PageSize="15" ShowHeaderWhenEmpty="True" Width="100%">
+                                                            PagerStyle-CssClass="pgr" PageSize="15" ShowHeaderWhenEmpty="True" 
+                                                            Width="100%" DataKeyNames="fac_c_iid">
                                                             <AlternatingRowStyle CssClass="alt" />
                                                             <Columns>                                                                
                                                                 <asp:TemplateField HeaderText="Serie y Número">
                                                                     <ItemTemplate>
-                                                                        
+                                                                        <%# Eval("fac_c_serie") + "-" + Eval("fac_c_numero").ToString().PadLeft(7,'0')%>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
                                                                 <asp:CommandField SelectText="Imprimir" ShowSelectButton="True" />

@@ -32,7 +32,13 @@ namespace SIC.BusinessLayer
 
         public void ImprimirFactura(int id)
         {
-
+            BoletaFacturaDA bfDA = new BoletaFacturaDA();
+            SIC_T_FACTURA factura =  bfDA.ObtenerFactura(id);
+            if (factura != null)
+            {
+                factura.fac_c_bimpreso = true;
+                //bfDA.
+            }
         }
 
         public void ImprimirBoleta(int id)
