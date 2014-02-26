@@ -34,11 +34,9 @@ namespace SIC.UserLayer
             else
             {
                 Session["USUARIO"] = usuario;
+                Response.Redirect("/Interfaces/frmPrincipal.aspx");
 #if DEBUG
                 Response.Redirect("/Interfaces/Almacen/frmAlmacenes.aspx");
-#endif
-#if RELEASE
-                Response.Redirect("/Interfaces/frmPrincipal.aspx");
 #endif
 
             }
