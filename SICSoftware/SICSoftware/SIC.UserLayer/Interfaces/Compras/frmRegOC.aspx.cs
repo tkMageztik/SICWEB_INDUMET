@@ -135,7 +135,40 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
         protected void btnBuscarProveedor_Click(object sender, EventArgs e)
         {
-            this.MostrarBusquedaProveedor();
+            if (txtRUCProv.Text == "")
+            {
+                this.MostrarBusquedaProveedor();
+            }
+            else
+            {
+                SIC_T_CLIENTE proveedor = _cliente.BuscarProveedor(txtRUCProv.Text);
+
+                if (proveedor != null)
+                {
+                    txtRUCProv.Text = proveedor.cli_c_vdoc_id;
+                    txtRSProv.Text = proveedor.cli_c_vraz_soc;
+
+                    if (EscenarioOC == TipoOperacion.Modificacion)
+                    {
+                        this.OCSeleccionado.prov_c_vdoc_id = proveedor.cli_c_vdoc_id;
+                    }
+                    else if (EscenarioOC == TipoOperacion.Creacion)
+                    {
+                        this.OCNuevo.prov_c_vdoc_id = proveedor.cli_c_vdoc_id;
+                    }
+
+                }
+                else
+                {
+                    Mensaje("No existe el proveedor con el ruc " + txtRUCProv.Text, "");
+                    txtRUCProv.Text = "";
+                    txtRSProv.Text = "";
+                }
+
+
+            }
+
+
         }
 
 
@@ -512,8 +545,23 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
         private void ListarProveedores()
         {
-            gvProveedores.DataSource = _cliente.ListarProveedor();
+            gvProveedores.DataSource = _cliente.ListarProveedor(
+                new SIC_T_CLIENTE()
+                {
+                    cli_c_vraz_soc = txtBusqRazProv.Text,
+                    cli_c_vdoc_id = txtBusqRucProv.Text,
+                    cli_c_bproveedor = true,
+                    cli_c_bcliente = null
+                });
             gvProveedores.DataBind();
+
+
+        }
+
+        private void test()
+        {
+
+            List<SIC_T_CLIENTE> test = gvProveedores.DataSource as List<SIC_T_CLIENTE>;
         }
 
         private void ObtenerDatosImpuesto()
@@ -1107,7 +1155,8 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
             if (gvProveedores.Rows[gvProveedores.SelectedIndex].Cells[1].Text != null)
             {
-                txtRSProv.Text = gvProveedores.Rows[gvProveedores.SelectedIndex].Cells[1].Text;
+                txtRUCProv.Text = gvProveedores.DataKeys[gvProveedores.SelectedIndex].Values["cli_c_vdoc_id"].ToString();
+                txtRSProv.Text = gvProveedores.DataKeys[gvProveedores.SelectedIndex].Values["cli_c_vraz_soc"].ToString();
             }
 
             mvOC.ActiveViewIndex = 1;
@@ -1249,6 +1298,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             this.TasaCambio = 1.0M;
             this.ItemsSeleccionadosPreliminar = null;
             this.txtRSProv.Text = string.Empty;
+            this.txtRUCProv.Text = string.Empty;
             this.cboMoneda.SelectedIndex = -1;
             this.cboEstado.SelectedIndex = -1;
             this.txtFecEnIni.Text = DateTime.Today.ToString("dd/MM/yyyy");
@@ -1521,7 +1571,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             LinkButton btnDescargar = sender as LinkButton;
             GridViewRow row = btnDescargar.NamingContainer as GridViewRow;
 
-            int id = (int) gvListaOC.DataKeys[row.RowIndex].Value;
+            int id = (int)gvListaOC.DataKeys[row.RowIndex].Value;
             DescargarODC(id);
         }
 
@@ -1555,6 +1605,38 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
                 ListarOrdenCompra();
             }
+        }
+
+        protected void btnBuscarProv_Click(object sender, EventArgs e)
+        {
+            this.ListarProveedores();
+        }
+
+        protected void gvItemsSeleccionados_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            if (this.EscenarioOC == TipoOperacion.Modificacion)
+            {
+                OCSeleccionado.SIC_T_ORDEN_DE_COMPRA_DET.ToList<SIC_T_ORDEN_DE_COMPRA_DET>().RemoveAt(e.RowIndex);
+                gvItemsSeleccionados.DataSource = OCSeleccionado.SIC_T_ORDEN_DE_COMPRA_DET;
+                gvItemsSeleccionados.DataBind();
+            }
+            else if (this.EscenarioOC == TipoOperacion.Creacion)
+            {
+                List<SIC_T_ORDEN_DE_COMPRA_DET> lstOdcDET = OCNuevo.SIC_T_ORDEN_DE_COMPRA_DET.ToList<SIC_T_ORDEN_DE_COMPRA_DET>();
+
+                lstOdcDET.RemoveAt(e.RowIndex);
+
+                //OCNuevo.SIC_T_ORDEN_DE_COMPRA_DET = new System.Data.Objects.DataClasses.EntityCollection<SIC_T_ORDEN_DE_COMPRA_DET>();
+                //OCNuevo.SIC_T_ORDEN_DE_COMPRA_DET = lstOdcDET ;
+                //foreach (var odcDet in lstOdcDET)
+                //{
+                //    OCNuevo.SIC_T_ORDEN_DE_COMPRA_DET.Add(odcDet);
+                //}
+
+                gvItemsSeleccionados.DataSource = OCNuevo.SIC_T_ORDEN_DE_COMPRA_DET;
+                gvItemsSeleccionados.DataBind();
+            }
+
         }
                 
         private void EliminarDetalleOC(int idItem)

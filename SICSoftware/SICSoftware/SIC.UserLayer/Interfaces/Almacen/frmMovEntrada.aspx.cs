@@ -352,7 +352,10 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 this.mvMovimientoEntrada.ActiveViewIndex = 1;
                 this.ListarDetalleMovimiento();
                 txtAlmacen.Text = MovEntSeleccionado.SIC_T_ALMACEN != null ? MovEntSeleccionado.SIC_T_ALMACEN.alm_c_vdesc : string.Empty;
-                txtSerieNumeroOC.Text = MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA != null ? MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA.odc_c_vcodigo.ToString() : string.Empty;
+                txtNumeroOC.Text = MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA != null ? MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA.odc_c_vcodigo.ToString() : string.Empty;
+                txtSerieOC.Text = MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA != null ? MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA.odc_c_cserie.ToString() : string.Empty;
+
+
                 txtProveedorOC.Text = MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA != null && MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE != null ?
                                     MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vraz_soc : string.Empty;
                 txtObs.Text = MovEntSeleccionado.mve_c_vobservacion;
@@ -445,7 +448,8 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             this.txtNumeroGuia.Text = string.Empty;
             this.txtSerieFact.Text = string.Empty;
             this.txtSerieGuia.Text = string.Empty;
-            this.txtSerieNumeroOC.Text = string.Empty;
+            this.txtNumeroOC.Text = string.Empty;
+            this.txtSerieOC.Text = string.Empty;
             this.txtFechaGuia.Text = string.Empty;
             this.txtFechaFact.Text = string.Empty;
             this.MovEntNuevo = null;
@@ -723,7 +727,8 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                     if (this.EscenarioMovEn == TipoOperacion.Creacion)
                     {
                         MovEntNuevo.SIC_T_ORDEN_DE_COMPRA = _ordenCompra.ObtenerOrdenCompraNoContext(id);
-                        txtSerieNumeroOC.Text = MovEntNuevo.SIC_T_ORDEN_DE_COMPRA != null ? MovEntNuevo.SIC_T_ORDEN_DE_COMPRA.odc_c_vcodigo.ToString() : string.Empty;
+                        txtNumeroOC.Text = MovEntNuevo.SIC_T_ORDEN_DE_COMPRA != null ? MovEntNuevo.SIC_T_ORDEN_DE_COMPRA.odc_c_vcodigo.ToString() : string.Empty;
+                        txtSerieOC.Text = MovEntNuevo.SIC_T_ORDEN_DE_COMPRA != null ? MovEntNuevo.SIC_T_ORDEN_DE_COMPRA.odc_c_cserie.ToString() : string.Empty;
                         txtProveedorOC.Text = MovEntNuevo.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vraz_soc;
 
                         foreach (var detalle in MovEntNuevo.SIC_T_ORDEN_DE_COMPRA.SIC_T_ORDEN_DE_COMPRA_DET)
@@ -743,7 +748,8 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                     else if (this.EscenarioMovEn == TipoOperacion.Modificacion)
                     {
                         MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA = _ordenCompra.ObtenerOrdenCompraNoContext(id);
-                        txtSerieNumeroOC.Text = MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA != null ? MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA.odc_c_vcodigo.ToString() : string.Empty;
+                        txtNumeroOC.Text = MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA != null ? MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA.odc_c_vcodigo.ToString() : string.Empty;
+                        txtSerieOC.Text = MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA != null ? MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA.odc_c_cserie.ToString() : string.Empty;
                         txtProveedorOC.Text = MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vraz_soc;
 
                         foreach (var detalle in MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA.SIC_T_ORDEN_DE_COMPRA_DET)

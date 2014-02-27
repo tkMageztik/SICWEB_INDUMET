@@ -32,6 +32,7 @@ namespace SIC.UserLayer.Interfaces.Reporte
             ClienteBL clienteBL = new ClienteBL();
             gvLista.DataSource = clienteBL.ListarClientes(
             new SIC_T_CLIENTE() { cli_c_vraz_soc = txtFiltroRazonSocial.Text, cli_c_vdoc_id = txtRuc.Text });
+
             gvLista.DataBind();
             upGeneral.Update();
         }

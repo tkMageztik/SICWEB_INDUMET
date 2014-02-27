@@ -192,8 +192,9 @@
                                                         Serie - Número
                                                     </td>
                                                     <td align="left">
-                                                        <asp:TextBox ID="txtSerieNumeroOC" runat="server" ReadOnly="True" Height="26px" Width="206px"></asp:TextBox>
-                                                        &nbsp;&nbsp;<asp:LinkButton ID="btnBuscarOC" runat="server" CssClass="lnk" OnClick="btnBuscarOC_Click">Buscar</asp:LinkButton>
+                                                        <asp:TextBox ID="txtSerieOC" runat="server" ReadOnly="True" Height="26px" Width="50px"></asp:TextBox>&nbsp;
+                                                        <asp:TextBox ID="txtNumeroOC" runat="server" ReadOnly="True" Height="26px" Width="206px"></asp:TextBox>
+                                                        &nbsp;&nbsp;
                                                     </td>
                                                     <td align="left" class="style2">
                                                         &nbsp;
@@ -202,6 +203,7 @@
                                                         &nbsp;
                                                     </td>
                                                     <td align="left" class="style1">
+                                                        &nbsp;<asp:LinkButton ID="btnBuscarOC" runat="server" CssClass="lnk" OnClick="btnBuscarOC_Click">Buscar</asp:LinkButton>
                                                         &nbsp;
                                                     </td>
                                                     <td align="left" class="style1">
@@ -587,11 +589,10 @@
                                             OnPageIndexChanging="gvListaOC_PageIndexChanging">
                                             <AlternatingRowStyle CssClass="alt" />
                                             <Columns>
-                                                <asp:TemplateField HeaderText="Proveedor">
-                                                    <ItemTemplate>
-                                                        <%# Eval("SIC_T_CLIENTE.cli_c_vdoc_id")%>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
+                                                <asp:BoundField DataField="odc_c_cserie" HeaderText="Serie" />
+                                                <asp:BoundField DataField="odc_c_vcodigo" HeaderText="Código" />
+                                                <asp:BoundField DataField="SIC_T_CLIENTE.cli_c_vdoc_id" HeaderText="RUC" />
+                                                <asp:BoundField DataField="SIC_T_CLIENTE.cli_c_vraz_soc" HeaderText="Proveedor" />
                                                 <asp:BoundField DataField="odc_c_vdescmoneda" HeaderText="Moneda" />
                                                 <asp:BoundField DataField="odc_c_zfecharegistro" HeaderText="Fecha Entrega" />
                                                 <asp:BoundField DataField="odc_c_etotal" HeaderText="Total" />

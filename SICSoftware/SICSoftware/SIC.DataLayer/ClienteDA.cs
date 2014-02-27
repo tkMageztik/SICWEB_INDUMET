@@ -20,7 +20,7 @@ namespace SIC.DataLayer
             {
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
-                    return contexto.SIC_SP_CLIENTE_LISTAR( obj.cli_c_vraz_soc, obj.cli_c_vdoc_id).ToList<SIC_T_CLIENTE>();
+                    return contexto.SIC_SP_CLIENTE_LISTAR(obj.cli_c_vraz_soc, obj.cli_c_vdoc_id, obj.cli_c_bcliente, obj.cli_c_bproveedor).ToList<SIC_T_CLIENTE>();
                 }
             }
             catch (Exception)
@@ -28,6 +28,7 @@ namespace SIC.DataLayer
                 throw;
             }
         }
+
 
         public List<SIC_T_CLIENTE> ListarClientesAlt()
         {
@@ -62,7 +63,26 @@ namespace SIC.DataLayer
                 throw;
             }
         }
-        
+
+        public SIC_T_CLIENTE BuscarProveedor(String ruc)
+        {
+            try
+            {
+                using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+                {
+                    return (from x in contexto.SIC_T_CLIENTE
+                            where x.cli_c_bactivo == true && x.cli_c_bproveedor == true
+                            & x.cli_c_vdoc_id == ruc
+                            select x).FirstOrDefault<SIC_T_CLIENTE>();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
 
         public SIC_T_CLIENTE BuscarCliente(string _strRazSoc)
         {
@@ -886,7 +906,7 @@ namespace SIC.DataLayer
 
         public List<SIC_T_CLIENTE> ListarClientes(string razonSocial, string ruc)
         {
-            
+
             using (SICDBWEBEntities contexto = new SICDBWEBEntities())
             {
                 contexto.ContextOptions.LazyLoadingEnabled = false;

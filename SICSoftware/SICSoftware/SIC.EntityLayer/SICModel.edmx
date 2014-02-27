@@ -1345,6 +1345,8 @@
         <Function Name="SIC_SP_CLIENTE_LISTAR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Mantenimiento">
           <Parameter Name="CLI_C_VRAZ_SOC" Type="varchar" Mode="In" />
           <Parameter Name="CLI_C_VDOC_ID" Type="varchar" Mode="In" />
+          <Parameter Name="CLI_C_BCLIENTE" Type="bit" Mode="In" />
+          <Parameter Name="CLI_C_BPROVEEDOR" Type="bit" Mode="In" />
         </Function>
         <Function Name="SIC_SP_CLIENTE_LISTAR_COLABORADORES_POR_AREA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Mantenimiento">
           <Parameter Name="INTCODIGOAREA" Type="tinyint" Mode="In" />
@@ -1479,10 +1481,6 @@
             <End Role="SIC_T_MENU" EntitySet="SIC_T_MENU" />
             <End Role="SIC_T_MENU1" EntitySet="SIC_T_MENU" />
           </AssociationSet>
-          <FunctionImport Name="SIC_SP_VERIFICAR_ACCESO">
-            <Parameter Name="usua_c_cdoc_id" Mode="In" Type="String" />
-            <Parameter Name="usua_c_vpass" Mode="In" Type="String" />
-          </FunctionImport>
           <EntitySet Name="SIC_T_COLABORADOR" EntityType="SICDBWEBModel.SIC_T_COLABORADOR" />
           <AssociationSet Name="FK_SIC_T_COLABORADOR_SIC_T_COLAB_AREA" Association="SICDBWEBModel.FK_SIC_T_COLABORADOR_SIC_T_COLAB_AREA">
             <End Role="SIC_T_COLAB_AREA" EntitySet="SIC_T_COLAB_AREA" />
@@ -1574,10 +1572,6 @@
             <End Role="SIC_T_CLIENTE" EntitySet="SIC_T_CLIENTE" />
             <End Role="SIC_T_CLI_CONTACTO" EntitySet="SIC_T_CLI_CONTACTO" />
           </AssociationSet>
-          <FunctionImport Name="SIC_SP_CLIENTE_LISTAR" EntitySet="SIC_T_CLIENTE" ReturnType="Collection(SICDBWEBModel.SIC_T_CLIENTE)">
-            <Parameter Name="CLI_C_VRAZ_SOC" Mode="In" Type="String" />
-            <Parameter Name="CLI_C_VDOC_ID" Mode="In" Type="String" />
-          </FunctionImport>
           <EntitySet Name="SIC_T_EMP_CENTRO_COSTO" EntityType="SICDBWEBModel.SIC_T_EMP_CENTRO_COSTO" />
           <AssociationSet Name="FK_SIC_T_ALMACEN_CENTRO_COSTO_SIC_T_EMP_CENTRO_COSTO" Association="SICDBWEBModel.FK_SIC_T_ALMACEN_CENTRO_COSTO_SIC_T_EMP_CENTRO_COSTO">
             <End Role="SIC_T_EMP_CENTRO_COSTO" EntitySet="SIC_T_EMP_CENTRO_COSTO" />
@@ -1693,6 +1687,12 @@
             <End Role="SIC_T_ITEM" EntitySet="SIC_T_ITEM" />
             <End Role="SIC_T_ITEM_ALMACEN" EntitySet="SIC_T_ITEM_ALMACEN" />
           </AssociationSet>
+          <FunctionImport Name="SIC_SP_CLIENTE_LISTAR" EntitySet="SIC_T_CLIENTE" ReturnType="Collection(SICDBWEBModel.SIC_T_CLIENTE)">
+            <Parameter Name="CLI_C_VRAZ_SOC" Mode="In" Type="String" />
+            <Parameter Name="CLI_C_VDOC_ID" Mode="In" Type="String" />
+            <Parameter Name="CLI_C_BCLIENTE" Mode="In" Type="Boolean" />
+            <Parameter Name="CLI_C_BPROVEEDOR" Mode="In" Type="Boolean" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="SIC_T_CLI_CONTAC_CARGO">
           <Key>
@@ -2348,25 +2348,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <ComplexType Name="SIC_SP_CLIENTE_LISTAR_Result">
-          <Property Type="String" Name="cli_c_vraz_soc" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="cli_c_vpartida" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="cli_c_vrubro" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="cli_c_ctlf" Nullable="true" MaxLength="15" />
-          <Property Type="DateTime" Name="cli_c_dfec_aniv" Nullable="true" />
-          <Property Type="Boolean" Name="cli_c_btipo_pers" Nullable="true" />
-          <Property Type="String" Name="colab_c_cdoc_id" Nullable="true" MaxLength="8" />
-          <Property Type="String" Name="cli_scor_c_cletra" Nullable="true" MaxLength="1" />
-          <Property Type="Boolean" Name="cli_c_bactivo" Nullable="true" />
-          <Property Type="String" Name="cli_c_vdoc_id" Nullable="false" MaxLength="11" />
-          <Property Type="Byte" Name="zona_rep_c_yid" Nullable="true" />
-          <Property Type="DateTime" Name="cli_c_dfecharegistra" Nullable="false" Precision="23" />
-          <Property Type="DateTime" Name="cli_c_dfechaactualiza" Nullable="true" Precision="23" />
-          <Property Type="DateTime" Name="cli_c_dfec_const" Nullable="true" />
-          <Property Type="Boolean" Name="cli_c_bproveedor" Nullable="true" />
-          <Property Type="Boolean" Name="cli_c_bcliente" Nullable="true" />
-          <Property Type="String" Name="cli_direc_c_dfiscal" Nullable="true" MaxLength="358" />
-        </ComplexType>
         <EntityType Name="SIC_T_EMP_CENTRO_COSTO">
           <Key>
             <PropertyRef Name="emp_cst_c_iid" />
@@ -3311,8 +3292,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="SIC_SP_CLIENTE_LISTAR" FunctionName="SICDBWEBModel.Store.SIC_SP_CLIENTE_LISTAR">
-          </FunctionImportMapping>
           <EntitySetMapping Name="SIC_T_EMP_CENTRO_COSTO">
             <EntityTypeMapping TypeName="SICDBWEBModel.SIC_T_EMP_CENTRO_COSTO">
               <MappingFragment StoreEntitySet="SIC_T_EMP_CENTRO_COSTO">
@@ -3521,6 +3500,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SIC_SP_CLIENTE_LISTAR" FunctionName="SICDBWEBModel.Store.SIC_SP_CLIENTE_LISTAR" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
