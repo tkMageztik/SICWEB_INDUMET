@@ -331,7 +331,8 @@
                                                                 GridLines="None" Height="16px" OnRowCancelingEdit="gvItemsSeleccionados_RowCancelingEdit"
                                                                 OnRowEditing="gvItemsSeleccionados_RowEditing" OnRowUpdating="gvItemsSeleccionados_RowUpdating"
                                                                 OnSelectedIndexChanged="gvItemsSeleccionados_SelectedIndexChanged" PagerStyle-CssClass="pgr"
-                                                                ShowHeaderWhenEmpty="True" ViewStateMode="Enabled" Width="100%">
+                                                                ShowHeaderWhenEmpty="True" ViewStateMode="Enabled" Width="100%" 
+                                                                onrowdeleting="gvItemsSeleccionados_RowDeleting">
                                                                 <AlternatingRowStyle CssClass="alt" />
                                                                 <Columns>
                                                                     <asp:TemplateField HeaderText="Código">
@@ -373,11 +374,13 @@
                                                                     </asp:TemplateField>
                                                                     <asp:CommandField ShowEditButton="True" CancelText="Cancelar" DeleteText="Eliminar"
                                                                         EditText="Editar" UpdateText="Actualizar" />
+                                                                    <asp:CommandField ShowDeleteButton="True" DeleteText="Eliminar" />
                                                                     <asp:TemplateField HeaderText="Unit. Ref. (Soles)">
                                                                         <ItemTemplate>
                                                                             <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}",Eval("precioReferenciaSoles"))%>
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
+                                                                    
                                                                 </Columns>
                                                                 <PagerStyle CssClass="pgr" />
                                                             </asp:GridView>

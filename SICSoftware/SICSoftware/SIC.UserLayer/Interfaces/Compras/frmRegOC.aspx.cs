@@ -367,6 +367,11 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
         }
 
+        protected void gvItemsSeleccionados_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            this.EliminarDetalleOC((int)gvItemsSeleccionados.DataKeys[e.RowIndex].Value);
+        }
+
         #endregion
 
         #region Metodos de Listado
@@ -1424,19 +1429,6 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
         protected void gvListaItem_RowCreated(object sender, GridViewRowEventArgs e)
         {
-            //if (e.Row.RowType == DataControlRowType.DataRow &&
-            //   (e.Row.RowState == DataControlRowState.Normal ||
-            //    e.Row.RowState == DataControlRowState.Alternate))
-            //{
-            //    CheckBox chkBxSelect = (CheckBox)e.Row.Cells[1].FindControl("chkSelect");
-            //    CheckBox chkBxHeader = (CheckBox)this.gvListaItem.HeaderRow.FindControl("chkAll");
-            //    chkBxSelect.Attributes["onclick"] = string.Format
-            //                                           (
-            //                                              "javascript:ChildClick(this,'{0}');",
-            //                                              chkBxHeader.ClientID
-            //                                           );
-            //}
-            //
 
         }
 
@@ -1564,23 +1556,26 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 ListarOrdenCompra();
             }
         }
-
-        //protected void PostBackBind_DataBinding(object sender, EventArgs e)
-        //{
-        //    LinkButton lb = (LinkButton)sender;
-        //    ScriptManager sm = (ScriptManager)Page.Master.FindControl("SM_ID");
-        //    sm.RegisterPostBackControl(lb);
-
-        //}
-
-        //protected void gvListaOC_DataBinding(object sender, EventArgs e)
-        //{
-        //    if (((GridView)sender).SelectedIndex != -1)
-        //    {
-        //        LinkButton lnkDescargar = ((GridView)sender).FindControl("lnkDescargar") as LinkButton;
-        //        ScriptManager.GetCurrent(this).RegisterPostBackControl(lnkDescargar);
-        //    }
-        //}
-
+                
+        private void EliminarDetalleOC(int idItem)
+        {
+            foreach (int i in this.ItemsSeleccionadosPreliminar)
+            {
+                if (i == idItem)
+                {
+                    ItemsSeleccionadosPreliminar.Remove(i);
+                    break;
+                }
+            }
+            if (this.EscenarioOC == TipoOperacion.Creacion)
+            {
+                ActualizarListaItems(this.OCNuevo);
+            }
+            else if (this.EscenarioOC == TipoOperacion.Modificacion)
+            {
+                ActualizarListaItems(this.OCSeleccionado);
+            }
+            upGeneral.Update();
+        }        
     }
 }
