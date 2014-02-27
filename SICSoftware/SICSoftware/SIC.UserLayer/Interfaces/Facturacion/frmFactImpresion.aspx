@@ -149,6 +149,12 @@
                                                                         <%# Eval("fac_c_serie") + "-" + Eval("fac_c_numero").ToString().PadLeft(7,'0')%>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
+                                                                <asp:TemplateField HeaderText="Cliente">
+                                                                    <ItemTemplate>
+                                                                        <%# Eval("SIC_T_VENTA.SIC_T_CLIENTE.cli_c_vraz_soc")%>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                                <asp:BoundField HeaderText="FECHA DE REGISTRO" DataField="fac_c_zfecharegistro" />
                                                                 <asp:CommandField SelectText="Imprimir" ShowSelectButton="True" />
                                                             </Columns>
                                                             <PagerStyle CssClass="pgr" />
@@ -234,6 +240,12 @@
                                                                         <%# Eval("bol_c_serie") + "-" + Eval("bol_c_numero").ToString().PadLeft(7,'0')%>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
+                                                                <asp:TemplateField HeaderText="Cliente">
+                                                                    <ItemTemplate>
+                                                                        <%# Eval("SIC_T_VENTA.SIC_T_CLIENTE.cli_c_vraz_soc")%>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                                <asp:BoundField HeaderText="FECHA DE REGISTRO" DataField="bol_c_zfecharegistro" />
                                                                 <asp:CommandField SelectText="Imprimir" ShowSelectButton="True" />
                                                             </Columns>
                                                             <PagerStyle CssClass="pgr" />
