@@ -79,8 +79,6 @@ namespace SIC.DataLayer
             {
                 throw;
             }
-        }
-
-       
+        }       
     }
 }

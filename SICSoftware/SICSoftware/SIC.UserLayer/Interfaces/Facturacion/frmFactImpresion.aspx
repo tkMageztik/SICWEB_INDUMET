@@ -116,7 +116,7 @@
                                                                                     <tr>
                                                                                         <td align="center">
                                                                                             <asp:Button ID="btnBuscarFactura" runat="server" CssClass="button small gris" 
-                                                                                                 Style="width: 100px" Text="Buscar" />
+                                                                                                Text="Buscar" Width="100px" />
                                                                                         </td>
                                                                                         <td align="center">
                                                                                             &nbsp;</td>
@@ -140,7 +140,8 @@
                                                             BorderStyle="None" BorderWidth="0px" CssClass="mGrid" 
                                                             EmptyDataText="No hay datos disponibles." GridLines="None" 
                                                             PagerStyle-CssClass="pgr" PageSize="15" ShowHeaderWhenEmpty="True" 
-                                                            Width="100%" DataKeyNames="fac_c_iid">
+                                                            Width="100%" DataKeyNames="fac_c_iid" 
+                                                            onselectedindexchanged="gvListaFactura_SelectedIndexChanged">
                                                             <AlternatingRowStyle CssClass="alt" />
                                                             <Columns>                                                                
                                                                 <asp:TemplateField HeaderText="Serie y Número">
@@ -167,22 +168,79 @@
                                                         &nbsp;</td>
                                                 </tr>
                                                 <tr>
-                                                    <td align="left" class="style1">
-                                                        </td>
-                                                    <td align="left" class="style1" colspan="2">
-                                                        </td>
-                                                    <td class="style1">
+                                                    <td align="left" class="style1" colspan="4">
+                                                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                            <tr>
+                                                                <td align="left" class="box-estilo01">
+                                                                    <table width="100%">
+                                                                        <tr>
+                                                                            <td>
+                                                                                <table>
+                                                                                    <tr>
+                                                                                        <td class="txt-box-estilo">
+                                                                                            &nbsp;</td>
+                                                                                        <td>
+                                                                                            &nbsp;</td>
+                                                                                        <td style="width: 20px">
+                                                                                            &nbsp;</td>
+                                                                                        <td class="txt-box-estilo">
+                                                                                            &nbsp;</td>
+                                                                                        <td>
+                                                                                            &nbsp;</td>
+                                                                                        <td style="width: 20px">
+                                                                                            &nbsp;</td>
+                                                                                        <td>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            &nbsp;
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </td>
+                                                                            <td align="right">
+                                                                                <table>
+                                                                                    <tr>
+                                                                                        <td align="center">
+                                                                                            <asp:Button ID="btnBuscarBoleta" runat="server" CssClass="button small gris" 
+                                                                                                Text="Buscar" Width="100px" />
+                                                                                        </td>
+                                                                                        <td align="center">
+                                                                                            &nbsp;</td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
                                                         </td>
                                                 </tr>
                                                 <tr>
-                                                    <td align="left" class="txt-box-estilo">
-                                                        &nbsp;</td>
-                                                    <td align="left" class="txt-box-estilo">
-                                                        &nbsp;</td>
-                                                    <td align="left" class="txt-box-estilo">
-                                                        &nbsp;</td>
-                                                    <td align="left" class="txt-box-estilo">
-                                                        &nbsp;</td>
+                                                    <td align="left" class="style1" colspan="4">
+                                                    <asp:UpdatePanel ID="upListaBoleta" 
+                                                    UpdateMode="Conditional" ChildrenAsTriggers="False" runat="server">
+                                                    <ContentTemplate>
+                                                        <asp:GridView ID="gvListaBoleta" runat="server" 
+                                                            AlternatingRowStyle-CssClass="alt" AutoGenerateColumns="False" 
+                                                            BorderStyle="None" BorderWidth="0px" CssClass="mGrid" DataKeyNames="bol_c_iid" 
+                                                            EmptyDataText="No hay datos disponibles." GridLines="None" 
+                                                            PagerStyle-CssClass="pgr" PageSize="15" ShowHeaderWhenEmpty="True" 
+                                                            Width="100%" onselectedindexchanged="gvListaBoleta_SelectedIndexChanged">
+                                                            <AlternatingRowStyle CssClass="alt" />
+                                                            <Columns>
+                                                                <asp:TemplateField HeaderText="Serie y Número">
+                                                                    <ItemTemplate>
+                                                                        <%# Eval("bol_c_serie") + "-" + Eval("bol_c_numero").ToString().PadLeft(7,'0')%>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                                <asp:CommandField SelectText="Imprimir" ShowSelectButton="True" />
+                                                            </Columns>
+                                                            <PagerStyle CssClass="pgr" />
+                                                        </asp:GridView>
+                                                    </ContentTemplate>
+                                                    </asp:UpdatePanel>
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td align="left" class="txt-box-estilo">

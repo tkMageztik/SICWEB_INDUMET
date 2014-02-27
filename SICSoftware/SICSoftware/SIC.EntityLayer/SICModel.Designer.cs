@@ -8,13 +8,12 @@
 //------------------------------------------------------------------------------
 
 using System;
-using System.ComponentModel;
-using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Linq;
-using System.Runtime.Serialization;
+using System.Data.EntityClient;
+using System.ComponentModel;
 using System.Xml.Serialization;
+using System.Runtime.Serialization;
 
 [assembly: EdmSchemaAttribute()]
 #region Metadatos de relaciones en EDM
@@ -64,6 +63,11 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_ALMACEN", "SIC_T_ALMACEN", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_ALMACEN), "SIC_T_MOVIMIENTO_ENTRADA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_MOVIMIENTO_ENTRADA), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_VENTA_DETALLE_SIC_T_ALMACEN", "SIC_T_ALMACEN", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_ALMACEN), "SIC_T_VENTA_DETALLE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_VENTA_DETALLE), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_ITEM_ALMACEN_SIC_T_ITEM", "SIC_T_ITEM", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_ITEM), "SIC_T_ITEM_ALMACEN", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_ITEM_ALMACEN), true)]
+[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_MOVIMIENTO_SALIDA", "SIC_T_MOVIMIENTO_SALIDA", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_MOVIMIENTO_SALIDA), "SIC_T_MOVIMIENTO_SALIDA_DETALLE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_MOVIMIENTO_SALIDA_DETALLE), true)]
+[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_SALIDA_SIC_T_VENTA", "SIC_T_VENTA", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SIC.EntityLayer.SIC_T_VENTA), "SIC_T_MOVIMIENTO_SALIDA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_MOVIMIENTO_SALIDA), true)]
+[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_ALMACEN", "SIC_T_ALMACEN", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_ALMACEN), "SIC_T_MOVIMIENTO_SALIDA_DETALLE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_MOVIMIENTO_SALIDA_DETALLE), true)]
+[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_ITEM", "SIC_T_ITEM", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_ITEM), "SIC_T_MOVIMIENTO_SALIDA_DETALLE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_MOVIMIENTO_SALIDA_DETALLE), true)]
+[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_SALIDA_SIC_T_CLIENTE", "SIC_T_CLIENTE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_CLIENTE), "SIC_T_MOVIMIENTO_SALIDA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_MOVIMIENTO_SALIDA), true)]
 
 #endregion
 
@@ -914,9 +918,40 @@ namespace SIC.EntityLayer
             }
         }
         private ObjectSet<SIC_T_ITEM_ALMACEN> _SIC_T_ITEM_ALMACEN;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        public ObjectSet<SIC_T_MOVIMIENTO_SALIDA> SIC_T_MOVIMIENTO_SALIDA
+        {
+            get
+            {
+                if ((_SIC_T_MOVIMIENTO_SALIDA == null))
+                {
+                    _SIC_T_MOVIMIENTO_SALIDA = base.CreateObjectSet<SIC_T_MOVIMIENTO_SALIDA>("SIC_T_MOVIMIENTO_SALIDA");
+                }
+                return _SIC_T_MOVIMIENTO_SALIDA;
+            }
+        }
+        private ObjectSet<SIC_T_MOVIMIENTO_SALIDA> _SIC_T_MOVIMIENTO_SALIDA;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        public ObjectSet<SIC_T_MOVIMIENTO_SALIDA_DETALLE> SIC_T_MOVIMIENTO_SALIDA_DETALLE
+        {
+            get
+            {
+                if ((_SIC_T_MOVIMIENTO_SALIDA_DETALLE == null))
+                {
+                    _SIC_T_MOVIMIENTO_SALIDA_DETALLE = base.CreateObjectSet<SIC_T_MOVIMIENTO_SALIDA_DETALLE>("SIC_T_MOVIMIENTO_SALIDA_DETALLE");
+                }
+                return _SIC_T_MOVIMIENTO_SALIDA_DETALLE;
+            }
+        }
+        private ObjectSet<SIC_T_MOVIMIENTO_SALIDA_DETALLE> _SIC_T_MOVIMIENTO_SALIDA_DETALLE;
 
         #endregion
-
         #region Métodos AddTo
     
         /// <summary>
@@ -1318,9 +1353,24 @@ namespace SIC.EntityLayer
         {
             base.AddObject("SIC_T_ITEM_ALMACEN", sIC_T_ITEM_ALMACEN);
         }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet SIC_T_MOVIMIENTO_SALIDA. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToSIC_T_MOVIMIENTO_SALIDA(SIC_T_MOVIMIENTO_SALIDA sIC_T_MOVIMIENTO_SALIDA)
+        {
+            base.AddObject("SIC_T_MOVIMIENTO_SALIDA", sIC_T_MOVIMIENTO_SALIDA);
+        }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet SIC_T_MOVIMIENTO_SALIDA_DETALLE. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToSIC_T_MOVIMIENTO_SALIDA_DETALLE(SIC_T_MOVIMIENTO_SALIDA_DETALLE sIC_T_MOVIMIENTO_SALIDA_DETALLE)
+        {
+            base.AddObject("SIC_T_MOVIMIENTO_SALIDA_DETALLE", sIC_T_MOVIMIENTO_SALIDA_DETALLE);
+        }
 
         #endregion
-
         #region Importaciones de funciones
     
         /// <summary>
@@ -1926,11 +1976,11 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
+    
 
     #endregion
-
+    
     #region Entidades
     
     /// <summary>
@@ -1955,7 +2005,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -2034,7 +2083,6 @@ namespace SIC.EntityLayer
         partial void Onalm_c_vdescChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -2125,9 +2173,30 @@ namespace SIC.EntityLayer
                 }
             }
         }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_ALMACEN", "SIC_T_MOVIMIENTO_SALIDA_DETALLE")]
+        public EntityCollection<SIC_T_MOVIMIENTO_SALIDA_DETALLE> SIC_T_MOVIMIENTO_SALIDA_DETALLE
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SIC_T_MOVIMIENTO_SALIDA_DETALLE>("SICDBWEBModel.FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_ALMACEN", "SIC_T_MOVIMIENTO_SALIDA_DETALLE");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SIC_T_MOVIMIENTO_SALIDA_DETALLE>("SICDBWEBModel.FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_ALMACEN", "SIC_T_MOVIMIENTO_SALIDA_DETALLE", value);
+                }
+            }
+        }
 
         #endregion
-
     }
     
     /// <summary>
@@ -2156,7 +2225,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -2235,7 +2303,6 @@ namespace SIC.EntityLayer
         partial void Onalm_cst_c_iid_almacenChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -2316,7 +2383,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -2363,7 +2429,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -2658,7 +2723,6 @@ namespace SIC.EntityLayer
         partial void Onbol_c_bimpresoChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -2723,7 +2787,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -2758,7 +2821,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -2909,7 +2971,6 @@ namespace SIC.EntityLayer
         partial void Onbol_det_c_epreciototChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -2990,7 +3051,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -3015,7 +3075,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -3070,7 +3129,6 @@ namespace SIC.EntityLayer
         partial void Oncli_contac_cargo_c_vnombChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -3097,7 +3155,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -3126,7 +3183,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -3445,7 +3501,6 @@ namespace SIC.EntityLayer
         partial void Oncli_c_vdoc_idChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -3526,7 +3581,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -3553,7 +3607,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -3731,7 +3784,6 @@ namespace SIC.EntityLayer
         partial void Oncli_direc_c_czonarepChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -3812,7 +3864,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -3839,7 +3890,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -3897,7 +3947,6 @@ namespace SIC.EntityLayer
         partial void Oncli_c_vdoc_idChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -3940,7 +3989,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -3965,7 +4013,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -4068,7 +4115,6 @@ namespace SIC.EntityLayer
         partial void Oncli_rs_h_c_dfec_regChanged();
 
         #endregion
-
     
     }
     
@@ -4094,7 +4140,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -4149,7 +4194,6 @@ namespace SIC.EntityLayer
         partial void Oncli_scor_c_vobservChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -4176,7 +4220,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -4203,7 +4246,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -4594,7 +4636,6 @@ namespace SIC.EntityLayer
         partial void Oncli_c_bclienteChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -4821,9 +4862,30 @@ namespace SIC.EntityLayer
                 }
             }
         }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_SALIDA_SIC_T_CLIENTE", "SIC_T_MOVIMIENTO_SALIDA")]
+        public EntityCollection<SIC_T_MOVIMIENTO_SALIDA> SIC_T_MOVIMIENTO_SALIDA
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SIC_T_MOVIMIENTO_SALIDA>("SICDBWEBModel.FK_SIC_T_MOVIMIENTO_SALIDA_SIC_T_CLIENTE", "SIC_T_MOVIMIENTO_SALIDA");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SIC_T_MOVIMIENTO_SALIDA>("SICDBWEBModel.FK_SIC_T_MOVIMIENTO_SALIDA_SIC_T_CLIENTE", "SIC_T_MOVIMIENTO_SALIDA", value);
+                }
+            }
+        }
 
         #endregion
-
     }
     
     /// <summary>
@@ -4848,7 +4910,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -4903,7 +4964,6 @@ namespace SIC.EntityLayer
         partial void Oncolab_area_c_vnombChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -4930,7 +4990,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -4955,7 +5014,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -5010,7 +5068,6 @@ namespace SIC.EntityLayer
         partial void Oncolab_cargo_c_vnombChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -5037,7 +5094,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -5062,7 +5118,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -5237,7 +5292,6 @@ namespace SIC.EntityLayer
         partial void Oncolab_cargo_c_yidChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -5340,7 +5394,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -5365,7 +5418,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -5420,7 +5472,6 @@ namespace SIC.EntityLayer
         partial void Oncon_c_vdesChanged();
 
         #endregion
-
     
     }
     
@@ -5446,7 +5497,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -5501,7 +5551,6 @@ namespace SIC.EntityLayer
         partial void Ondepa_c_vnombChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -5528,7 +5577,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -5555,7 +5603,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -5634,7 +5681,6 @@ namespace SIC.EntityLayer
         partial void Onprov_c_ccodChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -5699,7 +5745,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -5736,7 +5781,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -5911,7 +5955,6 @@ namespace SIC.EntityLayer
         partial void Onemp_cst_c_inumeroboletaChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -5982,7 +6025,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -6019,7 +6061,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -6194,7 +6235,6 @@ namespace SIC.EntityLayer
         partial void Onemp_dir_c_vtipodirecChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -6237,7 +6277,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -6262,7 +6301,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -6341,7 +6379,6 @@ namespace SIC.EntityLayer
         partial void Onemp_c_vrazonsocialChanged();
 
         #endregion
-
     
     }
     
@@ -6389,7 +6426,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -6684,7 +6720,6 @@ namespace SIC.EntityLayer
         partial void Onfac_c_bimpresoChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -6749,7 +6784,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -6784,7 +6818,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -6935,7 +6968,6 @@ namespace SIC.EntityLayer
         partial void Onfac_det_c_epreciototChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -7016,7 +7048,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -7041,7 +7072,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -7144,7 +7174,6 @@ namespace SIC.EntityLayer
         partial void Onigv_c_dfinChanged();
 
         #endregion
-
     
     }
     
@@ -7184,7 +7213,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -7407,7 +7435,6 @@ namespace SIC.EntityLayer
         partial void Onisf_c_iidChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -7558,9 +7585,30 @@ namespace SIC.EntityLayer
                 }
             }
         }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_ITEM", "SIC_T_MOVIMIENTO_SALIDA_DETALLE")]
+        public EntityCollection<SIC_T_MOVIMIENTO_SALIDA_DETALLE> SIC_T_MOVIMIENTO_SALIDA_DETALLE
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SIC_T_MOVIMIENTO_SALIDA_DETALLE>("SICDBWEBModel.FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_ITEM", "SIC_T_MOVIMIENTO_SALIDA_DETALLE");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SIC_T_MOVIMIENTO_SALIDA_DETALLE>("SICDBWEBModel.FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_ITEM", "SIC_T_MOVIMIENTO_SALIDA_DETALLE", value);
+                }
+            }
+        }
 
         #endregion
-
     }
     
     /// <summary>
@@ -7591,7 +7639,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -7694,7 +7741,6 @@ namespace SIC.EntityLayer
         partial void Onitm_c_iidChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -7775,7 +7821,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -7804,7 +7849,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -7883,7 +7927,6 @@ namespace SIC.EntityLayer
         partial void Onifm_c_bactivoChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -7910,7 +7953,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -7941,7 +7983,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -8044,7 +8085,6 @@ namespace SIC.EntityLayer
         partial void Onisf_c_bactivoChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -8109,7 +8149,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -8134,7 +8173,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -8261,7 +8299,6 @@ namespace SIC.EntityLayer
         partial void Onmenu_c_vpag_aspChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -8326,7 +8363,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -8353,7 +8389,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -8408,7 +8443,6 @@ namespace SIC.EntityLayer
         partial void Onmov_estado_vdescrpcionChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -8435,7 +8469,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -8480,7 +8513,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -8799,7 +8831,6 @@ namespace SIC.EntityLayer
         partial void Onmve_c_bingresadoChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -8940,7 +8971,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -8975,7 +9005,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -9126,7 +9155,6 @@ namespace SIC.EntityLayer
         partial void Onmve_c_iocdet_idChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -9207,7 +9235,618 @@ namespace SIC.EntityLayer
         }
 
         #endregion
+    }
+    
+    /// <summary>
+    /// No hay documentación de metadatos disponible.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SICDBWEBModel", Name="SIC_T_MOVIMIENTO_SALIDA")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SIC_T_MOVIMIENTO_SALIDA : EntityObject
+    {
+        #region Método de generador
+    
+        /// <summary>
+        /// Crear un nuevo objeto SIC_T_MOVIMIENTO_SALIDA.
+        /// </summary>
+        /// <param name="mvs_c_iid">Valor inicial de la propiedad mvs_c_iid.</param>
+        /// <param name="mvs_c_itiposalida">Valor inicial de la propiedad mvs_c_itiposalida.</param>
+        /// <param name="mvs_c_vdestiposalida">Valor inicial de la propiedad mvs_c_vdestiposalida.</param>
+        /// <param name="mvs_c_zfecharegistro">Valor inicial de la propiedad mvs_c_zfecharegistro.</param>
+        /// <param name="mvs_c_bingresado">Valor inicial de la propiedad mvs_c_bingresado.</param>
+        /// <param name="mvs_c_bactivo">Valor inicial de la propiedad mvs_c_bactivo.</param>
+        /// <param name="cli_c_vdoc_id">Valor inicial de la propiedad cli_c_vdoc_id.</param>
+        public static SIC_T_MOVIMIENTO_SALIDA CreateSIC_T_MOVIMIENTO_SALIDA(global::System.Int32 mvs_c_iid, global::System.Int32 mvs_c_itiposalida, global::System.String mvs_c_vdestiposalida, global::System.DateTime mvs_c_zfecharegistro, global::System.Boolean mvs_c_bingresado, global::System.Boolean mvs_c_bactivo, global::System.String cli_c_vdoc_id)
+        {
+            SIC_T_MOVIMIENTO_SALIDA sIC_T_MOVIMIENTO_SALIDA = new SIC_T_MOVIMIENTO_SALIDA();
+            sIC_T_MOVIMIENTO_SALIDA.mvs_c_iid = mvs_c_iid;
+            sIC_T_MOVIMIENTO_SALIDA.mvs_c_itiposalida = mvs_c_itiposalida;
+            sIC_T_MOVIMIENTO_SALIDA.mvs_c_vdestiposalida = mvs_c_vdestiposalida;
+            sIC_T_MOVIMIENTO_SALIDA.mvs_c_zfecharegistro = mvs_c_zfecharegistro;
+            sIC_T_MOVIMIENTO_SALIDA.mvs_c_bingresado = mvs_c_bingresado;
+            sIC_T_MOVIMIENTO_SALIDA.mvs_c_bactivo = mvs_c_bactivo;
+            sIC_T_MOVIMIENTO_SALIDA.cli_c_vdoc_id = cli_c_vdoc_id;
+            return sIC_T_MOVIMIENTO_SALIDA;
+        }
 
+        #endregion
+        #region Propiedades primitivas
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 mvs_c_iid
+        {
+            get
+            {
+                return _mvs_c_iid;
+            }
+            set
+            {
+                if (_mvs_c_iid != value)
+                {
+                    Onmvs_c_iidChanging(value);
+                    ReportPropertyChanging("mvs_c_iid");
+                    _mvs_c_iid = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("mvs_c_iid");
+                    Onmvs_c_iidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _mvs_c_iid;
+        partial void Onmvs_c_iidChanging(global::System.Int32 value);
+        partial void Onmvs_c_iidChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 mvs_c_itiposalida
+        {
+            get
+            {
+                return _mvs_c_itiposalida;
+            }
+            set
+            {
+                Onmvs_c_itiposalidaChanging(value);
+                ReportPropertyChanging("mvs_c_itiposalida");
+                _mvs_c_itiposalida = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("mvs_c_itiposalida");
+                Onmvs_c_itiposalidaChanged();
+            }
+        }
+        private global::System.Int32 _mvs_c_itiposalida;
+        partial void Onmvs_c_itiposalidaChanging(global::System.Int32 value);
+        partial void Onmvs_c_itiposalidaChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String mvs_c_vdestiposalida
+        {
+            get
+            {
+                return _mvs_c_vdestiposalida;
+            }
+            set
+            {
+                Onmvs_c_vdestiposalidaChanging(value);
+                ReportPropertyChanging("mvs_c_vdestiposalida");
+                _mvs_c_vdestiposalida = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("mvs_c_vdestiposalida");
+                Onmvs_c_vdestiposalidaChanged();
+            }
+        }
+        private global::System.String _mvs_c_vdestiposalida;
+        partial void Onmvs_c_vdestiposalidaChanging(global::System.String value);
+        partial void Onmvs_c_vdestiposalidaChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime mvs_c_zfecharegistro
+        {
+            get
+            {
+                return _mvs_c_zfecharegistro;
+            }
+            set
+            {
+                Onmvs_c_zfecharegistroChanging(value);
+                ReportPropertyChanging("mvs_c_zfecharegistro");
+                _mvs_c_zfecharegistro = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("mvs_c_zfecharegistro");
+                Onmvs_c_zfecharegistroChanged();
+            }
+        }
+        private global::System.DateTime _mvs_c_zfecharegistro;
+        partial void Onmvs_c_zfecharegistroChanging(global::System.DateTime value);
+        partial void Onmvs_c_zfecharegistroChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean mvs_c_bingresado
+        {
+            get
+            {
+                return _mvs_c_bingresado;
+            }
+            set
+            {
+                Onmvs_c_bingresadoChanging(value);
+                ReportPropertyChanging("mvs_c_bingresado");
+                _mvs_c_bingresado = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("mvs_c_bingresado");
+                Onmvs_c_bingresadoChanged();
+            }
+        }
+        private global::System.Boolean _mvs_c_bingresado;
+        partial void Onmvs_c_bingresadoChanging(global::System.Boolean value);
+        partial void Onmvs_c_bingresadoChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ven_c_iid
+        {
+            get
+            {
+                return _ven_c_iid;
+            }
+            set
+            {
+                Onven_c_iidChanging(value);
+                ReportPropertyChanging("ven_c_iid");
+                _ven_c_iid = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ven_c_iid");
+                Onven_c_iidChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ven_c_iid;
+        partial void Onven_c_iidChanging(Nullable<global::System.Int32> value);
+        partial void Onven_c_iidChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean mvs_c_bactivo
+        {
+            get
+            {
+                return _mvs_c_bactivo;
+            }
+            set
+            {
+                Onmvs_c_bactivoChanging(value);
+                ReportPropertyChanging("mvs_c_bactivo");
+                _mvs_c_bactivo = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("mvs_c_bactivo");
+                Onmvs_c_bactivoChanged();
+            }
+        }
+        private global::System.Boolean _mvs_c_bactivo;
+        partial void Onmvs_c_bactivoChanging(global::System.Boolean value);
+        partial void Onmvs_c_bactivoChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String cli_c_vdoc_id
+        {
+            get
+            {
+                return _cli_c_vdoc_id;
+            }
+            set
+            {
+                Oncli_c_vdoc_idChanging(value);
+                ReportPropertyChanging("cli_c_vdoc_id");
+                _cli_c_vdoc_id = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("cli_c_vdoc_id");
+                Oncli_c_vdoc_idChanged();
+            }
+        }
+        private global::System.String _cli_c_vdoc_id;
+        partial void Oncli_c_vdoc_idChanging(global::System.String value);
+        partial void Oncli_c_vdoc_idChanged();
+
+        #endregion
+    
+        #region Propiedades de navegación
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_MOVIMIENTO_SALIDA", "SIC_T_MOVIMIENTO_SALIDA_DETALLE")]
+        public EntityCollection<SIC_T_MOVIMIENTO_SALIDA_DETALLE> SIC_T_MOVIMIENTO_SALIDA_DETALLE
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SIC_T_MOVIMIENTO_SALIDA_DETALLE>("SICDBWEBModel.FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_MOVIMIENTO_SALIDA", "SIC_T_MOVIMIENTO_SALIDA_DETALLE");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SIC_T_MOVIMIENTO_SALIDA_DETALLE>("SICDBWEBModel.FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_MOVIMIENTO_SALIDA", "SIC_T_MOVIMIENTO_SALIDA_DETALLE", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_SALIDA_SIC_T_VENTA", "SIC_T_VENTA")]
+        public SIC_T_VENTA SIC_T_VENTA
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_VENTA>("SICDBWEBModel.FK_SIC_T_MOVIMIENTO_SALIDA_SIC_T_VENTA", "SIC_T_VENTA").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_VENTA>("SICDBWEBModel.FK_SIC_T_MOVIMIENTO_SALIDA_SIC_T_VENTA", "SIC_T_VENTA").Value = value;
+            }
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SIC_T_VENTA> SIC_T_VENTAReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_VENTA>("SICDBWEBModel.FK_SIC_T_MOVIMIENTO_SALIDA_SIC_T_VENTA", "SIC_T_VENTA");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SIC_T_VENTA>("SICDBWEBModel.FK_SIC_T_MOVIMIENTO_SALIDA_SIC_T_VENTA", "SIC_T_VENTA", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_SALIDA_SIC_T_CLIENTE", "SIC_T_CLIENTE")]
+        public SIC_T_CLIENTE SIC_T_CLIENTE
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_CLIENTE>("SICDBWEBModel.FK_SIC_T_MOVIMIENTO_SALIDA_SIC_T_CLIENTE", "SIC_T_CLIENTE").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_CLIENTE>("SICDBWEBModel.FK_SIC_T_MOVIMIENTO_SALIDA_SIC_T_CLIENTE", "SIC_T_CLIENTE").Value = value;
+            }
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SIC_T_CLIENTE> SIC_T_CLIENTEReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_CLIENTE>("SICDBWEBModel.FK_SIC_T_MOVIMIENTO_SALIDA_SIC_T_CLIENTE", "SIC_T_CLIENTE");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SIC_T_CLIENTE>("SICDBWEBModel.FK_SIC_T_MOVIMIENTO_SALIDA_SIC_T_CLIENTE", "SIC_T_CLIENTE", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No hay documentación de metadatos disponible.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SICDBWEBModel", Name="SIC_T_MOVIMIENTO_SALIDA_DETALLE")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SIC_T_MOVIMIENTO_SALIDA_DETALLE : EntityObject
+    {
+        #region Método de generador
+    
+        /// <summary>
+        /// Crear un nuevo objeto SIC_T_MOVIMIENTO_SALIDA_DETALLE.
+        /// </summary>
+        /// <param name="mvs_det_c_iid">Valor inicial de la propiedad mvs_det_c_iid.</param>
+        /// <param name="mvs_c_iid">Valor inicial de la propiedad mvs_c_iid.</param>
+        /// <param name="alm_c_iid">Valor inicial de la propiedad alm_c_iid.</param>
+        /// <param name="itm_c_iid">Valor inicial de la propiedad itm_c_iid.</param>
+        /// <param name="mvs_det_c_ecant">Valor inicial de la propiedad mvs_det_c_ecant.</param>
+        public static SIC_T_MOVIMIENTO_SALIDA_DETALLE CreateSIC_T_MOVIMIENTO_SALIDA_DETALLE(global::System.Int32 mvs_det_c_iid, global::System.Int32 mvs_c_iid, global::System.Int32 alm_c_iid, global::System.Int32 itm_c_iid, global::System.Decimal mvs_det_c_ecant)
+        {
+            SIC_T_MOVIMIENTO_SALIDA_DETALLE sIC_T_MOVIMIENTO_SALIDA_DETALLE = new SIC_T_MOVIMIENTO_SALIDA_DETALLE();
+            sIC_T_MOVIMIENTO_SALIDA_DETALLE.mvs_det_c_iid = mvs_det_c_iid;
+            sIC_T_MOVIMIENTO_SALIDA_DETALLE.mvs_c_iid = mvs_c_iid;
+            sIC_T_MOVIMIENTO_SALIDA_DETALLE.alm_c_iid = alm_c_iid;
+            sIC_T_MOVIMIENTO_SALIDA_DETALLE.itm_c_iid = itm_c_iid;
+            sIC_T_MOVIMIENTO_SALIDA_DETALLE.mvs_det_c_ecant = mvs_det_c_ecant;
+            return sIC_T_MOVIMIENTO_SALIDA_DETALLE;
+        }
+
+        #endregion
+        #region Propiedades primitivas
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 mvs_det_c_iid
+        {
+            get
+            {
+                return _mvs_det_c_iid;
+            }
+            set
+            {
+                if (_mvs_det_c_iid != value)
+                {
+                    Onmvs_det_c_iidChanging(value);
+                    ReportPropertyChanging("mvs_det_c_iid");
+                    _mvs_det_c_iid = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("mvs_det_c_iid");
+                    Onmvs_det_c_iidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _mvs_det_c_iid;
+        partial void Onmvs_det_c_iidChanging(global::System.Int32 value);
+        partial void Onmvs_det_c_iidChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 mvs_c_iid
+        {
+            get
+            {
+                return _mvs_c_iid;
+            }
+            set
+            {
+                Onmvs_c_iidChanging(value);
+                ReportPropertyChanging("mvs_c_iid");
+                _mvs_c_iid = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("mvs_c_iid");
+                Onmvs_c_iidChanged();
+            }
+        }
+        private global::System.Int32 _mvs_c_iid;
+        partial void Onmvs_c_iidChanging(global::System.Int32 value);
+        partial void Onmvs_c_iidChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 alm_c_iid
+        {
+            get
+            {
+                return _alm_c_iid;
+            }
+            set
+            {
+                Onalm_c_iidChanging(value);
+                ReportPropertyChanging("alm_c_iid");
+                _alm_c_iid = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("alm_c_iid");
+                Onalm_c_iidChanged();
+            }
+        }
+        private global::System.Int32 _alm_c_iid;
+        partial void Onalm_c_iidChanging(global::System.Int32 value);
+        partial void Onalm_c_iidChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 itm_c_iid
+        {
+            get
+            {
+                return _itm_c_iid;
+            }
+            set
+            {
+                Onitm_c_iidChanging(value);
+                ReportPropertyChanging("itm_c_iid");
+                _itm_c_iid = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("itm_c_iid");
+                Onitm_c_iidChanged();
+            }
+        }
+        private global::System.Int32 _itm_c_iid;
+        partial void Onitm_c_iidChanging(global::System.Int32 value);
+        partial void Onitm_c_iidChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal mvs_det_c_ecant
+        {
+            get
+            {
+                return _mvs_det_c_ecant;
+            }
+            set
+            {
+                Onmvs_det_c_ecantChanging(value);
+                ReportPropertyChanging("mvs_det_c_ecant");
+                _mvs_det_c_ecant = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("mvs_det_c_ecant");
+                Onmvs_det_c_ecantChanged();
+            }
+        }
+        private global::System.Decimal _mvs_det_c_ecant;
+        partial void Onmvs_det_c_ecantChanging(global::System.Decimal value);
+        partial void Onmvs_det_c_ecantChanged();
+
+        #endregion
+    
+        #region Propiedades de navegación
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_MOVIMIENTO_SALIDA", "SIC_T_MOVIMIENTO_SALIDA")]
+        public SIC_T_MOVIMIENTO_SALIDA SIC_T_MOVIMIENTO_SALIDA
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_MOVIMIENTO_SALIDA>("SICDBWEBModel.FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_MOVIMIENTO_SALIDA", "SIC_T_MOVIMIENTO_SALIDA").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_MOVIMIENTO_SALIDA>("SICDBWEBModel.FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_MOVIMIENTO_SALIDA", "SIC_T_MOVIMIENTO_SALIDA").Value = value;
+            }
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SIC_T_MOVIMIENTO_SALIDA> SIC_T_MOVIMIENTO_SALIDAReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_MOVIMIENTO_SALIDA>("SICDBWEBModel.FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_MOVIMIENTO_SALIDA", "SIC_T_MOVIMIENTO_SALIDA");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SIC_T_MOVIMIENTO_SALIDA>("SICDBWEBModel.FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_MOVIMIENTO_SALIDA", "SIC_T_MOVIMIENTO_SALIDA", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_ALMACEN", "SIC_T_ALMACEN")]
+        public SIC_T_ALMACEN SIC_T_ALMACEN
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_ALMACEN>("SICDBWEBModel.FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_ALMACEN", "SIC_T_ALMACEN").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_ALMACEN>("SICDBWEBModel.FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_ALMACEN", "SIC_T_ALMACEN").Value = value;
+            }
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SIC_T_ALMACEN> SIC_T_ALMACENReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_ALMACEN>("SICDBWEBModel.FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_ALMACEN", "SIC_T_ALMACEN");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SIC_T_ALMACEN>("SICDBWEBModel.FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_ALMACEN", "SIC_T_ALMACEN", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_ITEM", "SIC_T_ITEM")]
+        public SIC_T_ITEM SIC_T_ITEM
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_ITEM>("SICDBWEBModel.FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_ITEM", "SIC_T_ITEM").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_ITEM>("SICDBWEBModel.FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_ITEM", "SIC_T_ITEM").Value = value;
+            }
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SIC_T_ITEM> SIC_T_ITEMReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_ITEM>("SICDBWEBModel.FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_ITEM", "SIC_T_ITEM");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SIC_T_ITEM>("SICDBWEBModel.FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_ITEM", "SIC_T_ITEM", value);
+                }
+            }
+        }
+
+        #endregion
     }
     
     /// <summary>
@@ -9232,7 +9871,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -9287,7 +9925,6 @@ namespace SIC.EntityLayer
         partial void Onnomb_com_c_vnombChanged();
 
         #endregion
-
     
     }
     
@@ -9313,7 +9950,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -9368,7 +10004,6 @@ namespace SIC.EntityLayer
         partial void Onodc_cla_vdesChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -9395,7 +10030,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -9420,7 +10054,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -9475,7 +10108,6 @@ namespace SIC.EntityLayer
         partial void Onodc_estado_vdescripcionChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -9502,7 +10134,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -9571,7 +10202,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -10226,7 +10856,6 @@ namespace SIC.EntityLayer
         partial void Onodc_c_cserieChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -10389,7 +11018,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -10424,7 +11052,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -10575,7 +11202,6 @@ namespace SIC.EntityLayer
         partial void Onodc_c_epreciototalChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -10678,7 +11304,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -10703,7 +11328,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -10782,7 +11406,6 @@ namespace SIC.EntityLayer
         partial void Onpar_c_bactivoChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -10809,7 +11432,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -10836,7 +11458,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -11182,7 +11803,6 @@ namespace SIC.EntityLayer
         partial void Onpar_det_c_vobsChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -11225,7 +11845,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -11252,7 +11871,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -11331,7 +11949,6 @@ namespace SIC.EntityLayer
         partial void Ondepa_c_ccodChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -11396,7 +12013,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -11427,7 +12043,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -11554,7 +12169,6 @@ namespace SIC.EntityLayer
         partial void Ontsc_c_dfinChanged();
 
         #endregion
-
     
     }
     
@@ -11584,7 +12198,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -11663,7 +12276,6 @@ namespace SIC.EntityLayer
         partial void Onund_c_bactivoChanged();
 
         #endregion
-
     
     }
     
@@ -11691,7 +12303,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -11914,7 +12525,6 @@ namespace SIC.EntityLayer
         partial void Onusua_c_bestadoChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -11941,7 +12551,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -11968,7 +12577,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -12026,7 +12634,6 @@ namespace SIC.EntityLayer
         partial void Onopc_c_iidChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -12069,7 +12676,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -12096,7 +12702,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -12178,7 +12783,6 @@ namespace SIC.EntityLayer
         partial void Onusua_perfil_c_cestadoChanged();
 
         #endregion
-
     
     }
     
@@ -12204,7 +12808,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -12259,7 +12862,6 @@ namespace SIC.EntityLayer
         partial void Onven_est_c_vdescripcionChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -12286,7 +12888,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -12339,7 +12940,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -12706,7 +13306,6 @@ namespace SIC.EntityLayer
         partial void Onven_c_vestadoChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -12889,9 +13488,30 @@ namespace SIC.EntityLayer
                 }
             }
         }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_SALIDA_SIC_T_VENTA", "SIC_T_MOVIMIENTO_SALIDA")]
+        public EntityCollection<SIC_T_MOVIMIENTO_SALIDA> SIC_T_MOVIMIENTO_SALIDA
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SIC_T_MOVIMIENTO_SALIDA>("SICDBWEBModel.FK_SIC_T_MOVIMIENTO_SALIDA_SIC_T_VENTA", "SIC_T_MOVIMIENTO_SALIDA");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SIC_T_MOVIMIENTO_SALIDA>("SICDBWEBModel.FK_SIC_T_MOVIMIENTO_SALIDA_SIC_T_VENTA", "SIC_T_MOVIMIENTO_SALIDA", value);
+                }
+            }
+        }
 
         #endregion
-
     }
     
     /// <summary>
@@ -12928,7 +13548,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -13103,7 +13722,6 @@ namespace SIC.EntityLayer
         partial void Onven_det_c_iidalmacenChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -13222,7 +13840,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -13247,7 +13864,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -13302,7 +13918,6 @@ namespace SIC.EntityLayer
         partial void Onzona_rep_c_czonaChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -13351,7 +13966,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -13376,7 +13990,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -13455,7 +14068,6 @@ namespace SIC.EntityLayer
         partial void Onzona_rep_lug_c_vdescChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -13498,7 +14110,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -13525,7 +14136,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -13631,12 +14241,10 @@ namespace SIC.EntityLayer
         partial void Oncli_c_vraz_socChanged();
 
         #endregion
-
     
     }
 
     #endregion
-
     #region ComplexTypes
     
     /// <summary>
@@ -13661,7 +14269,6 @@ namespace SIC.EntityLayer
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -13857,10 +14464,8 @@ namespace SIC.EntityLayer
         partial void Oncolab_cargo_c_yidChanged();
 
         #endregion
-
     }
 
     #endregion
-
     
 }
