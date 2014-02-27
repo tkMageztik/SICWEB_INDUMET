@@ -228,6 +228,7 @@
                                                         Proveedor
                                                     </td>
                                                     <td align="left" class="style3">
+                                                        <asp:TextBox ID="txtRUCProv" runat="server" Style="width: 120px;" BorderWidth="1px"></asp:TextBox>
                                                         <asp:TextBox ID="txtRSProv" runat="server" BackColor="#CCCCCC" BorderColor="Black"
                                                             BorderStyle="None" BorderWidth="1px" ReadOnly="True" Width="282px"></asp:TextBox>
                                                         &nbsp;
@@ -331,7 +332,8 @@
                                                                 GridLines="None" Height="16px" OnRowCancelingEdit="gvItemsSeleccionados_RowCancelingEdit"
                                                                 OnRowEditing="gvItemsSeleccionados_RowEditing" OnRowUpdating="gvItemsSeleccionados_RowUpdating"
                                                                 OnSelectedIndexChanged="gvItemsSeleccionados_SelectedIndexChanged" PagerStyle-CssClass="pgr"
-                                                                ShowHeaderWhenEmpty="True" ViewStateMode="Enabled" Width="100%">
+                                                                ShowHeaderWhenEmpty="True" ViewStateMode="Enabled" Width="100%" 
+                                                                onrowdeleting="gvItemsSeleccionados_RowDeleting">
                                                                 <AlternatingRowStyle CssClass="alt" />
                                                                 <Columns>
                                                                     <asp:TemplateField HeaderText="Código">
@@ -351,10 +353,23 @@
                                                                         <EditItemTemplate>
                                                                             <asp:TextBox ID="txtCantidad" runat="server" Text='<%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("odc_c_ecantidad") )%> '
                                                                                 onkeypress="return onlyDotsAndNumbers(event)">
-                                                                        
                                                                             </asp:TextBox>
                                                                         </EditItemTemplate>
                                                                     </asp:TemplateField>
+                                                                    <%--  <asp:TemplateField HeaderText="Cantidad">
+                                                                        <ItemTemplate>
+                                                                            <asp:TextBox runat="server" ID="txtCantidad" Text='<%# Eval("odc_c_ecantidad") %>' onkeypress="return onlyDotsAndNumbers(event)></asp:TextBox>
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+
+                                                                    <asp:TemplateField HeaderText="Unitario">
+                                                                        <ItemTemplate>
+                                                                             <asp:TextBox ID="txtPrecio" runat="server" Text='<%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("odc_c_epreciounit") )%> '
+                                                                                onkeypress="return onlyDotsAndNumbers(event)">
+                                                                               
+                                                                            </asp:TextBox>
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>--%>
                                                                     <asp:TemplateField HeaderText="Unitario">
                                                                         <ItemTemplate>
                                                                             <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("odc_c_epreciounit") )%>
@@ -371,13 +386,14 @@
                                                                             <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}",Eval("odc_c_epreciototal"))%>
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
-                                                                    <asp:CommandField ShowEditButton="True" CancelText="Cancelar" DeleteText="Eliminar"
+                                                                     <asp:CommandField ShowEditButton="True" CancelText="Cancelar" DeleteText="Eliminar"
                                                                         EditText="Editar" UpdateText="Actualizar" />
                                                                     <asp:TemplateField HeaderText="Unit. Ref. (Soles)">
                                                                         <ItemTemplate>
                                                                             <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}",Eval("precioReferenciaSoles"))%>
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
+                                                                    <asp:CommandField ShowDeleteButton="True" />
                                                                 </Columns>
                                                                 <PagerStyle CssClass="pgr" />
                                                             </asp:GridView>
@@ -660,21 +676,19 @@
                                             <table width="100%">
                                                 <tr>
                                                     <td>
-                                                        <table>
+                                                        <table width="100%">
                                                             <tr>
                                                                 <td class="txt-box-estilo">
+                                                                    RUC:
                                                                 </td>
                                                                 <td>
-                                                                </td>
-                                                                <td style="width: 20px">
+                                                                    <asp:TextBox ID="txtBusqRucProv" runat="server"></asp:TextBox>
                                                                 </td>
                                                                 <td class="txt-box-estilo">
+                                                                    RAZÓN SOCIAL:
                                                                 </td>
                                                                 <td>
-                                                                </td>
-                                                                <td style="width: 20px">
-                                                                </td>
-                                                                <td>
+                                                                    <asp:TextBox ID="txtBusqRazProv" runat="server"></asp:TextBox>
                                                                 </td>
                                                                 <td>
                                                                     &nbsp;
@@ -686,7 +700,8 @@
                                                         <table>
                                                             <tr>
                                                                 <td align="center">
-                                                                    &nbsp;
+                                                                    <asp:Button ID="btnBuscarProv" runat="server" CssClass="button small gris" Style="width: 100px;
+                                                                        height: 26px;" Text="Buscar" OnClick="btnBuscarProv_Click" />
                                                                 </td>
                                                                 <td align="center">
                                                                     <asp:Button ID="btnRgresarDesdeProveedor" runat="server" CssClass="button small gris"
@@ -709,8 +724,8 @@
                                             <asp:GridView ID="gvProveedores" runat="server" BorderStyle="None" GridLines="None"
                                                 AllowPaging="True" Width="100%" CssClass="mGrid" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt"
                                                 ShowHeaderWhenEmpty="True" EmptyDataText="No hay datos disponibles." PageSize="15"
-                                                BorderWidth="0px" AutoGenerateColumns="False" DataKeyNames="cli_c_vdoc_id" OnSelectedIndexChanged="gvProveedores_SelectedIndexChanged"
-                                                OnPageIndexChanging="gvProveedores_PageIndexChanging">
+                                                DataKeyNames="cli_c_vdoc_id,cli_c_vraz_soc" BorderWidth="0px" AutoGenerateColumns="False"
+                                                OnSelectedIndexChanged="gvProveedores_SelectedIndexChanged" OnPageIndexChanging="gvProveedores_PageIndexChanging">
                                                 <AlternatingRowStyle CssClass="alt" />
                                                 <Columns>
                                                     <asp:BoundField DataField="cli_c_vdoc_id" HeaderText="RUC" />

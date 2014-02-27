@@ -21,8 +21,9 @@ namespace SIC.BusinessLayer
         //    return new ClienteDA().ListarClientesCobranzas(pcli_c_btipo_pers, pcli_c_vraz_soc, pcli_c_bgrupo_ibk, pcli_c_vdoc_id, pcli_c_dfecharegistraini, pcli_c_dfecharegistrafin, pcli_c_tdocumento);
         //}
 
-        public List<SIC_T_CLIENTE> ListarClientesAlt(){
-            return new ClienteDA().ListarClientesAlt(); 
+        public List<SIC_T_CLIENTE> ListarClientesAlt()
+        {
+            return new ClienteDA().ListarClientesAlt();
         }
 
 
@@ -219,7 +220,7 @@ namespace SIC.BusinessLayer
         {
             return new ClienteDA().ListarClientes(razonSocial, ruc);
         }
-       
+
         public SIC_T_CLI_DIRECCION DireccionPorRuc(string _strcli_c_cdoc_id)
         {
             return new ClienteDA().DireccionPorRuc(_strcli_c_cdoc_id);
@@ -234,6 +235,16 @@ namespace SIC.BusinessLayer
         public List<SIC_T_CLIENTE> ListarProveedor()
         {
             return new ClienteDA().ListarProveedor();
+        }
+
+        public List<SIC_T_CLIENTE> ListarProveedor(SIC_T_CLIENTE obj)
+        {
+            return new ClienteDA().ListarClientes(obj);
+        }
+
+        public SIC_T_CLIENTE BuscarProveedor(String ruc)
+        {
+            return new ClienteDA().BuscarProveedor(ruc);
         }
 
         #endregion

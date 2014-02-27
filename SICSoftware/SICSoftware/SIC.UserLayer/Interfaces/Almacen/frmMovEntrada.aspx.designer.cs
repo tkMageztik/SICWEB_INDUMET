@@ -175,13 +175,22 @@ namespace SIC.UserLayer.Interfaces.Movimientos {
         protected global::System.Web.UI.WebControls.LinkButton btnCancelar;
         
         /// <summary>
-        /// Control txtSerieNumeroOC.
+        /// Control txtSerieOC.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSerieNumeroOC;
+        protected global::System.Web.UI.WebControls.TextBox txtSerieOC;
+        
+        /// <summary>
+        /// Control txtNumeroOC.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNumeroOC;
         
         /// <summary>
         /// Control btnBuscarOC.

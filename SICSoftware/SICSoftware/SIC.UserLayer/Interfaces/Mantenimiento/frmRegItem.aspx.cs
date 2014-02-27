@@ -155,8 +155,14 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 idFamilia = id;
             }
 
-            gvListaItem.DataSource = _item.ListarItems(txtFiltroCodigo.Text.Trim(), txtFiltroDescr.Text.Trim(), idFamilia, idSubFamilia);
+            List<SIC_T_ITEM> lstItem = new List<SIC_T_ITEM>();
+            lstItem = _item.ListarItems(txtFiltroCodigo.Text.Trim(), txtFiltroDescr.Text.Trim(), idFamilia, idSubFamilia);
+
+            gvListaItem.DataSource = lstItem;
             gvListaItem.DataBind();
+
+            GridView1.DataSource = lstItem;
+            GridView1.DataBind();
             upGeneral.Update();
         }
 
@@ -776,7 +782,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 Mensaje("Error al realizar el proceso.\n" + ex.Message + "\n"
                     + ex.InnerException != null ? ex.InnerException.Message : string.Empty, "~/Imagenes/warning.png");
 #else
-                    Mensaje("Error al realizar el proceso.", "~/Imagenes/warning.png");
+                Mensaje("Error al realizar el proceso.", "~/Imagenes/warning.png");
 #endif
             }
         }
@@ -795,12 +801,51 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             upGeneral.Update();
         }
 
+        protected void btnDescargarPDF_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        // TODO: PARA REFACTORIZAR.
+        protected void btnDescargarXls_Click(object sender, EventArgs e)
+        {
+            Response.Clear();
+
+            Response.AddHeader("content-disposition", "attachment;filename=FileName.xls");
+
+            Response.ContentType = "application/vnd.xls";
+
+            System.IO.StringWriter stringWrite = new System.IO.StringWriter();
+
+            System.Web.UI.HtmlTextWriter htmlWrite =
+            new HtmlTextWriter(stringWrite);
+
+            GridView1.RenderControl(htmlWrite);
+
+            Response.Write(stringWrite.ToString());
+
+            Response.End();
 
 
+            //string style = @"<style> .text { mso-number-format:\@; } </script> ";
+            //Response.ClearContent();
+            //Response.Cache.SetCacheability(HttpCacheability.Private);
+            //Response.AddHeader("content-disposition", "attachment; filename=" + _Nom_excel + ".xls");
+            //Response.ContentType = "application/excel";
+            ////controla las tildes la ñ y caracteres
+            //Response.ContentEncoding = Encoding.Default;
+            //Response.Charset = "ISO 8859-1";
+            //StringWriter sw = new StringWriter();
+            //HtmlTextWriter htw = new HtmlTextWriter(sw);
+            //_GridView.RenderControl(htw);
 
+            //Response.Write(style);
+            //Response.Write(sw.ToString());
+        }
 
-
-
+        // TODO: PARA BORRAR.
+        public override void VerifyRenderingInServerForm(Control control)
+        { }
 
     }
 }

@@ -46,9 +46,10 @@
                                                                 <td style="width: 20px">
                                                                 </td>
                                                                 <td>
+                                                                    <asp:CheckBox ID="chkBusqCli" runat="server" Checked="true" Text="Cliente" />
                                                                 </td>
                                                                 <td>
-                                                                    &nbsp;
+                                                                    &nbsp;<asp:CheckBox ID="chkBusqProv" runat="server" Checked="false" Text="Proveedor" />
                                                                 </td>
                                                             </tr>
                                                         </table>
@@ -88,6 +89,8 @@
                                                 <asp:BoundField DataField="cli_c_vdoc_id" HeaderText="RUC" Visible="true" ItemStyle-HorizontalAlign="Center" />
                                                 <asp:BoundField DataField="cli_c_vraz_soc" ItemStyle-Width="35%" HeaderText="RAZÓN SOCIAL" />
                                                 <asp:BoundField DataField="cli_c_vrubro" ItemStyle-Width="35%" HeaderText="RUBRO" />
+                                                <asp:CheckBoxField DataField="cli_c_bproveedor" HeaderText="PROVEEDOR" />
+                                                <asp:CheckBoxField DataField="cli_c_bcliente" HeaderText="CLIENTE" />
                                                 <%--  <asp:TemplateField HeaderText="TIPO">
                                                     <ItemTemplate>
                                                         <%# (Boolean.Parse(Eval("cli_c_bgrupo_ibk").ToString())) ? "AFILIADO" : "NO AFILIADO"%>
@@ -102,6 +105,21 @@
                                             <HeaderStyle />
                                             <PagerStyle HorizontalAlign="left" />
                                         </asp:GridView>
+                                        <asp:GridView ID="GridView1" Style="display: none;" runat="server" BorderStyle="None"
+                                            AutoGenerateColumns="False" GridLines="None" OnRowEditing="gvLista_RowEditing"
+                                            Width="100%" CssClass="mGrid" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt"
+                                            ShowHeaderWhenEmpty="true" EmptyDataText="No hay datos disponibles." BorderWidth="0px"
+                                            ViewStateMode="Enabled" OnRowCreated="gvLista_RowCreated">
+                                            <Columns>
+                                                <asp:BoundField DataField="cli_c_vdoc_id" HeaderText="RUC" Visible="true" ItemStyle-HorizontalAlign="Center" />
+                                                <asp:BoundField DataField="cli_c_vraz_soc" ItemStyle-Width="35%" HeaderText="RAZÓN SOCIAL" />
+                                                <asp:BoundField DataField="cli_c_vrubro" ItemStyle-Width="35%" HeaderText="RUBRO" />
+                                                <asp:CheckBoxField DataField="cli_c_bcliente" HeaderText="PROVEEDOR" />
+                                                <asp:CheckBoxField DataField="cli_c_bproveedor" HeaderText="CLIENTE" />
+                                            </Columns>
+                                            <HeaderStyle />
+                                            <PagerStyle HorizontalAlign="left" />
+                                        </asp:GridView>
                                     </ContentTemplate>
                                     <Triggers>
                                         <asp:AsyncPostBackTrigger ControlID="btnBuscar" EventName="Click" />
@@ -110,6 +128,33 @@
                                         <asp:AsyncPostBackTrigger ControlID="btnGuardar" EventName="Click" />
                                     </Triggers>
                                 </asp:UpdatePanel>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <td align="left" class="box-estilo01">
+                                            <table width="100%">
+                                                <tr>
+                                                    <td>
+                                                        <asp:Button ID="btnDescargarPDF" Visible="false" runat="server" CssClass="button small gris"
+                                                            Style="width: 150px" Text="Descargar PDF" 
+                                                            onclick="btnDescargarPDF_Click" />
+                                                    </td>
+                                                    <td>
+                                                        <asp:Button ID="btnDescargarXls" runat="server" CssClass="button small gris" Style="width: 150px"
+                                                            Text="Descargar Excel" onclick="btnDescargarXls_Click"/>
+                                                    </td>
+                                                    <td>
+                                                    </td>
+                                                    <td>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
                             </td>
                         </tr>
                         <tr>
@@ -661,7 +706,7 @@
                                                     </td>
                                                     <td class="txt-box-estilo">
                                                         Apellido Materno
-                                                       <%-- <asp:UpdatePanel ID="upMen" runat="server" UpdateMode="Conditional">
+                                                        <%-- <asp:UpdatePanel ID="upMen" runat="server" UpdateMode="Conditional">
                                                             <ContentTemplate>
                                                                 <asp:Label ID="lbl" runat="server" CssClass="requerido"></asp:Label>
                                                             </ContentTemplate>
@@ -766,7 +811,8 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        &nbsp;</td>
+                                                        &nbsp;
+                                                    </td>
                                                     <td>
                                                         &nbsp;
                                                         <asp:HiddenField ID="hdfCantRepLeg" runat="server" />
@@ -807,6 +853,7 @@
             <asp:AsyncPostBackTrigger ControlID="btnCancelarContacto" EventName="Click" />
             <asp:AsyncPostBackTrigger ControlID="btnGuardarContacto" EventName="Click" />
             <asp:AsyncPostBackTrigger ControlID="gvLista" EventName="RowDeleting" />
+            <asp:PostBackTrigger ControlID="btnDescargarXls"/>
         </Triggers>
     </asp:UpdatePanel>
 </asp:Content>

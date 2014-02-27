@@ -950,9 +950,21 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
         private void ListarClientes()
         {
-            gvLista.DataSource = _cliente.ListarClientes(
-            new SIC_T_CLIENTE() { cli_c_vraz_soc = txtFiltroRazonSocial.Text, cli_c_vdoc_id = txtRuc.Text });
+            List<SIC_T_CLIENTE> lstCliente =
+                 _cliente.ListarClientes(
+            new SIC_T_CLIENTE()
+            {
+                cli_c_vraz_soc = txtFiltroRazonSocial.Text,
+                cli_c_vdoc_id = txtRuc.Text,
+                cli_c_bcliente = chkBusqCli.Checked,
+                cli_c_bproveedor = chkBusqProv.Checked
+            });
+
+            gvLista.DataSource = lstCliente;
             gvLista.DataBind();
+
+            GridView1.DataSource = lstCliente;
+            GridView1.DataBind();
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
@@ -2075,6 +2087,35 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             //upMen.Update();
             up.Update();
         }
+
+        protected void btnDescargarPDF_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnDescargarXls_Click(object sender, EventArgs e)
+        {
+            Response.Clear();
+
+            Response.AddHeader("content-disposition", "attachment;filename=FileName.xls");
+
+            Response.ContentType = "application/vnd.xls";
+
+            System.IO.StringWriter stringWrite = new System.IO.StringWriter();
+
+            System.Web.UI.HtmlTextWriter htmlWrite =
+            new HtmlTextWriter(stringWrite);
+
+            GridView1.RenderControl(htmlWrite);
+
+            Response.Write(stringWrite.ToString());
+
+            Response.End();
+        }
+
+        // TODO: PARA BORRAR.
+        public override void VerifyRenderingInServerForm(Control control)
+        { }
 
     }
 
