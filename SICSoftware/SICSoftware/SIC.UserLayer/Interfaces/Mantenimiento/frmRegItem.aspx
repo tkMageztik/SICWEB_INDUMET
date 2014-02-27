@@ -208,8 +208,16 @@
                                     <asp:BoundField HeaderText="PRECIO COMPRA" DataField="itm_c_dprecio_compra" />
                                     <asp:BoundField HeaderText="PRECIO VENTA" DataField="itm_c_dprecio_venta" />
                                     <asp:BoundField DataField="itm_c_vpardes" HeaderText="UNIDAD DE MEDIDA" />
-                                    <asp:BoundField DataField="SIC_T_ITEM_SUB_FAMILIA.SIC_T_ITEM_FAMILIA.ifm_c_des" HeaderText="FAMILIA" />
-                                    <asp:BoundField DataField="SIC_T_ITEM_SUB_FAMILIA.isf_c_vdesc" HeaderText="SUBFAMILIA" />
+                                    <asp:TemplateField HeaderText="FAMILIA">
+                                        <ItemTemplate>
+                                            <%# Eval("SIC_T_ITEM_SUB_FAMILIA.SIC_T_ITEM_FAMILIA.ifm_c_des")%>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="SUBFAMILIA">
+                                        <ItemTemplate>
+                                            <%# Eval("SIC_T_ITEM_SUB_FAMILIA.isf_c_vdesc")%>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
                                 </Columns>
                             </asp:GridView>
                         </tr>

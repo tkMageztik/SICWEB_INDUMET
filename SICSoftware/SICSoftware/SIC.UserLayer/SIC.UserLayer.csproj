@@ -201,7 +201,7 @@
     <Content Include="Default.aspx" />
     <Content Include="Interfaces\Almacen\frmAlmacenes.aspx" />
     <Content Include="Interfaces\Almacen\frmAlmKardex.aspx" />
-    <Content Include="Interfaces\Compras\frmMovimientoSalida.aspx" />
+    <Content Include="Interfaces\Compras\frmMovSalida.aspx" />
     <Content Include="Interfaces\Facturacion\frmFactAutomatica.aspx" />
     <Content Include="Interfaces\Facturacion\frmFactImpresion.aspx" />
     <Content Include="Interfaces\Facturacion\frmFactManual.aspx" />
@@ -229,12 +229,12 @@
     <Compile Include="Interfaces\Almacen\frmAlmKardex.aspx.designer.cs">
       <DependentUpon>frmAlmKardex.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Interfaces\Compras\frmMovimientoSalida.aspx.cs">
-      <DependentUpon>frmMovimientoSalida.aspx</DependentUpon>
+    <Compile Include="Interfaces\Compras\frmMovSalida.aspx.cs">
+      <DependentUpon>frmMovSalida.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Interfaces\Compras\frmMovimientoSalida.aspx.designer.cs">
-      <DependentUpon>frmMovimientoSalida.aspx</DependentUpon>
+    <Compile Include="Interfaces\Compras\frmMovSalida.aspx.designer.cs">
+      <DependentUpon>frmMovSalida.aspx</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\Facturacion\test.aspx.cs">
       <DependentUpon>test.aspx</DependentUpon>
