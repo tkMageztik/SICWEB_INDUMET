@@ -37,13 +37,21 @@ namespace SIC.BusinessLayer
             if (factura != null)
             {
                 factura.fac_c_bimpreso = true;
-                //bfDA.
+                bfDA.ModificarFactura(factura);
+                // Impresion
             }
         }
 
         public void ImprimirBoleta(int id)
         {
-
+            BoletaFacturaDA bfDA = new BoletaFacturaDA();
+            SIC_T_BOLETA boleta = bfDA.ObtenerBoleta(id);
+            if (boleta != null)
+            {
+                boleta.bol_c_bimpreso = true;
+                bfDA.ModificarBoleta(boleta);
+                // Impresion
+            }
         }
     }
 }
