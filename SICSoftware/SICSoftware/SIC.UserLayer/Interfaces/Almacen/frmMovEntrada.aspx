@@ -591,8 +591,16 @@
                                             <Columns>
                                                 <asp:BoundField DataField="odc_c_cserie" HeaderText="Serie" />
                                                 <asp:BoundField DataField="odc_c_vcodigo" HeaderText="Código" />
-                                                <asp:BoundField DataField="SIC_T_CLIENTE.cli_c_vdoc_id" HeaderText="RUC" />
-                                                <asp:BoundField DataField="SIC_T_CLIENTE.cli_c_vraz_soc" HeaderText="Proveedor" />
+                                                <asp:TemplateField HeaderText="RUC">
+                                                    <ItemTemplate>
+                                                        <%# Eval("SIC_T_CLIENTE.cli_c_vdoc_id")%>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="PROVEEDOR">
+                                                    <ItemTemplate>
+                                                        <%# Eval("SIC_T_CLIENTE.cli_c_vraz_soc")%>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
                                                 <asp:BoundField DataField="odc_c_vdescmoneda" HeaderText="Moneda" />
                                                 <asp:BoundField DataField="odc_c_zfecharegistro" HeaderText="Fecha Entrega" />
                                                 <asp:BoundField DataField="odc_c_etotal" HeaderText="Total" />
