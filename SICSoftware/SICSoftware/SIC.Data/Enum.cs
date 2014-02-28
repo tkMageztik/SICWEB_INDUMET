@@ -384,7 +384,8 @@ namespace SIC.Data
         PERCEPCION = 4,
         MONEDA = 5,
         DOCUMENTO_VENTA = 6,
-        TIPO_DIRECCION = 7
+        TIPO_DIRECCION = 7,
+        TIPO_SALIDA = 8,
     }
 
     public enum TipoParametroDetalle
@@ -396,6 +397,7 @@ namespace SIC.Data
         FISCAL = 24,
         SUCURSAL = 25,
         FACTURACION = 26,
+        VENTA = 27
     }
 
     public enum DESTINATARIOSCORREO

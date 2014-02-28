@@ -40,8 +40,38 @@ namespace SIC.UserLayer.Interfaces.Facturacion
         /// </summary>
         private void MostrarListaFactura()
         {
+            gvListaFactura.Visible = true;
+            gvListaBoleta.Visible = false;
             ImpresionFacturaBoletaBL impresionBL = new ImpresionFacturaBoletaBL();
-            gvListaFactura.DataSource = impresionBL.ListarFactura();
+            int desde;
+            int? numDesde = null;
+            if (int.TryParse(txtNumDesde.Text.Trim(), out desde))
+            {
+                numDesde = desde;
+            }
+
+            int hasta;
+            int? numHasta = null;
+            if (int.TryParse(txtNumHasta.Text.Trim(), out hasta))
+            {
+                numHasta = hasta;
+            }
+
+            bool? impreso = null;
+            if(cboEstado.SelectedIndex == 0)
+            {
+                impreso = null;
+            }
+            else if(cboEstado.SelectedIndex == 1)
+            {
+                impreso = false;
+            }
+            else 
+            {
+                impreso = true;
+            }
+
+            gvListaFactura.DataSource = impresionBL.ListarFactura(numDesde, numHasta, impreso,txtRucCliente.Text.Trim());
             gvListaFactura.DataBind();
             upListaFactura.Update();
         }
@@ -51,10 +81,40 @@ namespace SIC.UserLayer.Interfaces.Facturacion
         /// </summary>
         private void MostrarListaBoleta()
         {
+            gvListaFactura.Visible = false;
+            gvListaBoleta.Visible = true;
             ImpresionFacturaBoletaBL impresionBL = new ImpresionFacturaBoletaBL();
-            gvListaBoleta.DataSource = impresionBL.ListarBoleta();
+            int desde;
+            int? numDesde = null;
+            if (int.TryParse(txtNumDesde.Text.Trim(), out desde))
+            {
+                numDesde = desde;
+            }
+
+            int hasta;
+            int? numHasta = null;
+            if (int.TryParse(txtNumHasta.Text.Trim(), out hasta))
+            {
+                numHasta = hasta;
+            }
+
+            bool? impreso = null;
+            if (cboEstado.SelectedIndex == 0)
+            {
+                impreso = null;
+            }
+            else if (cboEstado.SelectedIndex == 1)
+            {
+                impreso = false;
+            }
+            else
+            {
+                impreso = true;
+            }
+
+            gvListaBoleta.DataSource = impresionBL.ListarBoleta(numDesde,numHasta,impreso,txtRucCliente.Text.Trim());
             gvListaBoleta.DataBind();
-            upListaBoleta.Update();
+            upListaFactura.Update();
         }
 
         #endregion
@@ -129,5 +189,31 @@ namespace SIC.UserLayer.Interfaces.Facturacion
             upGeneral.Update();
             return;
         }
+
+        protected void cboDocumento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboDocumento.SelectedIndex == 0)
+            {                
+                MostrarListaFactura();
+            }
+            else
+            {                
+                MostrarListaBoleta();
+            }
+        }
+
+        protected void btnBuscarFactura_Click(object sender, EventArgs e)
+        {
+            if (cboDocumento.SelectedIndex == 0)
+            {
+                MostrarListaFactura();
+            }
+            else
+            {
+                MostrarListaBoleta();
+            }
+        }
+
+        
     }
 }

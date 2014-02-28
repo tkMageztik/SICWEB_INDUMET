@@ -22,22 +22,22 @@ namespace SIC.UserLayer.Interfaces.Compras {
         protected global::System.Web.UI.UpdatePanel upGeneral;
         
         /// <summary>
-        /// Control mvOC.
+        /// Control mvMovSalida.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.MultiView mvOC;
+        protected global::System.Web.UI.WebControls.MultiView mvMovSalida;
         
         /// <summary>
-        /// Control View1.
+        /// Control vwListaMovimiento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View View1;
+        protected global::System.Web.UI.WebControls.View vwListaMovimiento;
         
         /// <summary>
         /// Control btnBuscar.
@@ -67,31 +67,13 @@ namespace SIC.UserLayer.Interfaces.Compras {
         protected global::System.Web.UI.UpdatePanel upGvLista;
         
         /// <summary>
-        /// Control gvListaVenta.
+        /// Control vwNuevoMovimiento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvListaVenta;
-        
-        /// <summary>
-        /// Control View2.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.View View2;
-        
-        /// <summary>
-        /// Control lblAccion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAccion;
+        protected global::System.Web.UI.WebControls.View vwNuevoMovimiento;
         
         /// <summary>
         /// Control btnGuardar.
@@ -112,40 +94,184 @@ namespace SIC.UserLayer.Interfaces.Compras {
         protected global::System.Web.UI.WebControls.LinkButton btnCancelar;
         
         /// <summary>
-        /// Control vwListaItem.
+        /// Control cboTipoMovimiento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View vwListaItem;
+        protected global::System.Web.UI.WebControls.DropDownList cboTipoMovimiento;
         
         /// <summary>
-        /// Control btnFiltrarItems.
+        /// Control btnSeleccionarVenta.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnFiltrarItems;
+        protected global::System.Web.UI.WebControls.LinkButton btnSeleccionarVenta;
         
         /// <summary>
-        /// Control btnRegresarDesdeItems.
+        /// Control txtRUCProv.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRegresarDesdeItems;
+        protected global::System.Web.UI.WebControls.TextBox txtRUCProv;
         
         /// <summary>
-        /// Control upGvListaITem.
+        /// Control txtRSProv.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upGvListaITem;
+        protected global::System.Web.UI.WebControls.TextBox txtRSProv;
+        
+        /// <summary>
+        /// Control txtRUCProv0.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtRUCProv0;
+        
+        /// <summary>
+        /// Control txtRUCProv1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtRUCProv1;
+        
+        /// <summary>
+        /// Control txtRUCProv2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtRUCProv2;
+        
+        /// <summary>
+        /// Control gvItemsSeleccionados.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvItemsSeleccionados;
+        
+        /// <summary>
+        /// Control txtObs.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtObs;
+        
+        /// <summary>
+        /// Control vwVenta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View vwVenta;
+        
+        /// <summary>
+        /// Control txtFiltroRuc.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFiltroRuc;
+        
+        /// <summary>
+        /// Control txtFiltroRS.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFiltroRS;
+        
+        /// <summary>
+        /// Control txtFiltroFecIni.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFiltroFecIni;
+        
+        /// <summary>
+        /// Control txtFiltroFecIni_CalendarExtender.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender txtFiltroFecIni_CalendarExtender;
+        
+        /// <summary>
+        /// Control txtFiltroFecFin.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFiltroFecFin;
+        
+        /// <summary>
+        /// Control txtFiltroFecFin_CalendarExtender.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender txtFiltroFecFin_CalendarExtender;
+        
+        /// <summary>
+        /// Control Button1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button1;
+        
+        /// <summary>
+        /// Control Button2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button2;
+        
+        /// <summary>
+        /// Control UpdatePanel1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        
+        /// <summary>
+        /// Control gvListaVenta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvListaVenta;
         
         /// <summary>
         /// Control upMensaje.

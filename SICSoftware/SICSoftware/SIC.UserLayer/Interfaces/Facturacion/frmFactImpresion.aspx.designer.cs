@@ -40,6 +40,51 @@ namespace SIC.UserLayer.Interfaces.Facturacion {
         protected global::System.Web.UI.WebControls.View vwMain;
         
         /// <summary>
+        /// Control cboDocumento.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cboDocumento;
+        
+        /// <summary>
+        /// Control txtNumDesde.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNumDesde;
+        
+        /// <summary>
+        /// Control txtNumHasta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNumHasta;
+        
+        /// <summary>
+        /// Control cboEstado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cboEstado;
+        
+        /// <summary>
+        /// Control txtRucCliente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtRucCliente;
+        
+        /// <summary>
         /// Control btnBuscarFactura.
         /// </summary>
         /// <remarks>
@@ -65,15 +110,6 @@ namespace SIC.UserLayer.Interfaces.Facturacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvListaFactura;
-        
-        /// <summary>
-        /// Control btnBuscarBoleta.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuscarBoleta;
         
         /// <summary>
         /// Control upListaBoleta.
