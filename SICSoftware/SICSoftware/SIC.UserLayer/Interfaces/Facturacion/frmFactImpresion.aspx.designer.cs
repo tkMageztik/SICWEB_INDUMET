@@ -67,6 +67,33 @@ namespace SIC.UserLayer.Interfaces.Facturacion {
         protected global::System.Web.UI.WebControls.GridView gvListaFactura;
         
         /// <summary>
+        /// Control btnBuscarBoleta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBuscarBoleta;
+        
+        /// <summary>
+        /// Control upListaBoleta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upListaBoleta;
+        
+        /// <summary>
+        /// Control gvListaBoleta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvListaBoleta;
+        
+        /// <summary>
         /// Control upMensaje.
         /// </summary>
         /// <remarks>

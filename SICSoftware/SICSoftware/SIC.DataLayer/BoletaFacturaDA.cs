@@ -89,6 +89,8 @@ namespace SIC.DataLayer
             using (SICDBWEBEntities contexto = new SICDBWEBEntities())
             {
                 return (from x in contexto.SIC_T_FACTURA
+                        .Include("SIC_T_VENTA")
+                        .Include("SIC_T_VENTA.SIC_T_CLIENTE")
                         select x).ToList();
             }
         }
@@ -102,6 +104,8 @@ namespace SIC.DataLayer
             using (SICDBWEBEntities contexto = new SICDBWEBEntities())
             {
                 return (from x in contexto.SIC_T_BOLETA
+                        .Include("SIC_T_VENTA")
+                        .Include("SIC_T_VENTA.SIC_T_CLIENTE")
                         select x).ToList();
             }
         }
