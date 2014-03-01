@@ -176,16 +176,8 @@
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:BoundField DataField="itm_c_vpardes" HeaderText="UNIDAD DE MEDIDA" />
-                                                <asp:TemplateField HeaderText="FAMILIA">
-                                                    <ItemTemplate>
-                                                        <%# Eval("SIC_T_ITEM_SUB_FAMILIA.SIC_T_ITEM_FAMILIA.ifm_c_des")%>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="SUBFAMILIA">
-                                                    <ItemTemplate>
-                                                        <%# Eval("SIC_T_ITEM_SUB_FAMILIA.isf_c_vdesc")%>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
+                                                <asp:BoundField DataField="SIC_T_ITEM_SUB_FAMILIA.SIC_T_ITEM_FAMILIA.ifm_c_des" HeaderText="FAMILIA" />
+                                                <asp:BoundField DataField="SIC_T_ITEM_SUB_FAMILIA.isf_c_vdesc" HeaderText="SUBFAMILIA" />
                                                 <asp:CommandField ShowEditButton="True" CancelText="Cancelar" DeleteText="Eliminar"
                                                     EditText="Editar" />
                                                 <asp:CommandField ShowDeleteButton="True" />
@@ -197,64 +189,49 @@
                             </td>
                         </tr>
                         <tr>
-                            <asp:GridView ID="GridView1" Style="display: none;" runat="server" BorderStyle="None"
-                                AutoGenerateColumns="False" GridLines="None" Width="100%" CssClass="mGrid" PagerStyle-CssClass="pgr"
-                                AlternatingRowStyle-CssClass="alt" ShowHeaderWhenEmpty="True" EmptyDataText="No hay datos disponibles."
-                                PageSize="15" BorderWidth="0px" ViewStateMode="Enabled">
-                                <AlternatingRowStyle CssClass="alt" />
-                                <Columns>
-                                    <asp:BoundField DataField="itm_c_ccodigo" HeaderText="CÓDIGO" />
-                                    <asp:BoundField DataField="itm_c_vdescripcion" HeaderText="DESCRIPCIÓN" />
-                                    <asp:BoundField HeaderText="PRECIO COMPRA" DataField="itm_c_dprecio_compra" />
-                                    <asp:BoundField HeaderText="PRECIO VENTA" DataField="itm_c_dprecio_venta" />
-                                    <asp:BoundField DataField="itm_c_vpardes" HeaderText="UNIDAD DE MEDIDA" />
-                                    <asp:TemplateField HeaderText="FAMILIA">
-                                        <ItemTemplate>
-                                            <%# Eval("SIC_T_ITEM_SUB_FAMILIA.SIC_T_ITEM_FAMILIA.ifm_c_des")%>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="SUBFAMILIA">
-                                        <ItemTemplate>
-                                            <%# Eval("SIC_T_ITEM_SUB_FAMILIA.isf_c_vdesc")%>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                </Columns>
-                            </asp:GridView>
+                            <asp:UpdatePanel ID="upGridView1" UpdateMode="Conditional" runat="server">
+                                <ContentTemplate>
+                                    <asp:GridView ID="GridView1" Style="display: none;" runat="server" BorderStyle="None"
+                                        AutoGenerateColumns="False" GridLines="None" Width="100%" CssClass="mGrid" PagerStyle-CssClass="pgr"
+                                        AlternatingRowStyle-CssClass="alt" ShowHeaderWhenEmpty="True" EmptyDataText="No hay datos disponibles."
+                                        PageSize="15" BorderWidth="0px">
+                                        <AlternatingRowStyle CssClass="alt" />
+                                        <Columns>
+                                            <asp:BoundField DataField="itm_c_ccodigo" HeaderText="CÓDIGO" />
+                                            <asp:BoundField DataField="itm_c_vdescripcion" HeaderText="DESCRIPCIÓN" />
+                                            <asp:BoundField HeaderText="PRECIO COMPRA" DataField="itm_c_dprecio_compra" />
+                                            <asp:BoundField HeaderText="PRECIO VENTA" DataField="itm_c_dprecio_venta" />
+                                            <asp:BoundField DataField="itm_c_vpardes" HeaderText="UNIDAD DE MEDIDA" />
+                                            <asp:BoundField DataField="SIC_T_ITEM_SUB_FAMILIA.SIC_T_ITEM_FAMILIA.ifm_c_des" HeaderText="FAMILIA" />
+                                            <asp:BoundField DataField="SIC_T_ITEM_SUB_FAMILIA.isf_c_vdesc" HeaderText="SUBFAMILIA" />
+                                        </Columns>
+                                    </asp:GridView>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
                         </tr>
                         <tr>
-                            <td>
+                            <td align="left" class="box-estilo01">
                                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                     <tr>
-                                        <td align="left" class="box-estilo01">
-                                            <table width="100%">
-                                                <tr>
-                                                    <td>
-                                                        <asp:Button ID="btnDescargarPDF" Visible="false" runat="server" CssClass="button small gris"
-                                                            Style="width: 150px" Text="Descargar PDF" OnClick="btnDescargarPDF_Click" />
-                                                    </td>
-                                                    <td>
-                                                        <asp:Button ID="btnDescargarXls" runat="server" CssClass="button small gris" Style="width: 150px"
-                                                            Text="Descargar Excel" OnClick="btnDescargarXls_Click" />
-                                                    </td>
-                                                    <td>
-                                                    </td>
-                                                    <td>
-                                                    </td>
-                                                </tr>
-                                            </table>
+                                        <td>
+                                            <asp:Button ID="btnDescargarPDF" Visible="false" runat="server" CssClass="button small gris"
+                                                Style="width: 150px" Text="Descargar PDF" OnClick="btnDescargarPDF_Click" />
+                                        </td>
+                                        <td>
+                                            <asp:Button ID="btnDescargarXls" runat="server" CssClass="button small gris" Style="width: 150px"
+                                                Text="Descargar Excel" OnClick="btnDescargarXls_Click" />
+                                        </td>
+                                        <td>
+                                        </td>
+                                        <td>
                                         </td>
                                     </tr>
                                 </table>
                             </td>
                         </tr>
-                        <tr>
-                            <td align="left" class="tit-nav-paginas">
-                                &nbsp;
-                            </td>
-                        </tr>
                     </table>
                 </asp:View>
-                <asp:View ID="View2" runat="server" OnActivate="View2_Activate">
+                <asp:View ID="View2" runat="server">
                     <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                             <td align="left" class="tit-nav-paginas">
@@ -277,7 +254,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2" lign="center">
+                            <td colspan="2" align="center">
                                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                     <tr>
                                         <td align="left" class="box-estilo01">
@@ -391,7 +368,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2" lign="center">
+                            <td colspan="2" align="center">
                                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                     <tr>
                                         <td align="left" class="box-estilo01">
@@ -501,7 +478,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2" lign="center">
+                            <td colspan="2" align="center">
                                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                     <tr>
                                         <td align="left" class="box-estilo01">

@@ -106,6 +106,7 @@
     <Content Include="dlls\itextsharp.dll" />
     <Content Include="dlls\itextsharp.pdfa.dll" />
     <Content Include="dlls\itextsharp.xmlworker.dll" />
+    <Content Include="dlls\matricial.dll" />
     <Content Include="dlls\PdfRpt.dll" />
     <Content Include="Global.asax" />
     <Content Include="Imagenes\advance.jpg" />

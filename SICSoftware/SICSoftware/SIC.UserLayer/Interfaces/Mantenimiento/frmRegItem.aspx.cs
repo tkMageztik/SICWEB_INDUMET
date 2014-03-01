@@ -614,11 +614,6 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             this.ListarSubFamilia();
         }
 
-        protected void View2_Activate(object sender, EventArgs e)
-        {
-
-        }
-
         protected void cboFiltroFamilia_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.ListarFiltroSubFamilia();
