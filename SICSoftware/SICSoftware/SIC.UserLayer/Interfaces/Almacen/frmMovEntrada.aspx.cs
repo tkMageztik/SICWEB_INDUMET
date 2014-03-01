@@ -203,8 +203,8 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             {
                 ff = fin;
             }
+
             this.gvListaMovEn.DataSource = _movEntrada.ObtenerMovimientosEntrada(this.txtFiltroRuc.Text, this.txtFiltroRS.Text, fi, ff, Convert.ToInt32(cboEstado.SelectedValue));
-            //this.gvListaMovEn.DataSource = _movEntrada.ObtenerMovimientosEntrada();
             this.gvListaMovEn.DataBind();
         }
 

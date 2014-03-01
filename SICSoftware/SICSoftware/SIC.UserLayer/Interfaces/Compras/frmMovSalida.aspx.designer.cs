@@ -40,31 +40,31 @@ namespace SIC.UserLayer.Interfaces.Compras {
         protected global::System.Web.UI.WebControls.View vwListaMovimiento;
         
         /// <summary>
-        /// Control TextBox1.
+        /// Control txtFiltroRuc.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox txtFiltroRuc;
         
         /// <summary>
-        /// Control TextBox2.
+        /// Control txtFiltroRS.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.TextBox txtFiltroRS;
         
         /// <summary>
-        /// Control TextBox3.
+        /// Control txtFiltroFecIni.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox3;
+        protected global::System.Web.UI.WebControls.TextBox txtFiltroFecIni;
         
         /// <summary>
         /// Control CalendarExtender1.
@@ -76,13 +76,13 @@ namespace SIC.UserLayer.Interfaces.Compras {
         protected global::AjaxControlToolkit.CalendarExtender CalendarExtender1;
         
         /// <summary>
-        /// Control TextBox4.
+        /// Control txtFiltroFecFin.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox4;
+        protected global::System.Web.UI.WebControls.TextBox txtFiltroFecFin;
         
         /// <summary>
         /// Control CalendarExtender2.
@@ -92,15 +92,6 @@ namespace SIC.UserLayer.Interfaces.Compras {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::AjaxControlToolkit.CalendarExtender CalendarExtender2;
-        
-        /// <summary>
-        /// Control cboEstado.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cboEstado;
         
         /// <summary>
         /// Control btnBuscar.
@@ -130,13 +121,13 @@ namespace SIC.UserLayer.Interfaces.Compras {
         protected global::System.Web.UI.UpdatePanel upGvLista;
         
         /// <summary>
-        /// Control gvListaMovEn.
+        /// Control gvListaMovSal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvListaMovEn;
+        protected global::System.Web.UI.WebControls.GridView gvListaMovSal;
         
         /// <summary>
         /// Control vwNuevoMovimiento.
@@ -184,49 +175,49 @@ namespace SIC.UserLayer.Interfaces.Compras {
         protected global::System.Web.UI.WebControls.LinkButton btnSeleccionarVenta;
         
         /// <summary>
-        /// Control txtRUCProv.
+        /// Control txtRUCCli.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRUCProv;
+        protected global::System.Web.UI.WebControls.TextBox txtRUCCli;
         
         /// <summary>
-        /// Control txtRSProv.
+        /// Control txtRSCli.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRSProv;
+        protected global::System.Web.UI.WebControls.TextBox txtRSCli;
         
         /// <summary>
-        /// Control txtRUCProv0.
+        /// Control txtFechaVenta.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRUCProv0;
+        protected global::System.Web.UI.WebControls.TextBox txtFechaVenta;
         
         /// <summary>
-        /// Control txtRUCProv1.
+        /// Control txtFactura.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRUCProv1;
+        protected global::System.Web.UI.WebControls.TextBox txtFactura;
         
         /// <summary>
-        /// Control txtRUCProv2.
+        /// Control txtFechaFactura.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRUCProv2;
+        protected global::System.Web.UI.WebControls.TextBox txtFechaFactura;
         
         /// <summary>
         /// Control gvItemsSeleccionados.
@@ -256,76 +247,76 @@ namespace SIC.UserLayer.Interfaces.Compras {
         protected global::System.Web.UI.WebControls.View vwVenta;
         
         /// <summary>
-        /// Control txtFiltroRuc.
+        /// Control txtFiltroVenRuc.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFiltroRuc;
+        protected global::System.Web.UI.WebControls.TextBox txtFiltroVenRuc;
         
         /// <summary>
-        /// Control txtFiltroRS.
+        /// Control txtFiltroVenRS.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFiltroRS;
+        protected global::System.Web.UI.WebControls.TextBox txtFiltroVenRS;
         
         /// <summary>
-        /// Control txtFiltroFecIni.
+        /// Control txtFiltroVenDesde.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFiltroFecIni;
+        protected global::System.Web.UI.WebControls.TextBox txtFiltroVenDesde;
         
         /// <summary>
-        /// Control txtFiltroFecIni_CalendarExtender.
+        /// Control txtFiltroVenDesde_CalendarExtender.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender txtFiltroFecIni_CalendarExtender;
+        protected global::AjaxControlToolkit.CalendarExtender txtFiltroVenDesde_CalendarExtender;
         
         /// <summary>
-        /// Control txtFiltroFecFin.
+        /// Control txtFiltroVenHasta.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFiltroFecFin;
+        protected global::System.Web.UI.WebControls.TextBox txtFiltroVenHasta;
         
         /// <summary>
-        /// Control txtFiltroFecFin_CalendarExtender.
+        /// Control txtFiltroVenHasta_CalendarExtender.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender txtFiltroFecFin_CalendarExtender;
+        protected global::AjaxControlToolkit.CalendarExtender txtFiltroVenHasta_CalendarExtender;
         
         /// <summary>
-        /// Control Button1.
+        /// Control btnBuscarVenta.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button btnBuscarVenta;
         
         /// <summary>
-        /// Control Button2.
+        /// Control btnRegerserVenta.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+        protected global::System.Web.UI.WebControls.Button btnRegerserVenta;
         
         /// <summary>
         /// Control UpdatePanel1.
