@@ -708,16 +708,24 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         /// </summary>
         private void MostrarBusquedaItem()
         {
-            if (EscenarioVenta == TipoOperacion.Creacion || EscenarioVenta == TipoOperacion.Modificacion)
+            // ATENCION TRY CATCH PROVISIONAL
+            try
             {
-                this.ListarFiltroAlmacen();
-                this.ListarItem();
-                mvOC.ActiveViewIndex = 2;
-                upGeneral.Update();
+                if (EscenarioVenta == TipoOperacion.Creacion || EscenarioVenta == TipoOperacion.Modificacion)
+                {
+                    this.ListarFiltroAlmacen();
+                    this.ListarItem();
+                    mvOC.ActiveViewIndex = 2;
+                    upGeneral.Update();
+                }
+                else
+                {
+                    Mensaje("Operación no permitida.", "~/Imagenes/warning.png");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Mensaje("Operación no permitida.", "~/Imagenes/warning.png");
+                ExceptionTrace.Write(ex);
             }
         }
 
