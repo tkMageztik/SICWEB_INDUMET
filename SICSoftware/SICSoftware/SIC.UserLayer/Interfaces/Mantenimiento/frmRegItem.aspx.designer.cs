@@ -112,6 +112,15 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento {
         protected global::System.Web.UI.WebControls.GridView gvListaItem;
         
         /// <summary>
+        /// Control upGridView1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upGridView1;
+        
+        /// <summary>
         /// Control GridView1.
         /// </summary>
         /// <remarks>
