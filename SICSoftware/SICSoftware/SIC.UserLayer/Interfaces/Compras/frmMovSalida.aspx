@@ -39,7 +39,7 @@
                                                                     RUC
                                                                 </td>
                                                                 <td style="margin-left: 80px">
-                                                                    <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                                                                    <asp:TextBox ID="txtFiltroRuc" runat="server"></asp:TextBox>
                                                                 </td>
                                                                 <td style="width: 20px">
                                                                 </td>
@@ -47,7 +47,7 @@
                                                                     Razón Social
                                                                 </td>
                                                                 <td>
-                                                                    <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+                                                                    <asp:TextBox ID="txtFiltroRS" runat="server"></asp:TextBox>
                                                                 </td>
                                                                 <td style="width: 20px">
                                                                 </td>
@@ -62,9 +62,10 @@
                                                                     Desde
                                                                 </td>
                                                                 <td style="margin-left: 80px">
-                                                                    <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
+                                                                    <asp:TextBox ID="txtFiltroFecIni" runat="server"></asp:TextBox>
                                                                     &nbsp;<asp:CalendarExtender ID="CalendarExtender1" runat="server"
-                                                                        TargetControlID="txtFiltroFecIni" Format="dd/MM/yyyy" TodaysDateFormat="dd/MM/yyyy" />
+                                                                        TargetControlID="txtFiltroVenDesde" Format="dd/MM/yyyy" 
+                                                                        TodaysDateFormat="dd/MM/yyyy" />
                                                                 </td>
                                                                 <td style="width: 20px">
                                                                     &nbsp;
@@ -73,20 +74,17 @@
                                                                     Hasta
                                                                 </td>
                                                                 <td>
-                                                                    <asp:TextBox ID="TextBox4" runat="server"></asp:TextBox>
-                                                                    <asp:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="txtFiltroFecFin"
+                                                                    <asp:TextBox ID="txtFiltroFecFin" runat="server"></asp:TextBox>
+                                                                    <asp:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="txtFiltroVenHasta"
                                                                         Format="dd/MM/yyyy" TodaysDateFormat="dd/MM/yyyy" />
                                                                 </td>
                                                                 <td style="width: 20px">
                                                                     &nbsp;
                                                                 </td>
                                                                 <td class="txt-box-estilo">
-                                                                    Estado
-                                                                </td>
+                                                                    &nbsp;</td>
                                                                 <td>
-                                                                    <asp:DropDownList ID="cboEstado" runat="server">
-                                                                    </asp:DropDownList>
-                                                                </td>
+                                                                    &nbsp;</td>
                                                             </tr>
                                                         </table>
                                                     </td>
@@ -115,25 +113,13 @@
                             <td align="left" class="tit-nav-paginas">
                                 <asp:UpdatePanel ID="upGvLista" runat="server" UpdateMode="Conditional">
                                     <ContentTemplate>
-                                        <asp:GridView ID="gvListaMovEn" runat="server" BorderStyle="None" AutoGenerateColumns="False"
+                                        <asp:GridView ID="gvListaMovSal" runat="server" BorderStyle="None" AutoGenerateColumns="False"
                                             GridLines="None" AllowPaging="True" Width="100%" CssClass="mGrid" PagerStyle-CssClass="pgr"
                                             AlternatingRowStyle-CssClass="alt" ShowHeaderWhenEmpty="True" EmptyDataText="No hay datos disponibles."
-                                            PageSize="15" BorderWidth="0px" DataKeyNames="mve_c_iid" OnSelectedIndexChanged="gvListaMovEn_SelectedIndexChanged"
-                                            OnRowCommand="gvListaMovEn_RowCommand">
+                                            PageSize="15" BorderWidth="0px" DataKeyNames="mve_c_iid" >
                                             <AlternatingRowStyle CssClass="alt" />
                                             <Columns>
-                                                <asp:TemplateField HeaderText="RUC PROVEEDOR">
-                                                    <ItemTemplate>
-                                                        <%# Eval("SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vdoc_id")%>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="RAZÓN SOCIAL PROVEEDOR">
-                                                    <ItemTemplate>
-                                                        <%# Eval("SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vraz_soc")%>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <asp:BoundField HeaderText="Fecha" DataField="mve_c_zfecharegistro" />
-                                                <asp:BoundField DataField="mve_c_vdesestado" HeaderText="Estado" />
+                                                
                                             </Columns>
                                             <PagerStyle CssClass="pgr" />
                                         </asp:GridView>
@@ -233,19 +219,19 @@
                                                     <td align="left" class="txt-box-estilo">
                                                         Cliente</td>
                                                     <td align="left" class="style1">
-                                                        <asp:TextBox ID="txtRUCProv" runat="server" BackColor="#CCCCCC" 
+                                                        <asp:TextBox ID="txtRUCCli" runat="server" BackColor="#CCCCCC" 
                                                             BorderColor="Black" BorderStyle="None" BorderWidth="1px" ReadOnly="True" 
                                                             Width="114px"></asp:TextBox>
                                                         &nbsp;-
-                                                        <asp:TextBox ID="txtRSProv" runat="server" BackColor="#CCCCCC" 
+                                                        <asp:TextBox ID="txtRSCli" runat="server" BackColor="#CCCCCC" 
                                                             BorderColor="Black" BorderStyle="None" BorderWidth="1px" ReadOnly="True" 
                                                             Width="282px"></asp:TextBox>
                                                         &nbsp;
                                                         </td>
-                                                    <td class="style1" align="left">
+                                                    <td class="txt-box-estilo" align="left">
                                                         Fecha</td>
                                                     <td align="left" class="style1">
-                                                        <asp:TextBox ID="txtRUCProv0" runat="server" BackColor="#CCCCCC" 
+                                                        <asp:TextBox ID="txtFechaVenta" runat="server" BackColor="#CCCCCC" 
                                                             BorderColor="Black" BorderStyle="None" BorderWidth="1px" ReadOnly="True" 
                                                             Width="114px"></asp:TextBox>
                                                     </td>
@@ -268,14 +254,14 @@
                                                     <td align="left" class="txt-box-estilo">
                                                         Factura</td>
                                                     <td align="left" class="txt-box-estilo">
-                                                        <asp:TextBox ID="txtRUCProv1" runat="server" BackColor="#CCCCCC" 
+                                                        <asp:TextBox ID="txtFactura" runat="server" BackColor="#CCCCCC" 
                                                             BorderColor="Black" BorderStyle="None" BorderWidth="1px" ReadOnly="True" 
                                                             Width="274px"></asp:TextBox>
                                                     </td>
                                                     <td align="left" class="txt-box-estilo">
                                                         Fecha Factura</td>
                                                     <td align="left" class="txt-box-estilo">
-                                                        <asp:TextBox ID="txtRUCProv2" runat="server" BackColor="#CCCCCC" 
+                                                        <asp:TextBox ID="txtFechaFactura" runat="server" BackColor="#CCCCCC" 
                                                             BorderColor="Black" BorderStyle="None" BorderWidth="1px" ReadOnly="True" 
                                                             Width="114px"></asp:TextBox>
                                                     </td>
@@ -304,28 +290,27 @@
                                                             DataKeyNames="" 
                                                             EmptyDataText="No ha seleccionado una venta." GridLines="None" Height="16px" 
                                                             PagerStyle-CssClass="pgr" 
-                                                            ShowHeaderWhenEmpty="True" ViewStateMode="Enabled" Width="100%" 
-                                                            onselectedindexchanged="gvItemsSeleccionados_SelectedIndexChanged">
+                                                            ShowHeaderWhenEmpty="True" ViewStateMode="Enabled" Width="100%" >
                                                             <AlternatingRowStyle CssClass="alt" />
                                                             <Columns>
                                                                 <asp:TemplateField HeaderText="Código">
                                                                     <ItemTemplate>
-                                                                        <%# Eval("")%>
+                                                                        <%# Eval("SIC_T_ITEM.itm_c_ccodigo")%>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
                                                                 <asp:TemplateField HeaderText="Descripción">
                                                                     <ItemTemplate>
-                                                                        <%# Eval("")%>
+                                                                        <%# Eval("SIC_T_ITEM.itm_c_vdescripcion")%>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
                                                                 <asp:TemplateField HeaderText="Cantidad">
                                                                     <ItemTemplate>
-                                                                        <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("ven_det_c_ecantidad") )%>
+                                                                        <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("mvs_det_c_ecant"))%>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>                                                                
                                                                 <asp:TemplateField HeaderText="Almacén">
                                                                     <ItemTemplate>
-                                                                        <%# Eval("")%>
+                                                                        <%# Eval("SIC_T_ALMACEN.alm_c_vdesc")%>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
                                                             </Columns>
@@ -411,7 +396,7 @@
                                                                     RUC
                                                                 </td>
                                                                 <td>
-                                                                    <asp:TextBox ID="txtFiltroRuc" runat="server"></asp:TextBox>
+                                                                    <asp:TextBox ID="txtFiltroVenRuc" runat="server"></asp:TextBox>
                                                                 </td>
                                                                 <td style="width: 20px">
                                                                 </td>
@@ -419,7 +404,7 @@
                                                                     Razón Social
                                                                 </td>
                                                                 <td>
-                                                                    <asp:TextBox ID="txtFiltroRS" runat="server"></asp:TextBox>
+                                                                    <asp:TextBox ID="txtFiltroVenRS" runat="server"></asp:TextBox>
                                                                 </td>
                                                                 <td style="width: 20px">
                                                                 </td>
@@ -434,9 +419,9 @@
                                                                     Desde
                                                                 </td>
                                                                 <td>
-                                                                    <asp:TextBox ID="txtFiltroFecIni" runat="server"></asp:TextBox>
-                                                                    <asp:CalendarExtender ID="txtFiltroFecIni_CalendarExtender" runat="server" Format="dd/MM/yyyy"
-                                                                        TargetControlID="txtFiltroFecIni" TodaysDateFormat="dd/MM/yyyy" />
+                                                                    <asp:TextBox ID="txtFiltroVenDesde" runat="server"></asp:TextBox>
+                                                                    <asp:CalendarExtender ID="txtFiltroVenDesde_CalendarExtender" runat="server" Format="dd/MM/yyyy"
+                                                                        TargetControlID="txtFiltroVenDesde" TodaysDateFormat="dd/MM/yyyy" />
                                                                 </td>
                                                                 <td style="width: 20px">
                                                                     &nbsp;
@@ -445,9 +430,9 @@
                                                                     Hasta
                                                                 </td>
                                                                 <td>
-                                                                    <asp:TextBox ID="txtFiltroFecFin" runat="server"></asp:TextBox>
-                                                                    <asp:CalendarExtender ID="txtFiltroFecFin_CalendarExtender" runat="server" Format="dd/MM/yyyy"
-                                                                        TargetControlID="txtFiltroFecFin" TodaysDateFormat="dd/MM/yyyy" />
+                                                                    <asp:TextBox ID="txtFiltroVenHasta" runat="server"></asp:TextBox>
+                                                                    <asp:CalendarExtender ID="txtFiltroVenHasta_CalendarExtender" runat="server" Format="dd/MM/yyyy"
+                                                                        TargetControlID="txtFiltroVenHasta" TodaysDateFormat="dd/MM/yyyy" />
                                                                 </td>
                                                                 <td style="width: 20px">
                                                                     &nbsp;
@@ -465,12 +450,12 @@
                                                         <table>
                                                             <tr>
                                                                 <td align="center">
-                                                                    <asp:Button ID="Button1" runat="server" CssClass="button small gris" Style="width: 100px"
+                                                                    <asp:Button ID="btnBuscarVenta" runat="server" CssClass="button small gris" Style="width: 100px"
                                                                         Text="Buscar" OnClick="btnBuscar_Click" />
                                                                 </td>
                                                                 <td align="center">
-                                                                    <asp:Button ID="Button2" runat="server" CssClass="lnk" Height="26px" OnClick="btnNuevo_Click"
-                                                                        Text="Regersar" Width="101px" />
+                                                                    <asp:Button ID="btnRegerserVenta" runat="server" CssClass="lnk" Height="26px" OnClick="btnRegerserVenta_Click"
+                                                                        Text="Regresar" Width="101px" />
                                                                 </td>
                                                             </tr>
                                                         </table>

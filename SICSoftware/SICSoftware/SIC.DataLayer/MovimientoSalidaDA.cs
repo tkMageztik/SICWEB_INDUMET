@@ -8,21 +8,31 @@ namespace SIC.DataLayer
 {
     public class MovimientoSalidaDA
     {
-        public List<SIC_T_MOVIMIENTO_SALIDA> ListarMovimientoSalida()
+        /// <summary>
+        /// Obtiene una lista de movimientos de salida desde el contexto de acuerdo
+        /// a los parametros ingresados.
+        /// </summary>
+        /// <param name="ruc">El ruc de la empresa.</param>
+        /// <param name="razonSocial">La razón social de la empresa.</param>
+        /// <param name="inicio">La fecha de inicio.</param>
+        /// <param name="fin">La fecha fin.</param>
+        /// <returns>Lista de <c>SIC_T_MOVIMIENTO_SALIDA</c></returns>
+        public List<SIC_T_MOVIMIENTO_SALIDA> ListarMovimientoSalida(string ruc, string razonSocial,
+                                                                    DateTime? inicio, DateTime? fin)
         {
-            try
-            {
-                using (SICDBWEBEntities contexto = new SICDBWEBEntities())
-                {
-                    return (from x in contexto.SIC_T_MOVIMIENTO_SALIDA
-                             .Include("SIC_T_CLIENTE")
-                            where x.mvs_c_bactivo == true
-                            select x).ToList();
-                }
-            }
-            catch (Exception)
-            {
-                throw;
+            using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+            {               
+                return (from x in contexto.SIC_T_MOVIMIENTO_SALIDA
+                                 .Include("SIC_T_CLIENTE")
+                        where x.mvs_c_bactivo == true
+                                & (ruc == null || ruc == string.Empty || x.SIC_T_CLIENTE.cli_c_vdoc_id.Contains(ruc))  
+                                & (razonSocial == null || razonSocial == string.Empty 
+                                                       || x.SIC_T_CLIENTE.cli_c_vraz_soc.Contains(razonSocial))
+                                & (inicio == null || x.mvs_c_zfecharegistro >= inicio)
+                                & (fin == null || (x.mvs_c_zfecharegistro.Year <= fin.Value.Year
+                                                 && x.mvs_c_zfecharegistro.Month <= fin.Value.Month
+                                                 && x.mvs_c_zfecharegistro.Day <= fin.Value.Day))
+                        select x).ToList();
             }
         }
 
@@ -52,7 +62,7 @@ namespace SIC.DataLayer
                     return (from x in contexto.SIC_T_MOVIMIENTO_SALIDA
                              .Include("SIC_T_MOVIMIENTO_SALIDA_DETALLE")
                              .Include("SIC_T_CLIENTE")
-                            where x.mvs_c_bactivo == true && x.mvs_c_iid == id
+                            where x.mvs_c_iid == id && x.mvs_c_bactivo == true
                             select x).FirstOrDefault();
                 }
             }

@@ -15,7 +15,6 @@ namespace SIC.DataLayer
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
                     return (from x in contexto.SIC_T_MOVIMIENTO_ENTRADA
-                             //.Include("SIC_T_ORDEN_DE_COMPRA")
                              .Include("SIC_T_ORDEN_DE_COMPRA.SIC_T_MOVIMIENTO_ENTRADA.SIC_T_MOVIMIENTO_ENTRADA_DETALLE")
                              .Include("SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE")
                              .Include("SIC_T_MOVIMIENTO_ENTRADA_DETALLE")
