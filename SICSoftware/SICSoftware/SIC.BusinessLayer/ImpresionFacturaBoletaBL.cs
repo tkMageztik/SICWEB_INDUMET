@@ -16,18 +16,18 @@ namespace SIC.BusinessLayer
         /// Obtiene una lista de factura.
         /// </summary>
         /// <returns>Lista de SIC_T_FACTURA</returns>
-        public List<SIC_T_FACTURA> ListarFactura()
+        public List<SIC_T_FACTURA> ListarFactura(int? numDesde, int? numHasta, bool? impreso, string ruc)
         {
-            return new BoletaFacturaDA().ListarFactura();
+            return new BoletaFacturaDA().ListarFactura(numDesde,numHasta, impreso, ruc);
         }
 
         /// <summary>
         /// Obtiene una lista de boletas.
         /// </summary>
         /// <returns>Lista de SIC_T_BOLETA</returns>
-        public List<SIC_T_BOLETA> ListarBoleta()
+        public List<SIC_T_BOLETA> ListarBoleta(int? numDesde, int? numHasta, bool? impreso, string ruc)
         {
-            return new BoletaFacturaDA().ListarBoleta();
+            return new BoletaFacturaDA().ListarBoleta(numDesde, numHasta, impreso, ruc); ;
         }
 
         public void ImprimirFactura(int id)

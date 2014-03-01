@@ -1,8 +1,8 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="frmFactImpresion.aspx.cs" Inherits="SIC.UserLayer.Interfaces.Facturacion.frmFactImpresion" %>
 
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <%@ Register Src="~/UserControl/wucMensajeAlerta.ascx" TagName="Mensaje" TagPrefix="uc1" %>
-
+<%@ Register Src="~/UserControl/wucMensajeAlerta2.ascx" TagName="Mensaje" TagPrefix="uc2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <style type="text/css">
         .style1
@@ -92,15 +92,23 @@
                                                                                 <table>
                                                                                     <tr>
                                                                                         <td class="txt-box-estilo">
-                                                                                            &nbsp;</td>
+                                                                                            Tipo Documento</td>
                                                                                         <td>
-                                                                                            &nbsp;</td>
+                                                                                            <asp:DropDownList ID="cboDocumento" runat="server" AutoPostBack="True" 
+                                                                                                onselectedindexchanged="cboDocumento_SelectedIndexChanged">
+                                                                                                <asp:ListItem>Factura</asp:ListItem>
+                                                                                                <asp:ListItem>Boleta</asp:ListItem>
+                                                                                            </asp:DropDownList>
+                                                                                        </td>
                                                                                         <td style="width: 20px">
                                                                                             &nbsp;</td>
                                                                                         <td class="txt-box-estilo">
-                                                                                            &nbsp;</td>
+                                                                                            Rango de Número</td>
                                                                                         <td>
-                                                                                            &nbsp;</td>
+                                                                                            <asp:TextBox ID="txtNumDesde" runat="server" Width="80px"></asp:TextBox>
+                                                                                            &nbsp;-
+                                                                                            <asp:TextBox ID="txtNumHasta" runat="server" Width="80px"></asp:TextBox>
+                                                                                        </td>
                                                                                         <td style="width: 20px">
                                                                                             &nbsp;</td>
                                                                                         <td>
@@ -109,6 +117,31 @@
                                                                                             &nbsp;
                                                                                         </td>
                                                                                     </tr>
+                                                                                    <tr>
+                                                                                        <td class="txt-box-estilo">
+                                                                                            Estado Impresion</td>
+                                                                                        <td>
+                                                                                            <asp:DropDownList ID="cboEstado" runat="server" AutoPostBack="True" 
+                                                                                                onselectedindexchanged="cboDocumento_SelectedIndexChanged">
+                                                                                                <asp:ListItem Value="-- Seleccione --"></asp:ListItem>
+                                                                                                <asp:ListItem Value="False">No ha sido Impreso</asp:ListItem>
+                                                                                                <asp:ListItem Value="True">Impreso Anteriormente</asp:ListItem>
+                                                                                            </asp:DropDownList>
+                                                                                        </td>
+                                                                                        <td style="width: 20px">
+                                                                                            &nbsp;</td>
+                                                                                        <td class="txt-box-estilo">
+                                                                                            RUC Cliente</td>
+                                                                                        <td>
+                                                                                            <asp:TextBox ID="txtRucCliente" runat="server" Width="175px"></asp:TextBox>
+                                                                                        </td>
+                                                                                        <td style="width: 20px">
+                                                                                            &nbsp;</td>
+                                                                                        <td>
+                                                                                            &nbsp;</td>
+                                                                                        <td>
+                                                                                            &nbsp;</td>
+                                                                                    </tr>
                                                                                 </table>
                                                                             </td>
                                                                             <td align="right">
@@ -116,7 +149,7 @@
                                                                                     <tr>
                                                                                         <td align="center">
                                                                                             <asp:Button ID="btnBuscarFactura" runat="server" CssClass="button small gris" 
-                                                                                                Text="Buscar" Width="100px" />
+                                                                                                Text="Buscar" Width="100px" onclick="btnBuscarFactura_Click" />
                                                                                         </td>
                                                                                         <td align="center">
                                                                                             &nbsp;</td>
@@ -154,11 +187,49 @@
                                                                         <%# Eval("SIC_T_VENTA.SIC_T_CLIENTE.cli_c_vraz_soc")%>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
+                                                                <asp:TemplateField HeaderText="Tipo Documento">
+                                                                    <ItemTemplate>
+                                                                        Factura
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
                                                                 <asp:BoundField HeaderText="FECHA DE REGISTRO" DataField="fac_c_zfecharegistro" />
                                                                 <asp:CommandField SelectText="Imprimir" ShowSelectButton="True" />
                                                             </Columns>
                                                             <PagerStyle CssClass="pgr" />
-                                                        </asp:GridView>                                                    
+                                                        </asp:GridView>  
+                                                        <asp:UpdatePanel ID="upListaBoleta" 
+                                                    UpdateMode="Conditional" ChildrenAsTriggers="False" runat="server" Visible="False">
+                                                    <ContentTemplate>
+                                                        <asp:GridView ID="gvListaBoleta" runat="server" 
+                                                            AlternatingRowStyle-CssClass="alt" AutoGenerateColumns="False" 
+                                                            BorderStyle="None" BorderWidth="0px" CssClass="mGrid" DataKeyNames="bol_c_iid" 
+                                                            EmptyDataText="No hay datos disponibles." GridLines="None" 
+                                                            PagerStyle-CssClass="pgr" PageSize="15" ShowHeaderWhenEmpty="True" 
+                                                            Width="100%" onselectedindexchanged="gvListaBoleta_SelectedIndexChanged">
+                                                            <AlternatingRowStyle CssClass="alt" />
+                                                            <Columns>
+                                                                <asp:TemplateField HeaderText="Serie y Número">
+                                                                    <ItemTemplate>
+                                                                        <%# Eval("bol_c_serie") + "-" + Eval("bol_c_numero").ToString().PadLeft(7,'0')%>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                                <asp:TemplateField HeaderText="Cliente">
+                                                                    <ItemTemplate>
+                                                                        <%# Eval("SIC_T_VENTA.SIC_T_CLIENTE.cli_c_vraz_soc")%>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                                <asp:TemplateField HeaderText="Tipo Documento">
+                                                                    <ItemTemplate>
+                                                                        Boleta
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                                <asp:BoundField HeaderText="FECHA DE REGISTRO" DataField="bol_c_zfecharegistro" />
+                                                                <asp:CommandField SelectText="Imprimir" ShowSelectButton="True" />
+                                                            </Columns>
+                                                            <PagerStyle CssClass="pgr" />
+                                                        </asp:GridView>
+                                                    </ContentTemplate>
+                                                    </asp:UpdatePanel>                                                  
                                                     </ContentTemplate>
                                                     </asp:UpdatePanel>
                                                     </td>
@@ -207,9 +278,7 @@
                                                                                 <table>
                                                                                     <tr>
                                                                                         <td align="center">
-                                                                                            <asp:Button ID="btnBuscarBoleta" runat="server" CssClass="button small gris" 
-                                                                                                Text="Buscar" Width="100px" />
-                                                                                        </td>
+                                                                                            &nbsp;</td>
                                                                                         <td align="center">
                                                                                             &nbsp;</td>
                                                                                     </tr>
@@ -224,34 +293,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td align="left" class="style1" colspan="4">
-                                                    <asp:UpdatePanel ID="upListaBoleta" 
-                                                    UpdateMode="Conditional" ChildrenAsTriggers="False" runat="server">
-                                                    <ContentTemplate>
-                                                        <asp:GridView ID="gvListaBoleta" runat="server" 
-                                                            AlternatingRowStyle-CssClass="alt" AutoGenerateColumns="False" 
-                                                            BorderStyle="None" BorderWidth="0px" CssClass="mGrid" DataKeyNames="bol_c_iid" 
-                                                            EmptyDataText="No hay datos disponibles." GridLines="None" 
-                                                            PagerStyle-CssClass="pgr" PageSize="15" ShowHeaderWhenEmpty="True" 
-                                                            Width="100%" onselectedindexchanged="gvListaBoleta_SelectedIndexChanged">
-                                                            <AlternatingRowStyle CssClass="alt" />
-                                                            <Columns>
-                                                                <asp:TemplateField HeaderText="Serie y Número">
-                                                                    <ItemTemplate>
-                                                                        <%# Eval("bol_c_serie") + "-" + Eval("bol_c_numero").ToString().PadLeft(7,'0')%>
-                                                                    </ItemTemplate>
-                                                                </asp:TemplateField>
-                                                                <asp:TemplateField HeaderText="Cliente">
-                                                                    <ItemTemplate>
-                                                                        <%# Eval("SIC_T_VENTA.SIC_T_CLIENTE.cli_c_vraz_soc")%>
-                                                                    </ItemTemplate>
-                                                                </asp:TemplateField>
-                                                                <asp:BoundField HeaderText="FECHA DE REGISTRO" DataField="bol_c_zfecharegistro" />
-                                                                <asp:CommandField SelectText="Imprimir" ShowSelectButton="True" />
-                                                            </Columns>
-                                                            <PagerStyle CssClass="pgr" />
-                                                        </asp:GridView>
-                                                    </ContentTemplate>
-                                                    </asp:UpdatePanel>
+                                                    
                                                     </td>
                                                 </tr>
                                                 <tr>

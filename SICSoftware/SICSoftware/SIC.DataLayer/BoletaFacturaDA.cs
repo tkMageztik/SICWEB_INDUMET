@@ -96,6 +96,44 @@ namespace SIC.DataLayer
         }
 
         /// <summary>
+        /// Obtiene una lista de Facturas desde la base de datos.
+        /// </summary>
+        /// <returns>List de SIC_T_FACTURA</returns>
+        public List<SIC_T_FACTURA> ListarFactura(int? numDesde, int? numHasta, bool? impreso, string ruc)
+        {
+            using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+            {
+                return (from x in contexto.SIC_T_FACTURA
+                        .Include("SIC_T_VENTA")
+                        .Include("SIC_T_VENTA.SIC_T_CLIENTE")
+                        where (numDesde==null || x.fac_c_numero>=numDesde) 
+                           && (numHasta==null || x.fac_c_numero<=numHasta)
+                           && (impreso==null || x.fac_c_bimpreso==impreso)
+                           && (ruc==null || ruc.Length<=0 || x.SIC_T_VENTA.SIC_T_CLIENTE.cli_c_vdoc_id.Contains(ruc))
+                        select x).ToList();
+            }
+        }
+
+        /// <summary>
+        /// Obtiene una lista de Boletas desde la base de datos.
+        /// </summary>
+        /// <returns>Lista de SIC_T_BOLETA</returns>
+        public List<SIC_T_BOLETA> ListarBoleta(int? numDesde, int? numHasta, bool? impreso, string ruc)
+        {
+            using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+            {
+                return (from x in contexto.SIC_T_BOLETA
+                        .Include("SIC_T_VENTA")
+                        .Include("SIC_T_VENTA.SIC_T_CLIENTE")
+                        where (numDesde == null || x.bol_c_numero >= numDesde)
+                           && (numHasta == null || x.bol_c_numero <= numHasta)
+                           && (impreso == null || x.bol_c_bimpreso == impreso)
+                           && (ruc == null || ruc.Length <= 0 || x.SIC_T_VENTA.SIC_T_CLIENTE.cli_c_vdoc_id.Contains(ruc))
+                        select x).ToList();
+            }
+        }
+
+        /// <summary>
         /// Obtiene una lista de Boletas desde la base de datos.
         /// </summary>
         /// <returns>Lista de SIC_T_BOLETA</returns>
