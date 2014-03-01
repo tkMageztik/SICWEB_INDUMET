@@ -439,11 +439,8 @@
                                                                             <%# Eval("mve_c_vdescripcion_item")%>
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
-                                                                    <asp:TemplateField HeaderText="Can. Pedida">
-                                                                        <ItemTemplate>
-                                                                            <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("mve_c_ecant_pedida"))%>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
+                                                                    <asp:BoundField DataField="mve_c_ecant_pedida" HeaderText="Can. Pedida" />
+                                                                  
                                                                     <asp:TemplateField HeaderText="Can. Recibida">
                                                                          <ItemTemplate>
                                                                             <asp:TextBox ID="txtCantidad" runat="server" Text='<%# Bind("mve_c_ecant_recibida") %> '

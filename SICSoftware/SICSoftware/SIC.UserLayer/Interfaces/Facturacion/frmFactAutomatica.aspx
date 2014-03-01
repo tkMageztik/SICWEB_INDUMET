@@ -131,7 +131,7 @@
                                                                                     <tr>
                                                                                         <td align="center">
                                                                                             <asp:Button ID="btnBuscar" runat="server" CssClass="button small gris" 
-                                                                                                onclick="btnBuscar_Click" Style="width: 100px" Text="Buscar" />
+                                                                                                onclick="btnBuscar_Click" Text="Buscar" Height="27px" />
                                                                                             <asp:Button ID="btnRegistrar" runat="server" CssClass="button small gris" 
                                                                                                 onclick="btnRegistrar_Click" Style="width: 100px" Text="Registrar" />
                                                                                         </td>

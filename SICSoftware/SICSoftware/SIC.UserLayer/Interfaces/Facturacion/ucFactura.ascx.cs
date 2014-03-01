@@ -28,7 +28,12 @@ namespace SIC.UserLayer.Interfaces.Facturacion
             lblTotal.Text = factura.fac_c_etotal.ToString();
             lblCliente.Text = factura.SIC_T_VENTA.SIC_T_CLIENTE.cli_c_vraz_soc;
             lblRuc.Text = factura.SIC_T_VENTA.SIC_T_CLIENTE.cli_c_vdoc_id;
-            //lblDireccion.Text = factura.SIC_T_VENTA.SIC_T_CLIENTE.cli_c_vraz_soc;
+            var resultado = factura.SIC_T_VENTA.SIC_T_CLIENTE.SIC_T_CLI_DIRECCION.FirstOrDefault(x => x.cli_direc_c_ctipo == "3");
+            if (resultado != null)
+            {
+                lblDireccion.Text = resultado.cli_direc_c_vdirec;
+            }
+
             GridView1.DataSource = factura.SIC_T_FACTURA_DETALLE.ToList();
             GridView1.DataBind();            
         }

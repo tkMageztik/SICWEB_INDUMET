@@ -99,7 +99,7 @@ namespace SIC.DataLayer
                     return (from x in contexto.SIC_T_VENTA
                                         .Include("SIC_T_VENTA_DETALLE.SIC_T_ITEM")
                                         .Include("SIC_T_VENTA_DETALLE.SIC_T_ALMACEN")
-                                        .Include("SIC_T_CLIENTE")
+                                        .Include("SIC_T_CLIENTE.SIC_T_CLI_DIRECCION")
                                         .Include("SIC_T_EMP_CENTRO_COSTO")                                        
                             where x.ven_c_iid == id && x.ven_c_bactivo == true
                             select x).SingleOrDefault();

@@ -418,6 +418,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         private bool VerificarDatosIngreso()
         {
             DateTime time;
+            var equivocado = this.MovEntNuevo.SIC_T_MOVIMIENTO_ENTRADA_DETALLE.FirstOrDefault(x=> x.CantidadAtendida + x.mve_c_ecant_recibida > x.mve_c_ecant_pedida);
             if (!DateTime.TryParseExact(txtFechaFact.Text, "dd/MM/yyyy", new CultureInfo("en-US"), DateTimeStyles.None, out time))
             {
                 Mensaje("Ingrese una fecha de factura correcta.", "~/Imagenes/warning.png");
@@ -448,6 +449,11 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 Mensaje("Debe ingresar al menos un item con stock.", "~/Imagenes/warning.png");
                 return false;
             }
+            else if (equivocado != null)
+            {
+                Mensaje("Se esta ingresando una cantidad en exceso del item " + equivocado.mve_c_vdescripcion_item , "~/Imagenes/warning.png");
+                return false;
+            }
             else
             {
                 return true;
@@ -457,6 +463,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         private bool VerificarDatosModificacion()
         {
             DateTime time;
+            var equivocado = this.MovEntSeleccionado.SIC_T_MOVIMIENTO_ENTRADA_DETALLE.FirstOrDefault(x => x.CantidadAtendida + x.mve_c_ecant_recibida > x.mve_c_ecant_pedida);
             if (!DateTime.TryParseExact(txtFechaFact.Text, "dd/MM/yyyy", new CultureInfo("en-US"), DateTimeStyles.None, out time))
             {
                 Mensaje("Ingrese una fecha de factura correcta.", "~/Imagenes/warning.png");
@@ -487,6 +494,11 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 Mensaje("Debe ingresar al menos un item con stock.", "~/Imagenes/warning.png");
                 return false;
             }
+            else if (equivocado != null)
+            {
+                Mensaje("Se esta ingresando una cantidad en exceso del item " + equivocado.mve_c_vdescripcion_item, "~/Imagenes/warning.png");
+                return false;
+            }
             else
             {
                 return true;
@@ -500,7 +512,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             {
                 TextBox txtCantidad = (TextBox) gvItemsSeleccionados.Rows[i].FindControl("txtCantidad");
                 decimal cantidadNueva = 0;
-                if (decimal.TryParse(txtCantidad.Text, out cantidadNueva) && cantidadNueva > 0)
+                if (decimal.TryParse(txtCantidad.Text, out cantidadNueva) && cantidadNueva >= 0)
                 {
                     int itemId = (int)gvItemsSeleccionados.DataKeys[i].Value;
                     foreach (var item in movEntrada.SIC_T_MOVIMIENTO_ENTRADA_DETALLE)
@@ -511,6 +523,10 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                             break;
                         }
                     }                                  
+                }
+                else
+                {
+                    txtCantidad.Text = "0";
                 }
             }
 
@@ -580,7 +596,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             {
                 TextBox txtCantidad = (TextBox)gvItemsSeleccionados.Rows[i].FindControl("txtCantidad");
                 decimal cantidadNueva = 0;
-                if (decimal.TryParse(txtCantidad.Text, out cantidadNueva) && cantidadNueva > 0)
+                if (decimal.TryParse(txtCantidad.Text, out cantidadNueva) && cantidadNueva >= 0)
                 {
                     int itemId = (int)gvItemsSeleccionados.DataKeys[i].Value;
                     foreach (var item in movEntrada.SIC_T_MOVIMIENTO_ENTRADA_DETALLE)
@@ -591,7 +607,11 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                             break;
                         }
                     }
-                }                
+                }
+                else
+                {
+                    txtCantidad.Text = "0";
+                }
             }
 
             if (!VerificarDatosModificacion())

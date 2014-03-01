@@ -114,7 +114,7 @@ namespace SIC.UserLayer.Interfaces.Facturacion
             {
                 MostrarPreliminarFactura(venta);
             }
-            else if (venta.ven_c_itipodoc == (int)TipoParametroDetalle.FACTURA)
+            else if (venta.ven_c_itipodoc == (int)TipoParametroDetalle.BOLETA)
             {
                 MostrarPreliminarBoleta(venta);
             }
@@ -136,7 +136,7 @@ namespace SIC.UserLayer.Interfaces.Facturacion
         {
             var boleta = this.facturacionAutomaticaBL.GenerarBoletaDesdeVenta(venta);
             ucBoleta1.MostrarBoleta(boleta);
-            mvFacturacionAutomatica.SetActiveView(vwFacturaPreliminar);
+            mvFacturacionAutomatica.SetActiveView(vwBoletaPreliminar);
             upGeneral.Update();
         }
 
