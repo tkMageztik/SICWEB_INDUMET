@@ -63,11 +63,12 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_ENTRADA_SIC_T_ALMACEN", "SIC_T_ALMACEN", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_ALMACEN), "SIC_T_MOVIMIENTO_ENTRADA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_MOVIMIENTO_ENTRADA), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_VENTA_DETALLE_SIC_T_ALMACEN", "SIC_T_ALMACEN", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_ALMACEN), "SIC_T_VENTA_DETALLE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_VENTA_DETALLE), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_ITEM_ALMACEN_SIC_T_ITEM", "SIC_T_ITEM", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_ITEM), "SIC_T_ITEM_ALMACEN", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_ITEM_ALMACEN), true)]
-[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_MOVIMIENTO_SALIDA", "SIC_T_MOVIMIENTO_SALIDA", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_MOVIMIENTO_SALIDA), "SIC_T_MOVIMIENTO_SALIDA_DETALLE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_MOVIMIENTO_SALIDA_DETALLE), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_SALIDA_SIC_T_VENTA", "SIC_T_VENTA", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(SIC.EntityLayer.SIC_T_VENTA), "SIC_T_MOVIMIENTO_SALIDA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_MOVIMIENTO_SALIDA), true)]
+[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_SALIDA_SIC_T_CLIENTE", "SIC_T_CLIENTE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_CLIENTE), "SIC_T_MOVIMIENTO_SALIDA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_MOVIMIENTO_SALIDA), true)]
+[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_SALIDA_SIC_T_MOV_ESTADO", "SIC_T_MOV_ESTADO", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_MOV_ESTADO), "SIC_T_MOVIMIENTO_SALIDA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_MOVIMIENTO_SALIDA), true)]
+[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_MOVIMIENTO_SALIDA", "SIC_T_MOVIMIENTO_SALIDA", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_MOVIMIENTO_SALIDA), "SIC_T_MOVIMIENTO_SALIDA_DETALLE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_MOVIMIENTO_SALIDA_DETALLE), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_ALMACEN", "SIC_T_ALMACEN", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_ALMACEN), "SIC_T_MOVIMIENTO_SALIDA_DETALLE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_MOVIMIENTO_SALIDA_DETALLE), true)]
 [assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_ITEM", "SIC_T_ITEM", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_ITEM), "SIC_T_MOVIMIENTO_SALIDA_DETALLE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_MOVIMIENTO_SALIDA_DETALLE), true)]
-[assembly: EdmRelationshipAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_SALIDA_SIC_T_CLIENTE", "SIC_T_CLIENTE", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SIC.EntityLayer.SIC_T_CLIENTE), "SIC_T_MOVIMIENTO_SALIDA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SIC.EntityLayer.SIC_T_MOVIMIENTO_SALIDA), true)]
 
 #endregion
 
@@ -8467,6 +8468,28 @@ namespace SIC.EntityLayer
                 }
             }
         }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_SALIDA_SIC_T_MOV_ESTADO", "SIC_T_MOVIMIENTO_SALIDA")]
+        public EntityCollection<SIC_T_MOVIMIENTO_SALIDA> SIC_T_MOVIMIENTO_SALIDA
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SIC_T_MOVIMIENTO_SALIDA>("SICDBWEBModel.FK_SIC_T_MOVIMIENTO_SALIDA_SIC_T_MOV_ESTADO", "SIC_T_MOVIMIENTO_SALIDA");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SIC_T_MOVIMIENTO_SALIDA>("SICDBWEBModel.FK_SIC_T_MOVIMIENTO_SALIDA_SIC_T_MOV_ESTADO", "SIC_T_MOVIMIENTO_SALIDA", value);
+                }
+            }
+        }
 
         #endregion
     }
@@ -9257,7 +9280,8 @@ namespace SIC.EntityLayer
         /// <param name="mvs_c_bingresado">Valor inicial de la propiedad mvs_c_bingresado.</param>
         /// <param name="mvs_c_bactivo">Valor inicial de la propiedad mvs_c_bactivo.</param>
         /// <param name="cli_c_vdoc_id">Valor inicial de la propiedad cli_c_vdoc_id.</param>
-        public static SIC_T_MOVIMIENTO_SALIDA CreateSIC_T_MOVIMIENTO_SALIDA(global::System.Int32 mvs_c_iid, global::System.Int32 mvs_c_itiposalida, global::System.String mvs_c_vdestiposalida, global::System.DateTime mvs_c_zfecharegistro, global::System.Boolean mvs_c_bingresado, global::System.Boolean mvs_c_bactivo, global::System.String cli_c_vdoc_id)
+        /// <param name="mov_estado_iid">Valor inicial de la propiedad mov_estado_iid.</param>
+        public static SIC_T_MOVIMIENTO_SALIDA CreateSIC_T_MOVIMIENTO_SALIDA(global::System.Int32 mvs_c_iid, global::System.Int32 mvs_c_itiposalida, global::System.String mvs_c_vdestiposalida, global::System.DateTime mvs_c_zfecharegistro, global::System.Boolean mvs_c_bingresado, global::System.Boolean mvs_c_bactivo, global::System.String cli_c_vdoc_id, global::System.Int32 mov_estado_iid)
         {
             SIC_T_MOVIMIENTO_SALIDA sIC_T_MOVIMIENTO_SALIDA = new SIC_T_MOVIMIENTO_SALIDA();
             sIC_T_MOVIMIENTO_SALIDA.mvs_c_iid = mvs_c_iid;
@@ -9267,6 +9291,7 @@ namespace SIC.EntityLayer
             sIC_T_MOVIMIENTO_SALIDA.mvs_c_bingresado = mvs_c_bingresado;
             sIC_T_MOVIMIENTO_SALIDA.mvs_c_bactivo = mvs_c_bactivo;
             sIC_T_MOVIMIENTO_SALIDA.cli_c_vdoc_id = cli_c_vdoc_id;
+            sIC_T_MOVIMIENTO_SALIDA.mov_estado_iid = mov_estado_iid;
             return sIC_T_MOVIMIENTO_SALIDA;
         }
 
@@ -9467,32 +9492,58 @@ namespace SIC.EntityLayer
         private global::System.String _cli_c_vdoc_id;
         partial void Oncli_c_vdoc_idChanging(global::System.String value);
         partial void Oncli_c_vdoc_idChanged();
-
-        #endregion
-    
-        #region Propiedades de navegación
     
         /// <summary>
         /// No hay documentación de metadatos disponible.
         /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_MOVIMIENTO_SALIDA", "SIC_T_MOVIMIENTO_SALIDA_DETALLE")]
-        public EntityCollection<SIC_T_MOVIMIENTO_SALIDA_DETALLE> SIC_T_MOVIMIENTO_SALIDA_DETALLE
+        public global::System.Int32 mov_estado_iid
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SIC_T_MOVIMIENTO_SALIDA_DETALLE>("SICDBWEBModel.FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_MOVIMIENTO_SALIDA", "SIC_T_MOVIMIENTO_SALIDA_DETALLE");
+                return _mov_estado_iid;
             }
             set
             {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SIC_T_MOVIMIENTO_SALIDA_DETALLE>("SICDBWEBModel.FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_MOVIMIENTO_SALIDA", "SIC_T_MOVIMIENTO_SALIDA_DETALLE", value);
-                }
+                Onmov_estado_iidChanging(value);
+                ReportPropertyChanging("mov_estado_iid");
+                _mov_estado_iid = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("mov_estado_iid");
+                Onmov_estado_iidChanged();
             }
         }
+        private global::System.Int32 _mov_estado_iid;
+        partial void Onmov_estado_iidChanging(global::System.Int32 value);
+        partial void Onmov_estado_iidChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String mvs_c_vobservacion
+        {
+            get
+            {
+                return _mvs_c_vobservacion;
+            }
+            set
+            {
+                Onmvs_c_vobservacionChanging(value);
+                ReportPropertyChanging("mvs_c_vobservacion");
+                _mvs_c_vobservacion = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("mvs_c_vobservacion");
+                Onmvs_c_vobservacionChanged();
+            }
+        }
+        private global::System.String _mvs_c_vobservacion;
+        partial void Onmvs_c_vobservacionChanging(global::System.String value);
+        partial void Onmvs_c_vobservacionChanged();
+
+        #endregion
+    
+        #region Propiedades de navegación
     
         /// <summary>
         /// No hay documentación de metadatos disponible.
@@ -9566,6 +9617,66 @@ namespace SIC.EntityLayer
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SIC_T_CLIENTE>("SICDBWEBModel.FK_SIC_T_MOVIMIENTO_SALIDA_SIC_T_CLIENTE", "SIC_T_CLIENTE", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_SALIDA_SIC_T_MOV_ESTADO", "SIC_T_MOV_ESTADO")]
+        public SIC_T_MOV_ESTADO SIC_T_MOV_ESTADO
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_MOV_ESTADO>("SICDBWEBModel.FK_SIC_T_MOVIMIENTO_SALIDA_SIC_T_MOV_ESTADO", "SIC_T_MOV_ESTADO").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_MOV_ESTADO>("SICDBWEBModel.FK_SIC_T_MOVIMIENTO_SALIDA_SIC_T_MOV_ESTADO", "SIC_T_MOV_ESTADO").Value = value;
+            }
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<SIC_T_MOV_ESTADO> SIC_T_MOV_ESTADOReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<SIC_T_MOV_ESTADO>("SICDBWEBModel.FK_SIC_T_MOVIMIENTO_SALIDA_SIC_T_MOV_ESTADO", "SIC_T_MOV_ESTADO");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<SIC_T_MOV_ESTADO>("SICDBWEBModel.FK_SIC_T_MOVIMIENTO_SALIDA_SIC_T_MOV_ESTADO", "SIC_T_MOV_ESTADO", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SICDBWEBModel", "FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_MOVIMIENTO_SALIDA", "SIC_T_MOVIMIENTO_SALIDA_DETALLE")]
+        public EntityCollection<SIC_T_MOVIMIENTO_SALIDA_DETALLE> SIC_T_MOVIMIENTO_SALIDA_DETALLE
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SIC_T_MOVIMIENTO_SALIDA_DETALLE>("SICDBWEBModel.FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_MOVIMIENTO_SALIDA", "SIC_T_MOVIMIENTO_SALIDA_DETALLE");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SIC_T_MOVIMIENTO_SALIDA_DETALLE>("SICDBWEBModel.FK_SIC_T_MOVIMIENTO_SALIDA_DETALLE_SIC_T_MOVIMIENTO_SALIDA", "SIC_T_MOVIMIENTO_SALIDA_DETALLE", value);
                 }
             }
         }

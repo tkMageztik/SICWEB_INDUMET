@@ -33,6 +33,11 @@ namespace SIC.BusinessLayer
             return new VentaDA().ListarVentas(ruc, razonSocial, inicio, fin);
         }
 
+        public List<SIC_T_PARAMETRO_DET> ListarTipoMovimientoSalida()
+        {
+            return new ParametroBL().ListarParametros((int)SIC.Data.TipoParametro.TIPO_SALIDA);
+        }
+
         /// <summary>
         /// Obtiene una venta por id.
         /// </summary>
@@ -75,13 +80,21 @@ namespace SIC.BusinessLayer
             {
                 throw new ArgumentException("El argumento movSalida no puede ser nulo.");
             }
+
+            MovimientoSalidaDA mvsDA = new MovimientoSalidaDA();
+            mvsDA.InsertarMovimientoSalida(movSalida);
             
-            throw new NotImplementedException();
         }
 
-        public ResultadoValidacion ValidarMovimientoSalida(SIC_T_MOVIMIENTO_SALIDA movSalida)
+
+        /// <summary>
+        /// Obtiene un movimiento de salida.
+        /// </summary>
+        /// <param name="id">Id del movimiento de salida.</param>
+        /// <returns>Objecto <c>SIC_T_MOVIMIENTO_SALIDA</c>.</returns>
+        public SIC_T_MOVIMIENTO_SALIDA ObtenerMovimientoSalida(int id)
         {
-            throw new NotImplementedException();
+            return new MovimientoSalidaDA().ObtenerMovimientoSalidaPorId(id);
         }
     }    
 }

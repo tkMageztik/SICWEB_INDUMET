@@ -397,7 +397,12 @@ namespace SIC.Data
         FISCAL = 24,
         SUCURSAL = 25,
         FACTURACION = 26,
-        VENTA = 27
+    }
+
+    public enum TipoMovimientoSalida
+    {
+        VENTA = 27,
+        PRODUCCION = 28,
     }
 
     public enum DESTINATARIOSCORREO

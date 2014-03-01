@@ -139,6 +139,15 @@ namespace SIC.UserLayer.Interfaces.Compras {
         protected global::System.Web.UI.WebControls.View vwNuevoMovimiento;
         
         /// <summary>
+        /// Control lblAccion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAccion;
+        
+        /// <summary>
         /// Control btnGuardar.
         /// </summary>
         /// <remarks>
@@ -155,6 +164,15 @@ namespace SIC.UserLayer.Interfaces.Compras {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnCancelar;
+        
+        /// <summary>
+        /// Control updTipoMov.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel updTipoMov;
         
         /// <summary>
         /// Control cboTipoMovimiento.
@@ -193,6 +211,15 @@ namespace SIC.UserLayer.Interfaces.Compras {
         protected global::System.Web.UI.WebControls.TextBox txtRSCli;
         
         /// <summary>
+        /// Control btnBuscarCliente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnBuscarCliente;
+        
+        /// <summary>
         /// Control txtFechaVenta.
         /// </summary>
         /// <remarks>
@@ -200,24 +227,6 @@ namespace SIC.UserLayer.Interfaces.Compras {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtFechaVenta;
-        
-        /// <summary>
-        /// Control txtFactura.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFactura;
-        
-        /// <summary>
-        /// Control txtFechaFactura.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaFactura;
         
         /// <summary>
         /// Control gvItemsSeleccionados.
@@ -335,6 +344,24 @@ namespace SIC.UserLayer.Interfaces.Compras {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvListaVenta;
+        
+        /// <summary>
+        /// Control vwBuscarItem.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View vwBuscarItem;
+        
+        /// <summary>
+        /// Control vwBuscarCliente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View vwBuscarCliente;
         
         /// <summary>
         /// Control upMensaje.
