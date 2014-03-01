@@ -182,15 +182,17 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 catch (Exception ex)
                 {
 #if DEBUG
+                    SIC.Data.ExceptionTrace.Write(ex);
                     String mensajeError = "Error Fatal : \n" + ex.Message;
                     if (ex.InnerException != null)
                     {
                         mensajeError += "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty;
                     }
 
-                    Mensaje(mensajeError, "~/Imagenes/warning.png");
+                    Mensaje(mensajeError, "~/Imagenes/warning.png");                    
 #else
-                Mensaje("Error en el proceso.", "~/Imagenes/warning.png");
+                Mensaje("Error en el proceso, se ha guardado la traza de la excepción..", "~/Imagenes/warning.png");
+                    SIC.Data.ExceptionTrace.Write(ex);
 #endif
                 }
             }
@@ -295,6 +297,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 catch (Exception ex)
                 {
 #if DEBUG
+                    SIC.Data.ExceptionTrace.Write(ex);
                     String mensajeError = "Error Fatal : \n" + ex.Message;
                     if (ex.InnerException != null)
                     {
@@ -303,7 +306,8 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
                     Mensaje(mensajeError, "~/Imagenes/warning.png");
 #else
-                    Mensaje("Error en el proceso.", "~/Imagenes/warning.png");
+                    SIC.Data.ExceptionTrace.Write(ex);
+                    Mensaje("Error en el proceso, se ha guardado la traza de la excepción..", "~/Imagenes/warning.png");
 #endif
                 }
             }
@@ -531,6 +535,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 catch (Exception ex)
                 {
     #if DEBUG
+                    SIC.Data.ExceptionTrace.Write(ex);
                     String mensajeError = "Error Fatal : \n" + ex.Message;
                     if (ex.InnerException != null)
                     {
@@ -539,8 +544,9 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
                     Mensaje(mensajeError, "~/Imagenes/warning.png");
     #else
-                    Mensaje("Error en el proceso.", "~/Imagenes/warning.png");
-    #endif
+                    SIC.Data.ExceptionTrace.Write(ex);
+                    Mensaje("Error en el proceso, se ha guardado la traza de la excepción..", "~/Imagenes/warning.png");
+#endif
                 }
             }
         }
@@ -663,6 +669,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 catch (Exception ex)
                 {
 #if DEBUG
+                    SIC.Data.ExceptionTrace.Write(ex);
                     String mensajeError = "Error Fatal : \n" + ex.Message;
                     if (ex.InnerException != null)
                     {
@@ -671,7 +678,8 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
                     Mensaje(mensajeError, "~/Imagenes/warning.png");
 #else
-                    Mensaje("Error en el proceso.", "~/Imagenes/warning.png");
+                    SIC.Data.ExceptionTrace.Write(ex);
+                    Mensaje("Error en el proceso, se ha guardado la traza de la excepción..", "~/Imagenes/warning.png");
 #endif
                 }
             }

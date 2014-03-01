@@ -568,12 +568,14 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 }
                 else
                 {
-                    Mensaje("Error en el proceso.", "~/Imagenes/warning.png");
+                    Mensaje("Error en el proceso, se ha guardado la traza de la excepción..", "~/Imagenes/warning.png");
                 }
             }
             catch (Exception ex)
             {
+                
 #if DEBUG
+                SIC.Data.ExceptionTrace.Write(ex);
                 String mensajeError = "Error Fatal : \n" + ex.Message;
                 if (ex.InnerException != null)
                 {
@@ -582,7 +584,8 @@ namespace SIC.UserLayer.Interfaces.Movimientos
 
                 Mensaje(mensajeError, "~/Imagenes/warning.png");
 #else
-                Mensaje("Error en el proceso.", "~/Imagenes/warning.png");
+                SIC.Data.ExceptionTrace.Write(ex);
+                Mensaje("Error en el proceso, se ha guardado la traza de la excepción..", "~/Imagenes/warning.png");
 #endif
             }
 
@@ -652,12 +655,13 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 }
                 else
                 {
-                    Mensaje("Error en el proceso.", "~/Imagenes/warning.png");
+                    Mensaje("Error en el proceso, se ha guardado la traza de la excepción..", "~/Imagenes/warning.png");
                 }
             }
             catch (Exception ex)
             {
-#if DEBUG
+#if DEBUG    
+                SIC.Data.ExceptionTrace.Write(ex);
                 String mensajeError = "Error Fatal : \n" + ex.Message;
                 if (ex.InnerException != null)
                 {
@@ -666,7 +670,8 @@ namespace SIC.UserLayer.Interfaces.Movimientos
 
                 Mensaje(mensajeError, "~/Imagenes/warning.png");
 #else
-                Mensaje("Error en el proceso.", "~/Imagenes/warning.png");
+                SIC.Data.ExceptionTrace.Write(ex);
+                Mensaje("Error en el proceso, se ha guardado la traza de la excepción..", "~/Imagenes/warning.png");
 #endif
             }
         }
@@ -685,6 +690,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             {
                 this.IngresarMovimientoEntrada();
             }
+            
         }
 
         private string ObtMsjEstadoMovimiento()

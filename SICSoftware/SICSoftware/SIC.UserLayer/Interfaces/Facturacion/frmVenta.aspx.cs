@@ -971,6 +971,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             catch (Exception ex)
             {
 #if DEBUG
+                SIC.Data.ExceptionTrace.Write(ex);
                 String mensajeError = "Error Fatal : \n" + ex.Message;
                 if (ex.InnerException != null)
                 {
@@ -979,7 +980,8 @@ namespace SIC.UserLayer.Interfaces.Movimientos
 
                 Mensaje(mensajeError, "~/Imagenes/warning.png");
 #else
-                    Mensaje("Error en el proceso.", "~/Imagenes/warning.png");
+                SIC.Data.ExceptionTrace.Write(ex);
+                    Mensaje("Error en el proceso, se ha guardado la traza de la excepción..", "~/Imagenes/warning.png");
 #endif
             }
         }
@@ -1018,6 +1020,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             catch (Exception ex)
             {
 #if DEBUG
+                SIC.Data.ExceptionTrace.Write(ex);
                 String mensajeError = "Error Fatal : \n" + ex.Message;
                 if (ex.InnerException != null)
                 {
@@ -1026,7 +1029,8 @@ namespace SIC.UserLayer.Interfaces.Movimientos
 
                 Mensaje(mensajeError, "~/Imagenes/warning.png");
 #else
-                    Mensaje("Error en el proceso.", "~/Imagenes/warning.png");
+                SIC.Data.ExceptionTrace.Write(ex);
+                    Mensaje("Error en el proceso, se ha guardado la traza de la excepción..", "~/Imagenes/warning.png");
 #endif
             }
             upGeneral.Update();
@@ -1105,6 +1109,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             catch (Exception ex)
             {
 #if DEBUG
+                SIC.Data.ExceptionTrace.Write(ex);
                 String mensajeError = "Error Fatal : \n" + ex.Message;
                 if (ex.InnerException != null)
                 {
@@ -1113,7 +1118,8 @@ namespace SIC.UserLayer.Interfaces.Movimientos
 
                 Mensaje(mensajeError, "~/Imagenes/warning.png");
 #else
-                    Mensaje("Error en el proceso.", "~/Imagenes/warning.png");
+                SIC.Data.ExceptionTrace.Write(ex);
+                    Mensaje("Error en el proceso, se ha guardado la traza de la excepción..", "~/Imagenes/warning.png");
 #endif
             }
 
