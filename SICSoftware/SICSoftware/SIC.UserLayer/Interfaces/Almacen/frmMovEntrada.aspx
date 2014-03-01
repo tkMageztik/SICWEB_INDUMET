@@ -10,6 +10,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <asp:UpdatePanel ID="upGeneral" UpdateMode="Conditional" runat="server">
         <ContentTemplate>
+            <script type="text/javascript" src="<%= ResolveUrl ("~/Scripts/numeric_input.js") %>"></script>
             <asp:MultiView ID="mvMovimientoEntrada" runat="server" ActiveViewIndex="0">
                 <asp:View ID="vwListaMovEnt" runat="server">
                     <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
@@ -281,8 +282,7 @@
                                                     <td align="left" class="style1">
                                                         <asp:TextBox ID="txtFechaFact" runat="server"></asp:TextBox>
                                                         <asp:CalendarExtender ID="txtFechaFact_CalendarExtender" runat="server" TargetControlID="txtFechaFact"
-                                                            Format="dd/MM/yyyy" TodaysDateFormat="dd/MM/yyyy">
-                                                        </asp:CalendarExtender>
+                                                            Format="dd/MM/yyyy" TodaysDateFormat="dd/MM/yyyy"></asp:CalendarExtender>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -325,8 +325,7 @@
                                                     <td align="left" class="style26">
                                                         <asp:TextBox ID="txtFechaGuia" runat="server"></asp:TextBox>
                                                         <asp:CalendarExtender ID="txtFechaGuia_CalendarExtender" runat="server" TargetControlID="txtFechaGuia"
-                                                            Format="dd/MM/yyyy" TodaysDateFormat="dd/MM/yyyy">
-                                                        </asp:CalendarExtender>
+                                                            Format="dd/MM/yyyy" TodaysDateFormat="dd/MM/yyyy"></asp:CalendarExtender>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -432,9 +431,7 @@
                                                             <asp:GridView ID="gvItemsSeleccionados" runat="server" AlternatingRowStyle-CssClass="alt"
                                                                 BorderStyle="None" BorderWidth="0px" CssClass="mGrid" EmptyDataText="No ha seleccionado una Orden de Compra."
                                                                 GridLines="None" Height="16px" PagerStyle-CssClass="pgr" ShowHeaderWhenEmpty="True"
-                                                                ViewStateMode="Enabled" Width="100%" AutoGenerateColumns="False" DataKeyNames="mve_c_iocdet_id"
-                                                                OnRowCancelingEdit="gvItemsSeleccionados_RowCancelingEdit" OnRowEditing="gvItemsSeleccionados_RowEditing"
-                                                                OnRowUpdating="gvItemsSeleccionados_RowUpdating">
+                                                                ViewStateMode="Enabled" Width="100%" AutoGenerateColumns="False" DataKeyNames="mve_c_iocdet_id">
                                                                 <AlternatingRowStyle CssClass="alt" />
                                                                 <Columns>
                                                                     <asp:TemplateField HeaderText="Descripción">
@@ -448,15 +445,16 @@
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="Can. Recibida">
-                                                                        <ItemTemplate>
-                                                                            <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("mve_c_ecant_recibida"))%>
+                                                                         <ItemTemplate>
+                                                                            <asp:TextBox ID="txtCantidad" runat="server" Text='<%# Bind("mve_c_ecant_recibida") %> '
+                                                                            onkeypress="return onlyDotsAndNumbers(event)"></asp:TextBox>
                                                                         </ItemTemplate>
-                                                                        <EditItemTemplate>
-                                                                            <asp:TextBox ID="txtCantidad" runat="server" Text='<%# Bind("mve_c_ecant_recibida") %> '></asp:TextBox>
-                                                                        </EditItemTemplate>
                                                                     </asp:TemplateField>
-                                                                    <asp:CommandField ShowEditButton="True" CancelText="Cancelar" DeleteText="Eliminar"
-                                                                        EditText="Editar" UpdateText="Actualizar" />
+                                                                    <asp:TemplateField HeaderText="Can. Atendida">
+                                                                         <ItemTemplate>
+                                                                            <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("CantidadAtendida"))%>
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
                                                                 </Columns>
                                                                 <PagerStyle CssClass="pgr" />
                                                             </asp:GridView>

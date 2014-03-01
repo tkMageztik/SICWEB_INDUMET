@@ -144,6 +144,7 @@ namespace SIC.DataLayer
                     var result = (from x in contexto.SIC_T_ORDEN_DE_COMPRA
                                         .Include("SIC_T_CLIENTE")
                                         .Include("SIC_T_ORDEN_DE_COMPRA_DET.SIC_T_ITEM")
+                                        .Include("SIC_T_MOVIMIENTO_ENTRADA.SIC_T_MOVIMIENTO_ENTRADA_DETALLE")
                                   where x.odc_c_iid == id && x.odc_c_bactivo == true
                                   select x).SingleOrDefault();
                     SIC_T_CLIENTE cli = result.SIC_T_CLIENTE;

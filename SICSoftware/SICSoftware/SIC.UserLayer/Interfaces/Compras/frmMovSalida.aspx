@@ -22,7 +22,7 @@
                     <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                             <td class="tit-nav-paginas" align="left">
-                                MANTENIMIENTO &gt; VENTA
+                                ALMACÉN &gt; MOVIMIENTOS DE ENTRADA
                             </td>
                         </tr>
                         <tr>
@@ -36,39 +36,57 @@
                                                         <table>
                                                             <tr>
                                                                 <td class="txt-box-estilo">
-                                                                    &nbsp;</td>
-                                                                <td>
-                                                                    &nbsp;</td>
+                                                                    RUC
+                                                                </td>
+                                                                <td style="margin-left: 80px">
+                                                                    <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                                                                </td>
                                                                 <td style="width: 20px">
                                                                 </td>
                                                                 <td class="txt-box-estilo">
-                                                                    &nbsp;</td>
+                                                                    Razón Social
+                                                                </td>
                                                                 <td>
-                                                                    &nbsp;</td>
+                                                                    <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+                                                                </td>
                                                                 <td style="width: 20px">
                                                                 </td>
                                                                 <td>
                                                                 </td>
                                                                 <td>
-                                                                    &nbsp;</td>
+                                                                    &nbsp;
+                                                                </td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="txt-box-estilo">
-                                                                    &nbsp;</td>
-                                                                <td>
-                                                                    &nbsp;</td>
+                                                                    Desde
+                                                                </td>
+                                                                <td style="margin-left: 80px">
+                                                                    <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
+                                                                    &nbsp;<asp:CalendarExtender ID="CalendarExtender1" runat="server"
+                                                                        TargetControlID="txtFiltroFecIni" Format="dd/MM/yyyy" TodaysDateFormat="dd/MM/yyyy" />
+                                                                </td>
                                                                 <td style="width: 20px">
-                                                                    &nbsp;</td>
+                                                                    &nbsp;
+                                                                </td>
                                                                 <td class="txt-box-estilo">
-                                                                    &nbsp;</td>
+                                                                    Hasta
+                                                                </td>
                                                                 <td>
-                                                                    &nbsp;</td>
+                                                                    <asp:TextBox ID="TextBox4" runat="server"></asp:TextBox>
+                                                                    <asp:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="txtFiltroFecFin"
+                                                                        Format="dd/MM/yyyy" TodaysDateFormat="dd/MM/yyyy" />
+                                                                </td>
                                                                 <td style="width: 20px">
-                                                                    &nbsp;</td>
+                                                                    &nbsp;
+                                                                </td>
+                                                                <td class="txt-box-estilo">
+                                                                    Estado
+                                                                </td>
                                                                 <td>
-                                                                    &nbsp;</td>
-                                                                <td>
-                                                                    &nbsp;</td>
+                                                                    <asp:DropDownList ID="cboEstado" runat="server">
+                                                                    </asp:DropDownList>
+                                                                </td>
                                                             </tr>
                                                         </table>
                                                     </td>
@@ -76,12 +94,12 @@
                                                         <table>
                                                             <tr>
                                                                 <td align="center">
-                                                                    <asp:Button ID="btnBuscar" runat="server" CssClass="button small gris" Style="width: 100px"
-                                                                        Text="Buscar" />
+                                                                    <asp:Button ID="btnBuscar" runat="server" CssClass="button small gris" OnClick="btnBuscar_Click"
+                                                                        Style="width: 100px; height: 26px;" Text="Buscar" />
                                                                 </td>
                                                                 <td align="center">
-                                                                    <asp:Button ID="btnNuevo" runat="server" CssClass="lnk" Height="26px"
-                                                                        Text="Nuevo" Width="101px" onclick="btnNuevo_Click" />
+                                                                    <asp:Button ID="btnNuevo" runat="server" CssClass="lnk" Height="26px" OnClick="btnNuevo_Click"
+                                                                        Text="Nuevo" Width="101px" />
                                                                 </td>
                                                             </tr>
                                                         </table>
@@ -92,12 +110,37 @@
                                     </tr>
                                 </table>
                             </td>
-                            <tr>
-                                <td align="left" class="tit-nav-paginas">
-                                    <asp:UpdatePanel ID="upGvLista" runat="server" UpdateMode="Conditional">
-                                    </asp:UpdatePanel>
-                                </td>
-                            </tr>
+                        </tr>
+                        <tr>
+                            <td align="left" class="tit-nav-paginas">
+                                <asp:UpdatePanel ID="upGvLista" runat="server" UpdateMode="Conditional">
+                                    <ContentTemplate>
+                                        <asp:GridView ID="gvListaMovEn" runat="server" BorderStyle="None" AutoGenerateColumns="False"
+                                            GridLines="None" AllowPaging="True" Width="100%" CssClass="mGrid" PagerStyle-CssClass="pgr"
+                                            AlternatingRowStyle-CssClass="alt" ShowHeaderWhenEmpty="True" EmptyDataText="No hay datos disponibles."
+                                            PageSize="15" BorderWidth="0px" DataKeyNames="mve_c_iid" OnSelectedIndexChanged="gvListaMovEn_SelectedIndexChanged"
+                                            OnRowCommand="gvListaMovEn_RowCommand">
+                                            <AlternatingRowStyle CssClass="alt" />
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="RUC PROVEEDOR">
+                                                    <ItemTemplate>
+                                                        <%# Eval("SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vdoc_id")%>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="RAZÓN SOCIAL PROVEEDOR">
+                                                    <ItemTemplate>
+                                                        <%# Eval("SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vraz_soc")%>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:BoundField HeaderText="Fecha" DataField="mve_c_zfecharegistro" />
+                                                <asp:BoundField DataField="mve_c_vdesestado" HeaderText="Estado" />
+                                            </Columns>
+                                            <PagerStyle CssClass="pgr" />
+                                        </asp:GridView>
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
+                            </td>
+                        </tr>
                     </table>
                 </asp:View>
                 <asp:View ID="vwNuevoMovimiento" runat="server">
@@ -445,8 +488,9 @@
                                             <asp:GridView ID="gvListaVenta" runat="server" BorderStyle="None" AutoGenerateColumns="False"
                                                 GridLines="None" AllowPaging="True" Width="100%" CssClass="mGrid" PagerStyle-CssClass="pgr"
                                                 AlternatingRowStyle-CssClass="alt" ShowHeaderWhenEmpty="True" EmptyDataText="No hay datos disponibles."
-                                                PageSize="15" BorderWidth="0px" DataKeyNames="ven_c_iid" OnRowEditing="gvListaVenta_RowEditing"
-                                                OnRowDeleting="gvListaVenta_RowDeleting" OnPageIndexChanging="gvListaVenta_PageIndexChanging">
+                                                PageSize="15" BorderWidth="0px" DataKeyNames="ven_c_iid" 
+                                                OnPageIndexChanging="gvListaVenta_PageIndexChanging" 
+                                                onselectedindexchanged="gvListaVenta_SelectedIndexChanged">
                                                 <AlternatingRowStyle CssClass="alt" />
                                                 <Columns>
                                                     <asp:TemplateField HeaderText="RUC CLIENTE">

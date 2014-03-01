@@ -133,8 +133,6 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             this.SeleccionarAlmacen();
         }
 
-
-
         protected void gvListaOC_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.SeleccionarOrdenCompra();
@@ -148,85 +146,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         protected void btnRegresarDesdeItems_Click(object sender, EventArgs e)
         {
 
-        }
-
-
-        protected void gvItemsSeleccionados_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
-        {
-            gvItemsSeleccionados.EditIndex = -1;
-            if (this.EscenarioMovEn == TipoOperacion.Modificacion)
-            {
-                gvItemsSeleccionados.DataSource = MovEntSeleccionado.SIC_T_MOVIMIENTO_ENTRADA_DETALLE;
-                gvItemsSeleccionados.DataBind();
-            }
-            else if (this.EscenarioMovEn == TipoOperacion.Creacion)
-            {
-                gvItemsSeleccionados.DataSource = MovEntNuevo.SIC_T_MOVIMIENTO_ENTRADA_DETALLE;
-                gvItemsSeleccionados.DataBind();
-            }
-        }
-
-        protected void gvItemsSeleccionados_RowEditing(object sender, GridViewEditEventArgs e)
-        {
-            gvItemsSeleccionados.EditIndex = e.NewEditIndex;
-            if (this.EscenarioMovEn == TipoOperacion.Modificacion)
-            {
-                gvItemsSeleccionados.DataSource = MovEntSeleccionado.SIC_T_MOVIMIENTO_ENTRADA_DETALLE;
-                gvItemsSeleccionados.DataBind();
-            }
-            else if (this.EscenarioMovEn == TipoOperacion.Creacion)
-            {
-                gvItemsSeleccionados.DataSource = MovEntNuevo.SIC_T_MOVIMIENTO_ENTRADA_DETALLE;
-                gvItemsSeleccionados.DataBind();
-            }
-        }
-
-        protected void gvItemsSeleccionados_RowUpdating(object sender, GridViewUpdateEventArgs e)
-        {
-            TextBox txtCantidad = (TextBox)gvItemsSeleccionados.Rows[e.RowIndex].FindControl("txtCantidad");
-            decimal cantidadNueva;
-            if (decimal.TryParse(txtCantidad.Text, out cantidadNueva) && cantidadNueva > 0)
-            {
-                int itemId = (int)gvItemsSeleccionados.DataKeys[e.RowIndex].Value;
-
-                if (this.EscenarioMovEn == TipoOperacion.Modificacion)
-                {
-                    SIC_T_MOVIMIENTO_ENTRADA movimientoEntrada = this.MovEntSeleccionado;
-                    foreach (var item in movimientoEntrada.SIC_T_MOVIMIENTO_ENTRADA_DETALLE)
-                    {
-                        if (item.mve_c_iocdet_id == itemId)
-                        {
-                            item.mve_c_ecant_recibida = cantidadNueva;
-                            break;
-                        }
-                    }
-                    gvItemsSeleccionados.EditIndex = -1;
-                    gvItemsSeleccionados.DataSource = MovEntSeleccionado.SIC_T_MOVIMIENTO_ENTRADA_DETALLE;
-                    gvItemsSeleccionados.DataBind();
-                }
-                else if (this.EscenarioMovEn == TipoOperacion.Creacion)
-                {
-                    SIC_T_MOVIMIENTO_ENTRADA movimientoEntrada = this.MovEntNuevo;
-                    foreach (var item in movimientoEntrada.SIC_T_MOVIMIENTO_ENTRADA_DETALLE)
-                    {
-                        if (item.mve_c_iocdet_id == itemId)
-                        {
-                            item.mve_c_ecant_recibida = cantidadNueva;
-                            break;
-                        }
-                    }
-                    gvItemsSeleccionados.EditIndex = -1;
-                    gvItemsSeleccionados.DataSource = MovEntNuevo.SIC_T_MOVIMIENTO_ENTRADA_DETALLE;
-                    gvItemsSeleccionados.DataBind();
-                }
-            }
-            else
-            {
-                Mensaje("Debe ingresar un número entero válido mayor a 0.", "~/Imagenes/warning.png");
-                return;
-            }
-        }
-
+        }        
         #endregion
 
         #region Metodos de Listado
@@ -338,8 +258,8 @@ namespace SIC.UserLayer.Interfaces.Movimientos
 
         private void MostrarModificarMovimientoEntrada(int idMovimiento)
         {
-
             this.MovEntSeleccionado = _movEntrada.ObtenerMovimientoEntradaPorId(idMovimiento);
+            this.MovEntSeleccionado.CalcularCantidadAtendida(this.MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA);
             if (MovEntSeleccionado.mve_c_iestado == (int)EstadoMovimiento.CERRADO || MovEntSeleccionado.mve_c_iestado == (int)EstadoMovimiento.ANULADO)
             {
                 this.Mensaje("No se puede modificar movimientos en estado CERRADO o ANULADO.", "~/Imagenes/warning.png");
@@ -575,12 +495,30 @@ namespace SIC.UserLayer.Interfaces.Movimientos
 
         private void IngresarMovimientoEntrada()
         {
+            SIC_T_MOVIMIENTO_ENTRADA movEntrada = this.MovEntNuevo;
+            for (int i = 0; i < gvItemsSeleccionados.Rows.Count; i++)
+            {
+                TextBox txtCantidad = (TextBox) gvItemsSeleccionados.Rows[i].FindControl("txtCantidad");
+                decimal cantidadNueva = 0;
+                if (decimal.TryParse(txtCantidad.Text, out cantidadNueva) && cantidadNueva > 0)
+                {
+                    int itemId = (int)gvItemsSeleccionados.DataKeys[i].Value;
+                    foreach (var item in movEntrada.SIC_T_MOVIMIENTO_ENTRADA_DETALLE)
+                    {
+                        if (item.mve_c_iocdet_id == itemId)
+                        {
+                            item.mve_c_ecant_recibida = cantidadNueva;
+                            break;
+                        }
+                    }                                  
+                }
+            }
+
             if (!VerificarDatosIngreso())
             {
                 return;
             }
 
-            SIC_T_MOVIMIENTO_ENTRADA movEntrada = this.MovEntNuevo;
             movEntrada.mve_c_vfacturacodigo = txtSerieFact.Text + "-" + txtNumeroFact.Text;
             movEntrada.mve_c_zfacturafecha = DateTime.ParseExact(txtFechaFact.Text, "dd/MM/yyyy", new CultureInfo("en-US"), DateTimeStyles.None);
             movEntrada.mve_c_vguiacodigo = txtSerieGuia.Text + "-" + txtNumeroGuia.Text;
@@ -636,12 +574,31 @@ namespace SIC.UserLayer.Interfaces.Movimientos
 
         private void ModificarMovimientoEntrada()
         {
+
+            SIC_T_MOVIMIENTO_ENTRADA movEntrada = this.MovEntSeleccionado;
+            for (int i = 0; i < gvItemsSeleccionados.Rows.Count; i++)
+            {
+                TextBox txtCantidad = (TextBox)gvItemsSeleccionados.Rows[i].FindControl("txtCantidad");
+                decimal cantidadNueva = 0;
+                if (decimal.TryParse(txtCantidad.Text, out cantidadNueva) && cantidadNueva > 0)
+                {
+                    int itemId = (int)gvItemsSeleccionados.DataKeys[i].Value;
+                    foreach (var item in movEntrada.SIC_T_MOVIMIENTO_ENTRADA_DETALLE)
+                    {
+                        if (item.mve_c_iocdet_id == itemId)
+                        {
+                            item.mve_c_ecant_recibida = cantidadNueva;
+                            break;
+                        }
+                    }
+                }                
+            }
+
             if (!VerificarDatosModificacion())
             {
                 return;
             }
 
-            SIC_T_MOVIMIENTO_ENTRADA movEntrada = this.MovEntSeleccionado;
             movEntrada.mve_c_vfacturacodigo = txtSerieFact.Text + "-" + txtNumeroFact.Text;
             movEntrada.mve_c_zfacturafecha = DateTime.ParseExact(txtFechaFact.Text, "dd/MM/yyyy", new CultureInfo("en-US"), DateTimeStyles.None);
             movEntrada.mve_c_vguiacodigo = txtSerieGuia.Text + "-" + txtNumeroGuia.Text;
@@ -726,11 +683,10 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 {
                     if (this.EscenarioMovEn == TipoOperacion.Creacion)
                     {
-                        MovEntNuevo.SIC_T_ORDEN_DE_COMPRA = _ordenCompra.ObtenerOrdenCompraNoContext(id);
+                        MovEntNuevo.SIC_T_ORDEN_DE_COMPRA = _ordenCompra.ObtenerOrdenCompraNoContext(id);                        
                         txtNumeroOC.Text = MovEntNuevo.SIC_T_ORDEN_DE_COMPRA != null ? MovEntNuevo.SIC_T_ORDEN_DE_COMPRA.odc_c_vcodigo.ToString() : string.Empty;
                         txtSerieOC.Text = MovEntNuevo.SIC_T_ORDEN_DE_COMPRA != null ? MovEntNuevo.SIC_T_ORDEN_DE_COMPRA.odc_c_cserie.ToString() : string.Empty;
                         txtProveedorOC.Text = MovEntNuevo.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vraz_soc;
-
                         foreach (var detalle in MovEntNuevo.SIC_T_ORDEN_DE_COMPRA.SIC_T_ORDEN_DE_COMPRA_DET)
                         {
                             var movDet = new SIC_T_MOVIMIENTO_ENTRADA_DETALLE();
@@ -742,12 +698,14 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                             MovEntNuevo.SIC_T_MOVIMIENTO_ENTRADA_DETALLE.Add(movDet);
                         }
 
+                        MovEntNuevo.CalcularCantidadAtendida(MovEntNuevo.SIC_T_ORDEN_DE_COMPRA);
+
                         this.ListarDetalleMovimiento();
                         this.RegresarDesdeOrdenCompra();
                     }
                     else if (this.EscenarioMovEn == TipoOperacion.Modificacion)
                     {
-                        MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA = _ordenCompra.ObtenerOrdenCompraNoContext(id);
+                        MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA = _ordenCompra.ObtenerOrdenCompraNoContext(id);                        
                         txtNumeroOC.Text = MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA != null ? MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA.odc_c_vcodigo.ToString() : string.Empty;
                         txtSerieOC.Text = MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA != null ? MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA.odc_c_cserie.ToString() : string.Empty;
                         txtProveedorOC.Text = MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vraz_soc;
@@ -762,6 +720,8 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                             movDet.mve_c_iocdet_id = detalle.odc_det_c_iid;
                             MovEntSeleccionado.SIC_T_MOVIMIENTO_ENTRADA_DETALLE.Add(movDet);
                         }
+
+                        MovEntSeleccionado.CalcularCantidadAtendida(MovEntNuevo.SIC_T_ORDEN_DE_COMPRA);
 
                         this.ListarDetalleMovimiento();
                         this.RegresarDesdeOrdenCompra();
@@ -920,5 +880,8 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             this.ListarMovimientoEntrada();
             upGeneral.Update();
         }
+
+
+
     }
 }
