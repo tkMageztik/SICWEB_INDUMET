@@ -134,10 +134,19 @@ namespace SIC.BusinessLayer
             }
 
             MovimientoSalidaDA mvsDA = new MovimientoSalidaDA();
-            mvsDA.InsertarMovimientoSalida(movSalida);
-            
+            mvsDA.InsertarMovimientoSalida(movSalida);            
         }
 
+        public void ModificarMovimientoSalida(SIC_T_MOVIMIENTO_SALIDA movSalida)
+        {
+            if (movSalida == null)
+            {
+                throw new ArgumentException("El argumento movSalida no puede ser nulo.");
+            }
+
+            MovimientoSalidaDA mvsDA = new MovimientoSalidaDA();
+            mvsDA.ModificarMovimientSalida(movSalida);
+        }
 
         /// <summary>
         /// Obtiene un movimiento de salida.

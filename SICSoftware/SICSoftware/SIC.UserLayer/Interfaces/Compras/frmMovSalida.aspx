@@ -156,7 +156,8 @@
                                         <asp:GridView ID="gvListaMovSal" runat="server" BorderStyle="None" AutoGenerateColumns="False"
                                             GridLines="None" AllowPaging="True" Width="100%" CssClass="mGrid" PagerStyle-CssClass="pgr"
                                             AlternatingRowStyle-CssClass="alt" ShowHeaderWhenEmpty="True" EmptyDataText="No hay datos disponibles."
-                                            PageSize="15" BorderWidth="0px" DataKeyNames="mvs_c_iid" OnSelectedIndexChanged="gvListaMovSal_SelectedIndexChanged">
+                                            PageSize="15" BorderWidth="0px" DataKeyNames="mvs_c_iid" 
+                                            OnSelectedIndexChanged="btnRegerserVenta_Click">
                                             <AlternatingRowStyle CssClass="alt" />
                                             <Columns>
                                                 <asp:BoundField DataField="mvs_c_vdestiposalida" HeaderText="Tipo Salida" />

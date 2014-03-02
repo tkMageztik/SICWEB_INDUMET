@@ -89,12 +89,19 @@ namespace SIC.UserLayer.Interfaces.Compras
         protected void gvListaMovSal_SelectedIndexChanged(object sender, EventArgs e)
         {
             int id = (int) gvListaMovSal.DataKeys[gvListaMovSal.SelectedIndex].Value;
-            this.MostrarVerMovimiento(id);
+            this.MostrarModificarMovimiento(id);
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            this.IngresarMovimientoSalida();
+            if (this.EscenarioMovSal == TipoOperacion.Creacion)
+            {
+                this.IngresarMovimientoSalida();
+            }
+            else if (this.EscenarioMovSal == TipoOperacion.Modificacion)
+            {
+                this.ModificarMovimeintoEntrada();
+            }
         }
 
         protected void cboTipoMovimiento_SelectedIndexChanged(object sender, EventArgs e)
@@ -360,6 +367,7 @@ namespace SIC.UserLayer.Interfaces.Compras
             this.txtObs.ReadOnly = false;
             this.btnGuardar.Visible = true;
             this.btnGuardar.Enabled = true;
+            this.cboTipoMovimiento.Enabled = true;
             this.cboTipoMovimiento.SelectedIndex = 0;
             this.pnlDatosSalVenta.Visible = true;
             this.btnBuscarItems.Visible = false;
@@ -374,19 +382,40 @@ namespace SIC.UserLayer.Interfaces.Compras
         /// Muestra la vista <c>vwNuevoMovimiento</c> con los controles
         /// modificados para mostrar el movimiento
         /// </summary>
-        private void MostrarVerMovimiento(int id)
+        private void MostrarModificarMovimiento(int id)
         {
-            this.EscenarioMovSal = TipoOperacion.Listar;
+            this.EscenarioMovSal = TipoOperacion.Modificacion;
             this.btnBuscarVenta.Enabled = false;
             this.btnBuscarVenta.Visible = false;
             this.txtObs.ReadOnly = true;
             this.btnGuardar.Visible = false;
             this.btnGuardar.Enabled = false;
+            this.cboTipoMovimiento.Enabled = false;
             this.lblAccion.Text = "VER";
             this.mvMovSalida.SetActiveView(this.vwNuevoMovimiento);
             MovimientoSalidaBL mvsBL = new MovimientoSalidaBL();
-            this.MovSalNuevo = mvsBL.ObtenerMovimientoSalida(id);
-            this.LimpiarVistaNuevo();
+            this.MovSalModificar = mvsBL.ObtenerMovimientoSalida(id);
+
+            cboTipoMovimiento.ClearSelection();
+            var seleccion = cboTipoMovimiento.Items.FindByText(MovSalModificar.mvs_c_vdestiposalida);
+            if (seleccion != null)
+            {
+                seleccion.Selected = true;
+            }
+
+            this.CambioTipoMovimiento();
+            this.gvItemsSeleccionados.DataSource = MovSalModificar.SIC_T_MOVIMIENTO_SALIDA_DETALLE;
+            if (MovSalModificar.SIC_T_VENTA != null)
+            {
+                txtFechaVenta.Text = MovSalModificar.SIC_T_VENTA.ven_c_zfecha.ToString("dd/MM/yyyy");
+            }
+            if (MovSalModificar.SIC_T_CLIENTE != null)
+            {
+                txtRUCCli.Text = MovSalModificar.SIC_T_CLIENTE.cli_c_vdoc_id;
+                txtRSCli.Text = MovSalModificar.SIC_T_CLIENTE.cli_c_vraz_soc;
+            }
+
+            this.mvMovSalida.SetActiveView(vwNuevoMovimiento);
         }
 
         private void MostrarSeleccionItems()
@@ -441,7 +470,6 @@ namespace SIC.UserLayer.Interfaces.Compras
         {
             MovimientoSalidaBL mvsBL = new MovimientoSalidaBL();
             var movSal = MovSalNuevo;
-
             movSal.mvs_c_itiposalida = int.Parse(cboTipoMovimiento.SelectedValue);
             movSal.mvs_c_vdestiposalida = cboTipoMovimiento.SelectedItem.Text;
             movSal.mov_estado_iid = 2;
@@ -474,6 +502,63 @@ namespace SIC.UserLayer.Interfaces.Compras
             try
             {
                 mvsBL.IngresarMovimientoSalida(this.MovSalNuevo);
+                Mensaje("Movimiento de Salida ingresado con éxito.", "~/Imagenes/correcto.png");
+                this.mvMovSalida.SetActiveView(vwListaMovimiento);
+            }
+            catch (Exception ex)
+            {
+#if DEBUG
+                SIC.Data.ExceptionTrace.Write(ex);
+                String mensajeError = "Error Fatal : \n" + ex.Message;
+                if (ex.InnerException != null)
+                {
+                    mensajeError += "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty;
+                }
+
+                Mensaje(mensajeError, "~/Imagenes/warning.png");
+#else
+                SIC.Data.ExceptionTrace.Write(ex);
+                Mensaje("Error en el proceso, se ha guardado la traza de la excepción..", "~/Imagenes/warning.png");
+#endif
+            }
+        }
+
+        private void ModificarMovimeintoSalida()
+        {
+            MovimientoSalidaBL mvsBL = new MovimientoSalidaBL();
+            var movSal = MovSalModificar;
+            movSal.mov_estado_iid = 2;
+            movSal.mvs_c_itiposalida = int.Parse(cboTipoMovimiento.SelectedValue);
+            movSal.mvs_c_vdestiposalida = cboTipoMovimiento.SelectedItem.Text;
+            movSal.mov_estado_iid = 2;
+            movSal.mvs_c_vobservacion = txtObs.Text;
+
+            for (int i = 0; i < gvItemsSeleccionados.Rows.Count; i++)
+            {
+                TextBox txtCantidad = (TextBox)gvItemsSeleccionados.Rows[i].FindControl("txtCantidad");
+                decimal cantidadNueva = 0;
+                if (decimal.TryParse(txtCantidad.Text, out cantidadNueva) && cantidadNueva >= 0)
+                {
+                    int itemId = (int)gvItemsSeleccionados.DataKeys[i].Values["itm_c_iid"];
+                    int almId = (int)gvItemsSeleccionados.DataKeys[i].Values["alm_c_iid"];
+                    foreach (var item in movSal.SIC_T_MOVIMIENTO_SALIDA_DETALLE)
+                    {
+                        if (item.itm_c_iid == itemId && item.alm_c_iid == almId)
+                        {
+                            item.mvs_det_c_ecant = cantidadNueva;
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    txtCantidad.Text = "0";
+                }
+            }
+
+            try
+            {
+                mvsBL.ModificarMovimientoSalida(this.MovSalModificar);
                 Mensaje("Movimiento de Salida ingresado con éxito.", "~/Imagenes/correcto.png");
                 this.mvMovSalida.SetActiveView(vwListaMovimiento);
             }
