@@ -57,6 +57,29 @@ namespace SIC.DataLayer
             }   
         }
 
+        public List<SIC_T_VENTA> ListarVentasEstado(string ruc, string razonSocial, DateTime? inicio, DateTime? fin, int estado)
+        {
+            using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+            {
+                return (from x in contexto.SIC_T_VENTA
+                                .Include("SIC_T_CLIENTE")
+                        where x.ven_c_bactivo == true
+                            && x.ven_c_iestado != 3
+                            && (ruc == null || ruc == string.Empty ||
+                                        (x.SIC_T_CLIENTE != null
+                                        && x.SIC_T_CLIENTE.cli_c_vdoc_id.Contains(ruc)))
+                            && (razonSocial == null || razonSocial == string.Empty ||
+                                        (x.SIC_T_CLIENTE != null
+                                        && x.SIC_T_CLIENTE.cli_c_vraz_soc.Contains(razonSocial)))
+                            && (inicio == null || x.ven_c_zfecha >= inicio)
+                            && (fin == null || (x.ven_c_zfecha.Year <= fin.Value.Year
+                                                && x.ven_c_zfecha.Month <= fin.Value.Month
+                                                && x.ven_c_zfecha.Day <= fin.Value.Day))
+                            && (x.ven_c_iestado == estado)
+                        select x).ToList();
+            }
+        }
+
         /// <summary>
         /// Lista las ventas registradas en el sistema que correspondan 
         /// a un año, mes y tengan un estado especifico.

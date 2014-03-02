@@ -214,15 +214,6 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             gvListaOC.DataBind();
         }
 
-        private void ListarDetalleOrdenCompra()
-        {
-            if (EscenarioMovEn == TipoOperacion.Creacion && MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA != null)
-            {
-                gvOCDetalle.DataSource = MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA.SIC_T_ORDEN_DE_COMPRA_DET;
-                gvOCDetalle.DataBind();
-            }
-        }
-
         private void ListarAlmacenes()
         {
             this.gvListaAlmacen.DataSource = _almacen.ObtenerAlmacenes();
@@ -378,13 +369,6 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             this.gvItemsSeleccionados.DataBind();
             this.MovEntSeleccionado = null;
             this.MovEntNuevo = null;
-        }
-
-        private void MostrarListaDetalleOC()
-        {
-            this.mvMovimientoEntrada.ActiveViewIndex = 4;
-            this.ListarDetalleOrdenCompra();
-            this.upGeneral.Update();
         }
 
         private void RegresarDesdeOrdenCompra()
@@ -905,8 +889,6 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             this.ListarMovimientoEntrada();
             upGeneral.Update();
         }
-
-
 
     }
 }

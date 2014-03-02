@@ -171,9 +171,14 @@ namespace SIC.UserLayer.Interfaces.Compras
         {
             MovimientoSalidaBL movSalBL = new MovimientoSalidaBL();
             MovSalSeleccionado = movSalBL.ObtenerMovimientoSalida(id);
-            if (MovSalSeleccionado.mov_estado_iid == (int)EstadoMovimiento.ANULADO)
+            if (MovSalSeleccionado.mov_estado_iid == (int)EstadoMovimiento.ANULADO )
             {
                 this.Mensaje("No se puede CERRAR movimientos en estado ANULADO.", "~/Imagenes/warning.png");
+                return;
+            }
+            else if (MovSalSeleccionado.SIC_T_VENTA.ven_c_iestado == (int)EstadoVenta.ENTREGADO)
+            {
+                this.Mensaje("No se puede CERRAR un movimiento cuando la venta correspondiente esta en estado ENTREGADO.", "~/Imagenes/warning.png");
                 return;
             }
             else if (MovSalSeleccionado.mov_estado_iid == (int)EstadoMovimiento.CERRADO)
@@ -325,7 +330,7 @@ namespace SIC.UserLayer.Interfaces.Compras
         /// </summary>
         private void ListarVentas()
         {
-            VentaBL ventaBL = new VentaBL();
+            MovimientoSalidaBL mvsBL = new MovimientoSalidaBL();
             DateTime inicio, fin;
             DateTime? fi = null, ff = null;
             if (DateTime.TryParseExact(txtFiltroVenDesde.Text, "dd/MM/yyyy", new CultureInfo("en-US"), DateTimeStyles.None, out inicio))
@@ -338,7 +343,7 @@ namespace SIC.UserLayer.Interfaces.Compras
                 ff = fin;
             }
 
-            gvListaVenta.DataSource = ventaBL.ListarVentas(txtFiltroVenRuc.Text, txtFiltroVenRS.Text, fi, ff);
+            gvListaVenta.DataSource = mvsBL.ListarVentas(txtFiltroVenRuc.Text, txtFiltroVenRS.Text, fi, ff);
             gvListaVenta.DataBind();
             upGeneral.Update();
         }
@@ -394,6 +399,7 @@ namespace SIC.UserLayer.Interfaces.Compras
             }
 
             MovimientoSalidaBL mvsBL = new MovimientoSalidaBL();
+
             gvListaMovSal.DataSource = mvsBL.ListarMovimientoSalida(fi,ff, idEstado);
             gvListaMovSal.DataBind();
             upGvLista.Update();
@@ -564,8 +570,9 @@ namespace SIC.UserLayer.Interfaces.Compras
         }
 
         private void MostrarSeleccionItems()
-        {
+        {            
             this.ListarItem();
+            this.ActualizarListaItemsPreliminar();
             this.mvMovSalida.SetActiveView(vwListaItem);
         }
 
@@ -649,6 +656,7 @@ namespace SIC.UserLayer.Interfaces.Compras
                 mvsBL.IngresarMovimientoSalida(this.MovSalNuevo);
                 Mensaje("Movimiento de Salida ingresado con éxito.", "~/Imagenes/correcto.png");
                 this.mvMovSalida.SetActiveView(vwListaMovimiento);
+                this.ListarMovimientoSalida();
             }
             catch (Exception ex)
             {
@@ -706,6 +714,7 @@ namespace SIC.UserLayer.Interfaces.Compras
                 mvsBL.ModificarMovimientoSalida(this.MovSalModificar);
                 Mensaje("Movimiento de Salida ingresado con éxito.", "~/Imagenes/correcto.png");
                 this.mvMovSalida.SetActiveView(vwListaMovimiento);
+                this.ListarMovimientoSalida();
             }
             catch (Exception ex)
             {
@@ -822,9 +831,16 @@ namespace SIC.UserLayer.Interfaces.Compras
             }
         }
 
+        protected void gvListaItem_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {            
+            this.gvListaItem.PageIndex = e.NewPageIndex;
+            this.ListarItem();
+            this.ActualizarListaItemsPreliminar();
+        }
 
-
-
-
+        protected void btnBuscarVenta_Click(object sender, EventArgs e)
+        {
+            this.ListarVentas();
+        }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using SIC.EntityLayer;
+using SIC.Data;
 
 namespace SIC.DataLayer
 {
@@ -133,6 +134,14 @@ namespace SIC.DataLayer
                     }
                     movSalida.mvs_c_bingresado = true;
                 }
+
+                SIC_T_VENTA venta = (from x in contexto.SIC_T_VENTA
+                                     where x.ven_c_iid == movSalida.ven_c_iid
+                                     select x).FirstOrDefault();
+                venta.ven_c_iestado = 6;
+                venta.ven_c_vestado = "ENTREGADO";
+
+                contexto.ApplyCurrentValues("SICDBWEBEntities.SIC_T_VENTA", venta);
 
                 // Necesitamos comprarar y eliminar
                 List<SIC_T_MOVIMIENTO_SALIDA_DETALLE> eliminar = new List<SIC_T_MOVIMIENTO_SALIDA_DETALLE>();

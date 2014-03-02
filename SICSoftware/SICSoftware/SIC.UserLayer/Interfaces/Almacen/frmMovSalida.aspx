@@ -362,11 +362,27 @@
                                                             Width="100%" onrowdatabound="gvItemsSeleccionados_RowDataBound">
                                                             <AlternatingRowStyle CssClass="alt" />
                                                             <Columns>
-                                                                <asp:TemplateField HeaderText="Código"><ItemTemplate></ItemTemplate></asp:TemplateField>
-                                                                <asp:TemplateField HeaderText="Descripción"><ItemTemplate></ItemTemplate></asp:TemplateField>
-                                                                <asp:TemplateField HeaderText="Cantidad"><ItemTemplate><asp:TextBox ID="txtCantidad" runat="server" Text='<%# Bind("mvs_det_c_ecant") %> '
-                                                                            onkeypress="return onlyDotsAndNumbers(event)"></asp:TextBox></ItemTemplate></asp:TemplateField>
-                                                                <asp:TemplateField HeaderText="Almacén"><ItemTemplate></ItemTemplate></asp:TemplateField>
+                                                              <asp:TemplateField HeaderText="Código">
+                                                                    <ItemTemplate>
+                                                                        <%# Eval("SIC_T_ITEM.itm_c_ccodigo")%>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                                <asp:TemplateField HeaderText="Descripción">
+                                                                    <ItemTemplate>
+                                                                        <%# Eval("SIC_T_ITEM.itm_c_vdescripcion")%>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                                <asp:TemplateField HeaderText="Cantidad">
+                                                                    <ItemTemplate>
+                                                                        <asp:TextBox ID="txtCantidad" runat="server" Text='<%# Bind("mvs_det_c_ecant") %> '
+                                                                            onkeypress="return onlyDotsAndNumbers(event)"></asp:TextBox>                                                                        
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                                <asp:TemplateField HeaderText="Almacén">
+                                                                    <ItemTemplate>
+                                                                        <%# Eval("SIC_T_ALMACEN.alm_c_vdesc")%>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
                                                             </Columns>
                                                             <PagerStyle CssClass="pgr" />
                                                         </asp:GridView>
@@ -518,7 +534,7 @@
                                                             <tr>
                                                                 <td align="center">
                                                                     <asp:Button ID="btnBuscarVenta" runat="server" CssClass="button small gris" Style="width: 100px"
-                                                                        Text="Buscar" OnClick="btnBuscar_Click" />
+                                                                        Text="Buscar" OnClick="btnBuscarVenta_Click" />
                                                                 </td>
                                                                 <td align="center">
                                                                     <asp:Button ID="btnRegerserVenta" runat="server" CssClass="lnk" Height="26px" OnClick="btnRegerserVenta_Click"
@@ -544,11 +560,23 @@
                                                 OnSelectedIndexChanged="gvListaVenta_SelectedIndexChanged">
                                                 <AlternatingRowStyle CssClass="alt" />
                                                 <Columns>
-                                                    <asp:TemplateField HeaderText="RUC CLIENTE"><ItemTemplate></ItemTemplate></asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="RAZ. SOCIAL CLIENTE"><ItemTemplate></ItemTemplate></asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="RUC CLIENTE">
+                                                        <ItemTemplate>
+                                                            <%# Eval("SIC_T_CLIENTE.cli_c_vdoc_id")%>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="RAZ. SOCIAL CLIENTE">
+                                                        <ItemTemplate>
+                                                            <%# Eval("SIC_T_CLIENTE.cli_c_vdoc_id")%>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
                                                     <asp:BoundField HeaderText="TIPO DOCUMENTO" DataField="ven_c_vdestipodoc" />
                                                     <asp:BoundField HeaderText="MONEDA" DataField="ven_c_vdescmoneda" />
-                                                    <asp:TemplateField HeaderText="MONTO TOTAL"><ItemTemplate></ItemTemplate></asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="MONTO TOTAL">
+                                                        <ItemTemplate>
+                                                            <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("ven_c_etotal"))%>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
                                                     <asp:BoundField HeaderText="FECHA DE REGISTRO" DataField="ven_c_zfecha" />
                                                     <asp:CommandField ShowSelectButton="true" SelectText="Seleccionar" />
                                                 </Columns>
@@ -568,7 +596,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td align="left" class="txt2" colspan="2">
+                            <td align="left" class="txt2">
                                 <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                     <tr>
                                         <td align="left" class="box-estilo01">
@@ -661,16 +689,48 @@
                                             AutoGenerateColumns="False" BorderStyle="None" BorderWidth="0px" CssClass="mGrid"
                                             DataKeyNames="itm_alm_c_iid,itm_c_iid,alm_c_iid" EmptyDataText="No hay datos disponibles."
                                             GridLines="None" PagerStyle-CssClass="pgr" ShowHeaderWhenEmpty="True" ViewStateMode="Enabled"
-                                            Width="100%" OnRowDataBound="gvListaItem_RowDataBound">
+                                            Width="100%" OnRowDataBound="gvListaItem_RowDataBound" 
+                                            onpageindexchanging="gvListaItem_PageIndexChanging" >
                                             <AlternatingRowStyle CssClass="alt" />
                                             <Columns>
-                                                <asp:TemplateField HeaderText="SELECCIONAR"><HeaderTemplate><asp:CheckBox ID="chkAll" runat="server" onclick="javascript:checkAll(this);" /></HeaderTemplate><ItemTemplate><asp:CheckBox ID="chkSelect" runat="server" onclick="javascript:Check_Click(this);" /></ItemTemplate></asp:TemplateField>
-                                                <asp:TemplateField HeaderText="CÓDIGO"><ItemTemplate></ItemTemplate></asp:TemplateField>
-                                                <asp:TemplateField HeaderText="DESCRIPCIÓN"><ItemTemplate></ItemTemplate></asp:TemplateField>
-                                                <asp:TemplateField HeaderText="PRECIO VENTA"><ItemTemplate></ItemTemplate></asp:TemplateField>
-                                                <asp:TemplateField HeaderText="UNIDAD DE MEDIDA"><ItemTemplate></ItemTemplate></asp:TemplateField>
-                                                <asp:TemplateField HeaderText="ALMACEN"><ItemTemplate></ItemTemplate></asp:TemplateField>
-                                                <asp:TemplateField HeaderText="STOCK"><ItemTemplate></ItemTemplate></asp:TemplateField>
+                                               <asp:TemplateField HeaderText="SELECCIONAR">
+                                                    <HeaderTemplate>
+                                                        <asp:CheckBox ID="chkAll" runat="server" onclick="javascript:checkAll(this);" />
+                                                    </HeaderTemplate>
+                                                    <ItemTemplate>
+                                                        <asp:CheckBox ID="chkSelect" runat="server" onclick="javascript:Check_Click(this);" />
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="CÓDIGO">
+                                                    <ItemTemplate>
+                                                        <%#Eval("SIC_T_ITEM.itm_c_ccodigo")%>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="DESCRIPCIÓN">
+                                                    <ItemTemplate>
+                                                        <%#Eval("SIC_T_ITEM.itm_c_vdescripcion")%>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="PRECIO VENTA">
+                                                    <ItemTemplate>
+                                                        <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("SIC_T_ITEM.itm_c_dprecio_venta"))%>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="UNIDAD DE MEDIDA">
+                                                    <ItemTemplate>
+                                                        <%#Eval("SIC_T_ITEM.itm_c_vpardes")%>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="ALMACEN">
+                                                    <ItemTemplate>
+                                                        <%#Eval("SIC_T_ALMACEN.alm_c_vdesc")%>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="STOCK">
+                                                    <ItemTemplate>
+                                                        <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("itm_alm_c_ecantidad"))%>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
                                             </Columns>
                                             <PagerStyle CssClass="pgr" />
                                         </asp:GridView>

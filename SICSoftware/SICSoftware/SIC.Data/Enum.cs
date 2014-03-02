@@ -40,6 +40,9 @@ namespace SIC.Data
         POR_REGULARIZAR = 1,
         FACTURADO = 2,
         ANULADO = 3,
+        IMPRESO = 4,
+        REIMPRESO = 5,
+        ENTREGADO = 6,
     }
 
     public enum Calificacion

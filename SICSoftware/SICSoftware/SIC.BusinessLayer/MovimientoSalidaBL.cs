@@ -21,7 +21,7 @@ namespace SIC.BusinessLayer
         }
 
         /// <summary>
-        /// Obtiene una lista de ventas de acuerdo a los parametros ingresados
+        /// Obtiene una lista de ventas de acuerdo a los parametros ingresados en estado FACTURADO
         /// </summary>
         /// <param name="ruc">El ruc del cliente.</param>
         /// <param name="razonSocial">La razón social del cliente.</param>
@@ -30,7 +30,7 @@ namespace SIC.BusinessLayer
         /// <returns>Lista de SIC_T_VENTA</returns>
         public List<SIC_T_VENTA> ListarVentas(string ruc, string razonSocial, DateTime? inicio, DateTime? fin)
         {
-            return new VentaDA().ListarVentas(ruc, razonSocial, inicio, fin);
+            return new VentaDA().ListarVentasEstado(ruc, razonSocial, inicio, fin, (int)EstadoVenta.FACTURADO);
         }
 
         public List<SIC_T_PARAMETRO_DET> ListarTipoMovimientoSalida()

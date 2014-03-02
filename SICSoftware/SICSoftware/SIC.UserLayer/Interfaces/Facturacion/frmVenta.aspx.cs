@@ -1255,7 +1255,15 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             this.ListarFiltroSubFamilia();
         }
 
+        protected void txtFiltroRuc_TextChanged(object sender, EventArgs e)
+        {
 
+        }
+
+        protected void txtDetalleVenta_TextChanged(object sender, EventArgs e)
+        {
+
+        }
 
     }
 }
