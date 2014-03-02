@@ -49,13 +49,13 @@ namespace SIC.BusinessLayer
         }
 
         /// <summary>
-        /// Obtiene una lista de Movimientos de salida nueva desde un objecto de venta
+        /// Actualiza la lista de detalle de un moviiento de salida de acuerdo a una venta ingresada
         /// </summary>
-        /// <param name="venta">Venta que se procesará.</param>
-        /// <returns>Lista instanciada de SIC_T_MOVIMIENTO_SALIDA</returns>
-        public List<SIC_T_MOVIMIENTO_SALIDA_DETALLE> GenerarDetalleMoviminetoSalida(SIC_T_VENTA venta)
+        /// <param name="mvs"></param>
+        /// <param name="venta"></param>
+        public void GenerarDetalleMoviminetoSalida(SIC_T_MOVIMIENTO_SALIDA mvs, SIC_T_VENTA venta)
         {
-            List<SIC_T_MOVIMIENTO_SALIDA_DETALLE> listaDetalle = new List<SIC_T_MOVIMIENTO_SALIDA_DETALLE>();
+            mvs.SIC_T_MOVIMIENTO_SALIDA_DETALLE.Clear();            
             foreach (SIC_T_VENTA_DETALLE venDet in venta.SIC_T_VENTA_DETALLE)
             {
                 SIC_T_MOVIMIENTO_SALIDA_DETALLE mvsDet = new SIC_T_MOVIMIENTO_SALIDA_DETALLE();
@@ -64,10 +64,62 @@ namespace SIC.BusinessLayer
                 mvsDet.mvs_det_c_ecant = venDet.ven_det_c_ecantidad;
                 mvsDet.SIC_T_ITEM = venDet.SIC_T_ITEM;
                 mvsDet.SIC_T_ALMACEN = venDet.SIC_T_ALMACEN;
-                listaDetalle.Add(mvsDet);
+                mvs.SIC_T_MOVIMIENTO_SALIDA_DETALLE.Add(mvsDet);
+            }
+        }
+
+        public void ActualizarListaItems(SIC_T_MOVIMIENTO_SALIDA movSalida, List<SIC_T_ITEM_ALMACEN> listaPrel)
+        {
+            if (movSalida == null)
+            {
+                throw new ArgumentException("El parametro movSalida no debe ser nulo");
+            }
+            
+            if (listaPrel == null)
+            {
+                throw new ArgumentException("El parametro listaPrel no debe ser nulo");
             }
 
-            return listaDetalle;
+            // Primero eliminamos todos los que no estan seleccionados           
+            List<SIC_T_MOVIMIENTO_SALIDA_DETALLE> remover = new List<SIC_T_MOVIMIENTO_SALIDA_DETALLE>();
+            foreach (var detalleSalida in movSalida.SIC_T_MOVIMIENTO_SALIDA_DETALLE)
+            {
+                bool rem = true;
+                foreach (var itemalm in listaPrel)
+                {
+                    if (detalleSalida.alm_c_iid == itemalm.alm_c_iid && detalleSalida.itm_c_iid == itemalm.itm_c_iid)
+                    {
+                        rem = false;
+                        break;
+                    }
+                }
+                if (rem)
+                {
+                    remover.Add(detalleSalida);
+                }
+            }
+
+            foreach (var detalleVenta in remover)
+            {
+                movSalida.SIC_T_MOVIMIENTO_SALIDA_DETALLE.Remove(detalleVenta);
+            }
+
+            // Ahora agregamos los nuevos
+            foreach (var itemAlm in listaPrel)
+            {
+                if (!movSalida.SIC_T_MOVIMIENTO_SALIDA_DETALLE.Where(x => x.alm_c_iid == itemAlm.alm_c_iid
+                                                  && x.itm_c_iid == itemAlm.itm_c_iid).Any())
+                {
+                    SIC_T_ITEM itemEncontrado = new ItemDA().ObtenerItemPorIdNoContext(itemAlm.itm_c_iid);
+                    SIC_T_MOVIMIENTO_SALIDA_DETALLE nuevoDetalle = new SIC_T_MOVIMIENTO_SALIDA_DETALLE();
+                    nuevoDetalle.mvs_det_c_ecant = 1;
+                    nuevoDetalle.itm_c_iid = itemEncontrado.itm_c_iid;
+                    nuevoDetalle.alm_c_iid = itemAlm.alm_c_iid;
+                    nuevoDetalle.SIC_T_ITEM = itemEncontrado;
+                    nuevoDetalle.SIC_T_ALMACEN = itemAlm.SIC_T_ALMACEN;
+                    movSalida.SIC_T_MOVIMIENTO_SALIDA_DETALLE.Add(nuevoDetalle);
+                }
+            }
         }
 
         /// <summary>
@@ -96,5 +148,48 @@ namespace SIC.BusinessLayer
         {
             return new MovimientoSalidaDA().ObtenerMovimientoSalidaPorId(id);
         }
+
+        /// <summary>
+        /// Obtiene una lista de familias.
+        /// </summary>
+        /// <returns>Lista de <c>SIC_T_ITEM_FAMILIA</c></returns>
+        public List<SIC_T_ITEM_FAMILIA> ListarFamiliaItem()
+        {
+            return new ItemDA().ListarFamiliaItem();
+        }
+        
+        /// <summary>
+        /// Obtiene una lista de sub familias basados en la familia.
+        /// </summary>
+        /// <param name="idFamilia">Id de la familia</param>
+        /// <returns>Lista de <c>SIC_T_ITEM_SUB_FAMILIA</c></returns>
+        public List<SIC_T_ITEM_SUB_FAMILIA> ListarSubFamiliaItem(int idFamilia)
+        {
+            return new ItemDA().ListarSubFamiliaItem(idFamilia);
+        }
+
+        /// <summary>
+        /// Obtiene una lista de almacenes.
+        /// </summary>
+        /// <returns>Lista de <c>SIC_T_ALMACEN</c></returns>
+        public List<SIC_T_ALMACEN> ListaAlmacen()
+        {
+            return new AlmacenDA().ListaAlmacen();
+        }
+
+        /// <summary>
+        /// Obtiene una lista de itemsxalmacen bajo los filtros ingresados.
+        /// </summary>
+        /// <param name="codigo">Código del item.</param>
+        /// <param name="descripcion">Descripción del item.</param>
+        /// <param name="idFamilia">Familia</param>
+        /// <param name="idSubFamilia">Sub Familia</param>
+        /// <param name="idAlmacen">Almacen</param>
+        /// <returns>Lista de items</returns>
+        public List<SIC_T_ITEM_ALMACEN> ListarItemAlmacen(string codigo, string descripcion, int? idFamilia, int? idSubFamilia, params int[] idAlmacen)
+        {
+            return new ItemAlmacenDA().ListarItemAlmacen(codigo, descripcion, idFamilia, idSubFamilia, idAlmacen);
+        }
+
     }    
 }

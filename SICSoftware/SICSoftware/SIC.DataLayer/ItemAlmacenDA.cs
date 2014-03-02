@@ -68,10 +68,10 @@ namespace SIC.DataLayer
                                       .Include("SIC_T_ALMACEN")
                                       .Include("SIC_T_ITEM.SIC_T_ITEM_SUB_FAMILIA")
                                       .Include("SIC_T_ITEM.SIC_T_ITEM_SUB_FAMILIA.SIC_T_ITEM_FAMILIA")
-                                     where ( idAlmacen.Contains(x.alm_c_iid) )
+                                     where (idAlmacen.Contains(x.alm_c_iid) )
                                         && (codigo == string.Empty || x.SIC_T_ITEM.itm_c_ccodigo.Contains(codigo))
                                         && (descripcion == string.Empty || x.SIC_T_ITEM.itm_c_vdescripcion.Contains(descripcion) )
-                                        && ( idSubFamilia.HasValue ? x.SIC_T_ITEM.isf_c_iid == idSubFamilia 
+                                        && (idSubFamilia.HasValue ? x.SIC_T_ITEM.isf_c_iid == idSubFamilia 
                                                          : (!idFamilia.HasValue 
                                                             || x.SIC_T_ITEM.SIC_T_ITEM_SUB_FAMILIA.isf_c_ifm_iid == idFamilia.Value)
                                            )
