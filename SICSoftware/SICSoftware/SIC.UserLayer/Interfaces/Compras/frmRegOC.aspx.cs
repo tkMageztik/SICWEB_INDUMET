@@ -643,7 +643,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             this.chkPercepcion.Checked = false;
 
             this.lblAccion.Text = "Nuevo";
-            this.lblFecha.Text = this.OCNuevo.odc_c_zfecharegistro.ToString("dd/MM/yyyy");
+            //this.lblFecha.Text = this.OCNuevo.odc_c_zfecharegistro.ToString("dd/MM/yyyy");
 
             this.ItemsSeleccionadosPreliminar = new List<int>();
             this.RecalcularMontos(this.OCNuevo);
@@ -698,16 +698,16 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             this.txtNumero.Text = this.OCSeleccionado.odc_c_vcodigo;
             //}
 
-            this.lblFecha.Text = this.OCSeleccionado.odc_c_zfecharegistro.ToString("dd/MM/yyyy");
+            //this.lblFecha.Text = this.OCSeleccionado.odc_c_zfecharegistro.ToString("dd/MM/yyyy");
 
 
             this.EscenarioOC = TipoOperacion.Modificacion;
             this.txtObs.Text = this.OCSeleccionado.odc_c_vobservacion;
-            this.txtDirecEntrega.Text = this.OCSeleccionado.odc_c_vdireccion;
+            //this.txtDirecEntrega.Text = this.OCSeleccionado.odc_c_vdireccion;
             this.chkPercepcion.Checked = OCSeleccionado.odc_c_bactivo;
             this.txtFecEnIni.Text = OCSeleccionado.odc_c_zfechaentrega_ini.ToString("dd/MM/yyyy");
             this.txtFecEntFin.Text = OCSeleccionado.odc_c_zfechaentrega_fin.ToString("dd/MM/yyyy");
-
+            this.txtFecEmi.Text = OCSeleccionado.odc_c_zfechaemi.ToString("dd/MM/yyyy");
 
             this.OCSeleccionado.odc_c_eigv = this.igv;
             this.OCSeleccionado.odc_c_epercepcion = this.percepcion;
@@ -795,16 +795,20 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             this.txtNumero.Text = this.OCSeleccionado.odc_c_vcodigo;
             //}
 
-            this.lblFecha.Text = this.OCSeleccionado.odc_c_zfecharegistro.ToString("dd/MM/yyyy");
+            //this.lblFecha.Text = this.OCSeleccionado.odc_c_zfecharegistro.ToString("dd/MM/yyyy");
             this.EscenarioOC = TipoOperacion.Modificacion;
             this.txtObs.Text = this.OCSeleccionado.odc_c_vobservacion;
-            this.txtDirecEntrega.Text = this.OCSeleccionado.odc_c_vdireccion;
+            //this.txtDirecEntrega.Text = this.OCSeleccionado.odc_c_vdireccion;
             this.chkPercepcion.Checked = OCSeleccionado.odc_c_bpercepcion;
             this.txtFecEnIni.Text = OCSeleccionado.odc_c_zfechaentrega_ini.ToString("dd/MM/yyyy");
             this.txtFecEntFin.Text = OCSeleccionado.odc_c_zfechaentrega_fin.ToString("dd/MM/yyyy");
+            this.txtFecEmi.Text = OCSeleccionado.odc_c_zfechaemi.ToString("dd/MM/yyyy");
+
             this.OCSeleccionado.odc_c_eigv = this.igv;
             this.OCSeleccionado.odc_c_epercepcion = this.percepcion;
             this.ItemsSeleccionadosPreliminar = new List<int>();
+
+
             foreach (var item in OCSeleccionado.SIC_T_ORDEN_DE_COMPRA_DET)
             {
                 this.ItemsSeleccionadosPreliminar.Add(item.SIC_T_ITEM.itm_c_iid);
@@ -879,6 +883,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             cboMoneda.Enabled = permitir;
             txtFecEnIni.Enabled = permitir;
             txtFecEntFin.Enabled = permitir;
+            txtFecEmi.Enabled = permitir;
             txtSerie.Enabled = permitir;
             txtNumero.Enabled = permitir;
             btnBuscarItems.Visible = permitir;
@@ -1183,15 +1188,12 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 return;
             }
 
-            string[] formats = { "dd/MM/yyyy" };
-
             var oc = this.OCNuevo;
             oc.odc_c_cserie = obtNroSerie();
             oc.odc_c_vcodigo = obtCorrePorSerieOC();
-            oc.odc_c_zfechaentrega_ini = DateTime.ParseExact(txtFecEnIni.Text, "dd/MM/yyyy",
-                                new CultureInfo("en-US"), DateTimeStyles.None);
-            oc.odc_c_zfechaentrega_fin = DateTime.ParseExact(txtFecEntFin.Text, "dd/MM/yyyy",
-                                new CultureInfo("en-US"), DateTimeStyles.None);
+            oc.odc_c_zfechaentrega_ini = Convert.ToDateTime(txtFecEnIni.Text);
+            oc.odc_c_zfechaentrega_fin = Convert.ToDateTime(txtFecEntFin.Text);
+            oc.odc_c_zfechaemi = Convert.ToDateTime(this.txtFecEmi.Text);
             oc.odc_c_ymoneda = byte.Parse(this.cboMoneda.SelectedValue);
             oc.odc_c_vdescmoneda = this.cboMoneda.SelectedItem.Text.Trim();
             oc.odc_c_iestado = int.Parse(this.cboEstado.SelectedValue);
@@ -1247,10 +1249,8 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             }
 
             var oc = this.OCSeleccionado;
-            oc.odc_c_zfechaentrega_ini = DateTime.ParseExact(txtFecEnIni.Text, "dd/MM/yyyy",
-                                           new CultureInfo("en-US"), DateTimeStyles.None);
-            oc.odc_c_zfechaentrega_fin = DateTime.ParseExact(txtFecEntFin.Text, "dd/MM/yyyy",
-                                new CultureInfo("en-US"), DateTimeStyles.None);
+            oc.odc_c_zfechaentrega_ini = Convert.ToDateTime(this.txtFecEnIni.Text);
+            oc.odc_c_zfechaentrega_fin = Convert.ToDateTime(this.txtFecEntFin.Text);
             oc.odc_c_ymoneda = byte.Parse(this.cboMoneda.SelectedValue);
             oc.odc_c_vdescmoneda = this.cboMoneda.SelectedItem.Text.Trim();
             oc.odc_c_iestado = int.Parse(this.cboEstado.SelectedValue);
@@ -1259,6 +1259,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             oc.odc_c_clase_iid = int.Parse(this.cboClaseOC.SelectedValue);
             oc.odc_c_clase_des = this.cboClaseOC.SelectedItem.Text.Trim();
             oc.odc_c_bpercepcion = this.chkPercepcion.Checked;
+            oc.odc_c_zfechaemi = Convert.ToDateTime(this.txtFecEmi.Text);
 
             SIC_T_USUARIO usuarioActual = Session["USUARIO"] as SIC_T_USUARIO;
             if (usuarioActual != null)
@@ -1328,7 +1329,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 Mensaje("Debe seleccionar un proveedor.", "~/Imagenes/warning.png");
                 return false;
             }
-            else if (ordenDeCompra.odc_c_idireccion <= 0)
+            else if (ordenDeCompra.emp_dir_c_iid <= 0)
             {
                 Mensaje("Debe seleccionar una dirección.", "~/Imagenes/warning.png");
                 return false;
@@ -1507,13 +1508,13 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             {
                 if (this.EscenarioOC == TipoOperacion.Creacion)
                 {
-                    this.OCNuevo.odc_c_idireccion = res.emp_dir_c_iid;
-                    this.OCNuevo.odc_c_vdireccion = res.emp_dir_c_vdireccion;
+                    this.OCNuevo.emp_dir_c_iid = res.emp_dir_c_iid;
+                    //this.OCNuevo.odc_c_vdireccion = res.emp_dir_c_vdireccion;
                 }
                 else if (this.EscenarioOC == TipoOperacion.Modificacion)
                 {
-                    this.OCSeleccionado.odc_c_idireccion = res.emp_dir_c_iid;
-                    this.OCSeleccionado.odc_c_vdireccion = res.emp_dir_c_vdireccion;
+                    this.OCSeleccionado.emp_dir_c_iid = res.emp_dir_c_iid;
+                    //this.OCSeleccionado.odc_c_vdireccion = res.emp_dir_c_vdireccion;
 
                 }
                 this.txtDirecEntrega.Text = res.emp_dir_c_vdireccion;
@@ -1555,7 +1556,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
         private void DescargarODC(int id)
         {
-            SIC_T_ORDEN_DE_COMPRA odc = _ordenCompra.ObtenerOrdenCompra(id);
+            SIC_T_ORDEN_DE_COMPRA odc = _ordenCompra.ObtenerOrdenCompraRpt(id);
             PdfOrdenCompra.init(odc);
         }
 
@@ -1640,7 +1641,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         //    }
 
         //}
-                
+
         private void EliminarDetalleOC(int idItem)
         {
             foreach (int i in this.ItemsSeleccionadosPreliminar)
@@ -1660,6 +1661,6 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 ActualizarListaItems(this.OCSeleccionado);
             }
             upGeneral.Update();
-        }        
+        }
     }
 }

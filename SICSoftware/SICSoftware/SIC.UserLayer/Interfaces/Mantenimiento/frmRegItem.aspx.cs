@@ -796,10 +796,10 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             upGeneral.Update();
         }
 
-        protected void btnDescargarPDF_Click(object sender, EventArgs e)
-        {
-           
-        }
+        //protected void btnDescargarPDF_Click(object sender, EventArgs e)
+        //{
+
+        //}
 
         // TODO: PARA REFACTORIZAR.
         protected void btnDescargarXls_Click(object sender, EventArgs e)
@@ -839,8 +839,8 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         }
 
         // TODO: PARA BORRAR.
-        public override void VerifyRenderingInServerForm(Control control)
-        { }
+        //public override void VerifyRenderingInServerForm(Control control)
+        //{ }
 
     }
 }

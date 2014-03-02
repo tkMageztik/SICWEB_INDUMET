@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
-    EnableViewStateMac="false" EnableEventValidation="false" CodeBehind="frmRegCliente.aspx.cs"
-    Inherits="SIC.UserLayer.Interfaces.Mantenimiento.frmRegCliente" %>
+    CodeBehind="frmRegCliente.aspx.cs" Inherits="SIC.UserLayer.Interfaces.Mantenimiento.frmRegCliente" %>
 
+<%--  EnableViewStateMac="false" EnableEventValidation="false"--%>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <%@ Register Src="~/UserControl/wucMensajeAlerta.ascx" TagName="Mensaje" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
@@ -139,12 +139,11 @@
                                                 <tr>
                                                     <td>
                                                         <asp:Button ID="btnDescargarPDF" Visible="false" runat="server" CssClass="button small gris"
-                                                            Style="width: 150px" Text="Descargar PDF" 
-                                                            onclick="btnDescargarPDF_Click" />
+                                                            Style="width: 150px" Text="Descargar PDF" OnClick="btnDescargarPDF_Click" />
                                                     </td>
                                                     <td>
                                                         <asp:Button ID="btnDescargarXls" runat="server" CssClass="button small gris" Style="width: 150px"
-                                                            Text="Descargar Excel" onclick="btnDescargarXls_Click"/>
+                                                            Text="Descargar Excel" OnClick="btnDescargarXls_Click" />
                                                     </td>
                                                     <td>
                                                     </td>
@@ -853,7 +852,7 @@
             <asp:AsyncPostBackTrigger ControlID="btnCancelarContacto" EventName="Click" />
             <asp:AsyncPostBackTrigger ControlID="btnGuardarContacto" EventName="Click" />
             <asp:AsyncPostBackTrigger ControlID="gvLista" EventName="RowDeleting" />
-            <asp:PostBackTrigger ControlID="btnDescargarXls"/>
+            <asp:PostBackTrigger ControlID="btnDescargarXls" />
         </Triggers>
     </asp:UpdatePanel>
 </asp:Content>

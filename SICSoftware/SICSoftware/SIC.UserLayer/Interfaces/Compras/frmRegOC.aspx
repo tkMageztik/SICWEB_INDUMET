@@ -1,6 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
-    EnableEventValidation="false" CodeBehind="frmRegOC.aspx.cs" Inherits="SIC.UserLayer.Interfaces.Mantenimiento.frmRegOC"
-    Culture="Auto" UICulture="Auto" %>
+    EnableEventValidation="false" CodeBehind="frmRegOC.aspx.cs" Inherits="SIC.UserLayer.Interfaces.Mantenimiento.frmRegOC" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <%@ Register Src="~/UserControl/wucMensajeAlerta.ascx" TagName="Mensaje" TagPrefix="uc1" %>
@@ -140,23 +139,11 @@
                                                 <Columns>
                                                     <asp:BoundField HeaderText="SERIE" DataField="odc_c_cserie" />
                                                     <asp:BoundField HeaderText="CÓDIGO" DataField="odc_c_vcodigo" />
-                                                    <asp:TemplateField HeaderText="RUC PROVEEDOR">
-                                                        <ItemTemplate>
-                                                            <%# Eval("SIC_T_CLIENTE.cli_c_vdoc_id")%>
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="PROVEEDOR">
-                                                        <ItemTemplate>
-                                                            <%# Eval("SIC_T_CLIENTE.cli_c_vraz_soc")%>
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
+                                                    <asp:BoundField HeaderText="RUC PROVEEDOR" DataField="SIC_T_CLIENTE.cli_c_vdoc_id" />
+                                                    <asp:BoundField HeaderText="PROVEEDOR" DataField="SIC_T_CLIENTE.cli_c_vraz_soc" />
                                                     <asp:BoundField HeaderText="ESTADO" DataField="odc_c_vdescestado" />
                                                     <asp:BoundField HeaderText="MONEDA" DataField="odc_c_vdescmoneda" />
-                                                    <asp:TemplateField HeaderText="MONTO TOTAL">
-                                                        <ItemTemplate>
-                                                            <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("odc_c_etotal"))%>
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
+                                                    <asp:BoundField HeaderText="MONTO TOTAL" DataField="odc_c_etotal" DataFormatString="{0:0,0.00}" />
                                                     <asp:CommandField SelectText="Ver" ShowSelectButton="True" />
                                                     <asp:CommandField ShowEditButton="True" CancelText="Cancelar" DeleteText="Eliminar"
                                                         EditText="Modificar" />
@@ -217,10 +204,15 @@
                                                         &nbsp;
                                                     </td>
                                                     <td align="left" class="txt-box-estilo">
-                                                        Fecha
+                                                        <%--Fecha--%>
+                                                        Fecha Emsión
                                                     </td>
                                                     <td align="left" class="txt-box-estilo">
-                                                        <asp:Label ID="lblFecha" runat="server"></asp:Label>
+                                                        <%--<asp:Label ID="lblFecha" runat="server"></asp:Label>--%>
+                                                        <asp:TextBox ID="txtFecEmi" runat="server" Width="95px"></asp:TextBox>
+                                                        <asp:CalendarExtender ID="txtFecEmi_CalendarExtender" runat="server" Format="dd/MM/yyyy"
+                                                            TargetControlID="txtFecEmi" TodaysDateFormat="dd/MM/yyyy">
+                                                        </asp:CalendarExtender>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -240,17 +232,15 @@
                                                         &nbsp;
                                                     </td>
                                                     <td align="left" class="txt-box-estilo">
-                                                        &nbsp;
                                                     </td>
-                                                    <td align="left" class="txt-box-estilo">
-                                                        &nbsp;
+                                                    <td>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td align="left" class="txt-box-estilo">
                                                         Rango de entrega
                                                     </td>
-                                                    <td align="left" class="style4">
+                                                    <td align="left">
                                                         <asp:TextBox ID="txtFecEnIni" runat="server" Width="95px"></asp:TextBox>
                                                         <asp:CalendarExtender ID="txtFecEnIni_CalendarExtender" runat="server" Format="dd/MM/yyyy"
                                                             TargetControlID="txtFecEnIni" TodaysDateFormat="dd/MM/yyyy">
@@ -264,7 +254,7 @@
                                                     <td align="left">
                                                         &nbsp;
                                                     </td>
-                                                    <td align="left">
+                                                    <td align="left" class="txt-box-estilo">
                                                         Estado
                                                     </td>
                                                     <td align="left">
@@ -277,14 +267,14 @@
                                                     <td align="left" class="txt-box-estilo">
                                                         Clase
                                                     </td>
-                                                    <td align="left" class="style4">
+                                                    <td align="left">
                                                         <asp:DropDownList ID="cboClaseOC" runat="server" AutoPostBack="True" Width="201px">
                                                         </asp:DropDownList>
                                                     </td>
                                                     <td align="left">
                                                         &nbsp;
                                                     </td>
-                                                    <td align="left">
+                                                    <td align="left" class="txt-box-estilo">
                                                         Moneda
                                                     </td>
                                                     <td align="left">
@@ -334,8 +324,7 @@
                                                                 GridLines="None" Height="16px" OnRowCancelingEdit="gvItemsSeleccionados_RowCancelingEdit"
                                                                 OnRowEditing="gvItemsSeleccionados_RowEditing" OnRowUpdating="gvItemsSeleccionados_RowUpdating"
                                                                 OnSelectedIndexChanged="gvItemsSeleccionados_SelectedIndexChanged" PagerStyle-CssClass="pgr"
-                                                                ShowHeaderWhenEmpty="True" ViewStateMode="Enabled" Width="100%" 
-                                                                onrowdeleting="gvItemsSeleccionados_RowDeleting">
+                                                                ShowHeaderWhenEmpty="True" ViewStateMode="Enabled" Width="100%" OnRowDeleting="gvItemsSeleccionados_RowDeleting">
                                                                 <AlternatingRowStyle CssClass="alt" />
                                                                 <Columns>
                                                                     <asp:TemplateField HeaderText="Código">
@@ -383,7 +372,6 @@
                                                                             <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}",Eval("precioReferenciaSoles"))%>
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
-                                                                    
                                                                 </Columns>
                                                                 <PagerStyle CssClass="pgr" />
                                                             </asp:GridView>
@@ -719,9 +707,8 @@
                                             <asp:GridView ID="gvProveedores" runat="server" BorderStyle="None" GridLines="None"
                                                 AllowPaging="True" Width="100%" CssClass="mGrid" PagerStyle-CssClass="pgr" AlternatingRowStyle-CssClass="alt"
                                                 ShowHeaderWhenEmpty="True" EmptyDataText="No hay datos disponibles." PageSize="15"
-                                                BorderWidth="0px" AutoGenerateColumns="False" 
-                                                DataKeyNames="cli_c_vdoc_id,cli_c_vraz_soc" OnSelectedIndexChanged="gvProveedores_SelectedIndexChanged"
-                                                OnPageIndexChanging="gvProveedores_PageIndexChanging">
+                                                BorderWidth="0px" AutoGenerateColumns="False" DataKeyNames="cli_c_vdoc_id,cli_c_vraz_soc"
+                                                OnSelectedIndexChanged="gvProveedores_SelectedIndexChanged" OnPageIndexChanging="gvProveedores_PageIndexChanging">
                                                 <AlternatingRowStyle CssClass="alt" />
                                                 <Columns>
                                                     <asp:BoundField DataField="cli_c_vdoc_id" HeaderText="RUC" />
@@ -754,22 +741,18 @@
                                                         <table>
                                                             <tr>
                                                                 <td class="txt-box-estilo">
-                                                                    
                                                                 </td>
                                                                 <td>
                                                                 </td>
                                                                 <td style="width: 20px">
-                                                                    
                                                                 </td>
                                                                 <td class="txt-box-estilo">
-                                                                    
                                                                 </td>
                                                                 <td>
                                                                 </td>
                                                                 <td style="width: 20px">
                                                                 </td>
                                                                 <td>
-                                                                    
                                                                 </td>
                                                                 <td>
                                                                     &nbsp;
