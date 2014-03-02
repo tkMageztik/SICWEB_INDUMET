@@ -156,11 +156,11 @@
                                         <asp:GridView ID="gvListaMovSal" runat="server" BorderStyle="None" AutoGenerateColumns="False"
                                             GridLines="None" AllowPaging="True" Width="100%" CssClass="mGrid" PagerStyle-CssClass="pgr"
                                             AlternatingRowStyle-CssClass="alt" ShowHeaderWhenEmpty="True" EmptyDataText="No hay datos disponibles."
-                                            PageSize="15" BorderWidth="0px" DataKeyNames="mve_c_iid" OnSelectedIndexChanged="gvListaMovSal_SelectedIndexChanged">
+                                            PageSize="15" BorderWidth="0px" DataKeyNames="mvs_c_iid" OnSelectedIndexChanged="gvListaMovSal_SelectedIndexChanged">
                                             <AlternatingRowStyle CssClass="alt" />
                                             <Columns>
                                                 <asp:BoundField DataField="mvs_c_vdestiposalida" HeaderText="Tipo Salida" />
-                                                <asp:BoundField HeaderText="Fecha" DataField="mve_c_zfecharegistro" />
+                                                <asp:BoundField HeaderText="Fecha" DataField="mvs_c_zfecharegistro" />
                                                 <asp:TemplateField HeaderText="RUC Cliente">
                                                     <ItemTemplate>
                                                         <%# Eval("SIC_T_CLIENTE.cli_c_vdoc_id")%>
@@ -361,7 +361,8 @@
                                                     <td align="left" class="txt-box-estilo">
                                                         <asp:GridView ID="gvItemsSeleccionados" runat="server" AlternatingRowStyle-CssClass="alt"
                                                             AutoGenerateColumns="False" BorderStyle="None" BorderWidth="0px" CssClass="mGrid"
-                                                            DataKeyNames="" EmptyDataText="No ha seleccionado una venta." GridLines="None"
+                                                            DataKeyNames="itm_c_iid,alm_c_iid" 
+                                                            EmptyDataText="No ha seleccionado una venta." GridLines="None"
                                                             Height="16px" PagerStyle-CssClass="pgr" ShowHeaderWhenEmpty="True" ViewStateMode="Enabled"
                                                             Width="100%" onrowdatabound="gvItemsSeleccionados_RowDataBound">
                                                             <AlternatingRowStyle CssClass="alt" />

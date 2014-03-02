@@ -78,7 +78,7 @@ namespace SIC.UserLayer.Interfaces.Compras
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            this.ListarVentas();
+            this.ListarMovimientoSalida();
         }
 
         protected void btnRegerserVenta_Click(object sender, EventArgs e)
@@ -231,6 +231,12 @@ namespace SIC.UserLayer.Interfaces.Compras
                 this.MovSalNuevo.SIC_T_CLIENTE = null;
                 this.MovSalNuevo.SIC_T_VENTA = null;
             }
+            else if (this.EscenarioMovSal == TipoOperacion.Modificacion)
+            {
+                this.LimpiarVistaNuevo();
+                this.MovSalModificar.SIC_T_CLIENTE = null;
+                this.MovSalModificar.SIC_T_VENTA = null;
+            }
 
             upGeneral.Update();
         }
@@ -253,7 +259,7 @@ namespace SIC.UserLayer.Interfaces.Compras
             }
 
             MovimientoSalidaBL mvsBL = new MovimientoSalidaBL();
-            gvListaMovSal.DataSource = mvsBL.ListarMovimientoSalida(txtFiltroRuc.Text,txtFiltroRS.Text,inicio,fin);
+            gvListaMovSal.DataSource = mvsBL.ListarMovimientoSalida(txtFiltroRuc.Text,txtFiltroRS.Text,fi,ff);
             gvListaMovSal.DataBind();
             upGvLista.Update();
         }
@@ -434,16 +440,42 @@ namespace SIC.UserLayer.Interfaces.Compras
         private void IngresarMovimientoSalida()
         {
             MovimientoSalidaBL mvsBL = new MovimientoSalidaBL();
-            MovSalNuevo.mvs_c_itiposalida = 27;
-            MovSalNuevo.mvs_c_vdestiposalida = "VENTA";
-            MovSalNuevo.mov_estado_iid = 2;
-            MovSalNuevo.mvs_c_zfecharegistro = DateTime.Now;
-            MovSalNuevo.mvs_c_vobservacion = txtObs.Text;
+            var movSal = MovSalNuevo;
+
+            movSal.mvs_c_itiposalida = int.Parse(cboTipoMovimiento.SelectedValue);
+            movSal.mvs_c_vdestiposalida = cboTipoMovimiento.SelectedItem.Text;
+            movSal.mov_estado_iid = 2;
+            movSal.mvs_c_zfecharegistro = DateTime.Now;
+            movSal.mvs_c_vobservacion = txtObs.Text;
+
+            for (int i = 0; i < gvItemsSeleccionados.Rows.Count; i++)
+            {
+                TextBox txtCantidad = (TextBox)gvItemsSeleccionados.Rows[i].FindControl("txtCantidad");
+                decimal cantidadNueva = 0;
+                if (decimal.TryParse(txtCantidad.Text, out cantidadNueva) && cantidadNueva >= 0)
+                {
+                    int itemId = (int)gvItemsSeleccionados.DataKeys[i].Values["itm_c_iid"];
+                    int almId = (int)gvItemsSeleccionados.DataKeys[i].Values["alm_c_iid"];
+                    foreach (var item in movSal.SIC_T_MOVIMIENTO_SALIDA_DETALLE)
+                    {
+                        if (item.itm_c_iid == itemId && item.alm_c_iid == almId )
+                        {
+                            item.mvs_det_c_ecant = cantidadNueva;
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    txtCantidad.Text = "0";
+                }
+            }
 
             try
             {
                 mvsBL.IngresarMovimientoSalida(this.MovSalNuevo);
                 Mensaje("Movimiento de Salida ingresado con éxito.", "~/Imagenes/correcto.png");
+                this.mvMovSalida.SetActiveView(vwListaMovimiento);
             }
             catch (Exception ex)
             {
@@ -526,7 +558,7 @@ namespace SIC.UserLayer.Interfaces.Compras
         {
             this.MovSalNuevo = null;
             this.MovSalModificar = null;
-            this.mvMovSalida.SetActiveView(vwListaItem);
+            this.mvMovSalida.SetActiveView(vwListaMovimiento);
         }
 
         protected void gvListaItem_RowDataBound(object sender, GridViewRowEventArgs e)
