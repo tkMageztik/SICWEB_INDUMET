@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Globalization;
+using System.Threading;
 
 namespace SIC.UserLayer
 {
@@ -11,8 +13,13 @@ namespace SIC.UserLayer
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack) { 
-            
+            CultureInfo culture = new CultureInfo("es-PE");
+            Thread.CurrentThread.CurrentCulture = culture;
+            Thread.CurrentThread.CurrentUICulture = culture;
+
+            if (!IsPostBack)
+            {
+
             }
 
             if (Session["USUARIO"] == null)
@@ -20,5 +27,7 @@ namespace SIC.UserLayer
                 Response.Redirect("~/Default.aspx");
             }
         }
+
+
     }
 }

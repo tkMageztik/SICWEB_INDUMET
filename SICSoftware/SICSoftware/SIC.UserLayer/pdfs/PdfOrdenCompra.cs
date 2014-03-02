@@ -20,10 +20,10 @@ namespace SIC.UserLayer
 
             doc.Open();
 
-            iTextSharp.text.Font fontTitulo = FontFactory.GetFont("Calibri", 13, Font.BOLD, iTextSharp.text.BaseColor.BLACK);
-            iTextSharp.text.Font fontSubtitulo = FontFactory.GetFont("Calibri", 10, Font.BOLD, iTextSharp.text.BaseColor.BLACK);
-            iTextSharp.text.Font fontPropiedad = FontFactory.GetFont("Calibri", 9, Font.BOLD, iTextSharp.text.BaseColor.BLACK);
-            iTextSharp.text.Font fontInfo = FontFactory.GetFont("Calibri", 11, iTextSharp.text.BaseColor.BLACK);
+            iTextSharp.text.Font fontTitulo = FontFactory.GetFont("Calibri", 12, Font.BOLD, iTextSharp.text.BaseColor.BLACK);
+            iTextSharp.text.Font fontSubtitulo = FontFactory.GetFont("Calibri", 9, Font.BOLD, iTextSharp.text.BaseColor.BLACK);
+            iTextSharp.text.Font fontPropiedad = FontFactory.GetFont("Calibri", 8, Font.BOLD, iTextSharp.text.BaseColor.BLACK);
+            iTextSharp.text.Font fontInfo = FontFactory.GetFont("Calibri", 8, iTextSharp.text.BaseColor.BLACK);
 
 
             PdfPTableHeader th = new PdfPTableHeader();
@@ -43,29 +43,28 @@ namespace SIC.UserLayer
 
             t.AddCell(Celdas(20));
 
-            t.AddCell(new PdfPCell(new Phrase("Datos del Proveedor", fontSubtitulo)) { Colspan = 2 });
+            t.AddCell(new PdfPCell(new Phrase("DATOS DEL PROVEEDOR", fontSubtitulo)) { Colspan = 6 });
 
-            t.AddCell(Celdas(6));
+            t.AddCell(new PdfPCell(new Phrase("FECHA DE EMISIÓN", fontSubtitulo)) { Colspan = 2 });
+            t.AddCell(new PdfPCell(new Phrase(String.Format("{0:dd/MM/yyyy}", ordenCompra.odc_c_zfechaemi), fontInfo)) { Colspan = 2 });
 
-            t.AddCell(new PdfPCell(new Phrase("Fecha de Emisión")));
-            t.AddCell(new PdfPCell(new Phrase("19/02/2014")));
+            t.AddCell(new PdfPCell(new Phrase("PROVEEDOR", fontPropiedad)) { Colspan = 2 });
+            t.AddCell(new PdfPCell(new Phrase(ordenCompra.SIC_T_CLIENTE.cli_c_vraz_soc, fontInfo)) { Colspan = 5 });
 
-            t.AddCell(new PdfPCell(new Phrase("PROVEEDOR", fontPropiedad)));
-            t.AddCell(new PdfPCell(new Phrase(ordenCompra.SIC_T_CLIENTE.cli_c_vraz_soc, fontInfo)) { Colspan = 7 });
             t.AddCell(new PdfPCell(new Phrase("RUC", fontPropiedad)));
-            t.AddCell(new PdfPCell(new Phrase(ordenCompra.SIC_T_CLIENTE.cli_c_vdoc_id, fontInfo)));
+            t.AddCell(new PdfPCell(new Phrase(ordenCompra.SIC_T_CLIENTE.cli_c_vdoc_id, fontInfo)) { Colspan = 2 });
 
-            t.AddCell(new PdfPCell(new Phrase("Att.", fontPropiedad)));
-            t.AddCell(new PdfPCell(new Phrase("", fontInfo)) { Colspan = 4 });
+            List<SIC_T_CLI_CONTACTO> lstProvContacto = ordenCompra.SIC_T_CLIENTE.SIC_T_CLI_CONTACTO.ToList<SIC_T_CLI_CONTACTO>();
+            String provContacto = lstProvContacto[0].cli_contac_c_vape_pat + ", " + lstProvContacto[0].cli_contac_c_vnomb;
+
+            t.AddCell(new PdfPCell(new Phrase("CONTACTO", fontPropiedad)));
+            t.AddCell(new PdfPCell(new Phrase(provContacto, fontInfo)) { Colspan = 4 });
 
             t.AddCell(new PdfPCell(new Phrase("DIRECCIÓN", fontPropiedad)));
             t.AddCell(new PdfPCell(new Phrase("", fontInfo)) { Colspan = 4 });
 
-            t.AddCell(new PdfPCell(new Phrase("Att.", fontPropiedad)));
-            t.AddCell(new PdfPCell(new Phrase("TULA QUIÑONES", fontInfo)) { Colspan = 4 });
-
             t.AddCell(new PdfPCell(new Phrase("TELÉFONO", fontPropiedad)));
-            t.AddCell(new PdfPCell(new Phrase("", fontInfo)) { Colspan = 2 });
+            t.AddCell(new PdfPCell(new Phrase(ordenCompra.SIC_T_CLIENTE.cli_c_ctlf, fontInfo)) { Colspan = 2 });
 
             t.AddCell(new PdfPCell(new Phrase("FAX", fontPropiedad)));
             t.AddCell(new PdfPCell(new Phrase("", fontInfo)));
@@ -77,33 +76,28 @@ namespace SIC.UserLayer
             t.AddCell(Celdas(t));
 
 
-            t.AddCell(new PdfPCell(new Phrase("Datos Generales")) { Colspan = 2 });
+            t.AddCell(new PdfPCell(new Phrase("DATOS GENERALES", fontSubtitulo)) { Colspan = 2 });
             t.AddCell(Celdas(8));
 
-            t.AddCell(new PdfPCell(new Phrase("FECHA ENTREGA")));
-            t.AddCell(new PdfPCell(new Phrase(ordenCompra.odc_c_zfechaentrega_ini.ToString("dd/MM/yyyy") + " al  " 
-                                            + ordenCompra.odc_c_zfechaentrega_fin.ToString("dd/MM/yyyy"))) { Colspan = 4 });
+            t.AddCell(new PdfPCell(new Phrase("FECHA ENTREGA", fontPropiedad)));
+            t.AddCell(new PdfPCell(new Phrase(ordenCompra.odc_c_zfechaentrega_ini.ToString("dd/MM/yyyy") + " al  "
+                                            + ordenCompra.odc_c_zfechaentrega_fin.ToString("dd/MM/yyyy"), fontInfo)) { Colspan = 4 });
 
-            t.AddCell(new PdfPCell(new Phrase("CLASE DE O/C")));
-            t.AddCell(new PdfPCell(new Phrase(ordenCompra.odc_c_clase_des)) { Colspan = 4 });
+            t.AddCell(new PdfPCell(new Phrase("CLASE DE O/C", fontPropiedad)));
+            t.AddCell(new PdfPCell(new Phrase(ordenCompra.odc_c_clase_des, fontInfo)) { Colspan = 4 });
 
-            t.AddCell(new PdfPCell(new Phrase("FECHA ENTREGA")));
-            t.AddCell(new PdfPCell(new Phrase("19/02/2014 al 25/02/2014")) { Colspan = 4 });
 
-            t.AddCell(new PdfPCell(new Phrase("CLASE DE O/C")));
-            t.AddCell(new PdfPCell(new Phrase("Compra Hilo Crudo Sin Requerimientos")) { Colspan = 4 });
+            t.AddCell(new PdfPCell(new Phrase("COND. PAGO", fontPropiedad)));
+            t.AddCell(new PdfPCell(new Phrase("", fontInfo)) { Colspan = 4 });
 
-            t.AddCell(new PdfPCell(new Phrase("COND. PAGO")));
-            t.AddCell(new PdfPCell(new Phrase("19/02/2014 al 25/02/2014")) { Colspan = 4 });
+            t.AddCell(new PdfPCell(new Phrase("LUGAR ENTREGA", fontPropiedad)));
+            t.AddCell(new PdfPCell(new Phrase(ordenCompra.SIC_T_EMP_DIRECCION.emp_dir_c_vdireccion, fontInfo)) { Colspan = 4 });
 
-            t.AddCell(new PdfPCell(new Phrase("LUGAR ENTREGA")));
-            t.AddCell(new PdfPCell(new Phrase("")) { Colspan = 4 });
+            t.AddCell(new PdfPCell(new Phrase("PROCESO", fontPropiedad)));
+            t.AddCell(new PdfPCell(new Phrase("", fontInfo)) { Colspan = 4 });
 
-            t.AddCell(new PdfPCell(new Phrase("PROCESO")));
-            t.AddCell(new PdfPCell(new Phrase("")) { Colspan = 4 });
-
-            t.AddCell(new PdfPCell(new Phrase("GRUPO REQUERIDO")));
-            t.AddCell(new PdfPCell(new Phrase("")) { Colspan = 4 });
+            t.AddCell(new PdfPCell(new Phrase("GRUPO REQUERIDO", fontPropiedad)));
+            t.AddCell(new PdfPCell(new Phrase("", fontInfo)) { Colspan = 4 });
 
 
             t.AddCell(Celdas(t));
@@ -114,38 +108,34 @@ namespace SIC.UserLayer
             t.AddCell(Celdas(t));
 
 
-            t.AddCell(Celdas(t, "DOLARES AMERICANOS"));
+            t.AddCell(new PdfPCell(new Phrase("DOLARES AMERICANOS", fontPropiedad)) { Colspan = 10 });
+            //t.AddCell(Celdas(9));
 
 
             t.AddCell(Celdas(t));
 
-            t.AddCell(new PdfPCell(new Phrase("OP")));
-            t.AddCell(new PdfPCell(new Phrase("")) { Colspan = 5 });
+            t.AddCell(new PdfPCell(new Phrase("OP", fontPropiedad)));
 
-            t.AddCell(new PdfPCell(new Phrase("")));
-            t.AddCell(new PdfPCell(new Phrase("VALOR VTA.")));
-            t.AddCell(new PdfPCell(new Phrase(ordenCompra.odc_c_esubtotal.ToString())) { Colspan = 2 });
-
-
-            t.AddCell(new PdfPCell(new Phrase("")) { Colspan = 6 });
-            t.AddCell(new PdfPCell(new Phrase("")));
-            t.AddCell(new PdfPCell(new Phrase("I.G.V.")));
-            t.AddCell(new PdfPCell(new Phrase(ordenCompra.odc_c_eigvcal.ToString())) { Colspan = 2 });
+            t.AddCell(new PdfPCell(new Phrase("", fontInfo)) { Colspan = 5 });
+            t.AddCell(new PdfPCell(new Phrase("VALOR VTA.", fontPropiedad)) { Colspan = 2 });
+            t.AddCell(new PdfPCell(new Phrase(ordenCompra.odc_c_esubtotal.ToString(), fontInfo)) { Colspan = 2 });
 
 
-            t.AddCell(new PdfPCell(new Phrase("")) { Colspan = 6 });
-            t.AddCell(new PdfPCell(new Phrase("")));
-            t.AddCell(new PdfPCell(new Phrase("PERCEPCIÓN")));
-            t.AddCell(new PdfPCell(new Phrase(ordenCompra.odc_c_epercepcioncal.ToString())) { Colspan = 2 });
+            t.AddCell(Celdas(6));
+            t.AddCell(new PdfPCell(new Phrase("I.G.V.", fontPropiedad)) { Colspan = 2 });
+            t.AddCell(new PdfPCell(new Phrase(ordenCompra.odc_c_eigvcal.ToString(), fontInfo)) { Colspan = 2 });
 
-            t.AddCell(new PdfPCell(new Phrase("")) { Colspan = 6 });
-            t.AddCell(new PdfPCell(new Phrase("")));
-            t.AddCell(new PdfPCell(new Phrase("TOTAL")));
-            t.AddCell(new PdfPCell(new Phrase(ordenCompra.odc_c_etotal.ToString())) { Colspan = 2 });
+            t.AddCell(Celdas(6));
+            t.AddCell(new PdfPCell(new Phrase("PERCEPCIÓN", fontPropiedad)) { Colspan = 2 });
+            t.AddCell(new PdfPCell(new Phrase(ordenCompra.odc_c_epercepcioncal.ToString(), fontInfo)) { Colspan = 2 });
+
+            t.AddCell(Celdas(6));
+            t.AddCell(new PdfPCell(new Phrase("TOTAL", fontPropiedad)) { Colspan = 2 });
+            t.AddCell(new PdfPCell(new Phrase(ordenCompra.odc_c_etotal.ToString(), fontInfo)) { Colspan = 2 });
 
             t.AddCell(Celdas(t));
 
-            t.AddCell(Celdas(t, "OBSERVACIÓN"));
+            t.AddCell(new PdfPCell(new Phrase("OBSERVACIÓN", fontPropiedad)) { Colspan = 10 });
 
             t.AddCell(Celdas(t));
 
@@ -154,34 +144,32 @@ namespace SIC.UserLayer
             t.AddCell(Celdas(t));
 
 
-            t.AddCell(new PdfPCell(new Phrase("VoBo Gerencia")));
-            t.AddCell(new PdfPCell(new Phrase(" ")) { Colspan = 4 });
+            t.AddCell(new PdfPCell(new Phrase("VoBo Gerencia", fontPropiedad)) { Colspan = 2 });
+            t.AddCell(new PdfPCell(new Phrase(" ")) { Colspan = 3 });
 
-            t.AddCell(new PdfPCell(new Phrase("VoBo Emisor")));
-            t.AddCell(new PdfPCell(new Phrase(" ")) { Colspan = 4 });
-
-            t.AddCell(Celdas(t));
-
-
-            //t.AddCell(Celdas(t, "NOTAS:"));
-            //List listNotas = new List(List.UNORDERED, 15f);
-            //listNotas.PreSymbol = "-";
-
-
-            //listNotas.Add(new ListItem("Despachar solo cantidades solicitadas. No se aceptan excesos."));
-            //listNotas.Add(new ListItem("Recoger O/C original y al despachar la mercaderia, adjuntar fotocopia autenticada de la misma, indicando en ella el N° de entrega correspondiente"));
-            //listNotas.Add(new ListItem("Enviar la factura maximo a los 3 dias de haber entregado cada guia"));
-            //listNotas.Add(new ListItem("Los pagos se realizarán a nombre de la razón social que fugura en la Factura y en la Orden de Compra"));
-
-
+            t.AddCell(new PdfPCell(new Phrase("VoBo Emisor", fontPropiedad)) { Colspan = 2 });
+            t.AddCell(new PdfPCell(new Phrase(" ")) { Colspan = 3 });
 
             t.AddCell(Celdas(t));
-            t.AddCell(Celdas(t));
+
+
+
+            t.AddCell(new PdfPCell(new Phrase("NOTAS", fontPropiedad)) { Colspan = 10, Border = 0 });
+            List listNotas = new List(List.UNORDERED, 15f);
+            listNotas.PreSymbol = "-";
+
+
+            listNotas.Add(new ListItem("Despachar solo cantidades solicitadas. No se aceptan excesos.", fontInfo));
+            listNotas.Add(new ListItem("Recoger O/C original y al despachar la mercaderia, adjuntar fotocopia autenticada de la misma, indicando en ella el N° de entrega correspondiente", fontInfo));
+            listNotas.Add(new ListItem("Enviar la factura maximo a los 3 dias de haber entregado cada guia", fontInfo));
+            listNotas.Add(new ListItem("Los pagos se realizarán a nombre de la razón social que fugura en la Factura y en la Orden de Compra", fontInfo));
+
 
             //t.AddCell(Celdas(t, "SUMIT SAC - RUC:20431991960 / Direccion:Calle A Mz.B Lote 8-D Zona Industrial Bocanegra-Callao / Tlf:574-7272 / Fax:484-5589"));            
 
             doc.Add(t);
 
+            doc.Add(listNotas);
 
             //PdfPTable t2 = new PdfPTable(10);
             ////t2.WidthPercentage = 80;

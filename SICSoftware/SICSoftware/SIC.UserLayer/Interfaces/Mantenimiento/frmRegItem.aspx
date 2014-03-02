@@ -214,8 +214,8 @@
                                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                     <tr>
                                         <td>
-                                            <asp:Button ID="btnDescargarPDF" Visible="false" runat="server" CssClass="button small gris"
-                                                Style="width: 150px" Text="Descargar PDF" OnClick="btnDescargarPDF_Click" />
+                                            <%--             <asp:Button ID="btnDescargarPDF" Visible="false" runat="server" CssClass="button small gris"
+                                                Style="width: 150px" Text="Descargar PDF" OnClick="btnDescargarPDF_Click" />--%>
                                         </td>
                                         <td>
                                             <asp:Button ID="btnDescargarXls" runat="server" CssClass="button small gris" Style="width: 150px"
@@ -554,8 +554,5 @@
                 </Triggers>
             </asp:UpdatePanel>
         </ContentTemplate>
-        <Triggers>
-            <asp:PostBackTrigger ControlID="btnDescargarXls" />
-        </Triggers>
     </asp:UpdatePanel>
 </asp:Content>
