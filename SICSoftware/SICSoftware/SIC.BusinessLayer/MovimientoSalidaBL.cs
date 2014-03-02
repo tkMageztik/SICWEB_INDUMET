@@ -5,6 +5,7 @@ using System.Text;
 using SIC.EntityLayer;
 using SIC.DataLayer;
 using SIC.BusinessLayer.Validacion;
+using SIC.Data;
 
 namespace SIC.BusinessLayer
 {
@@ -14,10 +15,9 @@ namespace SIC.BusinessLayer
         /// Obtiene una lista de movimientos de salida.
         /// </summary>
         /// <returns>Lista de SIC_T_MOVIMIENTO_SALIDA</returns>
-        public List<SIC_T_MOVIMIENTO_SALIDA> ListarMovimientoSalida(string ruc, string razonSocial,
-                                                                    DateTime? inicio, DateTime? fin)
+        public List<SIC_T_MOVIMIENTO_SALIDA> ListarMovimientoSalida(DateTime? inicio, DateTime? fin, int? id)
         {
-            return new MovimientoSalidaDA().ListarMovimientoSalida(ruc, razonSocial, inicio, fin);
+            return new MovimientoSalidaDA().ListarMovimientoSalida(inicio, fin, id);
         }
 
         /// <summary>
@@ -68,6 +68,11 @@ namespace SIC.BusinessLayer
             }
         }
 
+        /// <summary>
+        /// Actualiza la lista de detalle del movimiento de salida, dada una lista de SIC_T_ITEM_ALMACEN seleccionado.
+        /// </summary>
+        /// <param name="movSalida">Movimiento de salida a modificar.</param>
+        /// <param name="listaPrel">Lista preliminar a ser usada como base para la modificación.</param>
         public void ActualizarListaItems(SIC_T_MOVIMIENTO_SALIDA movSalida, List<SIC_T_ITEM_ALMACEN> listaPrel)
         {
             if (movSalida == null)
@@ -137,6 +142,10 @@ namespace SIC.BusinessLayer
             mvsDA.InsertarMovimientoSalida(movSalida);            
         }
 
+        /// <summary>
+        /// Modifica un movimiento de salida en el sistema.
+        /// </summary>
+        /// <param name="movSalida">El objeto <c>SIC_T_MOVIMIENTO_SALIDA</c> que se modificará</param>
         public void ModificarMovimientoSalida(SIC_T_MOVIMIENTO_SALIDA movSalida)
         {
             if (movSalida == null)
@@ -200,5 +209,24 @@ namespace SIC.BusinessLayer
             return new ItemAlmacenDA().ListarItemAlmacen(codigo, descripcion, idFamilia, idSubFamilia, idAlmacen);
         }
 
+
+        public void CerrarMovimientoSalida(SIC_T_MOVIMIENTO_SALIDA movimientoSalida)
+        {
+            movimientoSalida.mov_estado_iid = (int)EstadoMovimiento.CERRADO;
+            MovimientoSalidaDA mvsDA = new MovimientoSalidaDA();
+            mvsDA.ModificarMovimientSalida(movimientoSalida);
+        }
+
+        public void AnularMovimientoSalida(SIC_T_MOVIMIENTO_SALIDA movimientoSalida)
+        {
+            movimientoSalida.mov_estado_iid = (int)EstadoMovimiento.ANULADO;
+            MovimientoSalidaDA mvsDA = new MovimientoSalidaDA();
+            mvsDA.ModificarMovimientSalida(movimientoSalida);
+        }
+
+        public object ListarEstadoMovimiento()
+        {
+            return new MovEstadoDA().ListarEstadoMovimiento();
+        }
     }    
 }

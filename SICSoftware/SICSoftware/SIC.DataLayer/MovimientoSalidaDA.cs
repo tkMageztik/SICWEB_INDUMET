@@ -17,21 +17,18 @@ namespace SIC.DataLayer
         /// <param name="inicio">La fecha de inicio.</param>
         /// <param name="fin">La fecha fin.</param>
         /// <returns>Lista de <c>SIC_T_MOVIMIENTO_SALIDA</c></returns>
-        public List<SIC_T_MOVIMIENTO_SALIDA> ListarMovimientoSalida(string ruc, string razonSocial,
-                                                                    DateTime? inicio, DateTime? fin)
+        public List<SIC_T_MOVIMIENTO_SALIDA> ListarMovimientoSalida(DateTime? inicio, DateTime? fin, int? estado)
         {
             using (SICDBWEBEntities contexto = new SICDBWEBEntities())
             {               
                 return (from x in contexto.SIC_T_MOVIMIENTO_SALIDA
-                                 .Include("SIC_T_CLIENTE")
+                                 .Include("SIC_T_MOV_ESTADO")
                         where x.mvs_c_bactivo == true
-                                & (ruc == null || ruc == string.Empty || x.SIC_T_CLIENTE.cli_c_vdoc_id.Contains(ruc))  
-                                & (razonSocial == null || razonSocial == string.Empty 
-                                                       || x.SIC_T_CLIENTE.cli_c_vraz_soc.Contains(razonSocial))
-                                & (inicio == null || x.mvs_c_zfecharegistro >= inicio)
-                                & (fin == null || (x.mvs_c_zfecharegistro.Year <= fin.Value.Year
+                                && (inicio == null || x.mvs_c_zfecharegistro >= inicio)
+                                && (fin == null || (x.mvs_c_zfecharegistro.Year <= fin.Value.Year
                                                  && x.mvs_c_zfecharegistro.Month <= fin.Value.Month
                                                  && x.mvs_c_zfecharegistro.Day <= fin.Value.Day))
+                                && (estado == null || x.mov_estado_iid == estado.Value)                                
                         select x).ToList();
             }
         }

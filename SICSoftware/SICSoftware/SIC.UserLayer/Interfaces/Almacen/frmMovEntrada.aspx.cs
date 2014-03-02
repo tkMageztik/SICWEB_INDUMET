@@ -832,7 +832,6 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             }
             else if (e.CommandName == "Anular")
             {
-
                 if (MovEntSeleccionado.mve_c_iestado == (int)EstadoMovimiento.CERRADO)
                 {
                     this.Mensaje("No se puede CERRAR movimientos en estado ANULADO.", "~/Imagenes/warning.png");
@@ -844,7 +843,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                     return;
                 }
                 this.EscenarioMovEn = TipoOperacion.Eliminacion;
-                this.SetearCerrar();
+                this.SetearAnular();
                 this.ucMensaje2.Show("¿Está seguro de Anular el Movimiento seleccionado?", null,
                                     MensajeIcono.Alerta, MensajeBotones.AceptarCancelar);
             }

@@ -51,6 +51,7 @@
     <Compile Include="ItemAlmacenDA.cs" />
     <Compile Include="ItemDA.cs" />
     <Compile Include="LocalDA.cs" />
+    <Compile Include="MovEstadoDA.cs" />
     <Compile Include="MovimientoEntradaDA.cs" />
     <Compile Include="MovimientoSalidaDA.cs" />
     <Compile Include="OrdenCompraDA.cs" />

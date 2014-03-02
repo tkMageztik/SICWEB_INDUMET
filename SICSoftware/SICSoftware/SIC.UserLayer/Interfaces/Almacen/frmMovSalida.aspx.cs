@@ -8,6 +8,7 @@ using SIC.BusinessLayer;
 using System.Globalization;
 using SIC.EntityLayer;
 using SIC.Data;
+using SIC.UserLayer.UserControl;
 
 namespace SIC.UserLayer.Interfaces.Compras
 {
@@ -23,6 +24,12 @@ namespace SIC.UserLayer.Interfaces.Compras
         {
             get { return ViewState["vsMovSalModificar"] as SIC_T_MOVIMIENTO_SALIDA; }
             set { ViewState["vsMovSalModificar"] = value; }
+        }
+
+        private SIC_T_MOVIMIENTO_SALIDA MovSalSeleccionado
+        {
+            get { return ViewState["vsMovSalSeleccionado"] as SIC_T_MOVIMIENTO_SALIDA; }
+            set { ViewState["vsMovSalSeleccionado"] = value; }
         }
 
         private TipoOperacion EscenarioMovSal
@@ -44,6 +51,11 @@ namespace SIC.UserLayer.Interfaces.Compras
         }
 
         #region Eventos
+        public frmMovSalida()
+        {
+            EscenarioMovSal = TipoOperacion.Ninguna;
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -51,6 +63,16 @@ namespace SIC.UserLayer.Interfaces.Compras
                 this.ListarMovimientoSalida();
                 this.ListarTipoMovimiento();
                 this.ListarFiltroFamilia();
+                this.ListarFiltroEstadoMovimiento();
+            }
+
+            if (EscenarioMovSal == TipoOperacion.Cierre)
+            {
+                SetearCerrar();
+            }
+            else if (EscenarioMovSal == TipoOperacion.Eliminacion)
+            {
+                SetearAnular();
             }
         }
 
@@ -100,7 +122,7 @@ namespace SIC.UserLayer.Interfaces.Compras
             }
             else if (this.EscenarioMovSal == TipoOperacion.Modificacion)
             {
-                //this.ModificarMovimeintoEntrada();
+                this.ModificarMovimeintoSalida();
             }
         }
 
@@ -129,7 +151,114 @@ namespace SIC.UserLayer.Interfaces.Compras
             this.RegresarDesdeListaItems();
         }
 
+        protected void gvListaMovSal_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int idRow = Convert.ToInt32(e.CommandArgument);
+            int idMovSal = (int) gvListaMovSal.DataKeys[idRow].Value;
+            if (e.CommandName == "Cerrar")
+            {
+                CerrarMovimientoSalida(idMovSal);   
+            }
+            else if (e.CommandName == "Anular")
+            {
+                AnularMovimientoSalida(idMovSal);  
+            }
+        }
+
         #endregion
+
+        private void CerrarMovimientoSalida(int id)
+        {
+            MovimientoSalidaBL movSalBL = new MovimientoSalidaBL();
+            MovSalSeleccionado = movSalBL.ObtenerMovimientoSalida(id);
+            if (MovSalSeleccionado.mov_estado_iid == (int)EstadoMovimiento.ANULADO)
+            {
+                this.Mensaje("No se puede CERRAR movimientos en estado ANULADO.", "~/Imagenes/warning.png");
+                return;
+            }
+            else if (MovSalSeleccionado.mov_estado_iid == (int)EstadoMovimiento.CERRADO)
+            {
+                this.Mensaje("El Movimiento ya se encuentra en estado CERRADO.", "~/Imagenes/warning.png");
+                return;
+            }
+
+            this.EscenarioMovSal = TipoOperacion.Cierre;
+            this.SetearCerrar();
+            this.ucMensaje2.Show("¿Está seguro de cerrar el movimiento de salida seleccionado? <br/> esto actualizará los stocks en los almacenes respectivos.", null,
+                                MensajeIcono.Alerta, MensajeBotones.AceptarCancelar);
+            upGeneral.Update();
+        }
+
+        private void SetearCerrar()
+        {
+            ResultadoMensajeHandler handler = null;
+            handler = delegate(object s, ResMsjArgs e2)
+            {
+                if (e2.resultado == MensajeResultado.Aceptar)
+                {
+                    this.CerrarMovimientoSalidaSeleccionado();
+                    this.ucMensaje2.ResultadoMensaje -= handler;
+                }
+
+                this.EscenarioMovSal = TipoOperacion.Ninguna;
+            };
+
+            this.ucMensaje2.ResultadoMensaje += handler;
+        }
+
+        private void CerrarMovimientoSalidaSeleccionado()
+        {
+            MovimientoSalidaBL mvsBL = new MovimientoSalidaBL();
+            mvsBL.CerrarMovimientoSalida(MovSalSeleccionado);
+            Mensaje("Movimiento Cerrado.", "~/Imagenes/correcto.png");
+            this.ListarMovimientoSalida();
+            upGeneral.Update();
+        }
+
+        private void AnularMovimientoSalida(int id)
+        {
+            if (MovSalSeleccionado.mov_estado_iid == (int)EstadoMovimiento.CERRADO)
+            {
+                this.Mensaje("No se puede CERRAR movimientos en estado ANULADO.", "~/Imagenes/warning.png");
+                return;
+            }
+            else if (MovSalSeleccionado.mov_estado_iid == (int)EstadoMovimiento.ANULADO)
+            {
+                this.Mensaje("El Movimiento ya se encuentra en estado ANULADO.", "~/Imagenes/warning.png");
+                return;
+            }
+            this.EscenarioMovSal = TipoOperacion.Eliminacion;
+            this.SetearAnular();
+            this.ucMensaje2.Show("¿Está seguro de Anular el Movimiento seleccionado?", null,
+                                MensajeIcono.Alerta, MensajeBotones.AceptarCancelar);
+            upGeneral.Update();
+        }
+
+        private void SetearAnular()
+        {
+            ResultadoMensajeHandler handler = null;
+            handler = delegate(object s, ResMsjArgs e2)
+            {
+                if (e2.resultado == MensajeResultado.Aceptar)
+                {
+                    this.AnularMovimientoSalidaSeleccionado();
+                    this.ucMensaje2.ResultadoMensaje -= handler;
+                }
+
+                this.EscenarioMovSal = TipoOperacion.Ninguna;
+            };
+
+            this.ucMensaje2.ResultadoMensaje += handler;
+        }
+
+        private void AnularMovimientoSalidaSeleccionado()
+        {
+            MovimientoSalidaBL mvsBL = new MovimientoSalidaBL();
+            mvsBL.AnularMovimientoSalida(MovSalSeleccionado);
+            Mensaje("Movimiento Anulado.", "~/Imagenes/correcto.png");
+            this.ListarMovimientoSalida();
+            upGeneral.Update();
+        }
 
         /// <summary>
         /// Regresa a la vista Nuevo/Edicion desde la lista items.
@@ -141,13 +270,13 @@ namespace SIC.UserLayer.Interfaces.Compras
             MovimientoSalidaBL mvsBL = new MovimientoSalidaBL();
             if (this.EscenarioMovSal == TipoOperacion.Creacion)
             {
-                mvsBL.ActualizarListaItems(this.MovSalNuevo, this.ItemsAlmacenEncontrados);
+                mvsBL.ActualizarListaItems(this.MovSalNuevo, this.ItemsAlmacenSeleccionados);
                 this.gvItemsSeleccionados.DataSource = MovSalNuevo.SIC_T_MOVIMIENTO_SALIDA_DETALLE;
                 this.gvItemsSeleccionados.DataBind();
             }
             else if (this.EscenarioMovSal == TipoOperacion.Modificacion)
             {
-                mvsBL.ActualizarListaItems(this.MovSalModificar, this.ItemsAlmacenEncontrados);
+                mvsBL.ActualizarListaItems(this.MovSalModificar, this.ItemsAlmacenSeleccionados);
                 this.gvItemsSeleccionados.DataSource = MovSalModificar.SIC_T_MOVIMIENTO_SALIDA_DETALLE;
                 this.gvItemsSeleccionados.DataBind();
             }           
@@ -165,14 +294,12 @@ namespace SIC.UserLayer.Interfaces.Compras
             var listaEncontrada = this.ItemsAlmacenEncontrados;
 
             List<SIC_T_ITEM_ALMACEN> list;
-            if (ItemsAlmacenSeleccionados != null)
+            if (ItemsAlmacenSeleccionados == null)
             {
-                list = ItemsAlmacenSeleccionados;
+                ItemsAlmacenSeleccionados = new List<SIC_T_ITEM_ALMACEN>();
             }
-            else
-            {
-                list = new List<SIC_T_ITEM_ALMACEN>();
-            }
+
+            list = ItemsAlmacenSeleccionados;
 
             foreach (GridViewRow row in gvListaItem.Rows)
             {
@@ -238,12 +365,6 @@ namespace SIC.UserLayer.Interfaces.Compras
                 this.MovSalNuevo.SIC_T_CLIENTE = null;
                 this.MovSalNuevo.SIC_T_VENTA = null;
             }
-            else if (this.EscenarioMovSal == TipoOperacion.Modificacion)
-            {
-                this.LimpiarVistaNuevo();
-                this.MovSalModificar.SIC_T_CLIENTE = null;
-                this.MovSalModificar.SIC_T_VENTA = null;
-            }
 
             upGeneral.Update();
         }
@@ -265,8 +386,15 @@ namespace SIC.UserLayer.Interfaces.Compras
                 ff = fin;
             }
 
+            int id;
+            int? idEstado = null;
+            if(int.TryParse(cboEstadoMovimiento.SelectedValue, out id) && id >= 0 )
+            {
+                idEstado = id;
+            }
+
             MovimientoSalidaBL mvsBL = new MovimientoSalidaBL();
-            gvListaMovSal.DataSource = mvsBL.ListarMovimientoSalida(txtFiltroRuc.Text,txtFiltroRS.Text,fi,ff);
+            gvListaMovSal.DataSource = mvsBL.ListarMovimientoSalida(fi,ff, idEstado);
             gvListaMovSal.DataBind();
             upGvLista.Update();
         }
@@ -297,6 +425,17 @@ namespace SIC.UserLayer.Interfaces.Compras
             cboFiltroAlmacen.DataTextField = "alm_c_vdesc";
             cboFiltroAlmacen.DataValueField = "alm_c_iid";
             cboFiltroAlmacen.DataBind();
+        }
+
+        private void ListarFiltroEstadoMovimiento()
+        {
+            MovimientoSalidaBL mvsBL = new MovimientoSalidaBL();
+            cboEstadoMovimiento.Items.Clear();
+            cboEstadoMovimiento.Items.Add(new ListItem("-- Seleccionar --", "-1"));
+            cboEstadoMovimiento.DataSource = mvsBL.ListarEstadoMovimiento();
+            cboEstadoMovimiento.DataTextField = "mov_estado_vdescrpcion";
+            cboEstadoMovimiento.DataValueField = "mov_estado_iid";
+            cboEstadoMovimiento.DataBind();
         }
 
         /// <summary>
@@ -384,18 +523,20 @@ namespace SIC.UserLayer.Interfaces.Compras
         /// </summary>
         private void MostrarModificarMovimiento(int id)
         {
+            MovimientoSalidaBL mvsBL = new MovimientoSalidaBL();
+            this.MovSalModificar = mvsBL.ObtenerMovimientoSalida(id);
+            if (MovSalModificar.mov_estado_iid != (int)EstadoMovimiento.POR_REGULARIZAR)
+            {
+                Mensaje("Solo se puede modificar movimientos en estado POR REGULARIZAR", "~/Imagenes/warning.png");
+                this.MovSalModificar = null;
+                return;
+            }            
+
             this.EscenarioMovSal = TipoOperacion.Modificacion;
-            this.btnBuscarVenta.Enabled = false;
-            this.btnBuscarVenta.Visible = false;
-            this.txtObs.ReadOnly = true;
-            this.btnGuardar.Visible = false;
-            this.btnGuardar.Enabled = false;
             this.cboTipoMovimiento.Enabled = false;
             this.lblAccion.Text = "VER";
             this.mvMovSalida.SetActiveView(this.vwNuevoMovimiento);
-            MovimientoSalidaBL mvsBL = new MovimientoSalidaBL();
-            this.MovSalModificar = mvsBL.ObtenerMovimientoSalida(id);
-
+     
             cboTipoMovimiento.ClearSelection();
             var seleccion = cboTipoMovimiento.Items.FindByText(MovSalModificar.mvs_c_vdestiposalida);
             if (seleccion != null)
@@ -404,11 +545,14 @@ namespace SIC.UserLayer.Interfaces.Compras
             }
 
             this.CambioTipoMovimiento();
+            this.btnSeleccionarVenta.Visible = false;
             this.gvItemsSeleccionados.DataSource = MovSalModificar.SIC_T_MOVIMIENTO_SALIDA_DETALLE;
+            this.gvItemsSeleccionados.DataBind();
             if (MovSalModificar.SIC_T_VENTA != null)
             {
                 txtFechaVenta.Text = MovSalModificar.SIC_T_VENTA.ven_c_zfecha.ToString("dd/MM/yyyy");
             }
+
             if (MovSalModificar.SIC_T_CLIENTE != null)
             {
                 txtRUCCli.Text = MovSalModificar.SIC_T_CLIENTE.cli_c_vdoc_id;
@@ -416,6 +560,7 @@ namespace SIC.UserLayer.Interfaces.Compras
             }
 
             this.mvMovSalida.SetActiveView(vwNuevoMovimiento);
+            upGeneral.Update();
         }
 
         private void MostrarSeleccionItems()
@@ -676,6 +821,8 @@ namespace SIC.UserLayer.Interfaces.Compras
                 }
             }
         }
+
+
 
 
 
