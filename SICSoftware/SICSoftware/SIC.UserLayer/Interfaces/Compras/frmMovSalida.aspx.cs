@@ -100,7 +100,7 @@ namespace SIC.UserLayer.Interfaces.Compras
             }
             else if (this.EscenarioMovSal == TipoOperacion.Modificacion)
             {
-                this.ModificarMovimeintoEntrada();
+                //this.ModificarMovimeintoEntrada();
             }
         }
 

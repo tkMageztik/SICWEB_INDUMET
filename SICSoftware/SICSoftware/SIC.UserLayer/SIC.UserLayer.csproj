@@ -182,6 +182,7 @@
     <Content Include="Imagenes\logo-pie-realplaza.gif" />
     <Content Include="Imagenes\logo_advance.png" />
     <Content Include="Imagenes\logo_index.png" />
+    <Content Include="Imagenes\logo_indumet.png" />
     <Content Include="Imagenes\logo_pie.png" />
     <Content Include="Imagenes\logo_rp.png" />
     <Content Include="Imagenes\menuIcon.JPG" />
@@ -258,6 +259,7 @@
     <Compile Include="Interfaces\Reporte\FrmReporteCliente.aspx.designer.cs">
       <DependentUpon>FrmReporteCliente.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MyPageEventHandler.cs" />
     <Compile Include="pdfs\pdf.cs" />
     <Compile Include="Interfaces\Facturacion\frmFactAutomatica.aspx.cs">
       <DependentUpon>frmFactAutomatica.aspx</DependentUpon>
