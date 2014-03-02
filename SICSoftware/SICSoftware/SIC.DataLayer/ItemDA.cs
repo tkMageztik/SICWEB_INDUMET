@@ -9,7 +9,6 @@ namespace SIC.DataLayer
 {
     public class ItemDA
     {
-
         #region "Métodos"
 
         public List<SIC_T_ITEM> ListarItems(string codigo, string descripcion, int? idFamilia, int? idSubFamilia)

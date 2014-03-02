@@ -5,9 +5,10 @@
   <ExcludeCategories>false</ExcludeCategories>
   <Nodes>
     <Node UniqueName="[0-1000]D:\GIT\SICWEB_INDUMET\UnitTests\BL_Test.nunit" Expanded="true" />
-    <Node UniqueName="[0-1008]D:\GIT\SICWEB_INDUMET\UnitTests\..\SICSoftware\SICSoftware\BL_NUnit\bin\Debug\BL_NUnit.dll" Expanded="true" />
-    <Node UniqueName="[0-1009]BL_NUnit" Expanded="true" />
+    <Node UniqueName="[0-1011]D:\GIT\SICWEB_INDUMET\UnitTests\..\SICSoftware\SICSoftware\BL_NUnit\bin\Debug\BL_NUnit.dll" Expanded="true" />
+    <Node UniqueName="[0-1012]BL_NUnit" Expanded="true" />
     <Node UniqueName="[0-1004]BL_NUnit.FacturacionAutomaticaBLTest" Expanded="true" />
     <Node UniqueName="[0-1001]BL_NUnit.MantenimientoEmpresaBLTest" Expanded="true" />
+    <Node UniqueName="[0-1008]BL_NUnit.MovimientoSalidaBLTest" Expanded="true" />
   </Nodes>
 </VisualState>

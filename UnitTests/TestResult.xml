@@ -1,25 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--This file represents the results of running a test suite-->
-<test-results name="D:\GIT\SICWEB_INDUMET\UnitTests\BL_Test.nunit" total="5" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2014-02-21" time="17:07:09">
+<test-results name="D:\GIT\SICWEB_INDUMET\UnitTests\BL_Test.nunit" total="7" errors="1" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2014-03-02" time="12:41:35">
   <environment nunit-version="2.6.3.13283" clr-version="2.0.50727.5472" os-version="Microsoft Windows NT 6.1.7601 Service Pack 1" platform="Win32NT" cwd="C:\Program Files (x86)\NUnit 2.6.3\bin" machine-name="PC-005" user="allanco" user-domain="PC-005" />
   <culture-info current-culture="es-ES" current-uiculture="es-ES" />
-  <test-suite type="Project" name="D:\GIT\SICWEB_INDUMET\UnitTests\BL_Test.nunit" executed="True" result="Success" success="True" time="1.452" asserts="0">
+  <test-suite type="Project" name="D:\GIT\SICWEB_INDUMET\UnitTests\BL_Test.nunit" executed="True" result="Failure" success="False" time="1.361" asserts="0">
     <results>
-      <test-suite type="Assembly" name="D:\GIT\SICWEB_INDUMET\UnitTests\..\SICSoftware\SICSoftware\BL_NUnit\bin\Debug\BL_NUnit.dll" executed="True" result="Success" success="True" time="1.428" asserts="0">
+      <test-suite type="Assembly" name="D:\GIT\SICWEB_INDUMET\UnitTests\..\SICSoftware\SICSoftware\BL_NUnit\bin\Debug\BL_NUnit.dll" executed="True" result="Failure" success="False" time="1.336" asserts="0">
         <results>
-          <test-suite type="Namespace" name="BL_NUnit" executed="True" result="Success" success="True" time="1.427" asserts="0">
+          <test-suite type="Namespace" name="BL_NUnit" executed="True" result="Failure" success="False" time="1.334" asserts="0">
             <results>
-              <test-suite type="TestFixture" name="FacturacionAutomaticaBLTest" executed="True" result="Success" success="True" time="1.400" asserts="0">
+              <test-suite type="TestFixture" name="FacturacionAutomaticaBLTest" executed="True" result="Success" success="True" time="0.582" asserts="0">
                 <results>
-                  <test-case name="BL_NUnit.FacturacionAutomaticaBLTest.ListaPeriodo" executed="True" result="Success" success="True" time="0.026" asserts="0" />
-                  <test-case name="BL_NUnit.FacturacionAutomaticaBLTest.PruebaBoleta" executed="True" result="Success" success="True" time="1.281" asserts="22" />
+                  <test-case name="BL_NUnit.FacturacionAutomaticaBLTest.ListaPeriodo" executed="True" result="Success" success="True" time="0.030" asserts="0" />
+                  <test-case name="BL_NUnit.FacturacionAutomaticaBLTest.PruebaBoleta" executed="True" result="Success" success="True" time="0.504" asserts="22" />
                   <test-case name="BL_NUnit.FacturacionAutomaticaBLTest.PruebaFactura" executed="True" result="Success" success="True" time="0.018" asserts="22" />
                 </results>
               </test-suite>
-              <test-suite type="TestFixture" name="MantenimientoEmpresaBLTest" executed="True" result="Success" success="True" time="0.016" asserts="0">
+              <test-suite type="TestFixture" name="MantenimientoEmpresaBLTest" executed="True" result="Success" success="True" time="0.015" asserts="0">
                 <results>
                   <test-case name="BL_NUnit.MantenimientoEmpresaBLTest.PruebaValidarDireccionEmpresa" executed="True" result="Success" success="True" time="0.005" asserts="7" />
                   <test-case name="BL_NUnit.MantenimientoEmpresaBLTest.PruebValidarCentroCosto" executed="True" result="Success" success="True" time="0.002" asserts="5" />
+                </results>
+              </test-suite>
+              <test-suite type="TestFixture" name="MovimientoSalidaBLTest" executed="True" result="Failure" success="False" time="0.718" asserts="0">
+                <results>
+                  <test-case name="BL_NUnit.MovimientoSalidaBLTest.TestDetalleMovimientoDesdeItemAlmacen" executed="True" result="Error" success="False" time="0.559" asserts="0">
+                    <failure>
+                      <message><![CDATA[System.ArgumentException : La conexión con nombre especificada no se encuentra en la configuración, no es apropiada para ser utilizada con el proveedor de EntityClient, o no es válida.]]></message>
+                      <stack-trace><![CDATA[en System.Data.EntityClient.EntityConnection.ChangeConnectionString(String newConnectionString)
+en System.Data.Objects.ObjectContext..ctor(String connectionString, String defaultContainerName)
+en SIC.EntityLayer.SICDBWEBEntities..ctor() en D:\GIT\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.EntityLayer\SICModel.Designer.cs:línea 91
+en SIC.DataLayer.ItemDA.ObtenerItemPorIdNoContext(Int32 id) en D:\GIT\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.DataLayer\ItemDA.cs:línea 115
+en SIC.BusinessLayer.MovimientoSalidaBL.ActualizarListaItems(SIC_T_MOVIMIENTO_SALIDA movSalida, List`1 listaPrel) en D:\GIT\SICWEB_INDUMET\SICSoftware\SICSoftware\SIC.BusinessLayer\MovimientoSalidaBL.cs:línea 118
+en BL_NUnit.MovimientoSalidaBLTest.TestDetalleMovimientoDesdeItemAlmacen() en D:\GIT\SICWEB_INDUMET\SICSoftware\SICSoftware\BL_NUnit\MovimientoSalidaBLTest.cs:línea 40
+]]></stack-trace>
+                    </failure>
+                  </test-case>
+                  <test-case name="BL_NUnit.MovimientoSalidaBLTest.TestDetalleMovimientoDesdeVenta" executed="True" result="Success" success="True" time="0.014" asserts="8" />
                 </results>
               </test-suite>
             </results>

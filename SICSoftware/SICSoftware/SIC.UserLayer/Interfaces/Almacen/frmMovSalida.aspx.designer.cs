@@ -40,24 +40,6 @@ namespace SIC.UserLayer.Interfaces.Compras {
         protected global::System.Web.UI.WebControls.View vwListaMovimiento;
         
         /// <summary>
-        /// Control txtFiltroRuc.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFiltroRuc;
-        
-        /// <summary>
-        /// Control txtFiltroRS.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFiltroRS;
-        
-        /// <summary>
         /// Control txtFiltroFecIni.
         /// </summary>
         /// <remarks>
@@ -92,6 +74,15 @@ namespace SIC.UserLayer.Interfaces.Compras {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::AjaxControlToolkit.CalendarExtender CalendarExtender2;
+        
+        /// <summary>
+        /// Control cboEstadoMovimiento.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cboEstadoMovimiento;
         
         /// <summary>
         /// Control btnBuscar.
