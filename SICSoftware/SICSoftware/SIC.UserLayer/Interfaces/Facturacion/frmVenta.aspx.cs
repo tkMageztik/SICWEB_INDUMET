@@ -177,8 +177,6 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                     chk.Checked = true;
                 }
             }
-            //(item.ven_det_c_iitemid== itemId && item.ven_det_c_iidalmacen == almacenID)
-
         }
 
         protected void btnRegresarDesdeItems_Click(object sender, EventArgs e)
@@ -459,8 +457,20 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 }
             }
 
+            int? idFamilia = null;
+            int? idSubFamilia = null;
+            if (int.TryParse(cboFiltroFamilia.SelectedValue, out id) && id != -1)
+            {
+                idFamilia = id;
+            }
 
-            this.ItemsAlmacenEncontrados = _itemAlmacen.ListarItemAlmacen(txtFiltroCodigo.Text.Trim(), txtFiltroDescr.Text.Trim(), null, null, listaIdAlmacen.ToArray());
+            if (int.TryParse(cboFiltroSubFamilia.SelectedValue, out id) && id != -1)
+            {
+                idSubFamilia = id;
+            }
+
+            this.ItemsAlmacenEncontrados = _itemAlmacen.ListarItemAlmacen(txtFiltroCodigo.Text.Trim(), txtFiltroDescr.Text.Trim(),
+                idFamilia, idSubFamilia, listaIdAlmacen.ToArray());
             gvListaItem.DataSource = ItemsAlmacenEncontrados;
             gvListaItem.DataBind();
         }

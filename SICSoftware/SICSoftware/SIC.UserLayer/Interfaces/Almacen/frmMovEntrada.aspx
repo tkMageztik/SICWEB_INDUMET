@@ -427,7 +427,7 @@
                                                         &nbsp;Items
                                                     </td>
                                                     <td align="left" class="txt-box-estilo" colspan="4" width="40%">
-                                                        <div style="width: 100%; height: 300px; overflow: scroll">
+                                                        <div style="width: 111%; height: 300px; overflow: scroll">
                                                             <asp:GridView ID="gvItemsSeleccionados" runat="server" AlternatingRowStyle-CssClass="alt"
                                                                 BorderStyle="None" BorderWidth="0px" CssClass="mGrid" EmptyDataText="No ha seleccionado una Orden de Compra."
                                                                 GridLines="None" Height="16px" PagerStyle-CssClass="pgr" ShowHeaderWhenEmpty="True"

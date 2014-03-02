@@ -45,6 +45,23 @@ namespace SIC.DataLayer
             }
         }
 
+        public List<SIC_T_ALMACEN> ListaAlmacen()
+        {
+            try
+            {
+                using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+                {
+                    var resultado = (from x in contexto.SIC_T_ALMACEN
+                                     select x).ToList();
+                    return resultado;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public SIC_T_ALMACEN ObtenerPorId(int id)
         {
             try
