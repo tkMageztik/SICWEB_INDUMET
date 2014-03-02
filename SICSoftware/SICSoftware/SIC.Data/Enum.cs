@@ -18,7 +18,7 @@ namespace SIC.Data
     {
         VENTA = 1,
     }
-    
+
     public enum EstadoOC
     {
         PLANEADA = 1,
@@ -186,6 +186,13 @@ namespace SIC.Data
         SOL = 1,
         DOLAR = 2
     }
+
+    public enum TipoMonedaDescripcion
+    {
+        NUEVOS_SOLES = 12,
+        DOLARES_AMERICANOS = 15
+    }
+
     public enum TipoAccion
     {
         Ninguna,
@@ -294,7 +301,7 @@ namespace SIC.Data
     public enum TipoDocumentoVenta
     {
         BOLETA = 17,
-        FACTURA =  18,
+        FACTURA = 18,
     }
 
     //public enum Concepto

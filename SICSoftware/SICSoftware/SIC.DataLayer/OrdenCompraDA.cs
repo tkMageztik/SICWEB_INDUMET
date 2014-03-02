@@ -140,6 +140,10 @@ namespace SIC.DataLayer
                                         .Include("SIC_T_ORDEN_DE_COMPRA_DET.SIC_T_ITEM.SIC_T_UNIDAD_MEDIDA")
                                         .Include("SIC_T_CLIENTE")
                                         .Include("SIC_T_CLIENTE.SIC_T_CLI_CONTACTO")
+                                        .Include("SIC_T_CLIENTE.SIC_T_CLI_DIRECCION")
+                                        .Include("SIC_T_CLIENTE.SIC_T_CLI_DIRECCION.SIC_T_DISTRITO")
+                                        .Include("SIC_T_CLIENTE.SIC_T_CLI_DIRECCION.SIC_T_DISTRITO.SIC_T_PROVINCIA")
+                                        .Include("SIC_T_CLIENTE.SIC_T_CLI_DIRECCION.SIC_T_DISTRITO.SIC_T_PROVINCIA.SIC_T_DEPARTAMENTO")
                                         .Include("SIC_T_EMP_DIRECCION")
                                   where x.odc_c_iid == id && x.odc_c_bactivo == true
                                   select x).SingleOrDefault();
