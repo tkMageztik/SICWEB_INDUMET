@@ -33,20 +33,20 @@ namespace SIC.UserLayer
             PdfPTable t = new PdfPTable(new[] { 10f, 10f, 10f, 10f, 10f, 10f, 10f, 10f, 10f, 10f });
             t.WidthPercentage = 100;
 
-            t.AddCell(Celdas(t));
+            t.AddCell(Celdas(t, border: Rectangle.NO_BORDER));
 
-            t.AddCell(Celdas(3));
+            t.AddCell(Celdas(3, border: Rectangle.NO_BORDER));
 
-            t.AddCell(new PdfPCell(new Phrase("ORDEN DE COMPRA #" + ordenCompra.odc_c_vcodigo, fontTitulo)) { Colspan = 4 });
+            t.AddCell(new PdfPCell(new Phrase("ORDEN DE COMPRA #" + ordenCompra.odc_c_vcodigo, fontTitulo)) { Colspan = 4, Border = 0 });
 
-            t.AddCell(Celdas(3));
+            t.AddCell(Celdas(3, border: Rectangle.NO_BORDER));
 
-            t.AddCell(Celdas(20));
+            t.AddCell(Celdas(10, border: Rectangle.NO_BORDER));
 
-            t.AddCell(new PdfPCell(new Phrase("DATOS DEL PROVEEDOR", fontSubtitulo)) { Colspan = 6 });
+            t.AddCell(new PdfPCell(new Phrase("DATOS DEL PROVEEDOR", fontSubtitulo)) { Colspan = 6, Border = 0 });
 
-            t.AddCell(new PdfPCell(new Phrase("FECHA DE EMISIÓN", fontSubtitulo)) { Colspan = 2 });
-            t.AddCell(new PdfPCell(new Phrase(String.Format("{0:dd/MM/yyyy}", ordenCompra.odc_c_zfechaemi), fontInfo)) { Colspan = 2 });
+            t.AddCell(new PdfPCell(new Phrase("FECHA DE EMISIÓN", fontSubtitulo)) { Colspan = 2, Border = 0 });
+            t.AddCell(new PdfPCell(new Phrase(String.Format("{0:dd/MM/yyyy}", ordenCompra.odc_c_zfechaemi), fontInfo)) { Colspan = 2, Border = 0 });
 
             t.AddCell(new PdfPCell(new Phrase("PROVEEDOR", fontPropiedad)) { Colspan = 2 });
             t.AddCell(new PdfPCell(new Phrase(ordenCompra.SIC_T_CLIENTE.cli_c_vraz_soc, fontInfo)) { Colspan = 5 });
@@ -104,6 +104,26 @@ namespace SIC.UserLayer
 
             //aquí el detalle de OC
 
+            t.AddCell(new PdfPCell(new Phrase("CANT. REQ.", fontPropiedad)));
+            t.AddCell(new PdfPCell(new Phrase("UNI. MEDIDA", fontPropiedad)));
+            t.AddCell(new PdfPCell(new Phrase("COD. ITEM", fontPropiedad)));
+            t.AddCell(new PdfPCell(new Phrase("DESCRIPCIÓN ITEM", fontPropiedad)) { Colspan = 5 });
+            t.AddCell(new PdfPCell(new Phrase("P.U.", fontPropiedad)));
+            t.AddCell(new PdfPCell(new Phrase("DSCTO", fontPropiedad)));
+            t.AddCell(new PdfPCell(new Phrase("TOTAL", fontPropiedad)));
+
+
+            foreach (SIC_T_ORDEN_DE_COMPRA_DET det in ordenCompra.SIC_T_ORDEN_DE_COMPRA_DET)
+            {
+                t.AddCell(new PdfPCell(new Phrase(String.Format("{0:0.00}", det.odc_c_ecantidad), fontPropiedad)));
+                t.AddCell(new PdfPCell(new Phrase(det.SIC_T_ITEM.SIC_T_UNIDAD_MEDIDA.und_c_vdesc, fontPropiedad)));
+                t.AddCell(new PdfPCell(new Phrase(det.codigoItem, fontPropiedad)));
+                t.AddCell(new PdfPCell(new Phrase(det.descItem, fontPropiedad)) { Colspan = 4 });
+                t.AddCell(new PdfPCell(new Phrase(String.Format("{0:0,0.00}", det.odc_c_epreciounit, fontPropiedad))));
+                t.AddCell(new PdfPCell(new Phrase("", fontPropiedad)));
+                t.AddCell(new PdfPCell(new Phrase(String.Format("{0:0,0.00}", det.odc_c_epreciototal, fontPropiedad))));
+
+            }
 
             t.AddCell(Celdas(t));
 
@@ -202,15 +222,15 @@ namespace SIC.UserLayer
 
         }
 
-        private static PdfPCell Celdas(PdfPTable pdfTable, string texto = " ")
+        private static PdfPCell Celdas(PdfPTable pdfTable, string texto = " ", int border = Rectangle.BOX)
         {
-            return new PdfPCell(new Phrase(texto)) { Colspan = pdfTable.NumberOfColumns };
+            return new PdfPCell(new Phrase(texto)) { Colspan = pdfTable.NumberOfColumns, Border = border };
 
         }
 
-        private static PdfPCell Celdas(int numeroDeColumnas, string texto = " ")
+        private static PdfPCell Celdas(int numeroDeColumnas, string texto = " ", int border = Rectangle.BOX)
         {
-            return new PdfPCell(new Phrase(texto)) { Colspan = numeroDeColumnas };
+            return new PdfPCell(new Phrase(texto)) { Colspan = numeroDeColumnas, Border = border };
 
         }
 

@@ -446,7 +446,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             nuevoItem.itm_c_dprecio_compra = precioCompra;
             nuevoItem.itm_c_dprecio_venta = precioVenta;
             nuevoItem.itm_c_vdescripcion = this.txtDescripcion.Text.Trim();
-            nuevoItem.itm_c_yumedida = byte.Parse(this.cboUnidad.SelectedValue);
+            nuevoItem.und_c_yid = byte.Parse(this.cboUnidad.SelectedValue);
             nuevoItem.itm_c_vpardes = this.cboUnidad.SelectedItem.ToString();
             nuevoItem.isf_c_iid = idSubFamilia;
 
@@ -558,7 +558,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             int.TryParse(cboSubFamilia.SelectedValue, out idSubFamilia);
             ItemSeleccionado.itm_c_dprecio_compra = precioCompra;
             ItemSeleccionado.itm_c_dprecio_venta = precioVenta;
-            ItemSeleccionado.itm_c_yumedida = byte.Parse(this.cboUnidad.SelectedValue);
+            ItemSeleccionado.und_c_yid = byte.Parse(this.cboUnidad.SelectedValue);
             ItemSeleccionado.itm_c_vpardes = this.cboUnidad.SelectedItem.Text.Trim();
             ItemSeleccionado.isf_c_iid = idSubFamilia;
 

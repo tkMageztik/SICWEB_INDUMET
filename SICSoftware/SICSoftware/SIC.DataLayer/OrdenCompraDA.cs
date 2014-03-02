@@ -137,6 +137,7 @@ namespace SIC.DataLayer
                 {
                     var result = (from x in contexto.SIC_T_ORDEN_DE_COMPRA
                                         .Include("SIC_T_ORDEN_DE_COMPRA_DET.SIC_T_ITEM")
+                                        .Include("SIC_T_ORDEN_DE_COMPRA_DET.SIC_T_ITEM.SIC_T_UNIDAD_MEDIDA")
                                         .Include("SIC_T_CLIENTE")
                                         .Include("SIC_T_CLIENTE.SIC_T_CLI_CONTACTO")
                                         .Include("SIC_T_EMP_DIRECCION")

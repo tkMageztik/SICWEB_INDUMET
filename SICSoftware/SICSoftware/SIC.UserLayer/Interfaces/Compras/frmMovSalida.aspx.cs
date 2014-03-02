@@ -153,7 +153,7 @@ namespace SIC.UserLayer.Interfaces.Compras
             this.txtRUCCli.Text = string.Empty;
             this.txtRSCli.Text = string.Empty;
             this.txtFechaVenta.Text = string.Empty;
-            this.txtFechaFactura.Text = string.Empty;
+            //this.txtFechaFactura.Text = string.Empty;
             this.txtObs.Text = string.Empty;
             this.gvItemsSeleccionados.DataSource = null;
             this.gvItemsSeleccionados.DataBind();            
