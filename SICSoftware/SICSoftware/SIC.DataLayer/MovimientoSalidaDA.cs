@@ -37,20 +37,13 @@ namespace SIC.DataLayer
         }
 
         public List<SIC_T_MOV_ESTADO> ObtenerMovimientoEstados()
-        {
-            try
+        {            
+            using (SICDBWEBEntities contexto = new SICDBWEBEntities())
             {
-                using (SICDBWEBEntities contexto = new SICDBWEBEntities())
-                {
-                    return (from x in contexto.SIC_T_MOV_ESTADO
-                            //where x.mov_c_bactivo == true
-                            select x).ToList();
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+                return (from x in contexto.SIC_T_MOV_ESTADO
+                        //where x.mov_c_bactivo == true
+                        select x).ToList();
+            }            
         }
 
         public SIC_T_MOVIMIENTO_SALIDA ObtenerMovimientoSalidaPorId(int id)
@@ -60,8 +53,10 @@ namespace SIC.DataLayer
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
                     return (from x in contexto.SIC_T_MOVIMIENTO_SALIDA
-                             .Include("SIC_T_MOVIMIENTO_SALIDA_DETALLE")
+                             .Include("SIC_T_MOVIMIENTO_SALIDA_DETALLE.SIC_T_ALMACEN")
+                             .Include("SIC_T_MOVIMIENTO_SALIDA_DETALLE.SIC_T_ITEM")
                              .Include("SIC_T_CLIENTE")
+                             .Include("SIC_T_VENTA")
                             where x.mvs_c_iid == id && x.mvs_c_bactivo == true
                             select x).FirstOrDefault();
                 }
@@ -72,40 +67,52 @@ namespace SIC.DataLayer
             }
         }
 
-        public bool InsertarMovimientoSalida(SIC_T_MOVIMIENTO_SALIDA _pSIC_T_MOVIMIENTO_SALIDA)
+        public void InsertarMovimientoSalida(SIC_T_MOVIMIENTO_SALIDA movSalida)
         {
-            try
+            using (SICDBWEBEntities contexto = new SICDBWEBEntities())
             {
-                using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+                // Si el estado es cerrado (3), se debe guardar  el itemalmacen
+                if (movSalida.mov_estado_iid == 3) // Cerrado, esto es proceso de negocio como hacerlo dedse afuera?
                 {
+                    ItemAlmacenDA iada = new ItemAlmacenDA();
+                    foreach (var item in movSalida.SIC_T_MOVIMIENTO_SALIDA_DETALLE)
+                    {
+                        iada.ModificarItemAlmacen(contexto, item.itm_c_iid,
+                            item.alm_c_iid, item.mvs_det_c_ecant * -1);
+                    }
+                    movSalida.mvs_c_bingresado = true;
+                }
 
-                    // Si el estado es cerrado (3), se debe guardar  el itemalmacen
-                    //if (_pSIC_T_MOVIMIENTO_SALIDA.mve_c_iestado == 3) // Cerrado, esto es proceso de negocio como hacerlo dedse afuera?
-                    //{
-                    //    ItemAlmacenDA iada = new ItemAlmacenDA();
-                    //    foreach (var item in _pSIC_T_MOVIMIENTO_SALIDA.SIC_T_MOVIMIENTO_SALIDA_DETALLE)
-                    //    {
-                    //        iada.ModificarItemAlmacen(contexto, item.itm_c_iid,
-                    //            item.alm_c_iid, item.mvs_det_c_ecant);
-                    //    }
-                    //    _pSIC_T_MOVIMIENTO_SALIDA.mvs_c_bingresado = true;
-                    //}
-
-                    foreach (var item in _pSIC_T_MOVIMIENTO_SALIDA.SIC_T_MOVIMIENTO_SALIDA_DETALLE)
+                foreach (var item in movSalida.SIC_T_MOVIMIENTO_SALIDA_DETALLE)
+                {
+                    if (item.SIC_T_ITEM != null)
                     {
                         item.itm_c_iid = item.SIC_T_ITEM.itm_c_iid;
                         item.SIC_T_ITEM = null;
                     }
 
-                    _pSIC_T_MOVIMIENTO_SALIDA.mvs_c_bactivo = true;
-                    contexto.AddToSIC_T_MOVIMIENTO_SALIDA(_pSIC_T_MOVIMIENTO_SALIDA);
-                    contexto.SaveChanges();
-                    return true;
+                    if (item.SIC_T_ALMACEN != null)
+                    {
+                        item.alm_c_iid = item.SIC_T_ALMACEN.alm_c_iid;
+                        item.SIC_T_ALMACEN = null;
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                throw;
+
+                if (movSalida.SIC_T_CLIENTE != null)
+                {
+                    movSalida.cli_c_vdoc_id = movSalida.SIC_T_CLIENTE.cli_c_vdoc_id;
+                    movSalida.SIC_T_CLIENTE = null;
+                }
+
+                if (movSalida.SIC_T_VENTA != null)
+                {
+                    movSalida.ven_c_iid = movSalida.SIC_T_VENTA.ven_c_iid;
+                    movSalida.SIC_T_VENTA = null;
+                }
+
+                movSalida.mvs_c_bactivo = true;
+                contexto.AddToSIC_T_MOVIMIENTO_SALIDA(movSalida);
+                contexto.SaveChanges();
             }
         }
 

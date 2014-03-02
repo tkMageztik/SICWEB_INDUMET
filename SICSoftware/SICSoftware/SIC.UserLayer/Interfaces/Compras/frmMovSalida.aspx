@@ -116,11 +116,26 @@
                                         <asp:GridView ID="gvListaMovSal" runat="server" BorderStyle="None" AutoGenerateColumns="False"
                                             GridLines="None" AllowPaging="True" Width="100%" CssClass="mGrid" PagerStyle-CssClass="pgr"
                                             AlternatingRowStyle-CssClass="alt" ShowHeaderWhenEmpty="True" EmptyDataText="No hay datos disponibles."
-                                            PageSize="15" BorderWidth="0px" DataKeyNames="mve_c_iid" >
+                                            PageSize="15" BorderWidth="0px" DataKeyNames="mve_c_iid" 
+                                            onselectedindexchanged="gvListaMovSal_SelectedIndexChanged" >
                                             <AlternatingRowStyle CssClass="alt" />
-                                            <Columns>
-                                                
-                                            </Columns>
+                                            <Columns>                                                 
+                                                <asp:BoundField DataField="mvs_c_vdestiposalida" HeaderText="Tipo Salida" />
+                                                <asp:BoundField HeaderText="Fecha" DataField="mve_c_zfecharegistro" />
+                                                <asp:TemplateField HeaderText="RUC Cliente">
+                                                    <ItemTemplate>
+                                                        <%# Eval("SIC_T_CLIENTE.cli_c_vdoc_id")%>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="RAZÓN SOCIAL Cliente">
+                                                    <ItemTemplate>
+                                                        <%# Eval("SIC_T_CLIENTE.cli_c_vraz_soc")%>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:CommandField ShowSelectButton="True" SelectText="Ver" />
+                                                <asp:ButtonField CommandName="Cerrar" Text="Cerrar" ButtonType="Link" />
+                                                <asp:ButtonField CommandName="Anular" Text="Anular" ButtonType="Link" />    
+                                            </Columns>                                            
                                             <PagerStyle CssClass="pgr" />
                                         </asp:GridView>
                                     </ContentTemplate>
@@ -133,12 +148,15 @@
                     <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                             <td class="tit-nav-paginas" align="left">
-                                MANTENIMIENTO &gt; MOVIMIENTO SALIDA &gt; NUEVO</td>
+                                MANTENIMIENTO &gt; MOVIMIENTO SALIDA &gt;
+                                <asp:Label ID="lblAccion" runat="server"></asp:Label>
+                            </td>
                             <td align="right">
                                 <table width="220" border="0" cellspacing="0" cellpadding="0">
                                     <tr>
                                         <td>
-                                            <asp:LinkButton ID="btnGuardar" runat="server" CssClass="lnk">Guardar</asp:LinkButton>
+                                            <asp:LinkButton ID="btnGuardar" runat="server" CssClass="lnk" 
+                                                onclick="btnGuardar_Click">Guardar</asp:LinkButton>
                                         </td>
                                         <td>
                                             <asp:LinkButton ID="btnCancelar" runat="server" CssClass="lnk">Cancelar</asp:LinkButton>
@@ -160,9 +178,13 @@
                                                     <td align="left" class="txt-box-estilo">
                                                         Tipo movimiento</td>
                                                     <td align="left" class="style3" style="margin-left: 40px">
-                                                        <asp:DropDownList ID="cboTipoMovimiento" runat="server" Enabled="False">
-                                                            <asp:ListItem Value="Venta"></asp:ListItem>
+                                                        <asp:UpdatePanel ID="updTipoMov" UpdateMode="Conditional" runat="server">
+                                                        <ContentTemplate>
+                                                        <asp:DropDownList ID="cboTipoMovimiento" runat="server" 
+                                                            AppendDataBoundItems="True" AutoPostBack="True">
                                                         </asp:DropDownList>
+                                                        </ContentTemplate>
+                                                        </asp:UpdatePanel>
                                                     </td>
                                                     <td>
                                                         &nbsp;</td>
@@ -188,6 +210,10 @@
                                                     <td align="left" class="txt-box-estilo">
                                                         &nbsp;
                                                     </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" class="txt-box-estilo" colspan="6">
+                                                        &nbsp;</td>
                                                 </tr>
                                                 <tr>
                                                     <td align="left" class="txt-box-estilo">
@@ -227,6 +253,8 @@
                                                             BorderColor="Black" BorderStyle="None" BorderWidth="1px" ReadOnly="True" 
                                                             Width="282px"></asp:TextBox>
                                                         &nbsp;
+                                                        <asp:LinkButton ID="btnBuscarCliente" runat="server" CssClass="lnk" 
+                                                            onclick="btnSeleccionarVenta_Click">Buscar Cliente</asp:LinkButton>
                                                         </td>
                                                     <td class="txt-box-estilo" align="left">
                                                         Fecha</td>
@@ -249,24 +277,6 @@
                                                     </td>
                                                     <td align="left" class="style1">
                                                     </td>
-                                                </tr>
-                                                <tr>
-                                                    <td align="left" class="txt-box-estilo">
-                                                        Factura</td>
-                                                    <td align="left" class="txt-box-estilo">
-                                                        <asp:TextBox ID="txtFactura" runat="server" BackColor="#CCCCCC" 
-                                                            BorderColor="Black" BorderStyle="None" BorderWidth="1px" ReadOnly="True" 
-                                                            Width="274px"></asp:TextBox>
-                                                    </td>
-                                                    <td align="left" class="txt-box-estilo">
-                                                        Fecha Factura</td>
-                                                    <td align="left" class="txt-box-estilo">
-                                                        <asp:TextBox ID="txtFechaFactura" runat="server" BackColor="#CCCCCC" 
-                                                            BorderColor="Black" BorderStyle="None" BorderWidth="1px" ReadOnly="True" 
-                                                            Width="114px"></asp:TextBox>
-                                                    </td>
-                                                    <td align="left" class="txt-box-estilo">
-                                                        &nbsp;</td>
                                                 </tr>
                                                 <tr>
                                                     <td align="left" class="txt-box-estilo">
@@ -505,6 +515,12 @@
                                 </td>
                             </tr>
                     </table>
+                </asp:View>
+                <asp:View ID="vwBuscarItem" runat="server">
+
+                </asp:View>
+                <asp:View ID="vwBuscarCliente" runat="server">
+
                 </asp:View>
             </asp:MultiView>
             <asp:UpdatePanel ID="upMensaje" runat="server" UpdateMode="Conditional">
