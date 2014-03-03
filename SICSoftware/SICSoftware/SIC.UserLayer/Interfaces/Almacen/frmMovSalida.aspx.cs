@@ -842,5 +842,11 @@ namespace SIC.UserLayer.Interfaces.Compras
         {
             this.ListarVentas();
         }
+
+        protected void gvListaMovSal_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvListaMovSal.PageIndex = e.NewPageIndex;
+            this.ListarMovimientoSalida();
+        }
     }
 }
