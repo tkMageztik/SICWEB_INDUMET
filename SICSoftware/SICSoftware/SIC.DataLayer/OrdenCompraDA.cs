@@ -117,6 +117,7 @@ namespace SIC.DataLayer
                     var result = (from x in contexto.SIC_T_ORDEN_DE_COMPRA
                                         .Include("SIC_T_ORDEN_DE_COMPRA_DET.SIC_T_ITEM")
                                         .Include("SIC_T_CLIENTE")
+                                        .Include("SIC_T_EMP_DIRECCION")
                                   where x.odc_c_iid == id && x.odc_c_bactivo == true
                                   select x).SingleOrDefault();
 

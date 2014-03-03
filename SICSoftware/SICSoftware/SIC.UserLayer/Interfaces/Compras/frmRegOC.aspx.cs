@@ -598,7 +598,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
             this.EscenarioOC = TipoOperacion.Modificacion;
             this.txtObs.Text = this.OCSeleccionado.odc_c_vobservacion;
-            //this.txtDirecEntrega.Text = this.OCSeleccionado.odc_c_vdireccion;
+            this.txtDirecEntrega.Text = this.OCSeleccionado.SIC_T_EMP_DIRECCION.emp_dir_c_vdireccion;
             this.chkPercepcion.Checked = OCSeleccionado.odc_c_bactivo;
             this.txtFecEnIni.Text = OCSeleccionado.odc_c_zfechaentrega_ini.ToString("dd/MM/yyyy");
             this.txtFecEntFin.Text = OCSeleccionado.odc_c_zfechaentrega_fin.ToString("dd/MM/yyyy");
@@ -693,7 +693,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             //this.lblFecha.Text = this.OCSeleccionado.odc_c_zfecharegistro.ToString("dd/MM/yyyy");
             this.EscenarioOC = TipoOperacion.Modificacion;
             this.txtObs.Text = this.OCSeleccionado.odc_c_vobservacion;
-            //this.txtDirecEntrega.Text = this.OCSeleccionado.odc_c_vdireccion;
+            this.txtDirecEntrega.Text = this.OCSeleccionado.SIC_T_EMP_DIRECCION.emp_dir_c_vdireccion;
             this.chkPercepcion.Checked = OCSeleccionado.odc_c_bpercepcion;
             this.txtFecEnIni.Text = OCSeleccionado.odc_c_zfechaentrega_ini.ToString("dd/MM/yyyy");
             this.txtFecEntFin.Text = OCSeleccionado.odc_c_zfechaentrega_fin.ToString("dd/MM/yyyy");
@@ -1472,7 +1472,6 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         {
             if (e.CommandName == "Cerrar")
             {
-
                 this.EscenarioOC = TipoOperacion.Eliminacion;
 
                 this.idOC = (int)this.gvListaOC.DataKeys[Convert.ToInt32(e.CommandArgument)].Values["odc_c_iid"];
