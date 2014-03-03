@@ -61,8 +61,7 @@
                     <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                             <td class="tit-nav-paginas" align="left">
-                                MANTENIMIENTO &gt; ORDEN DE COMPRA
-                            </td>
+                                MANTENIMIENTO &gt; ORDEN DE COMPRA</td>
                         </tr>
                         <tr>
                             <td class="txt2" align="left" colspan="2">

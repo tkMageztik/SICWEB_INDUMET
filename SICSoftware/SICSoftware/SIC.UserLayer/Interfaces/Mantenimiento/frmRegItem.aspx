@@ -175,6 +175,7 @@
                                                         <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("itm_c_dprecio_venta"))%>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
+
                                                 <asp:BoundField DataField="itm_c_vpardes" HeaderText="UNIDAD DE MEDIDA" />
                                                 <asp:BoundField DataField="SIC_T_ITEM_SUB_FAMILIA.SIC_T_ITEM_FAMILIA.ifm_c_des" HeaderText="FAMILIA" />
                                                 <asp:BoundField DataField="SIC_T_ITEM_SUB_FAMILIA.isf_c_vdesc" HeaderText="SUBFAMILIA" />

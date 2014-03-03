@@ -368,6 +368,12 @@ namespace SIC.UserLayer.Interfaces.Movimientos
 
         }
 
+        protected void gvItemsSeleccionados_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            int idItem = (int)gvItemsSeleccionados.DataKeys[e.RowIndex].Values["ven_det_c_iitemid"];
+            int idAlmacen = (int)gvItemsSeleccionados.DataKeys[e.RowIndex].Values["ven_det_c_iidalmacen"];
+            this.EliminarDetalleVenta(idItem, idAlmacen);
+        }
 
         #endregion
 
@@ -791,14 +797,12 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             var listaEncontrada = this.ItemsAlmacenEncontrados;
 
             List<SIC_T_ITEM_ALMACEN> list;
-            if (ItemsAlmacenSeleccionados != null)
+            if (ItemsAlmacenSeleccionados == null)
             {
-                list = ItemsAlmacenSeleccionados;
+                ItemsAlmacenSeleccionados = new List<SIC_T_ITEM_ALMACEN>();
             }
-            else
-            {
-                list = new List<SIC_T_ITEM_ALMACEN>();
-            }
+
+            list = ItemsAlmacenSeleccionados;
 
             foreach (GridViewRow row in gvListaItem.Rows)
             {
@@ -1263,6 +1267,32 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         protected void txtDetalleVenta_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        
+
+        private void EliminarDetalleVenta(int idItem, int idAlmacen)
+        {
+            foreach (SIC_T_ITEM_ALMACEN itmAlm in this.ItemsAlmacenSeleccionados)
+            {
+                if (itmAlm.itm_c_iid == idItem && itmAlm.alm_c_iid == idAlmacen)
+                {
+                    ItemsAlmacenSeleccionados.Remove(itmAlm);
+                    break;
+                }
+            }
+            if (this.EscenarioVenta == TipoOperacion.Creacion)
+            {
+                this.ActualizarListaItems(this.VentaNuevo);
+                this.RecalcularMontos(this.VentaNuevo);
+            }
+            else if (this.EscenarioVenta == TipoOperacion.Modificacion)
+            {
+                this.ActualizarListaItems(this.VentaSeleccionado);
+                this.RecalcularMontos(this.VentaSeleccionado);
+            }
+            
+            upGeneral.Update();
         }
 
     }
