@@ -152,15 +152,17 @@ namespace SIC.UserLayer.Interfaces.Compras
         }
 
         protected void gvListaMovSal_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            int idRow = Convert.ToInt32(e.CommandArgument);
-            int idMovSal = (int) gvListaMovSal.DataKeys[idRow].Value;
+        {            
             if (e.CommandName == "Cerrar")
             {
+                int idRow = Convert.ToInt32(e.CommandArgument);
+                int idMovSal = (int)gvListaMovSal.DataKeys[idRow].Value;
                 CerrarMovimientoSalida(idMovSal);   
             }
             else if (e.CommandName == "Anular")
             {
+                int idRow = Convert.ToInt32(e.CommandArgument);
+                int idMovSal = (int)gvListaMovSal.DataKeys[idRow].Value;
                 AnularMovimientoSalida(idMovSal);  
             }
         }
