@@ -121,5 +121,11 @@ namespace SIC.UserLayer.Interfaces.Almacen
                 return;
             }
         }
+
+        protected void gvItemsAlmacen_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.gvItemsAlmacen.PageIndex = e.NewPageIndex;
+            this.ListarItemsAlmacen();
+        }
     }
 }

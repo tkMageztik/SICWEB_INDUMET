@@ -193,5 +193,11 @@ namespace SIC.UserLayer.Interfaces.Facturacion
             upGeneral.Update();
             return;
         }
+
+        protected void gvListaVenta_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.gvListaVenta.PageIndex = e.NewPageIndex;
+            this.BuscarVentas();
+        }
     }
 }

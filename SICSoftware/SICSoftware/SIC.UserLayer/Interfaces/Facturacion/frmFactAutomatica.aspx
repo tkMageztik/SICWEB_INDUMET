@@ -155,7 +155,8 @@
                                                             EmptyDataText="No hay datos disponibles." GridLines="None" 
                                                             PagerStyle-CssClass="pgr" PageSize="15" ShowHeaderWhenEmpty="True" 
                                                             Width="100%" DataKeyNames="ven_c_iid" 
-                                                            onselectedindexchanged="gvListaVenta_SelectedIndexChanged">
+                                                            onselectedindexchanged="gvListaVenta_SelectedIndexChanged" 
+                                                            AllowPaging="True" onpageindexchanging="gvListaVenta_PageIndexChanging">
                                                             <AlternatingRowStyle CssClass="alt" />
                                                             <Columns>
                                                                 <asp:TemplateField HeaderText="SELECCIONAR">
