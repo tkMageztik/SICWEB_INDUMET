@@ -218,6 +218,18 @@ namespace SIC.UserLayer.Interfaces.Facturacion
             }
         }
 
+        protected void gvListaFactura_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvListaFactura.PageIndex = e.NewPageIndex;
+            MostrarListaFactura();
+        }
+
+        protected void gvListaBoleta_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvListaBoleta.PageIndex = e.NewPageIndex;
+            MostrarListaBoleta();
+        }
+
         
     }
 }

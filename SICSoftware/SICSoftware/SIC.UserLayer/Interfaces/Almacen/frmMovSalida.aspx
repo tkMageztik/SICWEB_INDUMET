@@ -156,7 +156,8 @@
                                             AlternatingRowStyle-CssClass="alt" ShowHeaderWhenEmpty="True" EmptyDataText="No hay datos disponibles."
                                             PageSize="15" BorderWidth="0px" DataKeyNames="mvs_c_iid" 
                                             OnSelectedIndexChanged="gvListaMovSal_SelectedIndexChanged" 
-                                            onrowcommand="gvListaMovSal_RowCommand">
+                                            onrowcommand="gvListaMovSal_RowCommand" 
+                                            onpageindexchanging="gvListaMovSal_PageIndexChanging">
                                             <AlternatingRowStyle CssClass="alt" />
                                             <Columns>
                                                 <asp:BoundField DataField="mvs_c_vdestiposalida" HeaderText="Tipo Salida" />

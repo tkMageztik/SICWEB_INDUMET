@@ -174,7 +174,8 @@
                                                             EmptyDataText="No hay datos disponibles." GridLines="None" 
                                                             PagerStyle-CssClass="pgr" PageSize="15" ShowHeaderWhenEmpty="True" 
                                                             Width="100%" DataKeyNames="fac_c_iid" 
-                                                            onselectedindexchanged="gvListaFactura_SelectedIndexChanged">
+                                                            onselectedindexchanged="gvListaFactura_SelectedIndexChanged" 
+                                                            AllowPaging="True" onpageindexchanging="gvListaFactura_PageIndexChanging">
                                                             <AlternatingRowStyle CssClass="alt" />
                                                             <Columns>                                                                
                                                                 <asp:TemplateField HeaderText="Serie y Número">
@@ -205,7 +206,8 @@
                                                             BorderStyle="None" BorderWidth="0px" CssClass="mGrid" DataKeyNames="bol_c_iid" 
                                                             EmptyDataText="No hay datos disponibles." GridLines="None" 
                                                             PagerStyle-CssClass="pgr" PageSize="15" ShowHeaderWhenEmpty="True" 
-                                                            Width="100%" onselectedindexchanged="gvListaBoleta_SelectedIndexChanged">
+                                                            Width="100%" onselectedindexchanged="gvListaBoleta_SelectedIndexChanged" 
+                                                            AllowPaging="True" onpageindexchanging="gvListaBoleta_PageIndexChanging">
                                                             <AlternatingRowStyle CssClass="alt" />
                                                             <Columns>
                                                                 <asp:TemplateField HeaderText="Serie y Número">

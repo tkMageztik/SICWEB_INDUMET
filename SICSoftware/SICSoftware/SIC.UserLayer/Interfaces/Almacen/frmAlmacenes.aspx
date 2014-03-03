@@ -135,7 +135,8 @@
                                             <asp:GridView ID="gvItemsAlmacen" runat="server" BorderStyle="None" AutoGenerateColumns="False"
                                                 GridLines="None" AllowPaging="True" Width="100%" CssClass="mGrid" PagerStyle-CssClass="pgr"
                                                 AlternatingRowStyle-CssClass="alt" ShowHeaderWhenEmpty="True" EmptyDataText="No hay datos disponibles."
-                                                PageSize="15" BorderWidth="0px">
+                                                PageSize="15" BorderWidth="0px" 
+                                                onpageindexchanging="gvItemsAlmacen_PageIndexChanging">
                                                 <AlternatingRowStyle CssClass="alt" />
                                                 <Columns>
                                                     <asp:TemplateField HeaderText="COD. ITEM">
