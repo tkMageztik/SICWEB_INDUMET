@@ -128,6 +128,10 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 {
                     btnBuscarItems.Enabled = false;
                 }
+                this.ItemsAlmacenSeleccionados.Clear();
+                gvItemsSeleccionados.DataSource = VentaNuevo.SIC_T_VENTA_DETALLE;
+                gvItemsSeleccionados.DataBind();
+                upGeneral.Update();
             }
         }
 
@@ -253,24 +257,12 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 {
                     SIC_T_VENTA venta = this.VentaSeleccionado;
 
-                    // Buscamos y editamos la cantidad, filtramos el item q viene del mismo almacen
                     foreach (var item in venta.SIC_T_VENTA_DETALLE)
                     {
-                        if (item.ven_det_c_iitemid == itemId && item.ven_det_c_iidalmacen == almacenID)
-                        {
-                            item.ven_det_c_ecantidad = cantidadNueva;
-                            item.ven_det_c_epreciototal = item.ven_det_c_epreciounit * cantidadNueva;
-                            break;
-                        }
-                    }
-
-                    // Buscamos y editamos le precio, filtramos los items que tengan la misma id
-                    // ya que mas adelante se fuisionaran los items en un solo registro (detalle de boleta/factura), 
-                    // se requiere que tengan el mismo precio unitario
-                    foreach (var item in venta.SIC_T_VENTA_DETALLE)
-                    {
+                        // Si es el mismo item.
                         if (item.ven_det_c_iitemid == itemId)
                         {
+                            // Colocamos el precio (se actualizan todos los rows que tengan el mismo item)
                             item.ven_det_c_epreciounit = precioNuevo;
                             if (cboMoneda.SelectedIndex == 0)
                             {
@@ -279,7 +271,15 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                             else
                             {
                                 item.precioUnitarioSoles = precioNuevo * this.TasaCambio;
+                            }                           
+
+                            // Además, si tiene tambien el mismo almacen, se actualiza la cantidad
+                            if (item.ven_det_c_iidalmacen == almacenID)
+                            {
+                                item.ven_det_c_ecantidad = cantidadNueva;
                             }
+
+                            // Por ultimo se calcula el precio total
                             item.ven_det_c_epreciototal = item.ven_det_c_epreciounit * cantidadNueva;
                         }
                     }
@@ -291,12 +291,14 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 }
                 else if (this.EscenarioVenta == TipoOperacion.Creacion)
                 {
-                    SIC_T_VENTA ordenCompra = this.VentaNuevo;
-                    foreach (var item in ordenCompra.SIC_T_VENTA_DETALLE)
+                    SIC_T_VENTA venta = this.VentaNuevo;
+
+                    foreach (var item in venta.SIC_T_VENTA_DETALLE)
                     {
+                        // Si es el mismo item.
                         if (item.ven_det_c_iitemid == itemId)
                         {
-                            item.ven_det_c_ecantidad = cantidadNueva;
+                            // Colocamos el precio (se actualizan todos los rows que tengan el mismo item)
                             item.ven_det_c_epreciounit = precioNuevo;
                             if (cboMoneda.SelectedIndex == 0)
                             {
@@ -305,15 +307,21 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                             else
                             {
                                 item.precioUnitarioSoles = precioNuevo * this.TasaCambio;
-                                ;
                             }
+
+                            // Además, si tiene tambien el mismo almacen, se actualiza la cantidad
+                            if (item.ven_det_c_iidalmacen == almacenID)
+                            {
+                                item.ven_det_c_ecantidad = cantidadNueva;
+                            }
+
+                            // Por ultimo se calcula el precio total
                             item.ven_det_c_epreciototal = item.ven_det_c_epreciounit * cantidadNueva;
-                            break;
                         }
                     }
-                    this.RecalcularMontos(ordenCompra);
+                    this.RecalcularMontos(venta);
                     gvItemsSeleccionados.EditIndex = -1;
-                    gvItemsSeleccionados.DataSource = ordenCompra.SIC_T_VENTA_DETALLE;
+                    gvItemsSeleccionados.DataSource = venta.SIC_T_VENTA_DETALLE;
                     gvItemsSeleccionados.DataBind();
                 }
             }
@@ -326,7 +334,6 @@ namespace SIC.UserLayer.Interfaces.Movimientos
 
         protected void gvListaVenta_RowEditing(object sender, GridViewEditEventArgs e)
         {
-
             int ocId = (int)this.gvListaVenta.DataKeys[e.NewEditIndex].Value;
             e.NewEditIndex = -1;
             this.gvListaItem.EditIndex = -1;
@@ -368,6 +375,12 @@ namespace SIC.UserLayer.Interfaces.Movimientos
 
         }
 
+        protected void gvItemsSeleccionados_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            int idItem = (int)gvItemsSeleccionados.DataKeys[e.RowIndex].Values["ven_det_c_iitemid"];
+            int idAlmacen = (int)gvItemsSeleccionados.DataKeys[e.RowIndex].Values["ven_det_c_iidalmacen"];
+            this.EliminarDetalleVenta(idItem, idAlmacen);
+        }
 
         #endregion
 
@@ -791,14 +804,12 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             var listaEncontrada = this.ItemsAlmacenEncontrados;
 
             List<SIC_T_ITEM_ALMACEN> list;
-            if (ItemsAlmacenSeleccionados != null)
+            if (ItemsAlmacenSeleccionados == null)
             {
-                list = ItemsAlmacenSeleccionados;
+                ItemsAlmacenSeleccionados = new List<SIC_T_ITEM_ALMACEN>();
             }
-            else
-            {
-                list = new List<SIC_T_ITEM_ALMACEN>();
-            }
+
+            list = ItemsAlmacenSeleccionados;
 
             foreach (GridViewRow row in gvListaItem.Rows)
             {
@@ -1254,16 +1265,30 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         {
             this.ListarFiltroSubFamilia();
         }
-
-        protected void txtFiltroRuc_TextChanged(object sender, EventArgs e)
+  
+        private void EliminarDetalleVenta(int idItem, int idAlmacen)
         {
+            foreach (SIC_T_ITEM_ALMACEN itmAlm in this.ItemsAlmacenSeleccionados)
+            {
+                if (itmAlm.itm_c_iid == idItem && itmAlm.alm_c_iid == idAlmacen)
+                {
+                    ItemsAlmacenSeleccionados.Remove(itmAlm);
+                    break;
+                }
+            }
 
+            if (this.EscenarioVenta == TipoOperacion.Creacion)
+            {
+                this.ActualizarListaItems(this.VentaNuevo);
+                this.RecalcularMontos(this.VentaNuevo);
+            }
+            else if (this.EscenarioVenta == TipoOperacion.Modificacion)
+            {
+                this.ActualizarListaItems(this.VentaSeleccionado);
+                this.RecalcularMontos(this.VentaSeleccionado);
+            }
+            
+            upGeneral.Update();
         }
-
-        protected void txtDetalleVenta_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
     }
 }

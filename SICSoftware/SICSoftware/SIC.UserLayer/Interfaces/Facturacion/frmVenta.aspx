@@ -317,13 +317,14 @@
                                                         Items
                                                     </td>
                                                     <td align="left" class="txt-box-estilo" colspan="3">
-                                                        <div style="width: 100%; height: 300px; overflow: scroll">
+                                                        <div style="width: 99%; height: 300px; overflow: scroll">
                                                             <asp:GridView ID="gvItemsSeleccionados" runat="server" AlternatingRowStyle-CssClass="alt"
                                                                 BorderStyle="None" BorderWidth="0px" CssClass="mGrid" EmptyDataText="No ha seleccionado ningun item."
                                                                 GridLines="None" Height="16px" PagerStyle-CssClass="pgr" ShowHeaderWhenEmpty="True"
                                                                 ViewStateMode="Enabled" Width="100%" AutoGenerateColumns="False" DataKeyNames="ven_det_c_iitemid,ven_det_c_iidalmacen"
                                                                 OnRowCancelingEdit="gvItemsSeleccionados_RowCancelingEdit" OnRowEditing="gvItemsSeleccionados_RowEditing"
-                                                                OnRowUpdating="gvItemsSeleccionados_RowUpdating">
+                                                                OnRowUpdating="gvItemsSeleccionados_RowUpdating" 
+                                                                onrowdeleting="gvItemsSeleccionados_RowDeleting">
                                                                 <AlternatingRowStyle CssClass="alt" />
                                                                 <Columns>
                                                                     <asp:TemplateField HeaderText="Código">
@@ -361,7 +362,8 @@
                                                                             <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}",Eval("ven_det_c_epreciototal"))%>
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
-                                                                    <asp:CommandField ShowEditButton="True" CancelText="Cancelar" EditText="Editar" UpdateText="Actualizar" />
+                                                                    <asp:CommandField ShowEditButton="True" CancelText="Cancelar" DeleteText="Eliminar"/>
+                                                                    <asp:CommandField ShowDeleteButton="True" DeleteText="Eliminar" />
                                                                     <asp:TemplateField HeaderText="Unit. Ref. (Soles)">
                                                                         <ItemTemplate>
                                                                             <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("precioReferenciaSoles"))%>

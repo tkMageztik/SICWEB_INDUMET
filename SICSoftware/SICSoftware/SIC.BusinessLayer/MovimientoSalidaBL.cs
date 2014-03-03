@@ -33,6 +33,10 @@ namespace SIC.BusinessLayer
             return new VentaDA().ListarVentasEstado(ruc, razonSocial, inicio, fin, (int)EstadoVenta.FACTURADO);
         }
 
+        /// <summary>
+        /// Obtiene la lista de los tipos de movimiento de salida.
+        /// </summary>
+        /// <returns>Lista de <c>SIC_T_PARAMETRO_DET</c></returns>
         public List<SIC_T_PARAMETRO_DET> ListarTipoMovimientoSalida()
         {
             return new ParametroBL().ListarParametros((int)SIC.Data.TipoParametro.TIPO_SALIDA);
@@ -209,7 +213,10 @@ namespace SIC.BusinessLayer
             return new ItemAlmacenDA().ListarItemAlmacen(codigo, descripcion, idFamilia, idSubFamilia, idAlmacen);
         }
 
-
+        /// <summary>
+        /// Cierra el movimiento de salida.
+        /// </summary>
+        /// <param name="movimientoSalida">Objeto movimiento salida a cerrar.</param>
         public void CerrarMovimientoSalida(SIC_T_MOVIMIENTO_SALIDA movimientoSalida)
         {
             movimientoSalida.mov_estado_iid = (int)EstadoMovimiento.CERRADO;
@@ -217,6 +224,10 @@ namespace SIC.BusinessLayer
             mvsDA.ModificarMovimientSalida(movimientoSalida);
         }
 
+        /// <summary>
+        /// Anula un movimiento salida
+        /// </summary>
+        /// <param name="movimientoSalida">Objeto movimiento salida a anular.</param>
         public void AnularMovimientoSalida(SIC_T_MOVIMIENTO_SALIDA movimientoSalida)
         {
             movimientoSalida.mov_estado_iid = (int)EstadoMovimiento.ANULADO;
@@ -224,7 +235,11 @@ namespace SIC.BusinessLayer
             mvsDA.ModificarMovimientSalida(movimientoSalida);
         }
 
-        public object ListarEstadoMovimiento()
+        /// <summary>
+        /// Lista los estados de movimiento.
+        /// </summary>
+        /// <returns>Lista de <c>SIC_T_MOV_ESTADO</c></returns>
+        public List<SIC_T_MOV_ESTADO> ListarEstadoMovimiento()
         {
             return new MovEstadoDA().ListarEstadoMovimiento();
         }
