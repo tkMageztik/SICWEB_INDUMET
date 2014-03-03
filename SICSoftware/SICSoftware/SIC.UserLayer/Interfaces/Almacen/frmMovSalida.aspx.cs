@@ -63,6 +63,7 @@ namespace SIC.UserLayer.Interfaces.Compras
                 this.ListarMovimientoSalida();
                 this.ListarTipoMovimiento();
                 this.ListarFiltroFamilia();
+                this.ListarFiltroAlmacen();
                 this.ListarFiltroEstadoMovimiento();
             }
 
