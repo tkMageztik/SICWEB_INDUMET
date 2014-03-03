@@ -135,7 +135,7 @@ namespace SIC.UserLayer
 
             tablaDatos.SetWidths(widthsDatos);
 
-            tablaDatos.AddCell(new Paragraph("INDUMET GRUPO ORTIZ S.A.C. - RUC:20550768471 / Tlf:574-7272", font) { Alignment = Element.ALIGN_CENTER });
+            tablaDatos.AddCell(new Paragraph("INDUMET GRUPO ORTIZ S.A.C. - RUC:20550768471 / Tlf:(01) 456-7230", font) { Alignment = Element.ALIGN_CENTER });
             //tablaDatos.AddCell(new Paragraph(strNomComercial, font) { Alignment = Element.ALIGN_CENTER });
             //tablaDatos.AddCell(new Paragraph(strNroContrato, font) { Alignment = Element.ALIGN_CENTER });
 
