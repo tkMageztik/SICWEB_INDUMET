@@ -241,111 +241,6 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             this.ListarProveedores();
         }
 
-        protected void gvItemsSeleccionados_RowEditing(object sender, GridViewEditEventArgs e)
-        {
-            gvItemsSeleccionados.EditIndex = e.NewEditIndex;
-            if (this.EscenarioOC == TipoOperacion.Modificacion)
-            {
-                gvItemsSeleccionados.DataSource = OCSeleccionado.SIC_T_ORDEN_DE_COMPRA_DET;
-                gvItemsSeleccionados.DataBind();
-            }
-            else if (this.EscenarioOC == TipoOperacion.Creacion)
-            {
-                gvItemsSeleccionados.DataSource = OCNuevo.SIC_T_ORDEN_DE_COMPRA_DET;
-                gvItemsSeleccionados.DataBind();
-            }
-        }
-
-        protected void gvItemsSeleccionados_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
-        {
-            gvItemsSeleccionados.EditIndex = -1;
-            if (this.EscenarioOC == TipoOperacion.Modificacion)
-            {
-                gvItemsSeleccionados.DataSource = OCSeleccionado.SIC_T_ORDEN_DE_COMPRA_DET;
-                gvItemsSeleccionados.DataBind();
-            }
-            else if (this.EscenarioOC == TipoOperacion.Creacion)
-            {
-                gvItemsSeleccionados.DataSource = OCNuevo.SIC_T_ORDEN_DE_COMPRA_DET;
-                gvItemsSeleccionados.DataBind();
-            }
-
-        }
-
-        protected void gvItemsSeleccionados_RowUpdating(object sender, GridViewUpdateEventArgs e)
-        {
-            TextBox txtCantidad = (TextBox)gvItemsSeleccionados.Rows[e.RowIndex].FindControl("txtCantidad");
-            TextBox txtPrecio = (TextBox)gvItemsSeleccionados.Rows[e.RowIndex].FindControl("txtPrecio");
-
-            decimal cantidadNueva, precioNuevo;
-            if (decimal.TryParse(txtCantidad.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out cantidadNueva) && cantidadNueva > 0
-                && decimal.TryParse(txtPrecio.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out precioNuevo) && precioNuevo > 0)
-            {
-                int itemId = (int)gvItemsSeleccionados.DataKeys[e.RowIndex].Value;
-
-                if (this.EscenarioOC == TipoOperacion.Modificacion)
-                {
-                    SIC_T_ORDEN_DE_COMPRA ordenCompra = this.OCSeleccionado;
-                    foreach (var item in ordenCompra.SIC_T_ORDEN_DE_COMPRA_DET)
-                    {
-                        if (item.odc_c_iitemid == itemId)
-                        {
-                            item.odc_c_ecantidad = cantidadNueva;
-                            item.odc_c_epreciounit = precioNuevo;
-                            if (cboMoneda.SelectedIndex == 0)
-                            {
-                                item.precioUnitarioSoles = precioNuevo;
-                            }
-                            else
-                            {
-                                item.precioUnitarioSoles = precioNuevo * this.TasaCambio;
-                                ;
-                            }
-                            item.odc_c_epreciototal = item.odc_c_epreciounit * cantidadNueva;
-                            break;
-                        }
-                    }
-                    this.RecalcularMontos(ordenCompra);
-                    gvItemsSeleccionados.EditIndex = -1;
-                    gvItemsSeleccionados.DataSource = ordenCompra.SIC_T_ORDEN_DE_COMPRA_DET;
-                    gvItemsSeleccionados.DataBind();
-                }
-                else if (this.EscenarioOC == TipoOperacion.Creacion)
-                {
-                    SIC_T_ORDEN_DE_COMPRA ordenCompra = this.OCNuevo;
-                    foreach (var item in ordenCompra.SIC_T_ORDEN_DE_COMPRA_DET)
-                    {
-                        if (item.odc_c_iitemid == itemId)
-                        {
-                            item.odc_c_ecantidad = cantidadNueva;
-                            item.odc_c_epreciounit = precioNuevo;
-                            if (cboMoneda.SelectedIndex == 0)
-                            {
-                                item.precioUnitarioSoles = precioNuevo;
-                            }
-                            else
-                            {
-                                item.precioUnitarioSoles = precioNuevo * this.TasaCambio;
-                                ;
-                            }
-                            item.odc_c_epreciototal = item.odc_c_epreciounit * cantidadNueva;
-                            break;
-                        }
-                    }
-                    this.RecalcularMontos(ordenCompra);
-                    gvItemsSeleccionados.EditIndex = -1;
-                    gvItemsSeleccionados.DataSource = ordenCompra.SIC_T_ORDEN_DE_COMPRA_DET;
-                    gvItemsSeleccionados.DataBind();
-                }
-
-            }
-            else
-            {
-                Mensaje("Debe ingresar números entero válido mayor a 0.", "~/Imagenes/warning.png");
-                return;
-            }
-        }
-
         protected void gvListaOC_RowEditing(object sender, GridViewEditEventArgs e)
         {
             int ocId = (int)this.gvListaOC.DataKeys[e.NewEditIndex].Value;
@@ -1436,11 +1331,6 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             ListarOrdenCompra();
         }
 
-        protected void gvItemsSeleccionados_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         protected void cboEstado_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (EscenarioOC == TipoOperacion.Creacion)
@@ -1613,34 +1503,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         protected void btnBuscarProv_Click(object sender, EventArgs e)
         {
             this.ListarProveedores();
-        }
-
-        //protected void gvItemsSeleccionados_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        //{
-        //    if (this.EscenarioOC == TipoOperacion.Modificacion)
-        //    {
-        //        OCSeleccionado.SIC_T_ORDEN_DE_COMPRA_DET.ToList<SIC_T_ORDEN_DE_COMPRA_DET>().RemoveAt(e.RowIndex);
-        //        gvItemsSeleccionados.DataSource = OCSeleccionado.SIC_T_ORDEN_DE_COMPRA_DET;
-        //        gvItemsSeleccionados.DataBind();
-        //    }
-        //    else if (this.EscenarioOC == TipoOperacion.Creacion)
-        //    {
-        //        List<SIC_T_ORDEN_DE_COMPRA_DET> lstOdcDET = OCNuevo.SIC_T_ORDEN_DE_COMPRA_DET.ToList<SIC_T_ORDEN_DE_COMPRA_DET>();
-
-        //        lstOdcDET.RemoveAt(e.RowIndex);
-
-        //        //OCNuevo.SIC_T_ORDEN_DE_COMPRA_DET = new System.Data.Objects.DataClasses.EntityCollection<SIC_T_ORDEN_DE_COMPRA_DET>();
-        //        //OCNuevo.SIC_T_ORDEN_DE_COMPRA_DET = lstOdcDET ;
-        //        //foreach (var odcDet in lstOdcDET)
-        //        //{
-        //        //    OCNuevo.SIC_T_ORDEN_DE_COMPRA_DET.Add(odcDet);
-        //        //}
-
-        //        gvItemsSeleccionados.DataSource = OCNuevo.SIC_T_ORDEN_DE_COMPRA_DET;
-        //        gvItemsSeleccionados.DataBind();
-        //    }
-
-        //}
+        }       
 
         private void EliminarDetalleOC(int idItem)
         {
@@ -1661,6 +1524,85 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 ActualizarListaItems(this.OCSeleccionado);
             }
             upGeneral.Update();
+        }
+
+        protected void txtRowCantidadPrecio_TextChanged(object sender, EventArgs e)
+        {
+            TextBox txtSender = (TextBox)sender;
+            GridViewRow row = (GridViewRow)txtSender.Parent.Parent;
+
+            TextBox txtCantidad = (TextBox)gvItemsSeleccionados.Rows[row.RowIndex].FindControl("txtCantidad");
+            TextBox txtPrecio = (TextBox)gvItemsSeleccionados.Rows[row.RowIndex].FindControl("txtPrecio");
+
+            decimal cantidadNueva, precioNuevo;
+            if (decimal.TryParse(txtCantidad.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out cantidadNueva) && cantidadNueva > 0
+                && decimal.TryParse(txtPrecio.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out precioNuevo) && precioNuevo > 0)
+            {
+                int itemId = (int)gvItemsSeleccionados.DataKeys[row.RowIndex].Value;
+
+                if (cantidadNueva <= 0)
+                {
+                    cantidadNueva = 1;
+                }
+                if (precioNuevo <= 0)
+                {
+                    precioNuevo = 1;
+                }
+
+                if (this.EscenarioOC == TipoOperacion.Modificacion)
+                {
+                    SIC_T_ORDEN_DE_COMPRA ordenCompra = this.OCSeleccionado;
+                    foreach (var item in ordenCompra.SIC_T_ORDEN_DE_COMPRA_DET)
+                    {
+                        if (item.odc_c_iitemid == itemId)
+                        {
+                            item.odc_c_ecantidad = cantidadNueva;
+                            item.odc_c_epreciounit = precioNuevo;
+                            if (cboMoneda.SelectedIndex == 0)
+                            {
+                                item.precioUnitarioSoles = precioNuevo;
+                            }
+                            else
+                            {
+                                item.precioUnitarioSoles = precioNuevo * this.TasaCambio;
+                            }
+                            item.odc_c_epreciototal = item.odc_c_epreciounit * cantidadNueva;
+                            break;
+                        }
+                    }
+                    this.RecalcularMontos(ordenCompra);
+                    gvItemsSeleccionados.EditIndex = -1;
+                    gvItemsSeleccionados.DataSource = ordenCompra.SIC_T_ORDEN_DE_COMPRA_DET;
+                    gvItemsSeleccionados.DataBind();
+                }
+                else if (this.EscenarioOC == TipoOperacion.Creacion)
+                {
+                    SIC_T_ORDEN_DE_COMPRA ordenCompra = this.OCNuevo;
+                    foreach (var item in ordenCompra.SIC_T_ORDEN_DE_COMPRA_DET)
+                    {
+                        if (item.odc_c_iitemid == itemId)
+                        {
+                            item.odc_c_ecantidad = cantidadNueva;
+                            item.odc_c_epreciounit = precioNuevo;
+                            if (cboMoneda.SelectedIndex == 0)
+                            {
+                                item.precioUnitarioSoles = precioNuevo;
+                            }
+                            else
+                            {
+                                item.precioUnitarioSoles = precioNuevo * this.TasaCambio;
+                            }
+                            item.odc_c_epreciototal = item.odc_c_epreciounit * cantidadNueva;
+                            break;
+                        }
+                    }
+                    this.RecalcularMontos(ordenCompra);
+                    gvItemsSeleccionados.EditIndex = -1;
+                    gvItemsSeleccionados.DataSource = ordenCompra.SIC_T_ORDEN_DE_COMPRA_DET;
+                    gvItemsSeleccionados.DataBind();
+                }
+
+            }
         }
     }
 }
