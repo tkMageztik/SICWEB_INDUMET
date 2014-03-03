@@ -1503,7 +1503,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         protected void btnBuscarProv_Click(object sender, EventArgs e)
         {
             this.ListarProveedores();
-        }       
+        }
 
         private void EliminarDetalleOC(int idItem)
         {
