@@ -139,15 +139,6 @@ namespace SIC.UserLayer.Interfaces.Almacen {
         protected global::System.Web.UI.WebControls.Button btnBuscar;
         
         /// <summary>
-        /// Control btExportar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btExportar;
-        
-        /// <summary>
         /// Control upGvLista.
         /// </summary>
         /// <remarks>

@@ -8,7 +8,7 @@
     <div>
         <div class="tit-nav-paginas" style="text-align: left;">
             ALMACÉN &gt; ALMACENES</div>
-        <asp:UpdatePanel ID="upGeneral" UpdateMode="Conditional" ChildrenAsTriggers="false"
+        <asp:UpdatePanel ID="upGeneral" UpdateMode="Conditional" ChildrenAsTriggers="False"
             runat="server">
             <ContentTemplate>
                 <asp:MultiView ID="mvAlmacenes" runat="server" ActiveViewIndex="0">
@@ -122,8 +122,8 @@
                                                     Style="width: 100px" Text="Buscar" />
                                             </td>
                                             <td>
-                                                <asp:Button ID="btExportar" runat="server" CssClass="button small gris" Style="width: 100px"
-                                                    Text="Exportar" OnClick="btExportar_Click" />
+                                                <%--<asp:Button ID="btExportar" runat="server" CssClass="button small gris" Style="width: 100px"
+                                                    Text="Exportar" OnClick="btExportar_Click" />--%>
                                             </td>
                                         </tr>
                                     </table>
@@ -141,39 +141,39 @@
                                                     <asp:TemplateField HeaderText="COD. ITEM">
                                                         <ItemTemplate>
                                                             <%# Eval("SIC_T_ITEM.itm_c_ccodigo")%>
-                                                        </ItemTemplate> 
+                                                        </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="DESC. ITEM">
                                                         <ItemTemplate>
                                                             <%# Eval("SIC_T_ITEM.itm_c_vdescripcion")%>
-                                                        </ItemTemplate> 
+                                                        </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="FAMILIA">
                                                         <ItemTemplate>
                                                             <%# Eval("SIC_T_ITEM.SIC_T_ITEM_SUB_FAMILIA.SIC_T_ITEM_FAMILIA.ifm_c_des")%>
-                                                        </ItemTemplate> 
+                                                        </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="SUBFAMILIA">
                                                         <ItemTemplate>
                                                             <%# Eval("SIC_T_ITEM.SIC_T_ITEM_SUB_FAMILIA.isf_c_vdesc")%>
-                                                        </ItemTemplate> 
+                                                        </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:BoundField HeaderText="COD. ALMACEN" DataField="alm_c_iid" />
                                                     <asp:TemplateField HeaderText="DESC. ALMACEN">
                                                         <ItemTemplate>
                                                             <%# Eval("SIC_T_ALMACEN.alm_c_vdesc")%>
-                                                        </ItemTemplate> 
+                                                        </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:BoundField HeaderText="STOCK" DataField="itm_alm_c_ecantidad" />
                                                     <asp:TemplateField HeaderText="PRE. COMPRA">
                                                         <ItemTemplate>
                                                             <%# Eval("SIC_T_ITEM.itm_c_dprecio_compra")%>
-                                                        </ItemTemplate> 
+                                                        </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="PRE. VENTA">
                                                         <ItemTemplate>
                                                             <%# Eval("SIC_T_ITEM.itm_c_dprecio_venta")%>
-                                                        </ItemTemplate> 
+                                                        </ItemTemplate>
                                                     </asp:TemplateField>
                                                 </Columns>
                                                 <PagerStyle CssClass="pgr" />
