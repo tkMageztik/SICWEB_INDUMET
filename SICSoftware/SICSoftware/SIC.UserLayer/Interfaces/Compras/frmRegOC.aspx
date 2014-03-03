@@ -320,10 +320,9 @@
                                                             <asp:GridView ID="gvItemsSeleccionados" runat="server" AlternatingRowStyle-CssClass="alt"
                                                                 AutoGenerateColumns="False" BorderStyle="None" BorderWidth="0px" CssClass="mGrid"
                                                                 DataKeyNames="odc_c_iitemid" EmptyDataText="No ha seleccionado ningun item."
-                                                                GridLines="None" Height="16px" OnRowCancelingEdit="gvItemsSeleccionados_RowCancelingEdit"
-                                                                OnRowEditing="gvItemsSeleccionados_RowEditing" OnRowUpdating="gvItemsSeleccionados_RowUpdating"
-                                                                OnSelectedIndexChanged="gvItemsSeleccionados_SelectedIndexChanged" PagerStyle-CssClass="pgr"
-                                                                ShowHeaderWhenEmpty="True" ViewStateMode="Enabled" Width="100%" OnRowDeleting="gvItemsSeleccionados_RowDeleting">
+                                                                GridLines="None" Height="16px" PagerStyle-CssClass="pgr"
+                                                                ShowHeaderWhenEmpty="True" ViewStateMode="Enabled" Width="100%" 
+                                                                OnRowDeleting="gvItemsSeleccionados_RowDeleting">
                                                                 <AlternatingRowStyle CssClass="alt" />
                                                                 <Columns>
                                                                     <asp:TemplateField HeaderText="Código">
@@ -338,33 +337,23 @@
                                                                     </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="Cantidad">
                                                                         <ItemTemplate>
-                                                                            <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}",Eval("odc_c_ecantidad"))%>
-                                                                        </ItemTemplate>
-                                                                        <EditItemTemplate>
                                                                             <asp:TextBox ID="txtCantidad" runat="server" Text='<%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("odc_c_ecantidad") )%> '
-                                                                                onkeypress="return onlyDotsAndNumbers(event)">
-                                                                        
+                                                                                onkeypress="return onlyDotsAndNumbers(event)" ontextchanged="txtRowCantidadPrecio_TextChanged" AutoPostBack="true" >
                                                                             </asp:TextBox>
-                                                                        </EditItemTemplate>
+                                                                        </ItemTemplate>
                                                                     </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="Unitario">
                                                                         <ItemTemplate>
-                                                                            <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("odc_c_epreciounit") )%>
-                                                                        </ItemTemplate>
-                                                                        <EditItemTemplate>
                                                                             <asp:TextBox ID="txtPrecio" runat="server" Text='<%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("odc_c_epreciounit") )%> '
-                                                                                onkeypress="return onlyDotsAndNumbers(event)">
-                                                                               
-                                                                            </asp:TextBox>
-                                                                        </EditItemTemplate>
+                                                                                onkeypress="return onlyDotsAndNumbers(event)" ontextchanged="txtRowCantidadPrecio_TextChanged" AutoPostBack="true" > 
+                                                                            </asp:TextBox>                                                                              
+                                                                        </ItemTemplate>
                                                                     </asp:TemplateField>
                                                                     <asp:TemplateField HeaderText="Sub Total">
                                                                         <ItemTemplate>
                                                                             <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}",Eval("odc_c_epreciototal"))%>
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
-                                                                    <asp:CommandField ShowEditButton="True" CancelText="Cancelar" DeleteText="Eliminar"
-                                                                        EditText="Editar" UpdateText="Actualizar" />
                                                                     <asp:CommandField ShowDeleteButton="True" DeleteText="Eliminar" />
                                                                     <asp:TemplateField HeaderText="Unit. Ref. (Soles)">
                                                                         <ItemTemplate>
