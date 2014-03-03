@@ -804,43 +804,48 @@ namespace SIC.UserLayer.Interfaces.Movimientos
 
         protected void gvListaMovEn_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            MovSeleccionado = Convert.ToInt32(e.CommandArgument);
-            this.MovEntSeleccionado = _movEntrada.ObtenerMovimientoEntradaPorId((int)gvListaMovEn.DataKeys[MovSeleccionado].Values["mve_c_iid"]);
-            if (e.CommandName == "Cerrar")
+            if (e.CommandName != "Page")
             {
-                if (MovEntSeleccionado.mve_c_iestado == (int)EstadoMovimiento.ANULADO)
+                MovSeleccionado = Convert.ToInt32(e.CommandArgument);
+                this.MovEntSeleccionado = _movEntrada.ObtenerMovimientoEntradaPorId((int)gvListaMovEn.DataKeys[MovSeleccionado].Values["mve_c_iid"]);
+                if (e.CommandName == "Cerrar")
                 {
-                    this.Mensaje("No se puede CERRAR movimientos en estado ANULADO.", "~/Imagenes/warning.png");
-                    return;
+                    if (MovEntSeleccionado.mve_c_iestado == (int)EstadoMovimiento.ANULADO)
+                    {
+                        this.Mensaje("No se puede CERRAR movimientos en estado ANULADO.", "~/Imagenes/warning.png");
+                        return;
+                    }
+                    else if (MovEntSeleccionado.mve_c_iestado == (int)EstadoMovimiento.CERRADO)
+                    {
+                        this.Mensaje("El Movimiento ya se encuentra en estado CERRADO.", "~/Imagenes/warning.png");
+                        return;
+                    }
+
+                    this.EscenarioMovEn = TipoOperacion.Cierre;
+                    this.SetearCerrar();
+                    this.ucMensaje2.Show("¿Está seguro de cerrar la orden de compra seleccionada? <br/> esto actualizará los stocks en los almacenes respectivos.", null,
+                                        MensajeIcono.Alerta, MensajeBotones.AceptarCancelar);
                 }
-                else if (MovEntSeleccionado.mve_c_iestado == (int)EstadoMovimiento.CERRADO)
+                else if (e.CommandName == "Anular")
                 {
-                    this.Mensaje("El Movimiento ya se encuentra en estado CERRADO.", "~/Imagenes/warning.png");
-                    return;
+                    if (MovEntSeleccionado.mve_c_iestado == (int)EstadoMovimiento.CERRADO)
+                    {
+                        this.Mensaje("No se puede CERRAR movimientos en estado ANULADO.", "~/Imagenes/warning.png");
+                        return;
+                    }
+                    else if (MovEntSeleccionado.mve_c_iestado == (int)EstadoMovimiento.ANULADO)
+                    {
+                        this.Mensaje("El Movimiento ya se encuentra en estado ANULADO.", "~/Imagenes/warning.png");
+                        return;
+                    }
+                    this.EscenarioMovEn = TipoOperacion.Eliminacion;
+                    this.SetearAnular();
+                    this.ucMensaje2.Show("¿Está seguro de Anular el Movimiento seleccionado?", null,
+                                        MensajeIcono.Alerta, MensajeBotones.AceptarCancelar);
                 }
 
-                this.EscenarioMovEn = TipoOperacion.Cierre;
-                this.SetearCerrar();
-                this.ucMensaje2.Show("¿Está seguro de cerrar la orden de compra seleccionada? <br/> esto actualizará los stocks en los almacenes respectivos.", null,
-                                    MensajeIcono.Alerta, MensajeBotones.AceptarCancelar);
             }
-            else if (e.CommandName == "Anular")
-            {
-                if (MovEntSeleccionado.mve_c_iestado == (int)EstadoMovimiento.CERRADO)
-                {
-                    this.Mensaje("No se puede CERRAR movimientos en estado ANULADO.", "~/Imagenes/warning.png");
-                    return;
-                }
-                else if (MovEntSeleccionado.mve_c_iestado == (int)EstadoMovimiento.ANULADO)
-                {
-                    this.Mensaje("El Movimiento ya se encuentra en estado ANULADO.", "~/Imagenes/warning.png");
-                    return;
-                }
-                this.EscenarioMovEn = TipoOperacion.Eliminacion;
-                this.SetearAnular();
-                this.ucMensaje2.Show("¿Está seguro de Anular el Movimiento seleccionado?", null,
-                                    MensajeIcono.Alerta, MensajeBotones.AceptarCancelar);
-            }
+
         }
 
         private void SetearCerrar()
@@ -898,6 +903,12 @@ namespace SIC.UserLayer.Interfaces.Movimientos
 
             this.ListarMovimientoEntrada();
             upGeneral.Update();
+        }
+
+        protected void gvListaMovEn_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvListaMovEn.PageIndex = e.NewPageIndex;
+            ListarMovimientoEntrada();
         }
 
     }

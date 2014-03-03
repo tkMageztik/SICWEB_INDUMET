@@ -113,19 +113,11 @@
                                             GridLines="None" AllowPaging="True" Width="100%" CssClass="mGrid" PagerStyle-CssClass="pgr"
                                             AlternatingRowStyle-CssClass="alt" ShowHeaderWhenEmpty="True" EmptyDataText="No hay datos disponibles."
                                             PageSize="15" BorderWidth="0px" DataKeyNames="mve_c_iid" OnSelectedIndexChanged="gvListaMovEn_SelectedIndexChanged"
-                                            OnRowCommand="gvListaMovEn_RowCommand">
+                                            OnRowCommand="gvListaMovEn_RowCommand" OnPageIndexChanging="gvListaMovEn_PageIndexChanging">
                                             <AlternatingRowStyle CssClass="alt" />
                                             <Columns>
-                                                <asp:TemplateField HeaderText="RUC PROVEEDOR">
-                                                    <ItemTemplate>
-                                                        <%# Eval("SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vdoc_id")%>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="RAZÓN SOCIAL PROVEEDOR">
-                                                    <ItemTemplate>
-                                                        <%# Eval("SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vraz_soc")%>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
+                                                <asp:BoundField HeaderText="RUC PROVEEDOR" DataField="SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vdoc_id" />
+                                                <asp:BoundField HeaderText="RAZÓN SOCIAL PROVEEDOR" DataField="SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vraz_soc" />
                                                 <asp:BoundField HeaderText="Fecha" DataField="mve_c_zfecharegistro" />
                                                 <asp:BoundField DataField="mve_c_vdesestado" HeaderText="Estado" />
                                                 <asp:CommandField ShowSelectButton="True" SelectText="Modificar" />
@@ -135,6 +127,9 @@
                                             <PagerStyle CssClass="pgr" />
                                         </asp:GridView>
                                     </ContentTemplate>
+                                    <Triggers>
+                                        <asp:AsyncPostBackTrigger ControlID="gvListaMovEn" EventName="PageIndexChanging" />
+                                    </Triggers>
                                 </asp:UpdatePanel>
                             </td>
                         </tr>

@@ -157,6 +157,9 @@
                                                 <PagerStyle CssClass="pgr" />
                                             </asp:GridView>
                                         </ContentTemplate>
+                                        <Triggers>
+                                            <asp:AsyncPostBackTrigger ControlID="gvListaOC" EventName="PageIndexChanging" />
+                                        </Triggers>
                                     </asp:UpdatePanel>
                                 </td>
                             </tr>
