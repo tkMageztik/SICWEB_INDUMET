@@ -1,31 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <publishData>
-  <publishProfile publishUrl="ftp://waws-prod-bay-001.ftp.azurewebsites.windows.net/site/wwwroot" deleteExistingFiles="True" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="profile_sic_wa" publishMethod="FTP" replaceMatchingFiles="False" userName="sicweb\tkmageztik" savePWD="True" userPWD="AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAMFo3X1zdIESYGL5nH9ytwgAAAAACAAAAAAAQZgAAAAEAACAAAACLrAHHwWtR236YGfRKvYvT/Ak2jKWDKoG8xNX1CuVbdQAAAAAOgAAAAAIAACAAAADWEwya4Db4IV/xZS7B7iZp1aY5oB8UIE207b2zsFYZLiAAAAAoUXD8q0IZD233wBNTKY+DjdGwDnqrLAlqm2i3uxhQbkAAAAByxOfQREJ57pywBJoR02uuryV30CFJItDEZkHzPEKo6zsGBNtPYCGvaYD0HegIOTAlfqIYDWRz+4JfiXJMb3of" SelectedForPublish="True">
-    <file relUrl="bin/SIC.BusinessLayer.pdb" publishTime="03/01/2014 14:24:29" />
+  <publishProfile publishUrl="ftp://waws-prod-bay-001.ftp.azurewebsites.windows.net/site/wwwroot" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="profile_sic_wa" publishMethod="FTP" replaceMatchingFiles="True" userName="sicweb\tkmageztik" savePWD="True" userPWD="AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAMFo3X1zdIESYGL5nH9ytwgAAAAACAAAAAAAQZgAAAAEAACAAAACLrAHHwWtR236YGfRKvYvT/Ak2jKWDKoG8xNX1CuVbdQAAAAAOgAAAAAIAACAAAADWEwya4Db4IV/xZS7B7iZp1aY5oB8UIE207b2zsFYZLiAAAAAoUXD8q0IZD233wBNTKY+DjdGwDnqrLAlqm2i3uxhQbkAAAAByxOfQREJ57pywBJoR02uuryV30CFJItDEZkHzPEKo6zsGBNtPYCGvaYD0HegIOTAlfqIYDWRz+4JfiXJMb3of" SelectedForPublish="True">
     <file relUrl="Imagenes/line-derecha.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/Botones/bg-footer.jpg" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Styles/estiloPopUp.css" publishTime="02/01/2014 10:16:37" />
     <file relUrl="bin/itextsharp.xmlworker.dll" publishTime="02/22/2014 05:17:49" />
+    <file relUrl="bin/matricial.dll" publishTime="08/20/2013 10:46:15" />
     <file relUrl="Imagenes/checked_checkbox.png" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Bootstrap/css/bootstrap-responsive.css" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/Iconos/informacion.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Styles/cssRecibo.css" publishTime="02/01/2014 10:16:37" />
+    <file relUrl="Interfaces/Facturacion/frmFactAutomatica.aspx" publishTime="03/01/2014 11:41:57" />
     <file relUrl="Bootstrap/js/bootstrap.min.js" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/Botones/bg-menu-main2.png" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/Botones/procesar_on.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Styles/progress.css" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/bg-cab-inter.jpg" publishTime="02/01/2014 10:16:37" />
-    <file relUrl="Interfaces/Mantenimiento/frmRegCliente.aspx" publishTime="02/27/2014 01:59:19" />
     <file relUrl="Imagenes/Botones/procesar_off.gif" publishTime="02/01/2014 10:16:37" />
-    <file relUrl="Interfaces/Almacen/frmMovEntrada.aspx" publishTime="03/01/2014 11:41:57" />
+    <file relUrl="Interfaces/Almacen/frmMovEntrada.aspx" publishTime="03/03/2014 02:01:15" />
     <file relUrl="Imagenes/Botones/grabar_off.gif" publishTime="02/01/2014 10:16:37" />
-    <file relUrl="bin/SIC.Data.dll" publishTime="03/01/2014 14:24:27" />
+    <file relUrl="bin/SIC.Data.dll" publishTime="03/03/2014 02:10:56" />
     <file relUrl="Imagenes/img-cab-rplazas.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Styles/Style.css" publishTime="02/01/2014 10:16:37" />
-    <file relUrl="Styles/superfish-navbar.css" publishTime="02/01/2014 10:16:37" />
     <file relUrl="dlls/itextsharp.xmlworker.dll" publishTime="02/22/2014 05:17:49" />
-    <file relUrl="Imagenes/Menu/arrow_right.gif" publishTime="02/01/2014 10:16:37" />
-    <file relUrl="bin/SIC.DataLayer.dll" publishTime="03/01/2014 14:24:29" />
+    <file relUrl="bin/SIC.DataLayer.dll" publishTime="03/03/2014 02:10:57" />
     <file relUrl="Site.Master" publishTime="02/26/2014 01:23:32" />
     <file relUrl="Styles/slick.grid.css" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Styles/SlickGrid_Examples.css" publishTime="02/01/2014 10:16:37" />
@@ -34,26 +32,26 @@
     <file relUrl="Imagenes/btn_renovar.png" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/Botones/btn_editar.png" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Scripts/numeric_input.js" publishTime="02/13/2014 00:08:02" />
-    <file relUrl="bin/SIC.UserLayer.pdb" publishTime="03/01/2014 14:24:30" />
+    <file relUrl="Imagenes/Iconos/ico_quitar_uno_off.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/Iconos/excel.jpg" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/milenia.png" publishTime="02/01/2014 10:16:37" />
     <file relUrl="bin/Imagenes/correcto.png" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/Iconos/ico_quitar_todos_off.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="bin/AjaxControlToolkit.dll" publishTime="08/20/2013 10:46:16" />
     <file relUrl="Imagenes/unchecked_checkbox.png" publishTime="02/01/2014 10:16:37" />
-    <file relUrl="Imagenes/advance.jpg" publishTime="02/01/2014 10:16:37" />
-    <file relUrl="Imagenes/banner.gif" publishTime="02/01/2014 10:16:37" />
+    <file relUrl="Interfaces/Facturacion/frmVenta.aspx" publishTime="02/22/2014 02:57:00" />
     <file relUrl="Imagenes/Iconos/cal.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/f_index.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Styles/jquery-ui-autocomplete.css" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Scripts/jquery-1.4.1.min.js" publishTime="02/01/2014 10:16:37" />
     <file relUrl="UserControl/wucMensajeAlerta2.ascx" publishTime="02/21/2014 18:01:56" />
+    <file relUrl="Imagenes/line-izq.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/banner.jpg" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Styles/jquery-ui.css" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Interfaces/Facturacion/ucBoleta.ascx" publishTime="02/24/2014 20:58:56" />
     <file relUrl="Styles/superfish.css" publishTime="02/01/2014 10:16:37" />
-    <file relUrl="Interfaces/Facturacion/frmFactAutomatica.aspx" publishTime="03/01/2014 11:41:57" />
-    <file relUrl="Interfaces/Mantenimiento/frmRegItem.aspx" publishTime="02/27/2014 22:31:54" />
+    <file relUrl="Imagenes/Botones/dot-net-green.gif" publishTime="02/01/2014 10:16:37" />
+    <file relUrl="Interfaces/Mantenimiento/frmRegItem.aspx" publishTime="03/01/2014 17:07:53" />
     <file relUrl="Interfaces/Facturacion/ucFactura.ascx" publishTime="02/21/2014 17:03:10" />
     <file relUrl="Imagenes/Iconos/ico_agregar_todos_on.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/menuItem.gif" publishTime="02/01/2014 10:16:37" />
@@ -63,27 +61,28 @@
     <file relUrl="Imagenes/Principal/menu.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/banner.png" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Global.asax" publishTime="02/01/2014 10:16:37" />
-    <file relUrl="bin/SIC.UIGeneral.dll" publishTime="03/01/2014 14:24:29" />
+    <file relUrl="Imagenes/baner2.jpg" publishTime="02/01/2014 10:16:37" />
+    <file relUrl="bin/SIC.UIGeneral.dll" publishTime="03/03/2014 02:10:56" />
     <file relUrl="Imagenes/Menu/arrow_down_over.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/btn_eliminar.png" publishTime="02/01/2014 10:16:37" />
     <file relUrl="About.aspx" publishTime="02/01/2014 10:16:37" />
-    <file relUrl="Imagenes/Botones/btn_ingresar.png" publishTime="02/01/2014 10:16:37" />
-    <file relUrl="bin/matricial.dll" publishTime="08/20/2013 10:46:15" />
+    <file relUrl="Web.config" publishTime="03/03/2014 02:14:54" />
+    <file relUrl="Interfaces/Mantenimiento/frmRegCliente.aspx" publishTime="03/01/2014 17:07:42" />
     <file relUrl="Imagenes/Iconos/ico_agregar_uno_off.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/logo_rp.png" publishTime="02/01/2014 10:16:37" />
-    <file relUrl="Imagenes/img_index_izq.png" publishTime="02/01/2014 10:16:37" />
-    <file relUrl="bin/SIC.EntityLayer.pdb" publishTime="03/01/2014 14:24:29" />
+    <file relUrl="Imagenes/Botones/grabar_on.gif" publishTime="02/01/2014 10:16:37" />
+    <file relUrl="bin/SIC.EntityLayer.pdb" publishTime="03/03/2014 02:10:56" />
     <file relUrl="packages.config" publishTime="02/01/2014 10:16:38" />
     <file relUrl="Bootstrap/css/bootstrap.css" publishTime="02/01/2014 10:16:37" />
-    <file relUrl="Styles/MenuMatic.css" publishTime="02/01/2014 10:16:37" />
-    <file relUrl="Imagenes/correcto.png" publishTime="02/01/2014 10:16:37" />
+    <file relUrl="Imagenes/Botones/btn_ingresar.png" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Interfaces/Compras/frmRegOC.aspx" publishTime="02/27/2014 11:34:28" />
     <file relUrl="Imagenes/logo_advance.png" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/Menu/bg-topmenu.jpg" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/menuIcon.JPG" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/check.png" publishTime="02/01/2014 10:16:37" />
+    <file relUrl="dlls/itextsharp.pdfa.dll" publishTime="02/22/2014 05:17:49" />
     <file relUrl="Imagenes/btn_ingresar.png" publishTime="02/01/2014 10:16:37" />
-    <file relUrl="bin/SIC.BusinessLayer.dll" publishTime="03/01/2014 14:24:29" />
+    <file relUrl="bin/SIC.BusinessLayer.dll" publishTime="03/03/2014 02:10:57" />
     <file relUrl="Imagenes/Document.png" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/icon-user.png" publishTime="02/01/2014 10:16:37" />
     <file relUrl="bin/itextsharp.dll" publishTime="02/14/2014 12:47:56" />
@@ -91,13 +90,12 @@
     <file relUrl="Imagenes/img-cab.jpg" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/Menu/bg-topmenu-over.jpg" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/btn_ver.png" publishTime="02/01/2014 10:16:37" />
-    <file relUrl="Bootstrap/img/glyphicons-halflings-white.png" publishTime="02/01/2014 10:16:37" />
+    <file relUrl="Styles/css2.css" publishTime="02/26/2014 01:22:54" />
     <file relUrl="Imagenes/shadow.png" publishTime="02/01/2014 10:16:37" />
-    <file relUrl="bin/SIC.EntityLayer.dll" publishTime="03/01/2014 14:24:29" />
+    <file relUrl="bin/SIC.EntityLayer.dll" publishTime="03/03/2014 02:10:56" />
     <file relUrl="Imagenes/Iconos/limpiar_off.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Default.aspx" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Styles/ui-icons_454545_256x240.png" publishTime="02/01/2014 10:16:37" />
-    <file relUrl="Styles/css2.css" publishTime="02/26/2014 01:22:54" />
     <file relUrl="Imagenes/Iconos/ico_quitar_todos_on.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/Iconos/buscar_off.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/warning.png" publishTime="02/01/2014 10:16:37" />
@@ -105,81 +103,83 @@
     <file relUrl="Scripts/jquery-1.4.1.js" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Interfaces/Almacen/frmAlmKardex.aspx" publishTime="02/11/2014 12:55:06" />
     <file relUrl="UserControl/wucMensajeAlerta.ascx" publishTime="02/21/2014 18:16:47" />
+    <file relUrl="Bootstrap/img/glyphicons-halflings-white.png" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Interfaces/frmPrincipal.aspx" publishTime="02/21/2014 04:08:11" />
     <file relUrl="Interfaces/Reporte/FrmReporteCliente.aspx" publishTime="02/22/2014 05:17:49" />
     <file relUrl="Bootstrap/css/bootstrap.min.css" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/Botones/btn_eliminar.png" publishTime="02/01/2014 10:16:37" />
     <file relUrl="dlls/PdfRpt.dll" publishTime="02/22/2014 05:17:49" />
     <file relUrl="bin/PdfRpt.dll" publishTime="02/22/2014 05:17:49" />
-    <file relUrl="Imagenes/Botones/dot-net-green.gif" publishTime="02/01/2014 10:16:37" />
+    <file relUrl="Imagenes/logo-login-advance.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Interfaces/Facturacion/frmFactManual.aspx" publishTime="02/22/2014 05:17:49" />
     <file relUrl="Imagenes/bg-login.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/f_sep_ver.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/Menu/arrow_right_over.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="bin/EPPlus.dll" publishTime="08/20/2013 10:46:14" />
+    <file relUrl="Interfaces/Almacen/frmMovSalida.aspx" publishTime="03/03/2014 02:01:15" />
     <file relUrl="Imagenes/logo-pie-realplaza.gif" publishTime="02/01/2014 10:16:37" />
-    <file relUrl="Web.config" publishTime="03/01/2014 14:24:45" />
-    <file relUrl="bin/SIC.UIGeneral.pdb" publishTime="03/01/2014 14:24:29" />
+    <file relUrl="bin/SIC.UIGeneral.pdb" publishTime="03/03/2014 02:10:56" />
     <file relUrl="Imagenes/Iconos/ico_agregar_todos_off.gif" publishTime="02/01/2014 10:16:37" />
+    <file relUrl="Imagenes/img-cab-color.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/Botones/noMain.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/Iconos/buscar_on.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/logo_pie.png" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Styles/StyleImpresion.css" publishTime="02/01/2014 10:16:37" />
-    <file relUrl="Interfaces/Facturacion/frmVenta.aspx" publishTime="02/22/2014 02:57:00" />
     <file relUrl="Imagenes/Botones/btn-login.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Scripts/jquery-1.4.1-vsdoc.js" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Styles/css.css" publishTime="02/01/2014 10:16:37" />
-    <file relUrl="bin/SIC.Data.pdb" publishTime="03/01/2014 14:24:27" />
-    <file relUrl="Imagenes/Iconos/ico_quitar_uno_off.gif" publishTime="02/01/2014 10:16:37" />
+    <file relUrl="bin/SIC.Data.pdb" publishTime="03/03/2014 02:10:55" />
+    <file relUrl="Imagenes/img_index_izq.png" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Interfaces/Mantenimiento/frmMantImpresoras.aspx" publishTime="02/11/2014 12:51:45" />
     <file relUrl="Styles/chosen.css" publishTime="02/01/2014 10:16:37" />
     <file relUrl="UserControl/wucMenuDinamico.ascx" publishTime="02/01/2014 10:16:37" />
     <file relUrl="dlls/itextsharp.dll" publishTime="02/14/2014 12:47:56" />
     <file relUrl="Imagenes/f_sep_ver2.gif" publishTime="02/01/2014 10:16:37" />
-    <file relUrl="bin/SIC.DataLayer.pdb" publishTime="03/01/2014 14:24:29" />
+    <file relUrl="bin/SIC.DataLayer.pdb" publishTime="03/03/2014 02:10:57" />
+    <file relUrl="dlls/matricial.dll" publishTime="08/20/2013 10:46:15" />
     <file relUrl="Interfaces/Facturacion/frmFactImpresion.aspx" publishTime="02/28/2014 23:11:49" />
     <file relUrl="Interfaces/Almacen/frmAlmacenes.aspx" publishTime="02/26/2014 16:46:43" />
-    <file relUrl="Imagenes/logo-login-advance.gif" publishTime="02/01/2014 10:16:37" />
+    <file relUrl="Imagenes/logo_indumet.png" publishTime="03/02/2014 12:39:34" />
     <file relUrl="Imagenes/Botones/loading.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Bootstrap/img/glyphicons-halflings.png" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Styles/superfish-vertical.css" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/Iconos/limpiar_on.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="bin/itextsharp.pdfa.dll" publishTime="02/22/2014 05:17:49" />
+    <file relUrl="Imagenes/banner.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="dlls/EPPlus.dll" publishTime="08/20/2013 10:46:14" />
     <file relUrl="Styles/StyleVenta.css" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Bootstrap/css/bootstrap-responsive.min.css" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Bootstrap/js/bootstrap.js" publishTime="02/01/2014 10:16:37" />
-    <file relUrl="Imagenes/line-izq.gif" publishTime="02/01/2014 10:16:37" />
+    <file relUrl="bin/SIC.UserLayer.pdb" publishTime="03/03/2014 02:10:57" />
     <file relUrl="Styles/Site.css" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Interfaces/Facturacion/test.aspx" publishTime="02/22/2014 00:29:43" />
     <file relUrl="Imagenes/img_index_der.png" publishTime="02/01/2014 10:16:37" />
-    <file relUrl="Interfaces/Compras/frmMovSalida.aspx" publishTime="03/01/2014 11:41:57" />
+    <file relUrl="Styles/superfish-navbar.css" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/arrows-ffffff.png" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/Logo-Advance-Real-Estate.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="dlls/AjaxControlToolkit.dll" publishTime="08/20/2013 10:46:16" />
-    <file relUrl="bin/SIC.UserLayer.dll" publishTime="03/01/2014 14:24:30" />
+    <file relUrl="bin/SIC.UserLayer.dll" publishTime="03/03/2014 02:10:58" />
     <file relUrl="Imagenes/Botones/bg-menu-main.png" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/Iconos/file_upload.png" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/Iconos/ico_quitar_uno_on.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="bin/itextsharp.xml" publishTime="02/14/2014 12:47:54" />
     <file relUrl="Imagenes/checkbox.jpg" publishTime="02/01/2014 10:16:37" />
-    <file relUrl="Imagenes/img-cab-color.gif" publishTime="02/01/2014 10:16:37" />
+    <file relUrl="Styles/MenuMatic.css" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/Iconos/ico_agregar_uno_on.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/flecha_der.png" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/Menu/arrow_down.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/Botones/btn_pdf.png" publishTime="02/01/2014 10:16:37" />
-    <file relUrl="dlls/matricial.dll" publishTime="08/20/2013 10:46:15" />
+    <file relUrl="Imagenes/Menu/arrow_right.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="bin/Imagenes/warning.png" publishTime="02/01/2014 10:16:37" />
-    <file relUrl="Styles/estilos-botones.css" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/interseguro.jpg" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Styles/chosen-sprite.png" publishTime="02/01/2014 10:16:37" />
-    <file relUrl="dlls/itextsharp.pdfa.dll" publishTime="02/22/2014 05:17:49" />
-    <file relUrl="Imagenes/Botones/grabar_on.gif" publishTime="02/01/2014 10:16:37" />
+    <file relUrl="Imagenes/advance.jpg" publishTime="02/01/2014 10:16:37" />
+    <file relUrl="Styles/estilos-botones.css" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/animated_favicon1.gif" publishTime="02/01/2014 10:16:37" />
-    <file relUrl="Imagenes/baner2.jpg" publishTime="02/01/2014 10:16:37" />
+    <file relUrl="Imagenes/correcto.png" publishTime="02/01/2014 10:16:37" />
+    <file relUrl="bin/SIC.BusinessLayer.pdb" publishTime="03/03/2014 02:10:57" />
   </publishProfile>
   <publishProfile publishUrl="\\SERVER-NS\Unidades\JRDC\sicweb" deleteExistingFiles="True" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="profile_sic_ns" publishMethod="FileSystem" replaceMatchingFiles="False" userName="" savePWD="False" userPWD="" SelectedForPublish="False">
-    <file relUrl="bin/SIC.BusinessLayer.pdb" publishTime="02/19/2014 21:56:52" />
     <file relUrl="Imagenes/line-derecha.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/Botones/bg-footer.jpg" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Styles/estiloPopUp.css" publishTime="02/01/2014 10:16:37" />
@@ -197,7 +197,6 @@
     <file relUrl="Interfaces/Almacen/frmMovEntrada.aspx" publishTime="02/14/2014 01:22:25" />
     <file relUrl="Imagenes/Botones/grabar_off.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="bin/SIC.Data.dll" publishTime="02/19/2014 21:56:48" />
-    <file relUrl="Imagenes/Botones/dot-net-green.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/img-cab-rplazas.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Styles/Style.css" publishTime="02/01/2014 10:16:37" />
     <file relUrl="bin/SIC.DataLayer.dll" publishTime="02/19/2014 21:56:51" />
@@ -212,6 +211,7 @@
     <file relUrl="Scripts/numeric_input.js" publishTime="02/13/2014 00:08:02" />
     <file relUrl="bin/SIC.UserLayer.pdb" publishTime="02/19/2014 21:56:52" />
     <file relUrl="Imagenes/Iconos/excel.jpg" publishTime="02/01/2014 10:16:37" />
+    <file relUrl="bin/SIC.BusinessLayer.dll" publishTime="02/19/2014 21:56:52" />
     <file relUrl="Imagenes/milenia.png" publishTime="02/01/2014 10:16:37" />
     <file relUrl="bin/Imagenes/correcto.png" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/Iconos/ico_quitar_todos_off.gif" publishTime="02/01/2014 10:16:37" />
@@ -237,6 +237,7 @@
     <file relUrl="Imagenes/Principal/menu.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/banner.png" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Global.asax" publishTime="02/01/2014 10:16:37" />
+    <file relUrl="Imagenes/baner2.jpg" publishTime="02/01/2014 10:16:37" />
     <file relUrl="bin/SIC.UIGeneral.dll" publishTime="02/19/2014 21:56:51" />
     <file relUrl="Imagenes/Menu/arrow_down_over.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/btn_eliminar.png" publishTime="02/01/2014 10:16:37" />
@@ -245,9 +246,9 @@
     <file relUrl="Interfaces/Mantenimiento/frmRegCliente.aspx" publishTime="02/11/2014 12:01:50" />
     <file relUrl="Imagenes/Iconos/ico_agregar_uno_off.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/logo_rp.png" publishTime="02/01/2014 10:16:37" />
+    <file relUrl="Imagenes/Botones/grabar_on.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="packages.config" publishTime="02/01/2014 10:16:38" />
     <file relUrl="Bootstrap/css/bootstrap.css" publishTime="02/01/2014 10:16:37" />
-    <file relUrl="Styles/MenuMatic.css" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/Botones/btn_ingresar.png" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Interfaces/Compras/frmRegOC.aspx" publishTime="02/19/2014 16:26:00" />
     <file relUrl="Imagenes/logo_advance.png" publishTime="02/01/2014 10:16:37" />
@@ -255,7 +256,7 @@
     <file relUrl="Imagenes/menuIcon.JPG" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/check.png" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/btn_ingresar.png" publishTime="02/01/2014 10:16:37" />
-    <file relUrl="bin/SIC.BusinessLayer.dll" publishTime="02/19/2014 21:56:52" />
+    <file relUrl="Imagenes/Botones/dot-net-green.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/Document.png" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/icon-user.png" publishTime="02/01/2014 10:16:37" />
     <file relUrl="bin/itextsharp.dll" publishTime="02/14/2014 12:47:56" />
@@ -288,6 +289,7 @@
     <file relUrl="Imagenes/logo-pie-realplaza.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="bin/SIC.UIGeneral.pdb" publishTime="02/19/2014 21:56:51" />
     <file relUrl="Imagenes/Iconos/ico_agregar_todos_off.gif" publishTime="02/01/2014 10:16:37" />
+    <file relUrl="Imagenes/img-cab-color.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/Botones/noMain.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/Iconos/buscar_on.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/logo_pie.png" publishTime="02/01/2014 10:16:37" />
@@ -327,19 +329,18 @@
     <file relUrl="Imagenes/Iconos/ico_quitar_uno_on.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="bin/itextsharp.xml" publishTime="02/14/2014 12:47:54" />
     <file relUrl="Imagenes/checkbox.jpg" publishTime="02/01/2014 10:16:37" />
-    <file relUrl="Imagenes/img-cab-color.gif" publishTime="02/01/2014 10:16:37" />
+    <file relUrl="Styles/MenuMatic.css" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/Iconos/ico_agregar_uno_on.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/flecha_der.png" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/Menu/arrow_down.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/Botones/btn_pdf.png" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/Menu/arrow_right.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="bin/Imagenes/warning.png" publishTime="02/01/2014 10:16:37" />
-    <file relUrl="Styles/estilos-botones.css" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Styles/chosen-sprite.png" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/advance.jpg" publishTime="02/01/2014 10:16:37" />
-    <file relUrl="Imagenes/Botones/grabar_on.gif" publishTime="02/01/2014 10:16:37" />
+    <file relUrl="Styles/estilos-botones.css" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/animated_favicon1.gif" publishTime="02/01/2014 10:16:37" />
     <file relUrl="Imagenes/correcto.png" publishTime="02/01/2014 10:16:37" />
-    <file relUrl="Imagenes/baner2.jpg" publishTime="02/01/2014 10:16:37" />
+    <file relUrl="bin/SIC.BusinessLayer.pdb" publishTime="02/19/2014 21:56:52" />
   </publishProfile>
 </publishData>

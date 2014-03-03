@@ -282,7 +282,8 @@
                                                     <td align="left" class="style1">
                                                         <asp:TextBox ID="txtFechaFact" runat="server"></asp:TextBox>
                                                         <asp:CalendarExtender ID="txtFechaFact_CalendarExtender" runat="server" TargetControlID="txtFechaFact"
-                                                            Format="dd/MM/yyyy" TodaysDateFormat="dd/MM/yyyy"></asp:CalendarExtender>
+                                                            Format="dd/MM/yyyy" TodaysDateFormat="dd/MM/yyyy">
+                                                        </asp:CalendarExtender>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -325,7 +326,8 @@
                                                     <td align="left" class="style26">
                                                         <asp:TextBox ID="txtFechaGuia" runat="server"></asp:TextBox>
                                                         <asp:CalendarExtender ID="txtFechaGuia_CalendarExtender" runat="server" TargetControlID="txtFechaGuia"
-                                                            Format="dd/MM/yyyy" TodaysDateFormat="dd/MM/yyyy"></asp:CalendarExtender>
+                                                            Format="dd/MM/yyyy" TodaysDateFormat="dd/MM/yyyy">
+                                                        </asp:CalendarExtender>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -434,24 +436,21 @@
                                                                 ViewStateMode="Enabled" Width="100%" AutoGenerateColumns="False" DataKeyNames="mve_c_iocdet_id">
                                                                 <AlternatingRowStyle CssClass="alt" />
                                                                 <Columns>
-                                                                    <asp:TemplateField HeaderText="Descripción">
-                                                                        <ItemTemplate>
-                                                                            <%# Eval("mve_c_vdescripcion_item")%>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
+                                                                    <asp:BoundField HeaderText="Descripción" DataField="mve_c_vdescripcion_item" />
                                                                     <asp:BoundField DataField="mve_c_ecant_pedida" HeaderText="Can. Pedida" />
-                                                                  
                                                                     <asp:TemplateField HeaderText="Can. Recibida">
-                                                                         <ItemTemplate>
+                                                                        <ItemTemplate>
                                                                             <asp:TextBox ID="txtCantidad" runat="server" Text='<%# Bind("mve_c_ecant_recibida") %> '
-                                                                            onkeypress="return onlyDotsAndNumbers(event)"></asp:TextBox>
+                                                                                onkeypress="return onlyDotsAndNumbers(event)"></asp:TextBox>
                                                                         </ItemTemplate>
                                                                     </asp:TemplateField>
-                                                                    <asp:TemplateField HeaderText="Can. Atendida">
+                                                                    <asp:BoundField HeaderText="Can. Atendida" DataField="CantidadAtendida" DataFormatString="{0:0.00}" />
+                                                                    <asp:BoundField HeaderText="Max. Atendida" DataField="MaximoAtender" DataFormatString="{0:0.00}" />
+                                                                    <%--  <asp:TemplateField HeaderText="Can. Atendida">
                                                                          <ItemTemplate>
                                                                             <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("CantidadAtendida"))%>
                                                                         </ItemTemplate>
-                                                                    </asp:TemplateField>
+                                                                    </asp:TemplateField>--%>
                                                                 </Columns>
                                                                 <PagerStyle CssClass="pgr" />
                                                             </asp:GridView>

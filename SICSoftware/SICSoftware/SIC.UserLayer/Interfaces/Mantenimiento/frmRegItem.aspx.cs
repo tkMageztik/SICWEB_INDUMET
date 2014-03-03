@@ -174,7 +174,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             cboUnidad.Items.Clear();
             cboUnidad.DataSource = _item.ListarUnidadMedida();
             cboUnidad.DataTextField = "und_c_vdesc";
-            cboUnidad.DataValueField = "und_c_iid";
+            cboUnidad.DataValueField = "und_c_yid";
             cboUnidad.DataBind();
         }
 
@@ -183,7 +183,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             cboUnidadMedida.Items.Clear();
             cboUnidadMedida.DataSource = _item.ListarUnidadMedida();
             cboUnidadMedida.DataTextField = "und_c_vdesc";
-            cboUnidadMedida.DataValueField = "und_c_iid";
+            cboUnidadMedida.DataValueField = "und_c_yid";
             cboUnidadMedida.DataBind();
         }
 

@@ -218,8 +218,8 @@
                                                 Style="width: 150px" Text="Descargar PDF" OnClick="btnDescargarPDF_Click" />--%>
                                         </td>
                                         <td>
-                                            <asp:Button ID="btnDescargarXls" runat="server" CssClass="button small gris" Style="width: 150px"
-                                                Text="Descargar Excel" OnClick="btnDescargarXls_Click" />
+                                         <%--   <asp:Button ID="btnDescargarXls" runat="server" CssClass="button small gris" Style="width: 150px"
+                                                Text="Descargar Excel" OnClick="btnDescargarXls_Click" />--%>
                                         </td>
                                         <td>
                                         </td>

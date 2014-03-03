@@ -146,7 +146,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         protected void btnRegresarDesdeItems_Click(object sender, EventArgs e)
         {
 
-        }        
+        }
         #endregion
 
         #region Metodos de Listado
@@ -164,7 +164,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             {
                 foreach (SIC_T_MOVIMIENTO_ENTRADA_DETALLE tmp in MovEntNuevo.SIC_T_MOVIMIENTO_ENTRADA_DETALLE)
                 {
-                    if (tmp.mve_c_ecant_recibida < tmp.mve_c_ecant_pedida)
+                    if (tmp.mve_c_ecant_recibida + tmp.CantidadAtendida < tmp.mve_c_ecant_pedida)
                     {
                         estadoMovimiento = EstadoMovimiento.POR_REGULARIZAR;
                         return EstadoMovimiento.POR_REGULARIZAR;
@@ -178,7 +178,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             {
                 foreach (SIC_T_MOVIMIENTO_ENTRADA_DETALLE tmp in MovEntSeleccionado.SIC_T_MOVIMIENTO_ENTRADA_DETALLE)
                 {
-                    if (tmp.mve_c_ecant_recibida < tmp.mve_c_ecant_pedida)
+                    if (tmp.mve_c_ecant_recibida + tmp.CantidadAtendida < tmp.mve_c_ecant_pedida)
                     {
                         estadoMovimiento = EstadoMovimiento.POR_REGULARIZAR;
                         return EstadoMovimiento.POR_REGULARIZAR;
@@ -402,7 +402,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         private bool VerificarDatosIngreso()
         {
             DateTime time;
-            var equivocado = this.MovEntNuevo.SIC_T_MOVIMIENTO_ENTRADA_DETALLE.FirstOrDefault(x=> x.CantidadAtendida + x.mve_c_ecant_recibida > x.mve_c_ecant_pedida);
+            var equivocado = this.MovEntNuevo.SIC_T_MOVIMIENTO_ENTRADA_DETALLE.FirstOrDefault(x => x.CantidadAtendida + x.mve_c_ecant_recibida > x.MaximoAtender);
             if (!DateTime.TryParseExact(txtFechaFact.Text, "dd/MM/yyyy", new CultureInfo("en-US"), DateTimeStyles.None, out time))
             {
                 Mensaje("Ingrese una fecha de factura correcta.", "~/Imagenes/warning.png");
@@ -435,7 +435,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             }
             else if (equivocado != null)
             {
-                Mensaje("Se esta ingresando una cantidad en exceso del item " + equivocado.mve_c_vdescripcion_item , "~/Imagenes/warning.png");
+                Mensaje("Se esta ingresando una cantidad en exceso del item " + equivocado.mve_c_vdescripcion_item, "~/Imagenes/warning.png");
                 return false;
             }
             else
@@ -447,7 +447,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         private bool VerificarDatosModificacion()
         {
             DateTime time;
-            var equivocado = this.MovEntSeleccionado.SIC_T_MOVIMIENTO_ENTRADA_DETALLE.FirstOrDefault(x => x.CantidadAtendida + x.mve_c_ecant_recibida > x.mve_c_ecant_pedida);
+            var equivocado = this.MovEntSeleccionado.SIC_T_MOVIMIENTO_ENTRADA_DETALLE.FirstOrDefault(x => x.CantidadAtendida + x.mve_c_ecant_recibida > x.MaximoAtender);
             if (!DateTime.TryParseExact(txtFechaFact.Text, "dd/MM/yyyy", new CultureInfo("en-US"), DateTimeStyles.None, out time))
             {
                 Mensaje("Ingrese una fecha de factura correcta.", "~/Imagenes/warning.png");
@@ -494,7 +494,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             SIC_T_MOVIMIENTO_ENTRADA movEntrada = this.MovEntNuevo;
             for (int i = 0; i < gvItemsSeleccionados.Rows.Count; i++)
             {
-                TextBox txtCantidad = (TextBox) gvItemsSeleccionados.Rows[i].FindControl("txtCantidad");
+                TextBox txtCantidad = (TextBox)gvItemsSeleccionados.Rows[i].FindControl("txtCantidad");
                 decimal cantidadNueva = 0;
                 if (decimal.TryParse(txtCantidad.Text, out cantidadNueva) && cantidadNueva >= 0)
                 {
@@ -506,7 +506,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                             item.mve_c_ecant_recibida = cantidadNueva;
                             break;
                         }
-                    }                                  
+                    }
                 }
                 else
                 {
@@ -541,13 +541,17 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             {
                 if (this._movEntrada.InsertarMovimientoEntrada(movEntrada))
                 {
+                    String msg = "";
+
+                    msg = "Insertado con éxito. <br/>" + ObtMsjEstadoMovimiento() + " <br/>";
+
                     if (estadoMovimiento == EstadoMovimiento.CERRADO)
                     {
                         _ordenCompra.CambiarEstadoOrdenCompra(movEntrada.odc_c_iid, EstadoOC.CERRADA);
+                        msg += "Además, la orden de compra relacionada, ha sido CERRADA";
                     }
 
-                    Mensaje("Insertado con éxito. <br/>" + ObtMsjEstadoMovimiento() + " <br/> Además, la orden de compra relacionada, ha sido CERRADA"
-                        , "~/Imagenes/correcto.png");
+                    Mensaje(msg, "~/Imagenes/correcto.png");
                     RegresarDesdeNuevoModificar();
                 }
                 else
@@ -557,7 +561,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             }
             catch (Exception ex)
             {
-                
+
 #if DEBUG
                 SIC.Data.ExceptionTrace.Write(ex);
                 String mensajeError = "Error Fatal : \n" + ex.Message;
@@ -629,13 +633,19 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             {
                 if (this._movEntrada.ModificarMovimientoEntrada(movEntrada))
                 {
+                    String msg = "";
+
+                    msg = "Modificado con éxito. <br/>" + ObtMsjEstadoMovimiento() + " <br/>";
+
                     if (estadoMovimiento == EstadoMovimiento.CERRADO)
                     {
                         _ordenCompra.CambiarEstadoOrdenCompra(movEntrada.odc_c_iid, EstadoOC.CERRADA);
+                        msg += "Además, la orden de compra relacionada, ha sido CERRADA";
                     }
-                    Mensaje("Modificado con éxito. <br/>" + ObtMsjEstadoMovimiento() + " <br/> Además, la orden de compra relacionada, ha sido CERRADA"
-                        , "~/Imagenes/correcto.png");
+
+                    Mensaje(msg, "~/Imagenes/correcto.png");
                     RegresarDesdeNuevoModificar();
+
                 }
                 else
                 {
@@ -644,7 +654,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             }
             catch (Exception ex)
             {
-#if DEBUG    
+#if DEBUG
                 SIC.Data.ExceptionTrace.Write(ex);
                 String mensajeError = "Error Fatal : \n" + ex.Message;
                 if (ex.InnerException != null)
@@ -674,7 +684,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             {
                 this.IngresarMovimientoEntrada();
             }
-            
+
         }
 
         private string ObtMsjEstadoMovimiento()
@@ -693,7 +703,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 {
                     if (this.EscenarioMovEn == TipoOperacion.Creacion)
                     {
-                        MovEntNuevo.SIC_T_ORDEN_DE_COMPRA = _ordenCompra.ObtenerOrdenCompraNoContext(id);                        
+                        MovEntNuevo.SIC_T_ORDEN_DE_COMPRA = _ordenCompra.ObtenerOrdenCompraNoContext(id);
                         txtNumeroOC.Text = MovEntNuevo.SIC_T_ORDEN_DE_COMPRA != null ? MovEntNuevo.SIC_T_ORDEN_DE_COMPRA.odc_c_vcodigo.ToString() : string.Empty;
                         txtSerieOC.Text = MovEntNuevo.SIC_T_ORDEN_DE_COMPRA != null ? MovEntNuevo.SIC_T_ORDEN_DE_COMPRA.odc_c_cserie.ToString() : string.Empty;
                         txtProveedorOC.Text = MovEntNuevo.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vraz_soc;
@@ -715,7 +725,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                     }
                     else if (this.EscenarioMovEn == TipoOperacion.Modificacion)
                     {
-                        MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA = _ordenCompra.ObtenerOrdenCompraNoContext(id);                        
+                        MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA = _ordenCompra.ObtenerOrdenCompraNoContext(id);
                         txtNumeroOC.Text = MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA != null ? MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA.odc_c_vcodigo.ToString() : string.Empty;
                         txtSerieOC.Text = MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA != null ? MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA.odc_c_cserie.ToString() : string.Empty;
                         txtProveedorOC.Text = MovEntSeleccionado.SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vraz_soc;
