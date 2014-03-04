@@ -6,6 +6,7 @@ using SIC.EntityLayer;
 using SIC.DataLayer;
 using SIC.BusinessLayer.Validacion;
 using SIC.Data;
+using SIC.BusinessLayer.Print;
 
 namespace SIC.BusinessLayer
 {
@@ -242,6 +243,68 @@ namespace SIC.BusinessLayer
         public List<SIC_T_MOV_ESTADO> ListarEstadoMovimiento()
         {
             return new MovEstadoDA().ListarEstadoMovimiento();
+        }
+
+        public bool PuedeImprimir(string printerName)
+        {
+            return printerName != null && printerName.Trim().Length > 0;
+        }
+
+        public void ImprimirMovimientoSalidaProduccion(SIC_T_MOVIMIENTO_SALIDA movimientoSalida, string printerName)
+        {
+            if (movimientoSalida == null)
+            {
+                throw new ArgumentException("El parametro movimientoSalida no puede ser nulo");
+            }
+
+            if (movimientoSalida.mvs_c_itiposalida != (int)TipoMovimientoSalida.PRODUCCION)
+            {
+                throw new ArgumentException("El movimiento de salida debe ser del tipo PRODUCCION");
+            }
+
+            if (!this.PuedeImprimir(printerName))
+            {
+                throw new ArgumentException("La aplicación no esta configurada para la impresión");
+            }
+
+            StringBuilder sb = new StringBuilder();
+            sb.Append("\n");
+            sb.Append("Salida por producción" + "\n");
+            sb.Append("Código " + movimientoSalida.mvs_c_iid + "\n");
+            sb.Append("Fecha " + movimientoSalida.mvs_c_zfecharegistro.ToString("dd/MM/yyyy") + "\n");
+            sb.Append("\n");
+
+            sb.Append("Código".PadRight(7));
+            sb.Append("Desc.".PadRight(15));
+            sb.Append("Cod Alm".PadRight(7));
+            sb.Append("Cantidad".PadRight(5));
+            sb.Append("\n");
+
+            foreach (var detalle in movimientoSalida.SIC_T_MOVIMIENTO_SALIDA_DETALLE)
+            {
+                sb.Append(detalle.itm_c_iid.ToString().PadRight(6) + " ");
+                sb.Append(detalle.SIC_T_ITEM.itm_c_vdescripcion.Length > 14 ?
+                     detalle.SIC_T_ITEM.itm_c_vdescripcion.Substring(0, 14)
+                   : detalle.SIC_T_ITEM.itm_c_vdescripcion.PadRight(14));
+                sb.Append(" ");
+                sb.Append(detalle.alm_c_iid.ToString().PadRight(6) + " ");
+                sb.Append(detalle.mvs_det_c_ecant);
+                sb.Append("\n");
+            }
+
+            sb.Append("\n");
+            sb.Append(movimientoSalida.mvs_c_vobservacion);
+            sb.Append("\n");
+            sb.Append("\n");
+
+            try
+            {
+                RawPrinterHelper.SendStringToPrinter(printerName, "\n" + sb.ToString());
+            }
+            catch (Exception ex)
+            {
+                // No se pudo imprimir?
+            }
         }
     }    
 }

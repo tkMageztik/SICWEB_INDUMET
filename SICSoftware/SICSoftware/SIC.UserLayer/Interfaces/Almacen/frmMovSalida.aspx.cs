@@ -9,6 +9,8 @@ using System.Globalization;
 using SIC.EntityLayer;
 using SIC.Data;
 using SIC.UserLayer.UserControl;
+using System.Text;
+using SIC.UserLayer.pdfs;
 
 namespace SIC.UserLayer.Interfaces.Compras
 {
@@ -166,9 +168,39 @@ namespace SIC.UserLayer.Interfaces.Compras
                 int idMovSal = (int)gvListaMovSal.DataKeys[idRow].Value;
                 AnularMovimientoSalida(idMovSal);  
             }
+            else if (e.CommandName == "Imprimir")
+            {
+                int idRow = Convert.ToInt32(e.CommandArgument);
+                int idMovSal = (int)gvListaMovSal.DataKeys[idRow].Value;
+                ImprimirMovimientoSalida(idMovSal);  
+            }
         }
 
+
+
         #endregion
+        
+        private void ImprimirMovimientoSalida(int id)
+        {
+            MovimientoSalidaBL movSalBL = new MovimientoSalidaBL();
+            var movimientoEncontrado = movSalBL.ObtenerMovimientoSalida(id);
+            if (movimientoEncontrado.mvs_c_itiposalida == (int)TipoMovimientoSalida.PRODUCCION)
+            {
+                if (movSalBL.PuedeImprimir(Configuracion.NombreImpresora))
+                {
+                    movSalBL.ImprimirMovimientoSalidaProduccion(movimientoEncontrado, Configuracion.NombreImpresora);
+                }
+                else
+                {
+                    this.Mensaje("No puede imprimir en el servidor actual.", "~/Imagenes/warning.png");
+                }
+            }
+            else
+            {
+                this.Mensaje("Solo se puede Imprimir movimientos de salida de producción.", "~/Imagenes/warning.png");
+            }
+
+        }
 
         private void CerrarMovimientoSalida(int id)
         {
@@ -850,6 +882,11 @@ namespace SIC.UserLayer.Interfaces.Compras
         {
             gvListaMovSal.PageIndex = e.NewPageIndex;
             this.ListarMovimientoSalida();
+        }
+
+        protected bool PuedeImprimir(int tipo)
+        {
+            return tipo == (int)TipoMovimientoSalida.PRODUCCION;
         }
     }
 }

@@ -213,6 +213,7 @@
     <Content Include="Interfaces\Mantenimiento\frmMantEmpresa.aspx" />
     <Content Include="Interfaces\Mantenimiento\frmMantImpresoras.aspx" />
     <Content Include="Interfaces\Mantenimiento\frmRegCliente.aspx" />
+    <Compile Include="Configuracion\Configuracion.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -404,6 +405,7 @@
       <DependentUpon>frmVenta.aspx</DependentUpon>
     </Compile>
     <Compile Include="pdfs\PdfOrdenCompra.cs" />
+    <Compile Include="pdfs\RawPrinterHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Report\ReporteClientePDF.cs" />
     <Compile Include="Site.Master.cs">

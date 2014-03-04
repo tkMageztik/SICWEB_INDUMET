@@ -29,7 +29,8 @@ namespace SIC.DataLayer
                                 && (fin == null || (x.mvs_c_zfecharegistro.Year <= fin.Value.Year
                                                  && x.mvs_c_zfecharegistro.Month <= fin.Value.Month
                                                  && x.mvs_c_zfecharegistro.Day <= fin.Value.Day))
-                                && (estado == null || x.mov_estado_iid == estado.Value)                                
+                                && (estado == null || x.mov_estado_iid == estado.Value)
+                        orderby x.mvs_c_zfecharegistro descending
                         select x).ToList();
             }
         }
@@ -138,10 +139,12 @@ namespace SIC.DataLayer
                 SIC_T_VENTA venta = (from x in contexto.SIC_T_VENTA
                                      where x.ven_c_iid == movSalida.ven_c_iid
                                      select x).FirstOrDefault();
-                venta.ven_c_iestado = 6;
-                venta.ven_c_vestado = "ENTREGADO";
-
-                contexto.ApplyCurrentValues("SICDBWEBEntities.SIC_T_VENTA", venta);
+                if (venta != null)
+                {
+                    venta.ven_c_iestado = 6;
+                    venta.ven_c_vestado = "ENTREGADO";
+                    contexto.ApplyCurrentValues("SICDBWEBEntities.SIC_T_VENTA", venta);
+                }
 
                 // Necesitamos comprarar y eliminar
                 List<SIC_T_MOVIMIENTO_SALIDA_DETALLE> eliminar = new List<SIC_T_MOVIMIENTO_SALIDA_DETALLE>();

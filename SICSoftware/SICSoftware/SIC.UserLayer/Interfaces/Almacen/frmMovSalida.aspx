@@ -169,7 +169,14 @@
                                                 </asp:TemplateField>                                                
                                                 <asp:CommandField ShowSelectButton="True" SelectText="Modificar" />
                                                 <asp:ButtonField CommandName="Cerrar" Text="Cerrar" ButtonType="Link" />
-                                                <asp:ButtonField CommandName="Anular" Text="Anular" ButtonType="Link" />
+                                                <asp:ButtonField CommandName="Anular" Text="Anular" ButtonType="Link" />                                                
+                                                <asp:TemplateField>
+                                                    <ItemTemplate>
+                                                        <asp:LinkButton ID="btnImprimir" runat="server" Text="Imprimir" 
+                                                         Visible='<%# PuedeImprimir((int) Eval("mvs_c_itiposalida")) %>' 
+                                                         CommandName="Imprimir" CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"/>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
                                             </Columns>
                                             <PagerStyle CssClass="pgr" />
                                         </asp:GridView>
@@ -463,7 +470,7 @@
                     <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                             <td class="tit-nav-paginas" align="left">
-                                MANTENIMIENTO &gt; VENTA
+                                MANTENIMIENTO &gt; MOVIMIENTO DE SALIDA &gt; VENTA
                             </td>
                         </tr>
                         <tr>
