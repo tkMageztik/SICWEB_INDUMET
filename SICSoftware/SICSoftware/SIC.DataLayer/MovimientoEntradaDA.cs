@@ -29,7 +29,7 @@ namespace SIC.DataLayer
         }
 
         public List<SIC_T_MOVIMIENTO_ENTRADA> ObtenerMovimientoEntrada(String ruc, String razonSocial,
-                                               DateTime? inicio, DateTime? fin, int estado)
+                                               DateTime? inicio, DateTime? fin, int? estado)
         {
             try
             {
@@ -50,7 +50,8 @@ namespace SIC.DataLayer
                                 & (fin == null || (x.mve_c_zfecharegistro.Year <= fin.Value.Year
                                                  && x.mve_c_zfecharegistro.Month <= fin.Value.Month
                                                  && x.mve_c_zfecharegistro.Day <= fin.Value.Day))
-                                & x.mve_c_iestado == estado
+                                & (estado == null || x.mve_c_iestado == estado)
+                            orderby x.mve_c_zfecharegistro descending
                             select x).ToList();
                 }
             }

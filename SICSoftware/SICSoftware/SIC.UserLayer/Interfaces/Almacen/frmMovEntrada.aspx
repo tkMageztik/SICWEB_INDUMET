@@ -78,7 +78,7 @@
                                                                     Estado
                                                                 </td>
                                                                 <td>
-                                                                    <asp:DropDownList ID="cboEstado" runat="server">
+                                                                    <asp:DropDownList ID="cboEstado" runat="server" AppendDataBoundItems="True">
                                                                     </asp:DropDownList>
                                                                 </td>
                                                             </tr>
@@ -116,8 +116,16 @@
                                             OnRowCommand="gvListaMovEn_RowCommand" OnPageIndexChanging="gvListaMovEn_PageIndexChanging">
                                             <AlternatingRowStyle CssClass="alt" />
                                             <Columns>
-                                                <asp:BoundField HeaderText="RUC PROVEEDOR" DataField="SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vdoc_id" />
-                                                <asp:BoundField HeaderText="RAZÓN SOCIAL PROVEEDOR" DataField="SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vraz_soc" />
+                                                <asp:TemplateField HeaderText="RUC PROVEEDOR">
+                                                        <ItemTemplate>
+                                                        <%# Eval("SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vdoc_id")%>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="RAZÓN SOCIAL PROVEEDOR">
+                                                        <ItemTemplate>
+                                                        <%# Eval("SIC_T_ORDEN_DE_COMPRA.SIC_T_CLIENTE.cli_c_vraz_soc")%>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
                                                 <asp:BoundField HeaderText="Fecha" DataField="mve_c_zfecharegistro" />
                                                 <asp:BoundField DataField="mve_c_vdesestado" HeaderText="Estado" />
                                                 <asp:CommandField ShowSelectButton="True" SelectText="Modificar" />
