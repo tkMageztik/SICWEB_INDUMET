@@ -48,6 +48,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         //    get { return ViewState["vsMovEntNuevo"] as SIC_T_MOVIMIENTO_ENTRADA; }
         //    set { ViewState["vsMovEntNuevo"] = value; }
         //}
+
         private int MovSeleccionado
         {
             get { return Convert.ToInt32(ViewState["vsOCEliminar"]); }
@@ -152,6 +153,8 @@ namespace SIC.UserLayer.Interfaces.Movimientos
         #region Metodos de Listado
         private void ListarEstados()
         {
+            this.cboEstado.Items.Clear();
+            this.cboEstado.Items.Add(new ListItem("-- Seleccionar --","-1"));
             this.cboEstado.DataSource = _movEntrada.ObtenerMovimientoEstados();
             cboEstado.DataTextField = "mov_estado_vdescrpcion";
             cboEstado.DataValueField = "mov_estado_iid";
@@ -173,7 +176,6 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 estadoMovimiento = EstadoMovimiento.CERRADO;
                 return EstadoMovimiento.CERRADO;
             }
-            //TipoOperacion.Creacion
             else
             {
                 foreach (SIC_T_MOVIMIENTO_ENTRADA_DETALLE tmp in MovEntSeleccionado.SIC_T_MOVIMIENTO_ENTRADA_DETALLE)
@@ -204,7 +206,14 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 ff = fin;
             }
 
-            this.gvListaMovEn.DataSource = _movEntrada.ObtenerMovimientosEntrada(this.txtFiltroRuc.Text, this.txtFiltroRS.Text, fi, ff, Convert.ToInt32(cboEstado.SelectedValue));
+            int es;
+            int? estado = null;
+            if(int.TryParse(cboEstado.SelectedValue,out es) && es > 0)
+            {
+                estado = es;
+            }
+
+            this.gvListaMovEn.DataSource = _movEntrada.ObtenerMovimientosEntrada(this.txtFiltroRuc.Text, this.txtFiltroRS.Text, fi, ff, estado );
             this.gvListaMovEn.DataBind();
         }
 
