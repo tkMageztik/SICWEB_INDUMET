@@ -101,6 +101,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 this.ListarVentas();
                 this.ListarComboCentroCosto();
                 this.ListarEstadoVenta();
+                this.ListarFiltroFamilia();
                 gvItemsSeleccionados.DataSource = null;
                 gvItemsSeleccionados.DataBind();
                 this.ObtenerDatosImpuesto();
@@ -616,7 +617,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 if (EscenarioVenta == TipoOperacion.Creacion || EscenarioVenta == TipoOperacion.Modificacion)
                 {
                     this.ListarFiltroAlmacen();
-                    this.ListarItem();
+                    //this.ListarItem();
                     mvOC.ActiveViewIndex = 2;
                     upGeneral.Update();
                 }
