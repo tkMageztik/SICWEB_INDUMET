@@ -47,7 +47,8 @@ namespace SIC.DataLayer
                                 && (inicio==null || x.ven_c_zfecha >= inicio)
                                 && (fin==null || (x.ven_c_zfecha.Year <= fin.Value.Year 
                                                  && x.ven_c_zfecha.Month <= fin.Value.Month 
-                                                 && x.ven_c_zfecha.Day <= fin.Value.Day)) 
+                                                 && x.ven_c_zfecha.Day <= fin.Value.Day))
+                            orderby x.ven_c_zfecha descending
                             select x).ToList();
                 }
             }
