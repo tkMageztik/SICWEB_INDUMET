@@ -405,6 +405,7 @@
       <DependentUpon>frmVenta.aspx</DependentUpon>
     </Compile>
     <Compile Include="pdfs\PdfOrdenCompra.cs" />
+    <Compile Include="pdfs\PdfProduccion.cs" />
     <Compile Include="pdfs\RawPrinterHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Report\ReporteClientePDF.cs" />
@@ -443,6 +444,7 @@
     <Folder Include="Imagenes\Thumbnails\" />
     <Folder Include="Imagenes\Titulos\" />
     <Folder Include="Interfaces\Reusable\" />
+    <Folder Include="obj\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Site.Master" />

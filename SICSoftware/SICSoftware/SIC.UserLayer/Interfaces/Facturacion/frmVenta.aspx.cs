@@ -617,7 +617,9 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 if (EscenarioVenta == TipoOperacion.Creacion || EscenarioVenta == TipoOperacion.Modificacion)
                 {
                     this.ListarFiltroAlmacen();
-                    //this.ListarItem();
+                    this.gvListaItem.DataSource = null;
+                    this.gvListaItem.DataBind();
+                    
                     mvOC.ActiveViewIndex = 2;
                     upGeneral.Update();
                 }

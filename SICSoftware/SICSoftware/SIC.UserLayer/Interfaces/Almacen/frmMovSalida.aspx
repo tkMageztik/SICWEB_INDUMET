@@ -157,7 +157,8 @@
                                             PageSize="15" BorderWidth="0px" DataKeyNames="mvs_c_iid" 
                                             OnSelectedIndexChanged="gvListaMovSal_SelectedIndexChanged" 
                                             onrowcommand="gvListaMovSal_RowCommand" 
-                                            onpageindexchanging="gvListaMovSal_PageIndexChanging">
+                                            onpageindexchanging="gvListaMovSal_PageIndexChanging" 
+                                            onrowdatabound="gvListaMovSal_RowDataBound">
                                             <AlternatingRowStyle CssClass="alt" />
                                             <Columns>
                                                 <asp:BoundField DataField="mvs_c_vdestiposalida" HeaderText="Tipo Salida" />
@@ -172,15 +173,18 @@
                                                 <asp:ButtonField CommandName="Anular" Text="Anular" ButtonType="Link" />                                                
                                                 <asp:TemplateField>
                                                     <ItemTemplate>
-                                                        <asp:LinkButton ID="btnImprimir" runat="server" Text="Imprimir" 
+                                                        <asp:LinkButton ID="lnkDescargar" runat="server" Text="Imprimir" 
                                                          Visible='<%# PuedeImprimir((int) Eval("mvs_c_itiposalida")) %>' 
-                                                         CommandName="Imprimir" CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"/>
+                                                         OnClick="lnkDescargar_Click"/>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                             </Columns>
                                             <PagerStyle CssClass="pgr" />
                                         </asp:GridView>
                                     </ContentTemplate>
+                                    <Triggers>
+                                            <asp:AsyncPostBackTrigger ControlID="gvListaMovSal" EventName="RowCommand" />
+                                    </Triggers>
                                 </asp:UpdatePanel>
                             </td>
                         </tr>
@@ -772,6 +776,7 @@
                 <Triggers>
                     <asp:AsyncPostBackTrigger ControlID="btnGuardar" EventName="Click" />
                     <asp:AsyncPostBackTrigger ControlID="gvListaVenta" EventName="RowDeleting" />
+                    <asp:AsyncPostBackTrigger ControlID="gvListaMovSal" EventName="RowCommand" />
                 </Triggers>
             </asp:UpdatePanel>
         </ContentTemplate>

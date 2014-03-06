@@ -79,6 +79,7 @@ namespace SIC.UserLayer.Interfaces.Compras
             }
         }
 
+
         protected void btnNuevo_Click(object sender, EventArgs e)
         {
             this.MostarNuevoMovimiento();
@@ -168,15 +169,22 @@ namespace SIC.UserLayer.Interfaces.Compras
                 int idMovSal = (int)gvListaMovSal.DataKeys[idRow].Value;
                 AnularMovimientoSalida(idMovSal);  
             }
-            else if (e.CommandName == "Imprimir")
-            {
-                int idRow = Convert.ToInt32(e.CommandArgument);
-                int idMovSal = (int)gvListaMovSal.DataKeys[idRow].Value;
-                ImprimirMovimientoSalida(idMovSal);  
-            }
+            //else if (e.CommandName == "Imprimir")
+            //{
+            //    int idRow = Convert.ToInt32(e.CommandArgument);
+            //    int idMovSal = (int)gvListaMovSal.DataKeys[idRow].Value;
+            //    ImprimirMovimientoSalida(idMovSal);  
+            //}
         }
 
+        protected void lnkDescargar_Click(object sender, EventArgs e)
+        {
+            LinkButton btnDescargar = sender as LinkButton;
+            GridViewRow row = btnDescargar.NamingContainer as GridViewRow;
 
+            int idMovSal = (int)gvListaMovSal.DataKeys[row.RowIndex].Value;
+            ImprimirMovimientoSalida(idMovSal);
+        }
 
         #endregion
         
@@ -186,14 +194,15 @@ namespace SIC.UserLayer.Interfaces.Compras
             var movimientoEncontrado = movSalBL.ObtenerMovimientoSalida(id);
             if (movimientoEncontrado.mvs_c_itiposalida == (int)TipoMovimientoSalida.PRODUCCION)
             {
-                if (movSalBL.PuedeImprimir(Configuracion.NombreImpresora))
-                {
-                    movSalBL.ImprimirMovimientoSalidaProduccion(movimientoEncontrado, Configuracion.NombreImpresora);
-                }
-                else
-                {
-                    this.Mensaje("No puede imprimir en el servidor actual.", "~/Imagenes/warning.png");
-                }
+                PdfProduccion.init(movimientoEncontrado);
+                //if (movSalBL.PuedeImprimir(Configuracion.NombreImpresora))
+                //{
+                //    movSalBL.ImprimirMovimientoSalidaProduccion(movimientoEncontrado, Configuracion.NombreImpresora);
+                //}
+                //else
+                //{
+                //    this.Mensaje("No puede imprimir en el servidor actual.", "~/Imagenes/warning.png");
+                //}
             }
             else
             {
@@ -257,6 +266,8 @@ namespace SIC.UserLayer.Interfaces.Compras
 
         private void AnularMovimientoSalida(int id)
         {
+            MovimientoSalidaBL mvsBL = new MovimientoSalidaBL();
+            MovSalSeleccionado = mvsBL.ObtenerMovimientoSalida(id);
             if (MovSalSeleccionado.mov_estado_iid == (int)EstadoMovimiento.CERRADO)
             {
                 this.Mensaje("No se puede CERRAR movimientos en estado ANULADO.", "~/Imagenes/warning.png");
@@ -437,7 +448,7 @@ namespace SIC.UserLayer.Interfaces.Compras
 
             gvListaMovSal.DataSource = mvsBL.ListarMovimientoSalida(fi,ff, idEstado);
             gvListaMovSal.DataBind();
-            upGvLista.Update();
+            upGeneral.Update();
         }
 
         /// <summary>
@@ -887,6 +898,15 @@ namespace SIC.UserLayer.Interfaces.Compras
         protected bool PuedeImprimir(int tipo)
         {
             return tipo == (int)TipoMovimientoSalida.PRODUCCION;
+        }
+
+        protected void gvListaMovSal_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkButton lnkDescargar = e.Row.FindControl("lnkDescargar") as LinkButton;
+                ScriptManager.GetCurrent(this).RegisterPostBackControl(lnkDescargar);
+            }
         }
     }
 }

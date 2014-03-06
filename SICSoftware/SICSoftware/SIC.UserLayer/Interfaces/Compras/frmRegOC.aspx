@@ -138,8 +138,8 @@
                                                 <Columns>
                                                     <asp:BoundField HeaderText="SERIE" DataField="odc_c_cserie" />
                                                     <asp:BoundField HeaderText="CÓDIGO" DataField="odc_c_vcodigo" />
-                                                    <asp:BoundField HeaderText="RUC PROVEEDOR" DataField="SIC_T_CLIENTE.cli_c_vdoc_id" />
-                                                    <asp:BoundField HeaderText="PROVEEDOR" DataField="SIC_T_CLIENTE.cli_c_vraz_soc" />
+                                                    <asp:TemplateField HeaderText="RUC PROVEEDOR"><ItemTemplate></ItemTemplate></asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="PROVEEDOR"><ItemTemplate></ItemTemplate></asp:TemplateField>
                                                     <asp:BoundField HeaderText="ESTADO" DataField="odc_c_vdescestado" />
                                                     <asp:BoundField HeaderText="MONEDA" DataField="odc_c_vdescmoneda" />
                                                     <asp:BoundField HeaderText="MONTO TOTAL" DataField="odc_c_etotal" DataFormatString="{0:0,0.00}" />
@@ -148,18 +148,12 @@
                                                         EditText="Modificar" />
                                                     <asp:CommandField ShowDeleteButton="True" DeleteText="Anular" />
                                                     <asp:ButtonField CommandName="Cerrar" Text="Cerrar" ButtonType="Link" />
-                                                    <asp:TemplateField>
-                                                        <ItemTemplate>
-                                                            <asp:LinkButton ID="lnkDescargar" runat="server" OnClick="lnkDescargar_Click">Descargar</asp:LinkButton>
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
+                                                    <asp:TemplateField><ItemTemplate><asp:LinkButton ID="lnkDescargar" runat="server" OnClick="lnkDescargar_Click">Descargar</asp:LinkButton></ItemTemplate></asp:TemplateField>
                                                 </Columns>
                                                 <PagerStyle CssClass="pgr" />
                                             </asp:GridView>
                                         </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="gvListaOC" EventName="PageIndexChanging" />
-                                        </Triggers>
+                                        <Triggers><asp:AsyncPostBackTrigger ControlID="gvListaOC" EventName="PageIndexChanging" /></Triggers>
                                     </asp:UpdatePanel>
                                 </td>
                             </tr>
@@ -213,8 +207,7 @@
                                                         <%--<asp:Label ID="lblFecha" runat="server"></asp:Label>--%>
                                                         <asp:TextBox ID="txtFecEmi" runat="server" Width="95px"></asp:TextBox>
                                                         <asp:CalendarExtender ID="txtFecEmi_CalendarExtender" runat="server" Format="dd/MM/yyyy"
-                                                            TargetControlID="txtFecEmi" TodaysDateFormat="dd/MM/yyyy">
-                                                        </asp:CalendarExtender>
+                                                            TargetControlID="txtFecEmi" TodaysDateFormat="dd/MM/yyyy"></asp:CalendarExtender>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -245,13 +238,11 @@
                                                     <td align="left">
                                                         <asp:TextBox ID="txtFecEnIni" runat="server" Width="95px"></asp:TextBox>
                                                         <asp:CalendarExtender ID="txtFecEnIni_CalendarExtender" runat="server" Format="dd/MM/yyyy"
-                                                            TargetControlID="txtFecEnIni" TodaysDateFormat="dd/MM/yyyy">
-                                                        </asp:CalendarExtender>
+                                                            TargetControlID="txtFecEnIni" TodaysDateFormat="dd/MM/yyyy"></asp:CalendarExtender>
                                                         &nbsp;-
                                                         <asp:TextBox ID="txtFecEntFin" runat="server" Width="95px"></asp:TextBox>
                                                         <asp:CalendarExtender ID="txtFecEntFin_CalendarExtender" runat="server" Format="dd/MM/yyyy"
-                                                            TargetControlID="txtFecEntFin" TodaysDateFormat="dd/MM/yyyy">
-                                                        </asp:CalendarExtender>
+                                                            TargetControlID="txtFecEntFin" TodaysDateFormat="dd/MM/yyyy"></asp:CalendarExtender>
                                                     </td>
                                                     <td align="left">
                                                         &nbsp;
@@ -328,41 +319,17 @@
                                                                 OnRowDeleting="gvItemsSeleccionados_RowDeleting">
                                                                 <AlternatingRowStyle CssClass="alt" />
                                                                 <Columns>
-                                                                    <asp:TemplateField HeaderText="Código">
-                                                                        <ItemTemplate>
-                                                                            <%# Eval("codigoItem")%>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField HeaderText="Descripción">
-                                                                        <ItemTemplate>
-                                                                            <%# Eval("descItem")%>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField HeaderText="Cantidad">
-                                                                        <ItemTemplate>
-                                                                            <asp:TextBox ID="txtCantidad" runat="server" Text='<%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("odc_c_ecantidad") )%> '
+                                                                    <asp:TemplateField HeaderText="Código"><ItemTemplate></ItemTemplate></asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="Descripción"><ItemTemplate></ItemTemplate></asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="Cantidad"><ItemTemplate><asp:TextBox ID="txtCantidad" runat="server" Text='<%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("odc_c_ecantidad") )%> '
                                                                                 onkeypress="return onlyDotsAndNumbers(event)" ontextchanged="txtRowCantidadPrecio_TextChanged" AutoPostBack="true" >
-                                                                            </asp:TextBox>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField HeaderText="Unitario">
-                                                                        <ItemTemplate>
-                                                                            <asp:TextBox ID="txtPrecio" runat="server" Text='<%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("odc_c_epreciounit") )%> '
+                                                                            </asp:TextBox></ItemTemplate></asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="Unitario"><ItemTemplate><asp:TextBox ID="txtPrecio" runat="server" Text='<%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("odc_c_epreciounit") )%> '
                                                                                 onkeypress="return onlyDotsAndNumbers(event)" ontextchanged="txtRowCantidadPrecio_TextChanged" AutoPostBack="true" > 
-                                                                            </asp:TextBox>                                                                              
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField HeaderText="Sub Total">
-                                                                        <ItemTemplate>
-                                                                            <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}",Eval("odc_c_epreciototal"))%>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
+                                                                            </asp:TextBox></ItemTemplate></asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="Sub Total"><ItemTemplate></ItemTemplate></asp:TemplateField>
                                                                     <asp:CommandField ShowDeleteButton="True" DeleteText="Eliminar" />
-                                                                    <asp:TemplateField HeaderText="Unit. Ref. (Soles)">
-                                                                        <ItemTemplate>
-                                                                            <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}",Eval("precioReferenciaSoles"))%>
-                                                                        </ItemTemplate>
-                                                                    </asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="Unit. Ref. (Soles)"><ItemTemplate></ItemTemplate></asp:TemplateField>
                                                                 </Columns>
                                                                 <PagerStyle CssClass="pgr" />
                                                             </asp:GridView>
@@ -604,14 +571,7 @@
                                             PageSize="15">
                                             <AlternatingRowStyle CssClass="alt" />
                                             <Columns>
-                                                <asp:TemplateField HeaderText="SELECCIONAR">
-                                                    <HeaderTemplate>
-                                                        <asp:CheckBox ID="chkAll" runat="server" onclick="javascript:checkAll(this);" />
-                                                    </HeaderTemplate>
-                                                    <ItemTemplate>
-                                                        <asp:CheckBox ID="chkSelect" runat="server" onclick="javascript:Check_Click(this);" />
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="SELECCIONAR"><HeaderTemplate><asp:CheckBox ID="chkAll" runat="server" onclick="javascript:checkAll(this);" /></HeaderTemplate><ItemTemplate><asp:CheckBox ID="chkSelect" runat="server" onclick="javascript:Check_Click(this);" /></ItemTemplate></asp:TemplateField>
                                                 <asp:BoundField DataField="itm_c_ccodigo" HeaderText="CÓDIGO" />
                                                 <asp:BoundField DataField="itm_c_vdescripcion" HeaderText="DESCRIPCIÓN" />
                                                 <asp:BoundField DataField="itm_c_dprecio_compra" HeaderText="PRECIO" />
@@ -807,9 +767,10 @@
                     </div>
                 </ContentTemplate>
                 <Triggers>
+                    <asp:AsyncPostBackTrigger ControlID="gvListaOC" EventName="RowCommand" />
                     <asp:AsyncPostBackTrigger ControlID="btnGuardar" EventName="Click" />
                     <asp:AsyncPostBackTrigger ControlID="gvListaOC" EventName="RowDeleting" />
-                    <asp:AsyncPostBackTrigger ControlID="gvListaOC" EventName="RowCommand" />
+                    
                 </Triggers>
             </asp:UpdatePanel>
         </ContentTemplate>

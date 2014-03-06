@@ -42,6 +42,11 @@ namespace SIC.BusinessLayer
             }
         }
 
+        private void EnviarImpresion(SIC_T_FACTURA factura, string nombreImpresora)
+        {
+
+        }
+
         public void ImprimirBoleta(int id)
         {
             BoletaFacturaDA bfDA = new BoletaFacturaDA();
