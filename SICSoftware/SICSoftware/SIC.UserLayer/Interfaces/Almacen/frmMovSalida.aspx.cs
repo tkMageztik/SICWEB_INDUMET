@@ -62,7 +62,6 @@ namespace SIC.UserLayer.Interfaces.Compras
         {
             if (!IsPostBack)
             {
-                this.ListarMovimientoSalida();
                 this.ListarTipoMovimiento();
                 this.ListarFiltroFamilia();
                 this.ListarFiltroAlmacen();
@@ -357,16 +356,19 @@ namespace SIC.UserLayer.Interfaces.Compras
                 CheckBox chk = (CheckBox)row.FindControl("chkSelect");
                 int idItemAlmacen = int.Parse(gvListaItem.DataKeys[row.RowIndex].Value.ToString());
                 var itemSeleccionado = listaEncontrada.Find(x => x.itm_alm_c_iid == idItemAlmacen);
-                if (chk.Checked)
+                if (itemSeleccionado != null)
                 {
-                    if (!list.Any(x => x.itm_alm_c_iid == idItemAlmacen))
+                    if (chk.Checked)
                     {
-                        list.Add(itemSeleccionado);
+                        if (!list.Any(x => x.itm_alm_c_iid == idItemAlmacen))
+                        {
+                            list.Add(itemSeleccionado);
+                        }
                     }
-                }
-                else
-                {
-                    list.RemoveAll(x => x.itm_alm_c_iid == idItemAlmacen);
+                    else
+                    {
+                        list.RemoveAll(x => x.itm_alm_c_iid == idItemAlmacen);
+                    }
                 }
             }
         }
@@ -410,11 +412,17 @@ namespace SIC.UserLayer.Interfaces.Compras
                 pnlDatosSalVenta.Visible = false;
                 this.btnBuscarItems.Visible = true;
             }
+
             if (this.EscenarioMovSal == TipoOperacion.Creacion)
             {
                 this.LimpiarVistaNuevo();
+                this.MovSalNuevo.SIC_T_MOVIMIENTO_SALIDA_DETALLE.Clear();
                 this.MovSalNuevo.SIC_T_CLIENTE = null;
                 this.MovSalNuevo.SIC_T_VENTA = null;
+            }
+            else
+            {
+                // No deberia poder cambiarse en caso de modificacion
             }
 
             upGeneral.Update();
@@ -563,9 +571,12 @@ namespace SIC.UserLayer.Interfaces.Compras
             this.pnlDatosSalVenta.Visible = true;
             this.btnBuscarItems.Visible = false;
             this.lblAccion.Text = "NUEVO";
+            this.btnSeleccionarVenta.Visible = true;
             this.mvMovSalida.SetActiveView(this.vwNuevoMovimiento);
             this.LimpiarVistaNuevo();
             this.MovSalNuevo = new SIC_T_MOVIMIENTO_SALIDA();
+            this.ItemsAlmacenSeleccionados = new List<SIC_T_ITEM_ALMACEN>();
+            this.ItemsAlmacenEncontrados = new List<SIC_T_ITEM_ALMACEN>();
             this.upGeneral.Update();
         }
 
@@ -610,14 +621,15 @@ namespace SIC.UserLayer.Interfaces.Compras
                 txtRUCCli.Text = MovSalModificar.SIC_T_CLIENTE.cli_c_vdoc_id;
                 txtRSCli.Text = MovSalModificar.SIC_T_CLIENTE.cli_c_vraz_soc;
             }
-
+            this.ItemsAlmacenSeleccionados = new List<SIC_T_ITEM_ALMACEN>();
+            this.ItemsAlmacenEncontrados = new List<SIC_T_ITEM_ALMACEN>();
             this.mvMovSalida.SetActiveView(vwNuevoMovimiento);
             upGeneral.Update();
         }
 
         private void MostrarSeleccionItems()
         {            
-            this.ListarItem();
+            //this.ListarItem();
             this.ActualizarListaItemsPreliminar();
             this.mvMovSalida.SetActiveView(vwListaItem);
         }
@@ -666,6 +678,24 @@ namespace SIC.UserLayer.Interfaces.Compras
 
         private void IngresarMovimientoSalida()
         {
+            if (cboTipoMovimiento.SelectedValue == ((int)TipoMovimientoSalida.VENTA).ToString())
+            {
+                if (this.MovSalNuevo.SIC_T_VENTA == null)
+                {
+                    Mensaje("Debe seleccionar una venta.", "~/Imagenes/warning.png");
+                    return;
+                }
+            }
+            else
+            {
+                if (this.MovSalNuevo.SIC_T_MOVIMIENTO_SALIDA_DETALLE.Count <= 0)
+                {
+                    Mensaje("Debe seleccionar items.", "~/Imagenes/warning.png");
+                    return;
+                }
+
+            }
+
             MovimientoSalidaBL mvsBL = new MovimientoSalidaBL();
             var movSal = MovSalNuevo;
             movSal.mvs_c_itiposalida = int.Parse(cboTipoMovimiento.SelectedValue);
@@ -724,6 +754,24 @@ namespace SIC.UserLayer.Interfaces.Compras
 
         private void ModificarMovimeintoSalida()
         {
+            if (cboTipoMovimiento.SelectedValue == ((int)TipoMovimientoSalida.VENTA).ToString())
+            {
+                if (this.MovSalNuevo.SIC_T_VENTA == null)
+                {
+                    Mensaje("El movimiento de salida se encuentra malformado, debe seleccionar una venta.", "~/Imagenes/warning.png");
+                    return;
+                }
+            }
+            else
+            {
+                if (this.MovSalNuevo.SIC_T_MOVIMIENTO_SALIDA_DETALLE.Count <= 0)
+                {
+                    Mensaje("Debe seleccionar items.", "~/Imagenes/warning.png");
+                    return;
+                }
+
+            }
+
             MovimientoSalidaBL mvsBL = new MovimientoSalidaBL();
             var movSal = MovSalModificar;
             movSal.mov_estado_iid = 2;

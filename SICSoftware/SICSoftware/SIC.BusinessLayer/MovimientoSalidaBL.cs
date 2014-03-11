@@ -115,17 +115,16 @@ namespace SIC.BusinessLayer
             }
 
             // Ahora agregamos los nuevos
-            foreach (var itemAlm in listaPrel)
+            foreach (SIC_T_ITEM_ALMACEN itemAlm in listaPrel)
             {
                 if (!movSalida.SIC_T_MOVIMIENTO_SALIDA_DETALLE.Where(x => x.alm_c_iid == itemAlm.alm_c_iid
                                                   && x.itm_c_iid == itemAlm.itm_c_iid).Any())
                 {
-                    SIC_T_ITEM itemEncontrado = new ItemDA().ObtenerItemPorIdNoContext(itemAlm.itm_c_iid);
                     SIC_T_MOVIMIENTO_SALIDA_DETALLE nuevoDetalle = new SIC_T_MOVIMIENTO_SALIDA_DETALLE();
                     nuevoDetalle.mvs_det_c_ecant = 1;
-                    nuevoDetalle.itm_c_iid = itemEncontrado.itm_c_iid;
+                    nuevoDetalle.itm_c_iid = itemAlm.itm_c_iid;
                     nuevoDetalle.alm_c_iid = itemAlm.alm_c_iid;
-                    nuevoDetalle.SIC_T_ITEM = itemEncontrado;
+                    nuevoDetalle.SIC_T_ITEM = itemAlm.SIC_T_ITEM; 
                     nuevoDetalle.SIC_T_ALMACEN = itemAlm.SIC_T_ALMACEN;
                     movSalida.SIC_T_MOVIMIENTO_SALIDA_DETALLE.Add(nuevoDetalle);
                 }

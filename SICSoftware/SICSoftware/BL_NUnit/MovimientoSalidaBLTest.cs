@@ -31,7 +31,7 @@ namespace BL_NUnit
             }
         }
 
-//        [Test]
+        [Test]
         public void TestDetalleMovimientoDesdeItemAlmacen()
         {
             MovimientoSalidaBL mvsBL = new MovimientoSalidaBL();
@@ -43,9 +43,16 @@ namespace BL_NUnit
                 SIC_T_ITEM_ALMACEN itemAlmacen = listaItemAlmacen.FirstOrDefault(x => x.itm_c_iid == detalleMovSal.itm_c_iid
                                                                                    && x.alm_c_iid == detalleMovSal.alm_c_iid);
                 Assert.IsNotNull(itemAlmacen, "No se elimino el detalle salida con datos item" + detalleMovSal.itm_c_iid
-                                                + " y almacen " + detalleMovSal.alm_c_iid);
-                Assert.AreEqual(detalleMovSal.mvs_det_c_ecant, itemAlmacen.itm_alm_c_ecantidad,
-                                               "La cantidad del detalle salida y el itemalmacen no corresponden");
+                                                + " y almacen " + detalleMovSal.alm_c_iid);                
+            }
+
+            foreach (SIC_T_ITEM_ALMACEN itemAlmacen in listaItemAlmacen)
+            {
+                SIC_T_MOVIMIENTO_SALIDA_DETALLE detalleMovSal = movSalida.SIC_T_MOVIMIENTO_SALIDA_DETALLE
+                                                                         .FirstOrDefault(x => x.itm_c_iid == itemAlmacen.itm_c_iid
+                                                                                  && x.alm_c_iid == itemAlmacen.alm_c_iid);
+                Assert.IsNotNull(itemAlmacen, "No se agrego el detalle salida con datos item" + itemAlmacen.itm_c_iid
+                                                + " y almacen " + itemAlmacen.alm_c_iid);
             }
         }        
 
@@ -55,12 +62,15 @@ namespace BL_NUnit
             SIC_T_VENTA_DETALLE detalle;
 
             SIC_T_ITEM item1 = new SIC_T_ITEM();
+            item1.itm_c_iid = 1;
             item1.itm_c_ccodigo = "Codigo1";
             item1.itm_c_vdescripcion = "Des1";
             SIC_T_ITEM item2 = new SIC_T_ITEM();
+            item1.itm_c_iid = 2;
             item2.itm_c_ccodigo = "Codigo1";
             item2.itm_c_vdescripcion = "Des1";
             SIC_T_ITEM item3 = new SIC_T_ITEM();
+            item1.itm_c_iid = 3;
             item3.itm_c_ccodigo = "Codigo1";
             item3.itm_c_vdescripcion = "Des1";
 
@@ -124,12 +134,15 @@ namespace BL_NUnit
             List<SIC_T_ITEM_ALMACEN> listaItemAlmacen = new List<SIC_T_ITEM_ALMACEN>();
 
             SIC_T_ITEM item1 = new SIC_T_ITEM();
+            item1.itm_c_iid = 1;
             item1.itm_c_ccodigo = "Codigo1";
             item1.itm_c_vdescripcion = "Des1";
             SIC_T_ITEM item2 = new SIC_T_ITEM();
+            item1.itm_c_iid = 2;
             item2.itm_c_ccodigo = "Codigo1";
             item2.itm_c_vdescripcion = "Des1";
             SIC_T_ITEM item3 = new SIC_T_ITEM();
+            item1.itm_c_iid = 3;
             item3.itm_c_ccodigo = "Codigo1";
             item3.itm_c_vdescripcion = "Des1";
 
