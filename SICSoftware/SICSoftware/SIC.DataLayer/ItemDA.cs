@@ -27,6 +27,7 @@ namespace SIC.DataLayer
                                                          : (!idFamilia.HasValue
                                                             || x.SIC_T_ITEM_SUB_FAMILIA.isf_c_ifm_iid == idFamilia.Value)
                                  )
+                            orderby x.itm_c_vdescripcion ascending 
                             select x).ToList();
                 }
             }

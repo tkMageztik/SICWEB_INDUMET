@@ -219,7 +219,8 @@ namespace SIC.UserLayer.Interfaces.Compras
                 this.Mensaje("No se puede CERRAR movimientos en estado ANULADO.", "~/Imagenes/warning.png");
                 return;
             }
-            else if (MovSalSeleccionado.SIC_T_VENTA.ven_c_iestado == (int)EstadoVenta.ENTREGADO)
+            else if(MovSalSeleccionado.mvs_c_itiposalida == (int) TipoMovimientoSalida.VENTA && 
+                MovSalSeleccionado.SIC_T_VENTA.ven_c_iestado == (int)EstadoVenta.ENTREGADO)
             {
                 this.Mensaje("No se puede CERRAR un movimiento cuando la venta correspondiente esta en estado ENTREGADO.", "~/Imagenes/warning.png");
                 return;
