@@ -198,9 +198,8 @@
                                                             </Columns>
                                                             <PagerStyle CssClass="pgr" />
                                                         </asp:GridView>  
-                                                        <asp:UpdatePanel ID="upListaBoleta" 
-                                                    UpdateMode="Conditional" ChildrenAsTriggers="False" runat="server" Visible="False">
-                                                    <ContentTemplate>
+                                                    
+                                                    
                                                         <asp:GridView ID="gvListaBoleta" runat="server" 
                                                             AlternatingRowStyle-CssClass="alt" AutoGenerateColumns="False" 
                                                             BorderStyle="None" BorderWidth="0px" CssClass="mGrid" DataKeyNames="bol_c_iid" 
@@ -232,8 +231,7 @@
                                                         </asp:GridView>
                                                     </ContentTemplate>
                                                     </asp:UpdatePanel>                                                  
-                                                    </ContentTemplate>
-                                                    </asp:UpdatePanel>
+                                                    
                                                     </td>
                                                 </tr>
                                                 <tr>

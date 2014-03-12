@@ -14,7 +14,7 @@ namespace SIC.DataLayer
         public List<SIC_T_ITEM> ListarItems(string codigo, string descripcion, int? idFamilia, int? idSubFamilia)
         {
             try
-            {
+            {                  
                 using (SICDBWEBEntities contexto = new SICDBWEBEntities())
                 {
                     return (from x in contexto.SIC_T_ITEM
@@ -27,9 +27,10 @@ namespace SIC.DataLayer
                                                          : (!idFamilia.HasValue
                                                             || x.SIC_T_ITEM_SUB_FAMILIA.isf_c_ifm_iid == idFamilia.Value)
                                  )
-                            orderby x.itm_c_vdescripcion ascending 
+                            orderby x.itm_c_vdescripcion ascending
                             select x).ToList();
                 }
+           
             }
             catch (Exception)
             {

@@ -157,6 +157,8 @@ namespace SIC.DataLayer
             using (SICDBWEBEntities contexto = new SICDBWEBEntities())
             {
                 return (from x in contexto.SIC_T_BOLETA
+                        .Include("SIC_T_VENTA.SIC_T_CLIENTE.SIC_T_CLI_DIRECCION")
+                            .Include("SIC_T_BOLETA_DETALLE.SIC_T_ITEM")
                         where x.bol_c_iid == id
                         select x).FirstOrDefault();
             }
@@ -172,6 +174,8 @@ namespace SIC.DataLayer
             {
                 contexto.SIC_T_ITEM.MergeOption = System.Data.Objects.MergeOption.NoTracking;
                 return (from x in contexto.SIC_T_FACTURA
+                            .Include("SIC_T_VENTA.SIC_T_CLIENTE.SIC_T_CLI_DIRECCION")
+                            .Include("SIC_T_FACTURA_DETALLE.SIC_T_ITEM")
                         where x.fac_c_iid == id
                         select x).FirstOrDefault();
             }
@@ -181,6 +185,10 @@ namespace SIC.DataLayer
         {
             using (SICDBWEBEntities contexto = new SICDBWEBEntities())
             {
+                var factLoad = (from x in contexto.SIC_T_FACTURA
+                        where x.fac_c_iid == factura.fac_c_iid
+                        select x).FirstOrDefault();
+                
                 contexto.ApplyCurrentValues("SICDBWEBEntities.SIC_T_FACTURA", factura);
                 contexto.SaveChanges();
             }
@@ -190,6 +198,7 @@ namespace SIC.DataLayer
         {
             using (SICDBWEBEntities contexto = new SICDBWEBEntities())
             {
+                contexto.Attach(boleta);
                 contexto.ApplyCurrentValues("SICDBWEBEntities.SIC_T_BOLETA", boleta);
                 contexto.SaveChanges();
             }

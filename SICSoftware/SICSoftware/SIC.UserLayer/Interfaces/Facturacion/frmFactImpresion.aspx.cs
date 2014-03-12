@@ -16,8 +16,8 @@ namespace SIC.UserLayer.Interfaces.Facturacion
         {
             if (!IsPostBack)
             {
-                this.MostrarListaFactura();
-                this.MostrarListaBoleta();
+                //this.MostrarListaFactura();
+                //this.MostrarListaBoleta();
             }
         }
 
@@ -74,6 +74,7 @@ namespace SIC.UserLayer.Interfaces.Facturacion
             gvListaFactura.DataSource = impresionBL.ListarFactura(numDesde, numHasta, impreso,txtRucCliente.Text.Trim());
             gvListaFactura.DataBind();
             upListaFactura.Update();
+
         }
 
         /// <summary>
@@ -114,6 +115,7 @@ namespace SIC.UserLayer.Interfaces.Facturacion
 
             gvListaBoleta.DataSource = impresionBL.ListarBoleta(numDesde,numHasta,impreso,txtRucCliente.Text.Trim());
             gvListaBoleta.DataBind();
+
             upListaFactura.Update();
         }
 
@@ -128,27 +130,36 @@ namespace SIC.UserLayer.Interfaces.Facturacion
         private void ImprimirFactura(int idFactura)
         {
             ImpresionFacturaBoletaBL impresionBL = new ImpresionFacturaBoletaBL();
-            try
+            if (Configuracion.NombreImpresora != string.Empty)
             {
-                impresionBL.ImprimirFactura(idFactura);
-                Mensaje("Factura enviada para Impresión.", "~/Imagenes/correcto.png");
-            }
-            catch (Exception ex)
-            {
-#if DEBUG
-                SIC.Data.ExceptionTrace.Write(ex);
-            String mensajeError = "Error Fatal : \n" + ex.Message;
-            if (ex.InnerException != null)
-            {
-                mensajeError += "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty;
-            }
+                try
+                {
+                    impresionBL.ImprimirFactura(idFactura, Configuracion.NombreImpresora);
 
-            Mensaje(mensajeError, "~/Imagenes/warning.png");
+                    Mensaje("Factura enviada para Impresión.", "~/Imagenes/correcto.png");
+                }
+                catch (Exception ex)
+                {
+#if DEBUG
+                    SIC.Data.ExceptionTrace.Write(ex);
+                    String mensajeError = "Error Fatal : \n" + ex.Message;
+                    if (ex.InnerException != null)
+                    {
+                        mensajeError += "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty;
+                    }
+
+                    Mensaje(mensajeError, "~/Imagenes/warning.png");
 #else
                 SIC.Data.ExceptionTrace.Write(ex);
                 Mensaje("Error en el proceso, se ha guardado la traza de la excepción..", "~/Imagenes/warning.png");
 #endif
-            }            
+                }      
+            }
+            else
+            {
+                this.Mensaje("No puede imprimir en el servidor actual.", "~/Imagenes/warning.png");
+            }
+                  
         }
 
         /// <summary>
@@ -158,26 +169,34 @@ namespace SIC.UserLayer.Interfaces.Facturacion
         private void ImprimirBoleta(int idBoleta)
         {
             ImpresionFacturaBoletaBL impresionBL = new ImpresionFacturaBoletaBL();
-            try
+            if (Configuracion.NombreImpresora != string.Empty)
             {
-                impresionBL.ImprimirBoleta(idBoleta);
-                Mensaje("Boleta enviada para Impresión.", "~/Imagenes/correcto.png");
-            }
-            catch(Exception ex)
-            {
-#if DEBUG
-                SIC.Data.ExceptionTrace.Write(ex);
-            String mensajeError = "Error Fatal : \n" + ex.Message;
-            if (ex.InnerException != null)
-            {
-                mensajeError += "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty;
-            }
 
-            Mensaje(mensajeError, "~/Imagenes/warning.png");
+                try
+                {
+                    impresionBL.ImprimirBoleta(idBoleta, Configuracion.NombreImpresora);
+                    Mensaje("Boleta enviada para Impresión.", "~/Imagenes/correcto.png");
+                }
+                catch (Exception ex)
+                {
+#if DEBUG
+                    SIC.Data.ExceptionTrace.Write(ex);
+                    String mensajeError = "Error Fatal : \n" + ex.Message;
+                    if (ex.InnerException != null)
+                    {
+                        mensajeError += "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty;
+                    }
+
+                    Mensaje(mensajeError, "~/Imagenes/warning.png");
 #else
                 SIC.Data.ExceptionTrace.Write(ex);
                     Mensaje("Error en el proceso, se ha guardado la traza de la excepción..", "~/Imagenes/warning.png");
 #endif
+                }               
+            }
+            else
+            {
+                this.Mensaje("No puede imprimir en el servidor actual.", "~/Imagenes/warning.png");
             }
         }
 

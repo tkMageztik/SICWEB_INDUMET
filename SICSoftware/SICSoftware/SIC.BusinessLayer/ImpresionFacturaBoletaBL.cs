@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using SIC.EntityLayer;
 using SIC.DataLayer;
+using SIC.BusinessLayer.Print;
 
 namespace SIC.BusinessLayer
 {
@@ -30,15 +31,16 @@ namespace SIC.BusinessLayer
             return new BoletaFacturaDA().ListarBoleta(numDesde, numHasta, impreso, ruc); ;
         }
 
-        public void ImprimirFactura(int id)
+        public void ImprimirFactura(int id, string nombreImpresora)
         {
             BoletaFacturaDA bfDA = new BoletaFacturaDA();
             SIC_T_FACTURA factura =  bfDA.ObtenerFactura(id);
             if (factura != null)
             {
                 factura.fac_c_bimpreso = true;
-                bfDA.ModificarFactura(factura);
-                // Impresion
+                ImpresionFactura ipf = new ImpresionFactura();
+                ipf.Imprimir(factura, nombreImpresora);
+                bfDA.ModificarFactura(factura);                
             }
         }
 
@@ -47,13 +49,15 @@ namespace SIC.BusinessLayer
 
         }
 
-        public void ImprimirBoleta(int id)
+        public void ImprimirBoleta(int id, string nombreImpresora)
         {
             BoletaFacturaDA bfDA = new BoletaFacturaDA();
             SIC_T_BOLETA boleta = bfDA.ObtenerBoleta(id);
             if (boleta != null)
             {
                 boleta.bol_c_bimpreso = true;
+                ImpresionBoleta ipf = new ImpresionBoleta();
+                ipf.Imprimir(boleta, nombreImpresora);
                 bfDA.ModificarBoleta(boleta);
                 // Impresion
             }
