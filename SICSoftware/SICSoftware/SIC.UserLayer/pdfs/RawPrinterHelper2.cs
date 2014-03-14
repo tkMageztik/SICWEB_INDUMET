@@ -7,7 +7,7 @@ using System.IO;
 
 namespace SIC.UserLayer.pdfs
 {
-    public class RawPrinterHelper
+    public class RawPrinterHelper2
     {
         // Structure and API declarions:
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]

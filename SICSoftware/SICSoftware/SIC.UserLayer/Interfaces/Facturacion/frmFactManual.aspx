@@ -9,7 +9,16 @@
 <body>
     <form id="form1" runat="server">
     <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="Button" />
+    <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+    <br />
+    <br />
+    <asp:TextBox ID="TextBox1" runat="server" Height="65px" TextMode="MultiLine" 
+        Width="436px"></asp:TextBox>
+    <br />
+    <br />
     <div>
+    
+        <asp:Button ID="Button2" runat="server" onclick="Button2_Click" Text="Button" />
     
     </div>
     </form>

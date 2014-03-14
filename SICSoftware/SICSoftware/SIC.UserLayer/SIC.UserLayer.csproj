@@ -261,6 +261,7 @@
       <DependentUpon>FrmReporteCliente.aspx</DependentUpon>
     </Compile>
     <Compile Include="MyPageEventHandler.cs" />
+    <Compile Include="pdfs\RawPrinterHelper2.cs" />
     <Compile Include="pdfs\pdf.cs" />
     <Compile Include="Interfaces\Facturacion\frmFactAutomatica.aspx.cs">
       <DependentUpon>frmFactAutomatica.aspx</DependentUpon>

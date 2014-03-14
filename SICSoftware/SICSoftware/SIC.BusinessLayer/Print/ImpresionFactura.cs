@@ -78,9 +78,9 @@ namespace SIC.BusinessLayer.Print
                 sb.Append("\n");
             }
 
-            //sb.Append("___ Cincuenta y Cinco con Cinco y Cinco.".PadRight(44, '_').PadRight(70, ' ')
-            //        + factura.fac_c_esubtotal.ToString().PadRight(8, ' ')
-            //        + "\n");
+            sb.Append("".PadRight(44, ' ').PadRight(70, ' ')
+                    + factura.fac_c_esubtotal.ToString().PadRight(8, ' ')
+                    + "\n");
             sb.Append("\n");
             sb.Append("\n");
             sb.Append("".PadRight(70, ' ')
