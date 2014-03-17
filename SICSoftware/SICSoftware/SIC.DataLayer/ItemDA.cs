@@ -38,6 +38,34 @@ namespace SIC.DataLayer
             }
         }
 
+        public List<SIC_T_ITEM> ListarItemsReporte(string codigo, string descripcion, int? idFamilia, int? idSubFamilia)
+        {
+            try
+            {
+                using (SICDBWEBEntities contexto = new SICDBWEBEntities())
+                {
+                    contexto.ContextOptions.LazyLoadingEnabled = false;
+                    return (from x in contexto.SIC_T_ITEM
+                            .Include("SIC_T_ITEM_SUB_FAMILIA")
+                            .Include("SIC_T_ITEM_SUB_FAMILIA.SIC_T_ITEM_FAMILIA")
+                            .Include("SIC_T_UNIDAD_MEDIDA")
+                            where x.itm_c_bactivo == true
+                              && (codigo == string.Empty || x.itm_c_ccodigo.Contains(codigo))
+                              && (descripcion == string.Empty || x.itm_c_vdescripcion.Contains(descripcion))
+                              && (idSubFamilia.HasValue ? x.isf_c_iid == idSubFamilia
+                                                         : (!idFamilia.HasValue
+                                                            || x.SIC_T_ITEM_SUB_FAMILIA.isf_c_ifm_iid == idFamilia.Value)
+                                 )
+                            orderby x.itm_c_vdescripcion ascending
+                            select x).ToList();
+                }
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
 
 

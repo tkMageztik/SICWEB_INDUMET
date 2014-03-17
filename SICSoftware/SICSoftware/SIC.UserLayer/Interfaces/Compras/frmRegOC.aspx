@@ -61,7 +61,7 @@
                     <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                             <td class="tit-nav-paginas" align="left">
-                                MANTENIMIENTO &gt; ORDEN DE COMPRA</td>
+                                COMPRAS &gt; ORDEN DE COMPRA</td>
                         </tr>
                         <tr>
                             <td class="txt2" align="left" colspan="2">
@@ -138,8 +138,16 @@
                                                 <Columns>
                                                     <asp:BoundField HeaderText="SERIE" DataField="odc_c_cserie" />
                                                     <asp:BoundField HeaderText="CÓDIGO" DataField="odc_c_vcodigo" />
-                                                    <asp:TemplateField HeaderText="RUC PROVEEDOR"><ItemTemplate></ItemTemplate></asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="PROVEEDOR"><ItemTemplate></ItemTemplate></asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="RUC PROVEEDOR">
+                                                        <ItemTemplate>
+                                                            <%# Eval("SIC_T_CLIENTE.cli_c_vdoc_id")%> 
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="PROVEEDOR">
+                                                        <ItemTemplate>
+                                                            <%# Eval("SIC_T_CLIENTE.cli_c_vraz_soc")%>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
                                                     <asp:BoundField HeaderText="ESTADO" DataField="odc_c_vdescestado" />
                                                     <asp:BoundField HeaderText="MONEDA" DataField="odc_c_vdescmoneda" />
                                                     <asp:BoundField HeaderText="MONTO TOTAL" DataField="odc_c_etotal" DataFormatString="{0:0,0.00}" />
@@ -163,7 +171,7 @@
                     <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                             <td class="tit-nav-paginas" align="left">
-                                MANTENIMIENTO &gt; ORDEN DE COMPRA &gt;
+                                COMPRAS &gt; ORDEN DE COMPRA &gt;
                                 <asp:Label ID="lblAccion" runat="server"></asp:Label>
                             </td>
                             <td align="right">
@@ -470,7 +478,7 @@
                     <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                             <td class="tit-nav-paginas" align="left">
-                                MANTENIMIENTO &gt; ORDEN DE COMPRA &gt; SELECCIONAR ITEM<br />
+                                COMPRAS &gt; ORDEN DE COMPRA &gt; SELECCIONAR ITEM<br />
                             </td>
                         </tr>
                         <tr>
@@ -594,7 +602,7 @@
                     <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                             <td class="tit-nav-paginas" align="left">
-                                MANTENIMIENTO &gt; ORDEN DE COMPRA &gt; SELECCIONAR PROVEEDOR
+                                COMPRAS &gt; ORDEN DE COMPRA &gt; SELECCIONAR PROVEEDOR
                             </td>
                         </tr>
                         <tr>
@@ -678,7 +686,7 @@
                     <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                             <td class="tit-nav-paginas" align="left">
-                                MANTENIMIENTO &gt; ORDEN DE COMPRA &gt; SELECCIONAR DIRECCION DE ENTREGA
+                                COMPRAS &gt; ORDEN DE COMPRA &gt; SELECCIONAR DIRECCION DE ENTREGA
                             </td>
                         </tr>
                         <tr>

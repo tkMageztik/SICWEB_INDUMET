@@ -186,9 +186,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             cboUnidadMedida.DataValueField = "und_c_yid";
             cboUnidadMedida.DataBind();
         }
-
-
-
+        
         /// <summary>
         /// Lista las familias de items
         /// </summary>

@@ -1,11 +1,8 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FrmReporteCliente.aspx.cs"
-    Inherits="SIC.UserLayer.Interfaces.Reporte.FrmReporteCliente" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="frmReporteItem.aspx.cs" Inherits="SIC.UserLayer.Interfaces.Reporte.frmReporteItem" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <%@ Register Src="~/UserControl/wucMensajeAlerta.ascx" TagName="Mensaje" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
-    <style type="text/css">
-    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <asp:UpdatePanel ID="upGeneral" UpdateMode="Conditional" ChildrenAsTriggers="False"
@@ -16,7 +13,7 @@
                     <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                             <td class="tit-nav-paginas" align="left">
-                                REPORTE &gt;&nbsp; CLIENTE
+                                REPORTE &gt;&nbsp; ITEM
                             </td>
                             <td align="right">
                                 &nbsp;
@@ -40,22 +37,53 @@
                                                                                 <table>
                                                                                     <tr>
                                                                                         <td class="txt-box-estilo">
-                                                                                            Razón Social :
+                                                                                            Código
                                                                                         </td>
                                                                                         <td>
-                                                                                            <asp:TextBox ID="txtFiltroRazonSocial" runat="server" CssClass="ipt_150x20"></asp:TextBox>
+                                                                                            <asp:TextBox ID="txtFiltroCodigo" runat="server" CssClass="ipt_150x20"></asp:TextBox>
                                                                                         </td>
                                                                                         <td style="width: 20px">
                                                                                         </td>
                                                                                         <td class="txt-box-estilo">
-                                                                                            RUC :
+                                                                                            Descripción
                                                                                         </td>
                                                                                         <td>
-                                                                                            <asp:TextBox ID="txtRuc" runat="server" CssClass="ipt_150x20"></asp:TextBox>
+                                                                                            <asp:TextBox ID="txtFiltroDescr" runat="server" CssClass="ipt_150x20"></asp:TextBox>
                                                                                         </td>
                                                                                         <td style="width: 20px">
                                                                                         </td>
                                                                                         <td>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            &nbsp;
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td class="txt-box-estilo">
+                                                                                            Familia
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <asp:DropDownList ID="cboFiltroFamilia" runat="server" AppendDataBoundItems="true"
+                                                                                                AutoPostBack="True" OnSelectedIndexChanged="cboFiltroFamilia_SelectedIndexChanged">
+                                                                                                <asp:ListItem Text="-- Seleccionar --" Value="-1"></asp:ListItem>
+                                                                                            </asp:DropDownList>
+                                                                                        </td>
+                                                                                        <td style="width: 20px">
+                                                                                            &nbsp;
+                                                                                        </td>
+                                                                                        <td class="txt-box-estilo">
+                                                                                            SubFamilia
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <asp:DropDownList ID="cboFiltroSubFamilia" runat="server" AppendDataBoundItems="true">
+                                                                                                <asp:ListItem Text="-- Seleccionar --" Value="-1"></asp:ListItem>
+                                                                                            </asp:DropDownList>
+                                                                                        </td>
+                                                                                        <td style="width: 20px">
+                                                                                            &nbsp;
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            &nbsp;
                                                                                         </td>
                                                                                         <td>
                                                                                             &nbsp;
@@ -67,10 +95,10 @@
                                                                                 <table>
                                                                                     <tr>
                                                                                         <td align="center">
-                                                                                            <asp:Button ID="btnFiltrar" runat="server" CssClass="button small gris" OnClick="btnFiltrar_Click"
-                                                                                                Style="width: 100px" Text="Buscar" />
-                                                                                            <asp:Button ID="btnReporte" runat="server" CssClass="button small gris" OnClick="btnReporte_Click"
-                                                                                                Style="width: 100px" Text="Reporte" />
+                                                                                            <asp:Button ID="btnFiltrar" runat="server" CssClass="button small gris"
+                                                                                                Style="width: 100px" Text="Buscar" onclick="btnFiltrar_Click" />
+                                                                                            <asp:Button ID="btnReporte" runat="server" CssClass="button small gris"
+                                                                                                Style="width: 100px" Text="Reporte" onclick="btnReporte_Click" />
                                                                                         </td>
                                                                                         <td align="center">
                                                                                             &nbsp;
@@ -87,32 +115,44 @@
                                                 </tr>
                                                 <tr>
                                                     <td align="left" class="txt-box-estilo" colspan="4">
-                                                        <asp:GridView ID="gvLista" runat="server" AllowPaging="True" AlternatingRowStyle-CssClass="alt"
-                                                            AutoGenerateColumns="False" BorderStyle="None" BorderWidth="0px" CssClass="mGrid"
-                                                            EmptyDataText="No hay datos disponibles." GridLines="None" PagerStyle-CssClass="pgr"
-                                                            PageSize="15" ShowHeaderWhenEmpty="True" ViewStateMode="Enabled" Width="100%">
-                                                            <AlternatingRowStyle CssClass="alt" />
-                                                            <Columns>
-                                                                <asp:BoundField DataField="cli_c_vdoc_id" HeaderText="RUC" ItemStyle-HorizontalAlign="Center"
-                                                                    Visible="true">
-                                                                    <ItemStyle HorizontalAlign="Center" />
-                                                                </asp:BoundField>
-                                                                <asp:BoundField DataField="cli_c_vraz_soc" HeaderText="RAZÓN SOCIAL" ItemStyle-Width="35%">
-                                                                    <ItemStyle Width="35%" />
-                                                                </asp:BoundField>
-                                                                <asp:BoundField DataField="cli_c_vrubro" HeaderText="RUBRO" ItemStyle-Width="35%">
-                                                                    <ItemStyle Width="35%" />
-                                                                </asp:BoundField>
-                                                                <%--  <asp:TemplateField HeaderText="TIPO">
+                                                        <asp:UpdatePanel ID="upGvListaITem" UpdateMode="Conditional" runat="server">
+                                                            <ContentTemplate>
+                                                                <asp:GridView ID="gvListaItem" runat="server" BorderStyle="None" AutoGenerateColumns="False"
+                                                                    GridLines="None" AllowPaging="True" Width="100%" CssClass="mGrid" PagerStyle-CssClass="pgr"
+                                                                    AlternatingRowStyle-CssClass="alt" ShowHeaderWhenEmpty="True" EmptyDataText="No hay datos disponibles."
+                                                                    PageSize="15" BorderWidth="0px" ViewStateMode="Enabled" 
+                                                                    DataKeyNames="itm_c_iid" 
+                                                                    onpageindexchanging="gvListaItem_PageIndexChanging" >
+                                                                    <AlternatingRowStyle CssClass="alt" />
+                                                                    <Columns>
+                                                                        <asp:BoundField DataField="itm_c_ccodigo" HeaderText="CÓDIGO" />
+                                                                        <asp:BoundField DataField="itm_c_vdescripcion" HeaderText="DESCRIPCIÓN" />
+                                                                        <asp:TemplateField HeaderText="PRECIO COMPRA">
                                                                             <ItemTemplate>
-                                                                                <%# (Boolean.Parse(Eval("cli_c_bgrupo_ibk").ToString())) ? "AFILIADO" : "NO AFILIADO"%>
+                                                                                <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("itm_c_dprecio_compra"))%>
                                                                             </ItemTemplate>
-                                                                            <ItemStyle Width="10%" HorizontalAlign="Center" />
-                                                                        </asp:TemplateField>--%>
-                                                            </Columns>
-                                                            <HeaderStyle />
-                                                            <PagerStyle HorizontalAlign="left" />
-                                                        </asp:GridView>
+                                                                        </asp:TemplateField>
+                                                                        <asp:TemplateField HeaderText="PRECIO VENTA">
+                                                                            <ItemTemplate>
+                                                                                <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("itm_c_dprecio_venta"))%>
+                                                                            </ItemTemplate>
+                                                                        </asp:TemplateField>
+                                                                        <asp:BoundField DataField="itm_c_vpardes" HeaderText="UNIDAD DE MEDIDA" />
+                                                                        <asp:TemplateField HeaderText="FAMILIA">
+                                                                            <ItemTemplate>
+                                                                                <%# Eval("SIC_T_ITEM_SUB_FAMILIA.SIC_T_ITEM_FAMILIA.ifm_c_des")%>
+                                                                            </ItemTemplate>
+                                                                        </asp:TemplateField>
+                                                                        <asp:TemplateField HeaderText="SUB FAMILIA">
+                                                                            <ItemTemplate>
+                                                                                <%# Eval("SIC_T_ITEM_SUB_FAMILIA.isf_c_vdesc")%>
+                                                                            </ItemTemplate>
+                                                                        </asp:TemplateField>
+                                                                    </Columns>
+                                                                    <PagerStyle CssClass="pgr" />
+                                                                </asp:GridView>
+                                                            </ContentTemplate>
+                                                        </asp:UpdatePanel>
                                                     </td>
                                                 </tr>
                                                 <tr>

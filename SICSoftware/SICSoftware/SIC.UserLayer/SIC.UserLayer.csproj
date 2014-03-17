@@ -260,6 +260,13 @@
     <Compile Include="Interfaces\Reporte\FrmReporteCliente.aspx.designer.cs">
       <DependentUpon>FrmReporteCliente.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\Reporte\frmReporteItem.aspx.cs">
+      <DependentUpon>frmReporteItem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Interfaces\Reporte\frmReporteItem.aspx.designer.cs">
+      <DependentUpon>frmReporteItem.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MyPageEventHandler.cs" />
     <Compile Include="pdfs\RawPrinterHelper2.cs" />
     <Compile Include="pdfs\pdf.cs" />
@@ -316,6 +323,7 @@
     <Content Include="Interfaces\Almacen\frmMovEntrada.aspx" />
     <Content Include="Interfaces\Facturacion\frmVenta.aspx" />
     <Content Include="Interfaces\Reporte\FrmReporteCliente.aspx" />
+    <Content Include="Interfaces\Reporte\frmReporteItem.aspx" />
     <Content Include="Scripts\numeric_input.js" />
     <Content Include="Styles\chosen-sprite%402x.png" />
     <Content Include="Styles\chosen-sprite.png" />
@@ -409,6 +417,7 @@
     <Compile Include="pdfs\PdfProduccion.cs" />
     <Compile Include="pdfs\RawPrinterHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Report\ReporteItemPDF.cs" />
     <Compile Include="Report\ReporteClientePDF.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

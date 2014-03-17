@@ -70,7 +70,7 @@
                     <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                             <td class="tit-nav-paginas" align="left">
-                                MANTENIMIENTO &gt; VENTA
+                                FACTURACIÓN &gt; VENTA
                             </td>
                         </tr>
                         <tr>
@@ -175,7 +175,7 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="RAZ. SOCIAL CLIENTE">
                                                         <ItemTemplate>
-                                                            <%# Eval("SIC_T_CLIENTE.cli_c_vdoc_id")%>
+                                                            <%# Eval("SIC_T_CLIENTE.cli_c_vraz_soc")%>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:BoundField HeaderText="TIPO DOCUMENTO" DataField="ven_c_vdestipodoc" />
@@ -202,7 +202,7 @@
                     <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                             <td class="tit-nav-paginas" align="left">
-                                MANTENIMIENTO &gt; VENTA &gt;
+                                FACTURACIÓN &gt; VENTA &gt;
                                 <asp:Label ID="lblAccion" runat="server"></asp:Label>
                             </td>
                             <td align="right">
@@ -465,7 +465,7 @@
                     <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                             <td class="tit-nav-paginas" align="left">
-                                MANTENIMIENTO &gt; VENTA &gt; SELECCIONAR ITEM<br />
+                                FACTURACIÓN &gt; VENTA &gt; SELECCIONAR ITEM<br />
                             </td>
                         </tr>
                         <tr>
@@ -622,7 +622,7 @@
                     <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                             <td class="tit-nav-paginas" align="left">
-                                MANTENIMIENTO &gt; VENTA &gt; SELECCIONAR CLIENTE
+                                FACTURACIÓN &gt; VENTA &gt; SELECCIONAR CLIENTE
                             </td>
                         </tr>
                         <tr>
