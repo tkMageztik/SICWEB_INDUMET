@@ -98,7 +98,6 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 this.ListarComboMoneda();
                 this.ListarClientes();
                 this.ListarComboTipoDocumento();
-                this.ListarVentas();
                 this.ListarComboCentroCosto();
                 this.ListarEstadoVenta();
                 this.ListarFiltroFamilia();

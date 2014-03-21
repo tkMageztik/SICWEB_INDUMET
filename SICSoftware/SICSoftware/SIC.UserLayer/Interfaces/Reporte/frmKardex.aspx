@@ -1,8 +1,8 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FrmReporteCliente.aspx.cs"
-    Inherits="SIC.UserLayer.Interfaces.Reporte.FrmReporteCliente" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="frmKardex.aspx.cs" Inherits="SIC.UserLayer.Interfaces.Reporte.frmKardex" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <%@ Register Src="~/UserControl/wucMensajeAlerta.ascx" TagName="Mensaje" TagPrefix="uc1" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <style type="text/css">
     </style>
@@ -16,7 +16,7 @@
                     <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                             <td class="tit-nav-paginas" align="left">
-                                REPORTE &gt;&nbsp; KARDEX
+                                REPORTE &gt;&nbsp; CLIENTE
                             </td>
                             <td align="right">
                                 &nbsp;
@@ -90,8 +90,7 @@
                                                         <asp:GridView ID="gvLista" runat="server" AllowPaging="True" AlternatingRowStyle-CssClass="alt"
                                                             AutoGenerateColumns="False" BorderStyle="None" BorderWidth="0px" CssClass="mGrid"
                                                             EmptyDataText="No hay datos disponibles." GridLines="None" PagerStyle-CssClass="pgr"
-                                                            PageSize="15" ShowHeaderWhenEmpty="True" ViewStateMode="Enabled" 
-                                                            Width="100%" onpageindexchanging="gvLista_PageIndexChanging">
+                                                            PageSize="15" ShowHeaderWhenEmpty="True" ViewStateMode="Enabled" Width="100%">
                                                             <AlternatingRowStyle CssClass="alt" />
                                                             <Columns>
                                                                 <asp:BoundField DataField="cli_c_vdoc_id" HeaderText="RUC" ItemStyle-HorizontalAlign="Center"

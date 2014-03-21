@@ -55,8 +55,10 @@
     <Compile Include="MovimientoSalidaBL.cs" />
     <Compile Include="OrdenCompraBL.cs" />
     <Compile Include="ParametroBL.cs" />
-    <Compile Include="Print\ImpresionBoleta.cs" />
-    <Compile Include="Print\ImpresionFactura.cs" />
+    <Compile Include="Print\ImpresionFacturaSimple.cs" />
+    <Compile Include="Print\ImpresionBoletaSimple.cs" />
+    <Compile Include="Print\ImpresionBoletaCont.cs" />
+    <Compile Include="Print\ImpresionFacturaCont.cs" />
     <Compile Include="Print\RawPrinterHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SeguridadBL.cs" />
@@ -81,6 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="PDF\" />
+    <Folder Include="Reporte\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

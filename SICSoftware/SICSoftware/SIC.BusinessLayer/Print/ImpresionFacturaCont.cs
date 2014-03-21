@@ -6,15 +6,33 @@ using SIC.EntityLayer;
 
 namespace SIC.BusinessLayer.Print
 {
-    public class ImpresionFactura
+    public class ImpresionFacturaCont
     {
         private StringBuilder sb = new StringBuilder();
+        private const Char ESC = '\u001B';
+        private const Char Exclamation = '\u0021';
         private const Char SaltoPagina = '\u000C';
         private const Char Campana = '\u0007';
-        private const Char SaltoLinea ='\u0010';
+        private const Char SaltoLinea = '\u0010';
+
+        public void ImprimirVarios(List<SIC_T_FACTURA> listaFactura, string nombreImpresora)
+        {
+            foreach (SIC_T_FACTURA factura in listaFactura)
+            {
+                this.Imprimir(factura, nombreImpresora);
+            }
+        }
 
         public void Imprimir(SIC_T_FACTURA factura, string nombreImpresora)
         {
+            sb.Append('\u0027');
+
+            sb.Append(ESC);
+            sb.Append('\u0078');
+            sb.Append('\u0000');
+
+            sb.Append('\u000F');
+
             // Primeras 3 lineas
             sb.Append("\n");
             sb.Append("\n");
@@ -24,13 +42,13 @@ namespace SIC.BusinessLayer.Print
             sb.Append("    " + factura.fac_c_zfecharegistro.ToString("dd/MM/yyyy") + "\n");
             sb.Append("\n");
             string razonSocial = factura.SIC_T_VENTA.SIC_T_CLIENTE.cli_c_vraz_soc;
-            if (razonSocial.Length > 52)
+            if (razonSocial.Length > 91)
             {
-                razonSocial = razonSocial.Substring(0, 52);
+                razonSocial = razonSocial.Substring(0, 91);
             }
 
-            sb.Append("      " + razonSocial.PadRight(52, ' ') 
-                + factura.SIC_T_VENTA.SIC_T_CLIENTE.cli_c_vdoc_id                
+            sb.Append("           " + razonSocial.PadRight(91, ' ')
+                + factura.SIC_T_VENTA.SIC_T_CLIENTE.cli_c_vdoc_id
                 + "\n");
             var resultado = factura.SIC_T_VENTA.SIC_T_CLIENTE.SIC_T_CLI_DIRECCION.FirstOrDefault(x => x.cli_direc_c_ctipo == "3");
             String direccion = string.Empty;
@@ -39,12 +57,12 @@ namespace SIC.BusinessLayer.Print
                 direccion = resultado.cli_direc_c_vdirec;
             }
 
-            if (direccion.Length > 52)
+            if (direccion.Length > 120)
             {
-                direccion = direccion.Substring(0, 52);
+                direccion = direccion.Substring(0, 120);
             }
 
-            sb.Append("      " + direccion.PadRight(52, ' ') + "\n");
+            sb.Append("      " + direccion + "\n");
 
             // 
             sb.Append("\n");
@@ -57,20 +75,20 @@ namespace SIC.BusinessLayer.Print
             foreach (var detalle in factura.SIC_T_FACTURA_DETALLE)
             {
                 descripcion = detalle.SIC_T_ITEM.itm_c_vdescripcion;
-                if (descripcion.Length > 49)
+                if (descripcion.Length > 85)
                 {
-                    descripcion = descripcion.Substring(0, 49);
+                    descripcion = descripcion.Substring(0, 85);
                 }
 
-                sb.Append(detalle.SIC_T_ITEM.itm_c_ccodigo.PadRight(6, ' ')
+                sb.Append(detalle.SIC_T_ITEM.itm_c_ccodigo.PadRight(11, ' ')
                         + " "
-                        + detalle.fac_det_c_ecantidad.ToString().PadRight(4, ' ')
+                        + detalle.fac_det_c_ecantidad.ToString().PadRight(7, ' ')
                         + " "
-                        + descripcion.PadRight(49, ' ')
+                        + descripcion.PadLeft(85, ' ')
                         + " "
-                        + detalle.fac_det_c_epreciounit.ToString().PadRight(8, ' ')
+                        + detalle.fac_det_c_epreciounit.ToString().PadLeft(14, ' ')
                         + " "
-                        + detalle.fac_det_c_epreciotot.ToString() + "\n");
+                        + detalle.fac_det_c_epreciotot.ToString().PadLeft(14, ' ') + "\n");
             }
 
             for (int i = 0; i < 12 - factura.SIC_T_FACTURA_DETALLE.Count; i++)
@@ -78,17 +96,17 @@ namespace SIC.BusinessLayer.Print
                 sb.Append("\n");
             }
 
-            sb.Append("".PadRight(44, ' ').PadRight(70, ' ')
-                    + factura.fac_c_esubtotal.ToString().PadRight(8, ' ')
+            sb.Append("".PadRight(77, ' ').PadRight(122, ' ')
+                    + factura.fac_c_esubtotal.ToString().PadLeft(14, ' ')
                     + "\n");
+
             sb.Append("\n");
+            sb.Append("".PadRight(121, ' ')
+                    + factura.fac_c_eigvcal.ToString().PadLeft(14, ' ') + "\n");
             sb.Append("\n");
-            sb.Append("".PadRight(70, ' ')
-                    + factura.fac_c_eigvcal.ToString().PadRight(8, ' ') + "\n");
-            sb.Append("\n");
-            sb.Append("".PadRight(70, ' ')
-                    + factura.fac_c_etotal.ToString().PadRight(8, ' ') + "\n");
-            sb.Append('\u000C');
+            sb.Append("".PadRight(121, ' ')
+                    + factura.fac_c_etotal.ToString().PadLeft(14, ' ') + "\n");
+            sb.Append('\u000C'); //FF
 
             RawPrinterHelper.SendStringToPrinter(nombreImpresora, sb.ToString());          
 

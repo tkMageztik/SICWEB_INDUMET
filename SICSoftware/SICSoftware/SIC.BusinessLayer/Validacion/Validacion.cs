@@ -18,4 +18,5 @@ namespace SIC.BusinessLayer.Validacion
             this.Mensaje = mensaje;
         }        
     }
+
 }

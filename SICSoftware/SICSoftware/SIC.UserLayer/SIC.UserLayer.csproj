@@ -253,6 +253,13 @@
     <Compile Include="Interfaces\Facturacion\ucBoleta.ascx.designer.cs">
       <DependentUpon>ucBoleta.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\Reporte\frmKardex.aspx.cs">
+      <DependentUpon>frmKardex.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Interfaces\Reporte\frmKardex.aspx.designer.cs">
+      <DependentUpon>frmKardex.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Interfaces\Reporte\FrmReporteCliente.aspx.cs">
       <DependentUpon>FrmReporteCliente.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -267,8 +274,28 @@
     <Compile Include="Interfaces\Reporte\frmReporteItem.aspx.designer.cs">
       <DependentUpon>frmReporteItem.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\Reporte\frmReporteMovEntrada.aspx.cs">
+      <DependentUpon>frmReporteMovEntrada.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Interfaces\Reporte\frmReporteMovEntrada.aspx.designer.cs">
+      <DependentUpon>frmReporteMovEntrada.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\Reporte\frmReporteVenta.aspx.cs">
+      <DependentUpon>frmReporteVenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Interfaces\Reporte\frmReporteVenta.aspx.designer.cs">
+      <DependentUpon>frmReporteVenta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\Reusable\uscListaItem.ascx.cs">
+      <DependentUpon>uscListaItem.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Interfaces\Reusable\uscListaItem.ascx.designer.cs">
+      <DependentUpon>uscListaItem.ascx</DependentUpon>
+    </Compile>
     <Compile Include="MyPageEventHandler.cs" />
-    <Compile Include="pdfs\RawPrinterHelper2.cs" />
     <Compile Include="pdfs\pdf.cs" />
     <Compile Include="Interfaces\Facturacion\frmFactAutomatica.aspx.cs">
       <DependentUpon>frmFactAutomatica.aspx</DependentUpon>
@@ -322,8 +349,12 @@
     <Content Include="Interfaces\Compras\frmRegOC.aspx" />
     <Content Include="Interfaces\Almacen\frmMovEntrada.aspx" />
     <Content Include="Interfaces\Facturacion\frmVenta.aspx" />
+    <Content Include="Interfaces\Reporte\frmKardex.aspx" />
     <Content Include="Interfaces\Reporte\FrmReporteCliente.aspx" />
     <Content Include="Interfaces\Reporte\frmReporteItem.aspx" />
+    <Content Include="Interfaces\Reporte\frmReporteMovEntrada.aspx" />
+    <Content Include="Interfaces\Reporte\frmReporteVenta.aspx" />
+    <Content Include="Interfaces\Reusable\uscListaItem.ascx" />
     <Content Include="Scripts\numeric_input.js" />
     <Content Include="Styles\chosen-sprite%402x.png" />
     <Content Include="Styles\chosen-sprite.png" />
@@ -419,6 +450,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Report\ReporteItemPDF.cs" />
     <Compile Include="Report\ReporteClientePDF.cs" />
+    <Compile Include="Report\ReporteVentaPDF.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -453,7 +485,6 @@
     <Folder Include="Bootstrap\bin\" />
     <Folder Include="Imagenes\Thumbnails\" />
     <Folder Include="Imagenes\Titulos\" />
-    <Folder Include="Interfaces\Reusable\" />
     <Folder Include="obj\" />
   </ItemGroup>
   <ItemGroup>

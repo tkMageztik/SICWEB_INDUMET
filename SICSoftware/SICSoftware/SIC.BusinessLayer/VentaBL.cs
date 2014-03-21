@@ -14,6 +14,11 @@ namespace SIC.BusinessLayer
             return new VentaDA().ListarVentas(ruc,razonSocial,inicio,fin);
         }
 
+        public List<SIC_T_VENTA> ListarVentasReporte(string ruc, string razonSocial, DateTime? inicio, DateTime? fin)
+        {
+            return new VentaDA().ListarVentasReporte(ruc, razonSocial, inicio, fin);
+        }
+
         public List<SIC_T_VENTA> ListarOrdenDeCompraEstado(int estado)
         {
             return new VentaDA().ListarOrdenDeCompraEstado(estado);

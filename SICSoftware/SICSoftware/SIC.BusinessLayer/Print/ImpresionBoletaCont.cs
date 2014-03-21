@@ -6,15 +6,34 @@ using SIC.EntityLayer;
 
 namespace SIC.BusinessLayer.Print
 {
-    public class ImpresionBoleta
+    public class ImpresionBoletaCont
     {
         private StringBuilder sb = new StringBuilder();
+
+        private const Char ESC = '\u001B';
+        private const Char Exclamation = '\u0021';
         private const Char SaltoPagina = '\u000C';
         private const Char Campana = '\u0007';
         private const Char SaltoLinea = '\u0010';
 
+        public void ImprimirVarios(List<SIC_T_BOLETA> listaBoleta, string nombreImpresora)
+        {
+            foreach (SIC_T_BOLETA boleta in listaBoleta)
+            {
+                this.Imprimir(boleta, nombreImpresora);
+            }
+        }
+
         public void Imprimir(SIC_T_BOLETA boleta, string nombreImpresora)
         {
+            sb.Append('\u0027');
+
+            sb.Append(ESC);
+            sb.Append('\u0078');
+            sb.Append('\u0000');
+            
+            sb.Append('\u000F');
+
             // Primeras 4 lineas
             sb.Append("\n");
             sb.Append("\n");
@@ -83,7 +102,7 @@ namespace SIC.BusinessLayer.Print
             //sb.Append("\n");
             sb.Append("".PadRight(70, ' ')
                     + boleta.bol_c_etotal.ToString().PadRight(8, ' ') + "\n");
-            sb.Append('\u000C');
+            sb.Append('\u000C'); //FF
 
             RawPrinterHelper.SendStringToPrinter(nombreImpresora, sb.ToString());
 

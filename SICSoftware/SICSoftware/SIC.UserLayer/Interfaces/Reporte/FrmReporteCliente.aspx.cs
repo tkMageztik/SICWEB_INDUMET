@@ -51,6 +51,10 @@ namespace SIC.UserLayer.Interfaces.Reporte
             upGeneral.Update();
         }
 
-
+        protected void gvLista_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvLista.PageIndex = e.NewPageIndex;
+            this.FiltrarCliente();
+        }
     }
 }

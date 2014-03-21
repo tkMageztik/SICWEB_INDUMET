@@ -58,6 +58,7 @@
     <Compile Include="SIC_T_FACTURA.cs" />
     <Compile Include="SIC_T_MOVIMIENTO_ENTRADA.cs" />
     <Compile Include="SIC_T_ORDEN_DE_COMPRA_DETALLE.cs" />
+    <Compile Include="SIC_T_VENTA.cs" />
     <Compile Include="SIC_T_VENTA_DETALLE.cs" />
   </ItemGroup>
   <ItemGroup>

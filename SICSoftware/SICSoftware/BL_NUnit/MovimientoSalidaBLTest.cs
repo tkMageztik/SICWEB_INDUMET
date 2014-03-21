@@ -27,7 +27,7 @@ namespace BL_NUnit
                 Assert.IsNotNull(detalleSalida, "No se genero el detalle salida para la venta con item " + detalleVenta.ven_det_c_iitemid
                                                 + " y almacen " + detalleVenta.ven_det_c_iitemid);
                 Assert.AreEqual(detalleSalida.mvs_det_c_ecant, detalleVenta.ven_det_c_ecantidad, 
-                                                "La cantidad del detalle salida y detalle venta no corresponden");                
+                                                "La cantidad del detalle salida y detalle venta no corresponden");                                
             }
         }
 
