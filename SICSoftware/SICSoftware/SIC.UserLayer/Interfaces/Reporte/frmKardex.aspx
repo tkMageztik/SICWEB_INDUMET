@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="frmKardex.aspx.cs" Inherits="SIC.UserLayer.Interfaces.Reporte.frmKardex" %>
 
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <%@ Register Src="~/UserControl/wucMensajeAlerta.ascx" TagName="Mensaje" TagPrefix="uc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
@@ -40,18 +40,24 @@
                                                                                 <table>
                                                                                     <tr>
                                                                                         <td class="txt-box-estilo">
-                                                                                            Razón Social :
+                                                                                            Desde :
                                                                                         </td>
                                                                                         <td>
-                                                                                            <asp:TextBox ID="txtFiltroRazonSocial" runat="server" CssClass="ipt_150x20"></asp:TextBox>
+                                                                                            <asp:TextBox ID="txtFiltroFecIni" runat="server"></asp:TextBox>
+                                                                                            <asp:CalendarExtender ID="txtFiltroFecIni_CalendarExtender" runat="server" 
+                                                                                                Format="dd/MM/yyyy" TargetControlID="txtFiltroFecIni" 
+                                                                                                TodaysDateFormat="dd/MM/yyyy" />
                                                                                         </td>
                                                                                         <td style="width: 20px">
                                                                                         </td>
                                                                                         <td class="txt-box-estilo">
-                                                                                            RUC :
+                                                                                            Hasta :
                                                                                         </td>
                                                                                         <td>
-                                                                                            <asp:TextBox ID="txtRuc" runat="server" CssClass="ipt_150x20"></asp:TextBox>
+                                                                                            <asp:TextBox ID="txtFiltroFecFin" runat="server"></asp:TextBox>
+                                                                                            <asp:CalendarExtender ID="txtFiltroFecFin_CalendarExtender" runat="server" 
+                                                                                                Format="dd/MM/yyyy" TargetControlID="txtFiltroFecFin" 
+                                                                                                TodaysDateFormat="dd/MM/yyyy" />
                                                                                         </td>
                                                                                         <td style="width: 20px">
                                                                                         </td>
@@ -69,8 +75,8 @@
                                                                                         <td align="center">
                                                                                             <asp:Button ID="btnFiltrar" runat="server" CssClass="button small gris" OnClick="btnFiltrar_Click"
                                                                                                 Style="width: 100px" Text="Buscar" />
-                                                                                            <asp:Button ID="btnReporte" runat="server" CssClass="button small gris" OnClick="btnReporte_Click"
-                                                                                                Style="width: 100px" Text="Reporte" />
+                                                                                            <asp:Button ID="btnReporte" runat="server" CssClass="button small gris" 
+                                                                                                Style="width: 100px" Text="Reporte" onclick="btnReporte_Click" />
                                                                                         </td>
                                                                                         <td align="center">
                                                                                             &nbsp;
@@ -87,30 +93,56 @@
                                                 </tr>
                                                 <tr>
                                                     <td align="left" class="txt-box-estilo" colspan="4">
-                                                        <asp:GridView ID="gvLista" runat="server" AllowPaging="True" AlternatingRowStyle-CssClass="alt"
-                                                            AutoGenerateColumns="False" BorderStyle="None" BorderWidth="0px" CssClass="mGrid"
+                                                        <asp:GridView ID="gvLista" runat="server" 
+                                                            AlternatingRowStyle-CssClass="alt" BorderStyle="None" BorderWidth="0px" CssClass="mGrid"
                                                             EmptyDataText="No hay datos disponibles." GridLines="None" PagerStyle-CssClass="pgr"
-                                                            PageSize="15" ShowHeaderWhenEmpty="True" ViewStateMode="Enabled" Width="100%">
+                                                            PageSize="15" ShowHeaderWhenEmpty="True" ViewStateMode="Enabled" 
+                                                            Width="100%" AutoGenerateColumns="False" AllowPaging="True" 
+                                                            onpageindexchanging="gvLista_PageIndexChanging">
                                                             <AlternatingRowStyle CssClass="alt" />
-                                                            <Columns>
-                                                                <asp:BoundField DataField="cli_c_vdoc_id" HeaderText="RUC" ItemStyle-HorizontalAlign="Center"
-                                                                    Visible="true">
-                                                                    <ItemStyle HorizontalAlign="Center" />
-                                                                </asp:BoundField>
-                                                                <asp:BoundField DataField="cli_c_vraz_soc" HeaderText="RAZÓN SOCIAL" ItemStyle-Width="35%">
-                                                                    <ItemStyle Width="35%" />
-                                                                </asp:BoundField>
-                                                                <asp:BoundField DataField="cli_c_vrubro" HeaderText="RUBRO" ItemStyle-Width="35%">
-                                                                    <ItemStyle Width="35%" />
-                                                                </asp:BoundField>
-                                                                <%--  <asp:TemplateField HeaderText="TIPO">
-                                                                            <ItemTemplate>
-                                                                                <%# (Boolean.Parse(Eval("cli_c_bgrupo_ibk").ToString())) ? "AFILIADO" : "NO AFILIADO"%>
-                                                                            </ItemTemplate>
-                                                                            <ItemStyle Width="10%" HorizontalAlign="Center" />
-                                                                        </asp:TemplateField>--%>
-                                                            </Columns>
                                                             <HeaderStyle />
+                                                                <Columns>
+                                                                        <asp:TemplateField HeaderText="Item">
+                                                                            <ItemTemplate>
+                                                                                <%# Eval("SIC_T_ITEM.itm_c_vdescripcion")%>
+                                                                            </ItemTemplate>
+                                                                        </asp:TemplateField>
+                                                                        <asp:TemplateField HeaderText="Almacen">
+                                                                            <ItemTemplate>
+                                                                                <%# Eval("SIC_T_ALMACEN.alm_c_vdesc")%>
+                                                                            </ItemTemplate>
+                                                                        </asp:TemplateField>                                                                        
+                                                                        <asp:TemplateField HeaderText="Entrada - Cantidad">
+                                                                            <ItemTemplate>
+                                                                                <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("EntradaCantidad"))%>
+                                                                            </ItemTemplate>
+                                                                        </asp:TemplateField>
+                                                                        <asp:TemplateField HeaderText="Entrada - Precio">
+                                                                            <ItemTemplate>
+                                                                                <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("EntradaPrecio"))%>
+                                                                            </ItemTemplate>
+                                                                        </asp:TemplateField>
+                                                                        <asp:TemplateField HeaderText="Entrada - Total">
+                                                                            <ItemTemplate>
+                                                                                <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("EntradaTotal"))%>
+                                                                            </ItemTemplate>
+                                                                        </asp:TemplateField>
+                                                                        <asp:TemplateField HeaderText="Salida - Cantidad">
+                                                                            <ItemTemplate>
+                                                                                <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("SalidaCantidad"))%>
+                                                                            </ItemTemplate>
+                                                                        </asp:TemplateField>
+                                                                        <asp:TemplateField HeaderText="Salida - Precio">
+                                                                            <ItemTemplate>
+                                                                                <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("SalidaPrecio"))%>
+                                                                            </ItemTemplate>
+                                                                        </asp:TemplateField>
+                                                                        <asp:TemplateField HeaderText="Salida - Total">
+                                                                            <ItemTemplate>
+                                                                                <%# string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0:F2}", Eval("SalidaTotal"))%>
+                                                                            </ItemTemplate>
+                                                                        </asp:TemplateField>
+                                                                    </Columns>
                                                             <PagerStyle HorizontalAlign="left" />
                                                         </asp:GridView>
                                                     </td>

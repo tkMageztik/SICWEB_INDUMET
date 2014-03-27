@@ -40,22 +40,40 @@ namespace SIC.UserLayer.Interfaces.Reporte {
         protected global::System.Web.UI.WebControls.View vwMain;
         
         /// <summary>
-        /// Control txtFiltroRazonSocial.
+        /// Control txtFiltroFecIni.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFiltroRazonSocial;
+        protected global::System.Web.UI.WebControls.TextBox txtFiltroFecIni;
         
         /// <summary>
-        /// Control txtRuc.
+        /// Control txtFiltroFecIni_CalendarExtender.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRuc;
+        protected global::AjaxControlToolkit.CalendarExtender txtFiltroFecIni_CalendarExtender;
+        
+        /// <summary>
+        /// Control txtFiltroFecFin.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFiltroFecFin;
+        
+        /// <summary>
+        /// Control txtFiltroFecFin_CalendarExtender.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender txtFiltroFecFin_CalendarExtender;
         
         /// <summary>
         /// Control btnFiltrar.

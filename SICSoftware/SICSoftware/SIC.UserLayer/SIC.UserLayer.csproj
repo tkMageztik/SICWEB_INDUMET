@@ -448,6 +448,7 @@
     <Compile Include="pdfs\PdfProduccion.cs" />
     <Compile Include="pdfs\RawPrinterHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Report\ReporteKardex.cs" />
     <Compile Include="Report\ReporteItemPDF.cs" />
     <Compile Include="Report\ReporteClientePDF.cs" />
     <Compile Include="Report\ReporteVentaPDF.cs" />

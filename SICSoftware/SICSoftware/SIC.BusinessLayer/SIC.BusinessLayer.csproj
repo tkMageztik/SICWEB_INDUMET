@@ -45,6 +45,7 @@
     <Compile Include="CentroCostoBL.cs" />
     <Compile Include="ClienteBL.cs" />
     <Compile Include="ImpresionFacturaBoletaBL.cs" />
+    <Compile Include="KardexBL.cs" />
     <Compile Include="MantenimientoEmpresaBL.cs" />
     <Compile Include="EmpresaBL.cs" />
     <Compile Include="FacturacionAutomaticaBL.cs" />
