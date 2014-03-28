@@ -210,6 +210,7 @@
     <Content Include="Interfaces\Facturacion\test.aspx" />
     <Content Include="Interfaces\Facturacion\ucBoleta.ascx" />
     <Content Include="Interfaces\Facturacion\ucFactura.ascx" />
+    <Content Include="Interfaces\frmImpresora.aspx" />
     <Content Include="Interfaces\Mantenimiento\frmMantEmpresa.aspx" />
     <Content Include="Interfaces\Mantenimiento\frmMantImpresoras.aspx" />
     <Content Include="Interfaces\Mantenimiento\frmRegCliente.aspx" />
@@ -252,6 +253,13 @@
     </Compile>
     <Compile Include="Interfaces\Facturacion\ucBoleta.ascx.designer.cs">
       <DependentUpon>ucBoleta.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\frmImpresora.aspx.cs">
+      <DependentUpon>frmImpresora.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Interfaces\frmImpresora.aspx.designer.cs">
+      <DependentUpon>frmImpresora.aspx</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\Reporte\frmKardex.aspx.cs">
       <DependentUpon>frmKardex.aspx</DependentUpon>

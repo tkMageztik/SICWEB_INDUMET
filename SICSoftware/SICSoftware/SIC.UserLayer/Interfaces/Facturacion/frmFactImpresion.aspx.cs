@@ -130,12 +130,11 @@ namespace SIC.UserLayer.Interfaces.Facturacion
         private void ImprimirFactura(int idFactura)
         {
             ImpresionFacturaBoletaBL impresionBL = new ImpresionFacturaBoletaBL();
-            if (Configuracion.NombreImpresora != string.Empty)
+            if (Configuracion.EsServidorImpresion)
             {
                 try
                 {
-                    impresionBL.ImprimirFactura(idFactura, Configuracion.NombreImpresora);
-
+                    impresionBL.ImprimirFactura(idFactura, new ImpresoraBL().ObtenerImpresoraDefecto());
                     Mensaje("Factura enviada para Impresión.", "~/Imagenes/correcto.png");
                 }
                 catch (Exception ex)
@@ -145,7 +144,7 @@ namespace SIC.UserLayer.Interfaces.Facturacion
                     String mensajeError = "Error Fatal : \n" + ex.Message;
                     if (ex.InnerException != null)
                     {
-                        mensajeError += "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty;
+                        mensajeError += "\n" + ex.InnerException.Message ;
                     }
 
                     Mensaje(mensajeError, "~/Imagenes/warning.png");
@@ -169,12 +168,11 @@ namespace SIC.UserLayer.Interfaces.Facturacion
         private void ImprimirBoleta(int idBoleta)
         {
             ImpresionFacturaBoletaBL impresionBL = new ImpresionFacturaBoletaBL();
-            if (Configuracion.NombreImpresora != string.Empty)
+            if (Configuracion.EsServidorImpresion)
             {
-
                 try
                 {
-                    impresionBL.ImprimirBoleta(idBoleta, Configuracion.NombreImpresora);
+                    impresionBL.ImprimirBoleta(idBoleta, new ImpresoraBL().ObtenerImpresoraDefecto());
                     Mensaje("Boleta enviada para Impresión.", "~/Imagenes/correcto.png");
                 }
                 catch (Exception ex)
@@ -184,7 +182,7 @@ namespace SIC.UserLayer.Interfaces.Facturacion
                     String mensajeError = "Error Fatal : \n" + ex.Message;
                     if (ex.InnerException != null)
                     {
-                        mensajeError += "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty;
+                        mensajeError += "\n" + ex.InnerException.Message ;
                     }
 
                     Mensaje(mensajeError, "~/Imagenes/warning.png");

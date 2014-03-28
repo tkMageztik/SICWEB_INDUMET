@@ -23,6 +23,8 @@ namespace SIC.BusinessLayer.Print
             }
         }
 
+
+
         public void Imprimir(SIC_T_FACTURA factura, string nombreImpresora)
         {
             sb.Append('\u0027');

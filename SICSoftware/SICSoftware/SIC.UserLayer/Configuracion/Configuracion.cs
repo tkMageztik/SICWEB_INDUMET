@@ -8,11 +8,20 @@ namespace SIC.UserLayer
 {
     public class Configuracion
     {
-        public static string NombreImpresora
+
+        public static bool EsServidorImpresion
         {
             get
             {
-                return ConfigurationManager.AppSettings["PrinterName"];
+                bool value = false;
+                if (Boolean.TryParse(ConfigurationManager.AppSettings["PrintServer"], out value))
+                {
+                    return value;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
     }

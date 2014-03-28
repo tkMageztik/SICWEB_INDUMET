@@ -172,7 +172,7 @@ namespace SIC.UserLayer.Interfaces.Facturacion
                 String mensajeError = "Error Fatal : \n" + ex.Message;
                 if (ex.InnerException != null)
                 {
-                    mensajeError += "\n" + ex.InnerException != null ? ex.InnerException.Message : string.Empty;
+                    mensajeError += "\n" + ex.InnerException.Message ;
                 }
 
                 Mensaje(mensajeError, "~/Imagenes/warning.png");

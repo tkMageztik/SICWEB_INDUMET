@@ -48,6 +48,7 @@
     <Compile Include="ConceptoDA.cs" />
     <Compile Include="EmpresaDA.cs" />
     <Compile Include="IgvDA.cs" />
+    <Compile Include="ImpresoraDA.cs" />
     <Compile Include="ItemAlmacenDA.cs" />
     <Compile Include="ItemDA.cs" />
     <Compile Include="KardexDA.cs" />

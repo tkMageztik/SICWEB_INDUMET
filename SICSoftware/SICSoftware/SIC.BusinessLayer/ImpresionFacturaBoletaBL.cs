@@ -59,10 +59,9 @@ namespace SIC.BusinessLayer
                     
                     bfDA.ModificarFactura(factura);
                 }
-                ImpresionFacturaSimple ipf = new ImpresionFacturaSimple();
+                ImpresionFacturaCont ipf = new ImpresionFacturaCont();
                 ipf.ImprimirVarios(listaFactura, nombreImpresora);
-            }
-            
+            }            
         }
 
         public void ImprimirBoleta(int id, string nombreImpresora)
@@ -75,7 +74,26 @@ namespace SIC.BusinessLayer
                 ImpresionBoletaSimple ipf = new ImpresionBoletaSimple();
                 ipf.Imprimir(boleta, nombreImpresora);
                 bfDA.ModificarBoleta(boleta);
-                // Impresion
+            }
+        }
+
+        public void ImprimirBoletasVarias(List<int> listaId, string nombreImpresora)
+        {
+            BoletaFacturaDA bfDA = new BoletaFacturaDA();
+            List<SIC_T_BOLETA> listaBoleta = new List<SIC_T_BOLETA>();
+            foreach (int id in listaId)
+            {
+                SIC_T_BOLETA boleta = bfDA.ObtenerBoleta(id);
+                if (boleta != null)
+                {
+                    boleta.bol_c_bimpreso = true;
+
+                    listaBoleta.Add(boleta);
+
+                    bfDA.ModificarBoleta(boleta);
+                }
+                ImpresionBoletaCont ipf = new ImpresionBoletaCont();
+                ipf.ImprimirVarios(listaBoleta, nombreImpresora);
             }
         }
     }
