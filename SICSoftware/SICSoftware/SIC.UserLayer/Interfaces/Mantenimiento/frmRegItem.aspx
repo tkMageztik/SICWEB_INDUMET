@@ -177,8 +177,16 @@
                                                 </asp:TemplateField>
 
                                                 <asp:BoundField DataField="itm_c_vpardes" HeaderText="UNIDAD DE MEDIDA" />
-                                                <asp:BoundField DataField="SIC_T_ITEM_SUB_FAMILIA.SIC_T_ITEM_FAMILIA.ifm_c_des" HeaderText="FAMILIA" />
-                                                <asp:BoundField DataField="SIC_T_ITEM_SUB_FAMILIA.isf_c_vdesc" HeaderText="SUBFAMILIA" />
+                                                <asp:TemplateField HeaderText="FAMILIA">
+                                                    <ItemTemplate>
+                                                        <%# Eval("SIC_T_ITEM_SUB_FAMILIA.SIC_T_ITEM_FAMILIA.ifm_c_des")%>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="SIC_T_ITEM_SUB_FAMILIA.isf_c_vdesc">
+                                                    <ItemTemplate>
+                                                        <%# Eval("itm_c_dprecio_venta")%>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
                                                 <asp:CommandField ShowEditButton="True" CancelText="Cancelar" DeleteText="Eliminar"
                                                     EditText="Editar" />
                                                 <asp:CommandField ShowDeleteButton="True" />
