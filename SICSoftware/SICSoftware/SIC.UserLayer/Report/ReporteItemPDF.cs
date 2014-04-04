@@ -70,7 +70,7 @@ namespace ReportImpl
                     column.CellsHorizontalAlignment(HorizontalAlignment.Center);
                     column.IsVisible(true);
                     column.Order(1);
-                    column.Width(2);
+                    column.Width(1);
                     column.HeaderCell("Código");
                 });
 
@@ -80,7 +80,7 @@ namespace ReportImpl
                     column.CellsHorizontalAlignment(HorizontalAlignment.Center);
                     column.IsVisible(true);
                     column.Order(2);
-                    column.Width(3);
+                    column.Width(2);
                     column.HeaderCell("Descripción");
                 });
 
@@ -90,7 +90,7 @@ namespace ReportImpl
                     column.CellsHorizontalAlignment(HorizontalAlignment.Center);
                     column.IsVisible(true);
                     column.Order(3);
-                    column.Width(2);
+                    column.Width(1);
                     column.HeaderCell("Unidad de Medida");
                 });
 

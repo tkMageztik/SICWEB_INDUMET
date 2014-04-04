@@ -71,8 +71,8 @@ namespace SIC.UserLayer.Interfaces.Movimientos
             if (!Page.IsPostBack)
             {
                 this.ListarEstados();
-                this.ListarMovimientoEntrada();
-                this.ListarOrdenCompra();
+                //this.ListarMovimientoEntrada();
+                //this.ListarOrdenCompra();
             }
             if (EscenarioMovEn == TipoOperacion.Cierre)
             {

@@ -17,8 +17,7 @@ namespace ReportImpl
                 doc.RunDirection(PdfRunDirection.LeftToRight);
                 doc.Orientation(PageOrientation.Portrait);
                 doc.PageSize(PdfPageSize.A4);
-                doc.DocumentMetadata(new DocumentMetadata { Author = "Natcom Systems", Application = "SIC", Keywords = "Reporte.", Subject = "Clientes", Title = "Reporte de Clientes" });
-                
+                doc.DocumentMetadata(new DocumentMetadata { Author = "Natcom Systems", Application = "SIC", Keywords = "Reporte.", Subject = "Clientes", Title = "Reporte de Clientes" });                
             })
             .PagesFooter(footer =>
             {

@@ -32,7 +32,7 @@ namespace SIC.UserLayer.Interfaces.Almacen
                 this.ListarAlmacenes();
                 this.ListarFamilia();
                 this.ListarSubfamilia();
-                this.ListarItemsAlmacen();
+                //this.ListarItemsAlmacen();
             }
         }
 

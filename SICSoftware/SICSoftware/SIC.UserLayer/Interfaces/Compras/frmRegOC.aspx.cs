@@ -110,7 +110,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 this.ListarFamilia();
                 this.ListarComboMonedaFiltro();
                 this.ListarCombosEstadoFiltro();
-                this.ListarOrdenCompra();
+                //this.ListarOrdenCompra();
                 this.ListarComboClase();
                 this.ListarDirecciones();
                 gvItemsSeleccionados.DataSource = null;

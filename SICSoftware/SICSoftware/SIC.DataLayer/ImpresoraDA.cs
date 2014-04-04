@@ -44,6 +44,5 @@ namespace SIC.DataLayer
                 }
             }
         }
-
     }
 }
