@@ -21,7 +21,7 @@ namespace SIC.BusinessLayer.Print
             foreach (SIC_T_FACTURA factura in listaFactura)
             {
                 this.Imprimir(factura, nombreImpresora);
-            }
+            }            
         }
 
         public void Imprimir(SIC_T_FACTURA factura, string nombreImpresora)
@@ -108,7 +108,7 @@ namespace SIC.BusinessLayer.Print
                 sb.Append("\n");
             }
 
-            sb.Append("".PadRight(77, ' ').PadRight(122, ' ')
+            sb.Append(("       " + factura.fac_c_etotal.DecimalToSpanishText().ToUpper()).PadRight(77, ' ').PadRight(122, ' ')
                     + factura.fac_c_esubtotal.ToString().PadLeft(14, ' ')
                     + "\n");
             
@@ -124,6 +124,10 @@ namespace SIC.BusinessLayer.Print
 
         }
 
-        
-    }
+
+    }  
+    
+
 }
+
+

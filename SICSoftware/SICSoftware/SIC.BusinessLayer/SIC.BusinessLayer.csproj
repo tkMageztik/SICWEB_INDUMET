@@ -61,6 +61,7 @@
     <Compile Include="Print\ImpresionBoletaSimple.cs" />
     <Compile Include="Print\ImpresionBoletaCont.cs" />
     <Compile Include="Print\ImpresionFacturaCont.cs" />
+    <Compile Include="Print\NumberHelper.cs" />
     <Compile Include="Print\RawPrinterHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SeguridadBL.cs" />
