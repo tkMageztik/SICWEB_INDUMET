@@ -52,7 +52,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         {
             if (!IsPostBack)
             {
-                this.ListarItems();
+                //this.ListarItems();
                 this.ListarFiltroFamilia();
                 this.ListarUnidadMedida();
                 this.ListarFamilia();

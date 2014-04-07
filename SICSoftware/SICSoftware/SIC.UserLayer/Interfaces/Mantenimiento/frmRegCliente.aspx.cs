@@ -784,7 +784,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             }
             else if (_ListaTipoDireccion.Count > 1)
             {
-                ShowMessage += "- Solo debe ingresar una dirección fiscal </br>";
+                ShowMessage += "- Solo puede ingresar una dirección fiscal </br>";
                 _flag = false;
             }
             else if (contDir < 1)
@@ -1794,7 +1794,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
             if (!Page.IsPostBack)
             {
-                ListarClientes();
+                //ListarClientes();
                 mvCliente.ActiveViewIndex = 0;
 
                 UIPage.Fill(_cliente.Listar_DocumentosIdentidad().Where(x => x.par_det_c_iid != Convert.ToInt32(DocumentoPersona.RUC))
