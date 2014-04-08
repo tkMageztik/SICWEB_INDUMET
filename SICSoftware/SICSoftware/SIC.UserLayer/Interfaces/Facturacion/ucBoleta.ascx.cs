@@ -22,8 +22,6 @@ namespace SIC.UserLayer.Interfaces.Facturacion
         public void MostrarBoleta(SIC_T_BOLETA boleta)
         {
             lblFecha.Text = DateTime.Today.ToString("dd/MM/yyyy");
-            lblSubTotal.Text = boleta.bol_c_esubtotal.ToString();
-            lblIGV.Text = boleta.bol_c_eigvcal.ToString();
             lblTotal.Text = boleta.bol_c_etotal.ToString();
             lblCliente.Text = boleta.SIC_T_VENTA.SIC_T_CLIENTE.cli_c_vraz_soc;
             lblRuc.Text = boleta.SIC_T_VENTA.SIC_T_CLIENTE.cli_c_vdoc_id;

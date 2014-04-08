@@ -155,7 +155,7 @@ namespace SIC.BusinessLayer
                 {
                     var nuevoDetalle = new SIC_T_BOLETA_DETALLE();
                     nuevoDetalle.bol_det_c_ecantidad = ventaDetalle.ven_det_c_ecantidad;
-                    nuevoDetalle.bol_det_c_epreciounit = ventaDetalle.ven_det_c_epreciounit;
+                    nuevoDetalle.bol_det_c_epreciounit = ventaDetalle.ven_det_c_epreciounit * Decimal.Round(1 + ventaDetalle.SIC_T_VENTA.ven_c_eigv, 2);
                     nuevoDetalle.bol_det_c_epreciotot = Decimal.Round(nuevoDetalle.bol_det_c_ecantidad * nuevoDetalle.bol_det_c_epreciounit, 2);
                     nuevoDetalle.bol_det_c_iitem = ventaDetalle.ven_det_c_iitemid;
                     nuevoDetalle.SIC_T_ITEM = ventaDetalle.SIC_T_ITEM;
@@ -168,9 +168,7 @@ namespace SIC.BusinessLayer
                 }
             }
 
-            boleta.bol_c_esubtotal = boleta.SIC_T_BOLETA_DETALLE.Select(x => x.bol_det_c_epreciotot).Sum();
-            boleta.bol_c_eigvcal = Decimal.Round(boleta.bol_c_eigv * boleta.bol_c_esubtotal, 2);
-            boleta.bol_c_etotal = boleta.bol_c_esubtotal + boleta.bol_c_eigvcal;
+            boleta.bol_c_etotal = boleta.SIC_T_BOLETA_DETALLE.Select(x => x.bol_det_c_epreciotot).Sum();
             return boleta;
         }
 

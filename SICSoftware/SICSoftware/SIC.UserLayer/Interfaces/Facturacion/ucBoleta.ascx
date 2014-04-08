@@ -34,7 +34,7 @@
                   
                     <td class="style1"></td>                    
                     <td class="style2"></td>
-                    <td colspan = "2" style= "width: 61px" align="right">
+                    <td style= "width: 61px" align="right">
                         <table style="border: 2px solid #001E3C; width:150px">
                             <tr>
                                 <td align="center">
@@ -68,7 +68,6 @@
                     <td class="style1" ></td>                    
                     <td class="style2"></td>
                     <td></td>
-                    <td></td>
                 </tr>
                 <tr align= "left">
                     <td>
@@ -78,7 +77,6 @@
                         <asp:Label ID="lblCliente" runat="server" Text=""></asp:Label>
                     </td>
                     <td></td>
-                    <td></td>
                 </tr>
                 <tr align= "left">
                     <td>
@@ -87,8 +85,6 @@
                     <td colspan="3">
                         <asp:Label ID="lblRuc" runat="server" Text=""></asp:Label>
                     </td>
-                    <td>
-                        &nbsp;</td>
                     <td>
                         &nbsp;</td>
                 </tr>
@@ -101,11 +97,9 @@
                     </td>
                     <td>
                         &nbsp;</td>
-                    <td>
-                        &nbsp;</td>
                 </tr>
                 <tr align="left">
-                    <td class="style1" colspan="6">
+                    <td class="style1" colspan="5">
                         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False">
                             <Columns>
                                 <asp:TemplateField HeaderText="Código">
@@ -143,32 +137,16 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan = "6">
+                    <td colspan = "5">
                         &nbsp;</td>
                 </tr>
                 
 
                 <tr>
-                    <td colspan = "4" align= "right">
-                        <asp:Label ID="Label10" runat="server" Text="Subtotal"></asp:Label>        
-                    </td>
-                    <td colspan = "2" align="right">
-                        <asp:Label ID="lblSubTotal" runat="server" Text=""></asp:Label>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan = "4" align= "right"> 
-                        <asp:Label ID="Label11" runat="server" Text="I.G.V."></asp:Label>              
-                    </td>
-                    <td colspan = "2" align="right">
-                        <asp:Label ID="lblIGV" runat="server" Text=""></asp:Label>
-                    </td>
-                </tr>
-                <tr>
                     <td colspan = "4" align = "right">   
                         <asp:Label ID="Label12" runat="server" Text="Total"></asp:Label>
                     </td>
-                    <td colspan = "2" align="right">
+                    <td align="right">
                         <asp:Label ID="lblTotal" runat="server" Text=""></asp:Label>
                     </td>
                 </tr>                

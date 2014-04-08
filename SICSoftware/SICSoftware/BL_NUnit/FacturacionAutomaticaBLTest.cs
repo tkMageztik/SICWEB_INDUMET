@@ -52,10 +52,6 @@ namespace BL_NUnit
             Assert.AreEqual(ventaInicial.SIC_T_EMP_CENTRO_COSTO.emp_cst_c_vseriefactura, boletaResultante.bol_c_serie, "La serie no corresponde a la del centro de costo");
             Assert.AreEqual(ventaInicial.ven_c_iid, boletaResultante.bol_c_iventa, "El codigo de venta no corresponde a la venta");
             Assert.AreEqual(ventaInicial.ven_c_eigv, boletaResultante.bol_c_eigv, "El igv no corresponde a la venta.");
-            Assert.AreEqual(ventaInicial.ven_c_esubtotal, boletaResultante.bol_c_esubtotal, "El subtotal no corresponde a la venta.");
-            Assert.GreaterOrEqual(2, CantidadDecimales(boletaResultante.bol_c_esubtotal), "El subtotal tiene la cantidad de decimales incorrectos.");            
-            Assert.AreEqual(ventaInicial.ven_c_eigvcal, boletaResultante.bol_c_eigvcal, "El calculo de igv no corresponde a la venta.");
-            Assert.GreaterOrEqual(2, CantidadDecimales(boletaResultante.bol_c_eigvcal), "El calculo de igv tiene la cantidad de decimales incorrectos.");
             Assert.AreEqual(ventaInicial.ven_c_etotal, boletaResultante.bol_c_etotal, "El total no corresponde a la venta.");
             Assert.GreaterOrEqual(2, CantidadDecimales(boletaResultante.bol_c_etotal), "El total tiene la cantidad de decimales incorrectos.");
             Assert.AreEqual(ventaInicial.ven_c_ymoneda, boletaResultante.bol_c_imoneda, "La moneda no corresponde a la venta.");
@@ -67,7 +63,7 @@ namespace BL_NUnit
             {
                 Assert.IsNotNull(item.SIC_T_ITEM, "Se requiere que el objeto item no sea nulo.");
                 Assert.GreaterOrEqual(2, CantidadDecimales(item.bol_det_c_epreciotot), "El total del item tiene la cantidad de decimales incorrectos.");
-                Assert.AreEqual(Decimal.Round(item.bol_det_c_ecantidad * item.bol_det_c_epreciounit, 2), item.bol_det_c_epreciotot, "El precio total del item no corresponde a la multiplicacion de unitario x cantidad");                    
+                //Assert.AreEqual(Decimal.Round(item.bol_det_c_ecantidad * item.bol_det_c_epreciounit, 2), item.bol_det_c_epreciotot, "El precio total del item no corresponde a la multiplicacion de unitario x cantidad");                    
                 if (item.bol_det_c_ecantidad != ventaInicial.SIC_T_VENTA_DETALLE
                                             .Where(v => v.ven_det_c_iitemid == item.bol_det_c_iitem)
                                             .Select(x => x.ven_det_c_ecantidad)
