@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using SIC.BusinessLayer;
 using SIC.EntityLayer;
+using System.Configuration;
 
 namespace SIC.UserLayer
 {
@@ -17,6 +18,10 @@ namespace SIC.UserLayer
             txtUsuario.Text = "admin";
             txtClave.Text = "juan899833245";
 #endif
+
+            if (Convert.ToBoolean(ConfigurationManager.AppSettings["PrintServer"])) {
+                
+            }
         }
 
 
