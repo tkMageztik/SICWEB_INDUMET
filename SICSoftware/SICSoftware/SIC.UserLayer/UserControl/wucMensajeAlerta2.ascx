@@ -39,7 +39,7 @@
             <tr style="background-color: White">
                 <td align="center">
                     <asp:Button ID="btnFirst" runat="server" Text="First" BorderColor="#3E761C" BackColor="#3E761C"
-                        Font-Size="XX-Small" ForeColor="White" OnClick="btnFirst_Click" Style="height: 21px" />
+                        Font-Size="XX-Small" ForeColor="White" OnClick="btnFirst_Click" />
                 </td>
                 <td align="center">
                     <asp:Button ID="btnSecond" runat="server" BackColor="#3E761C" BorderColor="#3E761C"
