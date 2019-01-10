@@ -58,22 +58,13 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento {
         protected global::System.Web.UI.WebControls.TextBox txtRuc;
         
         /// <summary>
-        /// Control chkBusqCli.
+        /// Control cboBusqFuncion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkBusqCli;
-        
-        /// <summary>
-        /// Control chkBusqProv.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkBusqProv;
+        protected global::System.Web.UI.WebControls.DropDownList cboBusqFuncion;
         
         /// <summary>
         /// Control btnBuscar.

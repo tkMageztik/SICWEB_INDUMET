@@ -20,6 +20,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         string ShowMessage;
         private UbigeoBL _ubigeo = null;
         private ClienteBL _cliente = null;
+        private ZonaRepartoBL _zonaReparto = null;
         //EvalCreditoBL _eCredi = new EvalCreditoBL();
         #endregion
 
@@ -216,16 +217,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
             UIPage.Fill(_cliente.ListarColaboradoresPorArea(Convert.ToByte(6)), "colab_c_cdoc_id", "colab_c_vnomb_completo", cboEjecutivo, " ", "0");
 
-            //cboScoring.Items.Clear();
-            //cboScoring.DataSource = _cliente.ListarScorings();
-            //cboScoring.DataTextField = "cli_scor_c_cletra";
-            //cboScoring.DataValueField = "cli_scor_c_cletra";
-            //cboScoring.DataBind();
-
-            cboZonaReparto.Items.Clear();
-            cboZonaReparto.Items.Insert(0, new ListItem("A", "1"));
-            cboZonaReparto.Items.Insert(1, new ListItem("B", "2"));
-            cboZonaReparto.Items.Insert(2, new ListItem("C", "3"));
+            UIPage.Fill(_zonaReparto.ListarCentroCosto(), "zona_rep_c_yid", "zona_rep_c_czona", cboZonaReparto, "", "0");
 
             txtRazonSocial.Text = "";
             txtNroRuc.Text = "";
@@ -236,7 +228,6 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             txtFechaAniversario.Text = "";
             txtFecConstitucion.Text = "";
             txtTelefono.Text = "";
-            //cboScoring.SelectedValue = "A";
             cboZonaReparto.SelectedValue = "1";
 
             txtDniContacto.Text = "";
@@ -800,6 +791,12 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
                 _flag = false;
             }*/
 
+            if (Contactos.Count == 0)
+            {
+                ShowMessage += "- Debe ingresar por lo menos un contacto </br>";
+                _flag = false;
+            }
+
             return _flag;
         }
         private bool ValidarCelular(string _strCel)
@@ -905,6 +902,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         {
             _ubigeo = new UbigeoBL();
             _cliente = new ClienteBL();
+            _zonaReparto = new ZonaRepartoBL();
         }
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
@@ -950,14 +948,26 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
 
         private void ListarClientes()
         {
+            bool? esCliente = null;
+            bool? esProveedor = null;
+
+            if (cboBusqFuncion.SelectedItem.Text == "Cliente")
+            {
+                esCliente = true;
+            }
+            else if (cboBusqFuncion.SelectedItem.Text == "Proveedor")
+            {
+                esProveedor = true;
+            }
+
             List<SIC_T_CLIENTE> lstCliente =
                  _cliente.ListarClientes(
             new SIC_T_CLIENTE()
             {
                 cli_c_vraz_soc = txtFiltroRazonSocial.Text,
                 cli_c_vdoc_id = txtRuc.Text,
-                cli_c_bcliente = chkBusqCli.Checked,
-                cli_c_bproveedor = chkBusqProv.Checked
+                cli_c_bcliente = esCliente,
+                cli_c_bproveedor = esProveedor
             });
 
             gvLista.DataSource = lstCliente;
@@ -1903,7 +1913,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
             //    get { return _lProvincia; }
             //    set { _lProvincia = value; }
             //}
-        #endregion
+            #endregion
         }
 
         protected void gvLista_RowCreated(object sender, GridViewRowEventArgs e)
@@ -2097,7 +2107,7 @@ namespace SIC.UserLayer.Interfaces.Mantenimiento
         {
             Response.Clear();
 
-            Response.AddHeader("content-disposition", "attachment;filename=FileName.xls");
+            Response.AddHeader("content-disposition", "attachment;filename=Clientes_Proveedores.xls");
 
             Response.ContentType = "application/vnd.xls";
 

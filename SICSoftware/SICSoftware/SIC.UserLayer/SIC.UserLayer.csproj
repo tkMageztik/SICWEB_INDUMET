@@ -14,6 +14,12 @@
     <AssemblyName>SIC.UserLayer</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <UseIISExpress>false</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -47,8 +53,8 @@
     <Reference Include="AjaxControlToolkit">
       <HintPath>dlls\AjaxControlToolkit.dll</HintPath>
     </Reference>
-    <Reference Include="EPPlus">
-      <HintPath>dlls\EPPlus.dll</HintPath>
+    <Reference Include="EPPlus, Version=4.5.3.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.5.3\lib\net40\EPPlus.dll</HintPath>
     </Reference>
     <Reference Include="itextsharp, Version=5.5.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -73,12 +79,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>dlls\PdfRpt.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -210,7 +218,6 @@
     <Content Include="Interfaces\Facturacion\test.aspx" />
     <Content Include="Interfaces\Facturacion\ucBoleta.ascx" />
     <Content Include="Interfaces\Facturacion\ucFactura.ascx" />
-    <Content Include="Interfaces\frmImpresora.aspx" />
     <Content Include="Interfaces\Mantenimiento\frmMantEmpresa.aspx" />
     <Content Include="Interfaces\Mantenimiento\frmMantImpresoras.aspx" />
     <Content Include="Interfaces\Mantenimiento\frmRegCliente.aspx" />
@@ -253,13 +260,6 @@
     </Compile>
     <Compile Include="Interfaces\Facturacion\ucBoleta.ascx.designer.cs">
       <DependentUpon>ucBoleta.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Interfaces\frmImpresora.aspx.cs">
-      <DependentUpon>frmImpresora.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Interfaces\frmImpresora.aspx.designer.cs">
-      <DependentUpon>frmImpresora.aspx</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\Reporte\frmKardex.aspx.cs">
       <DependentUpon>frmKardex.aspx</DependentUpon>

@@ -64,6 +64,7 @@
     <Compile Include="UbigeoDA.cs" />
     <Compile Include="UnidadMedidaDA.cs" />
     <Compile Include="VentaDA.cs" />
+    <Compile Include="ZonaRepartoDA.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SIC.Data\SIC.Data.csproj">

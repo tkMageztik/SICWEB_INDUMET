@@ -839,7 +839,7 @@ namespace SIC.UserLayer.Interfaces.Movimientos
                 {
                     if (MovEntSeleccionado.mve_c_iestado == (int)EstadoMovimiento.CERRADO)
                     {
-                        this.Mensaje("No se puede CERRAR movimientos en estado ANULADO.", "~/Imagenes/warning.png");
+                        this.Mensaje("No se puede ANULAR movimientos en estado CERRADO.", "~/Imagenes/warning.png");
                         return;
                     }
                     else if (MovEntSeleccionado.mve_c_iestado == (int)EstadoMovimiento.ANULADO)

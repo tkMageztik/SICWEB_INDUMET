@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
-    CodeBehind="frmRegCliente.aspx.cs" Inherits="SIC.UserLayer.Interfaces.Mantenimiento.frmRegCliente" %>
+    CodeBehind="frmRegCliente.aspx.cs" Inherits="SIC.UserLayer.Interfaces.Mantenimiento.frmRegCliente" EnableEventValidation="false" %>
 
 <%--  EnableViewStateMac="false" EnableEventValidation="false"--%>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
@@ -15,8 +15,7 @@
                 <asp:View ID="View1" runat="server">
                     <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
                         <tr>
-                            <td class="tit-nav-paginas" align="left" colspan="2">
-                                MANTENIMIENTO &gt; CLIENTE / PROVEEDOR
+                            <td class="tit-nav-paginas" align="left" colspan="2">MANTENIMIENTO &gt; CLIENTE / PROVEEDOR
                             </td>
                         </tr>
                         <tr>
@@ -29,28 +28,32 @@
                                                     <td>
                                                         <table>
                                                             <tr>
-                                                                <td class="txt-box-estilo">
-                                                                    Razón Social :
+                                                                <td class="txt-box-estilo">Razón Social :
                                                                 </td>
                                                                 <td>
                                                                     <asp:TextBox ID="txtFiltroRazonSocial" runat="server" CssClass="ipt_150x20"></asp:TextBox>
                                                                 </td>
-                                                                <td style="width: 20px">
-                                                                </td>
-                                                                <td class="txt-box-estilo">
-                                                                    RUC :
+                                                                <td style="width: 20px"></td>
+                                                                <td class="txt-box-estilo">RUC :
                                                                 </td>
                                                                 <td>
                                                                     <asp:TextBox ID="txtRuc" runat="server" CssClass="ipt_150x20"></asp:TextBox>
                                                                 </td>
-                                                                <td style="width: 20px">
+                                                                <td style="width: 20px"></td>
+                                                                <td class="txt-box-estilo">Función :
                                                                 </td>
                                                                 <td>
-                                                                    <asp:CheckBox ID="chkBusqCli" runat="server" Checked="true" Text="Cliente" />
+                                                                    <%--<asp:CheckBox ID="chkBusqCli" runat="server" Checked="true" Text="Cliente" />--%>
+
+                                                                    <asp:DropDownList ID="cboBusqFuncion" runat="server" CssClass="slt_150x20">
+                                                                        <asp:ListItem Text="Cliente"></asp:ListItem>
+                                                                        <asp:ListItem Text="Proveedor"></asp:ListItem>
+                                                                        <asp:ListItem Text="Todos" Selected="True"></asp:ListItem>
+                                                                    </asp:DropDownList>
                                                                 </td>
-                                                                <td>
-                                                                    &nbsp;<asp:CheckBox ID="chkBusqProv" runat="server" Checked="false" Text="Proveedor" />
-                                                                </td>
+                                                                <%--<td>
+                                                                    <%--&nbsp;<asp:CheckBox ID="chkBusqProv" runat="server" Checked="false" Text="Proveedor" />
+                                                                </td>--%>
                                                             </tr>
                                                         </table>
                                                     </td>
@@ -145,10 +148,8 @@
                                                         <asp:Button ID="btnDescargarXls" runat="server" CssClass="button small gris" Style="width: 150px"
                                                             Text="Descargar Excel" OnClick="btnDescargarXls_Click" />
                                                     </td>
-                                                    <td>
-                                                    </td>
-                                                    <td>
-                                                    </td>
+                                                    <td></td>
+                                                    <td></td>
                                                 </tr>
                                             </table>
                                         </td>
@@ -157,8 +158,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2">
-                                &nbsp;
+                            <td colspan="2">&nbsp;
                             </td>
                         </tr>
                     </table>
@@ -166,8 +166,7 @@
                 <asp:View ID="View2" runat="server">
                     <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
                         <tr>
-                            <td align="left" class="tit-nav-paginas">
-                                MANTENIMIENTO &gt; CLIENTE / PROVEEDOR &gt;
+                            <td align="left" class="tit-nav-paginas">MANTENIMIENTO &gt; CLIENTE / PROVEEDOR &gt;
                                 <asp:Label ID="lblAccion" runat="server"></asp:Label>
                             </td>
                             <td align="right">
@@ -179,8 +178,7 @@
                                         <td>
                                             <asp:LinkButton ID="btnCancelar" runat="server" CssClass="lnk" OnClick="btnCancelar_Click">Cancelar</asp:LinkButton>
                                         </td>
-                                        <td style="width: 10px">
-                                        </td>
+                                        <td style="width: 10px"></td>
                                     </tr>
                                 </table>
                             </td>
@@ -195,8 +193,7 @@
                                                     <td style="width: 530px">
                                                         <table>
                                                             <tr>
-                                                                <td class="txt-box-estilo">
-                                                                    Tipo de persona <span class="requerido">(*)</span>
+                                                                <td class="txt-box-estilo">Tipo de persona <span class="requerido">(*)</span>
                                                                 </td>
                                                                 <td>
                                                                     <asp:DropDownList ID="cboTipoPersona" runat="server" CssClass="slt_150x20">
@@ -204,8 +201,7 @@
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td class="txt-box-estilo">
-                                                                    Nombre Comercial
+                                                                <td class="txt-box-estilo">Nombre Comercial
                                                                 </td>
                                                                 <td>
                                                                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -266,8 +262,7 @@
                                                                                                                                             <img id="img2" class="imagen" height="32px" src="../../Imagenes/Iconos/informacion.gif"
                                                                                                                                                 width="32px" />
                                                                                                                                         </td>
-                                                                                                                                        <td>
-                                                                                                                                            Ya existe una evaluación para este Cliente con este nombre Comercial.<br />
+                                                                                                                                        <td>Ya existe una evaluación para este Cliente con este nombre Comercial.<br />
                                                                                                                                             ¿Desea generar una nueva evaluación y deshabilitar la anterior?
                                                                                                                                         </td>
                                                                                                                                     </tr>
@@ -303,8 +298,7 @@
                                                                                     </tr>
                                                                                 </table>
                                                                             </td>
-                                                                            <td style="width: 5px">
-                                                                            </td>
+                                                                            <td style="width: 5px"></td>
                                                                             <td valign="top">
                                                                                 <asp:Button ID="btnAgregarNombreComercial" runat="server" CssClass="button small gris"
                                                                                     OnClick="btnAgregarNombreComercial_Click" Text="Agregar" Style="width: 100px" />
@@ -314,8 +308,7 @@
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td class="txt-box-estilo">
-                                                                    Fecha de Aniversario
+                                                                <td class="txt-box-estilo">Fecha de Aniversario
                                                                 </td>
                                                                 <td>
                                                                     <asp:TextBox ID="txtFechaAniversario" runat="server" CssClass="ipt_150x20x2"></asp:TextBox>
@@ -325,8 +318,7 @@
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td class="txt-box-estilo">
-                                                                    Fecha de Constitución<br />
+                                                                <td class="txt-box-estilo">Fecha de Constitución<br />
                                                                 </td>
                                                                 <td class="txt-box-estilo">
                                                                     <asp:TextBox ID="txtFecConstitucion" runat="server" CssClass="ipt_150x20x2"></asp:TextBox>
@@ -334,72 +326,60 @@
                                                                         Enabled="True" Format="dd/MM/yyyy" TargetControlID="txtFecConstitucion">
                                                                     </ajaxToolkit:CalendarExtender>
                                                                 </td>
-                                                                <td class="txt-box-estilo">
-                                                                </td>
+                                                                <td class="txt-box-estilo"></td>
                                                                 <td class="txt-box-estilo">
                                                                     <%--   <asp:DropDownList ID="cboScoring" runat="server" CssClass="ipt_250x20">
                                                                     </asp:DropDownList>--%>
                                                                 </td>
                                                             </tr>
                                                             <tr style="display: none">
-                                                                <td class="txt-box-estilo">
-                                                                    Ejecutivo de cobranza <span class="requerido">(*)</span>
+                                                                <td class="txt-box-estilo">Ejecutivo de cobranza <span class="requerido">(*)</span>
                                                                 </td>
                                                                 <td class="txt-box-estilo">
                                                                     <asp:DropDownList ID="cboEjecutivo" runat="server" CssClass="slt_150x20">
                                                                     </asp:DropDownList>
                                                                 </td>
-                                                                <td class="txt-box-estilo">
-                                                                    &nbsp;
+                                                                <td class="txt-box-estilo">&nbsp;
                                                                 </td>
-                                                                <td class="txt-box-estilo">
-                                                                    &nbsp;
+                                                                <td class="txt-box-estilo">&nbsp;
                                                                 </td>
-                                                                <td class="txt-box-estilo">
-                                                                    &nbsp;
+                                                                <td class="txt-box-estilo">&nbsp;
                                                                 </td>
-                                                                <td>
-                                                                    &nbsp;
+                                                                <td>&nbsp;
                                                                 </td>
                                                             </tr>
                                                         </table>
                                                     </td>
-                                                    <td style="width: 10px">
-                                                    </td>
+                                                    <td style="width: 10px"></td>
                                                     <td valign="top">
                                                         <table width="100%">
                                                             <tr>
-                                                                <td class="txt-box-estilo">
-                                                                    Razón Social <span class="requerido">(*)</span>
+                                                                <td class="txt-box-estilo">Razón Social <span class="requerido">(*)</span>
                                                                 </td>
                                                                 <td>
                                                                     <asp:TextBox ID="txtRazonSocial" runat="server" CssClass="ipt_250x20" MaxLength="200"></asp:TextBox>
                                                                 </td>
-                                                                <td class="txt-box-estilo">
-                                                                    RUC <span class="requerido">(*)</span>
+                                                                <td class="txt-box-estilo">RUC <span class="requerido">(*)</span>
                                                                 </td>
                                                                 <td>
                                                                     <asp:TextBox ID="txtNroRuc" runat="server" CssClass="ipt_150x20" MaxLength="11" onkeypress="return SoloNumeros(event)"></asp:TextBox>
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td class="txt-box-estilo">
-                                                                    N° de partida
+                                                                <td class="txt-box-estilo">N° de partida
                                                                 </td>
                                                                 <td>
                                                                     <asp:TextBox ID="txtNumeroPartida" runat="server" CssClass="ipt_150x20" MaxLength="30"
                                                                         onkeypress="return SoloNumeros(event)"></asp:TextBox>
                                                                 </td>
-                                                                <td class="txt-box-estilo">
-                                                                    Rubro detallado&nbsp; (SUNAT)&nbsp;
+                                                                <td class="txt-box-estilo">Rubro detallado&nbsp; (SUNAT)&nbsp;
                                                                 </td>
                                                                 <td>
                                                                     <asp:TextBox ID="txtRubroDetallado" runat="server" CssClass="ipt_150x20" MaxLength="200"></asp:TextBox>
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td class="txt-box-estilo">
-                                                                    Teléfono <span class="requerido">(*)</span>
+                                                                <td class="txt-box-estilo">Teléfono <span class="requerido">(*)</span>
                                                                 </td>
                                                                 <td>
                                                                     <asp:TextBox ID="txtTelefono" runat="server" CssClass="ipt_150x20" MaxLength="15"></asp:TextBox>
@@ -407,8 +387,7 @@
                                                                         Enabled="True" TargetControlID="txtTelefono" ValidChars="0123456789( ) - * #">
                                                                     </ajaxToolkit:FilteredTextBoxExtender>
                                                                 </td>
-                                                                <td>
-                                                                </td>
+                                                                <td></td>
                                                                 <td>
                                                                     <table width="100%">
                                                                         <tr>
@@ -423,12 +402,9 @@
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td>
-                                                                </td>
-                                                                <td>
-                                                                </td>
-                                                                <td class="txt-box-estilo">
-                                                                    Zona de reparto (Lima)
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td class="txt-box-estilo">Zona de reparto (Lima)
                                                                 </td>
                                                                 <td>
                                                                     <asp:DropDownList ID="cboZonaReparto" runat="server" CssClass="ipt_150x20">
@@ -442,11 +418,9 @@
                                                     <td colspan="3">
                                                         <table width="100%" cellpadding="0" cellspacing="0">
                                                             <tr>
-                                                                <td class="txt-box-estilo" style="width: 115px">
-                                                                    Dirección
+                                                                <td class="txt-box-estilo" style="width: 115px">Dirección
                                                                 </td>
-                                                                <td valign="top" style="border-width: 0px; border-style: solid; border-color: #CCC;
-                                                                    background-color: #f5f5f5;">
+                                                                <td valign="top" style="border-width: 0px; border-style: solid; border-color: #CCC; background-color: #f5f5f5;">
                                                                     <table width="83%" border="0" cellspacing="0" cellpadding="0">
                                                                         <tr>
                                                                             <td>
@@ -460,7 +434,8 @@
                                                                                                     <ItemTemplate>
                                                                                                         <asp:Label ID="lblNumeracion" runat="server">
             <%# (gvDireccion.Rows.Count + 1) + "- "%>
-                                                                                                        </asp:Label></ItemTemplate>
+                                                                                                        </asp:Label>
+                                                                                                    </ItemTemplate>
                                                                                                 </asp:TemplateField>
                                                                                                 <asp:TemplateField ShowHeader="False">
                                                                                                     <ItemTemplate>
@@ -503,7 +478,8 @@
                                                                                                 </asp:TemplateField>
                                                                                                 <asp:TemplateField ShowHeader="False">
                                                                                                     <EditItemTemplate>
-                                                                                                        <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox></EditItemTemplate>
+                                                                                                        <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
+                                                                                                    </EditItemTemplate>
                                                                                                 </asp:TemplateField>
                                                                                                 <asp:CommandField ButtonType="Link" DeleteText="Eliminar" ShowDeleteButton="True" />
                                                                                             </Columns>
@@ -514,8 +490,7 @@
                                                                                     </Triggers>
                                                                                 </asp:UpdatePanel>
                                                                             </td>
-                                                                            <td style="width: 10px">
-                                                                            </td>
+                                                                            <td style="width: 10px"></td>
                                                                             <td>
                                                                                 <asp:Button ID="btnAgregar" runat="server" CssClass="button small gris" OnClick="btnAgregar_Click"
                                                                                     Text="Agregar" Style="width: 100px" />
@@ -528,8 +503,7 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td colspan="6" align="center">
-                                                        &nbsp;
+                                                    <td colspan="6" align="center">&nbsp;
                                                     </td>
                                                 </tr>
                                             </table>
@@ -541,8 +515,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="tit-nav-paginas" style="height: 45px; padding-left: 5px">
-                                CONTACTOS
+                            <td class="tit-nav-paginas" style="height: 45px; padding-left: 5px">CONTACTOS
                             </td>
                             <td align="right" style="padding-right: 5px">
                                 <asp:Button ID="btnAgregarContacto" runat="server" CssClass="button small gris" OnClick="btnAgregarContacto_Click"
@@ -564,19 +537,23 @@
                                                         <asp:Label ID="lblNumeroContacto" runat="server">
                                                  <%# (gvContactos.Rows.Count + 1) + "- "%>
                                                 
-                                                        </asp:Label></ItemTemplate>
+                                                        </asp:Label>
+                                                    </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="NOMBRES Y APELLIDOS">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblNombre" runat="server"></asp:Label></ItemTemplate>
+                                                        <asp:Label ID="lblNombre" runat="server"></asp:Label>
+                                                    </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="EMAIL">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblEmail" runat="server"></asp:Label></ItemTemplate>
+                                                        <asp:Label ID="lblEmail" runat="server"></asp:Label>
+                                                    </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="CARGO">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblCargo" runat="server"></asp:Label></ItemTemplate>
+                                                        <asp:Label ID="lblCargo" runat="server"></asp:Label>
+                                                    </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:CommandField ButtonType="Link" EditText="Editar" ShowEditButton="True" ItemStyle-Width="40px"
                                                     ItemStyle-HorizontalAlign="center" />
@@ -595,8 +572,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2">
-                                &nbsp;
+                            <td colspan="2">&nbsp;
                             </td>
                         </tr>
                     </table>
@@ -604,8 +580,7 @@
                 <asp:View ID="View3" runat="server">
                     <table align="center" border="0" width="100%" cellpadding="0" cellspacing="0">
                         <tr>
-                            <td align="left" class="tit-nav-paginas">
-                                MANTENIMIENTO &gt; CLIENTE / PROVEEDOR &gt;
+                            <td align="left" class="tit-nav-paginas">MANTENIMIENTO &gt; CLIENTE / PROVEEDOR &gt;
                                 <asp:Label ID="lblContacto" runat="server"></asp:Label>
                             </td>
                             <td align="right">
@@ -617,8 +592,7 @@
                                         <td>
                                             <asp:LinkButton ID="btnCancelarContacto" runat="server" CssClass="lnk" OnClick="btnCancelarContacto_Click">Cancelar</asp:LinkButton>
                                         </td>
-                                        <td style="width: 10px">
-                                        </td>
+                                        <td style="width: 10px"></td>
                                     </tr>
                                 </table>
                             </td>
@@ -640,8 +614,7 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="txt-box-estilo">
-                                                        Tipo de Documento
+                                                    <td class="txt-box-estilo">Tipo de Documento
                                                     </td>
                                                     <td>
                                                         <asp:DropDownList ID="cboTipoDoc" runat="server" AutoPostBack="True" CssClass="slt_150x20"
@@ -650,14 +623,11 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>
-                                                    </td>
-                                                    <td>
-                                                    </td>
+                                                    <td></td>
+                                                    <td></td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="txt-box-estilo">
-                                                        Documento de Identidad
+                                                    <td class="txt-box-estilo">Documento de Identidad
                                                         <%-- <span class="requerido">(*)</span>--%>
                                                     </td>
                                                     <td>
@@ -670,8 +640,7 @@
                                                             </ContentTemplate>
                                                         </asp:UpdatePanel>
                                                     </td>
-                                                    <td class="txt-box-estilo">
-                                                        Nombre <span class="requerido">(*)</span>
+                                                    <td class="txt-box-estilo">Nombre <span class="requerido">(*)</span>
                                                     </td>
                                                     <td>
                                                         <asp:TextBox ID="txtNombreContacto" runat="server" CssClass="ipt_150x20" MaxLength="50"></asp:TextBox>
@@ -681,20 +650,17 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>
-                                                    </td>
+                                                    <td></td>
                                                     <td>
                                                         <asp:Label ID="lblValidarDni" runat="server" CssClass="txt2" ForeColor="Red"></asp:Label>
                                                     </td>
-                                                    <td>
-                                                    </td>
+                                                    <td></td>
                                                     <td>
                                                         <asp:Label ID="lblValidarNombre" runat="server" CssClass="txt2" ForeColor="Red"></asp:Label>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="txt-box-estilo">
-                                                        Apellido Paterno <span id="txt" class="requerido">(*)</span>
+                                                    <td class="txt-box-estilo">Apellido Paterno <span id="txt" class="requerido">(*)</span>
                                                     </td>
                                                     <td>
                                                         <asp:TextBox ID="txtApellidoPaternoContacto" runat="server" CssClass="ipt_150x20"
@@ -703,8 +669,7 @@
                                                             runat="server" Enabled="True" TargetControlID="txtApellidoPaternoContacto" ValidChars=" abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZáéíóúÁÉÍÓÚ">
                                                         </ajaxToolkit:FilteredTextBoxExtender>
                                                     </td>
-                                                    <td class="txt-box-estilo">
-                                                        Apellido Materno
+                                                    <td class="txt-box-estilo">Apellido Materno
                                                         <%-- <asp:UpdatePanel ID="upMen" runat="server" UpdateMode="Conditional">
                                                             <ContentTemplate>
                                                                 <asp:Label ID="lbl" runat="server" CssClass="requerido"></asp:Label>
@@ -720,20 +685,17 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>
-                                                    </td>
+                                                    <td></td>
                                                     <td>
                                                         <asp:Label ID="lblValidarApellido" runat="server" CssClass="txt2" ForeColor="Red"></asp:Label>
                                                     </td>
-                                                    <td>
-                                                    </td>
+                                                    <td></td>
                                                     <td>
                                                         <asp:Label ID="lblValidarApellidoMaterno" runat="server" CssClass="txt2" ForeColor="Red"></asp:Label>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="txt-box-estilo">
-                                                        Teléfono Fijo
+                                                    <td class="txt-box-estilo">Teléfono Fijo
                                                     </td>
                                                     <td>
                                                         <asp:TextBox ID="txtTelefonofijoContacto" runat="server" CssClass="ipt_150x20" MaxLength="10"></asp:TextBox>
@@ -741,8 +703,7 @@
                                                             runat="server" Enabled="True" TargetControlID="txtTelefonofijoContacto" ValidChars="0123456789( ) - * #">
                                                         </ajaxToolkit:FilteredTextBoxExtender>
                                                     </td>
-                                                    <td class="txt-box-estilo">
-                                                        Teléfono Móvil
+                                                    <td class="txt-box-estilo">Teléfono Móvil
                                                     </td>
                                                     <td>
                                                         <asp:TextBox ID="txttelefonoMovilContacto" runat="server" CssClass="ipt_150x20" MaxLength="9"></asp:TextBox>
@@ -752,26 +713,22 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>
-                                                    </td>
+                                                    <td></td>
                                                     <td>
                                                         <asp:Label ID="lblValidarTelefonoFijo" runat="server" CssClass="txt2" ForeColor="Red"></asp:Label>
                                                     </td>
-                                                    <td>
-                                                    </td>
+                                                    <td></td>
                                                     <td>
                                                         <asp:Label ID="lblValidarTelefonoMovil" runat="server" CssClass="txt2" ForeColor="Red"></asp:Label>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="txt-box-estilo">
-                                                        E-mail <span class="requerido">(*)</span>
+                                                    <td class="txt-box-estilo">E-mail <span class="requerido">(*)</span>
                                                     </td>
                                                     <td>
                                                         <asp:TextBox ID="txtEmailContacto" runat="server" CssClass="ipt_150x20" MaxLength="50"></asp:TextBox>
                                                     </td>
-                                                    <td class="txt-box-estilo">
-                                                        Fecha de Nacimiento&nbsp;
+                                                    <td class="txt-box-estilo">Fecha de Nacimiento&nbsp;
                                                     </td>
                                                     <td>
                                                         <asp:TextBox ID="txtFechaNacimientoContacto" runat="server" CssClass="ipt_150x20"></asp:TextBox>
@@ -781,27 +738,23 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>
-                                                    </td>
+                                                    <td></td>
                                                     <td>
                                                         <asp:Label ID="lblValidarEmail" runat="server" CssClass="txt2" ForeColor="Red"></asp:Label>
                                                     </td>
-                                                    <td>
-                                                    </td>
+                                                    <td></td>
                                                     <td>
                                                         <asp:Label ID="lblValidarFechaNac" runat="server" CssClass="txt2" ForeColor="Red"></asp:Label>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="txt-box-estilo" valign="top">
-                                                        Cargo <span class="requerido">(*)</span>
+                                                    <td class="txt-box-estilo" valign="top">Cargo <span class="requerido">(*)</span>
                                                     </td>
                                                     <td align="left" valign="top">
                                                         <asp:DropDownList ID="cboCargoContacto" runat="server" CssClass="slt_150x20">
                                                         </asp:DropDownList>
                                                     </td>
-                                                    <td class="txt-box-estilo" valign="top">
-                                                        Observaciones
+                                                    <td class="txt-box-estilo" valign="top">Observaciones
                                                     </td>
                                                     <td align="left">
                                                         <asp:TextBox ID="txtObservacionesContacto" runat="server" CssClass="txta_450x80"
@@ -809,11 +762,9 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>
-                                                        &nbsp;
+                                                    <td>&nbsp;
                                                     </td>
-                                                    <td>
-                                                        &nbsp;
+                                                    <td>&nbsp;
                                                         <asp:HiddenField ID="hdfCantRepLeg" runat="server" />
                                                         <asp:HiddenField ID="hdfCantGerGen" runat="server" />
                                                     </td>
