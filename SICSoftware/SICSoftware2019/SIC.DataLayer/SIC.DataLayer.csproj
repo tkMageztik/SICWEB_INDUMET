@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C80F897F-7319-48CB-AD65-94151C01F4B2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SIC.DataLayer</RootNamespace>
+    <AssemblyName>SIC.DataLayer</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AlmacenDA.cs" />
+    <Compile Include="BoletaFacturaDA.cs" />
+    <Compile Include="CentroCostoDA.cs" />
+    <Compile Include="ClienteDA.cs" />
+    <Compile Include="ConceptoDA.cs" />
+    <Compile Include="EmpresaDA.cs" />
+    <Compile Include="IgvDA.cs" />
+    <Compile Include="ImpresoraDA.cs" />
+    <Compile Include="ItemAlmacenDA.cs" />
+    <Compile Include="ItemDA.cs" />
+    <Compile Include="KardexDA.cs" />
+    <Compile Include="LocalDA.cs" />
+    <Compile Include="MovEstadoDA.cs" />
+    <Compile Include="MovimientoEntradaDA.cs" />
+    <Compile Include="MovimientoSalidaDA.cs" />
+    <Compile Include="OrdenCompraDA.cs" />
+    <Compile Include="ParametroDA.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SeguridadDA.cs" />
+    <Compile Include="TasaCambioDA.cs" />
+    <Compile Include="UbigeoDA.cs" />
+    <Compile Include="UnidadMedidaDA.cs" />
+    <Compile Include="VentaDA.cs" />
+    <Compile Include="ZonaRepartoDA.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SIC.Data\SIC.Data.csproj">
+      <Project>{7255AF3B-02A4-40B9-BB04-D2B7F9C69443}</Project>
+      <Name>SIC.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SIC.EntityLayer\SIC.EntityLayer.csproj">
+      <Project>{975FB244-7E0D-47A8-8FB3-9E05C4DE911E}</Project>
+      <Name>SIC.EntityLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SIC.UIGeneral\SIC.UIGeneral.csproj">
+      <Project>{98BFAEA2-45F4-4D55-A6E2-C39D63AC6CB2}</Project>
+      <Name>SIC.UIGeneral</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

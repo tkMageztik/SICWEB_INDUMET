@@ -494,7 +494,6 @@
     <Folder Include="Bootstrap\bin\" />
     <Folder Include="Imagenes\Thumbnails\" />
     <Folder Include="Imagenes\Titulos\" />
-    <Folder Include="obj\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Site.Master" />
@@ -525,6 +524,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Interfaces\Facturacion\Report1.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\profile_sic_mys.pubxml" />
+    <None Include="Properties\PublishProfiles\profile_sic_ns.pubxml" />
+    <None Include="Properties\PublishProfiles\profile_sic_wa.pubxml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
